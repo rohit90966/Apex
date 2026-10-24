@@ -1,0 +1,4902 @@
+{
+  "schema_version": "1.0.0",
+  "investigation_id": "inv-fa1484b3",
+  "exported_at": 1792706329.030249,
+  "application_origin": "http://127.0.0.1:5173",
+  "target_url": "http://127.0.0.1:5173/",
+  "investigated_routes": [
+    "127.0.0.1:5173/",
+    "127.0.0.1:5173/products/prod-05",
+    "127.0.0.1:5173/cart",
+    "127.0.0.1:5173/login",
+    "127.0.0.1:5173/products/prod-09",
+    "127.0.0.1:5173/products/prod-13"
+  ],
+  "states": [
+    {
+      "state_id": "st_root_quantum_wirele_view",
+      "state_class_id": "cls_cebbf1418c",
+      "url": "http://127.0.0.1:5173/",
+      "normalized_route": "127.0.0.1:5173/",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Quantum Wireless Noise-Cancelling Headphones)",
+      "state_signature": "cls_cebbf1418c::st_root_quantum_wirele_view",
+      "distinguishing_observations": [
+        "heading:Quantum Wireless Noise-Cancelling Headphones",
+        "heading:Smart Ergonomic Fitness Watch",
+        "heading:Ultra-Slim 4K External Monitor",
+        "heading:Magnetic Wireless Charging Stand",
+        "heading:Classic Merino Wool Crewneck Sweater",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Quantum Wireless Noise-Cancelling Headphones",
+        "Smart Ergonomic Fitness Watch",
+        "Ultra-Slim 4K External Monitor",
+        "Magnetic Wireless Charging Stand",
+        "Classic Merino Wool Crewneck Sweater",
+        "All-Weather Commuter Rain Jacket",
+        "Organic Cotton Everyday T-Shirt",
+        "Genuine Leather Minimalist Wallet",
+        "Precision Barista Pour-Over Coffee Maker",
+        "Cast Iron Pre-Seasoned Dutch Oven",
+        "Aromatherapy Ceramic Diffuser",
+        "Stainless Steel Insulated Water Bottle",
+        "Architectural Design & Space Monograph",
+        "Hardcover Dotted Grid Journal (A5)",
+        "Vintage Brass Fountain Pen Set"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Account",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "All",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-all\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Electronics",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-electronics\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Apparel",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Home & Kitchen",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Books & Stationery",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "#sort-select",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "Featured",
+              "price_asc",
+              "price_desc",
+              "name_asc",
+              "name_desc"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "View details for Quantum Wireless Noise-Cancelling Headphones",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-01\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-01"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "a",
+          "accessible_name": "Quantum Wireless Noise-Cancelling Headphones",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-01\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-01"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add Quantum Wireless Noise-Cancelling Headphones to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "a",
+          "accessible_name": "View details for Smart Ergonomic Fitness Watch",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-04\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-04"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "a",
+          "accessible_name": "Smart Ergonomic Fitness Watch",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-02\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-04"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Add Smart Ergonomic Fitness Watch to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "View details for Ultra-Slim 4K External Monitor",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-03\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-03"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Ultra-Slim 4K External Monitor",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-03\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-03"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "Add Ultra-Slim 4K External Monitor to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "a",
+          "accessible_name": "View details for Magnetic Wireless Charging Stand",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-04\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-04"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "a",
+          "accessible_name": "Magnetic Wireless Charging Stand",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-04\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-04"
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "Add Magnetic Wireless Charging Stand to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_22",
+          "role": "a",
+          "accessible_name": "View details for Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_23",
+          "role": "a",
+          "accessible_name": "Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_24",
+          "role": "button",
+          "accessible_name": "Add Classic Merino Wool Crewneck Sweater to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_25",
+          "role": "a",
+          "accessible_name": "View details for All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_26",
+          "role": "a",
+          "accessible_name": "All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_27",
+          "role": "button",
+          "accessible_name": "Add All-Weather Commuter Rain Jacket to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_28",
+          "role": "a",
+          "accessible_name": "View details for Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-07"
+          }
+        },
+        {
+          "element_id": "ctrl_29",
+          "role": "a",
+          "accessible_name": "Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-07"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_root_classic_merino_view",
+      "state_class_id": "cls_57fdcf6775",
+      "url": "http://127.0.0.1:5173/?category=Apparel",
+      "normalized_route": "127.0.0.1:5173/",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater)",
+      "state_signature": "cls_57fdcf6775::st_root_classic_merino_view",
+      "distinguishing_observations": [
+        "heading:Classic Merino Wool Crewneck Sweater",
+        "heading:All-Weather Commuter Rain Jacket",
+        "heading:Organic Cotton Everyday T-Shirt",
+        "heading:Genuine Leather Minimalist Wallet",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [
+        "Query parameters: {'category': 'Apparel'}"
+      ],
+      "url_parameters": {
+        "category": "Apparel"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Classic Merino Wool Crewneck Sweater",
+        "All-Weather Commuter Rain Jacket",
+        "Organic Cotton Everyday T-Shirt",
+        "Genuine Leather Minimalist Wallet"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "All",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-all\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Electronics",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-electronics\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Apparel",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Home & Kitchen",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Books & Stationery",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "#sort-select",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "Featured",
+              "price_asc",
+              "price_desc",
+              "name_asc",
+              "name_desc"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "View details for Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "a",
+          "accessible_name": "Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add Classic Merino Wool Crewneck Sweater to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "a",
+          "accessible_name": "View details for All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "a",
+          "accessible_name": "All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Add All-Weather Commuter Rain Jacket to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "View details for Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-07"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-07"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "Add Organic Cotton Everyday T-Shirt to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "a",
+          "accessible_name": "View details for Genuine Leather Minimalist Wallet",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-08\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-08"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "a",
+          "accessible_name": "Genuine Leather Minimalist Wallet",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-08\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-08"
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "Add Genuine Leather Minimalist Wallet to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_root_classic_merino_c1_with_error",
+      "state_class_id": "cls_57fdcf6775",
+      "url": "http://127.0.0.1:5173/?category=Apparel",
+      "normalized_route": "127.0.0.1:5173/",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater)",
+      "state_signature": "cls_57fdcf6775::st_root_classic_merino_c1_with_error",
+      "distinguishing_observations": [
+        "heading:Classic Merino Wool Crewneck Sweater",
+        "heading:All-Weather Commuter Rain Jacket",
+        "heading:Organic Cotton Everyday T-Shirt",
+        "heading:Genuine Leather Minimalist Wallet",
+        "validation_error:Added Classic Merino Wool Crewneck Sweater to cart",
+        "counter_value:1"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [
+        "Query parameters: {'category': 'Apparel'}"
+      ],
+      "url_parameters": {
+        "category": "Apparel"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": true,
+        "validation_error_message": "Added Classic Merino Wool Crewneck Sweater to cart",
+        "validation_error_locator": "[role=\"status\"]",
+        "selected_option": null,
+        "counter_value": "1"
+      },
+      "headings": [
+        "Classic Merino Wool Crewneck Sweater",
+        "All-Weather Commuter Rain Jacket",
+        "Organic Cotton Everyday T-Shirt",
+        "Genuine Leather Minimalist Wallet"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 1 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "All",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-all\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Electronics",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-electronics\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Apparel",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Home & Kitchen",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Books & Stationery",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "#sort-select",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "Featured",
+              "price_asc",
+              "price_desc",
+              "name_asc",
+              "name_desc"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "View details for Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "a",
+          "accessible_name": "Classic Merino Wool Crewneck Sweater",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-05\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-05"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add Classic Merino Wool Crewneck Sweater to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "a",
+          "accessible_name": "View details for All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "a",
+          "accessible_name": "All-Weather Commuter Rain Jacket",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-06\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-06"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Add All-Weather Commuter Rain Jacket to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "View details for Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-07"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Organic Cotton Everyday T-Shirt",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-07\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-07"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "Add Organic Cotton Everyday T-Shirt to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "a",
+          "accessible_name": "View details for Genuine Leather Minimalist Wallet",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-08\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-08"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "a",
+          "accessible_name": "Genuine Leather Minimalist Wallet",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-08\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-08"
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "Add Genuine Leather Minimalist Wallet to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_prod-05_classic_merino_view",
+      "state_class_id": "cls_3ca552355f",
+      "url": "http://127.0.0.1:5173/products/prod-05",
+      "normalized_route": "127.0.0.1:5173/products/prod-05",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater)",
+      "state_signature": "cls_3ca552355f::st_products_prod-05_classic_merino_view",
+      "distinguishing_observations": [
+        "heading:Classic Merino Wool Crewneck Sweater",
+        "heading:Key Features:",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Classic Merino Wool Crewneck Sweater",
+        "Key Features:"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Storefront",
+          "tag_name": "a",
+          "selector": "a[href=\"/\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Decrease quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Increase quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_cart_your_cart_is_e_view",
+      "state_class_id": "cls_d1ad8506b4",
+      "url": "http://127.0.0.1:5173/cart",
+      "normalized_route": "127.0.0.1:5173/cart",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Your Cart is Empty)",
+      "state_signature": "cls_d1ad8506b4::st_cart_your_cart_is_e_view",
+      "distinguishing_observations": [
+        "heading:Your Cart is Empty",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Your Cart is Empty"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Explore Product Catalogue",
+          "tag_name": "a",
+          "selector": "[data-test=\"continue-shopping-button\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_login_sign_in_to_sho_view",
+      "state_class_id": "cls_7c6f45f964",
+      "url": "http://127.0.0.1:5173/login",
+      "normalized_route": "127.0.0.1:5173/login",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Sign In to ShopSphere)",
+      "state_signature": "cls_7c6f45f964::st_login_sign_in_to_sho_view",
+      "distinguishing_observations": [
+        "heading:Sign In to ShopSphere",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Sign In to ShopSphere"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "input",
+          "accessible_name": "user@shopsphere.demo",
+          "tag_name": "input",
+          "selector": "[data-test=\"input-login-email\"]",
+          "element_type": "email",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": true,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "input",
+          "accessible_name": "password123",
+          "tag_name": "input",
+          "selector": "[data-test=\"input-login-password\"]",
+          "element_type": "password",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": true,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Sign In",
+          "tag_name": "button",
+          "selector": "[data-test=\"login-submit-button\"]",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_2",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "button[type=\"submit\"]",
+          "fields": [
+            {
+              "name": "",
+              "id": "",
+              "type": "email",
+              "required": true,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "input",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "",
+              "id": "",
+              "type": "password",
+              "required": true,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_root_precision_bari_view",
+      "state_class_id": "cls_9d87d758e8",
+      "url": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+      "normalized_route": "127.0.0.1:5173/",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Precision Barista Pour-Over Coffee Maker)",
+      "state_signature": "cls_9d87d758e8::st_root_precision_bari_view",
+      "distinguishing_observations": [
+        "heading:Precision Barista Pour-Over Coffee Maker",
+        "heading:Cast Iron Pre-Seasoned Dutch Oven",
+        "heading:Aromatherapy Ceramic Diffuser",
+        "heading:Stainless Steel Insulated Water Bottle",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [
+        "Query parameters: {'category': 'Home & Kitchen'}"
+      ],
+      "url_parameters": {
+        "category": "Home & Kitchen"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Precision Barista Pour-Over Coffee Maker",
+        "Cast Iron Pre-Seasoned Dutch Oven",
+        "Aromatherapy Ceramic Diffuser",
+        "Stainless Steel Insulated Water Bottle"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Account",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "All",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-all\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Electronics",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-electronics\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Apparel",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Home & Kitchen",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Books & Stationery",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "#sort-select",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "Featured",
+              "price_asc",
+              "price_desc",
+              "name_asc",
+              "name_desc"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "View details for Precision Barista Pour-Over Coffee Maker",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-09\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-09"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "a",
+          "accessible_name": "Precision Barista Pour-Over Coffee Maker",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-09\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-09"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add Precision Barista Pour-Over Coffee Maker to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "a",
+          "accessible_name": "View details for Cast Iron Pre-Seasoned Dutch Oven",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-10\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-10"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "a",
+          "accessible_name": "Cast Iron Pre-Seasoned Dutch Oven",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-10\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-10"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Add Cast Iron Pre-Seasoned Dutch Oven to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "View details for Aromatherapy Ceramic Diffuser",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-11\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-11"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Aromatherapy Ceramic Diffuser",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-11\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-11"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "Add Aromatherapy Ceramic Diffuser to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "a",
+          "accessible_name": "View details for Stainless Steel Insulated Water Bottle",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-12\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-12"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "a",
+          "accessible_name": "Stainless Steel Insulated Water Bottle",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-12\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-12"
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "Add Stainless Steel Insulated Water Bottle to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_prod-09_precision_bari_view",
+      "state_class_id": "cls_a3c3f6b85a",
+      "url": "http://127.0.0.1:5173/products/prod-09",
+      "normalized_route": "127.0.0.1:5173/products/prod-09",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Precision Barista Pour-Over Coffee Maker)",
+      "state_signature": "cls_a3c3f6b85a::st_products_prod-09_precision_bari_view",
+      "distinguishing_observations": [
+        "heading:Precision Barista Pour-Over Coffee Maker",
+        "heading:Key Features:",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Precision Barista Pour-Over Coffee Maker",
+        "Key Features:"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Storefront",
+          "tag_name": "a",
+          "selector": "a[href=\"/\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Decrease quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Increase quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_root_architectural__view",
+      "state_class_id": "cls_9c48cc4688",
+      "url": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+      "normalized_route": "127.0.0.1:5173/",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Architectural Design & Space Monograph)",
+      "state_signature": "cls_9c48cc4688::st_root_architectural__view",
+      "distinguishing_observations": [
+        "heading:Architectural Design & Space Monograph",
+        "heading:Hardcover Dotted Grid Journal (A5)",
+        "heading:Vintage Brass Fountain Pen Set",
+        "heading:Minimalist Walnut Desk Organizer",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [
+        "Query parameters: {'category': 'Books & Stationery'}"
+      ],
+      "url_parameters": {
+        "category": "Books & Stationery"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Architectural Design & Space Monograph",
+        "Hardcover Dotted Grid Journal (A5)",
+        "Vintage Brass Fountain Pen Set",
+        "Minimalist Walnut Desk Organizer"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "All",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-all\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Electronics",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-electronics\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Apparel",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Home & Kitchen",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Books & Stationery",
+          "tag_name": "button",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "#sort-select",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "Featured",
+              "price_asc",
+              "price_desc",
+              "name_asc",
+              "name_desc"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "View details for Architectural Design & Space Monograph",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-13\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-13"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "a",
+          "accessible_name": "Architectural Design & Space Monograph",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-13\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-13"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add Architectural Design & Space Monograph to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "a",
+          "accessible_name": "View details for Hardcover Dotted Grid Journal (A5)",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-14\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-14"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "a",
+          "accessible_name": "Hardcover Dotted Grid Journal (A5)",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-14\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-14"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Add Hardcover Dotted Grid Journal (A5) to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "View details for Vintage Brass Fountain Pen Set",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-15\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-15"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Vintage Brass Fountain Pen Set",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-15\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-15"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "Add Vintage Brass Fountain Pen Set to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "a",
+          "accessible_name": "View details for Minimalist Walnut Desk Organizer",
+          "tag_name": "a",
+          "selector": "a[href=\"/products/prod-16\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "/products/prod-16"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "a",
+          "accessible_name": "Minimalist Walnut Desk Organizer",
+          "tag_name": "a",
+          "selector": "[data-test=\"product-title-prod-16\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/prod-16"
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "Add Minimalist Walnut Desk Organizer to cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_prod-13_architectural__view",
+      "state_class_id": "cls_5a5f8c30fe",
+      "url": "http://127.0.0.1:5173/products/prod-13",
+      "normalized_route": "127.0.0.1:5173/products/prod-13",
+      "page_title": "ShopSphere — Premium E-Commerce",
+      "description": "ShopSphere — Premium E-Commerce (Architectural Design & Space Monograph)",
+      "state_signature": "cls_5a5f8c30fe::st_products_prod-13_architectural__view",
+      "distinguishing_observations": [
+        "heading:Architectural Design & Space Monograph",
+        "heading:Key Features:",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Architectural Design & Space Monograph",
+        "Key Features:"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "ShopSphere Home",
+          "tag_name": "a",
+          "selector": "[data-test=\"brand-logo\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Search product catalogue",
+          "tag_name": "input",
+          "selector": "#search-input",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Shopping cart, 0 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Sign In",
+          "tag_name": "a",
+          "selector": "[data-test=\"login-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/login"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Storefront",
+          "tag_name": "a",
+          "selector": "a[href=\"/\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Decrease quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Increase quantity",
+          "tag_name": "button",
+          "selector": "button.qty-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "",
+          "fields": [
+            {
+              "name": "",
+              "id": "search-input",
+              "type": "text",
+              "required": false,
+              "placeholder": "Search products by title, category, or features...",
+              "label": "Search product catalogue",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#search-input",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "verified_transitions": [
+    {
+      "transition_id": "trans-0c9c8bdf",
+      "source_state_id": "st_root_quantum_wirele_view",
+      "destination_state_id": "st_root_classic_merino_view",
+      "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+      "grounded_control": {
+        "selector": "[data-test=\"category-filter-apparel\"]",
+        "role": "button",
+        "accessible_name": "Apparel",
+        "target_description": "[data-test=\"category-filter-apparel\"]"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_classic_merino_view' at 'http://127.0.0.1:5173/?category=Apparel'",
+        "Heading 'Classic Merino Wool Crewneck Sweater' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-c8398787"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-d497a50a",
+      "source_state_id": "st_root_classic_merino_view",
+      "destination_state_id": "st_root_classic_merino_c1_with_error",
+      "action_type": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+      "grounded_control": {
+        "selector": "[data-test=\"add-to-cart-button\"]",
+        "role": "button",
+        "accessible_name": "Add Classic Merino Wool Crewneck Sweater to cart",
+        "target_description": "[data-test=\"add-to-cart-button\"]"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_classic_merino_c1_with_error' at 'http://127.0.0.1:5173/?category=Apparel'",
+        "Validation error displayed: Added Classic Merino Wool Crewneck Sweater to cart",
+        "Heading 'Classic Merino Wool Crewneck Sweater' visible"
+      ],
+      "actual_effect": "VALIDATION_FEEDBACK",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-3f00bbd6",
+      "source_state_id": "st_root_classic_merino_c1_with_error",
+      "destination_state_id": "st_products_prod-05_classic_merino_view",
+      "action_type": "NAVIGATE_LINK:nav_link_53064",
+      "grounded_control": {
+        "selector": "/products/prod-05",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/products/prod-05"
+      },
+      "required_preconditions": [
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_products_prod-05_classic_merino_view' at 'http://127.0.0.1:5173/products/prod-05'",
+        "Heading 'Classic Merino Wool Crewneck Sweater' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-267998b5"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-441cecb8",
+      "source_state_id": "st_products_prod-05_classic_merino_view",
+      "destination_state_id": "st_cart_your_cart_is_e_view",
+      "action_type": "NAVIGATE_LINK:nav_link_14556",
+      "grounded_control": {
+        "selector": "/cart",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/cart"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'",
+        "Heading 'Your Cart is Empty' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-a5c5780f"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-76ba1d85",
+      "source_state_id": "st_cart_your_cart_is_e_view",
+      "destination_state_id": "st_login_sign_in_to_sho_view",
+      "action_type": "NAVIGATE_LINK:nav_link_78518",
+      "grounded_control": {
+        "selector": "/login",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/login"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_login_sign_in_to_sho_view' at 'http://127.0.0.1:5173/login'",
+        "Heading 'Sign In to ShopSphere' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-37a293f9"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-651bf481",
+      "source_state_id": "st_login_sign_in_to_sho_view",
+      "destination_state_id": "st_root_quantum_wirele_view",
+      "action_type": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+      "grounded_control": {
+        "selector": null,
+        "role": null,
+        "accessible_name": null,
+        "target_description": "password"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_quantum_wirele_view' at 'http://127.0.0.1:5173/'",
+        "Heading 'Quantum Wireless Noise-Cancelling Headphones' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-41e563ce"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-b1df5ae5",
+      "source_state_id": "st_root_quantum_wirele_view",
+      "destination_state_id": "st_root_precision_bari_view",
+      "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+      "grounded_control": {
+        "selector": "[data-test=\"category-filter-home---kitchen\"]",
+        "role": "button",
+        "accessible_name": "Home & Kitchen",
+        "target_description": "[data-test=\"category-filter-home---kitchen\"]"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_precision_bari_view' at 'http://127.0.0.1:5173/?category=Home+%26+Kitchen'",
+        "Heading 'Precision Barista Pour-Over Coffee Maker' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-75e6c804"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-9ee2ddca",
+      "source_state_id": "st_root_precision_bari_view",
+      "destination_state_id": "st_products_prod-09_precision_bari_view",
+      "action_type": "NAVIGATE_LINK:nav_link_23292",
+      "grounded_control": {
+        "selector": "/products/prod-09",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/products/prod-09"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_products_prod-09_precision_bari_view' at 'http://127.0.0.1:5173/products/prod-09'",
+        "Heading 'Precision Barista Pour-Over Coffee Maker' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-96fb6055"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-cdf5801e",
+      "source_state_id": "st_products_prod-09_precision_bari_view",
+      "destination_state_id": "st_cart_your_cart_is_e_view",
+      "action_type": "CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__",
+      "grounded_control": {
+        "selector": "[data-test=\"cart-link\"]",
+        "role": "a",
+        "accessible_name": "Shopping cart, 0 items",
+        "target_description": "[data-test=\"cart-link\"]"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'",
+        "Heading 'Your Cart is Empty' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-97f73b1e"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-d0cfb648",
+      "source_state_id": "st_root_quantum_wirele_view",
+      "destination_state_id": "st_root_architectural__view",
+      "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+      "grounded_control": {
+        "selector": "[data-test=\"category-filter-books---stationery\"]",
+        "role": "button",
+        "accessible_name": "Books & Stationery",
+        "target_description": "[data-test=\"category-filter-books---stationery\"]"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_architectural__view' at 'http://127.0.0.1:5173/?category=Books+%26+Stationery'",
+        "Heading 'Architectural Design & Space Monograph' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-4a312405"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-0419452b",
+      "source_state_id": "st_root_architectural__view",
+      "destination_state_id": "st_products_prod-13_architectural__view",
+      "action_type": "NAVIGATE_LINK:nav_link_2006",
+      "grounded_control": {
+        "selector": "/products/prod-13",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/products/prod-13"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_products_prod-13_architectural__view' at 'http://127.0.0.1:5173/products/prod-13'",
+        "Heading 'Architectural Design & Space Monograph' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "evidence_id": "ev_init_st_root_quantum_wirele_view",
+      "timestamp": 1792705579.8572323,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": null,
+      "evidence_type": "DOM_OBSERVATION",
+      "dom_or_a11y_observation": "Captured baseline DOM observation of http://127.0.0.1:5173/ with 58 interactive controls and 1 forms",
+      "action_summary": null,
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": null,
+      "observed_result": "Captured baseline DOM observation of http://127.0.0.1:5173/ with 58 interactive controls and 1 forms",
+      "verification_status": "OBSERVED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_step_0_31a6796f.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-e31d3585",
+      "timestamp": 1792705655.461233,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_e70f48cf.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-2dd9b045",
+      "timestamp": 1792705657.7553895,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_ee3c2360.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-c8398787",
+      "timestamp": 1792705705.6808257,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_classic_merino_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_appar]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_appar]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Apparel | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "observed_result": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_appar]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_1948227a.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-0443c82d",
+      "timestamp": 1792705707.7146995,
+      "associated_state_id": "st_root_classic_merino_view",
+      "before_state_id": "st_root_classic_merino_view",
+      "after_state_id": "st_root_classic_merino_c1_with_error",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_57fdcf6775__data_test__add_to_cart_button__]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_57fdcf6775__data_test__add_to_cart_button__]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Apparel | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Apparel | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "observed_result": "Probe [q_ctrl_control_cls_57fdcf6775__data_test__add_to_cart_button__]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": "[role=\"status\"]",
+      "validation_message": "Added Classic Merino Wool Crewneck Sweater to cart",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_ae407e98.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-267998b5",
+      "timestamp": 1792705744.6512873,
+      "associated_state_id": "st_root_classic_merino_c1_with_error",
+      "before_state_id": "st_root_classic_merino_c1_with_error",
+      "after_state_id": "st_products_prod-05_classic_merino_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_57fdcf6775_nav_link_53064]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_57fdcf6775_nav_link_53064]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Apparel | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/products/prod-05 | title='ShopSphere — Premium E-Commerce' | controls=8",
+      "observed_result": "Probe [q_nav_cls_57fdcf6775_nav_link_53064]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_445f66d2.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-a5c5780f",
+      "timestamp": 1792705786.165396,
+      "associated_state_id": "st_products_prod-05_classic_merino_view",
+      "before_state_id": "st_products_prod-05_classic_merino_view",
+      "after_state_id": "st_cart_your_cart_is_e_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_3ca552355f_nav_link_14556]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_3ca552355f_nav_link_14556]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/products/prod-05 | title='ShopSphere — Premium E-Commerce' | controls=8",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/cart | title='ShopSphere — Premium E-Commerce' | controls=5",
+      "observed_result": "Probe [q_nav_cls_3ca552355f_nav_link_14556]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_4efddeb9.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-37a293f9",
+      "timestamp": 1792705837.0410285,
+      "associated_state_id": "st_cart_your_cart_is_e_view",
+      "before_state_id": "st_cart_your_cart_is_e_view",
+      "after_state_id": "st_login_sign_in_to_sho_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_d1ad8506b4_nav_link_78518]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_d1ad8506b4_nav_link_78518]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/cart | title='ShopSphere — Premium E-Commerce' | controls=5",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/login | title='ShopSphere — Premium E-Commerce' | controls=7",
+      "observed_result": "Probe [q_nav_cls_d1ad8506b4_nav_link_78518]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_2a549dd6.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-41e563ce",
+      "timestamp": 1792705841.3468661,
+      "associated_state_id": "st_login_sign_in_to_sho_view",
+      "before_state_id": "st_login_sign_in_to_sho_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_form_cls_7c6f45f964_boundary_password_length_form_2_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "action_summary": "Probe [q_form_cls_7c6f45f964_boundary_password_length_form_2_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/login | title='ShopSphere — Premium E-Commerce' | controls=7",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_form_cls_7c6f45f964_boundary_password_length_form_2_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_f9ff2bf0.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-5024d02f",
+      "timestamp": 1792705941.4417949,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_61]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_61]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_reflect_61]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_2768910f.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-99b65206",
+      "timestamp": 1792705963.1940794,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_62]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_62]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_reflect_62]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_aa6873fa.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-ef2c74c8",
+      "timestamp": 1792705986.2570298,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_quantum_wirele_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_63]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_63]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "observed_result": "Probe [q_reflect_63]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_5f424308.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-75e6c804",
+      "timestamp": 1792706039.43989,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_precision_bari_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_home_]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_home_]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Home+%26+Kitchen | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "observed_result": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_home_]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_dce0edbf.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-96fb6055",
+      "timestamp": 1792706098.3282442,
+      "associated_state_id": "st_root_precision_bari_view",
+      "before_state_id": "st_root_precision_bari_view",
+      "after_state_id": "st_products_prod-09_precision_bari_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_9d87d758e8_nav_link_23292]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_9d87d758e8_nav_link_23292]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Home+%26+Kitchen | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/products/prod-09 | title='ShopSphere — Premium E-Commerce' | controls=8",
+      "observed_result": "Probe [q_nav_cls_9d87d758e8_nav_link_23292]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_b4ac2295.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-97f73b1e",
+      "timestamp": 1792706100.934019,
+      "associated_state_id": "st_products_prod-09_precision_bari_view",
+      "before_state_id": "st_products_prod-09_precision_bari_view",
+      "after_state_id": "st_cart_your_cart_is_e_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_a3c3f6b85a__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_a3c3f6b85a__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/products/prod-09 | title='ShopSphere — Premium E-Commerce' | controls=8",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/cart | title='ShopSphere — Premium E-Commerce' | controls=5",
+      "observed_result": "Probe [q_ctrl_control_cls_a3c3f6b85a__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_3bea8a85.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-4a312405",
+      "timestamp": 1792706171.5752757,
+      "associated_state_id": "st_root_quantum_wirele_view",
+      "before_state_id": "st_root_quantum_wirele_view",
+      "after_state_id": "st_root_architectural__view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_books]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_books]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/ | title='ShopSphere — Premium E-Commerce' | controls=58",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Books+%26+Stationery | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "observed_result": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_books]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_4e84f468.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-b4b45c89",
+      "timestamp": 1792706239.5971892,
+      "associated_state_id": "st_root_architectural__view",
+      "before_state_id": "st_root_architectural__view",
+      "after_state_id": "st_products_prod-13_architectural__view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_9c48cc4688_nav_link_2006]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_9c48cc4688_nav_link_2006]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:5173/?category=Books+%26+Stationery | title='ShopSphere — Premium E-Commerce' | controls=22",
+      "post_snapshot_summary": "URL=http://127.0.0.1:5173/products/prod-13 | title='ShopSphere — Premium E-Commerce' | controls=8",
+      "observed_result": "Probe [q_nav_cls_9c48cc4688_nav_link_2006]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_b0526ba7.png",
+      "trace_artifact_path": null
+    }
+  ],
+  "defect_findings": [
+    {
+      "finding_id": "lead_0f284997",
+      "title": "Bypass: Password field 'password' must enforce minimum length validation",
+      "classification": "CONFIRMED_DEFECT",
+      "oracle_type": "CONVENTION",
+      "severity": "MEDIUM",
+      "state_class": "cls_7c6f45f964",
+      "target_control": "password",
+      "reproduction_verified": true,
+      "reproduction_steps": [
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "",
+            "label": "",
+            "css": "input",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "A",
+          "key_to_press": null
+        }
+      ],
+      "expected_behavior": "Submission should be rejected: Reject submission with length validation message when 'password' is < 6 characters",
+      "actual_behavior": "Form submission accepted (status ACCEPTED) despite violating constraint: Password field 'password' must enforce minimum length validation",
+      "evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "confidence": 1.0,
+      "limitations": null
+    }
+  ],
+  "completeness": {
+    "discovered_states_count": 10,
+    "verified_transitions_count": 11,
+    "pending_frontier_candidates": [
+      {
+        "candidate_id": "q_form_cls_cebbf1418c_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_cebbf1418c_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_cebbf1418c__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_cebbf1418c__data_test__cart_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"cart-link\"]",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_cebbf1418c__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_select_cls_cebbf1418c__sort_select",
+        "candidate_type": "controls",
+        "target": "#sort-select",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_cebbf1418c__data_test__product_title_prod_01",
+        "candidate_type": "controls",
+        "target": "[data-test=\"product-title-prod-01\"]",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_cebbf1418c__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_14556",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_78518",
+        "candidate_type": "nav",
+        "target": "/login",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_20858",
+        "candidate_type": "nav",
+        "target": "/products/prod-01",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_13034",
+        "candidate_type": "nav",
+        "target": "/products/prod-04",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_cebbf1418c_nav_link_37222",
+        "candidate_type": "nav",
+        "target": "/products/prod-03",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_cebbf1418c",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_cebbf1418c",
+        "parent_state_id": "cls_cebbf1418c",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_57fdcf6775__data_test__product_title_prod_05",
+        "candidate_type": "controls",
+        "target": "[data-test=\"product-title-prod-05\"]",
+        "parent_state_id": "cls_57fdcf6775",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_57fdcf6775_nav_link_14691",
+        "candidate_type": "nav",
+        "target": "/products/prod-06",
+        "parent_state_id": "cls_57fdcf6775",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_57fdcf6775_nav_link_45793",
+        "candidate_type": "nav",
+        "target": "/products/prod-07",
+        "parent_state_id": "cls_57fdcf6775",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_57fdcf6775_nav_link_54129",
+        "candidate_type": "nav",
+        "target": "/products/prod-08",
+        "parent_state_id": "cls_57fdcf6775",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_3ca552355f_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_3ca552355f_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f__data_test__cart_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"cart-link\"]",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f_a_href_____",
+        "candidate_type": "controls",
+        "target": "a[href=\"/\"]",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f_button_qty_btn",
+        "candidate_type": "controls",
+        "target": "button.qty-btn",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_3ca552355f__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_3ca552355f_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_3ca552355f_nav_link_78518",
+        "candidate_type": "nav",
+        "target": "/login",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_3ca552355f",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_3ca552355f",
+        "parent_state_id": "cls_3ca552355f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_d1ad8506b4_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_d1ad8506b4_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_d1ad8506b4__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_d1ad8506b4__data_test__cart_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"cart-link\"]",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_d1ad8506b4__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_d1ad8506b4__data_test__continue_shopping_but",
+        "candidate_type": "controls",
+        "target": "[data-test=\"continue-shopping-button\"]",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_d1ad8506b4_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_d1ad8506b4_nav_link_14556",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_d1ad8506b4",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_d1ad8506b4",
+        "parent_state_id": "cls_d1ad8506b4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7c6f45f964_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7c6f45f964_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7c6f45f964_form_happy_form_2",
+        "candidate_type": "forms",
+        "target": "form_happy_form_2",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7c6f45f964_required_blank_all_form_2",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_2",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_7c6f45f964__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_7c6f45f964__data_test__cart_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"cart-link\"]",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_7c6f45f964__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_7c6f45f964_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_7c6f45f964_nav_link_14556",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_7c6f45f964_nav_link_78518",
+        "candidate_type": "nav",
+        "target": "/login",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_7c6f45f964",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_7c6f45f964",
+        "parent_state_id": "cls_7c6f45f964",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_9d87d758e8__data_test__product_title_prod_09",
+        "candidate_type": "controls",
+        "target": "[data-test=\"product-title-prod-09\"]",
+        "parent_state_id": "cls_9d87d758e8",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_9d87d758e8__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_9d87d758e8",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9d87d758e8_nav_link_19957",
+        "candidate_type": "nav",
+        "target": "/products/prod-10",
+        "parent_state_id": "cls_9d87d758e8",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9d87d758e8_nav_link_5840",
+        "candidate_type": "nav",
+        "target": "/products/prod-11",
+        "parent_state_id": "cls_9d87d758e8",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9d87d758e8_nav_link_64194",
+        "candidate_type": "nav",
+        "target": "/products/prod-12",
+        "parent_state_id": "cls_9d87d758e8",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_a3c3f6b85a_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_a3c3f6b85a_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_a3c3f6b85a__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_a3c3f6b85a__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_a3c3f6b85a_a_href_____",
+        "candidate_type": "controls",
+        "target": "a[href=\"/\"]",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_a3c3f6b85a_button_qty_btn",
+        "candidate_type": "controls",
+        "target": "button.qty-btn",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_a3c3f6b85a__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_a3c3f6b85a_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_a3c3f6b85a_nav_link_14556",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_a3c3f6b85a_nav_link_78518",
+        "candidate_type": "nav",
+        "target": "/login",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_a3c3f6b85a",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_a3c3f6b85a",
+        "parent_state_id": "cls_a3c3f6b85a",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_9c48cc4688__data_test__product_title_prod_13",
+        "candidate_type": "controls",
+        "target": "[data-test=\"product-title-prod-13\"]",
+        "parent_state_id": "cls_9c48cc4688",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_9c48cc4688__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_9c48cc4688",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9c48cc4688_nav_link_33437",
+        "candidate_type": "nav",
+        "target": "/products/prod-14",
+        "parent_state_id": "cls_9c48cc4688",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9c48cc4688_nav_link_82888",
+        "candidate_type": "nav",
+        "target": "/products/prod-15",
+        "parent_state_id": "cls_9c48cc4688",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_9c48cc4688_nav_link_65416",
+        "candidate_type": "nav",
+        "target": "/products/prod-16",
+        "parent_state_id": "cls_9c48cc4688",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_5a5f8c30fe_form_happy_form_1",
+        "candidate_type": "forms",
+        "target": "form_happy_form_1",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_5a5f8c30fe_required_blank_all_form_1",
+        "candidate_type": "forms",
+        "target": "required_blank_all_form_1",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe__data_test__brand_logo__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"brand-logo\"]",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe__data_test__cart_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"cart-link\"]",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe__data_test__login_link__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"login-link\"]",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe_a_href_____",
+        "candidate_type": "controls",
+        "target": "a[href=\"/\"]",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe_button_qty_btn",
+        "candidate_type": "controls",
+        "target": "button.qty-btn",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5a5f8c30fe__data_test__add_to_cart_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_5a5f8c30fe_nav_link_45222",
+        "candidate_type": "nav",
+        "target": "/",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_5a5f8c30fe_nav_link_14556",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_5a5f8c30fe_nav_link_78518",
+        "candidate_type": "nav",
+        "target": "/login",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_5a5f8c30fe",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_5a5f8c30fe",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_100",
+        "candidate_type": "controls",
+        "target": "password field validation",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_101",
+        "candidate_type": "controls",
+        "target": "category navigation and product detail page",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_102",
+        "candidate_type": "controls",
+        "target": "cart item count update",
+        "parent_state_id": "cls_5a5f8c30fe",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      }
+    ],
+    "unresolved_reasons_breakdown": {
+      "BUDGET_CEILING_REACHED": 86
+    },
+    "safety_blocked_actions": [],
+    "authentication_boundaries": {
+      "boundary_observed": false,
+      "login_url": "",
+      "authentication_attempted": false,
+      "authentication_verified": false,
+      "protected_routes_unlocked": []
+    },
+    "investigation_uncertainty": 0.843,
+    "stopping_reason": "Configured probe ceiling reached (16/16)",
+    "completion_status": "budget_exhausted"
+  },
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/",
+          "description": "Navigate to entry view: http://127.0.0.1:5173/"
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-apparel\"]",
+          "description": "Trigger [data-test=\"category-filter-apparel\"]",
+          "expected_transition": "st_root_classic_merino_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Classic Merino Wool Crewneck Sweater",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-05",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-05",
+          "expected_transition": "st_products_prod-05_classic_merino_view",
+          "expected_url_fragment": "/products/prod-05",
+          "expected_heading": "Classic Merino Wool Crewneck Sweater",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/cart",
+          "description": "Navigate to http://127.0.0.1:5173/cart",
+          "expected_transition": "st_cart_your_cart_is_e_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Your Cart is Empty",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/login",
+          "description": "Navigate to http://127.0.0.1:5173/login",
+          "expected_transition": "st_login_sign_in_to_sho_view",
+          "expected_url_fragment": "/login",
+          "expected_heading": "Sign In to ShopSphere",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-home---kitchen\"]",
+          "description": "Trigger [data-test=\"category-filter-home---kitchen\"]",
+          "expected_transition": "st_root_precision_bari_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-09",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-09",
+          "expected_transition": "st_products_prod-09_precision_bari_view",
+          "expected_url_fragment": "/products/prod-09",
+          "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-books---stationery\"]",
+          "description": "Trigger [data-test=\"category-filter-books---stationery\"]",
+          "expected_transition": "st_root_architectural__view",
+          "expected_url_fragment": "",
+          "expected_heading": "Architectural Design & Space Monograph",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-13",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-13",
+          "expected_transition": "st_products_prod-13_architectural__view",
+          "expected_url_fragment": "/products/prod-13",
+          "expected_heading": "Architectural Design & Space Monograph",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "[data-test=\"add-to-cart-button\"]",
+          "description": "Investigate interactive control response: button 'Add Classic Merino Wool Crewneck Sweater to cart' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+          "expected_transition": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        },
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "password",
+          "description": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+          "expected_transition": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"cart-link\"]",
+          "description": "Trigger [data-test=\"cart-link\"]",
+          "expected_transition": "st_cart_your_cart_is_e_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Your Cart is Empty",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        }
+      ]
+    }
+  ]
+}

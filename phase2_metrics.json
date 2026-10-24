@@ -1,0 +1,499 @@
+{
+  "Experiment A (Baseline)": {
+    "total_ground_truth_states": 12,
+    "discovered_states_count": 8,
+    "matched_ground_truth_states": [
+      "ST_LOGIN",
+      "ST_LOGIN_ERROR",
+      "ST_PRODUCTS",
+      "ST_PRODUCTS_SORT_ZA",
+      "ST_PRODUCTS_DRAWER",
+      "ST_PRODUCT_DETAIL_1",
+      "ST_CART_EMPTY",
+      "ST_CART_WITH_ITEM"
+    ],
+    "missing_ground_truth_states": [
+      "ST_PRODUCTS_SORT_LOHI",
+      "ST_CHECKOUT_STEP1",
+      "ST_CHECKOUT_REVIEW",
+      "ST_ORDER_CONFIRMED"
+    ],
+    "state_discovery_recall": 0.667,
+    "total_transitions_recorded": 6,
+    "verified_transitions_count": 6,
+    "transitions_with_evidence_count": 6,
+    "transition_accuracy": 1.0,
+    "evidence_support_ratio": 1.0,
+    "total_seeded_defects": 1,
+    "detected_seeded_defects_count": 0,
+    "false_positive_leads_count": 0,
+    "seeded_defect_precision": 0.0,
+    "seeded_defect_recall": 0.0,
+    "benign_warning_correctly_ignored": true,
+    "total_probes_evaluated": 6,
+    "deduplicated_candidates_count": 31,
+    "redundant_probes_count": 0,
+    "redundant_exploration_rate": 0.0,
+    "total_decision_snapshots": 6,
+    "adaptive_decisions_count": 6,
+    "adaptive_decision_quality": 1.0,
+    "decision_trace_summary": [
+      {
+        "step": 1,
+        "from_state": "st_login_system_access__view",
+        "action": "required_blank_all_loginForm",
+        "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_loginFo",
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 2,
+        "from_state": "st_login_system_access__view",
+        "action": "login_form",
+        "hypothesis": "Verify valid authentication transitions past login boundary at http://127.0.0.1:",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 3,
+        "from_state": "st_products_products_catal_view",
+        "action": "#product-sort",
+        "hypothesis": "Investigate interactive control response: select 'Name: A to Z Name: Z to A Pric",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 4,
+        "from_state": "st_products_products_catal_view_opt_za",
+        "action": "/products?sort=za&menu=open",
+        "hypothesis": "Verify route transition reachability to /products?sort=za&menu=open",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 5,
+        "from_state": "st_products_products_catal_view_opt_za_menu_open",
+        "action": "#item-3-title",
+        "hypothesis": "Investigate interactive control response: a 'Gamma System'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 6,
+        "from_state": "st_products_n_gamma_system_d_view",
+        "action": "/cart",
+        "hypothesis": "Verify route transition reachability to /cart",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      }
+    ],
+    "workflow_completion_rate": 0.33,
+    "unique_states_per_action": 1.333,
+    "unsuccessful_action_rate": 0.0,
+    "wall_clock_time": 120.9,
+    "llm_calls_count": 5,
+    "stopping_reason": "Configured probe ceiling reached (6/6)",
+    "unresolved_frontier_summary": {
+      "BUDGET_CEILING_REACHED": 36
+    },
+    "experiment_name": "A",
+    "policy": "balanced",
+    "max_probes": 6,
+    "elapsed_seconds": 122.29
+  },
+  "Experiment B (Budget Expansion)": {
+    "total_ground_truth_states": 12,
+    "discovered_states_count": 8,
+    "matched_ground_truth_states": [
+      "ST_LOGIN",
+      "ST_LOGIN_ERROR",
+      "ST_PRODUCTS",
+      "ST_PRODUCTS_SORT_ZA",
+      "ST_PRODUCTS_DRAWER",
+      "ST_PRODUCT_DETAIL_1",
+      "ST_CART_EMPTY",
+      "ST_CART_WITH_ITEM"
+    ],
+    "missing_ground_truth_states": [
+      "ST_PRODUCTS_SORT_LOHI",
+      "ST_CHECKOUT_STEP1",
+      "ST_CHECKOUT_REVIEW",
+      "ST_ORDER_CONFIRMED"
+    ],
+    "state_discovery_recall": 0.667,
+    "total_transitions_recorded": 7,
+    "verified_transitions_count": 7,
+    "transitions_with_evidence_count": 7,
+    "transition_accuracy": 1.0,
+    "evidence_support_ratio": 1.0,
+    "total_seeded_defects": 1,
+    "detected_seeded_defects_count": 0,
+    "false_positive_leads_count": 0,
+    "seeded_defect_precision": 0.0,
+    "seeded_defect_recall": 0.0,
+    "benign_warning_correctly_ignored": true,
+    "total_probes_evaluated": 10,
+    "deduplicated_candidates_count": 65,
+    "redundant_probes_count": 0,
+    "redundant_exploration_rate": 0.0,
+    "total_decision_snapshots": 10,
+    "adaptive_decisions_count": 10,
+    "adaptive_decision_quality": 1.0,
+    "decision_trace_summary": [
+      {
+        "step": 1,
+        "from_state": "st_login_system_access__view",
+        "action": "required_blank_all_loginForm",
+        "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_loginFo",
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 2,
+        "from_state": "st_login_system_access__view",
+        "action": "login_form",
+        "hypothesis": "Verify valid authentication transitions past login boundary at http://127.0.0.1:",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 3,
+        "from_state": "st_products_products_catal_view",
+        "action": "#product-sort",
+        "hypothesis": "Investigate interactive control response: select 'Name: A to Z Name: Z to A Pric",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 4,
+        "from_state": "st_products_products_catal_view_opt_za",
+        "action": "/products?sort=za&menu=open",
+        "hypothesis": "Verify route transition reachability to /products?sort=za&menu=open",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 5,
+        "from_state": "st_products_products_catal_view_opt_za_menu_open",
+        "action": "#item-3-title",
+        "hypothesis": "Investigate interactive control response: a 'Gamma System'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 6,
+        "from_state": "st_products_n_gamma_system_d_view",
+        "action": "/cart",
+        "hypothesis": "Verify route transition reachability to /cart",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 7,
+        "from_state": "st_cart_shopping_cart_view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 8,
+        "from_state": "st_login_system_access__view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 9,
+        "from_state": "st_login_system_access__view",
+        "action": "http://127.0.0.1:8993/products?sort=za&menu=open",
+        "hypothesis": "The 'sort=za' parameter in the URL does not affect the product listing order.",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 10,
+        "from_state": "st_login_system_access__view",
+        "action": "http://127.0.0.1:8993/products?sort=za&menu=closed",
+        "hypothesis": "The 'menu=closed' parameter in the URL results in a different layout or content ",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      }
+    ],
+    "workflow_completion_rate": 0.33,
+    "unique_states_per_action": 0.8,
+    "unsuccessful_action_rate": 0.2,
+    "wall_clock_time": 176.96,
+    "llm_calls_count": 8,
+    "stopping_reason": "Configured probe ceiling reached (10/10)",
+    "unresolved_frontier_summary": {
+      "BUDGET_CEILING_REACHED": 37
+    },
+    "experiment_name": "B",
+    "policy": "balanced",
+    "max_probes": 10,
+    "elapsed_seconds": 178.7
+  },
+  "Experiment C (Workflow Depth)": {
+    "total_ground_truth_states": 12,
+    "discovered_states_count": 8,
+    "matched_ground_truth_states": [
+      "ST_LOGIN",
+      "ST_LOGIN_ERROR",
+      "ST_PRODUCTS",
+      "ST_PRODUCTS_SORT_ZA",
+      "ST_PRODUCTS_DRAWER",
+      "ST_PRODUCT_DETAIL_1",
+      "ST_CART_EMPTY",
+      "ST_CART_WITH_ITEM"
+    ],
+    "missing_ground_truth_states": [
+      "ST_PRODUCTS_SORT_LOHI",
+      "ST_CHECKOUT_STEP1",
+      "ST_CHECKOUT_REVIEW",
+      "ST_ORDER_CONFIRMED"
+    ],
+    "state_discovery_recall": 0.667,
+    "total_transitions_recorded": 8,
+    "verified_transitions_count": 8,
+    "transitions_with_evidence_count": 8,
+    "transition_accuracy": 1.0,
+    "evidence_support_ratio": 1.0,
+    "total_seeded_defects": 1,
+    "detected_seeded_defects_count": 0,
+    "false_positive_leads_count": 0,
+    "seeded_defect_precision": 0.0,
+    "seeded_defect_recall": 0.0,
+    "benign_warning_correctly_ignored": true,
+    "total_probes_evaluated": 9,
+    "deduplicated_candidates_count": 67,
+    "redundant_probes_count": 0,
+    "redundant_exploration_rate": 0.0,
+    "total_decision_snapshots": 9,
+    "adaptive_decisions_count": 9,
+    "adaptive_decision_quality": 1.0,
+    "decision_trace_summary": [
+      {
+        "step": 1,
+        "from_state": "st_login_system_access__view",
+        "action": "required_blank_all_loginForm",
+        "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_loginFo",
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 2,
+        "from_state": "st_login_system_access__view",
+        "action": "login_form",
+        "hypothesis": "Verify valid authentication transitions past login boundary at http://127.0.0.1:",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 3,
+        "from_state": "st_products_products_catal_view",
+        "action": "#cart-link",
+        "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 4,
+        "from_state": "st_cart_shopping_cart_view",
+        "action": "#cart-link",
+        "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 5,
+        "from_state": "st_cart_shopping_cart_view",
+        "action": "a.btn[href=\"/products\"]",
+        "hypothesis": "Investigate interactive control response: a 'Continue Shopping'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 6,
+        "from_state": "st_products_products_catal_view",
+        "action": "#product-sort",
+        "hypothesis": "Investigate interactive control response: select 'Name: A to Z Name: Z to A Pric",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 7,
+        "from_state": "st_products_products_catal_view_opt_za",
+        "action": "/products?sort=za&menu=open",
+        "hypothesis": "Verify route transition reachability to /products?sort=za&menu=open",
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 8,
+        "from_state": "st_products_products_catal_view_opt_za_menu_open",
+        "action": "#item-3-title",
+        "hypothesis": "Investigate interactive control response: a 'Gamma System'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 9,
+        "from_state": "st_products_n_gamma_system_d_view",
+        "action": "#cart-link",
+        "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      }
+    ],
+    "workflow_completion_rate": 0.33,
+    "unique_states_per_action": 0.889,
+    "unsuccessful_action_rate": 0.0,
+    "wall_clock_time": 151.96,
+    "llm_calls_count": 6,
+    "stopping_reason": "Configured probe ceiling reached (10/10)",
+    "unresolved_frontier_summary": {
+      "BUDGET_CEILING_REACHED": 35,
+      "SAFETY_POLICY_BLOCKED": 1
+    },
+    "experiment_name": "C",
+    "policy": "workflow_depth",
+    "max_probes": 10,
+    "elapsed_seconds": 153.41
+  },
+  "Experiment D (Breadth Oriented)": {
+    "total_ground_truth_states": 12,
+    "discovered_states_count": 7,
+    "matched_ground_truth_states": [
+      "ST_LOGIN",
+      "ST_LOGIN_ERROR",
+      "ST_PRODUCTS",
+      "ST_PRODUCTS_DRAWER",
+      "ST_PRODUCT_DETAIL_1",
+      "ST_CART_EMPTY",
+      "ST_CART_WITH_ITEM"
+    ],
+    "missing_ground_truth_states": [
+      "ST_PRODUCTS_SORT_ZA",
+      "ST_PRODUCTS_SORT_LOHI",
+      "ST_CHECKOUT_STEP1",
+      "ST_CHECKOUT_REVIEW",
+      "ST_ORDER_CONFIRMED"
+    ],
+    "state_discovery_recall": 0.583,
+    "total_transitions_recorded": 8,
+    "verified_transitions_count": 8,
+    "transitions_with_evidence_count": 8,
+    "transition_accuracy": 1.0,
+    "evidence_support_ratio": 1.0,
+    "total_seeded_defects": 1,
+    "detected_seeded_defects_count": 0,
+    "false_positive_leads_count": 0,
+    "seeded_defect_precision": 0.0,
+    "seeded_defect_recall": 0.0,
+    "benign_warning_correctly_ignored": true,
+    "total_probes_evaluated": 10,
+    "deduplicated_candidates_count": 56,
+    "redundant_probes_count": 1,
+    "redundant_exploration_rate": 0.1,
+    "total_decision_snapshots": 10,
+    "adaptive_decisions_count": 9,
+    "adaptive_decision_quality": 0.9,
+    "decision_trace_summary": [
+      {
+        "step": 1,
+        "from_state": "st_login_system_access__view",
+        "action": "required_blank_all_loginForm",
+        "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_loginFo",
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 2,
+        "from_state": "st_login_system_access__view",
+        "action": "login_form",
+        "hypothesis": "Verify valid authentication transitions past login boundary at http://127.0.0.1:",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 3,
+        "from_state": "st_products_products_catal_view",
+        "action": "/cart",
+        "hypothesis": "Verify route transition reachability to /cart",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 4,
+        "from_state": "st_cart_shopping_cart_view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 5,
+        "from_state": "st_login_system_access__view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 6,
+        "from_state": "st_login_system_access__view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "NO_OBSERVABLE_CHANGE",
+        "evaluator_verdict": "REDUNDANT"
+      },
+      {
+        "step": 7,
+        "from_state": "st_login_system_access__view",
+        "action": "/products?sort=az&menu=open",
+        "hypothesis": "Verify route transition reachability to /products?sort=az&menu=open",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 8,
+        "from_state": "st_products_products_catal_view_menu_open",
+        "action": "/products/1",
+        "hypothesis": "Verify route transition reachability to /products/1",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 9,
+        "from_state": "st_products_n_alpha_device_d_view",
+        "action": "/logout",
+        "hypothesis": "Verify route transition reachability to /logout",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      },
+      {
+        "step": 10,
+        "from_state": "st_login_system_access__view",
+        "action": "/products/2",
+        "hypothesis": "Verify route transition reachability to /products/2",
+        "observed_effect": "ROUTE_TRANSITION",
+        "evaluator_verdict": "USEFUL_EXPLORATION"
+      }
+    ],
+    "workflow_completion_rate": 0.33,
+    "unique_states_per_action": 0.7,
+    "unsuccessful_action_rate": 0.0,
+    "wall_clock_time": 155.15,
+    "llm_calls_count": 6,
+    "stopping_reason": "Configured probe ceiling reached (10/10)",
+    "unresolved_frontier_summary": {
+      "BUDGET_CEILING_REACHED": 42
+    },
+    "experiment_name": "D",
+    "policy": "breadth",
+    "max_probes": 10,
+    "elapsed_seconds": 156.52
+  }
+}

@@ -1,0 +1,2357 @@
+{
+  "overview": {
+    "target_url": "http://127.0.0.1:5173/",
+    "final_url": "http://127.0.0.1:5173/products/prod-13",
+    "http_status": 200,
+    "user_description": "ShopSphere E-Commerce Application",
+    "investigation_id": "inv-fa1484b3",
+    "start_time": "2026-10-23 03:16:18",
+    "end_time": "2026-10-23 03:28:48",
+    "duration_seconds": 750.24,
+    "browser_execution_time": 36.28,
+    "status": "budget_exhausted",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 14,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 675.385,
+    "retries_count": 0,
+    "pages_discovered": 6,
+    "meaningful_states_discovered": 10,
+    "candidates_discovered": 102,
+    "actions_evaluated": 16,
+    "actions_attempted": 16,
+    "actions_successful": 13,
+    "actions_verified_effects": 11,
+    "actions_failed": 3,
+    "actions_safety_blocked": 0,
+    "transitions_observed": 11,
+    "route_transitions_observed": 7,
+    "same_route_state_transitions": 4,
+    "in_page_mutations_observed": 4,
+    "pending_frontier_count": 86,
+    "evidence_ledger_count": 17,
+    "deduplicated_candidates_count": 241,
+    "total_headings_discovered": 24,
+    "total_forms_discovered": 7,
+    "total_inputs_discovered": 7,
+    "total_buttons_discovered": 32,
+    "total_links_discovered": 33,
+    "stopping_reason": "Configured probe ceiling reached (16/16)"
+  },
+  "application_understanding": "The application at http://127.0.0.1:5173/ presents an interactive web service. Operated within public/unauthenticated surface. Observed key functional landmarks include: Quantum Wireless Noise-Cancelling Headphones, Classic Merino Wool Crewneck Sweater, Architectural Design & Space Monograph, Key Features:, Sign In to ShopSphere. Extracted 10 distinct UI states across 11 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'ShopSphere E-Commerce Application'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "To provide a user interface for browsing and purchasing products from an e-commerce store.",
+    "application_domain": "e-commerce",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "Quantum Wireless Noise-Cancelling Headphones",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Smart Ergonomic Fitness Watch",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Ultra-Slim 4K External Monitor",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Magnetic Wireless Charging Stand",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Classic Merino Wool Crewneck Sweater",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "All-Weather Commuter Rain Jacket",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Organic Cotton Everyday T-Shirt",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Genuine Leather Minimalist Wallet",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Precision Barista Pour-Over Coffee Maker",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Cast Iron Pre-Seasoned Dutch Oven",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Aromatherapy Ceramic Diffuser",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Stainless Steel Insulated Water Bottle",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Architectural Design & Space Monograph",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Hardcover Dotted Grid Journal (A5)",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Vintage Brass Fountain Pen Set",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Key Features:",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Your Cart is Empty",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Sign In to ShopSphere",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Minimalist Walnut Desk Organizer",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "[data-test=\"brand-logo\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "ShopSphere Home",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#search-input",
+        "semantic_role": "input",
+        "inferred_purpose": "Search product catalogue",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "[data-test=\"cart-link\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Shopping cart, 0 items",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "[data-test=\"login-link\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Sign In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"category-filter-all\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "All",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "[data-test=\"category-filter-electronics\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Electronics",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"category-filter-apparel\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Apparel",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "[data-test=\"category-filter-home---kitchen\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Home & Kitchen",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "[data-test=\"category-filter-books---stationery\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Books & Stationery",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "#sort-select",
+        "semantic_role": "select",
+        "inferred_purpose": "Sort products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "a[href=\"/products/prod-01\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Quantum Wireless Noise-Cancelling Headphones",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"product-title-prod-01\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Quantum Wireless Noise-Cancelling Headphones",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_12",
+        "selector": "[data-test=\"add-to-cart-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Add Quantum Wireless Noise-Cancelling Headphones to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/products/prod-04\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Smart Ergonomic Fitness Watch",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "[data-test=\"product-title-prod-02\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Smart Ergonomic Fitness Watch",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/products/prod-03\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Ultra-Slim 4K External Monitor",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "[data-test=\"product-title-prod-03\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Ultra-Slim 4K External Monitor",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "a[href=\"/products/prod-05\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Classic Merino Wool Crewneck Sweater",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"product-title-prod-05\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Classic Merino Wool Crewneck Sweater",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/products/prod-06\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for All-Weather Commuter Rain Jacket",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "[data-test=\"product-title-prod-06\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "All-Weather Commuter Rain Jacket",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/products/prod-07\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Organic Cotton Everyday T-Shirt",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "[data-test=\"product-title-prod-07\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Organic Cotton Everyday T-Shirt",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_19",
+        "selector": "a[href=\"/products/prod-08\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Genuine Leather Minimalist Wallet",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "a[href=\"/\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Storefront",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "button.qty-btn",
+        "semantic_role": "button",
+        "inferred_purpose": "Decrease quantity",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"continue-shopping-button\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Explore Product Catalogue",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"input-login-email\"]",
+        "semantic_role": "input",
+        "inferred_purpose": "user@shopsphere.demo",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "[data-test=\"input-login-password\"]",
+        "semantic_role": "input",
+        "inferred_purpose": "password123",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"login-submit-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Sign In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "a[href=\"/products/prod-09\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Precision Barista Pour-Over Coffee Maker",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"product-title-prod-09\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Precision Barista Pour-Over Coffee Maker",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/products/prod-10\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Cast Iron Pre-Seasoned Dutch Oven",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "[data-test=\"product-title-prod-10\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Cast Iron Pre-Seasoned Dutch Oven",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/products/prod-11\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Aromatherapy Ceramic Diffuser",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "[data-test=\"product-title-prod-11\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Aromatherapy Ceramic Diffuser",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_19",
+        "selector": "a[href=\"/products/prod-12\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Stainless Steel Insulated Water Bottle",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "a[href=\"/products/prod-13\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Architectural Design & Space Monograph",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"product-title-prod-13\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Architectural Design & Space Monograph",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/products/prod-14\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Hardcover Dotted Grid Journal (A5)",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "[data-test=\"product-title-prod-14\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Hardcover Dotted Grid Journal (A5)",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/products/prod-15\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Vintage Brass Fountain Pen Set",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "[data-test=\"product-title-prod-15\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Vintage Brass Fountain Pen Set",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_19",
+        "selector": "a[href=\"/products/prod-16\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Minimalist Walnut Desk Organizer",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "form_1",
+        "target_action": "",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_2",
+        "target_action": "",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_root_quantum_wirele_view",
+      "st_root_classic_merino_view",
+      "st_root_classic_merino_c1_with_error",
+      "st_products_prod-05_classic_merino_view",
+      "st_cart_your_cart_is_e_view",
+      "st_login_sign_in_to_sho_view",
+      "st_root_precision_bari_view",
+      "st_products_prod-09_precision_bari_view",
+      "st_root_architectural__view",
+      "st_products_prod-13_architectural__view"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_root_quantum_wirele_view' on http://127.0.0.1:5173/ with 58 controls and 1 forms.",
+      "Observed state 'st_root_quantum_wirele_view' on http://127.0.0.1:5173/?category=Electronics with 22 controls and 1 forms.",
+      "Observed state 'st_root_classic_merino_view' on http://127.0.0.1:5173/?category=Apparel with 22 controls and 1 forms.",
+      "Observed state 'st_root_classic_merino_c1_with_error' on http://127.0.0.1:5173/?category=Apparel with 22 controls and 1 forms.",
+      "Form validation constraint enforced on http://127.0.0.1:5173/?category=Apparel: 'Added Classic Merino Wool Crewneck Sweater to cart' ([role=\"status\"])",
+      "Observed state 'st_products_prod-05_classic_merino_view' on http://127.0.0.1:5173/products/prod-05 with 8 controls and 1 forms.",
+      "Observed state 'st_cart_your_cart_is_e_view' on http://127.0.0.1:5173/cart with 5 controls and 1 forms.",
+      "Observed state 'st_login_sign_in_to_sho_view' on http://127.0.0.1:5173/login with 7 controls and 2 forms.",
+      "Observed state 'st_root_precision_bari_view' on http://127.0.0.1:5173/?category=Home+%26+Kitchen with 22 controls and 1 forms.",
+      "Observed state 'st_products_prod-09_precision_bari_view' on http://127.0.0.1:5173/products/prod-09 with 8 controls and 1 forms.",
+      "Observed state 'st_root_architectural__view' on http://127.0.0.1:5173/?category=Books+%26+Stationery with 22 controls and 1 forms.",
+      "Observed state 'st_products_prod-13_architectural__view' on http://127.0.0.1:5173/products/prod-13 with 8 controls and 1 forms."
+    ],
+    "inferred_hypotheses": [
+      "The presence of a search bar for product discovery.",
+      "The availability of a shopping cart for managing selected items.",
+      "The categorization of products into distinct sections for easier navigation.",
+      "The availability of a shopping cart for product selection and checkout.",
+      "The product count in the shopping cart remains consistent with user actions.",
+      "The search functionality returns relevant results.",
+      "The cart is always empty when the user first lands on this page",
+      "The search bar is always present and functional",
+      "The presence of a search bar that is not directly related to the login process.",
+      "The consistent use of the ShopSphere brand name and logo.",
+      "The navigation menu consistently offering categories like Home & Kitchen, Electronics, Apparel, etc.",
+      "The product name and key features remain consistent with the page title and headings",
+      "The shopping cart count updates dynamically based on user actions",
+      "The presence of a search bar for product catalogues",
+      "The navigation menu remains consistent across different product categories",
+      "The shopping cart count updates dynamically",
+      "The presence of a search bar for product catalogues.",
+      "The navigation links always include 'Shopping cart' and 'Sign In'."
+    ],
+    "unknowns": [
+      "Potential security risks associated with user authentication and payment processing.",
+      "Risk of data breaches due to improper handling of sensitive user information.",
+      "Risk of product stockouts leading to customer dissatisfaction.",
+      "Risk of product availability issues if stock management is not properly implemented.",
+      "Incorrect product information leading to customer dissatisfaction.",
+      "Security risks associated with user login and cart functionality.",
+      "Potential for user confusion due to an empty cart",
+      "Inadequate search functionality",
+      "Potential for unauthorized access if login credentials are not properly secured.",
+      "Risk of exposing user data through insecure form handling.",
+      "Potential security risks associated with user account management.",
+      "Risk of data breaches due to sensitive information handling.",
+      "Potential security risks in handling user inputs",
+      "Risk of out-of-stock items being added to cart",
+      "Potential security risks with user authentication",
+      "Risk of data breaches due to sensitive user information",
+      "Risk of product out-of-stock issues leading to customer dissatisfaction",
+      "Potential security risks in handling user inputs and session management.",
+      "Risk of displaying incorrect or outdated product information."
+    ],
+    "investigation_uncertainty": 0.843,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": false,
+    "login_url": null,
+    "credentials_available": false,
+    "credentials_source": null,
+    "authentication_attempted": false,
+    "authentication_verified": false,
+    "verification_signals": [],
+    "protected_functionality_accessible": [],
+    "unresolved_or_blocked_areas": []
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_root_quantum_wirele_view",
+      "route_or_url": "http://127.0.0.1:5173/",
+      "apparent_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Account",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view",
+        "ev-e31d3585",
+        "ev-2dd9b045"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_classic_merino_view",
+      "route_or_url": "http://127.0.0.1:5173/?category=Apparel",
+      "apparent_purpose": "Classic Merino Wool Crewneck Sweater (Entry View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-c8398787",
+        "ev-0443c82d"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_classic_merino_c1_with_error",
+      "route_or_url": "http://127.0.0.1:5173/?category=Apparel",
+      "apparent_purpose": "Classic Merino Wool Crewneck Sweater (Entry View) [Validation Alert: Added Classic Merino Wool Crewneck Swea... | Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Sign In",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-0443c82d",
+        "ev-267998b5"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_prod-05_classic_merino_view",
+      "route_or_url": "http://127.0.0.1:5173/products/prod-05",
+      "apparent_purpose": "Classic Merino Wool Crewneck Sweater (Products/Prod 05 View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "a: Storefront"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-267998b5",
+        "ev-a5c5780f"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_cart_your_cart_is_e_view",
+      "route_or_url": "http://127.0.0.1:5173/cart",
+      "apparent_purpose": "Your Cart is Empty (Cart View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "a: Explore Product Catalogue"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-a5c5780f",
+        "ev-37a293f9",
+        "ev-97f73b1e"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_login_sign_in_to_sho_view",
+      "route_or_url": "http://127.0.0.1:5173/login",
+      "apparent_purpose": "Sign In to ShopSphere (Login View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "input: user@shopsphere.demo"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-37a293f9",
+        "ev-41e563ce"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_precision_bari_view",
+      "route_or_url": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+      "apparent_purpose": "Precision Barista Pour-Over Coffee Maker (Entry View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Account",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-75e6c804",
+        "ev-96fb6055"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_prod-09_precision_bari_view",
+      "route_or_url": "http://127.0.0.1:5173/products/prod-09",
+      "apparent_purpose": "Precision Barista Pour-Over Coffee Maker (Products/Prod 09 View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "a: Storefront"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-96fb6055",
+        "ev-97f73b1e"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_architectural__view",
+      "route_or_url": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+      "apparent_purpose": "Architectural Design & Space Monograph (Entry View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-4a312405",
+        "ev-b4b45c89"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_prod-13_architectural__view",
+      "route_or_url": "http://127.0.0.1:5173/products/prod-13",
+      "apparent_purpose": "Architectural Design & Space Monograph (Products/Prod 13 View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "a: Storefront"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_quantum_wirele_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on [data-test=\"category-filter-apparel\"]",
+      "target_element": "[data-test=\"category-filter-apparel\"]",
+      "to_state": "st_root_classic_merino_view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-c8398787",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_root_classic_merino_view",
+      "action_taken": "[Validation / Constraint Branch] CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on [data-test=\"add-to-cart-button\"]",
+      "target_element": "[data-test=\"add-to-cart-button\"]",
+      "to_state": "st_root_classic_merino_c1_with_error",
+      "observed_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "evidence_id": "ev-0443c82d",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_classic_merino_c1_with_error",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_53064 on /products/prod-05",
+      "target_element": "/products/prod-05",
+      "to_state": "st_products_prod-05_classic_merino_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-267998b5",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_products_prod-05_classic_merino_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_14556 on /cart",
+      "target_element": "/cart",
+      "to_state": "st_cart_your_cart_is_e_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-a5c5780f",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_your_cart_is_e_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_78518 on /login",
+      "target_element": "/login",
+      "to_state": "st_login_sign_in_to_sho_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-37a293f9",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_login_sign_in_to_sho_view",
+      "action_taken": "[Validation / Constraint Branch] SET_NOVALIDATE:boundary_password_length_form_2_password on password",
+      "target_element": "password",
+      "to_state": "st_root_quantum_wirele_view",
+      "observed_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "evidence_id": "ev-41e563ce",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_quantum_wirele_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on [data-test=\"category-filter-home---kitchen\"]",
+      "target_element": "[data-test=\"category-filter-home---kitchen\"]",
+      "to_state": "st_root_precision_bari_view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-75e6c804",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_precision_bari_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_23292 on /products/prod-09",
+      "target_element": "/products/prod-09",
+      "to_state": "st_products_prod-09_precision_bari_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-96fb6055",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 9,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_products_prod-09_precision_bari_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on [data-test=\"cart-link\"]",
+      "target_element": "[data-test=\"cart-link\"]",
+      "to_state": "st_cart_your_cart_is_e_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-97f73b1e",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 10,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_quantum_wirele_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on [data-test=\"category-filter-books---stationery\"]",
+      "target_element": "[data-test=\"category-filter-books---stationery\"]",
+      "to_state": "st_root_architectural__view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-4a312405",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 11,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_architectural__view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_2006 on /products/prod-13",
+      "target_element": "/products/prod-13",
+      "to_state": "st_products_prod-13_architectural__view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-b4b45c89",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-0c9c8bdf: Investigate interactive control response: button 'Apparel' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-d497a50a: Investigate interactive control response: button 'Add Classic Merino Wool Crewneck Sweater to cart' resulted in Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+    "Transition trans-3f00bbd6: Verify route transition reachability to /products/prod-05 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-441cecb8: Verify route transition reachability to /cart resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-76ba1d85: Verify route transition reachability to /login resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-651bf481: Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password resulted in Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+    "Transition trans-b1df5ae5: Investigate interactive control response: button 'Home & Kitchen' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-9ee2ddca: Verify route transition reachability to /products/prod-09 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-cdf5801e: Investigate interactive control response: a 'Shopping cart, 0 items' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-d0cfb648: Investigate interactive control response: button 'Books & Stationery' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-0419452b: Verify route transition reachability to /products/prod-13 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "RULE-VAL-001",
+      "description": "Form validation constraint enforced: 'Added Classic Merino Wool Crewneck Sweater to cart' displayed on invalid or incomplete submission.",
+      "category": "observed_behavior",
+      "source": "Live DOM Element: [role=\"status\"]",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated without required form fields populated.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "explored_states_count": 10,
+    "unexplored_items_count": 86,
+    "blocked_items_count": 0,
+    "unexplored_candidates": [
+      {
+        "target": "form_happy_form_1",
+        "rationale": "Verify form submission behavior for happy on form_happy_form_1",
+        "category": "discovery",
+        "priority": 0.582,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "required_blank_all_form_1",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+        "category": "discovery",
+        "priority": 0.582,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "[data-test=\"brand-logo\"]",
+        "rationale": "Investigate interactive control response: a 'ShopSphere Home'",
+        "category": "discovery",
+        "priority": 0.592,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "[data-test=\"cart-link\"]",
+        "rationale": "Investigate interactive control response: a 'Shopping cart, 0 items'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "[data-test=\"login-link\"]",
+        "rationale": "Investigate interactive control response: a 'Sign In'",
+        "category": "discovery",
+        "priority": 0.592,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "#sort-select",
+        "rationale": "Investigate interactive control response: select 'Sort products'",
+        "category": "discovery",
+        "priority": 0.718,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "[data-test=\"product-title-prod-01\"]",
+        "rationale": "Investigate interactive control response: a 'Quantum Wireless Noise-Cancelling Headphones'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "[data-test=\"add-to-cart-button\"]",
+        "rationale": "Investigate interactive control response: button 'Add Quantum Wireless Noise-Cancelling Headphones to cart'",
+        "category": "discovery",
+        "priority": 0.2,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/cart",
+        "rationale": "Verify route transition reachability to /cart",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/login",
+        "rationale": "Verify route transition reachability to /login",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/products/prod-01",
+        "rationale": "Verify route transition reachability to /products/prod-01",
+        "category": "discovery",
+        "priority": 0.676,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/products/prod-04",
+        "rationale": "Verify route transition reachability to /products/prod-04",
+        "category": "discovery",
+        "priority": 0.676,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "/products/prod-03",
+        "rationale": "Verify route transition reachability to /products/prod-03",
+        "category": "discovery",
+        "priority": 0.676,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_cebbf1418c",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (16/16))"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Verify form submission behavior for happy on form_happy_form_1",
+      "Verify form submission behavior for required_blank on required_blank_all_form_1",
+      "Investigate interactive control response: a 'ShopSphere Home'"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_root_quantum_wirele_view",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of http://127.0.0.1:5173/ with 58 interactive controls and 1 forms",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_step_0_31a6796f.png"
+    },
+    {
+      "evidence_id": "ev-e31d3585",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_e70f48cf.png"
+    },
+    {
+      "evidence_id": "ev-2dd9b045",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_ee3c2360.png"
+    },
+    {
+      "evidence_id": "ev-c8398787",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_appar]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_1948227a.png"
+    },
+    {
+      "evidence_id": "ev-0443c82d",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_57fdcf6775__data_test__add_to_cart_button__]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "state_ref": "st_root_classic_merino_view",
+      "screenshot": "investigate_probe_after_ae407e98.png"
+    },
+    {
+      "evidence_id": "ev-267998b5",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_57fdcf6775_nav_link_53064]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_classic_merino_c1_with_error",
+      "screenshot": "investigate_probe_after_445f66d2.png"
+    },
+    {
+      "evidence_id": "ev-a5c5780f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_3ca552355f_nav_link_14556]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_products_prod-05_classic_merino_view",
+      "screenshot": "investigate_probe_after_4efddeb9.png"
+    },
+    {
+      "evidence_id": "ev-37a293f9",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_d1ad8506b4_nav_link_78518]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_cart_your_cart_is_e_view",
+      "screenshot": "investigate_probe_after_2a549dd6.png"
+    },
+    {
+      "evidence_id": "ev-41e563ce",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_7c6f45f964_boundary_password_length_form_2_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "state_ref": "st_login_sign_in_to_sho_view",
+      "screenshot": "investigate_probe_after_f9ff2bf0.png"
+    },
+    {
+      "evidence_id": "ev-5024d02f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_reflect_61]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_2768910f.png"
+    },
+    {
+      "evidence_id": "ev-99b65206",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_reflect_62]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_aa6873fa.png"
+    },
+    {
+      "evidence_id": "ev-ef2c74c8",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_reflect_63]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_5f424308.png"
+    },
+    {
+      "evidence_id": "ev-75e6c804",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_home_]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_dce0edbf.png"
+    },
+    {
+      "evidence_id": "ev-96fb6055",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_9d87d758e8_nav_link_23292]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_precision_bari_view",
+      "screenshot": "investigate_probe_after_b4ac2295.png"
+    },
+    {
+      "evidence_id": "ev-97f73b1e",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a3c3f6b85a__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_products_prod-09_precision_bari_view",
+      "screenshot": "investigate_probe_after_3bea8a85.png"
+    },
+    {
+      "evidence_id": "ev-4a312405",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_books]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_4e84f468.png"
+    },
+    {
+      "evidence_id": "ev-b4b45c89",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_9c48cc4688_nav_link_2006]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_architectural__view",
+      "screenshot": "investigate_probe_after_b0526ba7.png"
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried."
+  ],
+  "confirmed_bug_leads": [
+    {
+      "id": "lead_0f284997",
+      "title": "Bypass: Password field 'password' must enforce minimum length validation",
+      "oracle_type": "CONVENTION",
+      "strength": "MEDIUM",
+      "probe_family": "forms",
+      "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+      "state_class": "cls_7c6f45f964",
+      "target_desc": "password",
+      "steps": [
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "",
+            "label": "",
+            "css": "input",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "A",
+          "key_to_press": null
+        }
+      ],
+      "expected": {
+        "text": "Submission should be rejected: Reject submission with length validation message when 'password' is < 6 characters",
+        "provenance": "form_validation_rule"
+      },
+      "actual": {
+        "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Password field 'password' must enforce minimum length validation"
+      },
+      "evidence_ids": [
+        "probe_probe_0e74b75e",
+        "st_root_quantum_wirele_view"
+      ],
+      "before_screenshot_id": "investigate_probe_before_1f391c19.png",
+      "after_screenshot_id": "investigate_probe_after_e3aeb1ce.png",
+      "network_excerpt": {
+        "request_count": 2,
+        "status_4xx_count": 0,
+        "status_5xx_count": 0,
+        "endpoints": [
+          "http://127.0.0.1:5173/api/categories",
+          "http://127.0.0.1:5173/api/products"
+        ]
+      },
+      "console_excerpt": null,
+      "severity_guess": "MEDIUM",
+      "status": "CONFIRMED",
+      "confirmation": {
+        "runs": 2,
+        "passed": 2
+      }
+    }
+  ],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/",
+          "description": "Navigate to entry view: http://127.0.0.1:5173/"
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-apparel\"]",
+          "description": "Trigger [data-test=\"category-filter-apparel\"]",
+          "expected_transition": "st_root_classic_merino_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Classic Merino Wool Crewneck Sweater",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-05",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-05",
+          "expected_transition": "st_products_prod-05_classic_merino_view",
+          "expected_url_fragment": "/products/prod-05",
+          "expected_heading": "Classic Merino Wool Crewneck Sweater",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/cart",
+          "description": "Navigate to http://127.0.0.1:5173/cart",
+          "expected_transition": "st_cart_your_cart_is_e_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Your Cart is Empty",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/login",
+          "description": "Navigate to http://127.0.0.1:5173/login",
+          "expected_transition": "st_login_sign_in_to_sho_view",
+          "expected_url_fragment": "/login",
+          "expected_heading": "Sign In to ShopSphere",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-home---kitchen\"]",
+          "description": "Trigger [data-test=\"category-filter-home---kitchen\"]",
+          "expected_transition": "st_root_precision_bari_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-09",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-09",
+          "expected_transition": "st_products_prod-09_precision_bari_view",
+          "expected_url_fragment": "/products/prod-09",
+          "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"category-filter-books---stationery\"]",
+          "description": "Trigger [data-test=\"category-filter-books---stationery\"]",
+          "expected_transition": "st_root_architectural__view",
+          "expected_url_fragment": "",
+          "expected_heading": "Architectural Design & Space Monograph",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/products/prod-13",
+          "description": "Navigate to http://127.0.0.1:5173/products/prod-13",
+          "expected_transition": "st_products_prod-13_architectural__view",
+          "expected_url_fragment": "/products/prod-13",
+          "expected_heading": "Architectural Design & Space Monograph",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "[data-test=\"add-to-cart-button\"]",
+          "description": "Investigate interactive control response: button 'Add Classic Merino Wool Crewneck Sweater to cart' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+          "expected_transition": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        },
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "password",
+          "description": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+          "expected_transition": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"cart-link\"]",
+          "description": "Trigger [data-test=\"cart-link\"]",
+          "expected_transition": "st_cart_your_cart_is_e_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Your Cart is Empty",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        }
+      ]
+    }
+  ],
+  "behavior_model": {
+    "state_classes": {
+      "st_root_quantum_wirele_view": {
+        "id": "st_root_quantum_wirele_view",
+        "class_id": "st_root_quantum_wirele_view",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_classic_merino_view",
+          "st_root_precision_bari_view",
+          "st_root_architectural__view"
+        ]
+      },
+      "st_root_classic_merino_view": {
+        "id": "st_root_classic_merino_view",
+        "class_id": "st_root_classic_merino_view",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Apparel",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_classic_merino_c1_with_error"
+        ]
+      },
+      "st_root_classic_merino_c1_with_error": {
+        "id": "st_root_classic_merino_c1_with_error",
+        "class_id": "st_root_classic_merino_c1_with_error",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Entry View) [Validation Alert: Added Classic Merino Wool Crewneck Swea... | Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/?category=Apparel",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-05_classic_merino_view"
+        ]
+      },
+      "st_products_prod-05_classic_merino_view": {
+        "id": "st_products_prod-05_classic_merino_view",
+        "class_id": "st_products_prod-05_classic_merino_view",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Products/Prod 05 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-05",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_your_cart_is_e_view"
+        ]
+      },
+      "st_cart_your_cart_is_e_view": {
+        "id": "st_cart_your_cart_is_e_view",
+        "class_id": "st_cart_your_cart_is_e_view",
+        "primary_purpose": "Your Cart is Empty (Cart View)",
+        "representative_route": "http://127.0.0.1:5173/cart",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"continue-shopping-button\"]"
+        ],
+        "outbound_transitions": [
+          "st_login_sign_in_to_sho_view"
+        ]
+      },
+      "st_login_sign_in_to_sho_view": {
+        "id": "st_login_sign_in_to_sho_view",
+        "class_id": "st_login_sign_in_to_sho_view",
+        "primary_purpose": "Sign In to ShopSphere (Login View)",
+        "representative_route": "http://127.0.0.1:5173/login",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"input-login-email\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_view"
+        ]
+      },
+      "st_root_precision_bari_view": {
+        "id": "st_root_precision_bari_view",
+        "class_id": "st_root_precision_bari_view",
+        "primary_purpose": "Precision Barista Pour-Over Coffee Maker (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-09_precision_bari_view"
+        ]
+      },
+      "st_products_prod-09_precision_bari_view": {
+        "id": "st_products_prod-09_precision_bari_view",
+        "class_id": "st_products_prod-09_precision_bari_view",
+        "primary_purpose": "Precision Barista Pour-Over Coffee Maker (Products/Prod 09 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-09",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_your_cart_is_e_view"
+        ]
+      },
+      "st_root_architectural__view": {
+        "id": "st_root_architectural__view",
+        "class_id": "st_root_architectural__view",
+        "primary_purpose": "Architectural Design & Space Monograph (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-13_architectural__view"
+        ]
+      },
+      "st_products_prod-13_architectural__view": {
+        "id": "st_products_prod-13_architectural__view",
+        "class_id": "st_products_prod-13_architectural__view",
+        "primary_purpose": "Architectural Design & Space Monograph (Products/Prod 13 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-13",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": []
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_classic_merino_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_classic_merino_view",
+        "target_class": "st_root_classic_merino_c1_with_error",
+        "trigger_action": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_classic_merino_c1_with_error",
+        "target_class": "st_products_prod-05_classic_merino_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_53064",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_prod-05_classic_merino_view",
+        "target_class": "st_cart_your_cart_is_e_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_14556",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_cart_your_cart_is_e_view",
+        "target_class": "st_login_sign_in_to_sho_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_78518",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_sho_view",
+        "target_class": "st_root_quantum_wirele_view",
+        "trigger_action": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_precision_bari_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_precision_bari_view",
+        "target_class": "st_products_prod-09_precision_bari_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_23292",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_prod-09_precision_bari_view",
+        "target_class": "st_cart_your_cart_is_e_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_architectural__view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_architectural__view",
+        "target_class": "st_products_prod-13_architectural__view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_2006",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Form validation constraint enforced: 'Added Classic Merino Wool Crewneck Sweater to cart' displayed on invalid or incomplete submission.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-VAL-001"
+        ]
+      },
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/",
+            "description": "Navigate to entry view: http://127.0.0.1:5173/"
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"category-filter-apparel\"]",
+            "description": "Trigger [data-test=\"category-filter-apparel\"]",
+            "expected_transition": "st_root_classic_merino_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Classic Merino Wool Crewneck Sweater",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-c8398787"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/products/prod-05",
+            "description": "Navigate to http://127.0.0.1:5173/products/prod-05",
+            "expected_transition": "st_products_prod-05_classic_merino_view",
+            "expected_url_fragment": "/products/prod-05",
+            "expected_heading": "Classic Merino Wool Crewneck Sweater",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-267998b5"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/cart",
+            "description": "Navigate to http://127.0.0.1:5173/cart",
+            "expected_transition": "st_cart_your_cart_is_e_view",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Your Cart is Empty",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-a5c5780f"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/login",
+            "description": "Navigate to http://127.0.0.1:5173/login",
+            "expected_transition": "st_login_sign_in_to_sho_view",
+            "expected_url_fragment": "/login",
+            "expected_heading": "Sign In to ShopSphere",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-37a293f9"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"category-filter-home---kitchen\"]",
+            "description": "Trigger [data-test=\"category-filter-home---kitchen\"]",
+            "expected_transition": "st_root_precision_bari_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-75e6c804"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/products/prod-09",
+            "description": "Navigate to http://127.0.0.1:5173/products/prod-09",
+            "expected_transition": "st_products_prod-09_precision_bari_view",
+            "expected_url_fragment": "/products/prod-09",
+            "expected_heading": "Precision Barista Pour-Over Coffee Maker",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-96fb6055"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"category-filter-books---stationery\"]",
+            "description": "Trigger [data-test=\"category-filter-books---stationery\"]",
+            "expected_transition": "st_root_architectural__view",
+            "expected_url_fragment": "",
+            "expected_heading": "Architectural Design & Space Monograph",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-4a312405"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/products/prod-13",
+            "description": "Navigate to http://127.0.0.1:5173/products/prod-13",
+            "expected_transition": "st_products_prod-13_architectural__view",
+            "expected_url_fragment": "/products/prod-13",
+            "expected_heading": "Architectural Design & Space Monograph",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-b4b45c89"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Validation & Constraint Verification",
+        "steps": [
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "[data-test=\"add-to-cart-button\"]",
+            "description": "Investigate interactive control response: button 'Add Classic Merino Wool Crewneck Sweater to cart' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+            "expected_transition": "st_root_classic_merino_c1_with_error",
+            "evidence_refs": [
+              "ev-0443c82d"
+            ]
+          },
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "password",
+            "description": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+            "expected_transition": "st_root_quantum_wirele_view",
+            "evidence_refs": [
+              "ev-41e563ce"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"cart-link\"]",
+            "description": "Trigger [data-test=\"cart-link\"]",
+            "expected_transition": "st_cart_your_cart_is_e_view",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Your Cart is Empty",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-97f73b1e"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [
+      {
+        "id": "lead_0f284997",
+        "title": "Bypass: Password field 'password' must enforce minimum length validation",
+        "oracle_type": "CONVENTION",
+        "strength": "MEDIUM",
+        "probe_family": "forms",
+        "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+        "state_class": "cls_7c6f45f964",
+        "target_desc": "password",
+        "steps": [
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "",
+              "label": "",
+              "css": "input",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "A",
+            "key_to_press": null
+          }
+        ],
+        "expected": {
+          "text": "Submission should be rejected: Reject submission with length validation message when 'password' is < 6 characters",
+          "provenance": "form_validation_rule"
+        },
+        "actual": {
+          "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Password field 'password' must enforce minimum length validation"
+        },
+        "evidence_ids": [
+          "probe_probe_0e74b75e",
+          "st_root_quantum_wirele_view"
+        ],
+        "before_screenshot_id": "investigate_probe_before_1f391c19.png",
+        "after_screenshot_id": "investigate_probe_after_e3aeb1ce.png",
+        "network_excerpt": {
+          "request_count": 2,
+          "status_4xx_count": 0,
+          "status_5xx_count": 0,
+          "endpoints": [
+            "http://127.0.0.1:5173/api/categories",
+            "http://127.0.0.1:5173/api/products"
+          ]
+        },
+        "console_excerpt": null,
+        "severity_guess": "MEDIUM",
+        "status": "CONFIRMED",
+        "confirmation": {
+          "runs": 2,
+          "passed": 2
+        }
+      }
+    ],
+    "transitions": [
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_classic_merino_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_classic_merino_view",
+        "target_class": "st_root_classic_merino_c1_with_error",
+        "trigger_action": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_classic_merino_c1_with_error",
+        "target_class": "st_products_prod-05_classic_merino_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_53064",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_prod-05_classic_merino_view",
+        "target_class": "st_cart_your_cart_is_e_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_14556",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_cart_your_cart_is_e_view",
+        "target_class": "st_login_sign_in_to_sho_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_78518",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_sho_view",
+        "target_class": "st_root_quantum_wirele_view",
+        "trigger_action": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_precision_bari_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_precision_bari_view",
+        "target_class": "st_products_prod-09_precision_bari_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_23292",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_prod-09_precision_bari_view",
+        "target_class": "st_cart_your_cart_is_e_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_architectural__view",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_architectural__view",
+        "target_class": "st_products_prod-13_architectural__view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_2006",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_root_quantum_wirele_view",
+        "class_id": "st_root_quantum_wirele_view",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_classic_merino_view",
+          "st_root_precision_bari_view",
+          "st_root_architectural__view"
+        ]
+      },
+      {
+        "id": "st_root_classic_merino_view",
+        "class_id": "st_root_classic_merino_view",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Apparel",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_classic_merino_c1_with_error"
+        ]
+      },
+      {
+        "id": "st_root_classic_merino_c1_with_error",
+        "class_id": "st_root_classic_merino_c1_with_error",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Entry View) [Validation Alert: Added Classic Merino Wool Crewneck Swea... | Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/?category=Apparel",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-05_classic_merino_view"
+        ]
+      },
+      {
+        "id": "st_products_prod-05_classic_merino_view",
+        "class_id": "st_products_prod-05_classic_merino_view",
+        "primary_purpose": "Classic Merino Wool Crewneck Sweater (Products/Prod 05 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-05",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_your_cart_is_e_view"
+        ]
+      },
+      {
+        "id": "st_cart_your_cart_is_e_view",
+        "class_id": "st_cart_your_cart_is_e_view",
+        "primary_purpose": "Your Cart is Empty (Cart View)",
+        "representative_route": "http://127.0.0.1:5173/cart",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"continue-shopping-button\"]"
+        ],
+        "outbound_transitions": [
+          "st_login_sign_in_to_sho_view"
+        ]
+      },
+      {
+        "id": "st_login_sign_in_to_sho_view",
+        "class_id": "st_login_sign_in_to_sho_view",
+        "primary_purpose": "Sign In to ShopSphere (Login View)",
+        "representative_route": "http://127.0.0.1:5173/login",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"input-login-email\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_view"
+        ]
+      },
+      {
+        "id": "st_root_precision_bari_view",
+        "class_id": "st_root_precision_bari_view",
+        "primary_purpose": "Precision Barista Pour-Over Coffee Maker (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-09_precision_bari_view"
+        ]
+      },
+      {
+        "id": "st_products_prod-09_precision_bari_view",
+        "class_id": "st_products_prod-09_precision_bari_view",
+        "primary_purpose": "Precision Barista Pour-Over Coffee Maker (Products/Prod 09 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-09",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_your_cart_is_e_view"
+        ]
+      },
+      {
+        "id": "st_root_architectural__view",
+        "class_id": "st_root_architectural__view",
+        "primary_purpose": "Architectural Design & Space Monograph (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_products_prod-13_architectural__view"
+        ]
+      },
+      {
+        "id": "st_products_prod-13_architectural__view",
+        "class_id": "st_products_prod-13_architectural__view",
+        "primary_purpose": "Architectural Design & Space Monograph (Products/Prod 13 View)",
+        "representative_route": "http://127.0.0.1:5173/products/prod-13",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "a[href=\"/\"]"
+        ],
+        "outbound_transitions": []
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: http://127.0.0.1:5173/\n        page.goto('http://127.0.0.1:5173/', wait_until='domcontentloaded')\n        # Step 2: Trigger [data-test=\"category-filter-apparel\"] [Evidence: ev-c8398787]\n        page.locator('[data-test=\"category-filter-apparel\"]').click()\n        page.wait_for_timeout(400)\n        assert 'Classic Merino Wool Crewneck Sweater' in page.locator('body').inner_text(), f'Expected heading/landmark Classic Merino Wool Crewneck Sweater'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 3: Navigate to http://127.0.0.1:5173/products/prod-05 [Evidence: ev-267998b5]\n        page.goto('http://127.0.0.1:5173/products/prod-05', wait_until='domcontentloaded')\n        assert '/products/prod-05' in page.url, f'Expected /products/prod-05 in URL, got {page.url}'\n        assert 'Classic Merino Wool Crewneck Sweater' in page.locator('body').inner_text(), f'Expected heading/landmark Classic Merino Wool Crewneck Sweater'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 4: Navigate to http://127.0.0.1:5173/cart [Evidence: ev-a5c5780f]\n        page.goto('http://127.0.0.1:5173/cart', wait_until='domcontentloaded')\n        assert '/cart' in page.url, f'Expected /cart in URL, got {page.url}'\n        assert 'Your Cart is Empty' in page.locator('body').inner_text(), f'Expected heading/landmark Your Cart is Empty'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 5: Navigate to http://127.0.0.1:5173/login [Evidence: ev-37a293f9]\n        page.goto('http://127.0.0.1:5173/login', wait_until='domcontentloaded')\n        assert '/login' in page.url, f'Expected /login in URL, got {page.url}'\n        assert 'Sign In to ShopSphere' in page.locator('body').inner_text(), f'Expected heading/landmark Sign In to ShopSphere'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 6: Trigger [data-test=\"category-filter-home---kitchen\"] [Evidence: ev-75e6c804]\n        page.locator('[data-test=\"category-filter-home---kitchen\"]').click()\n        page.wait_for_timeout(400)\n        assert 'Precision Barista Pour-Over Coffee Maker' in page.locator('body').inner_text(), f'Expected heading/landmark Precision Barista Pour-Over Coffee Maker'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 7: Navigate to http://127.0.0.1:5173/products/prod-09 [Evidence: ev-96fb6055]\n        page.goto('http://127.0.0.1:5173/products/prod-09', wait_until='domcontentloaded')\n        assert '/products/prod-09' in page.url, f'Expected /products/prod-09 in URL, got {page.url}'\n        assert 'Precision Barista Pour-Over Coffee Maker' in page.locator('body').inner_text(), f'Expected heading/landmark Precision Barista Pour-Over Coffee Maker'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 8: Trigger [data-test=\"category-filter-books---stationery\"] [Evidence: ev-4a312405]\n        page.locator('[data-test=\"category-filter-books---stationery\"]').click()\n        page.wait_for_timeout(400)\n        assert 'Architectural Design & Space Monograph' in page.locator('body').inner_text(), f'Expected heading/landmark Architectural Design & Space Monograph'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 9: Navigate to http://127.0.0.1:5173/products/prod-13 [Evidence: ev-b4b45c89]\n        page.goto('http://127.0.0.1:5173/products/prod-13', wait_until='domcontentloaded')\n        assert '/products/prod-13' in page.url, f'Expected /products/prod-13 in URL, got {page.url}'\n        assert 'Architectural Design & Space Monograph' in page.locator('body').inner_text(), f'Expected heading/landmark Architectural Design & Space Monograph'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792705655.461233,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__",
+      "selected_action": "[data-test=\"category-filter-all\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'All'",
+      "priority_score": 0.8515,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792705657.7553895,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect",
+      "selected_action": "[data-test=\"category-filter-electronics\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Electronics'",
+      "priority_score": 0.8515,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/?category=Electronics",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792705705.6808257,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/?category=Electronics",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_appar",
+      "selected_action": "[data-test=\"category-filter-apparel\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Apparel'",
+      "priority_score": 0.8515,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_classic_merino_view",
+      "to_url": "http://127.0.0.1:5173/?category=Apparel",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792705707.7146995,
+      "from_state_id": "st_root_classic_merino_view",
+      "from_url": "http://127.0.0.1:5173/?category=Apparel",
+      "question_id": "q_ctrl_control_cls_57fdcf6775__data_test__add_to_cart_button__",
+      "selected_action": "[data-test=\"add-to-cart-button\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add Classic Merino Wool Crewneck Sweater to cart'",
+      "priority_score": 0.8515,
+      "observed_effect": "VALIDATION_FEEDBACK",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_classic_merino_c1_with_error",
+      "to_url": "http://127.0.0.1:5173/?category=Apparel",
+      "is_productive": true
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792705744.6512873,
+      "from_state_id": "st_root_classic_merino_c1_with_error",
+      "from_url": "http://127.0.0.1:5173/?category=Apparel",
+      "question_id": "q_nav_cls_57fdcf6775_nav_link_53064",
+      "selected_action": "/products/prod-05",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products/prod-05",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_prod-05_classic_merino_view",
+      "to_url": "http://127.0.0.1:5173/products/prod-05",
+      "is_productive": true
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792705786.165396,
+      "from_state_id": "st_products_prod-05_classic_merino_view",
+      "from_url": "http://127.0.0.1:5173/products/prod-05",
+      "question_id": "q_nav_cls_3ca552355f_nav_link_14556",
+      "selected_action": "/cart",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /cart",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_your_cart_is_e_view",
+      "to_url": "http://127.0.0.1:5173/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792705837.0410285,
+      "from_state_id": "st_cart_your_cart_is_e_view",
+      "from_url": "http://127.0.0.1:5173/cart",
+      "question_id": "q_nav_cls_d1ad8506b4_nav_link_78518",
+      "selected_action": "/login",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /login",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_login_sign_in_to_sho_view",
+      "to_url": "http://127.0.0.1:5173/login",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792705841.3468661,
+      "from_state_id": "st_login_sign_in_to_sho_view",
+      "from_url": "http://127.0.0.1:5173/login",
+      "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+      "selected_action": "password",
+      "probe_family": "forms",
+      "category": "edge",
+      "hypothesis": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password",
+      "priority_score": 0.7925,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "CONTRADICTED",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792705941.4417949,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_reflect_61",
+      "selected_action": "http://127.0.0.1:5173/login",
+      "probe_family": "controls",
+      "category": "constraint",
+      "hypothesis": "The 'password' field enforces a minimum length validation when the user is on the 'login' route.",
+      "priority_score": 0.8525,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792705963.1940794,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_reflect_62",
+      "selected_action": "http://127.0.0.1:5173/cart",
+      "probe_family": "controls",
+      "category": "constraint",
+      "hypothesis": "The 'category' parameter in the URL affects the visibility of the 'cart' route elements.",
+      "priority_score": 0.8525,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792705986.2577844,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_reflect_63",
+      "selected_action": "http://127.0.0.1:5173/products/prod-05",
+      "probe_family": "controls",
+      "category": "constraint",
+      "hypothesis": "The 'products' route displays different product listings based on the 'category' parameter.",
+      "priority_score": 0.8525,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_view",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792706039.4409115,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_home_",
+      "selected_action": "[data-test=\"category-filter-home---kitchen\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Home & Kitchen'",
+      "priority_score": 0.8515,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_precision_bari_view",
+      "to_url": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+      "is_productive": true
+    },
+    {
+      "step_number": 13,
+      "timestamp": 1792706098.3282442,
+      "from_state_id": "st_root_precision_bari_view",
+      "from_url": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+      "question_id": "q_nav_cls_9d87d758e8_nav_link_23292",
+      "selected_action": "/products/prod-09",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products/prod-09",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_prod-09_precision_bari_view",
+      "to_url": "http://127.0.0.1:5173/products/prod-09",
+      "is_productive": true
+    },
+    {
+      "step_number": 14,
+      "timestamp": 1792706100.9350214,
+      "from_state_id": "st_products_prod-09_precision_bari_view",
+      "from_url": "http://127.0.0.1:5173/products/prod-09",
+      "question_id": "q_ctrl_control_cls_a3c3f6b85a__data_test__cart_link__",
+      "selected_action": "[data-test=\"cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Shopping cart, 0 items'",
+      "priority_score": 0.7915,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_your_cart_is_e_view",
+      "to_url": "http://127.0.0.1:5173/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 15,
+      "timestamp": 1792706171.5762925,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_books",
+      "selected_action": "[data-test=\"category-filter-books---stationery\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Books & Stationery'",
+      "priority_score": 0.7175,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_architectural__view",
+      "to_url": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+      "is_productive": true
+    },
+    {
+      "step_number": 16,
+      "timestamp": 1792706239.5971892,
+      "from_state_id": "st_root_architectural__view",
+      "from_url": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+      "question_id": "q_nav_cls_9c48cc4688_nav_link_2006",
+      "selected_action": "/products/prod-13",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products/prod-13",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_prod-13_architectural__view",
+      "to_url": "http://127.0.0.1:5173/products/prod-13",
+      "is_productive": true
+    }
+  ]
+}

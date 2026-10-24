@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apex Portal - Account Registration</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; background: #fafafa; }
+    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-weight: 600; margin-bottom: 5px; }
+    input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="reg-card">
+    <h2>Create an Apex Account</h2>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Jane Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Work Email</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm_password" required>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms" style="display:inline; font-weight:normal;">I accept the Terms of Service</label>
+      </div>
+      <button type="submit" id="registerBtn">Create Account</button>
+    </form>
+  </div>
+</body>
+</html>

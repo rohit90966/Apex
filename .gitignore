@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.env
+venv/
+env/
+artifacts/*
+!artifacts/.gitkeep
+data/chroma/*
+!data/chroma/.gitkeep
+
+node_modules/*
+shopsphere/

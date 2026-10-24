@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VerityQA — Autonomous QA Investigation & Verification Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+  <div class="platform-layout">
+    <!-- Left Persistent Navigation Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#brand-grad)" stroke="#818cf8" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="#4f46e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="brand-grad" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6366f1"/>
+                  <stop offset="1" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <div class="brand-name">VerityQA</div>
+            <div class="brand-tagline">Autonomous QA Platform</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engine Status Pill in Sidebar -->
+      <div class="sidebar-status-box" id="sidebarStatusBox">
+        <div class="status-indicator">
+          <span class="status-pulse-dot" id="systemStatusDot"></span>
+          <span class="status-label" id="systemStatusText">Connecting...</span>
+        </div>
+        <div class="status-meta" id="systemStatusMeta">LLM: Initializing</div>
+      </div>
+
+      <!-- Primary Workflow Navigation -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">WORKSPACES</div>
+        <a href="#overview" class="nav-item active" data-view="overview" id="nav-overview">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          <span class="nav-text">Overview</span>
+        </a>
+        <a href="#investigate" class="nav-item" data-view="investigate" id="nav-investigate">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+          <span class="nav-text">Investigation Setup</span>
+        </a>
+        <a href="#results" class="nav-item" data-view="results" id="nav-results">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span class="nav-text">Investigation Results</span>
+          <span class="nav-badge" id="badgeResultStates">0</span>
+        </a>
+        <a href="#tests" class="nav-item" data-view="tests" id="nav-tests">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span class="nav-text">Generated Tests</span>
+          <span class="nav-badge" id="badgeGeneratedTests">0</span>
+        </a>
+        <a href="#execution" class="nav-item" data-view="execution" id="nav-execution">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span class="nav-text">Test Execution</span>
+          <span class="nav-badge badge-success" id="badgeExecRate">—</span>
+        </a>
+
+        <div class="nav-section-label">MONITORING & TOOLS</div>
+        <a href="#activity" class="nav-item" data-view="activity" id="nav-activity">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span class="nav-text">Live Activity Stream</span>
+          <span class="live-stream-badge" id="badgeLivePulsing" style="display: none;">LIVE</span>
+        </a>
+        <a href="#benchmarks" class="nav-item" data-view="benchmarks" id="nav-benchmarks">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span class="nav-text">Exports & Benchmarks</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Quick Report Loader -->
+      <div class="sidebar-loader-box">
+        <label for="sampleReportSelect" class="sidebar-loader-label">Load Investigation Session:</label>
+        <select id="sampleReportSelect" class="sidebar-loader-select">
+          <option value="">— Select Saved Run —</option>
+          <option value="saucedemo_handoff_contract_v2.json">SauceDemo Verified Contract v2</option>
+          <option value="saucedemo_generated_test_suite_v2.json">SauceDemo Test Suite (29 cases)</option>
+          <option value="saucedemo_test_execution_report_v2.json">SauceDemo Execution Run (26/27 pass)</option>
+          <option value="shopsphere_investigation_report.json">ShopSphere E-Commerce Contract</option>
+          <option value="phase1_journey_investigation_report.json">Phase 1 Stateful Journey Run</option>
+        </select>
+        <button type="button" id="btnLoadSelectedReport" class="btn btn-xs btn-outline full-width">Load into Workspace</button>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="safety-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Safety Boundary Active</span>
+        </div>
+        <div class="platform-version">v2.4 Enterprise Autonomous Engine</div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Container -->
+    <div class="main-wrapper">
+      <!-- Top Application Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="sidebarToggle" class="btn-icon mobile-only" aria-label="Toggle Navigation">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="breadcrumb" id="topbarBreadcrumb">
+            <span class="crumb-root">VerityQA</span>
+            <span class="crumb-sep">/</span>
+            <span class="crumb-current" id="crumbCurrent">Overview</span>
+          </div>
+        </div>
+
+        <div class="topbar-center">
+          <div class="active-target-pill" id="activeTargetPill" title="Current Active Target URL">
+            <span class="target-label">Target:</span>
+            <span class="target-url mono" id="topbarTargetUrl">https://www.saucedemo.com/</span>
+            <button class="target-copy-btn" id="btnCopyTargetUrl" title="Copy URL">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-status-chip" id="topbarLlmChip" title="Active Model">
+            <span class="chip-dot"></span>
+            <span id="topbarLlmText">LLM: Loading...</span>
+          </div>
+          <button type="button" class="btn btn-sm btn-primary" id="btnTopNewInvestigation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Investigation
+          </button>
+        </div>
+      </header>
+
+      <!-- Global Active Run Banner (shows during ongoing async run) -->
+      <div class="active-run-banner" id="activeRunBanner" style="display: none;">
+        <div class="run-banner-left">
+          <div class="spinner-sm"></div>
+          <div>
+            <strong id="activeRunTitle">Autonomous Investigation in Progress...</strong>
+            <div class="run-banner-meta" id="activeRunMeta">Probing application state graph and evaluating invariant oracles</div>
+          </div>
+        </div>
+        <div class="run-banner-right">
+          <span class="timer-pill mono" id="activeRunTimer">00:00</span>
+          <button type="button" class="btn btn-xs btn-danger" id="btnCancelActiveRun">Cancel Run</button>
+        </div>
+      </div>
+
+      <!-- Main Content Views -->
+      <main class="content-canvas" id="mainCanvas">
+
+        <!-- ================================================================= -->
+        <!-- VIEW 1: OVERVIEW / DASHBOARD                                      -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-overview">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Overview & Intelligence Dashboard</h1>
+              <p class="view-subtitle">Autonomous, stateful web application exploration, invariant derivation, and evidence-grounded verification.</p>
+            </div>
+            <div class="view-actions">
+              <button type="button" class="btn btn-primary" id="btnHeroStartInvestigation">
+                <span>Start Target Investigation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Top Metric Cards Grid -->
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Discovered Routes</span>
+                <div class="metric-icon-box icon-cyan">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricRoutes">5</span>
+                <span class="metric-tag tag-cyan">Browser Verified</span>
+              </div>
+              <div class="metric-footer" id="cardMetricRoutesDesc">Across authentication & catalog boundaries</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Distinct UI States</span>
+                <div class="metric-icon-box icon-indigo">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricStates">6</span>
+                <span class="metric-tag tag-indigo">Semantic Clusters</span>
+              </div>
+              <div class="metric-footer" id="cardMetricStatesDesc">State-graph nodes mapped to UI purposes</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Verified Transitions</span>
+                <div class="metric-icon-box icon-purple">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricTransitions">10</span>
+                <span class="metric-tag tag-purple">Edge Grounded</span>
+              </div>
+              <div class="metric-footer" id="cardMetricTransitionsDesc">Multi-step user journeys verified in browser</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Synthesized Tests</span>
+                <div class="metric-icon-box icon-emerald">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricTests">29</span>
+                <span class="metric-tag tag-emerald">100% Traceable</span>
+              </div>
+              <div class="metric-footer" id="cardMetricTestsDesc">Contract tests with DOM empirical evidence</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Execution Pass Rate</span>
+                <div class="metric-icon-box icon-emerald">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricPassRate">96.3%</span>
+                <span class="metric-tag tag-emerald">26/27 Executed</span>
+              </div>
+              <div class="metric-footer" id="cardMetricPassDesc">100% Assertion Validity Rate</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Confirmed Defects</span>
+                <div class="metric-icon-box icon-rose">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="cardMetricBugs">0</span>
+                <span class="metric-tag tag-rose">2/2 Context Repro</span>
+              </div>
+              <div class="metric-footer" id="cardMetricBugsDesc">Filtered by Dual-Context Skeptic Engine</div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Actions Bar -->
+          <div class="quick-actions-bar">
+            <button type="button" class="quick-action-card" onclick="window.location.hash='#investigate'">
+              <div class="qa-icon icon-cyan">🎯</div>
+              <div class="qa-text">
+                <div class="qa-title">Setup New Investigation</div>
+                <div class="qa-desc">Configure URL, safety policies, and testing requirements</div>
+              </div>
+            </button>
+            <button type="button" class="quick-action-card" onclick="window.location.hash='#results'">
+              <div class="qa-icon icon-indigo">🔍</div>
+              <div class="qa-text">
+                <div class="qa-title">View Investigation Results</div>
+                <div class="qa-desc">Inspect application map, state graph, evidence, and bug findings</div>
+              </div>
+            </button>
+            <button type="button" class="quick-action-card" onclick="window.location.hash='#tests'">
+              <div class="qa-icon icon-emerald">📋</div>
+              <div class="qa-text">
+                <div class="qa-title">Contract Test Suite</div>
+                <div class="qa-desc">Review synthesized Playwright test cases and export scripts</div>
+              </div>
+            </button>
+            <button type="button" class="quick-action-card" onclick="window.location.hash='#activity'">
+              <div class="qa-icon icon-purple">⚡</div>
+              <div class="qa-text">
+                <div class="qa-title">Live Probe Activity</div>
+                <div class="qa-desc">Stream real-time browser actions, DOM mutations, and leads</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Architecture & Engine Capability Breakdown -->
+          <div class="dashboard-grid-2">
+            <!-- Left: Engine Pipeline -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Autonomous QA Architecture</h3>
+                  <p class="card-subtitle">5-Phase Evidence-Grounded Testing Loop</p>
+                </div>
+                <span class="badge badge-indigo">Deterministic + LLM</span>
+              </div>
+              <div class="pipeline-list">
+                <div class="pipeline-step">
+                  <div class="step-num">01</div>
+                  <div class="step-body">
+                    <div class="step-title">Perception & State Classification</div>
+                    <div class="step-desc">Playwright extracts interactive controls, headings, and accessibility trees. Classifies semantic purpose without pre-training bias.</div>
+                  </div>
+                </div>
+                <div class="pipeline-step">
+                  <div class="step-num">02</div>
+                  <div class="step-body">
+                    <div class="step-title">Stateful Frontier Exploration</div>
+                    <div class="step-desc">Explores multi-step journeys, tracks session authentication boundaries, and maintains an application state-transition graph.</div>
+                  </div>
+                </div>
+                <div class="pipeline-step">
+                  <div class="step-num">03</div>
+                  <div class="step-body">
+                    <div class="step-title">Behavioral Contract Derivation</div>
+                    <div class="step-desc">Records verified DOM transitions, empirical constraints, and boundary invariants into an immutable evidence ledger.</div>
+                  </div>
+                </div>
+                <div class="pipeline-step">
+                  <div class="step-num">04</div>
+                  <div class="step-body">
+                    <div class="step-title">Deterministic Test Synthesis</div>
+                    <div class="step-desc">Generates robust, executable Playwright contract test cases linked directly to supporting empirical evidence IDs.</div>
+                  </div>
+                </div>
+                <div class="pipeline-step">
+                  <div class="step-num">05</div>
+                  <div class="step-body">
+                    <div class="step-title">Dual-Context Bug Verification</div>
+                    <div class="step-desc">Enforces strict 2-of-2 reproduction in fresh browser contexts with a Skeptic Filter to eliminate false defect alerts.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Available Investigation Sessions -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Available Investigation Sessions</h3>
+                  <p class="card-subtitle">Pre-computed audits and benchmark runs</p>
+                </div>
+                <button type="button" class="btn btn-xs btn-outline" id="btnRefreshReportsList">Refresh</button>
+              </div>
+              <div class="table-container">
+                <table class="data-table" id="tableSavedReports">
+                  <thead>
+                    <tr>
+                      <th>Session / Report Name</th>
+                      <th>Category</th>
+                      <th>Size</th>
+                      <th style="text-align: right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="savedReportsTableBody">
+                    <tr>
+                      <td colspan="4" class="text-center text-muted">Loading available reports...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 2: INVESTIGATION SETUP & TARGET CONFIG                      -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-investigate" style="display: none;">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Target Website Investigation</h1>
+              <p class="view-subtitle">Submit an application URL to autonomously discover routes, extract state graphs, and derive test contracts.</p>
+            </div>
+          </div>
+
+          <div class="investigation-setup-grid">
+            <!-- Left: Main Configuration Form -->
+            <div class="card">
+              <form id="investigateForm">
+                <div class="form-group">
+                  <label for="inputTargetUrl" class="form-label">
+                    Target Application URL <span class="required">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">🌐</span>
+                    <input 
+                      type="text" 
+                      id="inputTargetUrl" 
+                      class="form-input mono" 
+                      placeholder="https://www.saucedemo.com/ or http://127.0.0.1:8001/login" 
+                      value="https://www.saucedemo.com/" 
+                      required
+                    >
+                  </div>
+                  <div class="url-safety-hint">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Constrained by Safety Policy (Approved external domains &amp; local demo fixtures)</span>
+                  </div>
+                </div>
+
+                <!-- Preset Targets Quick Chips -->
+                <div class="form-group">
+                  <span class="preset-label">Quick Presets:</span>
+                  <div class="preset-chips">
+                    <button type="button" class="preset-chip active" data-url="https://www.saucedemo.com/">
+                      SauceDemo E-Commerce
+                    </button>
+                    <button type="button" class="preset-chip" data-url="http://127.0.0.1:8001/login">
+                      ShopSphere Local Fixture (Port 8001)
+                    </button>
+                    <button type="button" class="preset-chip" data-url="http://127.0.0.1:8002">
+                      TaskDash Local Fixture (Port 8002)
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputWebDescription" class="form-label">Application Description (Optional Context)</label>
+                  <input 
+                    type="text" 
+                    id="inputWebDescription" 
+                    class="form-input" 
+                    placeholder="e.g. Modern e-commerce demo with catalog, multi-item cart, and multi-step checkout funnel"
+                    value="E-commerce shopping application with authentication, inventory catalog, cart, and checkout funnel"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="inputRequirements" class="form-label">Testing Requirements &amp; Business Rules (One per line)</label>
+                  <textarea 
+                    id="inputRequirements" 
+                    class="form-textarea" 
+                    rows="3" 
+                    placeholder="e.g. Users must authenticate before accessing inventory&#10;Cart badge count must match added items&#10;Checkout requires first name, last name, and postal code"
+                  >Users must authenticate with standard credentials to view inventory
+Adding an item to the cart must increment the cart badge count
+Cart items must be preserved through the checkout funnel
+Checkout step two requires valid first name, last name, and postal code</textarea>
+                </div>
+
+                <!-- Toggles Grid -->
+                <div class="form-toggles-grid">
+                  <label class="toggle-control">
+                    <input type="checkbox" id="chkLiveStream" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-text">
+                      <strong>⚡ Real-Time Live Activity Stream (SSE)</strong>
+                      <small>Stream probe actions, DOM mutations, and leads in real time</small>
+                    </span>
+                  </label>
+
+                  <label class="toggle-control">
+                    <input type="checkbox" id="chkStrictRepro" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-text">
+                      <strong>🔬 Dual-Context Bug Verification</strong>
+                      <small>Enforce 2/2 isolated context repro + Skeptic Filter</small>
+                    </span>
+                  </label>
+
+                  <label class="toggle-control">
+                    <input type="checkbox" id="chkExecuteTests" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-text">
+                      <strong>▶ Execute Synthesized Tests</strong>
+                      <small>Immediately run generated Playwright test suite</small>
+                    </span>
+                  </label>
+
+                  <label class="toggle-control">
+                    <input type="checkbox" id="chkExportScript" checked>
+                    <span class="toggle-box"></span>
+                    <span class="toggle-text">
+                      <strong>💾 Export Playwright Python Script</strong>
+                      <small>Generate standalone `.py` replay test script</small>
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Action Triggers -->
+                <div class="investigation-actions">
+                  <button type="button" id="btnStartAutonomousInvestigation" class="btn btn-primary btn-lg">
+                    <span class="btn-icon">▶</span>
+                    <span>Start Autonomous Investigation</span>
+                  </button>
+
+                  <button type="button" id="btnRunFullQASuite" class="btn btn-purple btn-lg">
+                    <span class="btn-icon">⚡</span>
+                    <span>Run Full QA Suite (Investigate + Execute + Bugs)</span>
+                  </button>
+
+                  <button type="button" id="btnQuickInspect" class="btn btn-outline">
+                    <span class="btn-icon">🔍</span>
+                    <span>Quick Inspect &amp; Plan</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right: Investigation Guide & Safety Policy -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Investigation Guidelines</h3>
+              </div>
+              <div class="guide-box">
+                <div class="guide-item">
+                  <div class="guide-icon">🛡️</div>
+                  <div class="guide-text">
+                    <strong>Safe Sandbox Policy</strong>
+                    <p>Probes are bound to safe interaction verbs (clicks, inputs, navigation). Destructive operations, cross-origin hops, and dangerous form submits are automatically blocked.</p>
+                  </div>
+                </div>
+                <div class="guide-item">
+                  <div class="guide-icon">🗺️</div>
+                  <div class="guide-text">
+                    <strong>State Graph Traversal</strong>
+                    <p>The engine builds a directed graph of application states. It distinguishes route navigations from dynamic in-page DOM mutations (dialogs, sort changes, carts).</p>
+                  </div>
+                </div>
+                <div class="guide-item">
+                  <div class="guide-icon">🔑</div>
+                  <div class="guide-text">
+                    <strong>Session &amp; Auth Boundaries</strong>
+                    <p>When an auth gate is discovered (e.g. login form), credentials found on the landing view are captured and verified across transitions.</p>
+                  </div>
+                </div>
+                <div class="guide-item">
+                  <div class="guide-icon">⚖️</div>
+                  <div class="guide-text">
+                    <strong>Skeptic Filter Engine</strong>
+                    <p>Browser anomalies (console warnings, benign network 404s) are skeptical-checked. Only reproducible, high-confidence invariant violations are escalated.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 3: INVESTIGATION RESULTS (DEEP DIVE)                         -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-results" style="display: none;">
+          <div class="view-header">
+            <div>
+              <div class="results-title-row">
+                <h1 class="view-title">Investigation Results &amp; Application Model</h1>
+                <span class="badge" id="reportStatusBadge">COMPLETED</span>
+              </div>
+              <p class="view-subtitle" id="reportSubtitle">Target: https://www.saucedemo.com/ &bull; Duration: 47s &bull; Strategy: DETERMINISTIC_GROUNDED</p>
+            </div>
+            <div class="view-actions">
+              <button type="button" class="btn btn-outline" id="btnResultsExportJson">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Report JSON
+              </button>
+              <button type="button" class="btn btn-primary" onclick="window.location.hash='#tests'">
+                <span>View Generated Tests</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Segmented Navigation Subtabs -->
+          <div class="segmented-tabs" id="resultsSubtabs">
+            <button type="button" class="seg-tab active" data-tab="summary">Overview Summary</button>
+            <button type="button" class="seg-tab" data-tab="map">Application Map &amp; State Graph</button>
+            <button type="button" class="seg-tab" data-tab="journey">Journey Explorer</button>
+            <button type="button" class="seg-tab" data-tab="evidence">Evidence Ledger</button>
+            <button type="button" class="seg-tab" data-tab="bugs">Bug Findings &amp; Skeptic</button>
+            <button type="button" class="seg-tab" data-tab="coverage">Coverage &amp; Limitations</button>
+          </div>
+
+          <!-- TAB CONTENT 1: SUMMARY -->
+          <div class="results-tab-content active" id="tab-summary">
+            <div class="card mb-20">
+              <div class="card-header">
+                <h3 class="card-title">Application Understanding</h3>
+                <span class="badge badge-indigo" id="summaryPlanningModeBadge">Deterministic Grounded</span>
+              </div>
+              <p class="card-body-text" id="summaryUnderstandingText">
+                Swag Labs is an e-commerce platform demonstrating an online retail purchasing funnel. The application comprises an initial authentication gate, a product catalog inventory view with sorting and add-to-cart controls, a dedicated shopping cart view, and a multi-step checkout workflow culminating in order confirmation.
+              </p>
+            </div>
+
+            <div class="dashboard-grid-2">
+              <!-- Auth & Boundary Status -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Authentication &amp; Access Boundary</h3>
+                  <span class="badge badge-emerald" id="authStatusBadge">VERIFIED</span>
+                </div>
+                <div class="info-table">
+                  <div class="info-row">
+                    <span class="info-label">Boundary Observed:</span>
+                    <span class="info-val" id="authObserved">Yes (Form password field detected)</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Credentials Source:</span>
+                    <span class="info-val" id="authCredSource">Discovered on DOM landing page</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Session Preservation:</span>
+                    <span class="info-val" id="authPreserved">Maintained across inventory &amp; cart</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Signals Captured:</span>
+                    <span class="info-val mono text-sm" id="authSignals">URL changed to /inventory.html | Inventory container visible</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frontier & Action Budget Metrics -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Frontier &amp; Exploration Budget</h3>
+                  <span class="badge badge-cyan" id="frontierBudgetBadge">Budget Exceeded</span>
+                </div>
+                <div class="info-table">
+                  <div class="info-row">
+                    <span class="info-label">Actions Evaluated:</span>
+                    <span class="info-val" id="ovActionsEvaluated">18</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Actions Attempted:</span>
+                    <span class="info-val" id="ovActionsAttempted">12</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Actions Executed (Pass):</span>
+                    <span class="info-val text-emerald" id="ovActionsExecuted">12</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Verified Effects:</span>
+                    <span class="info-val text-cyan" id="ovActionsVerified">10</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Safety Blocked:</span>
+                    <span class="info-val" id="ovActionsBlocked">0</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Stopping Reason:</span>
+                    <span class="info-val text-muted" id="ovStoppingReason">Investigation budget reached</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: APPLICATION MAP & STATE GRAPH -->
+          <div class="results-tab-content" id="tab-map">
+            <div class="card mb-20">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Behavior Model &amp; Interactive State Graph</h3>
+                  <p class="card-subtitle">Visual state-transition network derived from observed browser actions</p>
+                </div>
+                <div class="graph-legend">
+                  <div class="legend-item"><span class="legend-line route-line"></span> Route Transition</div>
+                  <div class="legend-item"><span class="legend-line inpage-line"></span> In-Page Mutation</div>
+                  <div class="legend-item"><span class="legend-dot entry-dot"></span> Entry State</div>
+                </div>
+              </div>
+              <div class="svg-graph-container" id="svgGraphWrapper">
+                <!-- SVG dynamically injected here -->
+                <div class="text-center text-muted p-20">Rendering state-transition diagram...</div>
+              </div>
+            </div>
+
+            <!-- Discovered Routes & Views Table -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Discovered Routes &amp; View Purposes</h3>
+              </div>
+              <div class="table-container">
+                <table class="data-table" id="tableDiscoveredRoutes">
+                  <thead>
+                    <tr>
+                      <th>State / Purpose</th>
+                      <th>Route / URL</th>
+                      <th>Relevant Interactive Controls</th>
+                    </tr>
+                  </thead>
+                  <tbody id="discoveredRoutesTableBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 3: JOURNEY EXPLORER -->
+          <div class="results-tab-content" id="tab-journey">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Verified Multi-Step User Workflows</h3>
+                  <p class="card-subtitle">State transitions executed and verified in browser runtime</p>
+                </div>
+              </div>
+              <div class="journey-timeline" id="journeyTimelineContainer">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 4: EVIDENCE LEDGER -->
+          <div class="results-tab-content" id="tab-evidence">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Empirical Evidence Ledger</h3>
+                  <p class="card-subtitle">Browser observations, DOM snapshots, and screenshot artifacts</p>
+                </div>
+                <div class="search-box">
+                  <input type="text" id="inputEvidenceFilter" class="form-input form-input-sm" placeholder="Filter evidence by ID, URL, or type...">
+                </div>
+              </div>
+              <div class="table-container">
+                <table class="data-table" id="tableEvidenceLedger">
+                  <thead>
+                    <tr>
+                      <th>Evidence ID</th>
+                      <th>Type</th>
+                      <th>Target Route</th>
+                      <th>Observed Description</th>
+                      <th>DOM Target / Selector</th>
+                      <th style="text-align: center;">Screenshot</th>
+                    </tr>
+                  </thead>
+                  <tbody id="evidenceLedgerTableBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 5: BUG FINDINGS -->
+          <div class="results-tab-content" id="tab-bugs">
+            <div class="card mb-20">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Confirmed Application Defects</h3>
+                  <p class="card-subtitle">Verified via strict 2-of-2 fresh context reproduction</p>
+                </div>
+                <span class="badge badge-rose" id="badgeConfirmedBugsCount">0 Confirmed</span>
+              </div>
+              <div class="bugs-container" id="confirmedBugsContainer">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Skeptic Rejection Ledger -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Skeptic Rejection Ledger (Filtered False Positives)</h3>
+                  <p class="card-subtitle">Candidate leads dismissed after dual-context verification or benign classification</p>
+                </div>
+              </div>
+              <div class="table-container">
+                <table class="data-table" id="tableSkepticLedger">
+                  <thead>
+                    <tr>
+                      <th>Candidate Lead Title</th>
+                      <th>Verdict</th>
+                      <th>Skeptic Reasoning &amp; Empirical Findings</th>
+                    </tr>
+                  </thead>
+                  <tbody id="skepticTableBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 6: COVERAGE & LIMITATIONS -->
+          <div class="results-tab-content" id="tab-coverage">
+            <div class="dashboard-grid-2">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Exploration Coverage</h3>
+                </div>
+                <div class="info-table">
+                  <div class="info-row">
+                    <span class="info-label">Discovered Pages:</span>
+                    <span class="info-val" id="covPages">5</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Probed States:</span>
+                    <span class="info-val" id="covStates">6</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Pending Frontier Items:</span>
+                    <span class="info-val" id="covFrontier">0</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Authentication Depth:</span>
+                    <span class="info-val text-emerald">Full Post-Auth Funnel</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Investigation Limitations</h3>
+                </div>
+                <ul class="limitations-list" id="limitationsListContainer">
+                  <li>Zero destructive or external actions attempted.</li>
+                  <li>Payment card tokenization simulated without external gateway calls.</li>
+                  <li>Investigation concluded upon reaching configured step budget.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 4: GENERATED TESTS (CONTRACT TEST SUITE)                     -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-tests" style="display: none;">
+          <div class="view-header">
+            <div>
+              <div class="results-title-row">
+                <h1 class="view-title">Generated Contract Test Suite</h1>
+                <span class="badge badge-emerald" id="testsTotalBadge">29 Test Cases</span>
+              </div>
+              <p class="view-subtitle">Empirically derived test cases grounded in observed DOM states and transitions.</p>
+            </div>
+            <div class="view-actions">
+              <button type="button" class="btn btn-outline" id="btnCopyAllPlaywright">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Playwright Code
+              </button>
+              <button type="button" class="btn btn-primary" id="btnDownloadPlaywrightScript">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .py Script
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Filter Bar -->
+          <div class="filter-bar">
+            <div class="category-chips" id="testCategoryFilterChips">
+              <button type="button" class="cat-chip active" data-category="ALL">All Categories (<span id="cntCatAll">29</span>)</button>
+              <button type="button" class="cat-chip" data-category="workflow">Workflow (<span id="cntCatWf">1</span>)</button>
+              <button type="button" class="cat-chip" data-category="state_transition">State Transition (<span id="cntCatTrans">5</span>)</button>
+              <button type="button" class="cat-chip" data-category="functional">Functional (<span id="cntCatFunc">18</span>)</button>
+              <button type="button" class="cat-chip" data-category="boundary">Boundary / BVA (<span id="cntCatBnd">3</span>)</button>
+              <button type="button" class="cat-chip" data-category="accessibility">Accessibility (<span id="cntCatA11y">2</span>)</button>
+            </div>
+            <div class="filter-search">
+              <input type="text" id="inputFilterTests" class="form-input form-input-sm" placeholder="Search test name, ID, selector...">
+            </div>
+          </div>
+
+          <div class="test-suite-layout">
+            <!-- Left: Test Catalog Cards -->
+            <div class="test-catalog-col" id="testCasesCatalogContainer">
+              <!-- Dynamically populated test cards -->
+            </div>
+
+            <!-- Right: Playwright Python Code Viewer -->
+            <div class="code-viewer-col">
+              <div class="card sticky-code-card">
+                <div class="card-header">
+                  <div>
+                    <h3 class="card-title">Playwright Test Runner Code</h3>
+                    <p class="card-subtitle">Self-contained executable Python test suite</p>
+                  </div>
+                  <button type="button" class="btn btn-xs btn-outline" id="btnCopySnippet">Copy Code</button>
+                </div>
+                <div class="code-editor-box">
+                  <pre class="code-block" id="playwrightCodeDisplay"><code class="mono"># Loading generated Playwright test script...</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 5: TEST EXECUTION & VERIFICATION                             -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-execution" style="display: none;">
+          <div class="view-header">
+            <div>
+              <div class="results-title-row">
+                <h1 class="view-title">Test Execution &amp; Verification Results</h1>
+                <span class="badge badge-emerald" id="execStatusBadge">PASSED 26 / 27</span>
+              </div>
+              <p class="view-subtitle" id="execSubtitle">Target: https://www.saucedemo.com &bull; Duration: 47.8s &bull; Suite: Contract v2</p>
+            </div>
+            <div class="view-actions">
+              <button type="button" class="btn btn-outline" id="btnReExecuteSuite">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                Re-Run Test Suite
+              </button>
+            </div>
+          </div>
+
+          <!-- Execution Metrics Cards -->
+          <div class="metric-grid mb-24">
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Executed Cases</span>
+                <div class="metric-icon-box icon-cyan">▶</div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value" id="execCountTotal">27</span>
+                <span class="metric-tag tag-cyan">of 29 Generated</span>
+              </div>
+              <div class="metric-footer">2 Hypotheses Skipped Safely</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Passed Tests</span>
+                <div class="metric-icon-box icon-emerald">✅</div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value text-emerald" id="execCountPassed">26</span>
+                <span class="metric-tag tag-emerald">96.3% Rate</span>
+              </div>
+              <div class="metric-footer">Verified against DOM invariants</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Failed Assertions</span>
+                <div class="metric-icon-box icon-rose">❌</div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value text-rose" id="execCountFailed">1</span>
+                <span class="metric-tag tag-rose">Candidate Defect</span>
+              </div>
+              <div class="metric-footer">Subjected to Dual-Context Repro</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Setup Failures</span>
+                <div class="metric-icon-box icon-amber">⚠️</div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value text-emerald" id="execCountSetupFailures">0</span>
+                <span class="metric-tag tag-emerald">100% Setup Reliability</span>
+              </div>
+              <div class="metric-footer">Zero flaky selector timeouts</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-title">Assertion Validity Rate</span>
+                <div class="metric-icon-box icon-purple">🎯</div>
+              </div>
+              <div class="metric-value-box">
+                <span class="metric-value text-purple" id="execAssertionValidity">100%</span>
+                <span class="metric-tag tag-purple">Evidence Linked</span>
+              </div>
+              <div class="metric-footer">All assertions match observed DOM</div>
+            </div>
+          </div>
+
+          <!-- Execution Results Table -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Detailed Execution Log</h3>
+                <p class="card-subtitle">Real-time status, execution durations, and step completion counts</p>
+              </div>
+              <div class="table-filters">
+                <button type="button" class="btn btn-xs btn-outline filter-exec-status active" data-status="ALL">All (27)</button>
+                <button type="button" class="btn btn-xs btn-outline filter-exec-status" data-status="PASSED">Passed (26)</button>
+                <button type="button" class="btn btn-xs btn-outline filter-exec-status" data-status="FAILED">Failed (1)</button>
+              </div>
+            </div>
+            <div class="table-container">
+              <table class="data-table" id="tableExecutionLog">
+                <thead>
+                  <tr>
+                    <th>Test ID</th>
+                    <th>Test Name &amp; Target</th>
+                    <th>Category</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: center;">Steps</th>
+                    <th style="text-align: right;">Duration</th>
+                  </tr>
+                </thead>
+                <tbody id="executionLogTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 6: LIVE ACTIVITY STREAM (SSE)                               -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-activity" style="display: none;">
+          <div class="view-header">
+            <div>
+              <div class="results-title-row">
+                <h1 class="view-title">Real-Time Probe Activity Stream</h1>
+                <span class="badge" id="activityStreamStateBadge">IDLE</span>
+              </div>
+              <p class="view-subtitle">Live Server-Sent Events (SSE) from the autonomous browser execution engine.</p>
+            </div>
+            <div class="view-actions">
+              <label class="toggle-control-sm">
+                <input type="checkbox" id="chkAutoScroll" checked>
+                <span>Auto-Scroll</span>
+              </label>
+              <button type="button" class="btn btn-xs btn-outline" id="btnClearStreamLog">Clear Log</button>
+            </div>
+          </div>
+
+          <div class="activity-stream-layout">
+            <!-- Event Filter Chips -->
+            <div class="stream-filter-bar">
+              <div class="category-chips" id="streamFilterChips">
+                <button type="button" class="cat-chip active" data-filter="ALL">All Events (<span id="cntEventsAll">0</span>)</button>
+                <button type="button" class="cat-chip" data-filter="PROBE_START">Probes (<span id="cntEventsProbes">0</span>)</button>
+                <button type="button" class="cat-chip" data-filter="LEAD_DETECTED">Bug Leads (<span id="cntEventsLeads">0</span>)</button>
+                <button type="button" class="cat-chip" data-filter="REPRO_RESULT">Reproduction (<span id="cntEventsRepro">0</span>)</button>
+                <button type="button" class="cat-chip" data-filter="SYSTEM">System &amp; Stops (<span id="cntEventsSystem">0</span>)</button>
+              </div>
+            </div>
+
+            <!-- Live Stream Timeline Box -->
+            <div class="stream-events-timeline" id="streamEventsContainer">
+              <div class="stream-empty-state" id="streamEmptyState">
+                <div class="empty-icon">⚡</div>
+                <div class="empty-title">Activity Stream Idle</div>
+                <div class="empty-desc">Start an investigation or run the full QA suite to stream live probe interactions, state transitions, and bug lead detections.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 7: EXPORTS & BENCHMARKS                                      -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-benchmarks" style="display: none;">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Exports &amp; Benchmark Evaluation</h1>
+              <p class="view-subtitle">Validate detection performance on planted-bug fixtures and download audit artifacts.</p>
+            </div>
+          </div>
+
+          <div class="benchmark-grid">
+            <!-- Benchmark 1: ShopSphere E-Commerce Mutation Evaluation -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Fixture 1: ShopSphere Benchmark</h3>
+                  <p class="card-subtitle">Planted regression defect detection (Port 8001)</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-emerald" id="btnRunBenchmarkF1">
+                  <span>Run Benchmark 1</span>
+                </button>
+              </div>
+              <div class="benchmark-metrics-row" id="benchmarkMetricsRowF1">
+                <div class="bench-stat-card">
+                  <div class="bench-val text-emerald" id="bmPrecisionF1">100%</div>
+                  <div class="bench-label">Precision</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-emerald" id="bmRecallF1">100%</div>
+                  <div class="bench-label">Recall</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-emerald" id="bmF1F1">100%</div>
+                  <div class="bench-label">F1 Score</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val" id="bmTpF1">4</div>
+                  <div class="bench-label">True Positives</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-muted" id="bmFpF1">0</div>
+                  <div class="bench-label">False Positives</div>
+                </div>
+              </div>
+              <div class="benchmark-bugs-list">
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-01</span>
+                  <span>Minimum password length boundary bypass</span>
+                </div>
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-02</span>
+                  <span>Duplicate product addition price total desync</span>
+                </div>
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-03</span>
+                  <span>Zero quantity cart modification silent drop</span>
+                </div>
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-04</span>
+                  <span>Checkout step 2 unhandled 500 server crash</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benchmark 2: TaskDash Fixture Evaluation -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Fixture 2: TaskDash Benchmark</h3>
+                  <p class="card-subtitle">Task management invariants evaluation (Port 8002)</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-cyan" id="btnRunBenchmarkF2">
+                  <span>Run Benchmark 2</span>
+                </button>
+              </div>
+              <div class="benchmark-metrics-row" id="benchmarkMetricsRowF2">
+                <div class="bench-stat-card">
+                  <div class="bench-val text-cyan" id="bmPrecisionF2">100%</div>
+                  <div class="bench-label">Precision</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-cyan" id="bmRecallF2">100%</div>
+                  <div class="bench-label">Recall</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-cyan" id="bmF1F2">100%</div>
+                  <div class="bench-label">F1 Score</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val" id="bmTpF2">3</div>
+                  <div class="bench-label">True Positives</div>
+                </div>
+                <div class="bench-stat-card">
+                  <div class="bench-val text-muted" id="bmFpF2">0</div>
+                  <div class="bench-label">False Positives</div>
+                </div>
+              </div>
+              <div class="benchmark-bugs-list">
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-F2-01</span>
+                  <span>Empty task title accepted without validation</span>
+                </div>
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-F2-02</span>
+                  <span>Priority filter dropdown silently ignored</span>
+                </div>
+                <div class="bench-bug-item detected">
+                  <span class="bug-badge">BUG-F2-03</span>
+                  <span>Mark Done action does not update task state</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Export Artifacts Download Center -->
+          <div class="card mt-24">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Export Artifacts &amp; Test Deliverables</h3>
+                <p class="card-subtitle">Download machine-readable contracts and replay scripts</p>
+              </div>
+            </div>
+            <div class="exports-grid">
+              <div class="export-card">
+                <div class="export-icon">🐍</div>
+                <div class="export-title">Playwright Test Suite</div>
+                <div class="export-desc">Standalone executable Python script with assertion assertions and locators</div>
+                <button type="button" class="btn btn-sm btn-outline full-width" id="btnExportPlaywright">Download .py Script</button>
+              </div>
+
+              <div class="export-card">
+                <div class="export-icon">📜</div>
+                <div class="export-title">Handoff Contract Report</div>
+                <div class="export-desc">Full application state graph, transitions, and empirical evidence ledger</div>
+                <button type="button" class="btn btn-sm btn-outline full-width" id="btnExportContract">Download Contract .json</button>
+              </div>
+
+              <div class="export-card">
+                <div class="export-icon">📋</div>
+                <div class="export-title">Generated Test Suite</div>
+                <div class="export-desc">Catalog of 29 contract test cases with requirement and evidence references</div>
+                <button type="button" class="btn btn-sm btn-outline full-width" id="btnExportTestSuite">Download Test Suite .json</button>
+              </div>
+
+              <div class="export-card">
+                <div class="export-icon">📊</div>
+                <div class="export-title">Test Execution Report</div>
+                <div class="export-desc">Execution logs, step timings, assertion validity, and defect metrics</div>
+                <button type="button" class="btn btn-sm btn-outline full-width" id="btnExportExecReport">Download Execution .json</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div class="modal-backdrop" id="screenshotLightboxModal" style="display: none;">
+    <div class="lightbox-modal">
+      <div class="lightbox-header">
+        <span class="lightbox-title mono" id="lightboxTitle">Screenshot Artifact</span>
+        <button type="button" class="lightbox-close" id="btnCloseLightbox">&times;</button>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightboxImg" src="" alt="Artifact Screenshot">
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main JavaScript App (Dual-linked for root and static paths) -->
+  <script src="app.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

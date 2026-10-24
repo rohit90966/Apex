@@ -1,0 +1,3909 @@
+{
+  "schema_version": "1.0.0",
+  "investigation_id": "inv-4a3a7393",
+  "exported_at": 1792770307.1412654,
+  "application_origin": "https://www.saucedemo.com",
+  "target_url": "https://www.saucedemo.com/",
+  "investigated_routes": [
+    "www.saucedemo.com/",
+    "www.saucedemo.com/inventory.html",
+    "www.saucedemo.com/cart.html",
+    "www.saucedemo.com/inventory-item.html"
+  ],
+  "states": [
+    {
+      "state_id": "st_root_view_view",
+      "state_class_id": "cls_2f8ac8db1c",
+      "url": "https://www.saucedemo.com/",
+      "normalized_route": "www.saucedemo.com/",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (www.saucedemo.com/)",
+      "state_signature": "cls_2f8ac8db1c::st_root_view_view",
+      "distinguishing_observations": [],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "input",
+          "accessible_name": "Username",
+          "tag_name": "input",
+          "selector": "#user-name",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Password",
+          "tag_name": "input",
+          "selector": "#password",
+          "element_type": "password",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "input",
+          "accessible_name": "Login",
+          "tag_name": "input",
+          "selector": "#login-button",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "#login-button",
+          "fields": [
+            {
+              "name": "user-name",
+              "id": "user-name",
+              "type": "text",
+              "required": false,
+              "placeholder": "Username",
+              "label": "Username",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#user-name",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "password",
+              "id": "password",
+              "type": "password",
+              "required": false,
+              "placeholder": "Password",
+              "label": "Password",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#password",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_root_view_view_with_error",
+      "state_class_id": "cls_2f8ac8db1c",
+      "url": "https://www.saucedemo.com/",
+      "normalized_route": "www.saucedemo.com/",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (www.saucedemo.com/)",
+      "state_signature": "cls_2f8ac8db1c::st_root_view_view_with_error",
+      "distinguishing_observations": [
+        "validation_error:Epic sadface: Username is required"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": true,
+        "validation_error_message": "Epic sadface: Username is required",
+        "validation_error_locator": ".error-message-container",
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "input",
+          "accessible_name": "Username",
+          "tag_name": "input",
+          "selector": "#user-name",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "input",
+          "accessible_name": "Password",
+          "tag_name": "input",
+          "selector": "#password",
+          "element_type": "password",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "Dismiss error",
+          "tag_name": "button",
+          "selector": "[data-test=\"error-button\"]",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "input",
+          "accessible_name": "Login",
+          "tag_name": "input",
+          "selector": "#login-button",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "",
+          "method": "GET",
+          "submit_control_selector": "#login-button",
+          "fields": [
+            {
+              "name": "user-name",
+              "id": "user-name",
+              "type": "text",
+              "required": false,
+              "placeholder": "Username",
+              "label": "Username",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#user-name",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "password",
+              "id": "password",
+              "type": "password",
+              "required": false,
+              "placeholder": "Password",
+              "label": "Password",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#password",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_inventoryhtml_products_view",
+      "state_class_id": "cls_f9f1d0aa87",
+      "url": "https://www.saucedemo.com/inventory.html",
+      "normalized_route": "www.saucedemo.com/inventory.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Products)",
+      "state_signature": "cls_f9f1d0aa87::st_inventoryhtml_products_view",
+      "distinguishing_observations": [
+        "heading:Products"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [
+        "Products"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, empty",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-backpack",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bike-light",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-onesie",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_22",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_23",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_inventoryhtml_products_view_opt_za",
+      "state_class_id": "cls_f9f1d0aa87",
+      "url": "https://www.saucedemo.com/inventory.html",
+      "normalized_route": "www.saucedemo.com/inventory.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Products)",
+      "state_signature": "cls_f9f1d0aa87::st_inventoryhtml_products_view_opt_za",
+      "distinguishing_observations": [
+        "heading:Products",
+        "selected_option:za"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": "za",
+        "counter_value": null
+      },
+      "headings": [
+        "Products"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, empty",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-onesie",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bike-light",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-backpack",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_22",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_23",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_inventoryhtml_products_c1_opt_za",
+      "state_class_id": "cls_f9f1d0aa87",
+      "url": "https://www.saucedemo.com/inventory.html",
+      "normalized_route": "www.saucedemo.com/inventory.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Products)",
+      "state_signature": "cls_f9f1d0aa87::st_inventoryhtml_products_c1_opt_za",
+      "distinguishing_observations": [
+        "heading:Products",
+        "selected_option:za",
+        "counter_value:1"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": "za",
+        "counter_value": "1"
+      },
+      "headings": [
+        "Products"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-onesie",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bike-light",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "Remove",
+          "tag_name": "button",
+          "selector": "#remove-sauce-labs-backpack",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_carthtml_your_cart_c1",
+      "state_class_id": "cls_528fee7b43",
+      "url": "https://www.saucedemo.com/cart.html",
+      "normalized_route": "www.saucedemo.com/cart.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Your Cart)",
+      "state_signature": "cls_528fee7b43::st_carthtml_your_cart_c1",
+      "distinguishing_observations": [
+        "heading:Your Cart",
+        "counter_value:1"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "1"
+      },
+      "headings": [
+        "Your Cart"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, 1 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Remove",
+          "tag_name": "button",
+          "selector": "#remove-sauce-labs-backpack",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "Continue Shopping",
+          "tag_name": "button",
+          "selector": "#continue-shopping",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Checkout",
+          "tag_name": "button",
+          "selector": "#checkout",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_inventory-itemht_view_c1",
+      "state_class_id": "cls_130d45a77e",
+      "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "normalized_route": "www.saucedemo.com/inventory-item.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (www.saucedemo.com/inventory-item.html)",
+      "state_signature": "cls_130d45a77e::st_inventory-itemht_view_c1",
+      "distinguishing_observations": [
+        "counter_value:1"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session",
+        "Query parameters: {'id': '3'}"
+      ],
+      "url_parameters": {
+        "id": "3"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "1"
+      },
+      "headings": [],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, 1 items",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "Back to products",
+          "tag_name": "button",
+          "selector": "#back-to-products",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Remove",
+          "tag_name": "button",
+          "selector": "#remove",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_carthtml_your_cart_view",
+      "state_class_id": "cls_528fee7b43",
+      "url": "https://www.saucedemo.com/cart.html",
+      "normalized_route": "www.saucedemo.com/cart.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Your Cart)",
+      "state_signature": "cls_528fee7b43::st_carthtml_your_cart_view",
+      "distinguishing_observations": [
+        "heading:Your Cart"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [
+        "Your Cart"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, empty",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "Continue Shopping",
+          "tag_name": "button",
+          "selector": "#continue-shopping",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Checkout",
+          "tag_name": "button",
+          "selector": "#checkout",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_inventory-itemht_view_view",
+      "state_class_id": "cls_130d45a77e",
+      "url": "https://www.saucedemo.com/inventory-item.html?id=4",
+      "normalized_route": "www.saucedemo.com/inventory-item.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (www.saucedemo.com/inventory-item.html)",
+      "state_signature": "cls_130d45a77e::st_inventory-itemht_view_view",
+      "distinguishing_observations": [],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session",
+        "Query parameters: {'id': '4'}"
+      ],
+      "url_parameters": {
+        "id": "4"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "Cart, empty",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "Back to products",
+          "tag_name": "button",
+          "selector": "#back-to-products",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "X",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-x\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://x.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Facebook",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-facebook\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.facebook.com/saucelabs"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "LinkedIn",
+          "tag_name": "a",
+          "selector": "[data-test=\"social-linkedin\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://www.linkedin.com/company/sauce-labs/"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_inventoryhtml_products_view_menu_open",
+      "state_class_id": "cls_f9f1d0aa87",
+      "url": "https://www.saucedemo.com/inventory.html",
+      "normalized_route": "www.saucedemo.com/inventory.html",
+      "page_title": "Swag Labs",
+      "description": "Swag Labs (Products)",
+      "state_signature": "cls_f9f1d0aa87::st_inventoryhtml_products_view_menu_open",
+      "distinguishing_observations": [
+        "heading:Products",
+        "menu_open:true"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": true,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": null
+      },
+      "headings": [
+        "Products"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "button",
+          "accessible_name": "Open Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-menu-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "button",
+          "accessible_name": "All Items",
+          "tag_name": "a",
+          "selector": "#inventory_sidebar_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "button",
+          "accessible_name": "Dynamic Catalog",
+          "tag_name": "a",
+          "selector": "#dynamic_catalog_sidebar_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "button",
+          "accessible_name": "Lazy Load",
+          "tag_name": "a",
+          "selector": "#dynamic_catalog_lazy_load_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "button",
+          "accessible_name": "Spinner",
+          "tag_name": "a",
+          "selector": "#dynamic_catalog_spinner_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Slider",
+          "tag_name": "a",
+          "selector": "#dynamic_catalog_slider_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "About",
+          "tag_name": "a",
+          "selector": "#about_sidebar_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "https://saucelabs.com/"
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "#logout_sidebar_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Reset App State",
+          "tag_name": "a",
+          "selector": "#reset_sidebar_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "button",
+          "accessible_name": "Close Menu",
+          "tag_name": "button",
+          "selector": "#react-burger-cross-btn",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "Cart, empty",
+          "tag_name": "a",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "select",
+          "accessible_name": "Sort products",
+          "tag_name": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_12",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_13",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Backpack",
+          "tag_name": "a",
+          "selector": "#item_4_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_14",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-backpack",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_15",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_16",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bike Light",
+          "tag_name": "a",
+          "selector": "#item_0_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_17",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bike-light",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_18",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_19",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Bolt T-Shirt",
+          "tag_name": "a",
+          "selector": "#item_1_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_20",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_21",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_22",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Fleece Jacket",
+          "tag_name": "a",
+          "selector": "#item_5_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_23",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_24",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_25",
+          "role": "button",
+          "accessible_name": "View details for Sauce Labs Onesie",
+          "tag_name": "a",
+          "selector": "#item_2_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_26",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-sauce-labs-onesie",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_27",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_img_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": true,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_28",
+          "role": "button",
+          "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+          "tag_name": "a",
+          "selector": "#item_3_title_link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "#"
+          }
+        },
+        {
+          "element_id": "ctrl_29",
+          "role": "button",
+          "accessible_name": "Add to cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+          "element_type": "button",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": []
+    }
+  ],
+  "verified_transitions": [
+    {
+      "transition_id": "trans-6a00f394",
+      "source_state_id": "st_root_view_view",
+      "destination_state_id": "st_root_view_view_with_error",
+      "action_type": "FILL:required_blank_all_form_1",
+      "grounded_control": {
+        "selector": null,
+        "role": null,
+        "accessible_name": null,
+        "target_description": "required_blank_all_form_1"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_root_view_view_with_error' at 'https://www.saucedemo.com/'",
+        "Validation error displayed: Epic sadface: Username is required"
+      ],
+      "actual_effect": "VALIDATION_FEEDBACK",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-b38f0630"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-48e98424",
+      "source_state_id": "st_root_view_view",
+      "destination_state_id": "st_inventoryhtml_products_view",
+      "action_type": "AUTHENTICATE",
+      "grounded_control": {
+        "selector": null,
+        "role": null,
+        "accessible_name": null,
+        "target_description": "login_form"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_inventoryhtml_products_view' at 'https://www.saucedemo.com/inventory.html'",
+        "Heading 'Products' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-e8dcfefd"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-ea715d90",
+      "source_state_id": "st_inventoryhtml_products_view",
+      "destination_state_id": "st_inventoryhtml_products_view_opt_za",
+      "action_type": "SELECT_OPTION:select_cls_f9f1d0aa87__data_test__product_sort_containe",
+      "grounded_control": {
+        "selector": "[data-test=\"product-sort-container\"]",
+        "role": "select",
+        "accessible_name": "Sort products",
+        "target_description": "[data-test=\"product-sort-container\"]"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventoryhtml_products_view_opt_za' at 'https://www.saucedemo.com/inventory.html'",
+        "Option 'za' active",
+        "Heading 'Products' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-8f9001bc"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-596f145f",
+      "source_state_id": "st_inventoryhtml_products_view_opt_za",
+      "destination_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack",
+      "grounded_control": {
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "role": "button",
+        "accessible_name": "Add to cart",
+        "target_description": "#add-to-cart-sauce-labs-backpack"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventoryhtml_products_c1_opt_za' at 'https://www.saucedemo.com/inventory.html'",
+        "Option 'za' active",
+        "Heading 'Products' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-38db1e3c"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-3a6c9655",
+      "source_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "destination_state_id": "st_carthtml_your_cart_c1",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__",
+      "grounded_control": {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "[data-test=\"shopping-cart-link\"]"
+      },
+      "required_preconditions": [
+        "Requires authenticated session",
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_carthtml_your_cart_c1' at 'https://www.saucedemo.com/cart.html'",
+        "Heading 'Your Cart' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-6afd20cd"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-c0aac124",
+      "source_state_id": "st_carthtml_your_cart_c1",
+      "destination_state_id": "st_inventory-itemht_view_c1",
+      "action_type": "CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link",
+      "grounded_control": {
+        "selector": "#item_4_title_link",
+        "role": "button",
+        "accessible_name": "View details for Sauce Labs Backpack",
+        "target_description": "#item_4_title_link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session",
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_c1' at 'https://www.saucedemo.com/inventory-item.html?id=3'"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-c420a9bb"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-1e67cc12",
+      "source_state_id": "st_inventory-itemht_view_c1",
+      "destination_state_id": "st_carthtml_your_cart_c1",
+      "action_type": "CLICK_CONTROL:control_cls_130d45a77e__data_test__shopping_cart_link__",
+      "grounded_control": {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "role": "button",
+        "accessible_name": "Cart, 1 items",
+        "target_description": "[data-test=\"shopping-cart-link\"]"
+      },
+      "required_preconditions": [
+        "Requires authenticated session",
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_carthtml_your_cart_c1' at 'https://www.saucedemo.com/cart.html'",
+        "Heading 'Your Cart' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-c517496a"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-c7e7fc51",
+      "source_state_id": "st_carthtml_your_cart_c1",
+      "destination_state_id": "st_carthtml_your_cart_view",
+      "action_type": "CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack",
+      "grounded_control": {
+        "selector": "#remove-sauce-labs-backpack",
+        "role": "button",
+        "accessible_name": "Remove",
+        "target_description": "#remove-sauce-labs-backpack"
+      },
+      "required_preconditions": [
+        "Requires authenticated session",
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_carthtml_your_cart_view' at 'https://www.saucedemo.com/cart.html'",
+        "Heading 'Your Cart' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-9c971350"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-556b8ed6",
+      "source_state_id": "st_inventoryhtml_products_view",
+      "destination_state_id": "st_inventory-itemht_view_view",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__item_3_title_link",
+      "grounded_control": {
+        "selector": "#item_3_title_link",
+        "role": "button",
+        "accessible_name": "View details for Test.allTheThings() T-Shirt (Red)",
+        "target_description": "#item_3_title_link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4'"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-e6108d1b"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-da9ab197",
+      "source_state_id": "st_inventory-itemht_view_view",
+      "destination_state_id": "st_inventory-itemht_view_c1",
+      "action_type": "CLICK_CONTROL:control_cls_130d45a77e__add_to_cart",
+      "grounded_control": {
+        "selector": "#add-to-cart",
+        "role": "button",
+        "accessible_name": "Add to cart",
+        "target_description": "#add-to-cart"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_c1' at 'https://www.saucedemo.com/inventory-item.html?id=3'"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-24b8ad7c"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-4390a68d",
+      "source_state_id": "st_inventory-itemht_view_c1",
+      "destination_state_id": "st_inventory-itemht_view_view",
+      "action_type": "CLICK_CONTROL:control_cls_130d45a77e__remove",
+      "grounded_control": {
+        "selector": "#remove",
+        "role": "button",
+        "accessible_name": "Remove",
+        "target_description": "#remove"
+      },
+      "required_preconditions": [
+        "Requires authenticated session",
+        "Cart/counter badge value = 1"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4'"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-7b6e1b54"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-01abf48f",
+      "source_state_id": "st_inventoryhtml_products_view",
+      "destination_state_id": "st_inventory-itemht_view_view",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__item_5_title_link",
+      "grounded_control": {
+        "selector": "#item_5_title_link",
+        "role": "button",
+        "accessible_name": "View details for Sauce Labs Fleece Jacket",
+        "target_description": "#item_5_title_link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4'"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-caa58993"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-55faa790",
+      "source_state_id": "st_inventoryhtml_products_view",
+      "destination_state_id": "st_inventory-itemht_view_view",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__item_4_title_link",
+      "grounded_control": {
+        "selector": "#item_4_title_link",
+        "role": "button",
+        "accessible_name": "View details for Sauce Labs Backpack",
+        "target_description": "#item_4_title_link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4'"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-03004648"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-940ad8cc",
+      "source_state_id": "st_inventoryhtml_products_view",
+      "destination_state_id": "st_inventoryhtml_products_view_menu_open",
+      "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn",
+      "grounded_control": {
+        "selector": "#react-burger-menu-btn",
+        "role": "button",
+        "accessible_name": "Open Menu",
+        "target_description": "#react-burger-menu-btn"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_inventoryhtml_products_view_menu_open' at 'https://www.saucedemo.com/inventory.html'",
+        "In-page drawer/menu opened",
+        "Heading 'Products' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-0ea58db7"
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "evidence_id": "ev_init_st_root_view_view",
+      "timestamp": 1792697897.2139227,
+      "associated_state_id": "st_root_view_view",
+      "before_state_id": "st_root_view_view",
+      "after_state_id": null,
+      "evidence_type": "DOM_OBSERVATION",
+      "dom_or_a11y_observation": "Captured baseline DOM observation of https://www.saucedemo.com/ with 3 interactive controls and 1 forms",
+      "action_summary": null,
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/ | title='Swag Labs' | controls=3",
+      "post_snapshot_summary": null,
+      "observed_result": "Captured baseline DOM observation of https://www.saucedemo.com/ with 3 interactive controls and 1 forms",
+      "verification_status": "OBSERVED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-b38f0630",
+      "timestamp": 1792697930.5522346,
+      "associated_state_id": "st_root_view_view",
+      "before_state_id": "st_root_view_view",
+      "after_state_id": "st_root_view_view_with_error",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_form_cls_2f8ac8db1c_required_blank_all_form_1]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "action_summary": "Probe [q_form_cls_2f8ac8db1c_required_blank_all_form_1]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/ | title='Swag Labs' | controls=3",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/ | title='Swag Labs' | controls=4",
+      "observed_result": "Probe [q_form_cls_2f8ac8db1c_required_blank_all_form_1]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": ".error-message-container",
+      "validation_message": "Epic sadface: Username is required",
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev_auth_st_inventoryhtml_products_view",
+      "timestamp": 1792697934.050664,
+      "associated_state_id": "st_root_view_view",
+      "before_state_id": "st_root_view_view",
+      "after_state_id": "st_inventoryhtml_products_view",
+      "evidence_type": "AUTH_VERIFICATION",
+      "dom_or_a11y_observation": "Authentication verified: Navigated to authenticated route: https://www.saucedemo.com/inventory.html -> navigated to https://www.saucedemo.com/inventory.html",
+      "action_summary": "Authentication verified: Navigated to authenticated route: https://www.saucedemo.com/inventory.html -> navigated to https://www.saucedemo.com/inventory.html",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/ | title='Swag Labs' | controls=3",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "observed_result": "Authentication verified: Navigated to authenticated route: https://www.saucedemo.com/inventory.html -> navigated to https://www.saucedemo.com/inventory.html",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-e8dcfefd",
+      "timestamp": 1792697970.7354996,
+      "associated_state_id": "st_root_view_view",
+      "before_state_id": "st_root_view_view",
+      "after_state_id": "st_inventoryhtml_products_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_auth_cls_2f8ac8db1c]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_auth_cls_2f8ac8db1c]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/ | title='Swag Labs' | controls=3",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "observed_result": "Probe [q_auth_cls_2f8ac8db1c]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-8f9001bc",
+      "timestamp": 1792697973.0070696,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventoryhtml_products_view_opt_za",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_select_cls_f9f1d0aa87__data_test__product_sort_containe]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_select_cls_f9f1d0aa87__data_test__product_sort_containe]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "observed_result": "Probe [q_ctrl_select_cls_f9f1d0aa87__data_test__product_sort_containe]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-38db1e3c",
+      "timestamp": 1792697975.1064517,
+      "associated_state_id": "st_inventoryhtml_products_view_opt_za",
+      "before_state_id": "st_inventoryhtml_products_view_opt_za",
+      "after_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=19",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-6afd20cd",
+      "timestamp": 1792698017.6003447,
+      "associated_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "before_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "after_state_id": "st_carthtml_your_cart_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=19",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev_blocked_q_ctrl_control_cls_528fee7b43__checkout_1792698017726",
+      "timestamp": 1792698017.726174,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": null,
+      "evidence_type": "SAFETY_DECISION",
+      "dom_or_a11y_observation": "SAFETY_DECISION: Step (CLICK_CONTROL on #checkout) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "action_summary": "SAFETY_DECISION: Step (CLICK_CONTROL on #checkout) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": null,
+      "observed_result": "SAFETY_DECISION: Step (CLICK_CONTROL on #checkout) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "verification_status": "BLOCKED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-c420a9bb",
+      "timestamp": 1792698043.743238,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": "st_inventory-itemht_view_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_528fee7b43__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_528fee7b43__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=3 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_528fee7b43__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-c517496a",
+      "timestamp": 1792698045.7832232,
+      "associated_state_id": "st_inventory-itemht_view_c1",
+      "before_state_id": "st_inventory-itemht_view_c1",
+      "after_state_id": "st_carthtml_your_cart_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_130d45a77e__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_130d45a77e__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=3 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "observed_result": "Probe [q_ctrl_control_cls_130d45a77e__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-68c6c882",
+      "timestamp": 1792698047.767081,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": "st_carthtml_your_cart_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_528fee7b43__data_test__shopping_cart_link__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_ctrl_control_cls_528fee7b43__data_test__shopping_cart_link__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "observed_result": "Probe [q_ctrl_control_cls_528fee7b43__data_test__shopping_cart_link__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev_blocked_q_reflect_26_1792698082100",
+      "timestamp": 1792698082.100395,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": null,
+      "evidence_type": "SAFETY_DECISION",
+      "dom_or_a11y_observation": "SAFETY_DECISION: Step (CLICK_CONTROL on https://www.saucedemo.com/inventory-item.html?id=4) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "action_summary": "SAFETY_DECISION: Step (CLICK_CONTROL on https://www.saucedemo.com/inventory-item.html?id=4) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": null,
+      "observed_result": "SAFETY_DECISION: Step (CLICK_CONTROL on https://www.saucedemo.com/inventory-item.html?id=4) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "verification_status": "BLOCKED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-5c292987",
+      "timestamp": 1792698091.6550047,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": "st_carthtml_your_cart_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_28]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_28]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "observed_result": "Probe [q_reflect_28]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-a251da23",
+      "timestamp": 1792698101.1321843,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": "st_carthtml_your_cart_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_27]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_27]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "observed_result": "Probe [q_reflect_27]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-9c971350",
+      "timestamp": 1792698103.0860882,
+      "associated_state_id": "st_carthtml_your_cart_c1",
+      "before_state_id": "st_carthtml_your_cart_c1",
+      "after_state_id": "st_carthtml_your_cart_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_528fee7b43__remove_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_528fee7b43__remove_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=9",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/cart.html | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_528fee7b43__remove_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-e6108d1b",
+      "timestamp": 1792698106.1843169,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_3_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_3_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_3_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-24b8ad7c",
+      "timestamp": 1792698108.157156,
+      "associated_state_id": "st_inventory-itemht_view_view",
+      "before_state_id": "st_inventory-itemht_view_view",
+      "after_state_id": "st_inventory-itemht_view_c1",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_130d45a77e__add_to_cart]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_130d45a77e__add_to_cart]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=3 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_130d45a77e__add_to_cart]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-7b6e1b54",
+      "timestamp": 1792698110.0589137,
+      "associated_state_id": "st_inventory-itemht_view_c1",
+      "before_state_id": "st_inventory-itemht_view_c1",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_130d45a77e__remove]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_130d45a77e__remove]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=3 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_130d45a77e__remove]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-caa58993",
+      "timestamp": 1792698112.7691777,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_5_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_5_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_5_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-f51b94a1",
+      "timestamp": 1792698116.0317857,
+      "associated_state_id": "st_inventory-itemht_view_view",
+      "before_state_id": "st_inventory-itemht_view_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_inv_invariant_reload_persistence_cls_130d45a77e]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "action_summary": "Probe [q_inv_invariant_reload_persistence_cls_130d45a77e]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_inv_invariant_reload_persistence_cls_130d45a77e]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-3fe27b76",
+      "timestamp": 1792698151.1092172,
+      "associated_state_id": "st_inventory-itemht_view_view",
+      "before_state_id": "st_inventory-itemht_view_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_30]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_30]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_reflect_30]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-fa4e9041",
+      "timestamp": 1792698160.2943392,
+      "associated_state_id": "st_inventory-itemht_view_view",
+      "before_state_id": "st_inventory-itemht_view_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_31]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_31]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_reflect_31]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-7adf8d66",
+      "timestamp": 1792698171.1572254,
+      "associated_state_id": "st_inventory-itemht_view_view",
+      "before_state_id": "st_inventory-itemht_view_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_32]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_32]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_reflect_32]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-03004648",
+      "timestamp": 1792698174.000819,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventory-itemht_view_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory-item.html?id=4 | title='Swag Labs' | controls=7",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-d4c9ba4b",
+      "timestamp": 1792698179.6121843,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventoryhtml_products_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__remove_sauce_labs_backpack]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__remove_sauce_labs_backpack]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__remove_sauce_labs_backpack]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-47d0ea9a",
+      "timestamp": 1792698182.9463966,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventoryhtml_products_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_inv_invariant_reload_persistence_cls_f9f1d0aa87]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "action_summary": "Probe [q_inv_invariant_reload_persistence_cls_f9f1d0aa87]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "observed_result": "Probe [q_inv_invariant_reload_persistence_cls_f9f1d0aa87]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-0ea58db7",
+      "timestamp": 1792698185.5889304,
+      "associated_state_id": "st_inventoryhtml_products_view",
+      "before_state_id": "st_inventoryhtml_products_view",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__react_burger_menu_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__react_burger_menu_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=24",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__react_burger_menu_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-55e378c6",
+      "timestamp": 1792698187.7136276,
+      "associated_state_id": "st_inventoryhtml_products_view_menu_open",
+      "before_state_id": "st_inventoryhtml_products_view_menu_open",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__inventory_sidebar_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__inventory_sidebar_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__inventory_sidebar_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-b05fea27",
+      "timestamp": 1792698224.1163933,
+      "associated_state_id": "st_inventoryhtml_products_view_menu_open",
+      "before_state_id": "st_inventoryhtml_products_view_menu_open",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_38]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_38]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_reflect_38]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-f77909fd",
+      "timestamp": 1792698234.7074945,
+      "associated_state_id": "st_inventoryhtml_products_view_menu_open",
+      "before_state_id": "st_inventoryhtml_products_view_menu_open",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_39]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_39]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_reflect_39]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-f550774c",
+      "timestamp": 1792698243.6789382,
+      "associated_state_id": "st_inventoryhtml_products_view_menu_open",
+      "before_state_id": "st_inventoryhtml_products_view_menu_open",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_reflect_37]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_reflect_37]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_reflect_37]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-caf08c31",
+      "timestamp": 1792698245.7668924,
+      "associated_state_id": "st_inventoryhtml_products_view_menu_open",
+      "before_state_id": "st_inventoryhtml_products_view_menu_open",
+      "after_state_id": "st_inventoryhtml_products_view_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_sidebar_link]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_sidebar_link]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "post_snapshot_summary": "URL=https://www.saucedemo.com/inventory.html | title='Swag Labs' | controls=33",
+      "observed_result": "Probe [q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_sidebar_link]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": null,
+      "trace_artifact_path": null
+    }
+  ],
+  "defect_findings": [],
+  "completeness": {
+    "discovered_states_count": 10,
+    "verified_transitions_count": 14,
+    "pending_frontier_candidates": [
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_2f8ac8db1c",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_2f8ac8db1c",
+        "parent_state_id": "cls_2f8ac8db1c",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_2f8ac8db1c__data_test__error_button__",
+        "candidate_type": "controls",
+        "target": "[data-test=\"error-button\"]",
+        "parent_state_id": "cls_2f8ac8db1c",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_528fee7b43__react_burger_menu_btn",
+        "candidate_type": "controls",
+        "target": "#react-burger-menu-btn",
+        "parent_state_id": "cls_528fee7b43",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_528fee7b43__continue_shopping",
+        "candidate_type": "controls",
+        "target": "#continue-shopping",
+        "parent_state_id": "cls_528fee7b43",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_528fee7b43",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_528fee7b43",
+        "parent_state_id": "cls_528fee7b43",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_130d45a77e__react_burger_menu_btn",
+        "candidate_type": "controls",
+        "target": "#react-burger-menu-btn",
+        "parent_state_id": "cls_130d45a77e",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_130d45a77e__back_to_products",
+        "candidate_type": "controls",
+        "target": "#back-to-products",
+        "parent_state_id": "cls_130d45a77e",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f9f1d0aa87__about_sidebar_link",
+        "candidate_type": "controls",
+        "target": "#about_sidebar_link",
+        "parent_state_id": "cls_f9f1d0aa87",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f9f1d0aa87__react_burger_cross_btn",
+        "candidate_type": "controls",
+        "target": "#react-burger-cross-btn",
+        "parent_state_id": "cls_f9f1d0aa87",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_lazy_load_link",
+        "candidate_type": "controls",
+        "target": "#dynamic_catalog_lazy_load_link",
+        "parent_state_id": "cls_f9f1d0aa87",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_spinner_link",
+        "candidate_type": "controls",
+        "target": "#dynamic_catalog_spinner_link",
+        "parent_state_id": "cls_f9f1d0aa87",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f9f1d0aa87__dynamic_catalog_slider_link",
+        "candidate_type": "controls",
+        "target": "#dynamic_catalog_slider_link",
+        "parent_state_id": "cls_f9f1d0aa87",
+        "unresolved_reason": "UNEXPLORED_FRONTIER"
+      }
+    ],
+    "unresolved_reasons_breakdown": {
+      "UNEXPLORED_FRONTIER": 12,
+      "SAFETY_POLICY_BLOCKED": 2
+    },
+    "safety_blocked_actions": [
+      {
+        "action_type": "SAFETY_GATED_STEP",
+        "target": "high_impact_control",
+        "source_state_id": "st_carthtml_your_cart_c1",
+        "reason": "SAFETY_DECISION: Step (CLICK_CONTROL on #checkout) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+        "evidence_id": "ev_blocked_q_ctrl_control_cls_528fee7b43__checkout_1792698017726"
+      },
+      {
+        "action_type": "SAFETY_GATED_STEP",
+        "target": "high_impact_control",
+        "source_state_id": "st_carthtml_your_cart_c1",
+        "reason": "SAFETY_DECISION: Step (CLICK_CONTROL on https://www.saucedemo.com/inventory-item.html?id=4) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+        "evidence_id": "ev_blocked_q_reflect_26_1792698082100"
+      }
+    ],
+    "authentication_boundaries": {
+      "boundary_observed": true,
+      "login_url": "",
+      "authentication_attempted": true,
+      "authentication_verified": true,
+      "protected_routes_unlocked": [
+        "Unlocked view at https://www.saucedemo.com/inventory.html"
+      ]
+    },
+    "investigation_uncertainty": 0.0,
+    "stopping_reason": "Completed",
+    "completion_status": "completed"
+  },
+  "inferred_journeys": []
+}

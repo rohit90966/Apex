@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 3 — Executable Test Generation, Oracle Validation & Mutation Suite",
+  "evaluated_at": 1792697800.0,
+  "system_under_test": {
+    "name": "VerityQA Controlled Benchmark Application",
+    "origin": "http://127.0.0.1:8996",
+    "seeded_defect": "Tax calculation NaN text anomaly on #calculate-tax-btn",
+    "benign_telemetry": "Console warning 'Analytics: tracking pixel ping delayed (non-critical)' on page load"
+  },
+  "scenarios": {
+    "scenario_a_defective_implementation": {
+      "description": "Seeded tax calculation defect active (returns 'Tax: $NaN | Total: $NaN')",
+      "regression_test_id": "TC-REG-01",
+      "expected_outcome": "DEFECT_DETECTED",
+      "actual_outcome": "DEFECT_DETECTED",
+      "defect_detection_rate": "1.0 (1/1)",
+      "matched_evidence_refs": ["ev-c22ee9db"],
+      "observed_anomaly": "Tax: $NaN | Total: $NaN",
+      "status": "VERIFIED"
+    },
+    "scenario_b_corrected_implementation": {
+      "description": "Tax calculation defect corrected (computes 10% subtotal tax, e.g. 'Tax: $1.50 | Total: $16.50')",
+      "regression_test_id": "TC-REG-01",
+      "expected_outcome": "PASSED",
+      "actual_outcome": "PASSED",
+      "false_positive_rate": "0.0 (0/21)",
+      "total_tests_executed": 23,
+      "passed_tests_count": 21,
+      "skipped_hypotheses_count": 2,
+      "status": "VERIFIED"
+    },
+    "scenario_c_benign_telemetry": {
+      "description": "Analytics tracking pixel delay warning logged to browser console",
+      "test_id": "TC-TR-02",
+      "expected_outcome": "PASSED with console warning captured in audit log",
+      "actual_outcome": "PASSED",
+      "console_warning_captured": true,
+      "status": "VERIFIED"
+    },
+    "scenario_d_setup_failure_discrimination": {
+      "description": "Test prerequisite authentication provided invalid test credentials",
+      "test_id": "TC-TR-03",
+      "expected_outcome": "SETUP_FAILURE",
+      "actual_outcome": "SETUP_FAILURE",
+      "failure_phase": "SETUP",
+      "product_defect_reported": false,
+      "status": "VERIFIED"
+    }
+  },
+  "safety_and_integrity_audit": {
+    "terminal_destructive_action_rejection": {
+      "test": "test_safety_terminal_destructive_action_blocked",
+      "status": "VERIFIED",
+      "result": "SAFETY_BLOCKED on forbidden keyword 'delete account'"
+    },
+    "unauthorized_sandbox_origin_rejection": {
+      "test": "test_safety_unauthorized_sandbox_origin_blocked",
+      "status": "VERIFIED",
+      "result": "SAFETY_BLOCKED on unauthorized external origin 'https://production.example.com'"
+    },
+    "invalid_evidence_rejection": {
+      "test": "test_contract_test_validator_rejects_missing_evidence_and_invalid_cases",
+      "status": "VERIFIED",
+      "result": "Rejected candidate referencing non-existent evidence_id 'ev-FAKE-DOES-NOT-EXIST'"
+    },
+    "hypothesis_candidate_isolation": {
+      "status": "VERIFIED",
+      "result": "Hypothesis candidates (TC-HYP-01, TC-HYP-02) isolated as SKIPPED_HYPOTHESIS in verified regression mode"
+    }
+  },
+  "metrics_summary": {
+    "total_generated_cases": 25,
+    "exported_count": 25,
+    "executable_without_manual_edits": {
+      "count": 23,
+      "denominator": 25,
+      "ratio": 0.920
+    },
+    "skipped_hypotheses": {
+      "count": 2,
+      "denominator": 25,
+      "ratio": 0.080
+    },
+    "defect_detection_rate": {
+      "count": 1,
+      "denominator": 1,
+      "ratio": 1.000
+    },
+    "false_positive_rate": {
+      "count": 0,
+      "denominator": 21,
+      "ratio": 0.000
+    },
+    "setup_success_rate": {
+      "count": 21,
+      "denominator": 21,
+      "ratio": 1.000
+    },
+    "assertion_validity_rate": {
+      "count": 21,
+      "denominator": 21,
+      "ratio": 1.000
+    },
+    "evidence_traceability_coverage": {
+      "count": 25,
+      "denominator": 25,
+      "ratio": 1.000
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "benchmark_name": "ShopSphere Autonomous Investigation Benchmark",
+  "version": "1.0.0",
+  "catalogue_size": 16,
+  "categories_count": 4,
+  "mutations": [
+    {
+      "mutation_id": "B01",
+      "feature": "Shopping Cart Grand Total Calculation",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "The cart grand total excludes the quantity multiplier for an item when quantity > 1 (e.g. sums unit price instead of line total).",
+      "expected_correct_behavior": "Grand total equals taxable subtotal + 10% tax, accurately reflecting unit price multiplied by quantity for all items.",
+      "defective_observable_behavior": "When an item has quantity = 2, the grand total is calculated omitting unit_price * (quantity - 1), causing a clear discrepancy between the sum of line totals + tax and the displayed grand total.",
+      "reproduction_preconditions": "Cart contains 1 item with quantity = 2 (e.g. 2x prod-01 at $149.99 = $299.98 subtotal).",
+      "reproduction_steps": [
+        "Add prod-01 to cart.",
+        "Navigate to /cart.",
+        "Increment quantity to 2.",
+        "Inspect line total ($299.98) and displayed grand total."
+      ],
+      "expected_observable_result": "Subtotal: $299.98, Discount: $15.00, Taxable: $284.98, Tax: $28.50, Grand Total: $313.48.",
+      "expected_defective_result": "Grand Total displays $163.49 ($313.48 - $149.99) instead of $313.48.",
+      "independent_verification_method": "test_mutation_b01_cart_grand_total_multiplier",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B02",
+      "feature": "Product Catalogue Price Sorting",
+      "affected_workflow": "Workflow A: Product Discovery",
+      "defect_description": "Selecting ascending price sorting ('Price: Low to High') renders products in descending order (highest to lowest).",
+      "expected_correct_behavior": "Products are sorted strictly in ascending order by price ($16.00, $19.50, $24.00, $29.00 ...).",
+      "defective_observable_behavior": "Products are displayed in descending price order ($249.00, $149.99, $119.00 ...) while the visible control displays 'Price: Low to High'.",
+      "reproduction_preconditions": "Storefront open at /.",
+      "reproduction_steps": [
+        "Open /.",
+        "Select 'Price: Low to High' from #sort-select dropdown.",
+        "Inspect prices of displayed product cards from first to last."
+      ],
+      "expected_observable_result": "First product price <= second product price (e.g. $16.00 followed by $19.50).",
+      "expected_defective_result": "First product price is $249.00, followed by $149.99 (descending instead of ascending).",
+      "independent_verification_method": "test_mutation_b02_reversed_price_sorting",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B03",
+      "feature": "Checkout Form Postal Code Validation",
+      "affected_workflow": "Workflow C: Checkout Validation",
+      "defect_description": "Submitting the checkout form with an empty postal code proceeds to complete the order despite the field being marked required.",
+      "expected_correct_behavior": "Submitting with an empty postal code fails validation, highlights the postal code field with an error, and prevents order submission.",
+      "defective_observable_behavior": "Submitting with an empty postal code is accepted without error, successfully navigating to /confirmation/:orderId.",
+      "reproduction_preconditions": "Cart contains at least one item; checkout page /checkout open.",
+      "reproduction_steps": [
+        "Add product to cart and navigate to /checkout.",
+        "Fill name, email, street address, city, state.",
+        "Leave postal code field blank.",
+        "Click 'Place Simulated Order' button."
+      ],
+      "expected_observable_result": "Form displays validation error 'Postal code is required' (HTTP 422) and stays on /checkout.",
+      "expected_defective_result": "Form successfully submits and redirects to /confirmation/ORD-XXXX with empty postal code accepted.",
+      "independent_verification_method": "test_mutation_b03_required_postal_code_bypass",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B04",
+      "feature": "Shopping Cart Item Removal Consistency",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "Clicking 'Remove' on a cart item decrements the header badge count, but leaves the line item in the cart table and order total calculation.",
+      "expected_correct_behavior": "Clicking 'Remove' removes the line item from the cart table, decrements the badge, and deducts the item price from subtotal and total.",
+      "defective_observable_behavior": "Header badge count decrements by item quantity, but the item remains visible in the cart table and its price remains included in subtotal and grand total.",
+      "reproduction_preconditions": "Cart contains 1 item (e.g. prod-01 at $149.99).",
+      "reproduction_steps": [
+        "Add prod-01 to cart.",
+        "Navigate to /cart.",
+        "Click 'Remove' button for prod-01.",
+        "Observe badge count vs cart table contents."
+      ],
+      "expected_observable_result": "Badge displays 0, cart displays 'Your Cart is Empty', subtotal is $0.00.",
+      "expected_defective_result": "Badge displays 0, but the cart table still shows prod-01 with line total $149.99 and grand total > $0.",
+      "independent_verification_method": "test_mutation_b04_inconsistent_remove_item",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B05",
+      "feature": "Cart Totals Recalculation on Quantity Modification",
+      "affected_workflow": "Workflow B: Cart Management",
+      "defect_description": "Increasing or decreasing an item's quantity updates the item's line total, but fails to update the displayed cart subtotal and grand total.",
+      "expected_correct_behavior": "Modifying item quantity immediately recalculates the line total, cart subtotal, tax, and grand total in sync.",
+      "defective_observable_behavior": "Clicking '+' updates quantity (e.g. 1 -> 2) and line total (e.g. $149.99 -> $299.98), but cart subtotal and grand total retain their previous values (e.g. $149.99).",
+      "reproduction_preconditions": "Cart contains 1 item with quantity = 1.",
+      "reproduction_steps": [
+        "Add prod-01 to cart (qty 1, subtotal $149.99).",
+        "Navigate to /cart.",
+        "Click '+' to increment quantity to 2.",
+        "Inspect line total vs cart subtotal."
+      ],
+      "expected_observable_result": "Line total updates to $299.98 and cart subtotal immediately updates to $299.98.",
+      "expected_defective_result": "Line total updates to $299.98, but cart subtotal remains stale at $149.99.",
+      "independent_verification_method": "test_mutation_b05_stale_total_after_quantity_change",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B06",
+      "feature": "Shopping Cart Session Persistence Across Page Reload",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "Refreshing the browser unexpectedly clears cart contents despite documented persistence requirements.",
+      "expected_correct_behavior": "Cart items, quantities, and totals persist across page refreshes and browser reloads.",
+      "defective_observable_behavior": "Adding items to the cart and reloading the page resets the cart to empty (badge becomes 0 and cart shows 'Your Cart is Empty').",
+      "reproduction_preconditions": "Cart contains at least one item.",
+      "reproduction_steps": [
+        "Add prod-01 to cart.",
+        "Navigate to /cart and confirm item is present.",
+        "Perform browser page reload (F5 / page.reload()).",
+        "Inspect cart items and badge."
+      ],
+      "expected_observable_result": "After reload, cart retains prod-01 and badge retains count.",
+      "expected_defective_result": "After reload, cart is completely cleared, badge is 0, and page renders 'Your Cart is Empty'.",
+      "independent_verification_method": "test_mutation_b06_cart_persistence_regression",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B07",
+      "feature": "Promotional Discount Threshold Calculation",
+      "affected_workflow": "Workflow B: Cart Management & Workflow D: Order Completion",
+      "defect_description": "Promotional discount banner documents '$15 off orders over $100.00', but defective implementation requires >= $200.00.",
+      "expected_correct_behavior": "An order with subtotal >= $100.00 (e.g. $149.99) automatically receives the $15.00 promotional discount.",
+      "defective_observable_behavior": "An order with subtotal $149.99 receives $0.00 discount because the defective threshold is set to $200.00.",
+      "reproduction_preconditions": "Cart subtotal between $100.00 and $199.99 (e.g. 1x prod-01 at $149.99).",
+      "reproduction_steps": [
+        "Add prod-01 ($149.99) to cart.",
+        "Navigate to /cart.",
+        "Inspect displayed discount value."
+      ],
+      "expected_observable_result": "Discount displays '-$15.00' and taxable subtotal is $134.99 ($149.99 - $15.00).",
+      "expected_defective_result": "Discount displays '$0.00' and taxable subtotal is $149.99.",
+      "independent_verification_method": "test_mutation_b07_incorrect_discount_threshold",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    },
+    {
+      "mutation_id": "B08",
+      "feature": "Storefront Product Card Navigation Target",
+      "affected_workflow": "Workflow A: Product Discovery",
+      "defect_description": "Clicking the product card for 'Smart Ergonomic Fitness Watch' (prod-02) navigates to 'Magnetic Wireless Charging Stand' (prod-04).",
+      "expected_correct_behavior": "Clicking 'Smart Ergonomic Fitness Watch' navigates to /products/prod-02 and displays fitness watch specifications.",
+      "defective_observable_behavior": "Clicking 'Smart Ergonomic Fitness Watch' navigates to /products/prod-04 and displays the wireless charging stand specifications.",
+      "reproduction_preconditions": "Storefront / open with catalogue loaded.",
+      "reproduction_steps": [
+        "Open storefront /.",
+        "Click on product card title for 'Smart Ergonomic Fitness Watch' (prod-02).",
+        "Inspect destination URL and page title."
+      ],
+      "expected_observable_result": "URL is /products/prod-02 and product heading is 'Smart Ergonomic Fitness Watch'.",
+      "expected_defective_result": "URL is /products/prod-04 and product heading is 'Magnetic Wireless Charging Stand'.",
+      "independent_verification_method": "test_mutation_b08_wrong_product_detail_navigation",
+      "clean_build_verification_status": "VERIFIED_CORRECT"
+    }
+  ]
+}

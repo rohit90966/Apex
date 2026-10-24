@@ -1,0 +1,2678 @@
+{
+  "schema_version": "1.0.0",
+  "source_investigation_id": "inv-fa1484b3",
+  "source_contract_version": "1.0.0",
+  "target_url": "http://127.0.0.1:5173/",
+  "generated_at": 1792706416.2260208,
+  "generation_strategy": "DETERMINISTIC_GROUNDED",
+  "test_cases": [
+    {
+      "test_id": "TC-WF-01",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Precision Barista Pour-Over Coffee Maker)",
+      "category": "workflow",
+      "objective": "Verify multi-step user workflow across 6 verified transitions reaching ShopSphere — Premium E-Commerce (Precision Barista Pour-Over Coffee Maker).",
+      "priority": "HIGH",
+      "preconditions": [
+        "Cart/counter badge value = 1"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE",
+          "selector": "http://127.0.0.1:5173/?category=Apparel",
+          "semantic_locator": {
+            "role": "document",
+            "name": "ShopSphere — Premium E-Commerce",
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Navigate to initial workflow entry point http://127.0.0.1:5173/?category=Apparel",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action_type": "NAVIGATE_LINK:nav_link_53064",
+          "selector": "/products/prod-05",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-05"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_53064 on '/products/prod-05' to transition from st_root_classic_merino_c1_with_error to st_products_prod-05_classic_merino_view",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_products_prod-05_classic_merino_view",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action_type": "NAVIGATE_LINK:nav_link_14556",
+          "selector": "/cart",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/cart"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_14556 on '/cart' to transition from st_products_prod-05_classic_merino_view to st_cart_your_cart_is_e_view",
+          "source_state_id": "st_products_prod-05_classic_merino_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action_type": "NAVIGATE_LINK:nav_link_78518",
+          "selector": "/login",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/login"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_78518 on '/login' to transition from st_cart_your_cart_is_e_view to st_login_sign_in_to_sho_view",
+          "source_state_id": "st_cart_your_cart_is_e_view",
+          "target_state_id": "st_login_sign_in_to_sho_view",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action_type": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+          "selector": "password",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Execute SET_NOVALIDATE:boundary_password_length_form_2_password on 'password' to transition from st_login_sign_in_to_sho_view to st_root_quantum_wirele_view",
+          "source_state_id": "st_login_sign_in_to_sho_view",
+          "target_state_id": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Home & Kitchen",
+            "label": null,
+            "css": "[data-test=\"category-filter-home---kitchen\"]"
+          },
+          "input_value": null,
+          "description": "Execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on '[data-test=\"category-filter-home---kitchen\"]' to transition from st_root_quantum_wirele_view to st_root_precision_bari_view",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_precision_bari_view",
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action_type": "NAVIGATE_LINK:nav_link_23292",
+          "selector": "/products/prod-09",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-09"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_23292 on '/products/prod-09' to transition from st_root_precision_bari_view to st_products_prod-09_precision_bari_view",
+          "source_state_id": "st_root_precision_bari_view",
+          "target_state_id": "st_products_prod-09_precision_bari_view",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-05_classic_merino_view' at 'http://127.0.0.1:5173/products/prod-05'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/products/prod-05",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "description": "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "description": "Reached state 'st_login_sign_in_to_sho_view' at 'http://127.0.0.1:5173/login'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/login",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_quantum_wirele_view' at 'http://127.0.0.1:5173/'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_precision_bari_view' at 'http://127.0.0.1:5173/?category=Home+%26+Kitchen'",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        },
+        {
+          "description": "Reached state 'st_products_prod-09_precision_bari_view' at 'http://127.0.0.1:5173/products/prod-09'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/products/prod-09",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Browser reaches verified target state 'st_products_prod-09_precision_bari_view'"
+      ],
+      "cleanup_requirements": [
+        "Reset session / clear cart state after workflow execution"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6",
+        "trans-441cecb8",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-b1df5ae5",
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-267998b5",
+        "ev-a5c5780f",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-75e6c804",
+        "ev-96fb6055"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "workflow",
+        "e2e",
+        "verified_journey"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-WF-02",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Architectural Design & Space Monograph)",
+      "category": "workflow",
+      "objective": "Verify multi-step user workflow across 6 verified transitions reaching ShopSphere — Premium E-Commerce (Architectural Design & Space Monograph).",
+      "priority": "HIGH",
+      "preconditions": [
+        "Cart/counter badge value = 1"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE",
+          "selector": "http://127.0.0.1:5173/?category=Apparel",
+          "semantic_locator": {
+            "role": "document",
+            "name": "ShopSphere — Premium E-Commerce",
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Navigate to initial workflow entry point http://127.0.0.1:5173/?category=Apparel",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action_type": "NAVIGATE_LINK:nav_link_53064",
+          "selector": "/products/prod-05",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-05"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_53064 on '/products/prod-05' to transition from st_root_classic_merino_c1_with_error to st_products_prod-05_classic_merino_view",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_products_prod-05_classic_merino_view",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action_type": "NAVIGATE_LINK:nav_link_14556",
+          "selector": "/cart",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/cart"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_14556 on '/cart' to transition from st_products_prod-05_classic_merino_view to st_cart_your_cart_is_e_view",
+          "source_state_id": "st_products_prod-05_classic_merino_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action_type": "NAVIGATE_LINK:nav_link_78518",
+          "selector": "/login",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/login"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_78518 on '/login' to transition from st_cart_your_cart_is_e_view to st_login_sign_in_to_sho_view",
+          "source_state_id": "st_cart_your_cart_is_e_view",
+          "target_state_id": "st_login_sign_in_to_sho_view",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action_type": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+          "selector": "password",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Execute SET_NOVALIDATE:boundary_password_length_form_2_password on 'password' to transition from st_login_sign_in_to_sho_view to st_root_quantum_wirele_view",
+          "source_state_id": "st_login_sign_in_to_sho_view",
+          "target_state_id": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Books & Stationery",
+            "label": null,
+            "css": "[data-test=\"category-filter-books---stationery\"]"
+          },
+          "input_value": null,
+          "description": "Execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on '[data-test=\"category-filter-books---stationery\"]' to transition from st_root_quantum_wirele_view to st_root_architectural__view",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_architectural__view",
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action_type": "NAVIGATE_LINK:nav_link_2006",
+          "selector": "/products/prod-13",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-13"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_2006 on '/products/prod-13' to transition from st_root_architectural__view to st_products_prod-13_architectural__view",
+          "source_state_id": "st_root_architectural__view",
+          "target_state_id": "st_products_prod-13_architectural__view",
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-05_classic_merino_view' at 'http://127.0.0.1:5173/products/prod-05'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/products/prod-05",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        },
+        {
+          "description": "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        },
+        {
+          "description": "Reached state 'st_login_sign_in_to_sho_view' at 'http://127.0.0.1:5173/login'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/login",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_quantum_wirele_view' at 'http://127.0.0.1:5173/'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_architectural__view' at 'http://127.0.0.1:5173/?category=Books+%26+Stationery'",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        },
+        {
+          "description": "Reached state 'st_products_prod-13_architectural__view' at 'http://127.0.0.1:5173/products/prod-13'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/products/prod-13",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Browser reaches verified target state 'st_products_prod-13_architectural__view'"
+      ],
+      "cleanup_requirements": [
+        "Reset session / clear cart state after workflow execution"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_architectural__view",
+        "st_products_prod-13_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6",
+        "trans-441cecb8",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-d0cfb648",
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-267998b5",
+        "ev-a5c5780f",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-4a312405",
+        "ev-b4b45c89"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "workflow",
+        "e2e",
+        "verified_journey"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-WF-03",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater)",
+      "category": "workflow",
+      "objective": "Verify multi-step user workflow across 6 verified transitions reaching ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater).",
+      "priority": "HIGH",
+      "preconditions": [
+        "Application reachable at http://127.0.0.1:5173/?category=Home+%26+Kitchen"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE",
+          "selector": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+          "semantic_locator": {
+            "role": "document",
+            "name": "ShopSphere — Premium E-Commerce",
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Navigate to initial workflow entry point http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+          "source_state_id": "st_root_precision_bari_view",
+          "target_state_id": "st_root_precision_bari_view",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action_type": "NAVIGATE_LINK:nav_link_23292",
+          "selector": "/products/prod-09",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-09"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_23292 on '/products/prod-09' to transition from st_root_precision_bari_view to st_products_prod-09_precision_bari_view",
+          "source_state_id": "st_root_precision_bari_view",
+          "target_state_id": "st_products_prod-09_precision_bari_view",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action_type": "CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__",
+          "selector": "[data-test=\"cart-link\"]",
+          "semantic_locator": {
+            "role": "a",
+            "name": "Shopping cart, 0 items",
+            "label": null,
+            "css": "[data-test=\"cart-link\"]"
+          },
+          "input_value": null,
+          "description": "Execute CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on '[data-test=\"cart-link\"]' to transition from st_products_prod-09_precision_bari_view to st_cart_your_cart_is_e_view",
+          "source_state_id": "st_products_prod-09_precision_bari_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action_type": "NAVIGATE_LINK:nav_link_78518",
+          "selector": "/login",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/login"
+          },
+          "input_value": null,
+          "description": "Execute NAVIGATE_LINK:nav_link_78518 on '/login' to transition from st_cart_your_cart_is_e_view to st_login_sign_in_to_sho_view",
+          "source_state_id": "st_cart_your_cart_is_e_view",
+          "target_state_id": "st_login_sign_in_to_sho_view",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action_type": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+          "selector": "password",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "Execute SET_NOVALIDATE:boundary_password_length_form_2_password on 'password' to transition from st_login_sign_in_to_sho_view to st_root_quantum_wirele_view",
+          "source_state_id": "st_login_sign_in_to_sho_view",
+          "target_state_id": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Apparel",
+            "label": null,
+            "css": "[data-test=\"category-filter-apparel\"]"
+          },
+          "input_value": null,
+          "description": "Execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on '[data-test=\"category-filter-apparel\"]' to transition from st_root_quantum_wirele_view to st_root_classic_merino_view",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_classic_merino_view",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action_type": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Add Classic Merino Wool Crewneck Sweater to cart",
+            "label": null,
+            "css": "[data-test=\"add-to-cart-button\"]"
+          },
+          "input_value": null,
+          "description": "Execute CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on '[data-test=\"add-to-cart-button\"]' to transition from st_root_classic_merino_view to st_root_classic_merino_c1_with_error",
+          "source_state_id": "st_root_classic_merino_view",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-09_precision_bari_view' at 'http://127.0.0.1:5173/products/prod-09'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/products/prod-09",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        },
+        {
+          "description": "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        },
+        {
+          "description": "Reached state 'st_login_sign_in_to_sho_view' at 'http://127.0.0.1:5173/login'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/login",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_quantum_wirele_view' at 'http://127.0.0.1:5173/'",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_classic_merino_view' at 'http://127.0.0.1:5173/?category=Apparel'",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        },
+        {
+          "description": "Reached state 'st_root_classic_merino_c1_with_error' at 'http://127.0.0.1:5173/?category=Apparel'",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Browser reaches verified target state 'st_root_classic_merino_c1_with_error'"
+      ],
+      "cleanup_requirements": [
+        "Reset session / clear cart state after workflow execution"
+      ],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca",
+        "trans-cdf5801e",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-0c9c8bdf",
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-96fb6055",
+        "ev-97f73b1e",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-c8398787",
+        "ev-0443c82d"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "workflow",
+        "e2e",
+        "verified_journey"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on [data-test=\"category-filter-apparel\"] (st_root_quantum_wirele_view -> st_root_classic_merino_view)",
+      "category": "transition",
+      "objective": "Verify that executing CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on '[data-test=\"category-filter-apparel\"]' transitions from 'st_root_quantum_wirele_view' to 'st_root_classic_merino_view'.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Browser is in state 'st_root_quantum_wirele_view' (http://127.0.0.1:5173/)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Apparel",
+            "label": null,
+            "css": "[data-test=\"category-filter-apparel\"]"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_quantum_wirele_view', perform CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on '[data-test=\"category-filter-apparel\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_classic_merino_view",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_root_classic_merino_view' at 'http://127.0.0.1:5173/?category=Apparel'; Heading 'Classic Merino Wool Crewneck Sweater' visible",
+          "verification_type": "DOM_MUTATION_OBSERVED",
+          "expected_value": "http://127.0.0.1:5173/?category=Apparel",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_root_classic_merino_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-c8398787"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "in_page_state_mutation"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-02",
+      "title": "State Transition: CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on [data-test=\"add-to-cart-button\"] (st_root_classic_merino_view -> st_root_classic_merino_c1_with_error)",
+      "category": "transition",
+      "objective": "Verify that executing CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on '[data-test=\"add-to-cart-button\"]' transitions from 'st_root_classic_merino_view' to 'st_root_classic_merino_c1_with_error'.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Browser is in state 'st_root_classic_merino_view' (http://127.0.0.1:5173/?category=Apparel)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Add Classic Merino Wool Crewneck Sweater to cart",
+            "label": null,
+            "css": "[data-test=\"add-to-cart-button\"]"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_classic_merino_view', perform CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on '[data-test=\"add-to-cart-button\"]'",
+          "source_state_id": "st_root_classic_merino_view",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_root_classic_merino_c1_with_error' at 'http://127.0.0.1:5173/?category=Apparel'; Validation error displayed: Added Classic Merino Wool Crewneck Sweater to cart; Heading 'Classic Merino Wool Crewneck Sweater' visible",
+          "verification_type": "VALIDATION_ERROR_PRESENT",
+          "expected_value": "http://127.0.0.1:5173/?category=Apparel",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_root_classic_merino_c1_with_error'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "validation_feedback"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_READ_ONLY",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_53064 on /products/prod-05 (st_root_classic_merino_c1_with_error -> st_products_prod-05_classic_merino_view)",
+      "category": "transition",
+      "objective": "Verify that executing NAVIGATE_LINK:nav_link_53064 on '/products/prod-05' transitions from 'st_root_classic_merino_c1_with_error' to 'st_products_prod-05_classic_merino_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_root_classic_merino_c1_with_error' (http://127.0.0.1:5173/?category=Apparel)",
+        "Cart/counter badge value = 1"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_53064",
+          "selector": "/products/prod-05",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-05"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_classic_merino_c1_with_error', perform NAVIGATE_LINK:nav_link_53064 on '/products/prod-05'",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_products_prod-05_classic_merino_view",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-05_classic_merino_view' at 'http://127.0.0.1:5173/products/prod-05'; Heading 'Classic Merino Wool Crewneck Sweater' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/products/prod-05",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_products_prod-05_classic_merino_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-267998b5"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-04",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_14556 on /cart (st_products_prod-05_classic_merino_view -> st_cart_your_cart_is_e_view)",
+      "category": "transition",
+      "objective": "Verify that executing NAVIGATE_LINK:nav_link_14556 on '/cart' transitions from 'st_products_prod-05_classic_merino_view' to 'st_cart_your_cart_is_e_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_products_prod-05_classic_merino_view' (http://127.0.0.1:5173/products/prod-05)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_14556",
+          "selector": "/cart",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/cart"
+          },
+          "input_value": null,
+          "description": "From state 'st_products_prod-05_classic_merino_view', perform NAVIGATE_LINK:nav_link_14556 on '/cart'",
+          "source_state_id": "st_products_prod-05_classic_merino_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'; Heading 'Your Cart is Empty' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_cart_your_cart_is_e_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-441cecb8"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-a5c5780f"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-05",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_78518 on /login (st_cart_your_cart_is_e_view -> st_login_sign_in_to_sho_view)",
+      "category": "transition",
+      "objective": "Verify that executing NAVIGATE_LINK:nav_link_78518 on '/login' transitions from 'st_cart_your_cart_is_e_view' to 'st_login_sign_in_to_sho_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_cart_your_cart_is_e_view' (http://127.0.0.1:5173/cart)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_78518",
+          "selector": "/login",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/login"
+          },
+          "input_value": null,
+          "description": "From state 'st_cart_your_cart_is_e_view', perform NAVIGATE_LINK:nav_link_78518 on '/login'",
+          "source_state_id": "st_cart_your_cart_is_e_view",
+          "target_state_id": "st_login_sign_in_to_sho_view",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_login_sign_in_to_sho_view' at 'http://127.0.0.1:5173/login'; Heading 'Sign In to ShopSphere' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/login",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_login_sign_in_to_sho_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view"
+      ],
+      "source_transition_ids": [
+        "trans-76ba1d85"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-37a293f9"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-06",
+      "title": "State Transition: SET_NOVALIDATE:boundary_password_length_form_2_password on password (st_login_sign_in_to_sho_view -> st_root_quantum_wirele_view)",
+      "category": "transition",
+      "objective": "Verify that executing SET_NOVALIDATE:boundary_password_length_form_2_password on 'password' transitions from 'st_login_sign_in_to_sho_view' to 'st_root_quantum_wirele_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_login_sign_in_to_sho_view' (http://127.0.0.1:5173/login)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+          "selector": "password",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": null
+          },
+          "input_value": null,
+          "description": "From state 'st_login_sign_in_to_sho_view', perform SET_NOVALIDATE:boundary_password_length_form_2_password on 'password'",
+          "source_state_id": "st_login_sign_in_to_sho_view",
+          "target_state_id": "st_root_quantum_wirele_view",
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_root_quantum_wirele_view' at 'http://127.0.0.1:5173/'; Heading 'Quantum Wireless Noise-Cancelling Headphones' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-41e563ce"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_root_quantum_wirele_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-651bf481"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-41e563ce"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-07",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on [data-test=\"category-filter-home---kitchen\"] (st_root_quantum_wirele_view -> st_root_precision_bari_view)",
+      "category": "transition",
+      "objective": "Verify that executing CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on '[data-test=\"category-filter-home---kitchen\"]' transitions from 'st_root_quantum_wirele_view' to 'st_root_precision_bari_view'.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Browser is in state 'st_root_quantum_wirele_view' (http://127.0.0.1:5173/)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Home & Kitchen",
+            "label": null,
+            "css": "[data-test=\"category-filter-home---kitchen\"]"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_quantum_wirele_view', perform CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on '[data-test=\"category-filter-home---kitchen\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_precision_bari_view",
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_root_precision_bari_view' at 'http://127.0.0.1:5173/?category=Home+%26+Kitchen'; Heading 'Precision Barista Pour-Over Coffee Maker' visible",
+          "verification_type": "DOM_MUTATION_OBSERVED",
+          "expected_value": "http://127.0.0.1:5173/?category=Home+%26+Kitchen",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_root_precision_bari_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-b1df5ae5"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-75e6c804"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "in_page_state_mutation"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-08",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_23292 on /products/prod-09 (st_root_precision_bari_view -> st_products_prod-09_precision_bari_view)",
+      "category": "transition",
+      "objective": "Verify that executing NAVIGATE_LINK:nav_link_23292 on '/products/prod-09' transitions from 'st_root_precision_bari_view' to 'st_products_prod-09_precision_bari_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_root_precision_bari_view' (http://127.0.0.1:5173/?category=Home+%26+Kitchen)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_23292",
+          "selector": "/products/prod-09",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-09"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_precision_bari_view', perform NAVIGATE_LINK:nav_link_23292 on '/products/prod-09'",
+          "source_state_id": "st_root_precision_bari_view",
+          "target_state_id": "st_products_prod-09_precision_bari_view",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-09_precision_bari_view' at 'http://127.0.0.1:5173/products/prod-09'; Heading 'Precision Barista Pour-Over Coffee Maker' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/products/prod-09",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_products_prod-09_precision_bari_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-96fb6055"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-09",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on [data-test=\"cart-link\"] (st_products_prod-09_precision_bari_view -> st_cart_your_cart_is_e_view)",
+      "category": "transition",
+      "objective": "Verify that executing CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on '[data-test=\"cart-link\"]' transitions from 'st_products_prod-09_precision_bari_view' to 'st_cart_your_cart_is_e_view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_products_prod-09_precision_bari_view' (http://127.0.0.1:5173/products/prod-09)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__",
+          "selector": "[data-test=\"cart-link\"]",
+          "semantic_locator": {
+            "role": "a",
+            "name": "Shopping cart, 0 items",
+            "label": null,
+            "css": "[data-test=\"cart-link\"]"
+          },
+          "input_value": null,
+          "description": "From state 'st_products_prod-09_precision_bari_view', perform CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on '[data-test=\"cart-link\"]'",
+          "source_state_id": "st_products_prod-09_precision_bari_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_cart_your_cart_is_e_view' at 'http://127.0.0.1:5173/cart'; Heading 'Your Cart is Empty' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-97f73b1e"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_cart_your_cart_is_e_view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_products_prod-09_precision_bari_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-cdf5801e"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-97f73b1e"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-10",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on [data-test=\"category-filter-books---stationery\"] (st_root_quantum_wirele_view -> st_root_architectural__view)",
+      "category": "transition",
+      "objective": "Verify that executing CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on '[data-test=\"category-filter-books---stationery\"]' transitions from 'st_root_quantum_wirele_view' to 'st_root_architectural__view'.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Browser is in state 'st_root_quantum_wirele_view' (http://127.0.0.1:5173/)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Books & Stationery",
+            "label": null,
+            "css": "[data-test=\"category-filter-books---stationery\"]"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_quantum_wirele_view', perform CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on '[data-test=\"category-filter-books---stationery\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_architectural__view",
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_root_architectural__view' at 'http://127.0.0.1:5173/?category=Books+%26+Stationery'; Heading 'Architectural Design & Space Monograph' visible",
+          "verification_type": "DOM_MUTATION_OBSERVED",
+          "expected_value": "http://127.0.0.1:5173/?category=Books+%26+Stationery",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_root_architectural__view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-d0cfb648"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-4a312405"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "in_page_state_mutation"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-TR-11",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_2006 on /products/prod-13 (st_root_architectural__view -> st_products_prod-13_architectural__view)",
+      "category": "transition",
+      "objective": "Verify that executing NAVIGATE_LINK:nav_link_2006 on '/products/prod-13' transitions from 'st_root_architectural__view' to 'st_products_prod-13_architectural__view'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Browser is in state 'st_root_architectural__view' (http://127.0.0.1:5173/?category=Books+%26+Stationery)"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_2006",
+          "selector": "/products/prod-13",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-13"
+          },
+          "input_value": null,
+          "description": "From state 'st_root_architectural__view', perform NAVIGATE_LINK:nav_link_2006 on '/products/prod-13'",
+          "source_state_id": "st_root_architectural__view",
+          "target_state_id": "st_products_prod-13_architectural__view",
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Reached state 'st_products_prod-13_architectural__view' at 'http://127.0.0.1:5173/products/prod-13'; Heading 'Architectural Design & Space Monograph' visible",
+          "verification_type": "URL_CONTAINS",
+          "expected_value": "http://127.0.0.1:5173/products/prod-13",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Active state is 'st_products_prod-13_architectural__view'"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_architectural__view",
+        "st_products_prod-13_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "transition",
+        "route_transition"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-VAL-01",
+      "title": "Form Validation Rejection: [data-test=\"add-to-cart-button\"] on 127.0.0.1:5173/",
+      "category": "validation",
+      "objective": "Verify form validation rejects invalid/empty submission with observed message: 'Added Classic Merino Wool Crewneck Sweater to cart'.",
+      "priority": "HIGH",
+      "preconditions": [
+        "Navigate to form at http://127.0.0.1:5173/?category=Apparel"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Add Classic Merino Wool Crewneck Sweater to cart",
+            "label": null,
+            "css": "[data-test=\"add-to-cart-button\"]"
+          },
+          "input_value": "",
+          "description": "Submit invalid/blank input via '[data-test=\"add-to-cart-button\"]' on http://127.0.0.1:5173/?category=Apparel",
+          "source_state_id": "st_root_classic_merino_view",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "Form submission is rejected and displays validation feedback: 'Added Classic Merino Wool Crewneck Sweater to cart' (locator: [role=\"status\"])",
+          "verification_type": "VALIDATION_ERROR_PRESENT",
+          "expected_value": "Added Classic Merino Wool Crewneck Sweater to cart",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "postconditions": [
+        "User remains on form view with error feedback visible"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "validation",
+        "negative_test",
+        "form_constraints"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_READ_ONLY",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-01",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Quantum Wireless Noise-Cancelling Headphones, heading:Smart Ergonomic Fitness Watch)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"category-filter-apparel\"]' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Apparel",
+            "label": null,
+            "css": "[data-test=\"category-filter-apparel\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on '[data-test=\"category-filter-apparel\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_classic_merino_view",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Quantum Wireless Noise-Cancelling Headphones', 'heading:Smart Ergonomic Fitness Watch', 'heading:Ultra-Slim 4K External Monitor', 'heading:Magnetic Wireless Charging Stand', 'heading:Classic Merino Wool Crewneck Sweater', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_root_quantum_wirele_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_root_quantum_wirele_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-c8398787"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-02",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Classic Merino Wool Crewneck Sweater, heading:All-Weather Commuter Rain Jacket)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"category-filter-apparel\"]' when Cart/counter badge value = 0; URL state parameters = {'category': 'Apparel'}.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0",
+        "URL state parameters = {'category': 'Apparel'}"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar",
+          "selector": "[data-test=\"category-filter-apparel\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Apparel",
+            "label": null,
+            "css": "[data-test=\"category-filter-apparel\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0; URL state parameters = {'category': 'Apparel'}), execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on '[data-test=\"category-filter-apparel\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_classic_merino_view",
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Classic Merino Wool Crewneck Sweater', 'heading:All-Weather Commuter Rain Jacket', 'heading:Organic Cotton Everyday T-Shirt', 'heading:Genuine Leather Minimalist Wallet', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_root_classic_merino_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-c8398787"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_root_classic_merino_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-c8398787"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-03",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Classic Merino Wool Crewneck Sweater, heading:All-Weather Commuter Rain Jacket)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"add-to-cart-button\"]' when Cart/counter badge value = 1; URL state parameters = {'category': 'Apparel'}.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 1",
+        "URL state parameters = {'category': 'Apparel'}"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__",
+          "selector": "[data-test=\"add-to-cart-button\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Add Classic Merino Wool Crewneck Sweater to cart",
+            "label": null,
+            "css": "[data-test=\"add-to-cart-button\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 1; URL state parameters = {'category': 'Apparel'}), execute CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on '[data-test=\"add-to-cart-button\"]'",
+          "source_state_id": "st_root_classic_merino_view",
+          "target_state_id": "st_root_classic_merino_c1_with_error",
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Classic Merino Wool Crewneck Sweater', 'heading:All-Weather Commuter Rain Jacket', 'heading:Organic Cotton Everyday T-Shirt', 'heading:Genuine Leather Minimalist Wallet', 'validation_error:Added Classic Merino Wool Crewneck Sweater to cart', 'counter_value:1']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_root_classic_merino_c1_with_error",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-0443c82d"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_root_classic_merino_c1_with_error' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-04",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-05 (heading:Classic Merino Wool Crewneck Sweater, heading:Key Features:)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '/products/prod-05' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_53064",
+          "selector": "/products/prod-05",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-05"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute NAVIGATE_LINK:nav_link_53064 on '/products/prod-05'",
+          "source_state_id": "st_root_classic_merino_c1_with_error",
+          "target_state_id": "st_products_prod-05_classic_merino_view",
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Classic Merino Wool Crewneck Sweater', 'heading:Key Features:', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_products_prod-05_classic_merino_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-267998b5"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_products_prod-05_classic_merino_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_products_prod-05_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-267998b5"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-05",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/cart (heading:Your Cart is Empty, counter_value:0)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '/cart' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_14556",
+          "selector": "/cart",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/cart"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute NAVIGATE_LINK:nav_link_14556 on '/cart'",
+          "source_state_id": "st_products_prod-05_classic_merino_view",
+          "target_state_id": "st_cart_your_cart_is_e_view",
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Your Cart is Empty', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_cart_your_cart_is_e_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-a5c5780f"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_cart_your_cart_is_e_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_cart_your_cart_is_e_view",
+        "st_products_prod-05_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-441cecb8"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-a5c5780f"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-06",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/login (heading:Sign In to ShopSphere, counter_value:0)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '/login' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_78518",
+          "selector": "/login",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/login"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute NAVIGATE_LINK:nav_link_78518 on '/login'",
+          "source_state_id": "st_cart_your_cart_is_e_view",
+          "target_state_id": "st_login_sign_in_to_sho_view",
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Sign In to ShopSphere', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_login_sign_in_to_sho_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-37a293f9"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_login_sign_in_to_sho_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_login_sign_in_to_sho_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-76ba1d85"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-37a293f9"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-07",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Precision Barista Pour-Over Coffee Maker, heading:Cast Iron Pre-Seasoned Dutch Oven)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"category-filter-home---kitchen\"]' when Cart/counter badge value = 0; URL state parameters = {'category': 'Home & Kitchen'}.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0",
+        "URL state parameters = {'category': 'Home & Kitchen'}"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_",
+          "selector": "[data-test=\"category-filter-home---kitchen\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Home & Kitchen",
+            "label": null,
+            "css": "[data-test=\"category-filter-home---kitchen\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0; URL state parameters = {'category': 'Home & Kitchen'}), execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on '[data-test=\"category-filter-home---kitchen\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_precision_bari_view",
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Precision Barista Pour-Over Coffee Maker', 'heading:Cast Iron Pre-Seasoned Dutch Oven', 'heading:Aromatherapy Ceramic Diffuser', 'heading:Stainless Steel Insulated Water Bottle', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_root_precision_bari_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-75e6c804"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_root_precision_bari_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-b1df5ae5"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-75e6c804"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-08",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-09 (heading:Precision Barista Pour-Over Coffee Maker, heading:Key Features:)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '/products/prod-09' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_23292",
+          "selector": "/products/prod-09",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-09"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute NAVIGATE_LINK:nav_link_23292 on '/products/prod-09'",
+          "source_state_id": "st_root_precision_bari_view",
+          "target_state_id": "st_products_prod-09_precision_bari_view",
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Precision Barista Pour-Over Coffee Maker', 'heading:Key Features:', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_products_prod-09_precision_bari_view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-96fb6055"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_products_prod-09_precision_bari_view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_products_prod-09_precision_bari_view",
+        "st_root_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-96fb6055"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-09",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Architectural Design & Space Monograph, heading:Hardcover Dotted Grid Journal (A5))",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"category-filter-books---stationery\"]' when Cart/counter badge value = 0; URL state parameters = {'category': 'Books & Stationery'}.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0",
+        "URL state parameters = {'category': 'Books & Stationery'}"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books",
+          "selector": "[data-test=\"category-filter-books---stationery\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Books & Stationery",
+            "label": null,
+            "css": "[data-test=\"category-filter-books---stationery\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0; URL state parameters = {'category': 'Books & Stationery'}), execute CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on '[data-test=\"category-filter-books---stationery\"]'",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": "st_root_architectural__view",
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Architectural Design & Space Monograph', 'heading:Hardcover Dotted Grid Journal (A5)', 'heading:Vintage Brass Fountain Pen Set', 'heading:Minimalist Walnut Desk Organizer', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_root_architectural__view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-4a312405"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_root_architectural__view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_root_architectural__view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-d0cfb648"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-4a312405"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-SD-10",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-13 (heading:Architectural Design & Space Monograph, heading:Key Features:)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '/products/prod-13' when Cart/counter badge value = 0.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Cart/counter badge value = 0"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK:nav_link_2006",
+          "selector": "/products/prod-13",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "/products/prod-13"
+          },
+          "input_value": null,
+          "description": "Under state condition (Cart/counter badge value = 0), execute NAVIGATE_LINK:nav_link_2006 on '/products/prod-13'",
+          "source_state_id": "st_root_architectural__view",
+          "target_state_id": "st_products_prod-13_architectural__view",
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Architectural Design & Space Monograph', 'heading:Key Features:', 'counter_value:0']",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_products_prod-13_architectural__view",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-b4b45c89"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_products_prod-13_architectural__view' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_products_prod-13_architectural__view",
+        "st_root_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_REVERSIBLE",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-HYP-01",
+      "title": "Exploratory Frontier Hypothesis: form_happy_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "objective": "Explore pending candidate 'form_happy_form_1' that remained unprobed due to BUDGET_CEILING_REACHED.",
+      "priority": "LOW",
+      "preconditions": [
+        "Reach state 'st_root_quantum_wirele_view' at http://127.0.0.1:5173/"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK",
+          "selector": "form_happy_form_1",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "form_happy_form_1"
+          },
+          "input_value": null,
+          "description": "Exploratory test of unprobed frontier candidate 'form_happy_form_1' (BUDGET_CEILING_REACHED)",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": null,
+          "evidence_refs": [
+            "ev_init_st_root_quantum_wirele_view"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "HYPOTHESIS REQUIRING CONFIRMATION: Candidate was not executed before investigation stopping condition; expected outcome must be confirmed empirically.",
+          "verification_type": "HYPOTHESIS_CONFIRMATION_REQUIRED",
+          "expected_value": null,
+          "is_verified_by_evidence": false,
+          "is_hypothesis_requiring_confirmation": true,
+          "evidence_refs": [
+            "ev_init_st_root_quantum_wirele_view"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Document observed outcome"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view"
+      ],
+      "confidence": 0.4,
+      "unresolved_assumptions": [
+        "Candidate unresolved during investigation (BUDGET_CEILING_REACHED); postcondition is unverified"
+      ],
+      "tags": [
+        "exploratory",
+        "hypothesis",
+        "pending_frontier"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_READ_ONLY",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    },
+    {
+      "test_id": "TC-HYP-02",
+      "title": "Exploratory Frontier Hypothesis: required_blank_all_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "objective": "Explore pending candidate 'required_blank_all_form_1' that remained unprobed due to BUDGET_CEILING_REACHED.",
+      "priority": "LOW",
+      "preconditions": [
+        "Reach state 'st_root_quantum_wirele_view' at http://127.0.0.1:5173/"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "NAVIGATE_LINK",
+          "selector": "required_blank_all_form_1",
+          "semantic_locator": {
+            "role": null,
+            "name": null,
+            "label": null,
+            "css": "required_blank_all_form_1"
+          },
+          "input_value": null,
+          "description": "Exploratory test of unprobed frontier candidate 'required_blank_all_form_1' (BUDGET_CEILING_REACHED)",
+          "source_state_id": "st_root_quantum_wirele_view",
+          "target_state_id": null,
+          "evidence_refs": [
+            "ev_init_st_root_quantum_wirele_view"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "HYPOTHESIS REQUIRING CONFIRMATION: Candidate was not executed before investigation stopping condition; expected outcome must be confirmed empirically.",
+          "verification_type": "HYPOTHESIS_CONFIRMATION_REQUIRED",
+          "expected_value": null,
+          "is_verified_by_evidence": false,
+          "is_hypothesis_requiring_confirmation": true,
+          "evidence_refs": [
+            "ev_init_st_root_quantum_wirele_view"
+          ]
+        }
+      ],
+      "postconditions": [
+        "Document observed outcome"
+      ],
+      "cleanup_requirements": [],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view"
+      ],
+      "confidence": 0.4,
+      "unresolved_assumptions": [
+        "Candidate unresolved during investigation (BUDGET_CEILING_REACHED); postcondition is unverified"
+      ],
+      "tags": [
+        "exploratory",
+        "hypothesis",
+        "pending_frontier"
+      ],
+      "safety_metadata": {
+        "classification": "SAFE_READ_ONLY",
+        "requires_authorization": false,
+        "requires_test_credentials": false,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": null
+      }
+    }
+  ],
+  "coverage_map": {
+    "states_covered": {
+      "st_root_classic_merino_c1_with_error": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-02",
+        "TC-TR-03",
+        "TC-VAL-01",
+        "TC-SD-03",
+        "TC-SD-04"
+      ],
+      "st_products_prod-05_classic_merino_view": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-TR-03",
+        "TC-TR-04",
+        "TC-SD-04",
+        "TC-SD-05"
+      ],
+      "st_cart_your_cart_is_e_view": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-04",
+        "TC-TR-05",
+        "TC-TR-09",
+        "TC-SD-05",
+        "TC-SD-06"
+      ],
+      "st_login_sign_in_to_sho_view": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-05",
+        "TC-TR-06",
+        "TC-SD-06"
+      ],
+      "st_root_quantum_wirele_view": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-01",
+        "TC-TR-06",
+        "TC-TR-07",
+        "TC-TR-10",
+        "TC-SD-01",
+        "TC-SD-02",
+        "TC-SD-07",
+        "TC-SD-09",
+        "TC-HYP-01",
+        "TC-HYP-02"
+      ],
+      "st_root_precision_bari_view": [
+        "TC-WF-01",
+        "TC-WF-03",
+        "TC-TR-07",
+        "TC-TR-08",
+        "TC-SD-07",
+        "TC-SD-08"
+      ],
+      "st_products_prod-09_precision_bari_view": [
+        "TC-WF-01",
+        "TC-WF-03",
+        "TC-TR-08",
+        "TC-TR-09",
+        "TC-SD-08"
+      ],
+      "st_root_architectural__view": [
+        "TC-WF-02",
+        "TC-TR-10",
+        "TC-TR-11",
+        "TC-SD-09",
+        "TC-SD-10"
+      ],
+      "st_products_prod-13_architectural__view": [
+        "TC-WF-02",
+        "TC-TR-11",
+        "TC-SD-10"
+      ],
+      "st_root_classic_merino_view": [
+        "TC-WF-03",
+        "TC-TR-01",
+        "TC-TR-02",
+        "TC-VAL-01",
+        "TC-SD-01",
+        "TC-SD-02",
+        "TC-SD-03"
+      ]
+    },
+    "transitions_covered": {
+      "trans-3f00bbd6": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-TR-03",
+        "TC-SD-04"
+      ],
+      "trans-441cecb8": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-TR-04",
+        "TC-SD-05"
+      ],
+      "trans-76ba1d85": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-05",
+        "TC-SD-06"
+      ],
+      "trans-651bf481": [
+        "TC-WF-01",
+        "TC-WF-02",
+        "TC-WF-03",
+        "TC-TR-06"
+      ],
+      "trans-b1df5ae5": [
+        "TC-WF-01",
+        "TC-TR-07",
+        "TC-SD-07"
+      ],
+      "trans-9ee2ddca": [
+        "TC-WF-01",
+        "TC-WF-03",
+        "TC-TR-08",
+        "TC-SD-08"
+      ],
+      "trans-d0cfb648": [
+        "TC-WF-02",
+        "TC-TR-10",
+        "TC-SD-09"
+      ],
+      "trans-0419452b": [
+        "TC-WF-02",
+        "TC-TR-11",
+        "TC-SD-10"
+      ],
+      "trans-cdf5801e": [
+        "TC-WF-03",
+        "TC-TR-09"
+      ],
+      "trans-0c9c8bdf": [
+        "TC-WF-03",
+        "TC-TR-01",
+        "TC-SD-01",
+        "TC-SD-02"
+      ],
+      "trans-d497a50a": [
+        "TC-WF-03",
+        "TC-TR-02",
+        "TC-VAL-01",
+        "TC-SD-03"
+      ]
+    },
+    "findings_covered": {},
+    "unverified_hypotheses_flagged": [
+      "TC-HYP-01",
+      "TC-HYP-02"
+    ],
+    "total_states_in_contract": 10,
+    "covered_states_count": 10,
+    "state_coverage_ratio": 1.0,
+    "total_transitions_in_contract": 11,
+    "covered_transitions_count": 11,
+    "transition_coverage_ratio": 1.0
+  },
+  "rejected_candidates_count": 1,
+  "rejection_reasons": [
+    "AMBIGUOUS_LOCATOR [TC-REG-01]: Step 1 uses bare generic tag 'input' without distinguishing attributes or accessible name"
+  ]
+}

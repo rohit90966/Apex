@@ -1,0 +1,11 @@
+{
+  "name": "verityqa",
+  "version": "2.4.0",
+  "description": "VerityQA — Autonomous AI QA Engineer",
+  "scripts": {
+    "build": "node scripts/build_frontend.js",
+    "start": "python -m uvicorn app.main:app --host 127.0.0.1 --port 8000"
+  },
+  "author": "VerityQA Team",
+  "license": "MIT"
+}

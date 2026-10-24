@@ -1,0 +1,73 @@
+{
+  "1_generated_test_count": {
+    "numerator": 25,
+    "denominator": 25,
+    "value": 25
+  },
+  "2_valid_test_count": {
+    "numerator": 25,
+    "denominator": 25,
+    "rate": 1.0
+  },
+  "3_rejected_test_count": {
+    "numerator": 0,
+    "denominator": 25,
+    "reasons": []
+  },
+  "4_exported_executable_test_count": {
+    "numerator": 23,
+    "denominator": 25,
+    "rate": 0.92
+  },
+  "5_executable_without_manual_edits_rate": {
+    "numerator": 23,
+    "denominator": 23,
+    "rate": 1.0
+  },
+  "6_setup_success_rate": {
+    "numerator": 23,
+    "denominator": 23,
+    "rate": 1.0
+  },
+  "7_assertion_validity_rate": {
+    "numerator": 23,
+    "denominator": 23,
+    "rate": 1.0
+  },
+  "8_state_coverage_of_discovered_states": {
+    "numerator": 8,
+    "denominator": 8,
+    "rate": 1.0
+  },
+  "9_transition_coverage_of_verified_transitions": {
+    "numerator": 9,
+    "denominator": 9,
+    "rate": 1.0
+  },
+  "10_seeded_defect_detection_rate": {
+    "numerator": 1,
+    "denominator": 1,
+    "rate": 1.0
+  },
+  "11_false_failure_rate_on_valid_behavior": {
+    "numerator": 0,
+    "denominator": 23,
+    "rate": 0.0
+  },
+  "12_duplicate_or_redundant_test_rate": {
+    "numerator": 0,
+    "denominator": 25,
+    "rate": 0.0
+  },
+  "13_evidence_traceability_completeness": {
+    "numerator": 25,
+    "denominator": 25,
+    "rate": 1.0
+  },
+  "14_safety_blocked_or_hypothesis_only_test_count": {
+    "safety_blocked": 0,
+    "hypothesis_only": 2,
+    "total_non_regression_gated": 2,
+    "denominator": 25
+  }
+}

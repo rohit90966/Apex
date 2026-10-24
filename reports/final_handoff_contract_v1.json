@@ -1,0 +1,2805 @@
+{
+  "schema_version": "1.0.0",
+  "investigation_id": "inv-330f51d5",
+  "exported_at": 1792700685.5737472,
+  "application_origin": "http://127.0.0.1:8995",
+  "target_url": "http://127.0.0.1:8995/login",
+  "investigated_routes": [
+    "127.0.0.1:8995/login",
+    "127.0.0.1:8995/products",
+    "127.0.0.1:8995/cart",
+    "127.0.0.1:8995/checkout"
+  ],
+  "states": [
+    {
+      "state_id": "st_login_system_access__view",
+      "state_class_id": "cls_49ec01241f",
+      "url": "http://127.0.0.1:8995/login",
+      "normalized_route": "127.0.0.1:8995/login",
+      "page_title": "Authentication — Verity Benchmark Portal",
+      "description": "Authentication — Verity Benchmark Portal (System Access Portal)",
+      "state_signature": "cls_49ec01241f::st_login_system_access__view",
+      "distinguishing_observations": [
+        "heading:System Access Portal",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "System Access Portal"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "input",
+          "accessible_name": "benchmark_user",
+          "tag_name": "input",
+          "selector": "#username",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "input",
+          "accessible_name": "••••••••",
+          "tag_name": "input",
+          "selector": "#password",
+          "element_type": "password",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Sign In",
+          "tag_name": "button",
+          "selector": "#login-button",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "loginForm",
+          "form_selector": "#loginForm",
+          "action": "/login",
+          "method": "POST",
+          "submit_control_selector": "#login-button",
+          "fields": [
+            {
+              "name": "username",
+              "id": "username",
+              "type": "text",
+              "required": false,
+              "placeholder": "benchmark_user",
+              "label": "Username",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#username",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "password",
+              "id": "password",
+              "type": "password",
+              "required": false,
+              "placeholder": "••••••••",
+              "label": "Password",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#password",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_login_system_access__view_with_error",
+      "state_class_id": "cls_49ec01241f",
+      "url": "http://127.0.0.1:8995/login?error=Username+is+required",
+      "normalized_route": "127.0.0.1:8995/login",
+      "page_title": "Authentication — Verity Benchmark Portal",
+      "description": "Authentication — Verity Benchmark Portal (System Access Portal)",
+      "state_signature": "cls_49ec01241f::st_login_system_access__view_with_error",
+      "distinguishing_observations": [
+        "heading:System Access Portal",
+        "validation_error:Username is required",
+        "counter_value:0"
+      ],
+      "requires_authentication": false,
+      "known_preconditions": [
+        "Query parameters: {'error': 'Username is required'}"
+      ],
+      "url_parameters": {
+        "error": "Username is required"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": true,
+        "validation_error_message": "Username is required",
+        "validation_error_locator": ".alert-danger",
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "System Access Portal"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "input",
+          "accessible_name": "benchmark_user",
+          "tag_name": "input",
+          "selector": "#username",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "input",
+          "accessible_name": "••••••••",
+          "tag_name": "input",
+          "selector": "#password",
+          "element_type": "password",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "button",
+          "accessible_name": "Sign In",
+          "tag_name": "button",
+          "selector": "#login-button",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "loginForm",
+          "form_selector": "#loginForm",
+          "action": "/login",
+          "method": "POST",
+          "submit_control_selector": "#login-button",
+          "fields": [
+            {
+              "name": "username",
+              "id": "username",
+              "type": "text",
+              "required": false,
+              "placeholder": "benchmark_user",
+              "label": "Username",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#username",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "password",
+              "id": "password",
+              "type": "password",
+              "required": false,
+              "placeholder": "••••••••",
+              "label": "Password",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#password",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_products_catal_view",
+      "state_class_id": "cls_f88ae0853d",
+      "url": "http://127.0.0.1:8995/products",
+      "normalized_route": "127.0.0.1:8995/products",
+      "page_title": "Products — Verity Benchmark Portal",
+      "description": "Products — Verity Benchmark Portal (Products Catalog)",
+      "state_signature": "cls_f88ae0853d::st_products_products_catal_view",
+      "distinguishing_observations": [
+        "heading:Products Catalog",
+        "heading:Alpha Device",
+        "heading:Beta Machine",
+        "heading:Gamma System",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Products Catalog",
+        "Alpha Device",
+        "Beta Machine",
+        "Gamma System"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "select",
+          "accessible_name": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+          "tag_name": "select",
+          "selector": "#product-sort",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Open Drawer",
+          "tag_name": "a",
+          "selector": "#menu-drawer-toggle",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products?sort=az&menu=open"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Alpha Device",
+          "tag_name": "a",
+          "selector": "#item-1-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/1"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-1",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "a",
+          "accessible_name": "Beta Machine",
+          "tag_name": "a",
+          "selector": "#item-2-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/2"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-2",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "a",
+          "accessible_name": "Gamma System",
+          "tag_name": "a",
+          "selector": "#item-3-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/3"
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-3",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-1",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_2",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-2",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_3",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-3",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_cart_shopping_cart_view",
+      "state_class_id": "cls_30cd57132d",
+      "url": "http://127.0.0.1:8995/cart",
+      "normalized_route": "127.0.0.1:8995/cart",
+      "page_title": "Your Cart — Verity Benchmark Portal",
+      "description": "Your Cart — Verity Benchmark Portal (Shopping Cart)",
+      "state_signature": "cls_30cd57132d::st_cart_shopping_cart_view",
+      "distinguishing_observations": [
+        "heading:Shopping Cart",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Shopping Cart"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Calculate Tax",
+          "tag_name": "a",
+          "selector": "#calculate-tax-btn",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart?show_tax=true"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Proceed to Checkout",
+          "tag_name": "a",
+          "selector": "#checkout-button",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/checkout"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Continue Shopping",
+          "tag_name": "a",
+          "selector": "a.btn[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_cart_shopping_cart_view_with_error",
+      "state_class_id": "cls_30cd57132d",
+      "url": "http://127.0.0.1:8995/cart?show_tax=true",
+      "normalized_route": "127.0.0.1:8995/cart",
+      "page_title": "Your Cart — Verity Benchmark Portal",
+      "description": "Your Cart — Verity Benchmark Portal (Shopping Cart)",
+      "state_signature": "cls_30cd57132d::st_cart_shopping_cart_view_with_error",
+      "distinguishing_observations": [
+        "heading:Shopping Cart",
+        "validation_error:Tax: $NaN | Total: $NaN",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session",
+        "Query parameters: {'show_tax': 'true'}"
+      ],
+      "url_parameters": {
+        "show_tax": "true"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": true,
+        "validation_error_message": "Tax: $NaN | Total: $NaN",
+        "validation_error_locator": "#tax-display",
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Shopping Cart"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "a",
+          "accessible_name": "Calculate Tax",
+          "tag_name": "a",
+          "selector": "#calculate-tax-btn",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart?show_tax=true"
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Proceed to Checkout",
+          "tag_name": "a",
+          "selector": "#checkout-button",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/checkout"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Continue Shopping",
+          "tag_name": "a",
+          "selector": "a.btn[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "state_id": "st_checkout_checkout_shipp_view",
+      "state_class_id": "cls_7d80a9d0e4",
+      "url": "http://127.0.0.1:8995/checkout",
+      "normalized_route": "127.0.0.1:8995/checkout",
+      "page_title": "Checkout — Verity Benchmark Portal",
+      "description": "Checkout — Verity Benchmark Portal (Checkout: Shipping Details)",
+      "state_signature": "cls_7d80a9d0e4::st_checkout_checkout_shipp_view",
+      "distinguishing_observations": [
+        "heading:Checkout: Shipping Details",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session"
+      ],
+      "url_parameters": {},
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": null,
+        "counter_value": "0"
+      },
+      "headings": [
+        "Checkout: Shipping Details"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "input",
+          "accessible_name": "John",
+          "tag_name": "input",
+          "selector": "#first-name",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "input",
+          "accessible_name": "Doe",
+          "tag_name": "input",
+          "selector": "#last-name",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "input",
+          "accessible_name": "10001",
+          "tag_name": "input",
+          "selector": "#postal-code",
+          "element_type": "text",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Continue to Review",
+          "tag_name": "button",
+          "selector": "#continue-checkout-btn",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "a",
+          "accessible_name": "Back to Cart",
+          "tag_name": "a",
+          "selector": "a.btn[href=\"/cart\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "checkoutForm",
+          "form_selector": "#checkoutForm",
+          "action": "/checkout",
+          "method": "POST",
+          "submit_control_selector": "#continue-checkout-btn",
+          "fields": [
+            {
+              "name": "first_name",
+              "id": "first-name",
+              "type": "text",
+              "required": false,
+              "placeholder": "John",
+              "label": "First Name",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#first-name",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "last_name",
+              "id": "last-name",
+              "type": "text",
+              "required": false,
+              "placeholder": "Doe",
+              "label": "Last Name",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#last-name",
+              "select_options": [],
+              "checkbox_state": null
+            },
+            {
+              "name": "postal_code",
+              "id": "postal-code",
+              "type": "text",
+              "required": false,
+              "placeholder": "10001",
+              "label": "Postal Code",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "#postal-code",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_products_catal_view_opt_za",
+      "state_class_id": "cls_5aeb2e7df2",
+      "url": "http://127.0.0.1:8995/products?sort=za&menu=closed",
+      "normalized_route": "127.0.0.1:8995/products",
+      "page_title": "Products — Verity Benchmark Portal",
+      "description": "Products — Verity Benchmark Portal (Products Catalog)",
+      "state_signature": "cls_5aeb2e7df2::st_products_products_catal_view_opt_za",
+      "distinguishing_observations": [
+        "heading:Products Catalog",
+        "heading:Gamma System",
+        "heading:Beta Machine",
+        "heading:Alpha Device",
+        "selected_option:za",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session",
+        "Query parameters: {'sort': 'za', 'menu': 'closed'}"
+      ],
+      "url_parameters": {
+        "sort": "za",
+        "menu": "closed"
+      },
+      "in_page_state": {
+        "menu_open": false,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": "za",
+        "counter_value": "0"
+      },
+      "headings": [
+        "Products Catalog",
+        "Gamma System",
+        "Beta Machine",
+        "Alpha Device"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "select",
+          "accessible_name": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+          "tag_name": "select",
+          "selector": "#product-sort",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Open Drawer",
+          "tag_name": "a",
+          "selector": "#menu-drawer-toggle",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products?sort=za&menu=open"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Gamma System",
+          "tag_name": "a",
+          "selector": "#item-3-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/3"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-3",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "a",
+          "accessible_name": "Beta Machine",
+          "tag_name": "a",
+          "selector": "#item-2-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/2"
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-2",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "a",
+          "accessible_name": "Alpha Device",
+          "tag_name": "a",
+          "selector": "#item-1-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/1"
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-1",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-3",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_2",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-2",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_3",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-1",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state_id": "st_products_products_catal_view_opt_za_menu_open",
+      "state_class_id": "cls_5aeb2e7df2",
+      "url": "http://127.0.0.1:8995/products?sort=za&menu=open",
+      "normalized_route": "127.0.0.1:8995/products",
+      "page_title": "Products — Verity Benchmark Portal",
+      "description": "Products — Verity Benchmark Portal (Products Catalog)",
+      "state_signature": "cls_5aeb2e7df2::st_products_products_catal_view_opt_za_menu_open",
+      "distinguishing_observations": [
+        "heading:Products Catalog",
+        "heading:Gamma System",
+        "heading:Beta Machine",
+        "heading:Alpha Device",
+        "menu_open:true",
+        "selected_option:za",
+        "counter_value:0"
+      ],
+      "requires_authentication": true,
+      "known_preconditions": [
+        "Requires authenticated session",
+        "Query parameters: {'sort': 'za', 'menu': 'open'}"
+      ],
+      "url_parameters": {
+        "sort": "za",
+        "menu": "open"
+      },
+      "in_page_state": {
+        "menu_open": true,
+        "has_validation_error": false,
+        "validation_error_message": null,
+        "validation_error_locator": null,
+        "selected_option": "za",
+        "counter_value": "0"
+      },
+      "headings": [
+        "Products Catalog",
+        "Gamma System",
+        "Beta Machine",
+        "Alpha Device"
+      ],
+      "interactive_controls": [
+        {
+          "element_id": "ctrl_0",
+          "role": "a",
+          "accessible_name": "Products",
+          "tag_name": "a",
+          "selector": "a[href=\"/products\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products"
+          }
+        },
+        {
+          "element_id": "ctrl_1",
+          "role": "a",
+          "accessible_name": "Cart 0",
+          "tag_name": "a",
+          "selector": "#cart-link",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/cart"
+          }
+        },
+        {
+          "element_id": "ctrl_2",
+          "role": "a",
+          "accessible_name": "Logout",
+          "tag_name": "a",
+          "selector": "a[href=\"/logout\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/logout"
+          }
+        },
+        {
+          "element_id": "ctrl_3",
+          "role": "select",
+          "accessible_name": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+          "tag_name": "select",
+          "selector": "#product-sort",
+          "element_type": "select",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [
+              "az",
+              "za",
+              "lohi",
+              "hilo"
+            ],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_4",
+          "role": "a",
+          "accessible_name": "Hide Drawer",
+          "tag_name": "a",
+          "selector": "#menu-drawer-toggle",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products?sort=za&menu=closed"
+          }
+        },
+        {
+          "element_id": "ctrl_5",
+          "role": "a",
+          "accessible_name": "Close Drawer",
+          "tag_name": "a",
+          "selector": "a.btn[href=\"/products?sort=za&menu=closed\"]",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products?sort=za&menu=closed"
+          }
+        },
+        {
+          "element_id": "ctrl_6",
+          "role": "a",
+          "accessible_name": "Gamma System",
+          "tag_name": "a",
+          "selector": "#item-3-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/3"
+          }
+        },
+        {
+          "element_id": "ctrl_7",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-3",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_8",
+          "role": "a",
+          "accessible_name": "Beta Machine",
+          "tag_name": "a",
+          "selector": "#item-2-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/2"
+          }
+        },
+        {
+          "element_id": "ctrl_9",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-2",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        },
+        {
+          "element_id": "ctrl_10",
+          "role": "a",
+          "accessible_name": "Alpha Device",
+          "tag_name": "a",
+          "selector": "#item-1-title",
+          "element_type": "a",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": "/products/1"
+          }
+        },
+        {
+          "element_id": "ctrl_11",
+          "role": "button",
+          "accessible_name": "Add to Cart",
+          "tag_name": "button",
+          "selector": "#add-to-cart-1",
+          "element_type": "submit",
+          "is_enabled": true,
+          "is_visible": true,
+          "declared_constraints": {
+            "required": false,
+            "maxlength": null,
+            "minlength": null,
+            "select_options": [],
+            "is_image_only_link": false,
+            "href": ""
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "form_1",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-3",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_2",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-2",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        },
+        {
+          "form_id": "form_3",
+          "form_selector": "form",
+          "action": "/cart/add",
+          "method": "POST",
+          "submit_control_selector": "#add-to-cart-1",
+          "fields": [
+            {
+              "name": "product_id",
+              "id": "",
+              "type": "hidden",
+              "required": false,
+              "placeholder": "",
+              "label": "",
+              "minlength": null,
+              "maxlength": null,
+              "min": null,
+              "max": null,
+              "pattern": null,
+              "step": null,
+              "autocomplete": null,
+              "aria_required": false,
+              "stable_selector": "[name=\"product_id\"]",
+              "select_options": [],
+              "checkbox_state": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "verified_transitions": [
+    {
+      "transition_id": "trans-7f99df6f",
+      "source_state_id": "st_login_system_access__view",
+      "destination_state_id": "st_login_system_access__view_with_error",
+      "action_type": "FILL:required_blank_all_loginForm",
+      "grounded_control": {
+        "selector": null,
+        "role": null,
+        "accessible_name": null,
+        "target_description": "required_blank_all_loginForm"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_login_system_access__view_with_error' at 'http://127.0.0.1:8995/login?error=Username+is+required'",
+        "Validation error displayed: Username is required",
+        "Heading 'System Access Portal' visible"
+      ],
+      "actual_effect": "VALIDATION_FEEDBACK",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-e263ea05"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-7548266e",
+      "source_state_id": "st_login_system_access__view",
+      "destination_state_id": "st_products_products_catal_view",
+      "action_type": "AUTHENTICATE",
+      "grounded_control": {
+        "selector": null,
+        "role": null,
+        "accessible_name": null,
+        "target_description": "login_form"
+      },
+      "required_preconditions": [],
+      "observed_postconditions": [
+        "Reached state 'st_products_products_catal_view' at 'http://127.0.0.1:8995/products'",
+        "Heading 'Products Catalog' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-38377064"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-346e4613",
+      "source_state_id": "st_products_products_catal_view",
+      "destination_state_id": "st_cart_shopping_cart_view",
+      "action_type": "CLICK_CONTROL:control_cls_f88ae0853d__cart_link",
+      "grounded_control": {
+        "selector": "#cart-link",
+        "role": "a",
+        "accessible_name": "Cart 0",
+        "target_description": "#cart-link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_cart_shopping_cart_view' at 'http://127.0.0.1:8995/cart'",
+        "Heading 'Shopping Cart' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-001bec67"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-e61af569",
+      "source_state_id": "st_cart_shopping_cart_view",
+      "destination_state_id": "st_cart_shopping_cart_view_with_error",
+      "action_type": "CLICK_CONTROL:control_cls_30cd57132d__calculate_tax_btn",
+      "grounded_control": {
+        "selector": "#calculate-tax-btn",
+        "role": "a",
+        "accessible_name": "Calculate Tax",
+        "target_description": "#calculate-tax-btn"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_cart_shopping_cart_view_with_error' at 'http://127.0.0.1:8995/cart?show_tax=true'",
+        "Validation error displayed: Tax: $NaN | Total: $NaN",
+        "Heading 'Shopping Cart' visible"
+      ],
+      "actual_effect": "VALIDATION_FEEDBACK",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-4c69bc6b"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-b085264e",
+      "source_state_id": "st_cart_shopping_cart_view_with_error",
+      "destination_state_id": "st_checkout_checkout_shipp_view",
+      "action_type": "CLICK_CONTROL:control_cls_30cd57132d__checkout_button",
+      "grounded_control": {
+        "selector": "#checkout-button",
+        "role": "a",
+        "accessible_name": "Proceed to Checkout",
+        "target_description": "#checkout-button"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_checkout_checkout_shipp_view' at 'http://127.0.0.1:8995/checkout'",
+        "Heading 'Checkout: Shipping Details' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-2907cdcc"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-4d2d346c",
+      "source_state_id": "st_checkout_checkout_shipp_view",
+      "destination_state_id": "st_cart_shopping_cart_view",
+      "action_type": "CLICK_CONTROL:control_cls_7d80a9d0e4__cart_link",
+      "grounded_control": {
+        "selector": "#cart-link",
+        "role": "a",
+        "accessible_name": "Cart 0",
+        "target_description": "#cart-link"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_cart_shopping_cart_view' at 'http://127.0.0.1:8995/cart'",
+        "Heading 'Shopping Cart' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-9edcd270"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-cf88a91d",
+      "source_state_id": "st_cart_shopping_cart_view",
+      "destination_state_id": "st_products_products_catal_view",
+      "action_type": "CLICK_CONTROL:control_cls_30cd57132d_a_btn_href___products__",
+      "grounded_control": {
+        "selector": "a.btn[href=\"/products\"]",
+        "role": "a",
+        "accessible_name": "Continue Shopping",
+        "target_description": "a.btn[href=\"/products\"]"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_products_products_catal_view' at 'http://127.0.0.1:8995/products'",
+        "Heading 'Products Catalog' visible"
+      ],
+      "actual_effect": "ROUTE_TRANSITION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-74b1fcea"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-f505633c",
+      "source_state_id": "st_products_products_catal_view",
+      "destination_state_id": "st_products_products_catal_view_opt_za",
+      "action_type": "SELECT_OPTION:select_cls_f88ae0853d__product_sort",
+      "grounded_control": {
+        "selector": "#product-sort",
+        "role": "select",
+        "accessible_name": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "target_description": "#product-sort"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_products_products_catal_view_opt_za' at 'http://127.0.0.1:8995/products?sort=za&menu=closed'",
+        "Option 'za' active",
+        "Heading 'Products Catalog' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-ab44bdca"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "transition_id": "trans-9d471f5a",
+      "source_state_id": "st_products_products_catal_view_opt_za",
+      "destination_state_id": "st_products_products_catal_view_opt_za_menu_open",
+      "action_type": "NAVIGATE_LINK:nav_link_60620",
+      "grounded_control": {
+        "selector": "/products?sort=za&menu=open",
+        "role": null,
+        "accessible_name": null,
+        "target_description": "/products?sort=za&menu=open"
+      },
+      "required_preconditions": [
+        "Requires authenticated session"
+      ],
+      "observed_postconditions": [
+        "Reached state 'st_products_products_catal_view_opt_za_menu_open' at 'http://127.0.0.1:8995/products?sort=za&menu=open'",
+        "In-page drawer/menu opened",
+        "Option 'za' active",
+        "Heading 'Products Catalog' visible"
+      ],
+      "actual_effect": "IN_PAGE_STATE_MUTATION",
+      "verification_outcome": "VERIFIED",
+      "repeatability": "REPEATABLE",
+      "evidence_ids": [
+        "ev-1c7d92ad"
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "evidence_id": "ev_init_st_login_system_access__view",
+      "timestamp": 1792700489.9684772,
+      "associated_state_id": "st_login_system_access__view",
+      "before_state_id": "st_login_system_access__view",
+      "after_state_id": null,
+      "evidence_type": "DOM_OBSERVATION",
+      "dom_or_a11y_observation": "Captured baseline DOM observation of http://127.0.0.1:8995/login with 6 interactive controls and 1 forms",
+      "action_summary": null,
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/login | title='Authentication — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": null,
+      "observed_result": "Captured baseline DOM observation of http://127.0.0.1:8995/login with 6 interactive controls and 1 forms",
+      "verification_status": "OBSERVED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_step_0_c7dadf01.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-e263ea05",
+      "timestamp": 1792700529.2204797,
+      "associated_state_id": "st_login_system_access__view",
+      "before_state_id": "st_login_system_access__view",
+      "after_state_id": "st_login_system_access__view_with_error",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_form_cls_49ec01241f_required_blank_all_loginForm]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "action_summary": "Probe [q_form_cls_49ec01241f_required_blank_all_loginForm]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/login | title='Authentication — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/login?error=Username+is+required | title='Authentication — Verity Benchmark Portal' | controls=6",
+      "observed_result": "Probe [q_form_cls_49ec01241f_required_blank_all_loginForm]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": ".alert-danger",
+      "validation_message": "Username is required",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_54a593c3.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev_auth_st_products_products_catal_view",
+      "timestamp": 1792700532.3075147,
+      "associated_state_id": "st_login_system_access__view",
+      "before_state_id": "st_login_system_access__view",
+      "after_state_id": "st_products_products_catal_view",
+      "evidence_type": "AUTH_VERIFICATION",
+      "dom_or_a11y_observation": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
+      "action_summary": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/login | title='Authentication — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
+      "observed_result": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_auth_after_1e3cbc7f.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-38377064",
+      "timestamp": 1792700554.4019382,
+      "associated_state_id": "st_login_system_access__view",
+      "before_state_id": "st_login_system_access__view",
+      "after_state_id": "st_products_products_catal_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_auth_cls_49ec01241f]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "action_summary": "Probe [q_auth_cls_49ec01241f]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/login | title='Authentication — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
+      "observed_result": "Probe [q_auth_cls_49ec01241f]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_auth_after_1e3cbc7f.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-001bec67",
+      "timestamp": 1792700579.3152344,
+      "associated_state_id": "st_products_products_catal_view",
+      "before_state_id": "st_products_products_catal_view",
+      "after_state_id": "st_cart_shopping_cart_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_f88ae0853d__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_f88ae0853d__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "observed_result": "Probe [q_ctrl_control_cls_f88ae0853d__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_b8c0877b.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-7f66ff0c",
+      "timestamp": 1792700581.1043875,
+      "associated_state_id": "st_cart_shopping_cart_view",
+      "before_state_id": "st_cart_shopping_cart_view",
+      "after_state_id": "st_cart_shopping_cart_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_30cd57132d__cart_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "action_summary": "Probe [q_ctrl_control_cls_30cd57132d__cart_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "observed_result": "Probe [q_ctrl_control_cls_30cd57132d__cart_link]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_e983d2a1.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-4c69bc6b",
+      "timestamp": 1792700582.745284,
+      "associated_state_id": "st_cart_shopping_cart_view",
+      "before_state_id": "st_cart_shopping_cart_view",
+      "after_state_id": "st_cart_shopping_cart_view_with_error",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_30cd57132d__calculate_tax_btn]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_30cd57132d__calculate_tax_btn]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/cart?show_tax=true | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "observed_result": "Probe [q_ctrl_control_cls_30cd57132d__calculate_tax_btn]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": "#tax-display",
+      "validation_message": "Tax: $NaN | Total: $NaN",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_12f4a466.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-2907cdcc",
+      "timestamp": 1792700610.228378,
+      "associated_state_id": "st_cart_shopping_cart_view_with_error",
+      "before_state_id": "st_cart_shopping_cart_view_with_error",
+      "after_state_id": "st_checkout_checkout_shipp_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_30cd57132d__checkout_button]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_30cd57132d__checkout_button]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/cart?show_tax=true | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/checkout | title='Checkout — Verity Benchmark Portal' | controls=8",
+      "observed_result": "Probe [q_ctrl_control_cls_30cd57132d__checkout_button]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_26a4fa73.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-9edcd270",
+      "timestamp": 1792700611.890076,
+      "associated_state_id": "st_checkout_checkout_shipp_view",
+      "before_state_id": "st_checkout_checkout_shipp_view",
+      "after_state_id": "st_cart_shopping_cart_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_7d80a9d0e4__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_7d80a9d0e4__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/checkout | title='Checkout — Verity Benchmark Portal' | controls=8",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "observed_result": "Probe [q_ctrl_control_cls_7d80a9d0e4__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_59a305c0.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-74b1fcea",
+      "timestamp": 1792700613.711471,
+      "associated_state_id": "st_cart_shopping_cart_view",
+      "before_state_id": "st_cart_shopping_cart_view",
+      "after_state_id": "st_products_products_catal_view",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_control_cls_30cd57132d_a_btn_href___products__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_control_cls_30cd57132d_a_btn_href___products__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/cart | title='Your Cart — Verity Benchmark Portal' | controls=6",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
+      "observed_result": "Probe [q_ctrl_control_cls_30cd57132d_a_btn_href___products__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_1e1329b5.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-ab44bdca",
+      "timestamp": 1792700675.4641073,
+      "associated_state_id": "st_products_products_catal_view",
+      "before_state_id": "st_products_products_catal_view",
+      "after_state_id": "st_products_products_catal_view_opt_za",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_ctrl_select_cls_f88ae0853d__product_sort]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "action_summary": "Probe [q_ctrl_select_cls_f88ae0853d__product_sort]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/products?sort=za&menu=closed | title='Products — Verity Benchmark Portal' | controls=11",
+      "observed_result": "Probe [q_ctrl_select_cls_f88ae0853d__product_sort]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_7a78a623.png",
+      "trace_artifact_path": null
+    },
+    {
+      "evidence_id": "ev-1c7d92ad",
+      "timestamp": 1792700677.5821917,
+      "associated_state_id": "st_products_products_catal_view_opt_za",
+      "before_state_id": "st_products_products_catal_view_opt_za",
+      "after_state_id": "st_products_products_catal_view_opt_za_menu_open",
+      "evidence_type": "PROBE_RESULT",
+      "dom_or_a11y_observation": "Probe [q_nav_cls_5aeb2e7df2_nav_link_60620]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "action_summary": "Probe [q_nav_cls_5aeb2e7df2_nav_link_60620]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "pre_snapshot_summary": "URL=http://127.0.0.1:8995/products?sort=za&menu=closed | title='Products — Verity Benchmark Portal' | controls=11",
+      "post_snapshot_summary": "URL=http://127.0.0.1:8995/products?sort=za&menu=open | title='Products — Verity Benchmark Portal' | controls=12",
+      "observed_result": "Probe [q_nav_cls_5aeb2e7df2_nav_link_60620]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "verification_status": "VERIFIED",
+      "locator": null,
+      "validation_message": null,
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_b9820e45.png",
+      "trace_artifact_path": null
+    }
+  ],
+  "defect_findings": [
+    {
+      "finding_id": "lead_c22796b4",
+      "title": "Text Anomaly: 'NaN'",
+      "classification": "CONFIRMED_DEFECT",
+      "oracle_type": "TECHNICAL",
+      "severity": "MEDIUM",
+      "state_class": "cls_30cd57132d",
+      "target_control": "#calculate-tax-btn",
+      "reproduction_verified": true,
+      "reproduction_steps": [
+        {
+          "action_type": "CLICK_CONTROL",
+          "target": {
+            "role": "link",
+            "name": "Calculate Tax",
+            "label": null,
+            "css": "#calculate-tax-btn",
+            "resolved_strategy": "css"
+          },
+          "raw_target": "#calculate-tax-btn",
+          "resolved_value": null,
+          "key_to_press": null
+        }
+      ],
+      "expected_behavior": "Clean interaction without technical or specification errors",
+      "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+      "evidence_ids": [
+        "ev-1c7d92ad"
+      ],
+      "confidence": 1.0,
+      "limitations": null
+    }
+  ],
+  "completeness": {
+    "discovered_states_count": 8,
+    "verified_transitions_count": 9,
+    "pending_frontier_candidates": [
+      {
+        "candidate_id": "q_ctrl_control_cls_49ec01241f_a_href___products__",
+        "candidate_type": "controls",
+        "target": "a[href=\"/products\"]",
+        "parent_state_id": "cls_49ec01241f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_49ec01241f__cart_link",
+        "candidate_type": "controls",
+        "target": "#cart-link",
+        "parent_state_id": "cls_49ec01241f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_49ec01241f_nav_link_77636",
+        "candidate_type": "nav",
+        "target": "/products",
+        "parent_state_id": "cls_49ec01241f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_49ec01241f_nav_link_3815",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_49ec01241f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_49ec01241f",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_49ec01241f",
+        "parent_state_id": "cls_49ec01241f",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f88ae0853d__menu_drawer_toggle",
+        "candidate_type": "controls",
+        "target": "#menu-drawer-toggle",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f88ae0853d__item_1_title",
+        "candidate_type": "controls",
+        "target": "#item-1-title",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_f88ae0853d__add_to_cart_1",
+        "candidate_type": "controls",
+        "target": "#add-to-cart-1",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_77636",
+        "candidate_type": "nav",
+        "target": "/products",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_3815",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_46220",
+        "candidate_type": "nav",
+        "target": "/products?sort=az&menu=open",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_78271",
+        "candidate_type": "nav",
+        "target": "/products/1",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_24155",
+        "candidate_type": "nav",
+        "target": "/products/2",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_f88ae0853d_nav_link_92417",
+        "candidate_type": "nav",
+        "target": "/products/3",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_f88ae0853d",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_f88ae0853d",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_30cd57132d_a_href___products__",
+        "candidate_type": "controls",
+        "target": "a[href=\"/products\"]",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_30cd57132d_nav_link_77636",
+        "candidate_type": "nav",
+        "target": "/products",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_30cd57132d_nav_link_3815",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_30cd57132d_nav_link_85100",
+        "candidate_type": "nav",
+        "target": "/cart?show_tax=true",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_30cd57132d_nav_link_31930",
+        "candidate_type": "nav",
+        "target": "/checkout",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_30cd57132d",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_30cd57132d",
+        "parent_state_id": "cls_30cd57132d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7d80a9d0e4_form_happy_checkoutForm",
+        "candidate_type": "forms",
+        "target": "form_happy_checkoutForm",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_form_cls_7d80a9d0e4_required_blank_all_checkoutForm",
+        "candidate_type": "forms",
+        "target": "required_blank_all_checkoutForm",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_7d80a9d0e4_a_href___products__",
+        "candidate_type": "controls",
+        "target": "a[href=\"/products\"]",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_7d80a9d0e4_a_btn_href___cart__",
+        "candidate_type": "controls",
+        "target": "a.btn[href=\"/cart\"]",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_7d80a9d0e4_nav_link_77636",
+        "candidate_type": "nav",
+        "target": "/products",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_7d80a9d0e4_nav_link_3815",
+        "candidate_type": "nav",
+        "target": "/cart",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_inv_invariant_reload_persistence_cls_7d80a9d0e4",
+        "candidate_type": "invariants",
+        "target": "q_inv_invariant_reload_persistence_cls_7d80a9d0e4",
+        "parent_state_id": "cls_7d80a9d0e4",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_38",
+        "candidate_type": "controls",
+        "target": "http://127.0.0.1:8995/cart?show_tax=true",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_39",
+        "candidate_type": "controls",
+        "target": "http://127.0.0.1:8995/checkout",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_reflect_40",
+        "candidate_type": "controls",
+        "target": "http://127.0.0.1:8995/login?error=Username+is+required",
+        "parent_state_id": "cls_f88ae0853d",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5aeb2e7df2__item_3_title",
+        "candidate_type": "controls",
+        "target": "#item-3-title",
+        "parent_state_id": "cls_5aeb2e7df2",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_ctrl_control_cls_5aeb2e7df2_a_btn_href___products_sort_za_men",
+        "candidate_type": "controls",
+        "target": "a.btn[href=\"/products?sort=za&menu=closed%22%5D",
+        "parent_state_id": "cls_5aeb2e7df2",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      },
+      {
+        "candidate_id": "q_nav_cls_5aeb2e7df2_nav_link_34360",
+        "candidate_type": "nav",
+        "target": "/products?sort=za&menu=closed",
+        "parent_state_id": "cls_5aeb2e7df2",
+        "unresolved_reason": "BUDGET_CEILING_REACHED"
+      }
+    ],
+    "unresolved_reasons_breakdown": {
+      "BUDGET_CEILING_REACHED": 34
+    },
+    "safety_blocked_actions": [],
+    "authentication_boundaries": {
+      "boundary_observed": true,
+      "login_url": "http://127.0.0.1:8995/login",
+      "authentication_attempted": true,
+      "authentication_verified": true,
+      "protected_routes_unlocked": [
+        "Unlocked view at http://127.0.0.1:8995/products"
+      ]
+    },
+    "investigation_uncertainty": 0.773,
+    "stopping_reason": "Configured probe ceiling reached (10/10)",
+    "completion_status": "budget_exhausted"
+  },
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8995/login",
+          "description": "Navigate to entry view: http://127.0.0.1:8995/login"
+        },
+        {
+          "action": "FILL",
+          "target": "input[name='user-name'], input[name='username'], input[name='email'], input[id='user-name'], input[id='username']",
+          "value": "benchmark_user",
+          "description": "Populate authorized username"
+        },
+        {
+          "action": "FILL",
+          "target": "input[name='password'], input[id='password']",
+          "value": "[REDACTED_SECRET]",
+          "description": "Populate authorized password"
+        },
+        {
+          "action": "CLICK",
+          "target": "input[type='submit'], button[type='submit'], input[name='login-button'], button#loginBtn",
+          "description": "Submit login authentication"
+        },
+        {
+          "action": "CLICK",
+          "target": "#cart-link",
+          "description": "Trigger #cart-link",
+          "expected_transition": "st_cart_shopping_cart_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-001bec67"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#checkout-button",
+          "description": "Trigger #checkout-button",
+          "expected_transition": "st_checkout_checkout_shipp_view",
+          "expected_url_fragment": "/checkout",
+          "expected_heading": "Checkout: Shipping Details",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-2907cdcc"
+          ]
+        },
+        {
+          "action": "SELECT_OPTION",
+          "target": "#product-sort",
+          "value": "za",
+          "description": "Select option 'za' on #product-sort",
+          "expected_transition": "st_products_products_catal_view_opt_za",
+          "expected_url_fragment": "",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-ab44bdca"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "required_blank_all_loginForm",
+          "description": "Verify form submission behavior for required_blank on required_blank_all_loginForm -> Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+          "expected_transition": "st_login_system_access__view_with_error",
+          "evidence_refs": [
+            "ev-e263ea05"
+          ]
+        },
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "#calculate-tax-btn",
+          "description": "Investigate interactive control response: a 'Calculate Tax' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+          "expected_transition": "st_cart_shopping_cart_view_with_error",
+          "evidence_refs": [
+            "ev-4c69bc6b"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "CLICK",
+          "target": "#cart-link",
+          "description": "Trigger #cart-link",
+          "expected_transition": "st_cart_shopping_cart_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-9edcd270"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.btn[href=\"/products\"]",
+          "description": "Trigger a.btn[href=\"/products\"]",
+          "expected_transition": "st_products_products_catal_view",
+          "expected_url_fragment": "/products",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-74b1fcea"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8995/products?sort=za&menu=open",
+          "description": "Navigate to http://127.0.0.1:8995/products?sort=za&menu=open",
+          "expected_transition": "st_products_products_catal_view_opt_za_menu_open",
+          "expected_url_fragment": "",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-1c7d92ad"
+          ]
+        }
+      ]
+    }
+  ]
+}

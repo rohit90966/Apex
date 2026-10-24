@@ -1,0 +1,271 @@
+{
+  "benchmark_name": "VerityQA \u00d7 ShopSphere Autonomous Bug Detection Validation",
+  "evaluator_version": "1.0.0",
+  "timestamp": 1792707160.079508,
+  "target_url": "http://127.0.0.1:5173",
+  "total_duration_seconds": 33.24,
+  "summary": {
+    "total_mutations": 8,
+    "detected_count": 8,
+    "missed_count": 0,
+    "untested_count": 0,
+    "inconclusive_count": 0,
+    "false_positive_count": 0,
+    "detection_rate": 1.0,
+    "execution_success_rate": 1.0,
+    "autonomous_detection_count": 0,
+    "oracle_assisted_detection_count": 8
+  },
+  "mutations": [
+    {
+      "mutation_id": "B01",
+      "feature": "Shopping Cart Grand Total Calculation",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "The cart grand total excludes the quantity multiplier for an item when quantity > 1 (e.g. sums unit price instead of line total).",
+      "expected_correct_behavior": "Grand total equals taxable subtotal + 10% tax, accurately reflecting unit price multiplied by quantity for all items.",
+      "defective_observable_behavior": "When an item has quantity = 2, the grand total is calculated omitting unit_price * (quantity - 1), causing a clear discrepancy between the sum of line totals + tax and the displayed grand total.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b01_test_mutation_b01_cart_grand_total_multiplier",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 3.426,
+        "error_message": "B01 Cart Grand Total defect: Expected '$313.48', observed '$163.49' (subtotal: $299.98, discount: -$15.00). Calculation omitted unit_price * (qty - 1).",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B01_b69d39.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.854,
+        "error_message": null,
+        "observed_value": {
+          "grand_total": "$313.48",
+          "subtotal": "$299.98",
+          "discount": "-$15.00"
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B02",
+      "feature": "Product Catalogue Price Sorting",
+      "affected_workflow": "Workflow A: Product Discovery",
+      "defect_description": "Selecting ascending price sorting ('Price: Low to High') renders products in descending order (highest to lowest).",
+      "expected_correct_behavior": "Products are sorted strictly in ascending order by price ($16.00, $19.50, $24.00, $29.00 ...).",
+      "defective_observable_behavior": "Products are displayed in descending price order ($249.00, $149.99, $119.00 ...) while the visible control displays 'Price: Low to High'.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b02_test_mutation_b02_reversed_price_sorting",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 1.283,
+        "error_message": "B02 Reversed Price Sorting defect: Ascending sort resulted in descending prices. First item $249.00 > second item $149.99. Full sequence: [249.0, 149.99, 119.0, 89.5, 85.0]",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B02_89d41e.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.35,
+        "error_message": null,
+        "observed_value": {
+          "first_price": "$16.00",
+          "last_price": "$249.00",
+          "sorted_prices": [
+            16.0,
+            19.5,
+            24.0,
+            29.0,
+            34.0
+          ]
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B03",
+      "feature": "Checkout Form Postal Code Validation",
+      "affected_workflow": "Workflow C: Checkout Validation",
+      "defect_description": "Submitting the checkout form with an empty postal code proceeds to complete the order despite the field being marked required.",
+      "expected_correct_behavior": "Submitting with an empty postal code fails validation, highlights the postal code field with an error, and prevents order submission.",
+      "defective_observable_behavior": "Submitting with an empty postal code is accepted without error, successfully navigating to /confirmation/:orderId.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b03_test_mutation_b03_required_postal_code_bypass",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 2.228,
+        "error_message": "B03 Validation Bypass defect: Empty postal code was accepted. Redirected to confirmation URL: 'http://127.0.0.1:5173/confirmation/ORD-1001'",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B03_71f1ad.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 2.082,
+        "error_message": null,
+        "observed_value": {
+          "blocked_url": "http://127.0.0.1:5173/checkout",
+          "error_displayed": true
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B04",
+      "feature": "Shopping Cart Item Removal Consistency",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "Clicking 'Remove' on a cart item decrements the header badge count, but leaves the line item in the cart table and order total calculation.",
+      "expected_correct_behavior": "Clicking 'Remove' removes the line item from the cart table, decrements the badge, and deducts the item price from subtotal and total.",
+      "defective_observable_behavior": "Header badge count decrements by item quantity, but the item remains visible in the cart table and its price remains included in subtotal and grand total.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b04_test_mutation_b04_inconsistent_remove_item",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 2.284,
+        "error_message": "B04 Inconsistent Item Removal defect: Header badge decremented to '0', but item prod-01 remains in cart table (subtotal: '$149.99').",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B04_68874d.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.816,
+        "error_message": null,
+        "observed_value": {
+          "badge": "0",
+          "cart_empty": true,
+          "subtotal": "$0.00"
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B05",
+      "feature": "Cart Totals Recalculation on Quantity Modification",
+      "affected_workflow": "Workflow B: Cart Management",
+      "defect_description": "Increasing or decreasing an item's quantity updates the item's line total, but fails to update the displayed cart subtotal and grand total.",
+      "expected_correct_behavior": "Modifying item quantity immediately recalculates the line total, cart subtotal, tax, and grand total in sync.",
+      "defective_observable_behavior": "Clicking '+' updates quantity (e.g. 1 -> 2) and line total (e.g. $149.99 -> $299.98), but cart subtotal and grand total retain their previous values (e.g. $149.99).",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b05_test_mutation_b05_stale_total_after_quantity_change",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 1.885,
+        "error_message": "B05 Stale Total defect: Line total updated to '$299.98', but cart subtotal remained stale at '$149.99' (expected '$299.98').",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B05_86d87e.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.494,
+        "error_message": null,
+        "observed_value": {
+          "line_total": "$299.98",
+          "subtotal": "$299.98"
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B06",
+      "feature": "Shopping Cart Session Persistence Across Page Reload",
+      "affected_workflow": "Workflow B: Cart Management & Workflow E: Cross-Page Consistency",
+      "defect_description": "Refreshing the browser unexpectedly clears cart contents despite documented persistence requirements.",
+      "expected_correct_behavior": "Cart items, quantities, and totals persist across page refreshes and browser reloads.",
+      "defective_observable_behavior": "Adding items to the cart and reloading the page resets the cart to empty (badge becomes 0 and cart shows 'Your Cart is Empty').",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b06_test_mutation_b06_cart_persistence_regression",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 1.984,
+        "error_message": "B06 Cart Persistence defect: Cart was unexpectedly wiped after page reload. Badge: '0', item present: False, empty state rendered: True.",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B06_8f9ebd.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.642,
+        "error_message": null,
+        "observed_value": {
+          "initial_badge": "1",
+          "reloaded_badge": "1",
+          "persisted": true
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B07",
+      "feature": "Promotional Discount Threshold Calculation",
+      "affected_workflow": "Workflow B: Cart Management & Workflow D: Order Completion",
+      "defect_description": "Promotional discount banner documents '$15 off orders over $100.00', but defective implementation requires >= $200.00.",
+      "expected_correct_behavior": "An order with subtotal >= $100.00 (e.g. $149.99) automatically receives the $15.00 promotional discount.",
+      "defective_observable_behavior": "An order with subtotal $149.99 receives $0.00 discount because the defective threshold is set to $200.00.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b07_test_mutation_b07_incorrect_discount_threshold",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 1.204,
+        "error_message": "B07 Incorrect Discount Threshold defect: Subtotal '$149.99' (>= $100.00) received discount '$0.00', expected '-$15.00'.",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B07_4989e3.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 1.083,
+        "error_message": null,
+        "observed_value": {
+          "subtotal": "$149.99",
+          "discount": "-$15.00"
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    },
+    {
+      "mutation_id": "B08",
+      "feature": "Storefront Product Card Navigation Target",
+      "affected_workflow": "Workflow A: Product Discovery",
+      "defect_description": "Clicking the product card for 'Smart Ergonomic Fitness Watch' (prod-02) navigates to 'Magnetic Wireless Charging Stand' (prod-04).",
+      "expected_correct_behavior": "Clicking 'Smart Ergonomic Fitness Watch' navigates to /products/prod-02 and displays fitness watch specifications.",
+      "defective_observable_behavior": "Clicking 'Smart Ergonomic Fitness Watch' navigates to /products/prod-04 and displays the wireless charging stand specifications.",
+      "autonomous_generated": false,
+      "validation_test_name": "test_b08_test_mutation_b08_wrong_product_detail_navigation",
+      "buggy_execution": {
+        "status": "FAILED",
+        "duration_seconds": 0.874,
+        "error_message": "B08 Wrong Product Detail Navigation defect: Clicked 'prod-02' (Fitness Watch) but navigated to 'http://127.0.0.1:5173/products/prod-04' displaying 'Magnetic Wireless Charging Stand'.",
+        "observed_value": null,
+        "screenshot_path": "D:\\Hackathon\\Code Apex\\artifacts\\benchmark_evidence\\defect_B08_e18c37.png",
+        "dom_snippet": "\n    <div id=\"root\"><div style=\"min-height: 100vh; display: flex; flex-direction: column;\"><header class=\"header\"><div class=\"header-container\"><a class=\"logo\" data-test=\"brand-logo\" aria-label=\"ShopSphere Home\" href=\"/\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg><span>ShopSphere</span></a"
+      },
+      "clean_execution": {
+        "status": "PASSED",
+        "duration_seconds": 0.618,
+        "error_message": null,
+        "observed_value": {
+          "url": "http://127.0.0.1:5173/products/prod-02",
+          "product_name": "Smart Ergonomic Fitness Watch"
+        },
+        "screenshot_path": null
+      },
+      "classification": "DETECTED",
+      "classification_rationale": "Defect successfully reproduced on buggy profile with assertion failure and evidence, and passed cleanly on clean profile."
+    }
+  ]
+}

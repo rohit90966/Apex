@@ -1,0 +1,1934 @@
+{
+  "overview": {
+    "target_url": "http://127.0.0.1:5173/",
+    "final_url": "http://127.0.0.1:5173/?category=Electronics",
+    "http_status": 200,
+    "user_description": null,
+    "investigation_id": "inv_shopsphere_phase1_journey",
+    "start_time": "2026-10-23 04:44:40",
+    "end_time": "2026-10-23 04:50:27",
+    "duration_seconds": 346.57,
+    "browser_execution_time": 23.59,
+    "status": "budget_exhausted",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 7,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 295.633,
+    "retries_count": 0,
+    "pages_discovered": 4,
+    "meaningful_states_discovered": 6,
+    "candidates_discovered": 72,
+    "actions_evaluated": 12,
+    "actions_attempted": 12,
+    "actions_successful": 10,
+    "actions_verified_effects": 8,
+    "actions_failed": 2,
+    "actions_safety_blocked": 0,
+    "transitions_observed": 8,
+    "route_transitions_observed": 7,
+    "same_route_state_transitions": 1,
+    "in_page_mutations_observed": 1,
+    "pending_frontier_count": 50,
+    "evidence_ledger_count": 13,
+    "deduplicated_candidates_count": 201,
+    "total_headings_discovered": 22,
+    "total_forms_discovered": 6,
+    "total_inputs_discovered": 12,
+    "total_buttons_discovered": 29,
+    "total_links_discovered": 27,
+    "stopping_reason": "Configured probe ceiling reached (12/12)"
+  },
+  "application_understanding": "The application at http://127.0.0.1:5173/ presents an interactive web service. Operated within public/unauthenticated surface. Observed key functional landmarks include: Genuine Leather Minimalist Wallet, Hardcover Dotted Grid Journal (A5), Order Summary, Precision Barista Pour-Over Coffee Maker, Shopping Cart (1 item). Extracted 6 distinct UI states across 8 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'None provided'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "To display a selection of products and allow users to search and navigate through different categories.",
+    "application_domain": "e-commerce",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "Quantum Wireless Noise-Cancelling Headphones",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Smart Ergonomic Fitness Watch",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Ultra-Slim 4K External Monitor",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Magnetic Wireless Charging Stand",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Classic Merino Wool Crewneck Sweater",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "All-Weather Commuter Rain Jacket",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Organic Cotton Everyday T-Shirt",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Genuine Leather Minimalist Wallet",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Precision Barista Pour-Over Coffee Maker",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Cast Iron Pre-Seasoned Dutch Oven",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Aromatherapy Ceramic Diffuser",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Stainless Steel Insulated Water Bottle",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Architectural Design & Space Monograph",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Hardcover Dotted Grid Journal (A5)",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Vintage Brass Fountain Pen Set",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Shopping Cart (1 item)",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Order Summary",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Checkout & Order Review",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Shipping Information",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Items in Order (1):",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Sign In to ShopSphere",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "[data-test=\"brand-logo\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "ShopSphere Home",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#search-input",
+        "semantic_role": "input",
+        "inferred_purpose": "Search product catalogue",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "[data-test=\"cart-link\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Shopping cart, 0 items",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "[data-test=\"login-link\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Sign In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"category-filter-all\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "All",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "[data-test=\"category-filter-electronics\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Electronics",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"category-filter-apparel\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Apparel",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "[data-test=\"category-filter-home---kitchen\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Home & Kitchen",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "[data-test=\"category-filter-books---stationery\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Books & Stationery",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "#sort-select",
+        "semantic_role": "select",
+        "inferred_purpose": "Sort products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "a[href=\"/products/prod-01\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Quantum Wireless Noise-Cancelling Headphones",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"product-title-prod-01\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Quantum Wireless Noise-Cancelling Headphones",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_12",
+        "selector": "[data-test=\"add-to-cart-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Add Quantum Wireless Noise-Cancelling Headphones to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/products/prod-02\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Smart Ergonomic Fitness Watch",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "[data-test=\"product-title-prod-02\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Smart Ergonomic Fitness Watch",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/products/prod-03\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Ultra-Slim 4K External Monitor",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "[data-test=\"product-title-prod-03\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Ultra-Slim 4K External Monitor",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_19",
+        "selector": "a[href=\"/products/prod-04\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View details for Magnetic Wireless Charging Stand",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"cart-item-title-prod-01\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Quantum Wireless Noise-Cancelling Headphones",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "[data-test=\"cart-qty-dec-prod-01\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Decrease Quantum Wireless Noise-Cancelling Headphones quantity",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"cart-qty-inc-prod-01\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Increase Quantum Wireless Noise-Cancelling Headphones quantity",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "[data-test=\"cart-remove-prod-01\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Remove Quantum Wireless Noise-Cancelling Headphones from cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "[data-test=\"checkout-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Proceed to Checkout",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#customer_name",
+        "semantic_role": "input",
+        "inferred_purpose": "Jane Doe",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#email",
+        "semantic_role": "input",
+        "inferred_purpose": "jane@example.com",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#address",
+        "semantic_role": "input",
+        "inferred_purpose": "123 Market Street, Apt 4B",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "#city",
+        "semantic_role": "input",
+        "inferred_purpose": "San Francisco",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "#state",
+        "semantic_role": "input",
+        "inferred_purpose": "CA",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "#postal_code",
+        "semantic_role": "input",
+        "inferred_purpose": "94103",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "#country",
+        "semantic_role": "select",
+        "inferred_purpose": "United States Canada United Kingdom Australia",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "[data-test=\"place-order-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Place Simulated Order",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "[data-test=\"input-login-email\"]",
+        "semantic_role": "input",
+        "inferred_purpose": "user@shopsphere.demo",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "[data-test=\"input-login-password\"]",
+        "semantic_role": "input",
+        "inferred_purpose": "password123",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"login-submit-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Sign In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "form_1",
+        "target_action": "",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_2",
+        "target_action": "",
+        "required_fields": [
+          "customer_name",
+          "email",
+          "address",
+          "city",
+          "state",
+          "postal_code"
+        ],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_root_quantum_wirele_view",
+      "st_root_quantum_wirele_c1_with_error",
+      "st_cart_shopping_cart__c1",
+      "st_root_quantum_wirele_c1",
+      "st_checkout_checkout__orde_c1",
+      "st_login_sign_in_to_sho_c1"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_root_quantum_wirele_view' on http://127.0.0.1:5173/ with 58 controls and 1 forms.",
+      "Observed state 'st_root_quantum_wirele_c1_with_error' on http://127.0.0.1:5173/ with 58 controls and 1 forms.",
+      "Form validation constraint enforced on http://127.0.0.1:5173/: 'Added Quantum Wireless Noise-Cancelling Headphones to cart' ([role=\"status\"])",
+      "Observed state 'st_cart_shopping_cart__c1' on http://127.0.0.1:5173/cart with 9 controls and 1 forms.",
+      "Observed state 'st_root_quantum_wirele_c1' on http://127.0.0.1:5173/ with 58 controls and 1 forms.",
+      "Observed state 'st_checkout_checkout__orde_c1' on http://127.0.0.1:5173/checkout with 12 controls and 2 forms.",
+      "Observed state 'st_login_sign_in_to_sho_c1' on http://127.0.0.1:5173/login with 7 controls and 2 forms.",
+      "Observed state 'st_root_quantum_wirele_c1' on http://127.0.0.1:5173/?category=Electronics with 22 controls and 1 forms."
+    ],
+    "inferred_hypotheses": [
+      "The presence of a search bar for product discovery.",
+      "The availability of multiple product categories for navigation.",
+      "The inclusion of a shopping cart indicator.",
+      "The cart always displays the correct number of items",
+      "The order summary accurately reflects the total cost of items in the cart",
+      "The presence of a search bar for product catalog, indicating a consistent user experience across the site.",
+      "The requirement for essential fields like full name, email, and address in the shipping information form.",
+      "The login form always requires an email and password.",
+      "The page title and heading consistently refer to ShopSphere."
+    ],
+    "unknowns": [
+      "Potential security risks associated with user authentication and data privacy.",
+      "Risk of displaying out-of-stock or unavailable products.",
+      "Risk of incorrect pricing or product information.",
+      "Incorrect item quantity adjustments",
+      "Security of payment and personal information",
+      "Cart abandonment due to poor user experience",
+      "Incorrect or incomplete shipping information leading to delivery issues.",
+      "Security risks associated with handling customer payment and personal information.",
+      "Potential for unauthorized access if login credentials are not properly secured.",
+      "Risk of exposing user data through insecure form handling."
+    ],
+    "investigation_uncertainty": 0.806,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": false,
+    "login_url": null,
+    "credentials_available": false,
+    "credentials_source": null,
+    "authentication_attempted": false,
+    "authentication_verified": false,
+    "verification_signals": [],
+    "protected_functionality_accessible": [],
+    "unresolved_or_blocked_areas": []
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_root_quantum_wirele_view",
+      "route_or_url": "http://127.0.0.1:5173/",
+      "apparent_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 0 items",
+        "a: Sign In",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view",
+        "ev-21f8c23e"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_quantum_wirele_c1_with_error",
+      "route_or_url": "http://127.0.0.1:5173/",
+      "apparent_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Validation Alert: Added Quantum Wireless Noise-Cancelling... | Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Sign In",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-21f8c23e",
+        "ev-7d831971"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_cart_shopping_cart__c1",
+      "route_or_url": "http://127.0.0.1:5173/cart",
+      "apparent_purpose": "Shopping Cart (1 item) (Cart View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Sign In",
+        "a: Quantum Wireless Noise-Cancelling Headphones"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-7d831971",
+        "ev-a80c40d4",
+        "ev-9a5beda7"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_quantum_wirele_c1",
+      "route_or_url": "http://127.0.0.1:5173/?category=Electronics",
+      "apparent_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Account",
+        "button: All"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-a80c40d4",
+        "ev-9a5beda7",
+        "ev-535f6a26"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_checkout_checkout__orde_c1",
+      "route_or_url": "http://127.0.0.1:5173/checkout",
+      "apparent_purpose": "Checkout & Order Review (Checkout View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Sign In",
+        "input: Jane Doe"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-201fcfb2",
+        "ev-f316c6bf"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_login_sign_in_to_sho_c1",
+      "route_or_url": "http://127.0.0.1:5173/login",
+      "apparent_purpose": "Sign In to ShopSphere (Login View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: ShopSphere Home",
+        "input: Search product catalogue",
+        "a: Shopping cart, 1 items",
+        "a: Sign In",
+        "input: user@shopsphere.demo"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-b49d50f4",
+        "ev-535f6a26"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_root_quantum_wirele_view",
+      "action_taken": "[Validation / Constraint Branch] CLICK_CONTROL:control_cls_cebbf1418c__data_test__add_to_cart_button__ on [data-test=\"add-to-cart-button\"]",
+      "target_element": "[data-test=\"add-to-cart-button\"]",
+      "to_state": "st_root_quantum_wirele_c1_with_error",
+      "observed_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "evidence_id": "ev-21f8c23e",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_quantum_wirele_c1_with_error",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_cebbf1418c__data_test__cart_link__ on [data-test=\"cart-link\"]",
+      "target_element": "[data-test=\"cart-link\"]",
+      "to_state": "st_cart_shopping_cart__c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-7d831971",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart__c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_3c5b3c4175__data_test__brand_logo__ on [data-test=\"brand-logo\"]",
+      "target_element": "[data-test=\"brand-logo\"]",
+      "to_state": "st_root_quantum_wirele_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-a80c40d4",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_root_quantum_wirele_c1",
+      "action_taken": "[Exploratory / Return Branch] NAVIGATE_LINK:nav_link_88173 on /cart",
+      "target_element": "/cart",
+      "to_state": "st_cart_shopping_cart__c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-9a5beda7",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart__c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_3c5b3c4175__data_test__checkout_button__ on [data-test=\"checkout-button\"]",
+      "target_element": "[data-test=\"checkout-button\"]",
+      "to_state": "st_checkout_checkout__orde_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-201fcfb2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_checkout_checkout__orde_c1",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_eb7312db1d__data_test__cart_link__ on [data-test=\"cart-link\"]",
+      "target_element": "[data-test=\"cart-link\"]",
+      "to_state": "st_cart_shopping_cart__c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-f316c6bf",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart__c1",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_75313 on /login",
+      "target_element": "/login",
+      "to_state": "st_login_sign_in_to_sho_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-b49d50f4",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_login_sign_in_to_sho_c1",
+      "action_taken": "[Validation / Constraint Branch] SET_NOVALIDATE:boundary_password_length_form_2_password on password",
+      "target_element": "password",
+      "to_state": "st_root_quantum_wirele_c1",
+      "observed_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "evidence_id": "ev-535f6a26",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-ad01d535: Investigate interactive control response: button 'Add Quantum Wireless Noise-Cancelling Headphones to cart' resulted in Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+    "Transition trans-0e035f1c: Investigate interactive control response: a 'Shopping cart, 0 items' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-fcc3180b: Investigate interactive control response: a 'ShopSphere Home' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-4253c5a4: Verify route transition reachability to /cart resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-d4cfbb54: Investigate interactive control response: button 'Proceed to Checkout' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-eeaa2ab2: Investigate interactive control response: a 'Shopping cart, 1 items' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-4f1e31f1: Verify route transition reachability to /login resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-2972569c: Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password resulted in Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "RULE-VAL-001",
+      "description": "Form validation constraint enforced: 'Added Quantum Wireless Noise-Cancelling Headphones to cart' displayed on invalid or incomplete submission.",
+      "category": "observed_behavior",
+      "source": "Live DOM Element: [role=\"status\"]",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated without required form fields populated.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "explored_states_count": 6,
+    "unexplored_items_count": 50,
+    "blocked_items_count": 0,
+    "unexplored_candidates": [
+      {
+        "target": "form_happy_form_1",
+        "rationale": "Verify form submission behavior for happy on form_happy_form_1",
+        "category": "discovery",
+        "priority": 1.049,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "required_blank_all_form_1",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+        "category": "discovery",
+        "priority": 1.049,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"brand-logo\"]",
+        "rationale": "Investigate interactive control response: a 'ShopSphere Home'",
+        "category": "discovery",
+        "priority": 0.956,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"login-link\"]",
+        "rationale": "Investigate interactive control response: a 'Sign In'",
+        "category": "discovery",
+        "priority": 1.06,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"category-filter-apparel\"]",
+        "rationale": "Investigate interactive control response: button 'Apparel'",
+        "category": "discovery",
+        "priority": 1.202,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"category-filter-home---kitchen\"]",
+        "rationale": "Investigate interactive control response: button 'Home & Kitchen'",
+        "category": "discovery",
+        "priority": 1.202,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"category-filter-books---stationery\"]",
+        "rationale": "Investigate interactive control response: button 'Books & Stationery'",
+        "category": "discovery",
+        "priority": 1.202,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "#sort-select",
+        "rationale": "Investigate interactive control response: select 'Sort products'",
+        "category": "discovery",
+        "priority": 1.202,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "[data-test=\"product-title-prod-01\"]",
+        "rationale": "Investigate interactive control response: a 'Quantum Wireless Noise-Cancelling Headphones'",
+        "category": "discovery",
+        "priority": 0.75,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.975,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/login",
+        "rationale": "Verify route transition reachability to /login",
+        "category": "discovery",
+        "priority": 0.87,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/products/prod-01",
+        "rationale": "Verify route transition reachability to /products/prod-01",
+        "category": "discovery",
+        "priority": 1.144,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/products/prod-02",
+        "rationale": "Verify route transition reachability to /products/prod-02",
+        "category": "discovery",
+        "priority": 1.144,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/products/prod-03",
+        "rationale": "Verify route transition reachability to /products/prod-03",
+        "category": "discovery",
+        "priority": 1.144,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      },
+      {
+        "target": "/products/prod-04",
+        "rationale": "Verify route transition reachability to /products/prod-04",
+        "category": "discovery",
+        "priority": 1.144,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Configured probe ceiling reached (12/12))"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Verify form submission behavior for happy on form_happy_form_1",
+      "Verify form submission behavior for required_blank on required_blank_all_form_1",
+      "Investigate interactive control response: a 'ShopSphere Home'"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_root_quantum_wirele_view",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of http://127.0.0.1:5173/ with 58 interactive controls and 1 forms",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_step_0_2f36e4ff.png"
+    },
+    {
+      "evidence_id": "ev-21f8c23e",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__add_to_cart_button__]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_view",
+      "screenshot": "investigate_probe_after_190b42f6.png"
+    },
+    {
+      "evidence_id": "ev-7d831971",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_c1_with_error",
+      "screenshot": "investigate_probe_after_069e82f6.png"
+    },
+    {
+      "evidence_id": "ev-a80c40d4",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_3c5b3c4175__data_test__brand_logo__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart__c1",
+      "screenshot": "investigate_probe_after_f3a193e6.png"
+    },
+    {
+      "evidence_id": "ev-9a5beda7",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_cebbf1418c_nav_link_88173]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_quantum_wirele_c1",
+      "screenshot": "investigate_probe_after_3b06453f.png"
+    },
+    {
+      "evidence_id": "ev-201fcfb2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_3c5b3c4175__data_test__checkout_button__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart__c1",
+      "screenshot": "investigate_probe_after_c39ecec6.png"
+    },
+    {
+      "evidence_id": "ev-f316c6bf",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_eb7312db1d__data_test__cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_checkout_checkout__orde_c1",
+      "screenshot": "investigate_probe_after_5dae6f7a.png"
+    },
+    {
+      "evidence_id": "ev-b49d50f4",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_3c5b3c4175_nav_link_75313]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_cart_shopping_cart__c1",
+      "screenshot": "investigate_probe_after_756a079c.png"
+    },
+    {
+      "evidence_id": "ev-535f6a26",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_7c6f45f964_boundary_password_length_form_2_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "state_ref": "st_login_sign_in_to_sho_c1",
+      "screenshot": "investigate_probe_after_04c69a8d.png"
+    },
+    {
+      "evidence_id": "ev-d6e2b450",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_reflect_60]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_c1",
+      "screenshot": "investigate_probe_after_33181344.png"
+    },
+    {
+      "evidence_id": "ev-bc6a2bec",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_reflect_62]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_c1",
+      "screenshot": "investigate_probe_after_373228e7.png"
+    },
+    {
+      "evidence_id": "ev-2042d88a",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_root_quantum_wirele_c1",
+      "screenshot": "investigate_probe_after_d173af44.png"
+    },
+    {
+      "evidence_id": "ev-e48b2833",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_root_quantum_wirele_c1",
+      "screenshot": "investigate_probe_after_91773ac3.png"
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried."
+  ],
+  "confirmed_bug_leads": [
+    {
+      "id": "lead_e9303887",
+      "title": "Bypass: Password field 'password' must enforce minimum length validation",
+      "oracle_type": "CONVENTION",
+      "strength": "MEDIUM",
+      "probe_family": "forms",
+      "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+      "state_class": "cls_7c6f45f964",
+      "target_desc": "password",
+      "steps": [
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "",
+            "label": "",
+            "css": "input",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "A",
+          "key_to_press": null
+        }
+      ],
+      "expected": {
+        "text": "Submission should be rejected: Reject submission with length validation message when 'password' is < 6 characters",
+        "provenance": "form_validation_rule"
+      },
+      "actual": {
+        "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Password field 'password' must enforce minimum length validation"
+      },
+      "evidence_ids": [
+        "probe_probe_73c31196",
+        "st_root_quantum_wirele_c1"
+      ],
+      "before_screenshot_id": "investigate_probe_before_9f5f96ea.png",
+      "after_screenshot_id": "investigate_probe_after_120c784c.png",
+      "network_excerpt": {
+        "request_count": 2,
+        "status_4xx_count": 0,
+        "status_5xx_count": 0,
+        "endpoints": [
+          "http://127.0.0.1:5173/api/categories",
+          "http://127.0.0.1:5173/api/products"
+        ]
+      },
+      "console_excerpt": null,
+      "severity_guess": "MEDIUM",
+      "status": "CONFIRMED",
+      "confirmation": {
+        "runs": 2,
+        "passed": 2
+      }
+    }
+  ],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/",
+          "description": "Navigate to entry view: http://127.0.0.1:5173/"
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"cart-link\"]",
+          "description": "Trigger [data-test=\"cart-link\"]",
+          "expected_transition": "st_cart_shopping_cart__c1",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart (1 item)",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-7d831971"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"brand-logo\"]",
+          "description": "Trigger [data-test=\"brand-logo\"]",
+          "expected_transition": "st_root_quantum_wirele_c1",
+          "expected_url_fragment": "",
+          "expected_heading": "Quantum Wireless Noise-Cancelling Headphones",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-a80c40d4"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"checkout-button\"]",
+          "description": "Trigger [data-test=\"checkout-button\"]",
+          "expected_transition": "st_checkout_checkout__orde_c1",
+          "expected_url_fragment": "/checkout",
+          "expected_heading": "Checkout & Order Review",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-201fcfb2"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/login",
+          "description": "Navigate to http://127.0.0.1:5173/login",
+          "expected_transition": "st_login_sign_in_to_sho_c1",
+          "expected_url_fragment": "/login",
+          "expected_heading": "Sign In to ShopSphere",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-b49d50f4"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "[data-test=\"add-to-cart-button\"]",
+          "description": "Investigate interactive control response: button 'Add Quantum Wireless Noise-Cancelling Headphones to cart' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+          "expected_transition": "st_root_quantum_wirele_c1_with_error",
+          "evidence_refs": [
+            "ev-21f8c23e"
+          ]
+        },
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "password",
+          "description": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+          "expected_transition": "st_root_quantum_wirele_c1",
+          "evidence_refs": [
+            "ev-535f6a26"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:5173/cart",
+          "description": "Navigate to http://127.0.0.1:5173/cart",
+          "expected_transition": "st_cart_shopping_cart__c1",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart (1 item)",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-9a5beda7"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"cart-link\"]",
+          "description": "Trigger [data-test=\"cart-link\"]",
+          "expected_transition": "st_cart_shopping_cart__c1",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart (1 item)",
+          "expected_selector": "[data-test=\"brand-logo\"]",
+          "evidence_refs": [
+            "ev-f316c6bf"
+          ]
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "journey_purchase",
+      "name": "E-Commerce Purchase Funnel",
+      "description": "Catalogue item selection -> Cart accumulation -> Cart modification -> Checkout navigation -> Order confirmation",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Add Product 1 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_cebbf1418c__data_test__add_to_cart_button__",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_0"
+        },
+        {
+          "step_index": 1,
+          "name": "Add Product 2 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "completed": true,
+          "executed_question_id": null,
+          "failure_reason": null,
+          "evidence_id": null
+        },
+        {
+          "step_index": 2,
+          "name": "Navigate to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "shopping-cart|cart-link|view cart|/cart|\\bcart\\b",
+          "expected_role": "link",
+          "required_state_class": null,
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_cebbf1418c__data_test__cart_link__",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_2"
+        },
+        {
+          "step_index": 3,
+          "name": "Modify Cart Quantity",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "cart-qty|qty-plus|qty-inc|quantity|increase|\\+|add-qty|qty-minus|decrement|-|remove|delete|promo",
+          "expected_role": "button",
+          "required_state_class": null,
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_3c5b3c4175__data_test__brand_logo__",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_3"
+        },
+        {
+          "step_index": 4,
+          "name": "Proceed to Checkout",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "checkout|proceed",
+          "expected_role": "button",
+          "required_state_class": null,
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_3c5b3c4175__data_test__checkout_button__",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_4"
+        },
+        {
+          "step_index": 5,
+          "name": "Fill and Submit Checkout Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "checkout|continue|shipping|finish",
+          "expected_role": "form",
+          "required_state_class": null,
+          "completed": false,
+          "executed_question_id": null,
+          "failure_reason": "Step target 'checkout|continue|shipping|finish' unreachable from state 'cls_3c5b3c4175'",
+          "evidence_id": null
+        },
+        {
+          "step_index": 6,
+          "name": "Confirm Order",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "finish|place order|confirm|complete",
+          "expected_role": "button",
+          "required_state_class": null,
+          "completed": false,
+          "executed_question_id": null,
+          "failure_reason": null,
+          "evidence_id": null
+        }
+      ],
+      "current_step_index": 5,
+      "status": "BLOCKED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": "Step target 'checkout|continue|shipping|finish' unreachable from state 'cls_3c5b3c4175'",
+      "evidence_refs": [
+        "ev_journey_journey_purchase_0",
+        "ev_journey_journey_purchase_2",
+        "ev_journey_journey_purchase_3",
+        "ev_journey_journey_purchase_4"
+      ]
+    }
+  ],
+  "active_journey_id": null,
+  "behavior_model": {
+    "state_classes": {
+      "st_root_quantum_wirele_view": {
+        "id": "st_root_quantum_wirele_view",
+        "class_id": "st_root_quantum_wirele_view",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1_with_error"
+        ]
+      },
+      "st_root_quantum_wirele_c1_with_error": {
+        "id": "st_root_quantum_wirele_c1_with_error",
+        "class_id": "st_root_quantum_wirele_c1_with_error",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Validation Alert: Added Quantum Wireless Noise-Cancelling... | Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      "st_cart_shopping_cart__c1": {
+        "id": "st_cart_shopping_cart__c1",
+        "class_id": "st_cart_shopping_cart__c1",
+        "primary_purpose": "Shopping Cart (1 item) (Cart View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/cart",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"cart-item-title-prod-01\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1",
+          "st_checkout_checkout__orde_c1",
+          "st_login_sign_in_to_sho_c1"
+        ]
+      },
+      "st_root_quantum_wirele_c1": {
+        "id": "st_root_quantum_wirele_c1",
+        "class_id": "st_root_quantum_wirele_c1",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/?category=Electronics",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      "st_checkout_checkout__orde_c1": {
+        "id": "st_checkout_checkout__orde_c1",
+        "class_id": "st_checkout_checkout__orde_c1",
+        "primary_purpose": "Checkout & Order Review (Checkout View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/checkout",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "#customer_name"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      "st_login_sign_in_to_sho_c1": {
+        "id": "st_login_sign_in_to_sho_c1",
+        "class_id": "st_login_sign_in_to_sho_c1",
+        "primary_purpose": "Sign In to ShopSphere (Login View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/login",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"input-login-email\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1"
+        ]
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_quantum_wirele_c1_with_error",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__add_to_cart_button__",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_c1_with_error",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_root_quantum_wirele_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_3c5b3c4175__data_test__brand_logo__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_c1",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "NAVIGATE_LINK:nav_link_88173",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_checkout_checkout__orde_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_3c5b3c4175__data_test__checkout_button__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout__orde_c1",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_eb7312db1d__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_login_sign_in_to_sho_c1",
+        "trigger_action": "NAVIGATE_LINK:nav_link_75313",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_sho_c1",
+        "target_class": "st_root_quantum_wirele_c1",
+        "trigger_action": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Form validation constraint enforced: 'Added Quantum Wireless Noise-Cancelling Headphones to cart' displayed on invalid or incomplete submission.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-VAL-001"
+        ]
+      },
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/",
+            "description": "Navigate to entry view: http://127.0.0.1:5173/"
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"cart-link\"]",
+            "description": "Trigger [data-test=\"cart-link\"]",
+            "expected_transition": "st_cart_shopping_cart__c1",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart (1 item)",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-7d831971"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"brand-logo\"]",
+            "description": "Trigger [data-test=\"brand-logo\"]",
+            "expected_transition": "st_root_quantum_wirele_c1",
+            "expected_url_fragment": "",
+            "expected_heading": "Quantum Wireless Noise-Cancelling Headphones",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-a80c40d4"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"checkout-button\"]",
+            "description": "Trigger [data-test=\"checkout-button\"]",
+            "expected_transition": "st_checkout_checkout__orde_c1",
+            "expected_url_fragment": "/checkout",
+            "expected_heading": "Checkout & Order Review",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-201fcfb2"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/login",
+            "description": "Navigate to http://127.0.0.1:5173/login",
+            "expected_transition": "st_login_sign_in_to_sho_c1",
+            "expected_url_fragment": "/login",
+            "expected_heading": "Sign In to ShopSphere",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-b49d50f4"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Validation & Constraint Verification",
+        "steps": [
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "[data-test=\"add-to-cart-button\"]",
+            "description": "Investigate interactive control response: button 'Add Quantum Wireless Noise-Cancelling Headphones to cart' -> Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched.",
+            "expected_transition": "st_root_quantum_wirele_c1_with_error",
+            "evidence_refs": [
+              "ev-21f8c23e"
+            ]
+          },
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "password",
+            "description": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+            "expected_transition": "st_root_quantum_wirele_c1",
+            "evidence_refs": [
+              "ev-535f6a26"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:5173/cart",
+            "description": "Navigate to http://127.0.0.1:5173/cart",
+            "expected_transition": "st_cart_shopping_cart__c1",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart (1 item)",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-9a5beda7"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"cart-link\"]",
+            "description": "Trigger [data-test=\"cart-link\"]",
+            "expected_transition": "st_cart_shopping_cart__c1",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart (1 item)",
+            "expected_selector": "[data-test=\"brand-logo\"]",
+            "evidence_refs": [
+              "ev-f316c6bf"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [
+      {
+        "id": "lead_e9303887",
+        "title": "Bypass: Password field 'password' must enforce minimum length validation",
+        "oracle_type": "CONVENTION",
+        "strength": "MEDIUM",
+        "probe_family": "forms",
+        "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+        "state_class": "cls_7c6f45f964",
+        "target_desc": "password",
+        "steps": [
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "",
+              "label": "",
+              "css": "input",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "A",
+            "key_to_press": null
+          }
+        ],
+        "expected": {
+          "text": "Submission should be rejected: Reject submission with length validation message when 'password' is < 6 characters",
+          "provenance": "form_validation_rule"
+        },
+        "actual": {
+          "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Password field 'password' must enforce minimum length validation"
+        },
+        "evidence_ids": [
+          "probe_probe_73c31196",
+          "st_root_quantum_wirele_c1"
+        ],
+        "before_screenshot_id": "investigate_probe_before_9f5f96ea.png",
+        "after_screenshot_id": "investigate_probe_after_120c784c.png",
+        "network_excerpt": {
+          "request_count": 2,
+          "status_4xx_count": 0,
+          "status_5xx_count": 0,
+          "endpoints": [
+            "http://127.0.0.1:5173/api/categories",
+            "http://127.0.0.1:5173/api/products"
+          ]
+        },
+        "console_excerpt": null,
+        "severity_guess": "MEDIUM",
+        "status": "CONFIRMED",
+        "confirmation": {
+          "runs": 2,
+          "passed": 2
+        }
+      }
+    ],
+    "transitions": [
+      {
+        "source_class": "st_root_quantum_wirele_view",
+        "target_class": "st_root_quantum_wirele_c1_with_error",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__add_to_cart_button__",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_c1_with_error",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_cebbf1418c__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_root_quantum_wirele_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_3c5b3c4175__data_test__brand_logo__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root_quantum_wirele_c1",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "NAVIGATE_LINK:nav_link_88173",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_checkout_checkout__orde_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_3c5b3c4175__data_test__checkout_button__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout__orde_c1",
+        "target_class": "st_cart_shopping_cart__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_eb7312db1d__data_test__cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart__c1",
+        "target_class": "st_login_sign_in_to_sho_c1",
+        "trigger_action": "NAVIGATE_LINK:nav_link_75313",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_sho_c1",
+        "target_class": "st_root_quantum_wirele_c1",
+        "trigger_action": "SET_NOVALIDATE:boundary_password_length_form_2_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_root_quantum_wirele_view",
+        "class_id": "st_root_quantum_wirele_view",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View)",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1_with_error"
+        ]
+      },
+      {
+        "id": "st_root_quantum_wirele_c1_with_error",
+        "class_id": "st_root_quantum_wirele_c1_with_error",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Validation Alert: Added Quantum Wireless Noise-Cancelling... | Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      {
+        "id": "st_cart_shopping_cart__c1",
+        "class_id": "st_cart_shopping_cart__c1",
+        "primary_purpose": "Shopping Cart (1 item) (Cart View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/cart",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"cart-item-title-prod-01\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1",
+          "st_checkout_checkout__orde_c1",
+          "st_login_sign_in_to_sho_c1"
+        ]
+      },
+      {
+        "id": "st_root_quantum_wirele_c1",
+        "class_id": "st_root_quantum_wirele_c1",
+        "primary_purpose": "Quantum Wireless Noise-Cancelling Headphones (Entry View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/?category=Electronics",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"category-filter-all\"]"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      {
+        "id": "st_checkout_checkout__orde_c1",
+        "class_id": "st_checkout_checkout__orde_c1",
+        "primary_purpose": "Checkout & Order Review (Checkout View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/checkout",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "#customer_name"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart__c1"
+        ]
+      },
+      {
+        "id": "st_login_sign_in_to_sho_c1",
+        "class_id": "st_login_sign_in_to_sho_c1",
+        "primary_purpose": "Sign In to ShopSphere (Login View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:5173/login",
+        "key_controls": [
+          "[data-test=\"brand-logo\"]",
+          "#search-input",
+          "[data-test=\"cart-link\"]",
+          "[data-test=\"login-link\"]",
+          "[data-test=\"input-login-email\"]"
+        ],
+        "outbound_transitions": [
+          "st_root_quantum_wirele_c1"
+        ]
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: http://127.0.0.1:5173/\n        page.goto('http://127.0.0.1:5173/', wait_until='domcontentloaded')\n        # Step 2: Trigger [data-test=\"cart-link\"] [Evidence: ev-7d831971]\n        page.locator('[data-test=\"cart-link\"]').click()\n        page.wait_for_timeout(400)\n        assert '/cart' in page.url, f'Expected /cart in URL, got {page.url}'\n        assert 'Shopping Cart (1 item)' in page.locator('body').inner_text(), f'Expected heading/landmark Shopping Cart (1 item)'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 3: Trigger [data-test=\"brand-logo\"] [Evidence: ev-a80c40d4]\n        page.locator('[data-test=\"brand-logo\"]').click()\n        page.wait_for_timeout(400)\n        assert 'Quantum Wireless Noise-Cancelling Headphones' in page.locator('body').inner_text(), f'Expected heading/landmark Quantum Wireless Noise-Cancelling Headphones'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 4: Trigger [data-test=\"checkout-button\"] [Evidence: ev-201fcfb2]\n        page.locator('[data-test=\"checkout-button\"]').click()\n        page.wait_for_timeout(400)\n        assert '/checkout' in page.url, f'Expected /checkout in URL, got {page.url}'\n        assert 'Checkout & Order Review' in page.locator('body').inner_text(), f'Expected heading/landmark Checkout & Order Review'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n        # Step 5: Navigate to http://127.0.0.1:5173/login [Evidence: ev-b49d50f4]\n        page.goto('http://127.0.0.1:5173/login', wait_until='domcontentloaded')\n        assert '/login' in page.url, f'Expected /login in URL, got {page.url}'\n        assert 'Sign In to ShopSphere' in page.locator('body').inner_text(), f'Expected heading/landmark Sign In to ShopSphere'\n        assert page.locator('[data-test=\"brand-logo\"]').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792710950.986043,
+      "from_state_id": "st_root_quantum_wirele_view",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__add_to_cart_button__",
+      "selected_action": "[data-test=\"add-to-cart-button\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add Quantum Wireless Noise-Cancelling Headphones to cart'",
+      "priority_score": 0.4,
+      "observed_effect": "VALIDATION_FEEDBACK",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_quantum_wirele_c1_with_error",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": true
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792710996.822282,
+      "from_state_id": "st_root_quantum_wirele_c1_with_error",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__cart_link__",
+      "selected_action": "[data-test=\"cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Shopping cart, 0 items'",
+      "priority_score": 0.7915,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart__c1",
+      "to_url": "http://127.0.0.1:5173/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792710998.8763561,
+      "from_state_id": "st_cart_shopping_cart__c1",
+      "from_url": "http://127.0.0.1:5173/cart",
+      "question_id": "q_ctrl_control_cls_3c5b3c4175__data_test__brand_logo__",
+      "selected_action": "[data-test=\"brand-logo\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'ShopSphere Home'",
+      "priority_score": 0.7105,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792711001.087251,
+      "from_state_id": "st_root_quantum_wirele_c1",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_nav_cls_cebbf1418c_nav_link_88173",
+      "selected_action": "/cart",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /cart",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart__c1",
+      "to_url": "http://127.0.0.1:5173/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792711047.7916486,
+      "from_state_id": "st_cart_shopping_cart__c1",
+      "from_url": "http://127.0.0.1:5173/cart",
+      "question_id": "q_ctrl_control_cls_3c5b3c4175__data_test__checkout_button__",
+      "selected_action": "[data-test=\"checkout-button\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Proceed to Checkout'",
+      "priority_score": 0.7915,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_checkout_checkout__orde_c1",
+      "to_url": "http://127.0.0.1:5173/checkout",
+      "is_productive": true
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792711049.701505,
+      "from_state_id": "st_checkout_checkout__orde_c1",
+      "from_url": "http://127.0.0.1:5173/checkout",
+      "question_id": "q_ctrl_control_cls_eb7312db1d__data_test__cart_link__",
+      "selected_action": "[data-test=\"cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Shopping cart, 1 items'",
+      "priority_score": 0.6865,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart__c1",
+      "to_url": "http://127.0.0.1:5173/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792711080.9583507,
+      "from_state_id": "st_cart_shopping_cart__c1",
+      "from_url": "http://127.0.0.1:5173/cart",
+      "question_id": "q_nav_cls_3c5b3c4175_nav_link_75313",
+      "selected_action": "/login",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /login",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_login_sign_in_to_sho_c1",
+      "to_url": "http://127.0.0.1:5173/login",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792711083.9222152,
+      "from_state_id": "st_login_sign_in_to_sho_c1",
+      "from_url": "http://127.0.0.1:5173/login",
+      "question_id": "q_form_cls_7c6f45f964_boundary_password_length_form_2_password",
+      "selected_action": "password",
+      "probe_family": "forms",
+      "category": "edge",
+      "hypothesis": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_2_password",
+      "priority_score": 1.1425,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "CONTRADICTED",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792711179.8211336,
+      "from_state_id": "st_root_quantum_wirele_c1",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_reflect_60",
+      "selected_action": "cls_7c6f45f964_boundary_password_length_form_2_password",
+      "probe_family": "controls",
+      "category": "constraint",
+      "hypothesis": "The 'password' field in the checkout process enforces a minimum length constraint.",
+      "priority_score": 1.2025000000000001,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792711198.4875002,
+      "from_state_id": "st_root_quantum_wirele_c1",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_reflect_62",
+      "selected_action": "cls_3c5b3c4175__data_test__checkout_button__",
+      "probe_family": "controls",
+      "category": "constraint",
+      "hypothesis": "The 'checkout_button' element is enabled only when the cart is not empty.",
+      "priority_score": 1.2025000000000001,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792711200.4096081,
+      "from_state_id": "st_root_quantum_wirele_c1",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_all__",
+      "selected_action": "[data-test=\"category-filter-all\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'All'",
+      "priority_score": 1.2015,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/",
+      "is_productive": false
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792711202.2683296,
+      "from_state_id": "st_root_quantum_wirele_c1",
+      "from_url": "http://127.0.0.1:5173/",
+      "question_id": "q_ctrl_control_cls_cebbf1418c__data_test__category_filter_elect",
+      "selected_action": "[data-test=\"category-filter-electronics\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Electronics'",
+      "priority_score": 1.2015,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_quantum_wirele_c1",
+      "to_url": "http://127.0.0.1:5173/?category=Electronics",
+      "is_productive": true
+    }
+  ]
+}

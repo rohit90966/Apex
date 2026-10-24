@@ -1,0 +1,753 @@
+{
+  "execution_id": "exec-9602aa9a",
+  "source_investigation_id": "inv-fa1484b3",
+  "target_url": "http://127.0.0.1:5173",
+  "executed_at": 1792706707.7281177,
+  "duration_seconds": 85.57,
+  "total_generated_cases": 27,
+  "exported_count": 27,
+  "executable_without_manual_edits_count": 25,
+  "executed_count": 25,
+  "passed_count": 14,
+  "failed_count": 2,
+  "defect_detected_count": 0,
+  "setup_failures_count": 0,
+  "safety_blocked_count": 0,
+  "skipped_hypotheses_count": 2,
+  "setup_success_rate": 1.0,
+  "assertion_validity_rate": 0.64,
+  "defect_detection_rate": 1.0,
+  "false_positive_rate": 0.125,
+  "redundant_tests_count": 0,
+  "evidence_traceability_coverage": 1.0,
+  "results": [
+    {
+      "test_id": "TC-WF-01",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Precision Barista Pour-Over Coffee Maker)",
+      "category": "workflow",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.424,
+      "source_evidence_ids": [
+        "ev-267998b5",
+        "ev-a5c5780f",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-75e6c804",
+        "ev-96fb6055"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6",
+        "trans-441cecb8",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-b1df5ae5",
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 5 (SET_NOVALIDATE:boundary_password_length_form_2_password): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"password\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-WF-01_eeff97.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-WF-02",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Architectural Design & Space Monograph)",
+      "category": "workflow",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.271,
+      "source_evidence_ids": [
+        "ev-267998b5",
+        "ev-a5c5780f",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-4a312405",
+        "ev-b4b45c89"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_architectural__view",
+        "st_products_prod-13_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6",
+        "trans-441cecb8",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-d0cfb648",
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 5 (SET_NOVALIDATE:boundary_password_length_form_2_password): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"password\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-WF-02_a03fd4.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-WF-03",
+      "title": "End-to-End Workflow: ShopSphere — Premium E-Commerce to ShopSphere — Premium E-Commerce (Classic Merino Wool Crewneck Sweater)",
+      "category": "workflow",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.773,
+      "source_evidence_ids": [
+        "ev-96fb6055",
+        "ev-97f73b1e",
+        "ev-37a293f9",
+        "ev-41e563ce",
+        "ev-c8398787",
+        "ev-0443c82d"
+      ],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view",
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca",
+        "trans-cdf5801e",
+        "trans-76ba1d85",
+        "trans-651bf481",
+        "trans-0c9c8bdf",
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 5 (SET_NOVALIDATE:boundary_password_length_form_2_password): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"password\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-WF-03_1becc9.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-TR-01",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar on [data-test=\"category-filter-apparel\"] (st_root_quantum_wirele_view -> st_root_classic_merino_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.492,
+      "source_evidence_ids": [
+        "ev-c8398787"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-02",
+      "title": "State Transition: CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__ on [data-test=\"add-to-cart-button\"] (st_root_classic_merino_view -> st_root_classic_merino_c1_with_error)",
+      "category": "transition",
+      "status": "FAILED",
+      "duration_seconds": 0.422,
+      "source_evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Validation error assertion failed: Expected visible error alert or error query parameter",
+      "failure_phase": "ASSERTION",
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-TR-03",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_53064 on /products/prod-05 (st_root_classic_merino_c1_with_error -> st_products_prod-05_classic_merino_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.137,
+      "source_evidence_ids": [
+        "ev-267998b5"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_products_prod-05_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-04",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_14556 on /cart (st_products_prod-05_classic_merino_view -> st_cart_your_cart_is_e_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.13,
+      "source_evidence_ids": [
+        "ev-a5c5780f"
+      ],
+      "source_state_ids": [
+        "st_products_prod-05_classic_merino_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-441cecb8"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-05",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_78518 on /login (st_cart_your_cart_is_e_view -> st_login_sign_in_to_sho_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.169,
+      "source_evidence_ids": [
+        "ev-37a293f9"
+      ],
+      "source_state_ids": [
+        "st_cart_your_cart_is_e_view",
+        "st_login_sign_in_to_sho_view"
+      ],
+      "source_transition_ids": [
+        "trans-76ba1d85"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-06",
+      "title": "State Transition: SET_NOVALIDATE:boundary_password_length_form_2_password on password (st_login_sign_in_to_sho_view -> st_root_quantum_wirele_view)",
+      "category": "transition",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.221,
+      "source_evidence_ids": [
+        "ev-41e563ce"
+      ],
+      "source_state_ids": [
+        "st_login_sign_in_to_sho_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-651bf481"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (SET_NOVALIDATE:boundary_password_length_form_2_password): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"password\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-TR-06_e85271.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-TR-07",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_ on [data-test=\"category-filter-home---kitchen\"] (st_root_quantum_wirele_view -> st_root_precision_bari_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.324,
+      "source_evidence_ids": [
+        "ev-75e6c804"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-b1df5ae5"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-08",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_23292 on /products/prod-09 (st_root_precision_bari_view -> st_products_prod-09_precision_bari_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.111,
+      "source_evidence_ids": [
+        "ev-96fb6055"
+      ],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_products_prod-09_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-09",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a3c3f6b85a__data_test__cart_link__ on [data-test=\"cart-link\"] (st_products_prod-09_precision_bari_view -> st_cart_your_cart_is_e_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.28,
+      "source_evidence_ids": [
+        "ev-97f73b1e"
+      ],
+      "source_state_ids": [
+        "st_products_prod-09_precision_bari_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-cdf5801e"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-10",
+      "title": "State Transition: CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books on [data-test=\"category-filter-books---stationery\"] (st_root_quantum_wirele_view -> st_root_architectural__view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.378,
+      "source_evidence_ids": [
+        "ev-4a312405"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-d0cfb648"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-11",
+      "title": "State Transition: NAVIGATE_LINK:nav_link_2006 on /products/prod-13 (st_root_architectural__view -> st_products_prod-13_architectural__view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.1,
+      "source_evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "source_state_ids": [
+        "st_root_architectural__view",
+        "st_products_prod-13_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-VAL-01",
+      "title": "Form Validation Rejection: [data-test=\"add-to-cart-button\"] on 127.0.0.1:5173/",
+      "category": "validation",
+      "status": "FAILED",
+      "duration_seconds": 0.341,
+      "source_evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Validation error assertion failed: Expected visible error alert or error query parameter",
+      "failure_phase": "ASSERTION",
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-01",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Quantum Wireless Noise-Cancelling Headphones, heading:Smart Ergonomic Fitness Watch)",
+      "category": "state_dependent",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.193,
+      "source_evidence_ids": [
+        "ev-c8398787"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test=\\\"category-filter-apparel\\\"]\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-SD-01_8a7c2f.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-02",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Classic Merino Wool Crewneck Sweater, heading:All-Weather Commuter Rain Jacket)",
+      "category": "state_dependent",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.159,
+      "source_evidence_ids": [
+        "ev-c8398787"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-0c9c8bdf"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_appar): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test=\\\"category-filter-apparel\\\"]\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-SD-02_920a39.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-03",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Classic Merino Wool Crewneck Sweater, heading:All-Weather Commuter Rain Jacket)",
+      "category": "state_dependent",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.187,
+      "source_evidence_ids": [
+        "ev-0443c82d"
+      ],
+      "source_state_ids": [
+        "st_root_classic_merino_c1_with_error",
+        "st_root_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-d497a50a"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (CLICK_CONTROL:control_cls_57fdcf6775__data_test__add_to_cart_button__): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test=\\\"add-to-cart-button\\\"]\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-SD-03_a4a3ef.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-04",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-05 (heading:Classic Merino Wool Crewneck Sweater, heading:Key Features:)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.246,
+      "source_evidence_ids": [
+        "ev-267998b5"
+      ],
+      "source_state_ids": [
+        "st_products_prod-05_classic_merino_view",
+        "st_root_classic_merino_c1_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-3f00bbd6"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-05",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/cart (heading:Your Cart is Empty, counter_value:0)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.242,
+      "source_evidence_ids": [
+        "ev-a5c5780f"
+      ],
+      "source_state_ids": [
+        "st_cart_your_cart_is_e_view",
+        "st_products_prod-05_classic_merino_view"
+      ],
+      "source_transition_ids": [
+        "trans-441cecb8"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-06",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/login (heading:Sign In to ShopSphere, counter_value:0)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.356,
+      "source_evidence_ids": [
+        "ev-37a293f9"
+      ],
+      "source_state_ids": [
+        "st_login_sign_in_to_sho_view",
+        "st_cart_your_cart_is_e_view"
+      ],
+      "source_transition_ids": [
+        "trans-76ba1d85"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-07",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Precision Barista Pour-Over Coffee Maker, heading:Cast Iron Pre-Seasoned Dutch Oven)",
+      "category": "state_dependent",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.233,
+      "source_evidence_ids": [
+        "ev-75e6c804"
+      ],
+      "source_state_ids": [
+        "st_root_precision_bari_view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-b1df5ae5"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_home_): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test=\\\"category-filter-home---kitchen\\\"]\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-SD-07_c0bad5.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-08",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-09 (heading:Precision Barista Pour-Over Coffee Maker, heading:Key Features:)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.347,
+      "source_evidence_ids": [
+        "ev-96fb6055"
+      ],
+      "source_state_ids": [
+        "st_products_prod-09_precision_bari_view",
+        "st_root_precision_bari_view"
+      ],
+      "source_transition_ids": [
+        "trans-9ee2ddca"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-09",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/ (heading:Architectural Design & Space Monograph, heading:Hardcover Dotted Grid Journal (A5))",
+      "category": "state_dependent",
+      "status": "EXECUTION_ERROR",
+      "duration_seconds": 8.231,
+      "source_evidence_ids": [
+        "ev-4a312405"
+      ],
+      "source_state_ids": [
+        "st_root_architectural__view",
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [
+        "trans-d0cfb648"
+      ],
+      "source_finding_ids": [],
+      "error_message": "Execution error on step 1 (CLICK_CONTROL:control_cls_cebbf1418c__data_test__category_filter_books): Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test=\\\"category-filter-books---stationery\\\"]\").first to be visible\n",
+      "failure_phase": "EXECUTION",
+      "screenshot_path": "artifacts/playwright_autonomous_runs\\error_TC-SD-09_489641.png",
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-SD-10",
+      "title": "State-Dependent Behavior on 127.0.0.1:5173/products/prod-13 (heading:Architectural Design & Space Monograph, heading:Key Features:)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.244,
+      "source_evidence_ids": [
+        "ev-b4b45c89"
+      ],
+      "source_state_ids": [
+        "st_products_prod-13_architectural__view",
+        "st_root_architectural__view"
+      ],
+      "source_transition_ids": [
+        "trans-0419452b"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-HYP-01",
+      "title": "Exploratory Frontier Hypothesis: form_happy_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "status": "SKIPPED_HYPOTHESIS",
+      "duration_seconds": 0.0,
+      "source_evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "error_message": "Skipped: Candidate is an unverified hypothesis requiring enrichment",
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-HYP-02",
+      "title": "Exploratory Frontier Hypothesis: required_blank_all_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "status": "SKIPPED_HYPOTHESIS",
+      "duration_seconds": 0.0,
+      "source_evidence_ids": [
+        "ev_init_st_root_quantum_wirele_view"
+      ],
+      "source_state_ids": [
+        "st_root_quantum_wirele_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "error_message": "Skipped: Candidate is an unverified hypothesis requiring enrichment",
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    }
+  ],
+  "non_executable_cases": [
+    {
+      "test_id": "TC-HYP-01",
+      "title": "Exploratory Frontier Hypothesis: form_happy_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "reason": "Unverified exploration hypothesis; requires empirical confirmation rather than regression execution"
+    },
+    {
+      "test_id": "TC-HYP-02",
+      "title": "Exploratory Frontier Hypothesis: required_blank_all_form_1 on 127.0.0.1:5173/",
+      "category": "exploratory_hypothesis",
+      "reason": "Unverified exploration hypothesis; requires empirical confirmation rather than regression execution"
+    }
+  ]
+}

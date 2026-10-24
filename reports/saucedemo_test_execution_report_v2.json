@@ -1,0 +1,838 @@
+{
+  "execution_id": "exec-5f293fd3",
+  "source_investigation_id": "inv-0457b270",
+  "target_url": "https://www.saucedemo.com",
+  "executed_at": 1792772643.7490704,
+  "duration_seconds": 47.87,
+  "total_generated_cases": 29,
+  "exported_count": 29,
+  "executable_without_manual_edits_count": 27,
+  "executed_count": 27,
+  "passed_count": 26,
+  "failed_count": 1,
+  "defect_detected_count": 0,
+  "setup_failures_count": 0,
+  "safety_blocked_count": 0,
+  "skipped_hypotheses_count": 2,
+  "setup_success_rate": 1.0,
+  "assertion_validity_rate": 1.0,
+  "defect_detection_rate": 0.0,
+  "false_positive_rate": 0.038,
+  "redundant_tests_count": 0,
+  "evidence_traceability_coverage": 1.0,
+  "results": [
+    {
+      "test_id": "TC-WF-01",
+      "title": "End-to-End Workflow: Swag Labs to Swag Labs (Checkout: Your Information)",
+      "category": "workflow",
+      "status": "PASSED",
+      "duration_seconds": 2.7,
+      "source_evidence_ids": [
+        "ev-3baf0b0e",
+        "ev-dd025626",
+        "ev-c5a7bebe",
+        "ev-fa15f997",
+        "ev-6bd5e559"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_c1",
+        "st_carthtml_your_cart_c1",
+        "st_carthtml_your_cart_view",
+        "st_checkout-step-on_checkout_your__view"
+      ],
+      "source_transition_ids": [
+        "trans-374d93b8",
+        "trans-f5ac57b7",
+        "trans-525fa584",
+        "trans-1ee31f3f",
+        "trans-fb3188c9"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 5,
+      "assertions_passed": 5
+    },
+    {
+      "test_id": "TC-WF-02",
+      "title": "End-to-End Workflow: Swag Labs to Swag Labs (Your Cart)",
+      "category": "workflow",
+      "status": "PASSED",
+      "duration_seconds": 1.441,
+      "source_evidence_ids": [
+        "ev-3baf0b0e",
+        "ev-dd025626",
+        "ev-c5a7bebe",
+        "ev-fa15f997",
+        "ev-baa53a1a"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_c1",
+        "st_carthtml_your_cart_c1",
+        "st_carthtml_your_cart_view",
+        "st_carthtml_your_cart_view_menu_open"
+      ],
+      "source_transition_ids": [
+        "trans-374d93b8",
+        "trans-f5ac57b7",
+        "trans-525fa584",
+        "trans-1ee31f3f",
+        "trans-a001b720"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 5,
+      "assertions_passed": 5
+    },
+    {
+      "test_id": "TC-TR-01",
+      "title": "State Transition: FILL:required_blank_all_form_1 on required_blank_all_form_1 (st_root_view_view -> st_root_view_view_with_error)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.85,
+      "source_evidence_ids": [
+        "ev-47cccd44"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_root_view_view_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-46ffcb56"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-02",
+      "title": "State Transition: AUTHENTICATE on login_form (st_root_view_view -> st_inventoryhtml_products_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.969,
+      "source_evidence_ids": [
+        "ev-3baf0b0e"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_inventoryhtml_products_view"
+      ],
+      "source_transition_ids": [
+        "trans-374d93b8"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-03",
+      "title": "State Transition: CLICK_CONTROL:control_cls_02740c356b__add_to_cart_sauce_labs_backpack on #add-to-cart-sauce-labs-backpack (st_inventoryhtml_products_view -> st_inventoryhtml_products_c1)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 2.319,
+      "source_evidence_ids": [
+        "ev-dd025626"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_c1"
+      ],
+      "source_transition_ids": [
+        "trans-f5ac57b7"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-04",
+      "title": "State Transition: CLICK_CONTROL:control_cls_02740c356b__data_test__shopping_cart_link__ on [data-test=\"shopping-cart-link\"] (st_inventoryhtml_products_c1 -> st_carthtml_your_cart_c1)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.882,
+      "source_evidence_ids": [
+        "ev-c5a7bebe"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_c1",
+        "st_carthtml_your_cart_c1"
+      ],
+      "source_transition_ids": [
+        "trans-525fa584"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-05",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a1e6826929__remove_sauce_labs_backpack on #remove-sauce-labs-backpack (st_carthtml_your_cart_c1 -> st_carthtml_your_cart_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.807,
+      "source_evidence_ids": [
+        "ev-fa15f997"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_c1",
+        "st_carthtml_your_cart_view"
+      ],
+      "source_transition_ids": [
+        "trans-1ee31f3f"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-06",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a1e6826929__checkout on #checkout (st_carthtml_your_cart_view -> st_checkout-step-on_checkout_your__view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.015,
+      "source_evidence_ids": [
+        "ev-6bd5e559"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_view",
+        "st_checkout-step-on_checkout_your__view"
+      ],
+      "source_transition_ids": [
+        "trans-fb3188c9"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-07",
+      "title": "State Transition: FILL:form_happy_form_1 on form_happy_form_1 (st_checkout-step-on_checkout_your__view -> st_carthtml_your_cart_view)",
+      "category": "transition",
+      "status": "FAILED",
+      "duration_seconds": 1.598,
+      "source_evidence_ids": [
+        "ev-fcc180e3"
+      ],
+      "source_state_ids": [
+        "st_checkout-step-on_checkout_your__view",
+        "st_carthtml_your_cart_view"
+      ],
+      "source_transition_ids": [
+        "trans-05e57b91"
+      ],
+      "source_finding_ids": [],
+      "error_message": "URL assertion failed: Expected '/cart.html' in URL 'https://www.saucedemo.com/checkout-step-one.html'",
+      "failure_phase": "ASSERTION",
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-TR-08",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a1e6826929__react_burger_menu_btn on #react-burger-menu-btn (st_carthtml_your_cart_view -> st_carthtml_your_cart_view_menu_open)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.57,
+      "source_evidence_ids": [
+        "ev-baa53a1a"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_view",
+        "st_carthtml_your_cart_view_menu_open"
+      ],
+      "source_transition_ids": [
+        "trans-a001b720"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-09",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a1e6826929__inventory_sidebar_link on #inventory_sidebar_link (st_carthtml_your_cart_view_menu_open -> st_inventoryhtml_products_view)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 3.487,
+      "source_evidence_ids": [
+        "ev-5a217177"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_view_menu_open",
+        "st_inventoryhtml_products_view"
+      ],
+      "source_transition_ids": [
+        "trans-49c824a5"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-10",
+      "title": "State Transition: SELECT_OPTION:select_cls_02740c356b__data_test__product_sort_containe on [data-test=\"product-sort-container\"] (st_inventoryhtml_products_view -> st_inventoryhtml_products_view_opt_za)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 0.985,
+      "source_evidence_ids": [
+        "ev-cbb4a8e8"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_view_opt_za"
+      ],
+      "source_transition_ids": [
+        "trans-befe4b1a"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-11",
+      "title": "State Transition: CLICK_CONTROL:control_cls_02740c356b__item_3_title_link on #item_3_title_link (st_inventoryhtml_products_view_opt_za -> st_inventory-itemht_view_view_id_3)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.102,
+      "source_evidence_ids": [
+        "ev-9f7c2486"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_view_opt_za",
+        "st_inventory-itemht_view_view_id_3"
+      ],
+      "source_transition_ids": [
+        "trans-de39f332"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-12",
+      "title": "State Transition: CLICK_CONTROL:control_cls_e9d5a1472a__add_to_cart on #add-to-cart (st_inventory-itemht_view_view_id_3 -> st_inventory-itemht_view_c1_id_3)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.759,
+      "source_evidence_ids": [
+        "ev-3e23600d"
+      ],
+      "source_state_ids": [
+        "st_inventory-itemht_view_view_id_3",
+        "st_inventory-itemht_view_c1_id_3"
+      ],
+      "source_transition_ids": [
+        "trans-b26a5117"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-13",
+      "title": "State Transition: CLICK_CONTROL:control_cls_e9d5a1472a__data_test__shopping_cart_link__ on [data-test=\"shopping-cart-link\"] (st_inventory-itemht_view_c1_id_3 -> st_carthtml_your_cart_c1)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.229,
+      "source_evidence_ids": [
+        "ev-8357171e"
+      ],
+      "source_state_ids": [
+        "st_inventory-itemht_view_c1_id_3",
+        "st_carthtml_your_cart_c1"
+      ],
+      "source_transition_ids": [
+        "trans-71fdf75d"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-TR-14",
+      "title": "State Transition: CLICK_CONTROL:control_cls_a1e6826929__item_3_title_link on #item_3_title_link (st_carthtml_your_cart_c1 -> st_inventory-itemht_view_c1_id_3)",
+      "category": "transition",
+      "status": "PASSED",
+      "duration_seconds": 1.333,
+      "source_evidence_ids": [
+        "ev-4c3a7e34"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_c1",
+        "st_inventory-itemht_view_c1_id_3"
+      ],
+      "source_transition_ids": [
+        "trans-638ff3f9"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-VAL-01",
+      "title": "Form Validation Rejection: required_blank_all_form_1 on www.saucedemo.com/",
+      "category": "validation",
+      "status": "PASSED",
+      "duration_seconds": 0.655,
+      "source_evidence_ids": [
+        "ev-47cccd44"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_root_view_view_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-46ffcb56"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-01",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 1.959,
+      "source_evidence_ids": [
+        "ev-dd025626"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_c1"
+      ],
+      "source_transition_ids": [
+        "trans-f5ac57b7"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-02",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, counter_value:1)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 2.782,
+      "source_evidence_ids": [
+        "ev-c5a7bebe"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_c1",
+        "st_carthtml_your_cart_c1"
+      ],
+      "source_transition_ids": [
+        "trans-525fa584"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-03",
+      "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart, counter_value:1)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 2.662,
+      "source_evidence_ids": [
+        "ev-fa15f997"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_c1",
+        "st_carthtml_your_cart_view"
+      ],
+      "source_transition_ids": [
+        "trans-1ee31f3f"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-04",
+      "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.938,
+      "source_evidence_ids": [
+        "ev-6bd5e559"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_view",
+        "st_checkout-step-on_checkout_your__view"
+      ],
+      "source_transition_ids": [
+        "trans-fb3188c9"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-05",
+      "title": "State-Dependent Behavior on www.saucedemo.com/checkout-step-one.html (heading:Checkout: Your Information)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 1.008,
+      "source_evidence_ids": [
+        "ev-fcc180e3"
+      ],
+      "source_state_ids": [
+        "st_checkout-step-on_checkout_your__view",
+        "st_carthtml_your_cart_view"
+      ],
+      "source_transition_ids": [
+        "trans-05e57b91"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-06",
+      "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart, menu_open:true)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 1.469,
+      "source_evidence_ids": [
+        "ev-5a217177"
+      ],
+      "source_state_ids": [
+        "st_carthtml_your_cart_view_menu_open",
+        "st_inventoryhtml_products_view"
+      ],
+      "source_transition_ids": [
+        "trans-49c824a5"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-07",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 0.896,
+      "source_evidence_ids": [
+        "ev-9f7c2486"
+      ],
+      "source_state_ids": [
+        "st_inventoryhtml_products_view_opt_za",
+        "st_inventory-itemht_view_view_id_3"
+      ],
+      "source_transition_ids": [
+        "trans-de39f332"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-08",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory-item.html (st_inventory-itemht_view_view_id_3)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 1.6,
+      "source_evidence_ids": [
+        "ev-3e23600d"
+      ],
+      "source_state_ids": [
+        "st_inventory-itemht_view_view_id_3",
+        "st_inventory-itemht_view_c1_id_3"
+      ],
+      "source_transition_ids": [
+        "trans-b26a5117"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-SD-09",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory-item.html (counter_value:1)",
+      "category": "state_dependent",
+      "status": "PASSED",
+      "duration_seconds": 1.483,
+      "source_evidence_ids": [
+        "ev-8357171e"
+      ],
+      "source_state_ids": [
+        "st_inventory-itemht_view_c1_id_3",
+        "st_carthtml_your_cart_c1"
+      ],
+      "source_transition_ids": [
+        "trans-71fdf75d"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-REG-01",
+      "title": "Behavioral Regression Baseline: required_blank_all_form_1",
+      "category": "regression",
+      "status": "PASSED",
+      "duration_seconds": 1.033,
+      "source_evidence_ids": [
+        "ev-47cccd44"
+      ],
+      "source_state_ids": [
+        "st_root_view_view",
+        "st_root_view_view_with_error"
+      ],
+      "source_transition_ids": [
+        "trans-46ffcb56"
+      ],
+      "source_finding_ids": [],
+      "error_message": null,
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 1,
+      "assertions_passed": 1
+    },
+    {
+      "test_id": "TC-HYP-01",
+      "title": "Exploratory Frontier Hypothesis: q_inv_invariant_reload_persistence_cls_293159fad6 on www.saucedemo.com/",
+      "category": "exploratory_hypothesis",
+      "status": "SKIPPED_HYPOTHESIS",
+      "duration_seconds": 0.0,
+      "source_evidence_ids": [
+        "ev_init_st_root_view_view"
+      ],
+      "source_state_ids": [
+        "st_root_view_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "error_message": "Skipped: Candidate is an unverified hypothesis requiring enrichment",
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    },
+    {
+      "test_id": "TC-HYP-02",
+      "title": "Exploratory Frontier Hypothesis: [data-test=\"error-button\"] on www.saucedemo.com/",
+      "category": "exploratory_hypothesis",
+      "status": "SKIPPED_HYPOTHESIS",
+      "duration_seconds": 0.0,
+      "source_evidence_ids": [
+        "ev_init_st_root_view_view"
+      ],
+      "source_state_ids": [
+        "st_root_view_view"
+      ],
+      "source_transition_ids": [],
+      "source_finding_ids": [],
+      "error_message": "Skipped: Candidate is an unverified hypothesis requiring enrichment",
+      "failure_phase": null,
+      "screenshot_path": null,
+      "console_logs": [],
+      "dom_snippet": null,
+      "assertions_evaluated": 0,
+      "assertions_passed": 0
+    }
+  ],
+  "non_executable_cases": [
+    {
+      "test_id": "TC-HYP-01",
+      "title": "Exploratory Frontier Hypothesis: q_inv_invariant_reload_persistence_cls_293159fad6 on www.saucedemo.com/",
+      "category": "exploratory_hypothesis",
+      "reason": "Unverified exploration hypothesis; requires empirical confirmation rather than regression execution"
+    },
+    {
+      "test_id": "TC-HYP-02",
+      "title": "Exploratory Frontier Hypothesis: [data-test=\"error-button\"] on www.saucedemo.com/",
+      "category": "exploratory_hypothesis",
+      "reason": "Unverified exploration hypothesis; requires empirical confirmation rather than regression execution"
+    }
+  ]
+}
