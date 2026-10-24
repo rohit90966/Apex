@@ -269,7 +269,11 @@ async def run_suite():
         const act = s.action_type || s.action || 'NAVIGATE';
         const sel = s.selector || s.target;
         if (act === 'NAVIGATE') {
-          script += `        await page.goto("${sel || TARGET_URL}")\n`;
+          // TARGET_URL is the Python variable declared in the generated script header.
+          const navTarget = s.value || sel;
+          script += navTarget
+            ? `        await page.goto("${navTarget}")\n`
+            : `        await page.goto(TARGET_URL)\n`;
         } else if (act === 'CLICK' || act === 'CLICK_CONTROL') {
           script += `        await page.locator("${sel || 'button'}").first.click()\n`;
         } else if (act === 'FILL') {

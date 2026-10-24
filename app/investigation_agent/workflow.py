@@ -89,6 +89,13 @@ class InvestigationOrchestrator:
     def close(self):
         self.session.close()
 
+    @staticmethod
+    def _checkpoint_safe_credentials(creds: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+        """Keeps only non-secret credential metadata for on-disk checkpoints."""
+        if not isinstance(creds, dict):
+            return None
+        return {"username": creds.get("username"), "source": creds.get("source")}
+
     def save_session_checkpoint(self, state: InvestigationAgentState, filepath: Optional[str] = None) -> str:
         """
         Persists full investigation session to disk including:
@@ -176,7 +183,8 @@ class InvestigationOrchestrator:
             "current_url": current_obs.url if current_obs else state.get("target_url"),
             "user_description": state.get("user_description"),
             "user_requirements": state.get("user_requirements"),
-            "auth_credentials": state.get("auth_credentials"),
+            # Passwords are never written to disk; load_session_checkpoint re-derives them.
+            "auth_credentials": self._checkpoint_safe_credentials(state.get("auth_credentials")),
             "auth_boundary_detected": state.get("auth_boundary_detected", False),
             "auth_attempted": state.get("auth_attempted", False),
             "auth_verified": state.get("auth_verified", False),
@@ -293,7 +301,10 @@ class InvestigationOrchestrator:
             "application_model": app_model,
             "user_description": data.get("user_description"),
             "user_requirements": data.get("user_requirements"),
-            "auth_credentials": data.get("auth_credentials"),
+            "auth_credentials": (
+                AuthenticationManager.discover_credentials(data.get("target_url") or "", None)
+                if data.get("auth_credentials") else None
+            ),
             "auth_boundary_detected": data.get("auth_boundary_detected", False),
             "auth_attempted": data.get("auth_attempted", False),
             "auth_verified": data.get("auth_verified", False),

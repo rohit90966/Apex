@@ -37,6 +37,7 @@ class Settings(BaseSettings):
     ollama_max_format_retries: int = Field(default=1, description="Max 1-step JSON format repair attempts")
 
     verityqa_artifacts_dir: str = Field(default="artifacts", description="Directory to store screenshots and artifacts")
+    verityqa_runs_dir: str = Field(default="data/runs", description="Directory where investigation runs, reports, and generated test cases are persisted")
     verityqa_headless: bool = Field(default=True, description="Whether to run Playwright in headless mode")
     verityqa_max_test_cases: int = Field(default=15, description="Maximum test cases generated per test plan")
     verityqa_allowed_hosts: str = Field(

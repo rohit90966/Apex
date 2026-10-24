@@ -95,11 +95,13 @@ async def run_stateful_investigation(
     headless: Optional[bool] = None,
     event_callback: Optional[Callable[[Dict[str, Any]], None]] = None,
     resume_checkpoint: Optional[str] = None,
+    investigation_id: Optional[str] = None,
 ) -> InvestigationReport:
     """
     Executes the autonomous, stateful, authentication-aware investigation workflow.
     max_actions <= 0 enables adaptive exploration without a fixed probe ceiling.
     resume_checkpoint allows resuming a paused/interrupted investigation from disk.
+    investigation_id, when given, is used as the investigation ID (e.g. the persisted run ID).
     Returns ONLY the InvestigationReport.
     Does NOT invoke test planning, test execution, or defect triage.
     """
@@ -118,6 +120,8 @@ async def run_stateful_investigation(
             "max_states": 20,
             "resume_checkpoint": resume_checkpoint,
         }
+        if investigation_id:
+            initial_state["investigation_id"] = investigation_id
 
         final_state = graph.invoke(initial_state)
         return final_state.get("final_report")

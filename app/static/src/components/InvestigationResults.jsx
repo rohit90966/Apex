@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import {
+  NO_DATA,
+  displayValue,
+  pickCount,
+  reportStatusBadgeClass,
+  reportStatusLabel,
+} from '../runDisplay.mjs';
 
 export default function InvestigationResults({
   investigationReport,
@@ -33,9 +40,22 @@ export default function InvestigationResults({
                      investigationReport.behavior_model?.state_classes || 
                      investigationReport.states || [];
   const stateClasses = Array.isArray(rawClasses) ? rawClasses : Object.values(rawClasses || {});
-  const transitions = investigationReport.behavior_model?.transitions || 
-                      investigationReport.behavior_model?.verified_transitions || 
+  const transitions = investigationReport.behavior_model?.transitions ||
+                      investigationReport.behavior_model?.verified_transitions ||
                       investigationReport.transitions || [];
+  const durationSeconds = pickCount(ov.duration_seconds, investigationReport.duration_seconds);
+  const authBadge = auth.authentication_verified
+    ? { label: 'VERIFIED', className: 'badge-emerald' }
+    : auth.authentication_attempted
+      ? { label: 'NOT VERIFIED', className: 'badge-rose' }
+      : auth.boundary_observed
+        ? { label: 'NOT ATTEMPTED', className: 'badge-amber' }
+        : { label: 'NOT DETECTED', className: 'badge-cyan' };
+  const authCoverage = auth.authentication_verified
+    ? 'Authenticated session verified'
+    : auth.boundary_observed
+      ? 'Authentication boundary observed, not verified'
+      : 'No authentication boundary observed';
 
   // Filter evidence
   const filteredEvidence = evidenceList.filter((e) => {
@@ -55,15 +75,18 @@ export default function InvestigationResults({
         <div>
           <div className="results-title-row">
             <h1 className="view-title">Investigation Results &amp; Application Model</h1>
-            <span className="badge badge-emerald">
-              {(ov.status || 'COMPLETED').toUpperCase()}
+            <span className={`badge ${reportStatusBadgeClass(ov.status)}`}>
+              {reportStatusLabel(ov.status)}
             </span>
           </div>
           <p className="view-subtitle">
-            Target: <code className="mono">{ov.target_url || investigationReport.target_url}</code> &bull; 
-            Duration: {ov.duration_seconds || investigationReport.duration_seconds || 47}s &bull; 
-            Strategy: {ov.planning_strategy || investigationReport.generation_strategy || 'DETERMINISTIC_GROUNDED'}
+            Target: <code className="mono">{ov.target_url || investigationReport.target_url}</code> &bull;
+            Duration: {durationSeconds != null ? `${durationSeconds}s` : NO_DATA} &bull;
+            Strategy: {displayValue(ov.planning_strategy || investigationReport.generation_strategy)}
           </p>
+          {ov.stopping_reason && reportStatusBadgeClass(ov.status) !== 'badge-emerald' && (
+            <p className="view-subtitle">Stopped: {ov.stopping_reason}</p>
+          )}
         </div>
         <div className="view-actions">
           <button type="button" className="btn btn-primary" onClick={() => onNavigate('tests')}>
@@ -119,12 +142,11 @@ export default function InvestigationResults({
             <div className="card-header">
               <h3 className="card-title">Application Understanding</h3>
               <span className="badge badge-indigo">
-                {ov.planning_strategy || 'DETERMINISTIC_GROUNDED'}
+                {displayValue(ov.planning_strategy)}
               </span>
             </div>
             <p className="card-body-text">
-              {investigationReport.application_understanding ||
-                'Swag Labs is an e-commerce platform demonstrating an online retail purchasing funnel with authentication, catalog inventory controls, a persistent shopping cart, and a multi-step checkout workflow.'}
+              {investigationReport.application_understanding || 'No application understanding was recorded for this run.'}
             </p>
           </div>
 
@@ -133,8 +155,8 @@ export default function InvestigationResults({
             <div className="card">
               <div className="card-header">
                 <h3 className="card-title">Authentication &amp; Access Boundary</h3>
-                <span className={`badge ${auth.authentication_verified || (auth.boundary_observed && auth.credentials_available) ? 'badge-emerald' : 'badge-cyan'}`}>
-                  {auth.authentication_verified || (auth.boundary_observed && auth.credentials_available) ? 'VERIFIED' : 'NOT DETECTED'}
+                <span className={`badge ${authBadge.className}`}>
+                  {authBadge.label}
                 </span>
               </div>
               <div className="info-table">
@@ -144,16 +166,12 @@ export default function InvestigationResults({
                 </div>
                 <div className="info-row">
                   <span className="info-label">Credentials Source:</span>
-                  <span className="info-val">{auth.credentials_source || 'Discovered on landing view'}</span>
-                </div>
-                <div className="info-row">
-                  <span className="info-label">Session Preservation:</span>
-                  <span className="info-val">Maintained across inventory &amp; cart funnels</span>
+                  <span className="info-val">{displayValue(auth.credentials_source)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Captured Signals:</span>
                   <span className="info-val mono text-sm">
-                    {(auth.verification_signals || []).join(' | ') || 'URL changed to /inventory.html | Inventory container visible'}
+                    {displayValue((auth.verification_signals || []).join(' | '))}
                   </span>
                 </div>
               </div>
@@ -163,32 +181,32 @@ export default function InvestigationResults({
             <div className="card">
               <div className="card-header">
                 <h3 className="card-title">Frontier &amp; Exploration Budget</h3>
-                <span className="badge badge-cyan">Completed</span>
+                <span className={`badge ${reportStatusBadgeClass(ov.status)}`}>{reportStatusLabel(ov.status)}</span>
               </div>
               <div className="info-table">
                 <div className="info-row">
                   <span className="info-label">Actions Evaluated:</span>
-                  <span className="info-val">{ov.actions_evaluated || 18}</span>
+                  <span className="info-val">{displayValue(ov.actions_evaluated)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Actions Attempted:</span>
-                  <span className="info-val">{ov.actions_attempted || 12}</span>
+                  <span className="info-val">{displayValue(ov.actions_attempted)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Actions Executed (Pass):</span>
-                  <span className="info-val text-emerald">{ov.actions_successful || 12}</span>
+                  <span className="info-val text-emerald">{displayValue(ov.actions_successful)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Verified Effects:</span>
-                  <span className="info-val text-cyan">{ov.actions_verified_effects || transitions.length || 10}</span>
+                  <span className="info-val text-cyan">{displayValue(pickCount(ov.actions_verified_effects, transitions.length))}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Safety Blocked:</span>
-                  <span className="info-val">{ov.actions_safety_blocked || 0}</span>
+                  <span className="info-val">{displayValue(ov.actions_safety_blocked)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Stopping Reason:</span>
-                  <span className="info-val text-muted">{ov.stopping_reason || 'Investigation budget reached'}</span>
+                  <span className="info-val text-muted">{displayValue(ov.stopping_reason)}</span>
                 </div>
               </div>
             </div>
@@ -381,19 +399,19 @@ export default function InvestigationResults({
               <div className="info-table">
                 <div className="info-row">
                   <span className="info-label">Discovered Routes:</span>
-                  <span className="info-val">{ov.pages_discovered || map.length || 5}</span>
+                  <span className="info-val">{displayValue(pickCount(ov.pages_discovered, map.length))}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Probed States:</span>
-                  <span className="info-val">{stateClasses.length || 6}</span>
+                  <span className="info-val">{displayValue(pickCount(stateClasses.length, ov.meaningful_states_discovered))}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Pending Frontier Items:</span>
-                  <span className="info-val">{ov.pending_frontier_count || 0}</span>
+                  <span className="info-val">{displayValue(ov.pending_frontier_count)}</span>
                 </div>
                 <div className="info-row">
                   <span className="info-label">Authentication Coverage:</span>
-                  <span className="info-val text-emerald">Full Post-Auth Funnel</span>
+                  <span className="info-val">{authCoverage}</span>
                 </div>
               </div>
             </div>
@@ -448,7 +466,7 @@ function renderStateGraph(stateClasses, transitions, map) {
   function getTitle(sc, idx) {
     if (sc.page_title && !sc.page_title.includes('st_')) return sc.page_title;
     const route = (sc.representative_route || sc.normalized_route || sc.url || '').toLowerCase();
-    if (route.includes('login') || idx === 0) return 'Login Gateway';
+    if (route.includes('login')) return 'Login Gateway';
     if (route.includes('cart')) return 'Shopping Cart View';
     if (route.includes('item') || route.includes('product')) return 'Product Details';
     if (route.includes('inventory')) return 'Product Catalog';

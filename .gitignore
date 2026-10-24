@@ -9,6 +9,7 @@ artifacts/*
 !artifacts/.gitkeep
 data/chroma/*
 !data/chroma/.gitkeep
+data/runs/
 
 node_modules/*
 shopsphere/

@@ -5,6 +5,13 @@ import InvestigationResults from './components/InvestigationResults.jsx';
 import GeneratedTests from './components/GeneratedTests.jsx';
 import ExecutionAndBugs from './components/ExecutionAndBugs.jsx';
 import Reports from './components/Reports.jsx';
+import {
+  buildInvestigationStreamUrl,
+  completionMessage,
+  createRunStreamHandler,
+  fetchRun,
+  fetchLatestCompletedRun,
+} from './runEvents.mjs';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -23,6 +30,8 @@ export default function App() {
   const [selectedScreenshot, setSelectedScreenshot] = useState(null);
 
   const eventSourceRef = useRef(null);
+  const activeRunIdRef = useRef(null);
+  const streamFinishedRef = useRef(false);
 
   const showToast = (message, type = 'info') => {
     setToast({ message, type });
@@ -31,10 +40,10 @@ export default function App() {
     }, 4500);
   };
 
-  // Load saved reports list and latest report on mount
+  // Load saved reports list and the most recent persisted run on mount
   useEffect(() => {
     fetchSavedReports();
-    fetchLatestReport();
+    loadLatestRun();
   }, []);
 
   const fetchSavedReports = async () => {
@@ -49,19 +58,23 @@ export default function App() {
     }
   };
 
-  const fetchLatestReport = async () => {
+  // Populates report and test-case state from the canonical GET /api/runs/{run_id} response.
+  const applyRun = (detail) => {
+    const testCases = detail.test_cases || [];
+    setInvestigationReport(detail.report);
+    if (detail.run?.target_url) setTargetUrl(detail.run.target_url);
+    setGeneratedTests({
+      test_cases: testCases,
+      python_code: generatePlaywrightCode(testCases, detail.run?.target_url)
+    });
+  };
+
+  const loadLatestRun = async () => {
     try {
-      const res = await fetch('/api/reports/latest');
-      if (res.ok) {
-        const data = await res.json();
-        if (data && !data.error && data.status !== 'no_reports_found') {
-          setInvestigationReport(data);
-          if (data.target_url) setTargetUrl(data.target_url);
-          extractTestsFromReport(data);
-        }
-      }
+      const detail = await fetchLatestCompletedRun();
+      if (detail) applyRun(detail);
     } catch (err) {
-      console.warn('Failed to fetch latest report:', err);
+      console.warn('Failed to load latest investigation run:', err);
     }
   };
 
@@ -169,8 +182,9 @@ def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g,
     }
   };
 
-  const handleStartInvestigation = () => {
-    if (!targetUrl.trim()) {
+  const handleStartInvestigation = (params = {}) => {
+    const url = (params.url || targetUrl || '').trim();
+    if (!url) {
       showToast('Please provide a valid Target URL.', 'warning');
       return;
     }
@@ -179,64 +193,94 @@ def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g,
       eventSourceRef.current.close();
     }
 
+    activeRunIdRef.current = null;
+    streamFinishedRef.current = false;
+    // A new run must never display the previous run's results as current.
+    setInvestigationReport(null);
+    setGeneratedTests(null);
+    setExecutionReport(null);
     setIsInvestigating(true);
     setLiveEvents([]);
     showToast('Autonomous investigation started...', 'info');
 
-    const streamUrl = `/api/investigate/stream?url=${encodeURIComponent(targetUrl.trim())}`;
+    const streamUrl = buildInvestigationStreamUrl({
+      url,
+      description: params.description,
+      requirements: params.requirements ?? requirements,
+    });
     const es = new EventSource(streamUrl);
     eventSourceRef.current = es;
 
-    es.onmessage = (event) => {
-      try {
-        const msg = JSON.parse(event.data);
-        
-        if (msg.type === 'event' || msg.event) {
-          const item = msg.data || msg.event;
-          setLiveEvents(prev => [...prev, item]);
-        } else if (msg.type === 'complete' || msg.status === 'completed') {
-          const report = msg.data || msg.report;
-          if (report) {
-            setInvestigationReport(report);
-            extractTestsFromReport(report);
-          }
-          setIsInvestigating(false);
-          showToast('Autonomous Investigation Completed!', 'success');
-          es.close();
-          fetchSavedReports();
-          setActiveTab('results');
-        } else if (msg.type === 'error' || msg.status === 'error') {
-          showToast(`Investigation error: ${msg.message || 'Unknown failure'}`, 'danger');
-          setIsInvestigating(false);
-          es.close();
-        }
-      } catch (e) {
-        // Fallback for raw text events
-        setLiveEvents(prev => [...prev, {
-          timestamp: new Date().toISOString(),
-          type: 'INFO',
-          message: event.data
-        }]);
-      }
+    const finishStream = () => {
+      streamFinishedRef.current = true;
+      es.close();
+      setIsInvestigating(false);
     };
 
-    es.onerror = (err) => {
-      console.error('SSE Error:', err);
-      // Don't close immediately if reconnecting, but handle terminal error
-      setIsInvestigating(false);
-      es.close();
-      showToast('Live stream closed. Fetching latest completed report...', 'info');
-      fetchLatestReport();
+    const handleStreamMessage = createRunStreamHandler({
+      onCreated: ({ runId }) => {
+        activeRunIdRef.current = runId;
+      },
+      onProgress: ({ runId, event: evt }) => {
+        if (runId) activeRunIdRef.current = runId;
+        setLiveEvents(prev => [...prev, evt]);
+      },
+      onComplete: async ({ runId }) => {
+        finishStream();
+        try {
+          const detail = await fetchRun(runId);
+          applyRun(detail);
+          const { message, tone } = completionMessage(detail.run);
+          showToast(message, tone);
+          setActiveTab('results');
+        } catch (err) {
+          showToast(`Investigation ${runId} completed, but its results could not be loaded: ${err.message}`, 'danger');
+        }
+      },
+      onError: ({ runId, event: evt }) => {
+        finishStream();
+        showToast(`Investigation ${runId || ''} failed: ${evt.error || 'Unknown failure'}`, 'danger');
+      },
+      onUnknown: ({ diagnostic }) => {
+        console.warn('[VerityQA] Ignored stream message:', diagnostic);
+      },
+    });
+    es.onmessage = (event) => handleStreamMessage(event.data);
+
+    es.onerror = () => {
+      if (streamFinishedRef.current) return;
+      finishStream();
+      const runId = activeRunIdRef.current;
+      if (!runId) {
+        showToast('Could not start the investigation stream. The URL may be rejected by the safety policy, or the server is unavailable.', 'danger');
+        return;
+      }
+      fetchRun(runId)
+        .then((detail) => {
+          if (detail.run.status === 'completed') {
+            applyRun(detail);
+            setActiveTab('results');
+            const { message, tone } = completionMessage(detail.run);
+            showToast(`Live stream closed. ${message}`, tone);
+          } else {
+            showToast(`Live stream closed; run ${runId} is ${detail.run.status}.`, 'warning');
+          }
+        })
+        .catch((err) => showToast(`Live stream closed; run ${runId} could not be loaded: ${err.message}`, 'danger'));
     };
   };
 
   const handleStopInvestigation = () => {
     if (eventSourceRef.current) {
+      streamFinishedRef.current = true;
       eventSourceRef.current.close();
       eventSourceRef.current = null;
     }
     setIsInvestigating(false);
-    showToast('Investigation paused by user.', 'warning');
+    const runId = activeRunIdRef.current;
+    showToast(runId
+      ? `Stopped following live progress. Run ${runId} continues on the server and will be saved when it finishes.`
+      : 'Stopped following live progress.', 'warning');
   };
 
   const handleRunTestSuite = async () => {

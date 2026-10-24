@@ -125,8 +125,8 @@ export default function ExecutionAndBugs({
             {confirmedBugs.map((bug, idx) => {
               const bugId = bug.id || bug.defect_id || `BUG-${idx + 1}`;
               const title = bug.title || bug.headline || bug.summary || 'Unspecified Defect';
-              const reproRate = bug.reproduction_rate || bug.repro_rate || '2/2';
-              const severity = bug.severity || 'HIGH';
+              const reproRate = bug.reproduction_rate || bug.repro_rate || '—';
+              const severity = bug.severity || 'UNSPECIFIED';
               const steps = bug.reproduction_steps || bug.steps || [];
               const evidenceRefs = bug.evidence_ids || bug.evidence_references || [];
               const screenshotPath = bug.screenshot_path || bug.screenshot;
@@ -237,7 +237,7 @@ export default function ExecutionAndBugs({
                     <td style={{ fontWeight: 500 }}>{item.lead || item.symptom || item.title || 'Candidate Lead'}</td>
                     <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{item.url || item.location || '-'}</td>
                     <td style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      {item.rejection_reason || item.reason || 'Failed 2/2 fresh context reproduction check.'}
+                      {item.rejection_reason || item.reason || 'No rejection reason recorded'}
                     </td>
                     <td>
                       <span className="badge badge-neutral" style={{ color: 'var(--color-warning)' }}>

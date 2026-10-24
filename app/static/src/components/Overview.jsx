@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  NO_DATA,
+  displayValue,
+  executionSummary,
+  pickCount,
+  reportStatusBadgeClass,
+  reportStatusLabel,
+} from '../runDisplay.mjs';
 
 export default function Overview({
   targetUrl,
@@ -20,18 +28,18 @@ export default function Overview({
   const confirmedLeads = investigationReport?.confirmed_bug_leads || [];
   const rejectedLeads = investigationReport?.unstable_or_rejected_leads || [];
 
-  const routesCount = (investigationReport?.investigated_routes?.length) || ov.pages_discovered || (map.length || 5);
-  const statesCount = (Array.isArray(stateClasses) ? stateClasses.length : Object.keys(stateClasses).length) || ov.meaningful_states_discovered || 6;
-  const transCount = (transitions?.length) || ov.transitions_observed || 10;
-  const testCasesCount = (testSuite?.test_cases?.length) || (investigationReport?.proposed_test_cases?.length) || 29;
+  // Counts are shown only when a report provides them; a real 0 is shown as 0.
+  const hasReport = Boolean(investigationReport);
+  const stateClassCount = Array.isArray(stateClasses) ? stateClasses.length : Object.keys(stateClasses).length;
+  const routesCount = hasReport ? pickCount(investigationReport?.investigated_routes?.length, ov.pages_discovered, map.length) : null;
+  const statesCount = hasReport ? pickCount(stateClassCount, ov.meaningful_states_discovered) : null;
+  const transCount = hasReport ? pickCount(transitions?.length, ov.transitions_observed) : null;
+  const testCasesCount = pickCount(testSuite?.test_cases?.length, investigationReport?.proposed_test_cases?.length);
 
-  const executedCount = executionReport?.executed_count || 27;
-  const passedCount = executionReport?.passed_count ?? 26;
-  const failedCount = executionReport?.failed_count ?? 1;
-  const setupFailuresCount = executionReport?.setup_failures_count ?? 0;
-  const passRate = executedCount > 0 ? ((passedCount / executedCount) * 100).toFixed(1) : '100.0';
+  // Execution metrics come only from a real execution response; otherwise nothing is shown.
+  const execution = executionSummary(executionReport);
 
-  const status = (ov.status || 'COMPLETED').toUpperCase();
+  const status = reportStatusLabel(ov.status);
 
   return (
     <div className="view-panel">
@@ -39,7 +47,7 @@ export default function Overview({
         <div>
           <div className="results-title-row">
             <h1 className="view-title">Autonomous QA Overview &amp; Control Center</h1>
-            <span className={`badge ${status === 'COMPLETED' ? 'badge-emerald' : 'badge-amber'}`}>
+            <span className={`badge ${reportStatusBadgeClass(ov.status)}`}>
               STATUS: {status}
             </span>
           </div>
@@ -64,7 +72,7 @@ export default function Overview({
             <div className="metric-icon-box icon-cyan">🌐</div>
           </div>
           <div className="metric-value-box">
-            <span className="metric-value">{routesCount}</span>
+            <span className="metric-value">{displayValue(routesCount)}</span>
             <span className="metric-tag tag-cyan">Verified</span>
           </div>
           <div className="metric-footer">Accessible browser route paths</div>
@@ -76,7 +84,7 @@ export default function Overview({
             <div className="metric-icon-box icon-indigo">🗺️</div>
           </div>
           <div className="metric-value-box">
-            <span className="metric-value">{statesCount}</span>
+            <span className="metric-value">{displayValue(statesCount)}</span>
             <span className="metric-tag tag-indigo">Semantic Nodes</span>
           </div>
           <div className="metric-footer">Clustered state-graph nodes</div>
@@ -88,7 +96,7 @@ export default function Overview({
             <div className="metric-icon-box icon-purple">🔄</div>
           </div>
           <div className="metric-value-box">
-            <span className="metric-value">{transCount}</span>
+            <span className="metric-value">{displayValue(transCount)}</span>
             <span className="metric-tag tag-purple">Edge Grounded</span>
           </div>
           <div className="metric-footer">Action-backed state transitions</div>
@@ -100,8 +108,8 @@ export default function Overview({
             <div className="metric-icon-box icon-emerald">📋</div>
           </div>
           <div className="metric-value-box">
-            <span className="metric-value">{testCasesCount}</span>
-            <span className="metric-tag tag-emerald">100% Grounded</span>
+            <span className="metric-value">{displayValue(testCasesCount)}</span>
+            <span className="metric-tag tag-emerald">From investigation</span>
           </div>
           <div className="metric-footer">Derived from observed DOM states</div>
         </div>
@@ -112,10 +120,14 @@ export default function Overview({
             <div className="metric-icon-box icon-emerald">✅</div>
           </div>
           <div className="metric-value-box">
-            <span className="metric-value text-emerald">{passRate}%</span>
-            <span className="metric-tag tag-emerald">{passedCount}/{executedCount} Pass</span>
+            <span className="metric-value text-emerald">{execution?.passRate != null ? `${execution.passRate}%` : NO_DATA}</span>
+            <span className="metric-tag tag-emerald">
+              {execution ? `${execution.passed}/${execution.executed} Pass` : 'No execution data yet'}
+            </span>
           </div>
-          <div className="metric-footer">100% Assertion Validity Rate</div>
+          <div className="metric-footer">
+            {execution?.assertionValidity != null ? `Assertion validity rate: ${execution.assertionValidity}%` : 'Run the generated tests to see results'}
+          </div>
         </div>
 
         <div className="metric-card">
@@ -125,7 +137,7 @@ export default function Overview({
           </div>
           <div className="metric-value-box">
             <span className="metric-value text-rose">{confirmedLeads.length}</span>
-            <span className="metric-tag tag-rose">2/2 Repro</span>
+            <span className="metric-tag tag-rose">Confirmed leads</span>
           </div>
           <div className="metric-footer">{rejectedLeads.length} Skeptic Filtered</div>
         </div>

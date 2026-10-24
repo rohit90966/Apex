@@ -3,7 +3,8 @@ import sys
 import uuid
 import asyncio
 import logging
-from typing import Optional, Dict, Any
+from contextlib import asynccontextmanager
+from typing import Optional, Dict, Any, Set
 
 # Ensure ProactorEventLoop is used on Windows so Playwright subprocesses work properly
 if sys.platform == "win32":
@@ -34,6 +35,15 @@ from app.execution.runner import QAPlanRunner
 from app.bugs.investigator import BugInvestigator
 from app.export.playwright_exporter import PlaywrightTestExporter
 from app.benchmark.manifest import BenchmarkEvaluator
+from app.runs import (
+    RunStore,
+    RunListResponse,
+    RunDetailResponse,
+    InvalidRunId,
+    RunNotFound,
+    collect_known_secrets,
+    redact_secrets,
+)
 
 # Setup logging
 logging.basicConfig(
@@ -42,13 +52,26 @@ logging.basicConfig(
 )
 logger = logging.getLogger("verityqa")
 
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    recovered = run_store.recover_interrupted_runs()
+    if recovered:
+        logger.warning("[Runs] Marked %d interrupted run(s) as failed after restart", recovered)
+    yield
+
+
 app = FastAPI(
     title="VerityQA",
     description="Autonomous AI QA Engineer - Step 1: Test Planning Agent",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 settings = get_settings()
+run_store = RunStore(settings.verityqa_runs_dir)
+# Strong references keep fire-and-forget investigation workers alive until they finish.
+_background_tasks: Set[asyncio.Task] = set()
 
 # Mount static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
@@ -311,14 +334,101 @@ async def inspect_and_plan(request: InspectionRequest):
     )
 
 
+def _build_investigation_payload(report: Any) -> Dict[str, Any]:
+    """
+    Assembles the investigation payload shared by /api/investigate, the SSE COMPLETE event,
+    and the persisted run: report + legacy summary + the synthesized test cases.
+    """
+    synthesized_cases = []
+    try:
+        from app.investigation_agent.test_synthesis import synthesize_test_cases_from_investigation
+        synthesized_cases = synthesize_test_cases_from_investigation(report)
+    except Exception as synth_err:
+        logger.warning("[Investigation] Test synthesis non-critical error: %s", synth_err)
+    test_plan_data = [tc.model_dump(mode="json") for tc in synthesized_cases]
+
+    bva_count = sum(1 for r in report.business_rules_and_hypotheses if any(k in r.description.lower() for k in ("boundary", "length", "required", "min", "max", "format")))
+    legacy_summary = {
+        "target_url": report.overview.target_url,
+        "duration_seconds": report.overview.duration_seconds,
+        "planning_strategy": report.overview.planning_strategy,
+        "llm_calls_count": report.overview.llm_calls_count,
+        "llm_fallbacks_count": report.overview.llm_fallbacks_count,
+        "llm_latency_seconds": report.overview.llm_latency_seconds,
+        "pages_discovered": report.overview.pages_discovered,
+        "states_discovered": report.overview.meaningful_states_discovered,
+        "transitions_observed": report.overview.transitions_observed,
+        "route_transitions_observed": report.overview.route_transitions_observed,
+        "same_route_state_transitions": report.overview.same_route_state_transitions,
+        "candidates_discovered": report.overview.candidates_discovered,
+        "actions_evaluated": report.overview.actions_evaluated,
+        "actions_attempted": report.overview.actions_attempted,
+        "actions_successful": report.overview.actions_successful,
+        "actions_verified_effects": report.overview.actions_verified_effects,
+        "actions_failed": report.overview.actions_failed,
+        "actions_safety_blocked": report.overview.actions_safety_blocked,
+        "stopping_reason": report.overview.stopping_reason,
+        "evidence_count": len(report.evidence_and_traceability),
+        "headings_count": report.overview.total_headings_discovered,
+        "forms_count": report.overview.total_forms_discovered,
+        "inputs_count": report.overview.total_inputs_discovered,
+        "buttons_count": report.overview.total_buttons_discovered,
+        "links_count": report.overview.total_links_discovered,
+        "qa_patterns": len(report.business_rules_and_hypotheses),
+        "test_cases": len(synthesized_cases),
+        "bva_ideas": bva_count,
+    }
+    res_data = report.model_dump(mode="json")
+    res_data["legacy_inspection_summary"] = legacy_summary
+    res_data["confirmed_leads_count"] = len(report.confirmed_bug_leads)
+    res_data["unstable_or_rejected_leads_count"] = len(report.unstable_or_rejected_leads)
+    res_data["skeptic_rejections_count"] = len(report.unstable_or_rejected_leads)
+    res_data["proposed_test_cases"] = test_plan_data
+    res_data["proposed_test_plan"] = {
+        "test_cases": test_plan_data,
+        "planning_mode": "STATEFUL_INVESTIGATION",
+        "planning_summary": f"Synthesized {len(synthesized_cases)} evidence-grounded test cases from discovered workflows and verified transitions.",
+    }
+    return res_data
+
+
+def _safe_error_text(err: BaseException, secrets: Set[str]) -> str:
+    """Error message suitable for persistence, logs, and clients (secrets redacted, bounded length)."""
+    return redact_secrets(f"{type(err).__name__}: {str(err)[:300]}", secrets)
+
+
+def _finalize_run(run_id: str, report: Any, secrets: Set[str]) -> Dict[str, Any]:
+    """Builds the redacted investigation payload and persists it with exactly its test cases."""
+    if report is None:
+        raise RuntimeError("Investigation finished without producing a report")
+    payload = redact_secrets(_build_investigation_payload(report), secrets)
+    payload["run_id"] = run_id
+    report_status = getattr(report.overview.status, "value", report.overview.status)
+    run_store.complete(
+        run_id,
+        report=payload,
+        test_cases=payload["proposed_test_cases"],
+        stopping_reason=report.overview.stopping_reason,
+        secrets=secrets,
+        report_status=report_status,
+    )
+    return payload
+
+
+def _record_run_failure(run_id: str, error_text: str, secrets: Set[str]) -> None:
+    try:
+        run_store.fail(run_id, error_text, secrets=secrets)
+    except Exception as store_err:
+        logger.error("[Runs] Could not persist failure for %s: %s", run_id, store_err)
+
+
 @app.post("/api/investigate")
 async def investigate_only(request: InspectionRequest):
     """
     Dedicated Investigation-Only Endpoint.
     Pipeline: User Input -> Website Investigation -> Application Intelligence Model -> Investigation Report.
+    The run (report + synthesized test cases) is persisted and retrievable via GET /api/runs/{run_id}.
     Explicitly excludes:
-    - Test generation
-    - Executable Playwright test synthesis
     - Test execution
     - Bug reporting or defect triage
     """
@@ -328,7 +438,11 @@ async def investigate_only(request: InspectionRequest):
     except SafetyViolation as e:
         raise HTTPException(status_code=400, detail=f"Safety Policy Rejection: {str(e)}")
 
+    secrets = collect_known_secrets(request.url)
+    run = run_store.create(request.url, request.description, request.requirements, secrets=secrets)
+
     try:
+        run_store.mark_running(run.run_id)
         from app.investigation_agent import run_stateful_investigation
         max_actions_val = getattr(request, "max_actions", 0) or (0 if settings.investigation_adaptive_mode else settings.investigation_max_actions)
         report = await run_stateful_investigation(
@@ -338,63 +452,17 @@ async def investigate_only(request: InspectionRequest):
             max_actions=max_actions_val,
             max_time_seconds=settings.investigation_max_browser_seconds,
             headless=settings.verityqa_headless,
+            investigation_id=run.run_id,
         )
-        logger.info("[Investigation-Only] Completed investigation for %s: %d states, %d transitions",
-                    request.url, len(report.discovered_application_map), len(report.user_workflows))
-        synthesized_cases = []
-        try:
-            from app.investigation_agent.test_synthesis import synthesize_test_cases_from_investigation
-            synthesized_cases = synthesize_test_cases_from_investigation(report)
-        except Exception as synth_err:
-            logger.warning("[Investigation-Only] Test synthesis non-critical error: %s", synth_err)
-        test_plan_data = [tc.model_dump() for tc in synthesized_cases]
-
-        bva_count = sum(1 for r in report.business_rules_and_hypotheses if any(k in r.description.lower() for k in ("boundary", "length", "required", "min", "max", "format")))
-        legacy_summary = {
-            "target_url": report.overview.target_url,
-            "duration_seconds": report.overview.duration_seconds,
-            "planning_strategy": report.overview.planning_strategy,
-            "llm_calls_count": report.overview.llm_calls_count,
-            "llm_fallbacks_count": report.overview.llm_fallbacks_count,
-            "llm_latency_seconds": report.overview.llm_latency_seconds,
-            "pages_discovered": report.overview.pages_discovered,
-            "states_discovered": report.overview.meaningful_states_discovered,
-            "transitions_observed": report.overview.transitions_observed,
-            "route_transitions_observed": report.overview.route_transitions_observed,
-            "same_route_state_transitions": report.overview.same_route_state_transitions,
-            "candidates_discovered": report.overview.candidates_discovered,
-            "actions_evaluated": report.overview.actions_evaluated,
-            "actions_attempted": report.overview.actions_attempted,
-            "actions_successful": report.overview.actions_successful,
-            "actions_verified_effects": report.overview.actions_verified_effects,
-            "actions_failed": report.overview.actions_failed,
-            "actions_safety_blocked": report.overview.actions_safety_blocked,
-            "stopping_reason": report.overview.stopping_reason,
-            "evidence_count": len(report.evidence_and_traceability),
-            "headings_count": report.overview.total_headings_discovered,
-            "forms_count": report.overview.total_forms_discovered,
-            "inputs_count": report.overview.total_inputs_discovered,
-            "buttons_count": report.overview.total_buttons_discovered,
-            "links_count": report.overview.total_links_discovered,
-            "qa_patterns": len(report.business_rules_and_hypotheses),
-            "test_cases": len(synthesized_cases),
-            "bva_ideas": bva_count,
-        }
-        res_data = report.model_dump()
-        res_data["legacy_inspection_summary"] = legacy_summary
-        res_data["confirmed_leads_count"] = len(report.confirmed_bug_leads)
-        res_data["unstable_or_rejected_leads_count"] = len(report.unstable_or_rejected_leads)
-        res_data["skeptic_rejections_count"] = len(report.unstable_or_rejected_leads)
-        res_data["proposed_test_cases"] = test_plan_data
-        res_data["proposed_test_plan"] = {
-            "test_cases": test_plan_data,
-            "planning_mode": "STATEFUL_INVESTIGATION",
-            "planning_summary": f"Synthesized {len(synthesized_cases)} evidence-grounded test cases from discovered workflows and verified transitions.",
-        }
-        return JSONResponse(content=res_data)
+        payload = _finalize_run(run.run_id, report, secrets)
+        logger.info("[Investigation-Only] Completed run %s for %s: %d states, %d transitions",
+                    run.run_id, request.url, len(report.discovered_application_map), len(report.user_workflows))
+        return JSONResponse(content=payload)
     except Exception as e:
-        logger.exception("[Investigation-Only] Investigation failed: %s", e)
-        raise HTTPException(status_code=500, detail=f"Investigation failed: {str(e)[:150]}")
+        error_text = _safe_error_text(e, secrets)
+        logger.error("[Investigation-Only] Run %s failed: %s", run.run_id, error_text)
+        _record_run_failure(run.run_id, error_text, secrets)
+        raise HTTPException(status_code=500, detail=f"Investigation failed (run {run.run_id}): {error_text[:150]}")
 
 
 @app.get("/api/investigate/stream")
@@ -402,12 +470,15 @@ async def investigate_only(request: InspectionRequest):
 async def investigate_stream(request: Request):
     """
     Real-time Server-Sent Events (SSE) investigation stream.
-    Streams:
+    Every event carries "run_id". Streams:
+    - RUN_CREATED: The persisted run was created (first event)
     - PROBE_START: Probe dispatch with prediction
     - PROBE_RESULT: Outcome comparison and empirical diff
     - LEAD_DETECTED: Bug lead detection (always-on oracles, form outcomes)
     - REPRO_RESULT: 2-of-2 context confirmation and step minimization
     - STOPPING: Investigation completion with final behavior model
+    - COMPLETE: Run persisted; load it via GET /api/runs/{run_id}
+    - ERROR: Run failed and was persisted with status "failed"
     """
     import json
     target_url = None
@@ -442,14 +513,20 @@ async def investigate_stream(request: Request):
     except SafetyViolation as e:
         raise HTTPException(status_code=400, detail=f"Safety Policy Rejection: {str(e)}")
 
+    secrets = collect_known_secrets(target_url)
+    run = run_store.create(target_url, description, requirements, secrets=secrets)
+    run_id = run.run_id
+
     loop = asyncio.get_running_loop()
     event_queue: asyncio.Queue = asyncio.Queue()
 
-    def sse_callback(evt: Dict[str, Any]):
-        loop.call_soon_threadsafe(event_queue.put_nowait, evt)
+    def publish(evt: Dict[str, Any]):
+        """Thread-safe: every streamed event is redacted and stamped with this run's ID."""
+        loop.call_soon_threadsafe(event_queue.put_nowait, {**redact_secrets(evt, secrets), "run_id": run_id})
 
     async def run_investigation_worker():
         try:
+            run_store.mark_running(run_id)
             from app.investigation_agent import run_stateful_investigation
             report = await run_stateful_investigation(
                 url=target_url,
@@ -458,64 +535,31 @@ async def investigate_stream(request: Request):
                 max_actions=max_actions,
                 max_time_seconds=settings.investigation_max_browser_seconds,
                 headless=settings.verityqa_headless,
-                event_callback=sse_callback,
+                event_callback=publish,
                 resume_checkpoint=resume_checkpoint,
+                investigation_id=run_id,
             )
-            synthesized_cases = []
+            # Persist before announcing so a client reacting to COMPLETE can always load the run.
+            payload = _finalize_run(run_id, report, secrets)
+            publish({"type": "COMPLETE", "status": "completed", "report": payload})
+        except asyncio.CancelledError:
             try:
-                from app.investigation_agent.test_synthesis import synthesize_test_cases_from_investigation
-                synthesized_cases = synthesize_test_cases_from_investigation(report)
-            except Exception as synth_err:
-                logger.warning("[Investigation-Stream] Test synthesis non-critical error: %s", synth_err)
-            test_plan_data = [tc.model_dump() for tc in synthesized_cases]
-            report_dict = report.model_dump() if hasattr(report, "model_dump") else {}
-            bva_count = sum(1 for r in report.business_rules_and_hypotheses if any(k in r.description.lower() for k in ("boundary", "length", "required", "min", "max", "format")))
-            report_dict["legacy_inspection_summary"] = {
-                "target_url": report.overview.target_url,
-                "duration_seconds": report.overview.duration_seconds,
-                "planning_strategy": report.overview.planning_strategy,
-                "pages_discovered": report.overview.pages_discovered,
-                "states_discovered": report.overview.meaningful_states_discovered,
-                "transitions_observed": report.overview.transitions_observed,
-                "route_transitions_observed": report.overview.route_transitions_observed,
-                "same_route_state_transitions": report.overview.same_route_state_transitions,
-                "actions_evaluated": report.overview.actions_evaluated,
-                "actions_attempted": report.overview.actions_attempted,
-                "actions_successful": report.overview.actions_successful,
-                "actions_verified_effects": report.overview.actions_verified_effects,
-                "actions_failed": report.overview.actions_failed,
-                "actions_safety_blocked": report.overview.actions_safety_blocked,
-                "stopping_reason": report.overview.stopping_reason,
-                "evidence_count": len(report.evidence_and_traceability),
-                "headings_count": report.overview.total_headings_discovered,
-                "forms_count": report.overview.total_forms_discovered,
-                "inputs_count": report.overview.total_inputs_discovered,
-                "buttons_count": report.overview.total_buttons_discovered,
-                "links_count": report.overview.total_links_discovered,
-                "qa_patterns": len(report.business_rules_and_hypotheses),
-                "test_cases": len(synthesized_cases),
-                "bva_ideas": bva_count,
-            }
-            report_dict["proposed_test_cases"] = test_plan_data
-            report_dict["proposed_test_plan"] = {
-                "test_cases": test_plan_data,
-                "planning_mode": "STATEFUL_INVESTIGATION",
-                "planning_summary": f"Synthesized {len(synthesized_cases)} evidence-grounded test cases from discovered workflows and verified transitions.",
-            }
-            loop.call_soon_threadsafe(
-                event_queue.put_nowait,
-                {"type": "COMPLETE", "report": report_dict}
-            )
+                run_store.cancel(run_id, "Investigation task was cancelled", secrets=secrets)
+            except Exception as store_err:
+                logger.error("[Runs] Could not persist cancellation for %s: %s", run_id, store_err)
+            raise
         except Exception as err:
-            logger.exception("[Investigation-Stream] Failed: %s", err)
-            loop.call_soon_threadsafe(
-                event_queue.put_nowait,
-                {"type": "ERROR", "error": str(err)[:200]}
-            )
+            error_text = _safe_error_text(err, secrets)
+            logger.error("[Investigation-Stream] Run %s failed: %s", run_id, error_text)
+            _record_run_failure(run_id, error_text, secrets)
+            publish({"type": "ERROR", "status": "failed", "error": error_text})
         finally:
             loop.call_soon_threadsafe(event_queue.put_nowait, None)
 
-    asyncio.create_task(run_investigation_worker())
+    event_queue.put_nowait({"type": "RUN_CREATED", "run_id": run_id, "status": run.status.value, "target_url": target_url})
+    task = asyncio.create_task(run_investigation_worker())
+    _background_tasks.add(task)
+    task.add_done_callback(_background_tasks.discard)
 
     async def sse_generator():
         while True:
@@ -834,6 +878,23 @@ async def get_report_content(filename: str):
     if not os.path.exists(fpath):
         raise HTTPException(status_code=404, detail="Report file not found.")
     return FileResponse(fpath, media_type="application/json")
+
+
+@app.get("/api/runs", response_model=RunListResponse)
+async def list_runs():
+    """Lists persisted investigation runs, newest first."""
+    return RunListResponse(runs=run_store.list_runs())
+
+
+@app.get("/api/runs/{run_id}", response_model=RunDetailResponse)
+async def get_run(run_id: str):
+    """Returns one persisted run with its report and exactly its generated test cases."""
+    try:
+        return run_store.get(run_id)
+    except InvalidRunId:
+        raise HTTPException(status_code=400, detail="Invalid run ID format.")
+    except RunNotFound:
+        raise HTTPException(status_code=404, detail=f"Run '{run_id}' not found.")
 
 
 @app.get("/api/benchmark")
