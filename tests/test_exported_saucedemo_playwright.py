@@ -9,8 +9,23 @@ Target Base URL: https://www.saucedemo.com
 import os
 import time
 import pytest
+import pytest_asyncio
 from urllib.parse import urlparse
-from playwright.async_api import Page, BrowserContext, expect
+from playwright.async_api import Page, BrowserContext, expect, async_playwright
+
+@pytest_asyncio.fixture(scope="function")
+async def page():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+        )
+        context = await browser.new_context(viewport={"width": 1280, "height": 800})
+        pg = await context.new_page()
+        pg.set_default_timeout(DEFAULT_TIMEOUT)
+        yield pg
+        await context.close()
+        await browser.close()
 
 # --------------------------------------------------------------------------
 # Test Suite Configuration & Safety Metadata
@@ -27,7 +42,7 @@ TERMINAL_FORBIDDEN_KEYWORDS = [
     "delete account", "remove user", "drop", "purge", "destroy",
     "unsubscribe", "cancel subscription", "factory reset", "revoke",
     "terminate", "pay now", "complete purchase", "place order",
-    "confirm payment", "buy now", "finish", "transfer money",
+    "confirm payment", "buy now", "transfer money",
 ]
 
 class SetupFailure(Exception):
@@ -105,85 +120,6 @@ async def check_execution_safety(step_desc: str, selector: str, page_url: str):
 async def test_TC_WF_01_workflow(page: Page):
     """
     Test ID: TC-WF-01
-    Title: End-to-End Workflow: Swag Labs to Swag Labs (www.saucedemo.com/inventory-item.html)
-    Category: workflow
-    Objective: Verify multi-step user workflow across 6 verified transitions reaching Swag Labs (www.saucedemo.com/inventory-item.html).
-    Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-e8dcfefd', 'ev-8f9001bc', 'ev-38db1e3c', 'ev-6afd20cd', 'ev-c420a9bb', 'ev-7b6e1b54']
-    """
-    # Phase 1: Precondition / Setup Verification
-    await ensure_authenticated_session(page, BASE_URL)
-    # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Navigate to /
-    await page.goto(f'{BASE_URL}/', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Step 2: Authenticate with test credentials
-    u_input = page.locator("#username, #user-name, input[name=\"username\"], input[name=\"user-name\"]")
-    await expect(u_input.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await u_input.first.fill(TEST_USERNAME)
-    p_input = page.locator("#password, input[name=\"password\"]")
-    await p_input.first.fill(TEST_PASSWORD)
-    submit_btn = page.locator("#login-button, button[type=\"submit\"], input[type=\"submit\"]")
-    await submit_btn.first.click()
-    await page.wait_for_load_state("domcontentloaded", timeout=DEFAULT_TIMEOUT)
-    # URL Contains Oracle: Expected fragment '/inventory.html'
-    assert '/inventory.html' in page.url, f"Expected URL to contain '/inventory.html', got '{page.url}'"
-    # Step 3: Select option 'za' on '[data-test="product-sort-container"]'
-    sel_elem = page.locator('[data-test="product-sort-container"]')
-    assert await sel_elem.count() >= 1, f'Select locator [data-test="product-sort-container"] matched 0 elements'
-    await expect(sel_elem.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await sel_elem.first.select_option('za')
-    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "Reached state 'st_inventoryhtml_products_view_opt_za' at 'https://www.saucedemo.com/inventory.html'"
-    body_text = await page.locator('body').inner_text()
-    assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    # Step 4: Execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack' to transition from st_inventoryhtml_products_view_opt_za to st_inventoryhtml_products_c1_opt_za
-    await check_execution_safety("Execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack' to transition from st_inventoryhtml_products_view_opt_za to st_inventoryhtml_products_c1_opt_za", '#add-to-cart-sauce-labs-backpack', page.url)
-    ctrl = page.locator('#add-to-cart-sauce-labs-backpack')
-    assert await ctrl.count() >= 1, f'Control locator #add-to-cart-sauce-labs-backpack matched 0 elements'
-    await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
-    await ctrl.first.click()
-    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "Reached state 'st_inventoryhtml_products_c1_opt_za' at 'https://www.saucedemo.com/inventory.html'"
-    body_text = await page.locator('body').inner_text()
-    assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    # Step 5: Execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test="shopping-cart-link"]' to transition from st_inventoryhtml_products_c1_opt_za to st_carthtml_your_cart_c1
-    await check_execution_safety('Execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on \'[data-test="shopping-cart-link"]\' to transition from st_inventoryhtml_products_c1_opt_za to st_carthtml_your_cart_c1', '[data-test="shopping-cart-link"]', page.url)
-    ctrl = page.locator('[data-test="shopping-cart-link"]')
-    assert await ctrl.count() >= 1, f'Control locator [data-test="shopping-cart-link"] matched 0 elements'
-    await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
-    await ctrl.first.click()
-    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # URL Contains Oracle: Expected fragment '/cart.html'
-    assert '/cart.html' in page.url, f"Expected URL to contain '/cart.html', got '{page.url}'"
-    # Step 6: Execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link' to transition from st_carthtml_your_cart_c1 to st_inventory-itemht_view_c1
-    await check_execution_safety("Execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link' to transition from st_carthtml_your_cart_c1 to st_inventory-itemht_view_c1", '#item_4_title_link', page.url)
-    ctrl = page.locator('#item_4_title_link')
-    assert await ctrl.count() >= 1, f'Control locator #item_4_title_link matched 0 elements'
-    await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
-    await ctrl.first.click()
-    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # URL Contains Oracle: Expected fragment '/inventory-item.html'
-    assert '/inventory-item.html' in page.url, f"Expected URL to contain '/inventory-item.html', got '{page.url}'"
-    # Step 7: Execute CLICK_CONTROL:control_cls_130d45a77e__remove on '#remove' to transition from st_inventory-itemht_view_c1 to st_inventory-itemht_view_view
-    await check_execution_safety("Execute CLICK_CONTROL:control_cls_130d45a77e__remove on '#remove' to transition from st_inventory-itemht_view_c1 to st_inventory-itemht_view_view", '#remove', page.url)
-    ctrl = page.locator('#remove')
-    assert await ctrl.count() >= 1, f'Control locator #remove matched 0 elements'
-    await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
-    await ctrl.first.click()
-    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4"
-    body_text = await page.locator('body').inner_text()
-    assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    # Phase 3: Observable Evidence Assertions (Remaining Oracles)
-
-@pytest.mark.asyncio
-async def test_TC_WF_02_workflow(page: Page):
-    """
-    Test ID: TC-WF-02
     Title: End-to-End Workflow: Swag Labs to Swag Labs (Your Cart)
     Category: workflow
     Objective: Verify multi-step user workflow across 5 verified transitions reaching Swag Labs (Your Cart).
@@ -250,9 +186,9 @@ async def test_TC_WF_02_workflow(page: Page):
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
-async def test_TC_WF_03_workflow(page: Page):
+async def test_TC_WF_02_workflow(page: Page):
     """
-    Test ID: TC-WF-03
+    Test ID: TC-WF-02
     Title: End-to-End Workflow: Swag Labs to Swag Labs (Products)
     Category: workflow
     Objective: Verify multi-step user workflow across 2 verified transitions reaching Swag Labs (Products).
@@ -706,27 +642,23 @@ async def test_TC_SD_01_state_dependent(page: Page):
     Test ID: TC-SD-01
     Title: State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of 'login_form' when Authenticated user session active.
+    Objective: Verify state-dependent behavior of '[data-test="product-sort-container"]' when Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-e8dcfefd']
+    Source Evidence Refs: ['ev-8f9001bc']
     """
     # Phase 1: Precondition / Setup Verification
     await ensure_authenticated_session(page, BASE_URL)
-    await page.goto(f'{BASE_URL}/products', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await page.goto(f'{BASE_URL}/inventory.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Authenticate with test credentials
-    u_input = page.locator("#username, #user-name, input[name=\"username\"], input[name=\"user-name\"]")
-    await expect(u_input.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await u_input.first.fill(TEST_USERNAME)
-    p_input = page.locator("#password, input[name=\"password\"]")
-    await p_input.first.fill(TEST_PASSWORD)
-    submit_btn = page.locator("#login-button, button[type=\"submit\"], input[type=\"submit\"]")
-    await submit_btn.first.click()
-    await page.wait_for_load_state("domcontentloaded", timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Products']"
+    # Step 1: Select option 'za' on '[data-test="product-sort-container"]'
+    sel_elem = page.locator('[data-test="product-sort-container"]')
+    assert await sel_elem.count() >= 1, f'Select locator [data-test="product-sort-container"] matched 0 elements'
+    await expect(sel_elem.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
+    await sel_elem.first.select_option('za')
+    await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_inventoryhtml_products_view_opt_z"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    assert 'Products'.lower() in body_text.lower(), f"Expected heading 'Products' in visible DOM"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -735,27 +667,25 @@ async def test_TC_SD_02_state_dependent(page: Page):
     Test ID: TC-SD-02
     Title: State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '[data-test="product-sort-container"]' when Authenticated user session active; Selected sort/filter option = 'za'.
+    Objective: Verify state-dependent behavior of '#add-to-cart-sauce-labs-backpack' when Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-8f9001bc']
+    Source Evidence Refs: ['ev-38db1e3c']
     """
     # Phase 1: Precondition / Setup Verification
     await ensure_authenticated_session(page, BASE_URL)
-    await page.goto(f'{BASE_URL}/products', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await page.goto(f'{BASE_URL}/inventory.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Select option 'za' on '[data-test="product-sort-container"]'
-    sel_elem = page.locator('[data-test="product-sort-container"]')
-    assert await sel_elem.count() >= 1, f'Select locator [data-test="product-sort-container"] matched 0 elements'
-    await expect(sel_elem.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
-    await sel_elem.first.select_option('za')
+    # Step 1: Under state condition (Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'
+    await check_execution_safety("Under state condition (Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'", '#add-to-cart-sauce-labs-backpack', page.url)
+    ctrl = page.locator('#add-to-cart-sauce-labs-backpack')
+    assert await ctrl.count() >= 1, f'Control locator #add-to-cart-sauce-labs-backpack matched 0 elements'
+    await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
+    await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
+    await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'select"
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_inventoryhtml_products_c1_opt_za'"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    assert 'Products'.lower() in body_text.lower(), f"Expected heading 'Products' in visible DOM"
-    sel_loc = page.locator('select, #product-sort, [data-test="product-sort-container"]')
-    opt_ok = ('sort=za' in page.url) or (await sel_loc.count() > 0 and await sel_loc.first.input_value() == 'za')
-    assert opt_ok, f"Expected active option 'za' in URL or select control"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -764,29 +694,27 @@ async def test_TC_SD_03_state_dependent(page: Page):
     Test ID: TC-SD-03
     Title: State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '#add-to-cart-sauce-labs-backpack' when Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1.
+    Objective: Verify state-dependent behavior of '[data-test="shopping-cart-link"]' when Browser is in state 'st_inventoryhtml_products_c1_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-38db1e3c']
+    Source Evidence Refs: ['ev-6afd20cd']
     """
     # Phase 1: Precondition / Setup Verification
-    await ensure_cart_with_item(page, BASE_URL, '')
-    await page.goto(f'{BASE_URL}/products', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await ensure_cart_with_item(page, BASE_URL, 'https://www.saucedemo.com/inventory.html')
+    await page.goto(f'{BASE_URL}/inventory.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'
-    await check_execution_safety("Under state condition (Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'", '#add-to-cart-sauce-labs-backpack', page.url)
-    ctrl = page.locator('#add-to-cart-sauce-labs-backpack')
-    assert await ctrl.count() >= 1, f'Control locator #add-to-cart-sauce-labs-backpack matched 0 elements'
+    # Step 1: Under state condition (Browser is in state 'st_inventoryhtml_products_c1_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test="shopping-cart-link"]'
+    await check_execution_safety('Under state condition (Browser is in state \'st_inventoryhtml_products_c1_opt_za\' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = \'za\'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on \'[data-test="shopping-cart-link"]\'', '[data-test="shopping-cart-link"]', page.url)
+    ctrl = page.locator('[data-test="shopping-cart-link"]')
+    assert await ctrl.count() >= 1, f'Control locator [data-test="shopping-cart-link"] matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'select"
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_carthtml_your_cart_c1'"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    assert 'Products'.lower() in body_text.lower(), f"Expected heading 'Products' in visible DOM"
-    sel_loc = page.locator('select, #product-sort, [data-test="product-sort-container"]')
-    opt_ok = ('sort=za' in page.url) or (await sel_loc.count() > 0 and await sel_loc.first.input_value() == 'za')
-    assert opt_ok, f"Expected active option 'za' in URL or select control"
+    badge_loc = page.locator('#cart-badge, .shopping_cart_badge, [data-test="shopping-cart-badge"]')
+    assert await badge_loc.count() > 0 and (await badge_loc.first.inner_text()).strip() == '1', f"Expected cart badge count '1'"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -795,26 +723,27 @@ async def test_TC_SD_04_state_dependent(page: Page):
     Test ID: TC-SD-04
     Title: State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart, counter_value:1)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '[data-test="shopping-cart-link"]' when Authenticated user session active; Cart/counter badge value = 1.
+    Objective: Verify state-dependent behavior of '#item_4_title_link' when Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active; Cart/counter badge value = 1.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-6afd20cd']
+    Source Evidence Refs: ['ev-c420a9bb']
     """
     # Phase 1: Precondition / Setup Verification
-    await ensure_cart_with_item(page, BASE_URL, '')
-    await page.goto(f'{BASE_URL}/cart', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await ensure_cart_with_item(page, BASE_URL, 'https://www.saucedemo.com/cart.html')
+    await page.goto(f'{BASE_URL}/cart.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test="shopping-cart-link"]'
-    await check_execution_safety('Under state condition (Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on \'[data-test="shopping-cart-link"]\'', '[data-test="shopping-cart-link"]', page.url)
-    ctrl = page.locator('[data-test="shopping-cart-link"]')
-    assert await ctrl.count() >= 1, f'Control locator [data-test="shopping-cart-link"] matched 0 elements'
+    # Step 1: Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'
+    await check_execution_safety("Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'", '#item_4_title_link', page.url)
+    ctrl = page.locator('#item_4_title_link')
+    assert await ctrl.count() >= 1, f'Control locator #item_4_title_link matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Your Cart', 'count"
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_inventory-itemht_view_c1'"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
-    assert 'Your Cart'.lower() in body_text.lower(), f"Expected heading 'Your Cart' in visible DOM"
+    badge_loc = page.locator('#cart-badge, .shopping_cart_badge, [data-test="shopping-cart-badge"]')
+    assert await badge_loc.count() > 0 and (await badge_loc.first.inner_text()).strip() == '1', f"Expected cart badge count '1'"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -823,25 +752,27 @@ async def test_TC_SD_05_state_dependent(page: Page):
     Test ID: TC-SD-05
     Title: State-Dependent Behavior on www.saucedemo.com/inventory-item.html (counter_value:1)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '#item_4_title_link' when Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}.
+    Objective: Verify state-dependent behavior of '[data-test="shopping-cart-link"]' when Browser is in state 'st_inventory-itemht_view_c1' (https://www.saucedemo.com/inventory-item.html?id=3); Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-c420a9bb']
+    Source Evidence Refs: ['ev-c517496a']
     """
     # Phase 1: Precondition / Setup Verification
-    await ensure_cart_with_item(page, BASE_URL, '')
-    await page.goto(f'{BASE_URL}/cart', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await ensure_cart_with_item(page, BASE_URL, 'https://www.saucedemo.com/inventory-item.html?id=3')
+    await page.goto(f'{BASE_URL}/inventory-item.html?id=3', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'
-    await check_execution_safety("Under state condition (Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'", '#item_4_title_link', page.url)
-    ctrl = page.locator('#item_4_title_link')
-    assert await ctrl.count() >= 1, f'Control locator #item_4_title_link matched 0 elements'
+    # Step 1: Under state condition (Browser is in state 'st_inventory-itemht_view_c1' (https://www.saucedemo.com/inventory-item.html?id=3); Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}), execute CLICK_CONTROL:control_cls_130d45a77e__data_test__shopping_cart_link__ on '[data-test="shopping-cart-link"]'
+    await check_execution_safety('Under state condition (Browser is in state \'st_inventory-itemht_view_c1\' (https://www.saucedemo.com/inventory-item.html?id=3); Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {\'id\': \'3\'}), execute CLICK_CONTROL:control_cls_130d45a77e__data_test__shopping_cart_link__ on \'[data-test="shopping-cart-link"]\'', '[data-test="shopping-cart-link"]', page.url)
+    ctrl = page.locator('[data-test="shopping-cart-link"]')
+    assert await ctrl.count() >= 1, f'Control locator [data-test="shopping-cart-link"] matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['counter_value:1']"
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_carthtml_your_cart_c1'"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
+    badge_loc = page.locator('#cart-badge, .shopping_cart_badge, [data-test="shopping-cart-badge"]')
+    assert await badge_loc.count() > 0 and (await badge_loc.first.inner_text()).strip() == '1', f"Expected cart badge count '1'"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -850,23 +781,23 @@ async def test_TC_SD_06_state_dependent(page: Page):
     Test ID: TC-SD-06
     Title: State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '#remove-sauce-labs-backpack' when Authenticated user session active.
+    Objective: Verify state-dependent behavior of '#remove-sauce-labs-backpack' when Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
     Source Evidence Refs: ['ev-9c971350']
     """
     # Phase 1: Precondition / Setup Verification
-    await ensure_cart_with_item(page, BASE_URL, '')
-    await page.goto(f'{BASE_URL}/cart', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await ensure_cart_with_item(page, BASE_URL, 'https://www.saucedemo.com/cart.html')
+    await page.goto(f'{BASE_URL}/cart.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'
-    await check_execution_safety("Under state condition (Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'", '#remove-sauce-labs-backpack', page.url)
+    # Step 1: Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'
+    await check_execution_safety("Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'", '#remove-sauce-labs-backpack', page.url)
     ctrl = page.locator('#remove-sauce-labs-backpack')
     assert await ctrl.count() >= 1, f'Control locator #remove-sauce-labs-backpack matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Your Cart']"
+    # Concrete Observable State/Mutation Oracle: "Transition establishes conditioned state 'st_carthtml_your_cart_view' with distinguishing observatio"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
     assert 'Your Cart'.lower() in body_text.lower(), f"Expected heading 'Your Cart' in visible DOM"
@@ -878,25 +809,27 @@ async def test_TC_SD_07_state_dependent(page: Page):
     Test ID: TC-SD-07
     Title: State-Dependent Behavior on www.saucedemo.com/inventory-item.html (st_inventory-itemht_view_view)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '#item_3_title_link' when Authenticated user session active; URL state parameters = {'id': '4'}.
+    Objective: Verify state-dependent behavior of '#add-to-cart' when Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4); Authenticated user session active; URL state parameters = {'id': '4'}.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
-    Source Evidence Refs: ['ev-e6108d1b']
+    Source Evidence Refs: ['ev-24b8ad7c']
     """
     # Phase 1: Precondition / Setup Verification
     await ensure_authenticated_session(page, BASE_URL)
-    await page.goto(f'{BASE_URL}/products', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
+    await page.goto(f'{BASE_URL}/inventory-item.html?id=4', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_f9f1d0aa87__item_3_title_link on '#item_3_title_link'
-    await check_execution_safety("Under state condition (Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_f9f1d0aa87__item_3_title_link on '#item_3_title_link'", '#item_3_title_link', page.url)
-    ctrl = page.locator('#item_3_title_link')
-    assert await ctrl.count() >= 1, f'Control locator #item_3_title_link matched 0 elements'
+    # Step 1: Under state condition (Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4); Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_130d45a77e__add_to_cart on '#add-to-cart'
+    await check_execution_safety("Under state condition (Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4); Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_130d45a77e__add_to_cart on '#add-to-cart'", '#add-to-cart', page.url)
+    ctrl = page.locator('#add-to-cart')
+    assert await ctrl.count() >= 1, f'Control locator #add-to-cart matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: 'State-conditioned transition succeeds with distinguishing observations: []'
+    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds and reaches target state 'st_inventory-itemht_view_c1'"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
+    badge_loc = page.locator('#cart-badge, .shopping_cart_badge, [data-test="shopping-cart-badge"]')
+    assert await badge_loc.count() > 0 and (await badge_loc.first.inner_text()).strip() == '1', f"Expected cart badge count '1'"
     # Phase 3: Observable Evidence Assertions (Remaining Oracles)
 
 @pytest.mark.asyncio
@@ -905,24 +838,23 @@ async def test_TC_SD_08_state_dependent(page: Page):
     Test ID: TC-SD-08
     Title: State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, menu_open:true)
     Category: state_dependent
-    Objective: Verify state-dependent behavior of '#react-burger-menu-btn' when Authenticated user session active; In-page navigation/filter drawer is open.
+    Objective: Verify state-dependent behavior of '#react-burger-menu-btn' when Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active.
     Safety Classification: REQUIRES_AUTH_CREDENTIALS
     Source Evidence Refs: ['ev-0ea58db7']
     """
     # Phase 1: Precondition / Setup Verification
     await ensure_authenticated_session(page, BASE_URL)
-    await page.goto(f'{BASE_URL}/products', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    await ensure_drawer_open(page)
+    await page.goto(f'{BASE_URL}/inventory.html', wait_until='domcontentloaded', timeout=DEFAULT_TIMEOUT)
     # Phase 2: Action Steps Execution & In-Flight Transition Oracles
-    # Step 1: Under state condition (Authenticated user session active; In-page navigation/filter drawer is open), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'
-    await check_execution_safety("Under state condition (Authenticated user session active; In-page navigation/filter drawer is open), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'", '#react-burger-menu-btn', page.url)
+    # Step 1: Under state condition (Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'
+    await check_execution_safety("Under state condition (Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'", '#react-burger-menu-btn', page.url)
     ctrl = page.locator('#react-burger-menu-btn')
     assert await ctrl.count() >= 1, f'Control locator #react-burger-menu-btn matched 0 elements'
     await expect(ctrl.first).to_be_visible(timeout=DEFAULT_TIMEOUT)
     await expect(ctrl.first).to_be_enabled(timeout=DEFAULT_TIMEOUT)
     await ctrl.first.click()
     await page.wait_for_load_state('domcontentloaded', timeout=DEFAULT_TIMEOUT)
-    # Concrete Observable State/Mutation Oracle: "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'menu_o"
+    # Concrete Observable State/Mutation Oracle: "Transition establishes conditioned state 'st_inventoryhtml_products_view_menu_open' with distinguish"
     body_text = await page.locator('body').inner_text()
     assert len(body_text.strip()) > 0, 'Expected visible non-empty DOM content'
     assert 'Products'.lower() in body_text.lower(), f"Expected heading 'Products' in visible DOM"

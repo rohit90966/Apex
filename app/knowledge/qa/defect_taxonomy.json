@@ -1,0 +1,258 @@
+[
+  {
+    "id": "DC-VAL-REQUIRED", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Missing required-field validation",
+    "description": "A field the application declares or specifies as mandatory can be submitted empty (or whitespace-only) and the submission is accepted.",
+    "applicability": {"any": ["has_required_field", "has_field_requirements"]},
+    "preconditions": ["A form whose submission can be observed"],
+    "required_observations": ["required attribute, aria-required, or an explicit requirement naming the field"],
+    "hypothesis_method": "For each mandatory field, hypothesize that an empty/whitespace value is accepted by the layer that should reject it.",
+    "test_strategy": "Submit the form with only that field empty; other fields valid. Test the browser layer and, separately and when authorized, the server layer (client validation disabled).",
+    "oracle_strategy": "Browser layer: field validity valueMissing. Server layer: feedback attributable to the field after submission.",
+    "related_ids": ["TS-EP-BVA", "TS-SERVER-ENFORCEMENT", "OR-BROWSER-VALIDITY", "OR-ATTRIBUTABLE-FEEDBACK"],
+    "expected_evidence": ["submitted values", "post-submit page text", "field validity state"],
+    "false_positive_warnings": ["Browser blocking proves nothing about the server", "An unrelated error message (e.g. 'invalid credentials') is not evidence the rule is enforced", "Optional fields may legitimately accept empty values"],
+    "safety": ["Server-layer probes submit data: authorized/local targets only, within the mutation budget"],
+    "confidence_requirements": "Confirmed when the rule comes from a requirement or the browser layer is tested; server-layer failure against an HTML-declared rule is a likely defect.",
+    "limitations": ["Server persistence of the accepted record is not verified unless a follow-up observation exists"],
+    "automation": {"status": "AUTOMATED", "implementation": "FIELD_BOUNDARIES"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-VAL-LENGTH", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Incorrect minimum/maximum length handling",
+    "description": "Values shorter than the minimum or longer than the maximum are accepted, or values at the boundary are rejected.",
+    "applicability": {"any": ["has_length_constraint", "has_field_requirements"]},
+    "required_observations": ["minlength/maxlength attribute or a requirement stating the length rule"],
+    "hypothesis_method": "Off-by-one and missing-check hypotheses at each stated boundary.",
+    "test_strategy": "Boundary values N-1, N, N+1 per limit; browser truncation observed via stored value length.",
+    "oracle_strategy": "Value length after input (browser), field validity tooShort/tooLong, attributable feedback after submission (server).",
+    "related_ids": ["TS-EP-BVA", "OR-BROWSER-VALIDITY", "OR-VALUE-LENGTH", "OR-ATTRIBUTABLE-FEEDBACK"],
+    "expected_evidence": ["input value", "stored value length", "post-submit feedback"],
+    "false_positive_warnings": ["maxlength truncation is browser behaviour, not server validation", "tooShort only triggers on user edits"],
+    "automation": {"status": "AUTOMATED", "implementation": "FIELD_BOUNDARIES"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-VAL-RANGE", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Incorrect numeric or date range handling",
+    "description": "Values outside declared min/max are accepted, or boundary values are rejected.",
+    "applicability": {"any": ["has_numeric_range", "has_date_range"]},
+    "required_observations": ["min/max attributes on number/date inputs"],
+    "test_strategy": "min, min-step, max, max+step.",
+    "oracle_strategy": "Field validity rangeUnderflow/rangeOverflow; server feedback when bypassed.",
+    "related_ids": ["TS-EP-BVA", "OR-BROWSER-VALIDITY"],
+    "false_positive_warnings": ["step mismatch can make otherwise valid values invalid"],
+    "automation": {"status": "AUTOMATED", "implementation": "FIELD_BOUNDARIES"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-VAL-FORMAT", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Invalid format accepted",
+    "description": "Values violating a declared format (pattern, email, URL) are accepted.",
+    "applicability": {"any": ["has_pattern_constraint", "has_email_field"]},
+    "test_strategy": "One clearly invalid and one valid representative per format.",
+    "oracle_strategy": "Field validity patternMismatch/typeMismatch; server feedback when bypassed.",
+    "related_ids": ["TS-EP-BVA", "OR-BROWSER-VALIDITY"],
+    "false_positive_warnings": ["type=tel does not imply a format", "Email validity rules differ between browser and server"],
+    "automation": {"status": "AUTOMATED", "implementation": "FIELD_BOUNDARIES"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-VAL-CROSS-FIELD", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Cross-field inconsistency accepted",
+    "description": "Fields that must agree (e.g. a value and its confirmation) are accepted when they differ.",
+    "applicability": {"all": ["has_confirmation_pair"]},
+    "required_observations": ["two fields whose names/labels mark one as the confirmation of the other"],
+    "hypothesis_method": "Field semantics ('confirm', 'repeat', 'retype', 'verify' + the same base term) imply equality.",
+    "test_strategy": "Submit with all fields valid except the confirmation differing from its source.",
+    "oracle_strategy": "Feedback attributable to the confirmation rule after submission.",
+    "related_ids": ["TS-CROSS-FIELD", "OR-ATTRIBUTABLE-FEEDBACK"],
+    "false_positive_warnings": ["The pairing is a semantic inference unless a requirement states it: report as a likely defect"],
+    "automation": {"status": "AUTOMATED", "implementation": "CROSS_FIELD_CONFIRMATION"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-VAL-CHOICE", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Incorrect checkbox / radio / selection requirement",
+    "description": "A mandatory checkbox (e.g. terms acceptance), radio group or selection can be left unset.",
+    "applicability": {"any": ["has_required_checkbox", "has_field_requirements"]},
+    "test_strategy": "Submit with the choice left unset; others valid.",
+    "oracle_strategy": "valueMissing (browser) or attributable feedback (server, client validation disabled).",
+    "related_ids": ["TS-SERVER-ENFORCEMENT", "OR-ATTRIBUTABLE-FEEDBACK"],
+    "automation": {"status": "AUTOMATED", "implementation": "SERVER_SIDE_ENFORCEMENT"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-VAL-CLIENT-SERVER", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Client-side and server-side validation disagree",
+    "description": "A constraint the page declares (HTML attributes) is enforced only by the browser; the server accepts the violating submission.",
+    "applicability": {"all": ["has_post_form"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
+    "hypothesis_method": "Every browser-enforced declaration is a claim about the application's rule; check whether the server enforces it.",
+    "test_strategy": "Disable client validation for the field's form (noValidate) and submit one violating value per declared rule.",
+    "oracle_strategy": "Feedback attributable to the field/rule after submission.",
+    "related_ids": ["TS-SERVER-ENFORCEMENT", "OR-ATTRIBUTABLE-FEEDBACK", "OR-LAYER-DISTINCTION"],
+    "false_positive_warnings": ["Some servers normalise (truncate/trim) rather than reject", "The HTML declaration may be stricter than the intended rule"],
+    "safety": ["Submits data; authorized/local targets only"],
+    "confidence_requirements": "Likely defect (not confirmed) unless a requirement states the same rule.",
+    "automation": {"status": "AUTOMATED", "implementation": "SERVER_SIDE_ENFORCEMENT"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-VAL-FEEDBACK", "kind": "DEFECT_CLASS", "category": "input_validation",
+    "title": "Validation feedback missing or misleading",
+    "description": "A rejected submission gives no feedback, or feedback unrelated to the violated rule.",
+    "applicability": {"all": ["has_forms"]},
+    "oracle_strategy": "Attributable-feedback oracle distinguishes 'rejected for this rule' from unrelated errors.",
+    "related_ids": ["OR-ATTRIBUTABLE-FEEDBACK"],
+    "automation": {"status": "PARTIAL", "implementation": "FIELD_BOUNDARIES"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FN-NAVIGATION", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Broken links, navigation and routing",
+    "description": "Same-origin links or routes return errors or lose their landmarks.",
+    "applicability": {"any": ["has_links", "has_multiple_routes"]},
+    "test_strategy": "Navigate to each observed route / link target; check status and stable landmarks.",
+    "oracle_strategy": "HTTP document status < 400; headings seen on every earlier visit.",
+    "related_ids": ["TS-ROUTE-REGRESSION", "OR-OBSERVED-STATE"],
+    "false_positive_warnings": ["Routes behind authentication redirect when the session is missing", "Instance routes (ids) depend on data"],
+    "automation": {"status": "AUTOMATED", "implementation": "ROUTE_REACHABILITY"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FN-CONTROL-EFFECT", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Controls that do nothing or the wrong thing",
+    "description": "Activating a control no longer produces the state transition observed during investigation.",
+    "applicability": {"all": ["has_transitions"]},
+    "test_strategy": "Replay observed single-step transitions from a navigable source state.",
+    "oracle_strategy": "Destination route or newly revealed landmark observed earlier.",
+    "related_ids": ["TS-STATE-TRANSITION", "OR-OBSERVED-STATE"],
+    "automation": {"status": "AUTOMATED", "implementation": "OBSERVED_TRANSITIONS"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FN-FILTER-SORT", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Incorrect filtering, sorting or search",
+    "description": "Results do not satisfy the applied filter or the stated ordering.",
+    "applicability": {"any": ["has_sort_control", "has_filter_control"]},
+    "test_strategy": "Apply observed options; check every record matches / records are ordered.",
+    "oracle_strategy": "Metamorphic / invariant: filtered set ⊆ matching records; order monotone in the key the option names.",
+    "related_ids": ["TS-INVARIANT", "OR-COLLECTION-INVARIANT"],
+    "false_positive_warnings": ["Option semantics are inferred from labels", "Pagination limits what is visible"],
+    "automation": {"status": "AUTOMATED", "implementation": "SORT_ORDER"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FN-CRUD", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Incomplete create/update operations",
+    "description": "A create or save submission does not reflect the submitted record.",
+    "applicability": {"all": ["has_create_form"]},
+    "test_strategy": "Submit valid data with a unique marker; check the marker is shown.",
+    "oracle_strategy": "Test-data echo (weak); persistence across reload needs a follow-up observation.",
+    "related_ids": ["TS-WORKFLOW-SEQUENCE"],
+    "false_positive_warnings": ["Echo on the result page does not prove persistence"],
+    "safety": ["Creates one record per run"],
+    "automation": {"status": "PARTIAL", "implementation": "SUBMISSION_REFLECTION"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FN-MULTISTEP", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Broken multi-step workflow",
+    "description": "A step of a multi-step flow (wizard, checkout) cannot be completed or loses earlier input.",
+    "applicability": {"any": ["has_checkout", "has_multistep_route"]},
+    "test_strategy": "Replay the observed step sequence; assert each observed destination.",
+    "related_ids": ["TS-WORKFLOW-SEQUENCE"],
+    "automation": {"status": "PARTIAL", "implementation": "TEMPLATE_PATTERNS"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-FN-DUPLICATE", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "Duplicate submissions / duplicate transactions",
+    "description": "Repeating a submission creates duplicate effects where it should be idempotent.",
+    "applicability": {"all": ["has_create_form"]},
+    "test_strategy": "Submit twice; compare collection size before/after.",
+    "safety": ["Only on targets where duplicate records are acceptable"],
+    "limitations": ["Not automated: needs collection-size observation across routes"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-STATE-PERSISTENCE", "kind": "DEFECT_CLASS", "category": "state_consistency",
+    "title": "UI state disagrees with persisted state",
+    "description": "An action reports success but the changed state is not visible after navigation or reload.",
+    "applicability": {"all": ["has_post_form"]},
+    "test_strategy": "Perform the action, then revisit the record and compare its state.",
+    "oracle_strategy": "Before/after state comparison across navigation.",
+    "limitations": ["Not automated: requires record identity tracking across pages"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-STATE-DERIVED", "kind": "DEFECT_CLASS", "category": "state_consistency",
+    "title": "Incorrect derived values / rendering anomalies",
+    "description": "Computed values render as NaN, undefined, [object Object] or raw exceptions after an interaction.",
+    "applicability": {"any": ["has_transitions", "has_multiple_routes"]},
+    "test_strategy": "After every replayed interaction, scan the rendered text for anomaly tokens.",
+    "oracle_strategy": "Generic invariant: such tokens never belong in user-facing text.",
+    "related_ids": ["TS-INVARIANT", "OR-RENDER-ANOMALY"],
+    "false_positive_warnings": ["Documentation pages may legitimately mention 'undefined'"],
+    "automation": {"status": "AUTOMATED", "implementation": "RENDER_ANOMALY_INVARIANT"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-STATE-COUNTERS", "kind": "DEFECT_CLASS", "category": "state_consistency",
+    "title": "Incorrect counters, totals or summaries",
+    "description": "Badges, counts or totals disagree with the items they summarize.",
+    "applicability": {"any": ["has_cart", "has_collection"]},
+    "limitations": ["Not automated beyond observed-transition replay"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-AUTH-SESSION", "kind": "DEFECT_CLASS", "category": "authentication",
+    "title": "Incorrect login/logout or session handling",
+    "description": "Valid credentials fail, invalid credentials succeed, or protected pages are reachable without a session.",
+    "applicability": {"all": ["has_login_form"]},
+    "test_strategy": "Login with authorized credentials; empty submission; protected route without session.",
+    "oracle_strategy": "Observed post-login landing route; observed validation message.",
+    "safety": ["Only authorized credentials; no credential guessing"],
+    "automation": {"status": "PARTIAL", "implementation": "OBSERVED_VALIDATION"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-AUTHZ", "kind": "DEFECT_CLASS", "category": "authorization",
+    "title": "Missing authorization enforcement",
+    "description": "Protected functionality is reachable without the required role or session.",
+    "applicability": {"all": ["has_authenticated_area"]},
+    "safety": ["Only within an explicitly approved scope; no privilege escalation attempts"],
+    "limitations": ["Not automated: needs multiple authorized roles"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-API-ERRORS", "kind": "DEFECT_CLASS", "category": "api_integration",
+    "title": "Server errors and unhandled runtime exceptions",
+    "description": "Interactions trigger HTTP 5xx documents or uncaught page errors.",
+    "applicability": {"any": ["has_transitions", "has_forms"]},
+    "oracle_strategy": "Document status < 400 on navigation; investigation technical oracle for 5xx/console errors.",
+    "related_ids": ["OR-OBSERVED-STATE"],
+    "automation": {"status": "PARTIAL", "implementation": "ROUTE_REACHABILITY"}, "risk": "HIGH"
+  },
+  {
+    "id": "DC-A11Y-NAMES", "kind": "DEFECT_CLASS", "category": "accessibility",
+    "title": "Missing accessible names and labels",
+    "description": "Interactive controls expose no accessible name (label, aria-label, text).",
+    "applicability": {"all": ["has_interactive_controls"]},
+    "test_strategy": "Compute accessible names for controls on each observed route.",
+    "oracle_strategy": "Heuristic accessible-name computation (not a full accessibility tree).",
+    "related_ids": ["OR-A11Y-HEURISTIC"],
+    "false_positive_warnings": ["Heuristic: labels associated by complex ARIA patterns may be missed"],
+    "automation": {"status": "AUTOMATED", "implementation": "ACCESSIBLE_NAMES"}, "risk": "LOW"
+  },
+  {
+    "id": "DC-A11Y-KEYBOARD", "kind": "DEFECT_CLASS", "category": "accessibility",
+    "title": "Keyboard navigation and focus problems",
+    "description": "Controls are unreachable or unusable by keyboard; focus is lost or trapped.",
+    "applicability": {"all": ["has_interactive_controls"]},
+    "limitations": ["Not automated"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-RESILIENCE-RELOAD", "kind": "DEFECT_CLASS", "category": "resilience",
+    "title": "Broken behaviour on refresh / back / repeated interaction",
+    "description": "Reloading or navigating back loses or corrupts state.",
+    "applicability": {"all": ["has_multiple_routes"]},
+    "oracle_strategy": "Investigation reload-persistence invariant probe.",
+    "automation": {"status": "PARTIAL", "implementation": null}, "risk": "MEDIUM"
+  },
+  {
+    "id": "DC-FILE-UPLOAD", "kind": "DEFECT_CLASS", "category": "functional_workflow",
+    "title": "File upload/download defects",
+    "description": "Accepted file types/sizes disagree with declared constraints.",
+    "applicability": {"all": ["has_file_input"]},
+    "limitations": ["Not automated"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "MEDIUM"
+  }
+]

@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="19" skipped="1" tests="26" time="242.643" timestamp="2026-10-24T22:25:41.492976+05:30" hostname="LAPTOP-R9FDVQQN"><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_field_01_username_empty_is_rejected_1" time="2.175" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_sort_01_sort_by_name_a_to_z_orders_records_text_asc_2" time="14.949"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_sort_01_sort_by_name_a_to_z_orders_records_text_asc_2(page: Page):
+        """
+        Test ID: TC-SORT-01
+        Objective: Select 'Name (A to Z)' on [data-test="product-sort-container"] and verify the listed records follow that order.
+        Expected: Records ordered by text asc as option 'Name (A to Z)' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Choose sort option 'Name (A to Z)'
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('az')
+
+bench-saucedemo-public-r2-b3c6ab.py:189: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02E9F4690&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02E9E19E0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_01_authenticate_with_valid_test_credentials_3" time="2.500"><skipped type="pytest.skip" message="BLOCKED: no credentials authorized for https://www.saucedemo.com (set VERITYQA_TEST_CREDENTIALS_ORIGIN)">D:\Apex\Apex\reports\benchmark_exports\bench-saucedemo-public-r2-b3c6ab.py:50: BLOCKED: no credentials authorized for https://www.saucedemo.com (set VERITYQA_TEST_CREDENTIALS_ORIGIN)</skipped></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_route_01_route_reachable_with_stable_landmarks_4" time="2.719" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_field_02_username_whitespace_only_is_rejected_5" time="2.306" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_sort_02_sort_by_name_z_to_a_orders_records_text_desc_6" time="9.399"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_sort_02_sort_by_name_z_to_a_orders_records_text_desc_6(page: Page):
+        """
+        Test ID: TC-SORT-02
+        Objective: Select 'Name (Z to A)' on [data-test="product-sort-container"] and verify the listed records follow that order.
+        Expected: Records ordered by text desc as option 'Name (Z to A)' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Choose sort option 'Name (Z to A)'
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('za')
+
+bench-saucedemo-public-r2-b3c6ab.py:261: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EAF8290&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EC9BBA0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_02_login_with_empty_username_boundary_7" time="1.874" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_02_transition_checkout_on_cart_html_8" time="9.702"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#checkout&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_02_transition_checkout_on_cart_html_8(page: Page):
+        """
+        Test ID: TC-TR-02
+        Objective: Verify activating 'Checkout' on /cart.html produces the observed state change.
+        Expected: Transition reaches /checkout-step-one.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /cart.html
+        page.goto('https://www.saucedemo.com/cart.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'Checkout'
+&gt;       page.locator('#checkout').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:298: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA97DF0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EAB37E0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#checkout").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_route_02_route_reachable_with_stable_landmarks_cart_html_9" time="11.562"><failure message="AssertionError: Locator expected to be visible&#10;Actual value: None&#10;Error: element(s) not found &#10;Call log:&#10;  - Expect &quot;to_be_visible&quot; locator(&quot;body&quot;).get_by_text(&quot;Your Cart&quot;).first with timeout 5000ms&#10;  - waiting for locator(&quot;body&quot;).get_by_text(&quot;Your Cart&quot;).first&#10;&#10;Aria snapshot:&#10;- text: Swag Labs&#10;- main:&#10;  - form &quot;Login&quot;:&#10;    - textbox &quot;Username&quot;&#10;    - textbox &quot;Password&quot;&#10;    - alert:&#10;      - button &quot;Dismiss error&quot;&#10;      - text: &quot;Epic sadface: You can only access '/cart.html' when you are logged in.&quot;&#10;    - button &quot;Login&quot;&#10;  - heading &quot;Accepted usernames are:&quot; [level=4]&#10;  - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user&#10;  - heading &quot;Password for all users:&quot; [level=4]&#10;  - text: secret_sauce">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_route_02_route_reachable_with_stable_landmarks_cart_html_9(page: Page):
+        """
+        Test ID: TC-ROUTE-02
+        Objective: Verify /cart.html remains reachable and renders the landmarks observed during investigation.
+        Expected: HTTP status &lt; 400 and heading 'Your Cart'
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /cart.html
+        page.goto('https://www.saucedemo.com/cart.html', wait_until='domcontentloaded')
+        # Step 2: Observe rendered landmarks
+&gt;       check('TEXT_VISIBLE', page, None, 'Your Cart')
+
+bench-saucedemo-public-r2-b3c6ab.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'TEXT_VISIBLE', page = &lt;Page url='https://www.saucedemo.com/'&gt;
+selector = None, expected = 'Your Cart'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+&gt;           expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" locator("body").get_by_text("Your Cart").first with timeout 5000ms
+E             - waiting for locator("body").get_by_text("Your Cart").first
+E           
+E           Aria snapshot:
+E           - text: Swag Labs
+E           - main:
+E             - form "Login":
+E               - textbox "Username"
+E               - textbox "Password"
+E               - alert:
+E                 - button "Dismiss error"
+E                 - text: "Epic sadface: You can only access '/cart.html' when you are logged in."
+E               - button "Login"
+E             - heading "Accepted usernames are:" [level=4]
+E             - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user
+E             - heading "Password for all users:" [level=4]
+E             - text: secret_sauce
+
+bench-saucedemo-public-r2-b3c6ab.py:69: AssertionError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_field_03_password_empty_is_rejected_10" time="5.027" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_sort_03_sort_by_price_low_to_high_orders_records_number_asc_11" time="15.509"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_sort_03_sort_by_price_low_to_high_orders_records_number_asc_11(page: Page):
+        """
+        Test ID: TC-SORT-03
+        Objective: Select 'Price (low to high)' on [data-test="product-sort-container"] and verify the listed records follow that order.
+        Expected: Records ordered by number asc as option 'Price (low to high)' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Choose sort option 'Price (low to high)'
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('lohi')
+
+bench-saucedemo-public-r2-b3c6ab.py:350: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6B950&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EBA65C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_03_logout_user_session_via_drawer_12" time="16.378"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#react-burger-menu-btn&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_03_logout_user_session_via_drawer_12(page: Page):
+        """
+        Test ID: TC-PAT-03
+        Objective: Verify clicking logout clears active session and navigates back to login view.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Open drawer menu
+&gt;       page.locator('#react-burger-menu-btn').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:367: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02E73D350&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B030D45580&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#react-burger-menu-btn").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_03_transition_cart_1_items_on_checkout_step_one_html_13" time="12.872"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;shopping-cart-link\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_03_transition_cart_1_items_on_checkout_step_one_html_13(page: Page):
+        """
+        Test ID: TC-TR-03
+        Objective: Verify activating 'Cart, 1 items' on /checkout-step-one.html produces the observed state change.
+        Expected: Transition reaches /cart.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /checkout-step-one.html
+        page.goto('https://www.saucedemo.com/checkout-step-one.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'Cart, 1 items'
+&gt;       page.locator('[data-test="shopping-cart-link"]').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:386: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6BA50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EAB27A0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"shopping-cart-link\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_route_03_route_reachable_with_stable_landmarks_checkout_step_one_html_14" time="7.986"><failure message="AssertionError: Locator expected to be visible&#10;Actual value: None&#10;Error: element(s) not found &#10;Call log:&#10;  - Expect &quot;to_be_visible&quot; locator(&quot;body&quot;).get_by_text(&quot;Checkout: Your Information&quot;).first with timeout 5000ms&#10;  - waiting for locator(&quot;body&quot;).get_by_text(&quot;Checkout: Your Information&quot;).first&#10;&#10;Aria snapshot:&#10;- text: Swag Labs&#10;- main:&#10;  - form &quot;Login&quot;:&#10;    - textbox &quot;Username&quot;&#10;    - textbox &quot;Password&quot;&#10;    - alert:&#10;      - button &quot;Dismiss error&quot;&#10;      - text: &quot;Epic sadface: You can only access '/checkout-step-one.html' when you are logged in.&quot;&#10;    - button &quot;Login&quot;&#10;  - heading &quot;Accepted usernames are:&quot; [level=4]&#10;  - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user&#10;  - heading &quot;Password for all users:&quot; [level=4]&#10;  - text: secret_sauce">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_route_03_route_reachable_with_stable_landmarks_checkout_step_one_html_14(page: Page):
+        """
+        Test ID: TC-ROUTE-03
+        Objective: Verify /checkout-step-one.html remains reachable and renders the landmarks observed during investigation.
+        Expected: HTTP status &lt; 400 and heading 'Checkout: Your Information'
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /checkout-step-one.html
+        page.goto('https://www.saucedemo.com/checkout-step-one.html', wait_until='domcontentloaded')
+        # Step 2: Observe rendered landmarks
+&gt;       check('TEXT_VISIBLE', page, None, 'Checkout: Your Information')
+
+bench-saucedemo-public-r2-b3c6ab.py:402: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'TEXT_VISIBLE', page = &lt;Page url='https://www.saucedemo.com/'&gt;
+selector = None, expected = 'Checkout: Your Information'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+&gt;           expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" locator("body").get_by_text("Checkout: Your Information").first with timeout 5000ms
+E             - waiting for locator("body").get_by_text("Checkout: Your Information").first
+E           
+E           Aria snapshot:
+E           - text: Swag Labs
+E           - main:
+E             - form "Login":
+E               - textbox "Username"
+E               - textbox "Password"
+E               - alert:
+E                 - button "Dismiss error"
+E                 - text: "Epic sadface: You can only access '/checkout-step-one.html' when you are logged in."
+E               - button "Login"
+E             - heading "Accepted usernames are:" [level=4]
+E             - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user
+E             - heading "Password for all users:" [level=4]
+E             - text: secret_sauce
+
+bench-saucedemo-public-r2-b3c6ab.py:69: AssertionError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_field_04_password_whitespace_only_is_rejected_15" time="2.579" /><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_sort_04_sort_by_price_high_to_low_orders_records_number_desc_16" time="13.125"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_sort_04_sort_by_price_high_to_low_orders_records_number_desc_16(page: Page):
+        """
+        Test ID: TC-SORT-04
+        Objective: Select 'Price (high to low)' on [data-test="product-sort-container"] and verify the listed records follow that order.
+        Expected: Records ordered by number desc as option 'Price (high to low)' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Choose sort option 'Price (high to low)'
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('hilo')
+
+bench-saucedemo-public-r2-b3c6ab.py:438: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA69E50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02D404FE0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_04_add_product_item_to_cart_and_verify_badge_count_17" time="9.814"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#add-to-cart-sauce-labs-backpack&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_04_add_product_item_to_cart_and_verify_badge_count_17(page: Page):
+        """
+        Test ID: TC-PAT-04
+        Objective: Verify clicking add-to-cart on an item increments the shopping cart badge count to 1.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Click add-to-cart on primary product item
+&gt;       page.locator('#add-to-cart-sauce-labs-backpack').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:455: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02E5C3E50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EC9B560&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#add-to-cart-sauce-labs-backpack").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_04_transition_view_details_for_sauce_labs_backpack_on_cart_html_18" time="10.964"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#item_4_title_link&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_04_transition_view_details_for_sauce_labs_backpack_on_cart_html_18(page: Page):
+        """
+        Test ID: TC-TR-04
+        Objective: Verify activating 'View details for Sauce Labs Backpack' on /cart.html produces the observed state change.
+        Expected: Transition reaches /inventory-item.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /cart.html
+        page.goto('https://www.saucedemo.com/cart.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'View details for Sauce Labs Backpack'
+&gt;       page.locator('#item_4_title_link').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:474: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02E5C3650&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B030D474C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#item_4_title_link").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_route_04_route_reachable_with_stable_landmarks_inventory_html_19" time="9.178"><failure message="AssertionError: Locator expected to be visible&#10;Actual value: None&#10;Error: element(s) not found &#10;Call log:&#10;  - Expect &quot;to_be_visible&quot; locator(&quot;body&quot;).get_by_text(&quot;Products&quot;).first with timeout 5000ms&#10;  - waiting for locator(&quot;body&quot;).get_by_text(&quot;Products&quot;).first&#10;&#10;Aria snapshot:&#10;- text: Swag Labs&#10;- main:&#10;  - form &quot;Login&quot;:&#10;    - textbox &quot;Username&quot;&#10;    - textbox &quot;Password&quot;&#10;    - alert:&#10;      - button &quot;Dismiss error&quot;&#10;      - text: &quot;Epic sadface: You can only access '/inventory.html' when you are logged in.&quot;&#10;    - button &quot;Login&quot;&#10;  - heading &quot;Accepted usernames are:&quot; [level=4]&#10;  - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user&#10;  - heading &quot;Password for all users:&quot; [level=4]&#10;  - text: secret_sauce">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_route_04_route_reachable_with_stable_landmarks_inventory_html_19(page: Page):
+        """
+        Test ID: TC-ROUTE-04
+        Objective: Verify /inventory.html remains reachable and renders the landmarks observed during investigation.
+        Expected: HTTP status &lt; 400 and heading 'Products'
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Observe rendered landmarks
+&gt;       check('TEXT_VISIBLE', page, None, 'Products')
+
+bench-saucedemo-public-r2-b3c6ab.py:490: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'TEXT_VISIBLE', page = &lt;Page url='https://www.saucedemo.com/'&gt;
+selector = None, expected = 'Products'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+&gt;           expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" locator("body").get_by_text("Products").first with timeout 5000ms
+E             - waiting for locator("body").get_by_text("Products").first
+E           
+E           Aria snapshot:
+E           - text: Swag Labs
+E           - main:
+E             - form "Login":
+E               - textbox "Username"
+E               - textbox "Password"
+E               - alert:
+E                 - button "Dismiss error"
+E                 - text: "Epic sadface: You can only access '/inventory.html' when you are logged in."
+E               - button "Login"
+E             - heading "Accepted usernames are:" [level=4]
+E             - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user
+E             - heading "Password for all users:" [level=4]
+E             - text: secret_sauce
+
+bench-saucedemo-public-r2-b3c6ab.py:69: AssertionError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_05_remove_item_from_shopping_cart_20" time="9.337"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#remove-sauce-labs-backpack&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_05_remove_item_from_shopping_cart_20(page: Page):
+        """
+        Test ID: TC-PAT-05
+        Objective: Verify clicking remove inside cart drops item from list and clears badge.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to shopping cart
+        page.goto('https://www.saucedemo.com/cart.html', wait_until='domcontentloaded')
+        check('URL_CONTAINS', page, None, '/cart')
+        # Step 2: Click remove item button
+&gt;       page.locator('#remove-sauce-labs-backpack').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:505: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA69C50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02E907A60&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#remove-sauce-labs-backpack").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_05_transition_cart_1_items_on_inventory_item_html_21" time="11.044"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;shopping-cart-link\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_05_transition_cart_1_items_on_inventory_item_html_21(page: Page):
+        """
+        Test ID: TC-TR-05
+        Objective: Verify activating 'Cart, 1 items' on /inventory-item.html produces the observed state change.
+        Expected: Transition reaches /cart.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory-item.html
+        page.goto('https://www.saucedemo.com/inventory-item.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'Cart, 1 items'
+&gt;       page.locator('[data-test="shopping-cart-link"]').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:521: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6A850&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02ECCF420&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"shopping-cart-link\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_06_catalog_sorting_name_z_to_a_22" time="9.515"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_06_catalog_sorting_name_z_to_a_22(page: Page):
+        """
+        Test ID: TC-PAT-06
+        Objective: Verify selecting 'za' reorders the catalog items in reverse alphabetical order.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Select Z to A sorting option
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('za')
+
+bench-saucedemo-public-r2-b3c6ab.py:537: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA68950&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EBA7420&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_06_transition_continue_shopping_on_cart_html_23" time="9.638"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#continue-shopping&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_06_transition_continue_shopping_on_cart_html_23(page: Page):
+        """
+        Test ID: TC-TR-06
+        Objective: Verify activating 'Continue Shopping' on /cart.html produces the observed state change.
+        Expected: Transition reaches /inventory.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /cart.html
+        page.goto('https://www.saucedemo.com/cart.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'Continue Shopping'
+&gt;       page.locator('#continue-shopping').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:554: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6A950&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02E986700&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#continue-shopping").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_07_catalog_sorting_price_low_to_high_24" time="15.728"><failure message="playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;[data-test=\&quot;product-sort-container\&quot;]&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_07_catalog_sorting_price_low_to_high_24(page: Page):
+        """
+        Test ID: TC-PAT-07
+        Objective: Verify selecting 'lohi' reorders catalog items from lowest price to highest.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Select Low to High price sorting
+&gt;       page.locator('[data-test="product-sort-container"]').first.select_option('lohi')
+
+bench-saucedemo-public-r2-b3c6ab.py:570: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:13173: in select_option
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:652: in select_option
+    return await self._frame.select_option(
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:819: in select_option
+    return await self._channel.send("selectOption", self._timeout, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6A550&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EC7ECA0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("[data-test=\"product-sort-container\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_tr_07_transition_view_details_for_test_allthethings_t_s_on_inventory_html_25" time="15.285"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#item_3_title_link&quot;).first">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_tr_07_transition_view_details_for_test_allthethings_t_s_on_inventory_html_25(page: Page):
+        """
+        Test ID: TC-TR-07
+        Objective: Verify activating 'View details for Test.allTheThings() T-Shirt (Red)' on /inventory.html produces the observed state change.
+        Expected: Transition reaches /inventory-item.html (observed)
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /inventory.html
+        page.goto('https://www.saucedemo.com/inventory.html', wait_until='domcontentloaded')
+        # Step 2: Activate 'View details for Test.allTheThings() T-Shirt (Red)'
+&gt;       page.locator('#item_3_title_link').first.click()
+
+bench-saucedemo-public-r2-b3c6ab.py:587: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA6BD50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EA1D6C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#item_3_title_link").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-saucedemo-public-r2-b3c6ab" name="test_tc_pat_08_open_navigation_drawer_and_verify_sidebar_items_26" time="8.580"><failure message="playwright._impl._errors.TimeoutError: Page.goto: Timeout 8000ms exceeded.&#10;Call log:&#10;  - navigating to &quot;https://www.saucedemo.com/&quot;, waiting until &quot;domcontentloaded&quot;">page = &lt;Page url='https://www.saucedemo.com/'&gt;
+
+    def test_tc_pat_08_open_navigation_drawer_and_verify_sidebar_items_26(page: Page):
+        """
+        Test ID: TC-PAT-08
+        Objective: Verify clicking #react-burger-menu-btn opens the menu drawer.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-saucedemo-public-r2-b3c6ab
+        """
+&gt;       page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')
+
+bench-saucedemo-public-r2-b3c6ab.py:599: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:18528: in goto
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_page.py:564: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:157: in goto
+    await self._channel.send(
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001B02EA69A50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B02EC3FCE0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 8000ms exceeded.
+E           Call log:
+E             - navigating to "https://www.saucedemo.com/", waiting until "domcontentloaded"
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,94 @@
+[
+  {
+    "pattern_id": "PAT-SAAS-CRUD-01",
+    "name": "SaaS Entity Creation & List Reflection",
+    "archetypes": [
+      "SAAS_CRUD"
+    ],
+    "capabilities": [
+      "CRUD_OPERATIONS",
+      "FORM_VALIDATION"
+    ],
+    "description": "Creating a new record populates mandatory attributes and reflects immediately in the data table or list view.",
+    "preconditions": [
+      "Authenticated workspace user",
+      "Navigated to management dashboard"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Created entity appears with matching title in list view",
+      "Submitting blank entity name prompts validation message"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-SAAS-CREATE-RECORD",
+        "title": "Create New Workspace Project",
+        "objective": "Verify creating a project adds it to the visible project dashboard.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "CLICK",
+            "target_semantic": "new_project_button",
+            "target_selector_hints": [
+              "#new-project",
+              "button:text('New Project')",
+              ".create-btn"
+            ],
+            "description": "Click create project button"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "project_name_input",
+            "target_selector_hints": [
+              "#project-name",
+              "input[name='name']"
+            ],
+            "input_value": "Automated QA Verification",
+            "description": "Enter project name"
+          },
+          {
+            "step_number": 3,
+            "action_type": "CLICK",
+            "target_semantic": "save_project_button",
+            "target_selector_hints": [
+              "#save-btn",
+              "button[type='submit']"
+            ],
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Automated QA Verification",
+            "description": "Save new project"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "RECORD_IN_LIST",
+            "expected": "Automated QA Verification"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-SAAS-EMPTY-NAME",
+        "title": "Create Record Blank Name Boundary",
+        "objective": "Verify submitting empty project name triggers validation error.",
+        "boundary_type": "MISSING_REQUIRED_FIELD",
+        "invalid_input": {
+          "name": ""
+        },
+        "expected_error_message_fragment": "Name is required"
+      }
+    ],
+    "evidence_requirements": [
+      "data_table_row",
+      "flash_message"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  }
+]

@@ -1,14 +1,14 @@
 {
-  "execution_id": "exec-470040fa",
-  "source_investigation_id": "inv-330f51d5",
+  "execution_id": "exec-f6565795",
+  "source_investigation_id": "inv-530a4fc3",
   "target_url": "http://127.0.0.1:8996",
-  "executed_at": 1792770298.9331436,
-  "duration_seconds": 21.62,
-  "total_generated_cases": 25,
-  "exported_count": 25,
-  "executable_without_manual_edits_count": 23,
-  "executed_count": 23,
-  "passed_count": 23,
+  "executed_at": 1792858831.4792533,
+  "duration_seconds": 6.45,
+  "total_generated_cases": 19,
+  "exported_count": 19,
+  "executable_without_manual_edits_count": 17,
+  "executed_count": 17,
+  "passed_count": 17,
   "failed_count": 0,
   "defect_detected_count": 0,
   "setup_failures_count": 0,
@@ -23,74 +23,25 @@
   "results": [
     {
       "test_id": "TC-WF-01",
-      "title": "End-to-End Workflow: Your Cart — Verity Benchmark Portal to Products — Verity Benchmark Portal (Products Catalog)",
-      "category": "workflow",
-      "status": "PASSED",
-      "duration_seconds": 1.632,
-      "source_evidence_ids": [
-        "ev-2907cdcc",
-        "ev-9edcd270",
-        "ev-74b1fcea",
-        "ev-ab44bdca",
-        "ev-1c7d92ad"
-      ],
-      "source_state_ids": [
-        "st_cart_shopping_cart_view_with_error",
-        "st_checkout_checkout_shipp_view",
-        "st_cart_shopping_cart_view",
-        "st_products_products_catal_view",
-        "st_products_products_catal_view_opt_za",
-        "st_products_products_catal_view_opt_za_menu_open"
-      ],
-      "source_transition_ids": [
-        "trans-b085264e",
-        "trans-4d2d346c",
-        "trans-cf88a91d",
-        "trans-f505633c",
-        "trans-9d471f5a"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 5,
-      "assertions_passed": 5
-    },
-    {
-      "test_id": "TC-WF-02",
       "title": "End-to-End Workflow: Authentication — Verity Benchmark Portal to Checkout — Verity Benchmark Portal (Checkout: Shipping Details)",
       "category": "workflow",
       "status": "PASSED",
-      "duration_seconds": 1.44,
+      "duration_seconds": 0.86,
       "source_evidence_ids": [
-        "ev-38377064",
-        "ev-001bec67",
-        "ev-4c69bc6b",
-        "ev-2907cdcc"
+        "ev-9d102ff7",
+        "ev-ed8eb1f8",
+        "ev-161387a0"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_products_products_catal_view",
         "st_cart_shopping_cart_view",
-        "st_cart_shopping_cart_view_with_error",
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-7548266e",
-        "trans-346e4613",
-        "trans-e61af569",
-        "trans-b085264e"
+        "trans-f44bf1e4",
+        "trans-4628f488",
+        "trans-b220470e"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -102,62 +53,27 @@
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],
       "dom_snippet": null,
-      "assertions_evaluated": 4,
-      "assertions_passed": 4
-    },
-    {
-      "test_id": "TC-WF-03",
-      "title": "End-to-End Workflow: Checkout — Verity Benchmark Portal to Your Cart — Verity Benchmark Portal (Shopping Cart)",
-      "category": "workflow",
-      "status": "PASSED",
-      "duration_seconds": 0.791,
-      "source_evidence_ids": [
-        "ev-9edcd270",
-        "ev-4c69bc6b"
-      ],
-      "source_state_ids": [
-        "st_checkout_checkout_shipp_view",
-        "st_cart_shopping_cart_view",
-        "st_cart_shopping_cart_view_with_error"
-      ],
-      "source_transition_ids": [
-        "trans-4d2d346c",
-        "trans-e61af569"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 2,
-      "assertions_passed": 2
+      "assertions_evaluated": 3,
+      "assertions_passed": 3
     },
     {
       "test_id": "TC-TR-01",
-      "title": "State Transition: FILL:required_blank_all_loginForm on required_blank_all_loginForm (st_login_system_access__view -> st_login_system_access__view_with_error)",
+      "title": "State Transition: FILL:required_blank_all_loginForm on required_blank_all_loginForm (st_login_system_access__view -> st_login_system_access__view_error_Username_is_re_with_error)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.283,
+      "duration_seconds": 0.16,
       "source_evidence_ids": [
-        "ev-e263ea05"
+        "ev-88502797"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
-        "st_login_system_access__view_with_error"
+        "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-7f99df6f"
+        "trans-fcaef27a"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -176,16 +92,16 @@
       "title": "State Transition: AUTHENTICATE on login_form (st_login_system_access__view -> st_products_products_catal_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.712,
+      "duration_seconds": 0.557,
       "source_evidence_ids": [
-        "ev-38377064"
+        "ev-9d102ff7"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-7548266e"
+        "trans-f44bf1e4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -201,19 +117,19 @@
     },
     {
       "test_id": "TC-TR-03",
-      "title": "State Transition: CLICK_CONTROL:control_cls_f88ae0853d__cart_link on #cart-link (st_products_products_catal_view -> st_cart_shopping_cart_view)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1 on #add-to-cart-1 (st_products_products_catal_view -> st_cart_shopping_cart_c1)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.635,
+      "duration_seconds": 0.263,
       "source_evidence_ids": [
-        "ev-001bec67"
+        "ev-7a54292c"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
-        "st_cart_shopping_cart_view"
+        "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-346e4613"
+        "trans-c0f27c35"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -231,19 +147,19 @@
     },
     {
       "test_id": "TC-TR-04",
-      "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d__calculate_tax_btn on #calculate-tax-btn (st_cart_shopping_cart_view -> st_cart_shopping_cart_view_with_error)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8__remove_item_1 on #remove-item-1 (st_cart_shopping_cart_c1 -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.522,
+      "duration_seconds": 0.323,
       "source_evidence_ids": [
-        "ev-4c69bc6b"
+        "ev-2085772e"
       ],
       "source_state_ids": [
-        "st_cart_shopping_cart_view",
-        "st_cart_shopping_cart_view_with_error"
+        "st_cart_shopping_cart_c1",
+        "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-e61af569"
+        "trans-88dc1c31"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -253,6 +169,8 @@
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],
       "dom_snippet": null,
@@ -261,19 +179,19 @@
     },
     {
       "test_id": "TC-TR-05",
-      "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d__checkout_button on #checkout-button (st_cart_shopping_cart_view_with_error -> st_checkout_checkout_shipp_view)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8__checkout_button on #checkout-button (st_cart_shopping_cart_view -> st_checkout_checkout_shipp_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.549,
+      "duration_seconds": 0.22,
       "source_evidence_ids": [
-        "ev-2907cdcc"
+        "ev-161387a0"
       ],
       "source_state_ids": [
-        "st_cart_shopping_cart_view_with_error",
+        "st_cart_shopping_cart_view",
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-b085264e"
+        "trans-b220470e"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -291,19 +209,19 @@
     },
     {
       "test_id": "TC-TR-06",
-      "title": "State Transition: CLICK_CONTROL:control_cls_7d80a9d0e4__cart_link on #cart-link (st_checkout_checkout_shipp_view -> st_cart_shopping_cart_view)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_c2cdedc327__cart_link on #cart-link (st_checkout_checkout_shipp_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.578,
+      "duration_seconds": 0.219,
       "source_evidence_ids": [
-        "ev-9edcd270"
+        "ev-8abee5c6"
       ],
       "source_state_ids": [
         "st_checkout_checkout_shipp_view",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-4d2d346c"
+        "trans-20dd5cf4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -321,19 +239,19 @@
     },
     {
       "test_id": "TC-TR-07",
-      "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d_a_btn_href___products__ on a.btn[href=\"/products\"] (st_cart_shopping_cart_view -> st_products_products_catal_view)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8_a_btn_href___products__ on a.btn[href=\"/products\"] (st_cart_shopping_cart_view -> st_products_products_catal_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.606,
+      "duration_seconds": 0.221,
       "source_evidence_ids": [
-        "ev-74b1fcea"
+        "ev-d4334086"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_view",
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-cf88a91d"
+        "trans-271e29ff"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -351,49 +269,19 @@
     },
     {
       "test_id": "TC-TR-08",
-      "title": "State Transition: SELECT_OPTION:select_cls_f88ae0853d__product_sort on #product-sort (st_products_products_catal_view -> st_products_products_catal_view_opt_za)",
+      "title": "State Transition: CLICK_CONTROL:control_cls_65e639ba95__cart_link on #cart-link (st_products_products_catal_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.53,
+      "duration_seconds": 0.219,
       "source_evidence_ids": [
-        "ev-ab44bdca"
+        "ev-ed8eb1f8"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
-        "st_products_products_catal_view_opt_za"
+        "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-f505633c"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 1,
-      "assertions_passed": 1
-    },
-    {
-      "test_id": "TC-TR-09",
-      "title": "State Transition: NAVIGATE_LINK:nav_link_60620 on /products?sort=za&menu=open (st_products_products_catal_view_opt_za -> st_products_products_catal_view_opt_za_menu_open)",
-      "category": "transition",
-      "status": "PASSED",
-      "duration_seconds": 0.512,
-      "source_evidence_ids": [
-        "ev-1c7d92ad"
-      ],
-      "source_state_ids": [
-        "st_products_products_catal_view_opt_za",
-        "st_products_products_catal_view_opt_za_menu_open"
-      ],
-      "source_transition_ids": [
-        "trans-9d471f5a"
+        "trans-4628f488"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -414,52 +302,22 @@
       "title": "Form Validation Rejection: required_blank_all_loginForm on 127.0.0.1:8995/login",
       "category": "validation",
       "status": "PASSED",
-      "duration_seconds": 0.38,
+      "duration_seconds": 0.164,
       "source_evidence_ids": [
-        "ev-e263ea05"
+        "ev-88502797"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
-        "st_login_system_access__view_with_error"
+        "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-7f99df6f"
+        "trans-fcaef27a"
       ],
       "source_finding_ids": [],
       "error_message": null,
       "failure_phase": null,
       "screenshot_path": null,
       "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 1,
-      "assertions_passed": 1
-    },
-    {
-      "test_id": "TC-VAL-02",
-      "title": "Form Validation Rejection: #calculate-tax-btn on 127.0.0.1:8995/cart",
-      "category": "validation",
-      "status": "PASSED",
-      "duration_seconds": 0.5,
-      "source_evidence_ids": [
-        "ev-4c69bc6b"
-      ],
-      "source_state_ids": [
-        "st_cart_shopping_cart_view",
-        "st_cart_shopping_cart_view_with_error"
-      ],
-      "source_transition_ids": [
-        "trans-e61af569"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],
@@ -472,16 +330,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.309,
+      "duration_seconds": 0.152,
       "source_evidence_ids": [
-        "ev-e263ea05"
+        "ev-88502797"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
-        "st_login_system_access__view_with_error"
+        "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-7f99df6f"
+        "trans-fcaef27a"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -500,16 +358,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, validation_error:Username is required)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.309,
+      "duration_seconds": 0.15,
       "source_evidence_ids": [
-        "ev-e263ea05"
+        "ev-88502797"
       ],
       "source_state_ids": [
-        "st_login_system_access__view_with_error",
+        "st_login_system_access__view_error_Username_is_re_with_error",
         "st_login_system_access__view"
       ],
       "source_transition_ids": [
-        "trans-7f99df6f"
+        "trans-fcaef27a"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -528,22 +386,24 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Alpha Device)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.854,
+      "duration_seconds": 0.247,
       "source_evidence_ids": [
-        "ev-38377064"
+        "ev-7a54292c"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
-        "st_login_system_access__view"
+        "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-7548266e"
+        "trans-c0f27c35"
       ],
       "source_finding_ids": [],
       "error_message": null,
       "failure_phase": null,
       "screenshot_path": null,
       "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],
@@ -553,19 +413,19 @@
     },
     {
       "test_id": "TC-SD-04",
-      "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:0)",
+      "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:1)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.502,
+      "duration_seconds": 0.303,
       "source_evidence_ids": [
-        "ev-001bec67"
+        "ev-2085772e"
       ],
       "source_state_ids": [
-        "st_cart_shopping_cart_view",
-        "st_products_products_catal_view"
+        "st_cart_shopping_cart_c1",
+        "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-346e4613"
+        "trans-88dc1c31"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -575,6 +435,8 @@
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],
       "dom_snippet": null,
@@ -583,19 +445,19 @@
     },
     {
       "test_id": "TC-SD-05",
-      "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, validation_error:Tax: $NaN | Total: $NaN)",
+      "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.657,
+      "duration_seconds": 0.266,
       "source_evidence_ids": [
-        "ev-4c69bc6b"
+        "ev-161387a0"
       ],
       "source_state_ids": [
-        "st_cart_shopping_cart_view_with_error",
-        "st_cart_shopping_cart_view"
+        "st_cart_shopping_cart_view",
+        "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-e61af569"
+        "trans-b220470e"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -616,76 +478,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/checkout (heading:Checkout: Shipping Details, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.501,
+      "duration_seconds": 0.231,
       "source_evidence_ids": [
-        "ev-2907cdcc"
+        "ev-8abee5c6"
       ],
       "source_state_ids": [
         "st_checkout_checkout_shipp_view",
-        "st_cart_shopping_cart_view_with_error"
+        "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-b085264e"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 1,
-      "assertions_passed": 1
-    },
-    {
-      "test_id": "TC-SD-07",
-      "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Gamma System)",
-      "category": "state_dependent",
-      "status": "PASSED",
-      "duration_seconds": 0.632,
-      "source_evidence_ids": [
-        "ev-ab44bdca"
-      ],
-      "source_state_ids": [
-        "st_products_products_catal_view_opt_za",
-        "st_products_products_catal_view"
-      ],
-      "source_transition_ids": [
-        "trans-f505633c"
-      ],
-      "source_finding_ids": [],
-      "error_message": null,
-      "failure_phase": null,
-      "screenshot_path": null,
-      "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
-      ],
-      "dom_snippet": null,
-      "assertions_evaluated": 1,
-      "assertions_passed": 1
-    },
-    {
-      "test_id": "TC-SD-08",
-      "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Gamma System)",
-      "category": "state_dependent",
-      "status": "PASSED",
-      "duration_seconds": 0.375,
-      "source_evidence_ids": [
-        "ev-1c7d92ad"
-      ],
-      "source_state_ids": [
-        "st_products_products_catal_view_opt_za_menu_open",
-        "st_products_products_catal_view_opt_za"
-      ],
-      "source_transition_ids": [
-        "trans-9d471f5a"
+        "trans-20dd5cf4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -703,26 +505,25 @@
     },
     {
       "test_id": "TC-REG-01",
-      "title": "Defect Regression: Text Anomaly: 'NaN'",
+      "title": "Behavioral Regression Baseline: required_blank_all_loginForm",
       "category": "regression",
       "status": "PASSED",
-      "duration_seconds": 0.536,
+      "duration_seconds": 0.16,
       "source_evidence_ids": [
-        "ev-1c7d92ad"
+        "ev-88502797"
       ],
       "source_state_ids": [
-        "st_cart_shopping_cart_view"
+        "st_login_system_access__view",
+        "st_login_system_access__view_error_Username_is_re_with_error"
       ],
-      "source_transition_ids": [],
-      "source_finding_ids": [
-        "lead_c22796b4"
+      "source_transition_ids": [
+        "trans-fcaef27a"
       ],
+      "source_finding_ids": [],
       "error_message": null,
       "failure_phase": null,
       "screenshot_path": null,
       "console_logs": [
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
-        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)"
       ],

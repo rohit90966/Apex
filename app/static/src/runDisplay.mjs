@@ -50,6 +50,15 @@ export function displayValue(value) {
   return String(value);
 }
 
+// Body for POST /api/tests/execute. A persisted run is executed by run_id, so the server runs exactly the
+// run's saved test cases and saves the result against that run; ad-hoc suites (e.g. loaded report files)
+// still send their test cases and are not persisted.
+export function buildExecuteRequest(generatedTests, targetUrl) {
+  const runId = generatedTests?.run_id;
+  if (runId) return { target_url: targetUrl, run_id: runId };
+  return { target_url: targetUrl, test_cases: generatedTests?.test_cases || [] };
+}
+
 // Summary of a real /api/tests/execute response, or null when no execution has happened.
 export function executionSummary(executionReport) {
   const executed = executionReport?.executed_count;

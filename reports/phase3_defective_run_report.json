@@ -1,9 +1,9 @@
 {
-  "execution_id": "exec-fca333c6",
+  "execution_id": "exec-0e4d91c9",
   "source_investigation_id": "inv-330f51d5",
   "target_url": "http://127.0.0.1:8996",
-  "executed_at": 1792770277.2784123,
-  "duration_seconds": 22.99,
+  "executed_at": 1792837549.7844167,
+  "duration_seconds": 14.87,
   "total_generated_cases": 25,
   "exported_count": 25,
   "executable_without_manual_edits_count": 23,
@@ -26,7 +26,7 @@
       "title": "End-to-End Workflow: Your Cart — Verity Benchmark Portal to Products — Verity Benchmark Portal (Products Catalog)",
       "category": "workflow",
       "status": "PASSED",
-      "duration_seconds": 2.97,
+      "duration_seconds": 2.138,
       "source_evidence_ids": [
         "ev-2907cdcc",
         "ev-9edcd270",
@@ -72,7 +72,7 @@
       "title": "End-to-End Workflow: Authentication — Verity Benchmark Portal to Checkout — Verity Benchmark Portal (Checkout: Shipping Details)",
       "category": "workflow",
       "status": "PASSED",
-      "duration_seconds": 1.56,
+      "duration_seconds": 1.02,
       "source_evidence_ids": [
         "ev-38377064",
         "ev-001bec67",
@@ -114,7 +114,7 @@
       "title": "End-to-End Workflow: Checkout — Verity Benchmark Portal to Your Cart — Verity Benchmark Portal (Shopping Cart)",
       "category": "workflow",
       "status": "PASSED",
-      "duration_seconds": 0.683,
+      "duration_seconds": 0.423,
       "source_evidence_ids": [
         "ev-9edcd270",
         "ev-4c69bc6b"
@@ -148,7 +148,7 @@
       "title": "State Transition: FILL:required_blank_all_loginForm on required_blank_all_loginForm (st_login_system_access__view -> st_login_system_access__view_with_error)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.241,
+      "duration_seconds": 0.272,
       "source_evidence_ids": [
         "ev-e263ea05"
       ],
@@ -176,7 +176,7 @@
       "title": "State Transition: AUTHENTICATE on login_form (st_login_system_access__view -> st_products_products_catal_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.769,
+      "duration_seconds": 0.659,
       "source_evidence_ids": [
         "ev-38377064"
       ],
@@ -204,7 +204,7 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_f88ae0853d__cart_link on #cart-link (st_products_products_catal_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.518,
+      "duration_seconds": 0.344,
       "source_evidence_ids": [
         "ev-001bec67"
       ],
@@ -234,7 +234,7 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d__calculate_tax_btn on #calculate-tax-btn (st_cart_shopping_cart_view -> st_cart_shopping_cart_view_with_error)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.598,
+      "duration_seconds": 0.317,
       "source_evidence_ids": [
         "ev-4c69bc6b"
       ],
@@ -264,7 +264,7 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d__checkout_button on #checkout-button (st_cart_shopping_cart_view_with_error -> st_checkout_checkout_shipp_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.53,
+      "duration_seconds": 0.33,
       "source_evidence_ids": [
         "ev-2907cdcc"
       ],
@@ -294,7 +294,7 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_7d80a9d0e4__cart_link on #cart-link (st_checkout_checkout_shipp_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.518,
+      "duration_seconds": 0.309,
       "source_evidence_ids": [
         "ev-9edcd270"
       ],
@@ -324,7 +324,7 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_30cd57132d_a_btn_href___products__ on a.btn[href=\"/products\"] (st_cart_shopping_cart_view -> st_products_products_catal_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.449,
+      "duration_seconds": 0.234,
       "source_evidence_ids": [
         "ev-74b1fcea"
       ],
@@ -354,7 +354,7 @@
       "title": "State Transition: SELECT_OPTION:select_cls_f88ae0853d__product_sort on #product-sort (st_products_products_catal_view -> st_products_products_catal_view_opt_za)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.628,
+      "duration_seconds": 0.41,
       "source_evidence_ids": [
         "ev-ab44bdca"
       ],
@@ -384,7 +384,7 @@
       "title": "State Transition: NAVIGATE_LINK:nav_link_60620 on /products?sort=za&menu=open (st_products_products_catal_view_opt_za -> st_products_products_catal_view_opt_za_menu_open)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.434,
+      "duration_seconds": 0.234,
       "source_evidence_ids": [
         "ev-1c7d92ad"
       ],
@@ -414,7 +414,7 @@
       "title": "Form Validation Rejection: required_blank_all_loginForm on 127.0.0.1:8995/login",
       "category": "validation",
       "status": "PASSED",
-      "duration_seconds": 0.248,
+      "duration_seconds": 0.172,
       "source_evidence_ids": [
         "ev-e263ea05"
       ],
@@ -442,7 +442,7 @@
       "title": "Form Validation Rejection: #calculate-tax-btn on 127.0.0.1:8995/cart",
       "category": "validation",
       "status": "PASSED",
-      "duration_seconds": 0.615,
+      "duration_seconds": 0.328,
       "source_evidence_ids": [
         "ev-4c69bc6b"
       ],
@@ -472,7 +472,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.367,
+      "duration_seconds": 0.208,
       "source_evidence_ids": [
         "ev-e263ea05"
       ],
@@ -500,7 +500,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, validation_error:Username is required)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.415,
+      "duration_seconds": 0.185,
       "source_evidence_ids": [
         "ev-e263ea05"
       ],
@@ -528,7 +528,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Alpha Device)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.836,
+      "duration_seconds": 0.698,
       "source_evidence_ids": [
         "ev-38377064"
       ],
@@ -556,7 +556,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.596,
+      "duration_seconds": 0.335,
       "source_evidence_ids": [
         "ev-001bec67"
       ],
@@ -586,7 +586,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, validation_error:Tax: $NaN | Total: $NaN)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.573,
+      "duration_seconds": 0.313,
       "source_evidence_ids": [
         "ev-4c69bc6b"
       ],
@@ -616,7 +616,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/checkout (heading:Checkout: Shipping Details, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.735,
+      "duration_seconds": 0.379,
       "source_evidence_ids": [
         "ev-2907cdcc"
       ],
@@ -646,7 +646,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Gamma System)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.518,
+      "duration_seconds": 0.325,
       "source_evidence_ids": [
         "ev-ab44bdca"
       ],
@@ -676,7 +676,7 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Gamma System)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.365,
+      "duration_seconds": 0.299,
       "source_evidence_ids": [
         "ev-1c7d92ad"
       ],
@@ -706,7 +706,7 @@
       "title": "Defect Regression: Text Anomaly: 'NaN'",
       "category": "regression",
       "status": "DEFECT_DETECTED",
-      "duration_seconds": 0.644,
+      "duration_seconds": 0.339,
       "source_evidence_ids": [
         "ev-1c7d92ad"
       ],
@@ -719,7 +719,7 @@
       ],
       "error_message": "DEFECT_DETECTED: Confirmed defect reproduced: text anomaly 'NaN' found in output 'Tax: $NaN | Total: $NaN'",
       "failure_phase": "ASSERTION",
-      "screenshot_path": "artifacts/playwright_runs\\defect_TC-REG-01_3fef2d.png",
+      "screenshot_path": "artifacts/playwright_runs\\defect_TC-REG-01_59ad30.png",
       "console_logs": [
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",
         "[warning] Analytics: tracking pixel ping delayed (non-critical)",

@@ -123,6 +123,16 @@ def _is_bare_identifier(sel: str) -> bool:
     return bool(re.match(r"^[a-zA-Z0-9_\-]+$", sel)) and (sel.lower() not in common_tags)
 
 
+import sys
+import asyncio
+if sys.platform == "win32":
+    try:
+        if not isinstance(asyncio.get_event_loop_policy(), asyncio.WindowsProactorEventLoopPolicy):
+            asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    except Exception:
+        pass
+
+
 class PlaywrightContractTestRunner:
     """
     Direct asynchronous Playwright executor for ContractTestSuiteArtifact test cases.
@@ -153,7 +163,61 @@ class PlaywrightContractTestRunner:
     ) -> ContractTestExecutionReport:
         """
         Executes all eligible test cases in the suite and generates a structured evaluation report.
+        Transparently handles Windows SelectorEventLoop environments (e.g. uvicorn --reload)
+        by delegating execution to a dedicated ProactorEventLoop thread.
         """
+        import sys, asyncio
+        if sys.platform == "win32":
+            loop = asyncio.get_running_loop()
+            if not isinstance(loop, getattr(asyncio, "ProactorEventLoop", ())):
+                return await asyncio.to_thread(
+                    self._run_suite_in_thread,
+                    suite,
+                    target_base_url,
+                    test_username,
+                    test_password,
+                    stop_on_first_failure,
+                )
+        return await self._run_suite_impl(
+            suite,
+            target_base_url,
+            test_username,
+            test_password,
+            stop_on_first_failure,
+        )
+
+    def _run_suite_in_thread(
+        self,
+        suite: ContractTestSuiteArtifact,
+        target_base_url: Optional[str] = None,
+        test_username: str = "benchmark_user",
+        test_password: str = "secret_benchmark",
+        stop_on_first_failure: bool = False,
+    ) -> ContractTestExecutionReport:
+        import asyncio
+        p_loop = asyncio.ProactorEventLoop()
+        asyncio.set_event_loop(p_loop)
+        try:
+            return p_loop.run_until_complete(
+                self._run_suite_impl(
+                    suite,
+                    target_base_url,
+                    test_username,
+                    test_password,
+                    stop_on_first_failure,
+                )
+            )
+        finally:
+            p_loop.close()
+
+    async def _run_suite_impl(
+        self,
+        suite: ContractTestSuiteArtifact,
+        target_base_url: Optional[str] = None,
+        test_username: str = "benchmark_user",
+        test_password: str = "secret_benchmark",
+        stop_on_first_failure: bool = False,
+    ) -> ContractTestExecutionReport:
         start_time = time.time()
         exec_id = f"exec-{uuid.uuid4().hex[:8]}"
         base_url = (target_base_url or suite.target_url).rstrip("/")
@@ -585,7 +649,7 @@ class PlaywrightContractTestRunner:
                     elif "happy" in sel.lower() or sel.startswith("form_"):
                         await page.evaluate("""() => {
                             const inputs = document.querySelectorAll('input:not([type=submit]):not([type=button]):not([type=hidden]):not([type=checkbox])');
-                            const sampleValues = ['Jane', 'Doe', '94103', 'standard_user', 'secret_sauce'];
+                            const sampleValues = ['Jane', 'Doe', '94103', 'qa.tester', 'QaSample1!'];
                             let idx = 0;
                             for (const inp of inputs) {
                                 if (inp.offsetParent !== null) {
@@ -713,6 +777,25 @@ class PlaywrightContractTestRunner:
                 return failure_res
             satisfied_oracles.add(idx)
             assertions_sat += 1
+
+        # Zero-assertion tests must never count as PASS
+        if assertions_eval == 0:
+            return TestCaseExecutionResult(
+                test_id=tc.test_id,
+                title=tc.title,
+                category=tc.category.value,
+                status=TestExecutionStatus.FAILED,
+                duration_seconds=round(time.time() - tc_start, 3),
+                source_evidence_ids=tc.evidence_ids,
+                source_state_ids=tc.source_state_ids,
+                source_transition_ids=tc.source_transition_ids,
+                source_finding_ids=tc.source_finding_ids,
+                console_logs=console_logs,
+                failure_phase=FailurePhase.ASSERTION,
+                error_message="Test completed with 0 evaluated assertions; zero-assertion tests cannot count as PASS.",
+                assertions_evaluated=0,
+                assertions_passed=0,
+            )
 
         return TestCaseExecutionResult(
             test_id=tc.test_id,

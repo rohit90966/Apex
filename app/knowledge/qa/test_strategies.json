@@ -1,0 +1,139 @@
+[
+  {
+    "id": "TS-ROUTE-REGRESSION", "kind": "TEST_STRATEGY", "category": "regression",
+    "title": "Observed route regression",
+    "description": "Every route reached by navigation stays reachable and keeps its stable landmarks.",
+    "applicability": {"all": ["has_multiple_routes"]},
+    "test_strategy": "Navigate (with the authorized login prelude when the route was only seen in-session); assert status and stable headings.",
+    "oracle_strategy": "OR-OBSERVED-STATE",
+    "related_ids": ["DC-FN-NAVIGATION", "DC-API-ERRORS"],
+    "automation": {"status": "AUTOMATED", "implementation": "ROUTE_REACHABILITY"}, "risk": "LOW"
+  },
+  {
+    "id": "TS-STATE-TRANSITION", "kind": "TEST_STRATEGY", "category": "state_transition",
+    "title": "State-transition testing from observed transitions",
+    "description": "Replay each observed control→state transition from a reproducible source state.",
+    "applicability": {"all": ["has_transitions"]},
+    "test_strategy": "Only transitions whose source state is reachable by navigation and whose control was observed there.",
+    "oracle_strategy": "OR-OBSERVED-STATE",
+    "related_ids": ["DC-FN-CONTROL-EFFECT"],
+    "automation": {"status": "AUTOMATED", "implementation": "OBSERVED_TRANSITIONS"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-EP-BVA", "kind": "TEST_STRATEGY", "category": "input_design",
+    "title": "Equivalence partitioning and boundary-value analysis",
+    "description": "Partition each field's input space by its known rule and test each boundary (N-1, N, N+1) plus one representative per invalid class.",
+    "applicability": {"any": ["has_required_field", "has_length_constraint", "has_numeric_range", "has_date_range", "has_pattern_constraint", "has_email_field", "has_field_requirements"]},
+    "test_strategy": "Rules come only from HTML declarations, explicit requirements or observed validation messages; unknown rules are reported, not invented.",
+    "oracle_strategy": "OR-BROWSER-VALIDITY for browser-enforced rules; OR-ATTRIBUTABLE-FEEDBACK for requirement rules exercised server-side.",
+    "related_ids": ["DC-VAL-REQUIRED", "DC-VAL-LENGTH", "DC-VAL-RANGE", "DC-VAL-FORMAT"],
+    "false_positive_warnings": ["type=tel or a free-text field has no implied rule"],
+    "automation": {"status": "AUTOMATED", "implementation": "FIELD_BOUNDARIES"}, "risk": "HIGH"
+  },
+  {
+    "id": "TS-SERVER-ENFORCEMENT", "kind": "TEST_STRATEGY", "category": "layer_distinction",
+    "title": "Server-side enforcement of declared constraints",
+    "description": "Distinguish browser-native blocking from application behaviour: disable client validation and submit one value violating each declared constraint.",
+    "applicability": {"all": ["has_post_form"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
+    "preconditions": ["Form submission is authorized on the target"],
+    "test_strategy": "One probe per field and rule kind, skipped when an explicit requirement already exercises the same field server-side.",
+    "oracle_strategy": "OR-ATTRIBUTABLE-FEEDBACK; failures are likely defects because the HTML declaration is the only rule source.",
+    "related_ids": ["DC-VAL-CLIENT-SERVER", "DC-VAL-CHOICE", "OR-LAYER-DISTINCTION"],
+    "safety": ["Submits data; local/authorized hosts only; counts against the mutation budget"],
+    "automation": {"status": "AUTOMATED", "implementation": "SERVER_SIDE_ENFORCEMENT"}, "risk": "HIGH"
+  },
+  {
+    "id": "TS-CROSS-FIELD", "kind": "TEST_STRATEGY", "category": "decision_table",
+    "title": "Cross-field consistency (confirmation pairs)",
+    "description": "When field semantics mark one field as the confirmation of another, test the 'values differ' row of the decision table.",
+    "applicability": {"all": ["has_confirmation_pair"]},
+    "test_strategy": "All fields valid; confirmation = source + suffix; submit.",
+    "oracle_strategy": "OR-ATTRIBUTABLE-FEEDBACK; semantic inference → likely defect unless a requirement states equality.",
+    "related_ids": ["DC-VAL-CROSS-FIELD"],
+    "automation": {"status": "AUTOMATED", "implementation": "CROSS_FIELD_CONFIRMATION"}, "risk": "HIGH"
+  },
+  {
+    "id": "TS-INVARIANT-SORT", "kind": "TEST_STRATEGY", "category": "invariant",
+    "title": "Ordering invariant for sortable collections",
+    "description": "Records shown after choosing a sort option are monotone in the key the option names.",
+    "applicability": {"all": ["has_sort_control"]},
+    "oracle_strategy": "OR-COLLECTION-INVARIANT (derived inference).",
+    "related_ids": ["DC-FN-FILTER-SORT"],
+    "automation": {"status": "AUTOMATED", "implementation": "SORT_ORDER"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-METAMORPHIC-FILTER", "kind": "TEST_STRATEGY", "category": "metamorphic",
+    "title": "Metamorphic filter consistency",
+    "description": "Every record displayed under a filter value carries that value.",
+    "applicability": {"all": ["has_filter_control"]},
+    "oracle_strategy": "OR-COLLECTION-INVARIANT (derived inference).",
+    "related_ids": ["DC-FN-FILTER-SORT"],
+    "automation": {"status": "AUTOMATED", "implementation": "FILTER_RESULTS"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-INVARIANT", "kind": "TEST_STRATEGY", "category": "invariant",
+    "title": "Rendering-anomaly invariant after interactions",
+    "description": "No interaction should render NaN, undefined, [object Object] or raw exception text.",
+    "applicability": {"any": ["has_transitions", "has_multiple_routes"]},
+    "oracle_strategy": "OR-RENDER-ANOMALY",
+    "related_ids": ["DC-STATE-DERIVED"],
+    "automation": {"status": "AUTOMATED", "implementation": "RENDER_ANOMALY_INVARIANT"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-WORKFLOW-SEQUENCE", "kind": "TEST_STRATEGY", "category": "workflow",
+    "title": "Workflow sequence testing",
+    "description": "Replay a multi-step workflow; for create forms, check the created record is reflected.",
+    "applicability": {"any": ["has_create_form", "has_checkout"]},
+    "related_ids": ["DC-FN-CRUD", "DC-FN-MULTISTEP"],
+    "automation": {"status": "PARTIAL", "implementation": "SUBMISSION_REFLECTION"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-REGRESSION-LEAD", "kind": "TEST_STRATEGY", "category": "regression",
+    "title": "Regression tests from confirmed investigation findings",
+    "description": "Replay a confirmed lead's recorded steps on observed selectors and assert the violated expectation.",
+    "applicability": {"all": ["has_confirmed_leads"]},
+    "related_ids": ["OR-ATTRIBUTABLE-FEEDBACK"],
+    "automation": {"status": "AUTOMATED", "implementation": "LEAD_REGRESSION"}, "risk": "HIGH"
+  },
+  {
+    "id": "TS-OBSERVED-VALIDATION", "kind": "TEST_STRATEGY", "category": "negative",
+    "title": "Observed validation-message regression",
+    "description": "Empty submissions whose validation message was observed during investigation.",
+    "applicability": {"all": ["has_observed_validation_message"]},
+    "related_ids": ["DC-AUTH-SESSION", "DC-VAL-FEEDBACK"],
+    "automation": {"status": "AUTOMATED", "implementation": "OBSERVED_VALIDATION"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-A11Y-NAMES", "kind": "TEST_STRATEGY", "category": "accessibility",
+    "title": "Accessible-name audit per route",
+    "description": "Compute accessible names for interactive controls on observed routes.",
+    "applicability": {"all": ["has_interactive_controls", "has_multiple_routes"]},
+    "oracle_strategy": "OR-A11Y-HEURISTIC",
+    "related_ids": ["DC-A11Y-NAMES"],
+    "automation": {"status": "AUTOMATED", "implementation": "ACCESSIBLE_NAMES"}, "risk": "LOW"
+  },
+  {
+    "id": "TS-DOMAIN-TEMPLATES", "kind": "TEST_STRATEGY", "category": "risk_based",
+    "title": "Domain scenario templates grounded on observed controls",
+    "description": "Reusable domain scenarios (login, cart, checkout, CRUD) applied only when every step resolves to an observed control.",
+    "applicability": {"any": ["has_login_form", "has_cart", "has_checkout", "has_create_form", "has_sort_control"]},
+    "related_ids": ["DC-FN-MULTISTEP"],
+    "automation": {"status": "AUTOMATED", "implementation": "TEMPLATE_PATTERNS"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-PAIRWISE", "kind": "TEST_STRATEGY", "category": "combinatorial",
+    "title": "Pairwise combination testing",
+    "description": "Cover all value pairs of interacting parameters with a minimal set.",
+    "applicability": {"all": ["has_select_field"]},
+    "limitations": ["Not automated: requires known parameter interactions"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "LOW"
+  },
+  {
+    "id": "TS-IDEMPOTENCY", "kind": "TEST_STRATEGY", "category": "repeated_action",
+    "title": "Repeated-action and idempotency testing",
+    "description": "Repeat a submission and compare effects.",
+    "applicability": {"all": ["has_create_form"]},
+    "limitations": ["Not automated"],
+    "automation": {"status": "NOT_AUTOMATED"}, "risk": "MEDIUM"
+  }
+]

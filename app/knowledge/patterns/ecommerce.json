@@ -1,0 +1,497 @@
+[
+  {
+    "pattern_id": "PAT-ECOM-CART-01",
+    "name": "E-Commerce Add-to-Cart and Badge Count Increment",
+    "archetypes": [
+      "ECOMMERCE"
+    ],
+    "capabilities": [
+      "CATALOG_BROWSING",
+      "CART_MANAGEMENT"
+    ],
+    "description": "Adding an item from the product catalog must increment the visual shopping cart badge count from 0 to 1 and reflect the item in the cart view.",
+    "preconditions": [
+      "Authenticated user session active",
+      "Browser navigated to catalog (/inventory.html or /products)"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Cart badge count increments by exactly 1 for each added product item",
+      "Add-to-cart button text or selector toggles to Remove state"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-CART-ADD",
+        "title": "Add Product Item to Cart and Verify Badge Count",
+        "objective": "Verify clicking add-to-cart on an item increments the shopping cart badge count to 1.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "CLICK",
+            "target_semantic": "add_to_cart_button",
+            "target_selector_hints": [
+              "#add-to-cart-sauce-labs-backpack",
+              "#add-to-cart-1",
+              "button[id^='add-to-cart']"
+            ],
+            "expected_state_or_fragment": "/inventory.html",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Remove",
+            "description": "Click add-to-cart on primary product item"
+          },
+          {
+            "step_number": 2,
+            "action_type": "NAVIGATE",
+            "target_semantic": "shopping_cart_link",
+            "target_selector_hints": [
+              "[data-test='shopping-cart-link']",
+              "#shopping_cart_container",
+              "a.shopping_cart_link"
+            ],
+            "input_value": "/cart.html",
+            "expected_state_or_fragment": "/cart.html",
+            "assertion_type": "URL_CONTAINS",
+            "assertion_expected": "/cart",
+            "description": "Navigate to shopping cart page"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "BADGE_COUNT",
+            "expected": "1"
+          },
+          {
+            "type": "ITEM_PRESENT_IN_CART",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "cart_badge_element",
+      "inventory_container"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-ECOM-CART-02",
+    "name": "E-Commerce Cart Item Removal and Badge Reset",
+    "archetypes": [
+      "ECOMMERCE"
+    ],
+    "capabilities": [
+      "CART_MANAGEMENT"
+    ],
+    "description": "Removing an item from the cart decreases the badge count or removes the badge completely when empty.",
+    "preconditions": [
+      "Authenticated user session active",
+      "Shopping cart contains at least 1 item"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Removing the sole item from cart clears the badge count element or sets count to 0",
+      "Removed item is no longer visible in the cart item list"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-CART-REMOVE",
+        "title": "Remove Item From Shopping Cart",
+        "objective": "Verify clicking remove inside cart drops item from list and clears badge.",
+        "category": "transition",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "NAVIGATE",
+            "target_semantic": "cart_page",
+            "target_selector_hints": [
+              "[data-test='shopping-cart-link']",
+              "a.shopping_cart_link"
+            ],
+            "input_value": "/cart.html",
+            "expected_state_or_fragment": "/cart.html",
+            "assertion_type": "URL_CONTAINS",
+            "assertion_expected": "/cart",
+            "description": "Navigate to shopping cart"
+          },
+          {
+            "step_number": 2,
+            "action_type": "CLICK",
+            "target_semantic": "remove_button",
+            "target_selector_hints": [
+              "#remove-sauce-labs-backpack",
+              "button[id^='remove']",
+              ".cart_button"
+            ],
+            "expected_state_or_fragment": "/cart.html",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Continue Shopping",
+            "description": "Click remove item button"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "BADGE_ABSENT_OR_ZERO",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "cart_badge_element",
+      "cart_item_list"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-ECOM-CATALOG-01",
+    "name": "E-Commerce Catalog Sorting and Filtering",
+    "archetypes": [
+      "ECOMMERCE"
+    ],
+    "capabilities": [
+      "CATALOG_BROWSING",
+      "PAGINATION_SORTING"
+    ],
+    "description": "Selecting an option in the product sort container re-orders the visible product items accordingly without page reload failure.",
+    "preconditions": [
+      "Authenticated user session active",
+      "Catalog view loaded (/inventory.html)"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Selecting Z-to-A sort places reverse alphabetical products first",
+      "Selecting Price Low-to-High places minimum price product first"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-SORT-ZA",
+        "title": "Catalog Sorting Name (Z to A)",
+        "objective": "Verify selecting 'za' reorders the catalog items in reverse alphabetical order.",
+        "category": "transition",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "SELECT_OPTION",
+            "target_semantic": "sort_dropdown",
+            "target_selector_hints": [
+              "[data-test='product-sort-container']",
+              "select.product_sort_container",
+              "#product-sort"
+            ],
+            "input_value": "za",
+            "expected_state_or_fragment": "/inventory.html",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Products",
+            "description": "Select Z to A sorting option"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "DOM_REORDERED",
+            "expected": "true"
+          }
+        ]
+      },
+      {
+        "template_id": "ST-ECOM-SORT-LOHI",
+        "title": "Catalog Sorting Price (Low to High)",
+        "objective": "Verify selecting 'lohi' reorders catalog items from lowest price to highest.",
+        "category": "transition",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "SELECT_OPTION",
+            "target_semantic": "sort_dropdown",
+            "target_selector_hints": [
+              "[data-test='product-sort-container']",
+              "select.product_sort_container",
+              "#product-sort"
+            ],
+            "input_value": "lohi",
+            "expected_state_or_fragment": "/inventory.html",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Products",
+            "description": "Select Low to High price sorting"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "DOM_REORDERED",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "sort_container_element",
+      "inventory_list"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-ECOM-CHECKOUT-01",
+    "name": "E-Commerce Checkout Form Validation and Continuation",
+    "archetypes": [
+      "ECOMMERCE"
+    ],
+    "capabilities": [
+      "CART_MANAGEMENT",
+      "CHECKOUT_FLOW",
+      "FORM_VALIDATION"
+    ],
+    "description": "Multi-step checkout step 1 requires valid customer information before advancing to step 2 overview.",
+    "preconditions": [
+      "Authenticated user session active",
+      "At least 1 item in cart",
+      "Navigated to /checkout-step-one.html"
+    ],
+    "risk_level": "MEDIUM",
+    "invariants": [
+      "Empty first name, last name, or postal code triggers explicit validation error banner",
+      "Valid information submission navigates cleanly to /checkout-step-two.html"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-CHECKOUT-STEP1-VALID",
+        "title": "Submit Valid Customer Info on Checkout Step One",
+        "objective": "Verify filling required name and zip fields advances user to checkout overview step two.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "first_name_input",
+            "target_selector_hints": [
+              "#first-name",
+              "input[name='firstName']",
+              "[data-test='firstName']"
+            ],
+            "input_value": "Alex",
+            "description": "Fill customer first name"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "last_name_input",
+            "target_selector_hints": [
+              "#last-name",
+              "input[name='lastName']",
+              "[data-test='lastName']"
+            ],
+            "input_value": "Tester",
+            "description": "Fill customer last name"
+          },
+          {
+            "step_number": 3,
+            "action_type": "FILL",
+            "target_semantic": "postal_code_input",
+            "target_selector_hints": [
+              "#postal-code",
+              "input[name='postalCode']",
+              "[data-test='postalCode']"
+            ],
+            "input_value": "90210",
+            "description": "Fill postal code"
+          },
+          {
+            "step_number": 4,
+            "action_type": "CLICK",
+            "target_semantic": "continue_button",
+            "target_selector_hints": [
+              "#continue",
+              "input[name='continue']",
+              "[data-test='continue']"
+            ],
+            "expected_state_or_fragment": "/checkout-step-two.html",
+            "assertion_type": "URL_CONTAINS",
+            "assertion_expected": "/checkout-step-two",
+            "description": "Click continue to overview"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "URL_CONTAINS",
+            "expected": "/checkout-step-two.html"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-ECOM-CHECKOUT-EMPTY-FIRSTNAME",
+        "title": "Checkout Step 1 Empty First Name Boundary",
+        "objective": "Verify submitting checkout step 1 with empty first name displays validation error.",
+        "boundary_type": "MISSING_REQUIRED_FIELD",
+        "invalid_input": {
+          "firstName": "",
+          "lastName": "Tester",
+          "postalCode": "90210"
+        },
+        "expected_error_message_fragment": "First Name is required"
+      },
+      {
+        "scenario_id": "NEG-ECOM-CHECKOUT-EMPTY-POSTAL",
+        "title": "Checkout Step 1 Empty Postal Code Boundary",
+        "objective": "Verify submitting checkout step 1 with empty postal code displays validation error.",
+        "boundary_type": "MISSING_REQUIRED_FIELD",
+        "invalid_input": {
+          "firstName": "Alex",
+          "lastName": "Tester",
+          "postalCode": " "
+        },
+        "expected_error_message_fragment": "Postal Code is required"
+      }
+    ],
+    "evidence_requirements": [
+      "checkout_form",
+      "error_message_container"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-ECOM-CHECKOUT-02",
+    "name": "E-Commerce Checkout Step Two Financial Invariant & NaN Anomaly Prevention",
+    "archetypes": [
+      "ECOMMERCE"
+    ],
+    "capabilities": [
+      "CHECKOUT_FLOW"
+    ],
+    "description": "Checkout step two must display valid numeric item total, calculated tax, and total without NaN anomalies.",
+    "preconditions": [
+      "Authenticated user session active",
+      "Order items in checkout",
+      "Navigated to /checkout-step-two.html"
+    ],
+    "risk_level": "HIGH",
+    "invariants": [
+      "Tax value displayed must be a valid numeric currency amount (not NaN or undefined)",
+      "Total must equal Item Total plus Tax within 0.01 tolerance"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-CHECKOUT-TAX-INVARIANT",
+        "title": "Verify Checkout Step Two Numeric Tax and Total Calculation",
+        "objective": "Inspect summary info on checkout overview and assert numeric tax calculation integrity.",
+        "category": "regression",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "NAVIGATE",
+            "target_semantic": "checkout_overview_page",
+            "target_selector_hints": [
+              "#checkout-summary",
+              ".summary_info"
+            ],
+            "input_value": "/checkout-step-two.html",
+            "expected_state_or_fragment": "/checkout-step-two.html",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Checkout: Overview",
+            "description": "Navigate to checkout overview"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "NO_NAN_TAX",
+            "expected": "numeric_currency"
+          },
+          {
+            "type": "TOTAL_MATH_CORRECT",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "summary_tax_label",
+      "summary_total_label"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-ECOM-DRAWER-01",
+    "name": "E-Commerce Navigation Drawer Toggle and Reset State",
+    "archetypes": [
+      "ECOMMERCE",
+      "GENERIC_WEB"
+    ],
+    "capabilities": [
+      "DRAWER_NAVIGATION"
+    ],
+    "description": "Clicking the burger menu button opens the sidebar navigation drawer and exposes all-items, reset-app-state, and logout options.",
+    "preconditions": [
+      "Authenticated user session active",
+      "On any authenticated app view"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Clicking burger menu reveals sidebar menu links",
+      "Closing the drawer or clicking cross button hides the sidebar"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-ECOM-DRAWER-TOGGLE",
+        "title": "Open Navigation Drawer and Verify Sidebar Items",
+        "objective": "Verify clicking #react-burger-menu-btn opens the menu drawer.",
+        "category": "state_dependent",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "CLICK",
+            "target_semantic": "burger_menu_button",
+            "target_selector_hints": [
+              "#react-burger-menu-btn",
+              ".bm-burger-button",
+              "button#react-burger-menu-btn"
+            ],
+            "expected_state_or_fragment": "menu_open",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "All Items",
+            "description": "Click hamburger menu button"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "DRAWER_VISIBLE",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "burger_menu_btn",
+      "sidebar_menu_wrap"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  }
+]

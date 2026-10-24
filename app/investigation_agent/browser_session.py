@@ -540,11 +540,13 @@ class StatefulBrowserSession:
                 }
 
                 let selectOptions = [];
+                let selectOptionLabels = [];
                 if (el.tagName.toLowerCase() === 'select' && el.options) {
-                    selectOptions = Array.from(el.options)
-                        .map(o => (o.value || o.text || '').trim())
-                        .filter(Boolean)
+                    const opts = Array.from(el.options)
+                        .filter(o => (o.value || o.text || '').trim())
                         .slice(0, 10);
+                    selectOptions = opts.map(o => (o.value || o.text || '').trim());
+                    selectOptionLabels = opts.map(o => (o.text || o.value || '').trim());
                 }
                 const rawInnerText = (el.innerText || '').trim();
                 const isImageOnlyLink = (el.tagName.toLowerCase() === 'a' && !rawInnerText && !!el.querySelector('img'));
@@ -563,6 +565,7 @@ class StatefulBrowserSession:
                         maxlength: el.getAttribute('maxlength') ? parseInt(el.getAttribute('maxlength')) : null,
                         minlength: el.getAttribute('minlength') ? parseInt(el.getAttribute('minlength')) : null,
                         select_options: selectOptions,
+                        select_option_labels: selectOptionLabels,
                         is_image_only_link: isImageOnlyLink,
                         href: el.getAttribute('href') || ''
                     }

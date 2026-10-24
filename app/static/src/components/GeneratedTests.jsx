@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function GeneratedTests({
   testSuite,
@@ -8,31 +8,52 @@ export default function GeneratedTests({
 }) {
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [searchTerm, setSearchTerm] = useState('');
+  const [exportedScript, setExportedScript] = useState('');
 
   const testCases = testSuite?.test_cases || investigationReport?.proposed_test_cases || [];
-  const targetUrl = testSuite?.target_url || investigationReport?.overview?.target_url || 'https://www.saucedemo.com/';
+  const runId = investigationReport?.run_id || testSuite?.run_id || '';
+  const alignment = investigationReport?.test_planning?.requirement_alignment;
+
+  // The script is produced server-side from exactly the steps and assertions the runner executes.
+  useEffect(() => {
+    let cancelled = false;
+    setExportedScript('');
+    if (!runId) return undefined;
+    fetch(`/api/runs/${encodeURIComponent(runId)}/export`)
+      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((text) => { if (!cancelled) setExportedScript(text); })
+      .catch((err) => { if (!cancelled) setExportedScript(`# Export unavailable for run ${runId}: ${err.message}`); });
+    return () => { cancelled = true; };
+  }, [runId, testCases.length]);
 
   // Category counts
   let wf = 0, trans = 0, func = 0, bnd = 0, a11y = 0;
   testCases.forEach((tc) => {
-    const cat = (tc.category || '').toLowerCase();
-    if (cat.includes('workflow')) wf++;
-    else if (cat.includes('transition')) trans++;
-    else if (cat.includes('boundary') || cat.includes('bva')) bnd++;
+    const cat = (tc.category || tc.oracle_class || '').toLowerCase();
+    const id = (tc.test_id || '').toLowerCase();
+    if (cat.includes('workflow') || id.includes('wf') || id.includes('journey')) wf++;
+    else if (cat.includes('transition') || id.includes('tr')) trans++;
+    else if (cat.includes('boundary') || cat.includes('bva') || cat.includes('validation') || id.includes('val')) bnd++;
     else if (cat.includes('access') || cat.includes('a11y')) a11y++;
     else func++;
   });
 
   // Filter test cases
   const filtered = testCases.filter((tc) => {
-    const cat = (tc.category || '').toLowerCase();
+    const cat = (tc.category || tc.oracle_class || '').toLowerCase();
+    const id = (tc.test_id || '').toLowerCase();
+    const isWf = cat.includes('workflow') || id.includes('wf') || id.includes('journey');
+    const isTr = cat.includes('transition') || id.includes('tr');
+    const isBnd = cat.includes('boundary') || cat.includes('bva') || cat.includes('validation') || id.includes('val');
+    const isA11y = cat.includes('access') || cat.includes('a11y');
+
     const matchesCat =
       categoryFilter === 'ALL' ||
-      (categoryFilter === 'workflow' && cat.includes('workflow')) ||
-      (categoryFilter === 'state_transition' && cat.includes('transition')) ||
-      (categoryFilter === 'boundary' && (cat.includes('boundary') || cat.includes('bva'))) ||
-      (categoryFilter === 'accessibility' && (cat.includes('access') || cat.includes('a11y'))) ||
-      (categoryFilter === 'functional' && !cat.includes('workflow') && !cat.includes('transition') && !cat.includes('boundary') && !cat.includes('access'));
+      (categoryFilter === 'workflow' && isWf) ||
+      (categoryFilter === 'state_transition' && isTr) ||
+      (categoryFilter === 'boundary' && isBnd) ||
+      (categoryFilter === 'accessibility' && isA11y) ||
+      (categoryFilter === 'functional' && !isWf && !isTr && !isBnd && !isA11y);
 
     const search = searchTerm.toLowerCase();
     const matchesSearch =
@@ -42,7 +63,8 @@ export default function GeneratedTests({
     return matchesCat && matchesSearch;
   });
 
-  const playwrightScript = testSuite?.playwright_code || generatePlaywrightScript(testCases, targetUrl);
+  const playwrightScript = testSuite?.playwright_code || exportedScript
+    || (runId ? '# Loading exported test script...' : '# The Playwright export is available once the investigation run has been saved.');
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(playwrightScript);
@@ -82,6 +104,21 @@ export default function GeneratedTests({
           </button>
         </div>
       </div>
+
+      {/* Requirement alignment: which supplied requirements map to something observed on this target */}
+      {alignment && alignment.requirements && alignment.requirements.length > 0 && (
+        <div className="card" style={{ marginBottom: '12px', borderLeft: `4px solid ${alignment.warning ? 'var(--color-warning)' : 'var(--accent-emerald)'}` }}>
+          <div style={{ fontWeight: 600 }}>
+            Requirement alignment: {alignment.matched} matched, {alignment.weak} weak, {alignment.unmatched} unmatched
+          </div>
+          {alignment.warning && <div style={{ color: 'var(--color-warning)', marginTop: '4px' }}>{alignment.warning}</div>}
+          <ul style={{ margin: '6px 0 0 16px', fontSize: '12px' }}>
+            {alignment.requirements.map((r, i) => (
+              <li key={i}><strong>{r.status}</strong> — {r.requirement} <span className="text-muted">({r.evidence})</span></li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Filter Bar */}
       <div className="filter-bar">
@@ -233,62 +270,4 @@ export default function GeneratedTests({
       </div>
     </div>
   );
-}
-
-// Helper to synthesize Playwright code
-function generatePlaywrightScript(testCases, targetUrl) {
-  let script = `# ==============================================================================
-# VerityQA Autonomous Playwright Behavioral Replay Test Script
-# Target: ${targetUrl}
-# Generated: ${new Date().toISOString()}
-# Grounded in empirical investigation evidence
-# ==============================================================================
-
-import asyncio
-from playwright.async_api import async_playwright, expect
-
-TARGET_URL = "${targetUrl}"
-
-async def run_suite():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context()
-        page = await context.new_page()
-        print(f"[*] Navigating to {TARGET_URL}...")
-        await page.goto(TARGET_URL, wait_until="networkidle")
-
-`;
-
-  (testCases || []).slice(0, 15).forEach((tc, i) => {
-    const testId = tc.test_id || `TC_${i + 1}`;
-    script += `        # --- Test ${testId}: ${tc.name || tc.title || 'Case'} ---
-        print("[RUN] ${testId}")
-`;
-    if (tc.steps && tc.steps.length > 0) {
-      tc.steps.forEach(s => {
-        const act = s.action_type || s.action || 'NAVIGATE';
-        const sel = s.selector || s.target;
-        if (act === 'NAVIGATE') {
-          // TARGET_URL is the Python variable declared in the generated script header.
-          const navTarget = s.value || sel;
-          script += navTarget
-            ? `        await page.goto("${navTarget}")\n`
-            : `        await page.goto(TARGET_URL)\n`;
-        } else if (act === 'CLICK' || act === 'CLICK_CONTROL') {
-          script += `        await page.locator("${sel || 'button'}").first.click()\n`;
-        } else if (act === 'FILL') {
-          script += `        await page.locator("${sel || 'input'}").first.fill("${s.input_value || s.value || 'test'}")\n`;
-        }
-      });
-    }
-    script += `        print("[PASS] ${testId}")\n\n`;
-  });
-
-  script += `        await browser.close()
-        print("[SUCCESS] All autonomous contract tests executed.")
-
-if __name__ == "__main__":
-    asyncio.run(run_suite())
-`;
-  return script;
 }

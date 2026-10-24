@@ -47,10 +47,23 @@ class InvestigationVerdict(str, Enum):
     LOCATOR_ERROR = "LOCATOR_ERROR"
     AUTOMATION_ERROR = "AUTOMATION_ERROR"
     ENVIRONMENT_ERROR = "ENVIRONMENT_ERROR"
+    # Reproducible deviation from an expectation that was only inferred (e.g. ordering derived from an
+    # option label). Reported as a behavioural anomaly, never as a confirmed defect.
+    UNVERIFIED_ANOMALY = "UNVERIFIED_ANOMALY"
 
+
+# Oracle classes produced by the evidence-grounded planner: their expectations were validated against
+# this run's evidence at plan time, so the legacy oracle heuristics below do not apply to them.
+_GROUNDED_ORACLE_CLASSES = {
+    "FIELD_CONSTRAINT", "FORM_VALIDATION", "LIST_ORDERING", "FILTER_CONSISTENCY", "OBSERVED_STATE",
+    "STATE_TRANSITION", "CRUD_STATE_CHANGE", "DOMAIN_PATTERN", "DEFECT_REGRESSION", "SPECIFICATION",
+}
+# Expected-behaviour sources that establish a rule; anything else is an inference.
+_ESTABLISHED_SOURCES = {"REQUIREMENT", "HTML_CONSTRAINT", "OBSERVED"}
 
 # Map new verdict → legacy VerificationStatus for schema compatibility
 _VERDICT_TO_LEGACY = {
+    InvestigationVerdict.UNVERIFIED_ANOMALY: VerificationStatus.POTENTIAL_DEFECT,
     InvestigationVerdict.PASS: VerificationStatus.OBSERVED_NOT_REPRODUCED,
     InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: VerificationStatus.CONFIRMED_REPRODUCIBLE,
     InvestigationVerdict.INCONCLUSIVE: VerificationStatus.POTENTIAL_DEFECT,
@@ -125,6 +138,8 @@ def _is_test_definition_error(test_case: TestCase, result: ExecutionResult) -> T
 
     Returns (is_error, rationale).
     """
+    if test_case.oracle_class in _GROUNDED_ORACLE_CLASSES:
+        return False, ""
     reason = (result.failure_reason or "").lower()
 
     # Case 1: Expected literal text "required" or "invalid" — could be HTML5 validation
@@ -266,10 +281,18 @@ class BugInvestigator:
                 except Exception as e:
                     logger.warning("Retry %d failed with exception: %s", attempt + 1, e)
 
-            # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing
+            # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing against an established rule
             if runs_failed == runs_total and verdict == InvestigationVerdict.INCONCLUSIVE:
-                verdict = InvestigationVerdict.VERIFIED_PRODUCT_DEFECT
-                verdict_rationale = f"Reproduced consistently: {runs_failed}/{runs_total} runs failed"
+                source = self._failing_expectation_source(test_case, initial_result)
+                if source in _ESTABLISHED_SOURCES:
+                    verdict = InvestigationVerdict.VERIFIED_PRODUCT_DEFECT
+                    verdict_rationale = (f"Reproduced consistently: {runs_failed}/{runs_total} runs failed "
+                                         f"against a {source} expectation")
+                else:
+                    verdict = InvestigationVerdict.UNVERIFIED_ANOMALY
+                    verdict_rationale = (f"Reproduced {runs_failed}/{runs_total} runs, but the expected behaviour "
+                                         f"is a {source or 'unstated'} inference; an explicit requirement is needed "
+                                         "to confirm it as a defect")
 
         repro_rate_str = f"{runs_failed}/{runs_total} runs failed"
 
@@ -293,14 +316,38 @@ class BugInvestigator:
             repro_rate_str=repro_rate_str,
         )
 
+    @staticmethod
+    def _failing_expectation_source(test_case: TestCase, result: ExecutionResult) -> Optional[str]:
+        """expected_source of the assertion that failed (legacy cases fall back to the case-level source)."""
+        for step in test_case.steps or []:
+            num = step.get("step_number") if isinstance(step, dict) else getattr(step, "step_number", None)
+            if num != result.failure_step:
+                continue
+            assertion = step.get("assertion") if isinstance(step, dict) else getattr(step, "assertion", None)
+            source = (assertion or {}).get("expected_source") if isinstance(assertion, dict) else getattr(assertion, "expected_source", None)
+            if source:
+                return source
+        legacy = getattr(test_case.expected_behavior_source, "value", str(test_case.expected_behavior_source))
+        return {"REQUIREMENT": "REQUIREMENT", "CONTRACT": "HTML_CONSTRAINT",
+                "OBSERVED_INVARIANT": "OBSERVED", "INVARIANT": "OBSERVED"}.get(legacy, "DERIVED_INFERENCE")
+
     def _classify_failure(
         self,
         test_case: TestCase,
         result: ExecutionResult,
     ) -> Tuple[InvestigationVerdict, str]:
         """
-        Classify failure into one of 7 InvestigationVerdict categories.
+        Classify failure into one of the InvestigationVerdict categories.
+        The executor's own outcome class takes precedence over text heuristics.
         """
+        status_verdicts = {
+            ExecutionStatus.LOCATOR_ERROR: (InvestigationVerdict.LOCATOR_ERROR, "Executor reported a locator failure."),
+            ExecutionStatus.AUTOMATION_ERROR: (InvestigationVerdict.AUTOMATION_ERROR, "Executor reported an automation failure."),
+            ExecutionStatus.ENVIRONMENT_ERROR: (InvestigationVerdict.ENVIRONMENT_ERROR, "Executor reported an environment failure."),
+            ExecutionStatus.TEST_DEFINITION_ERROR: (InvestigationVerdict.TEST_DEFINITION_ERROR, "Test definition is invalid."),
+        }
+        if result.status in status_verdicts:
+            return status_verdicts[result.status]
         # Environment errors first — highest confidence
         if _is_environment_error(result):
             return (
@@ -388,6 +435,7 @@ class BugInvestigator:
             InvestigationVerdict.ENVIRONMENT_ERROR: "[ENVIRONMENT_ERROR]",
             InvestigationVerdict.TEST_DEFINITION_ERROR: "[TEST ORACLE]",
             InvestigationVerdict.INCONCLUSIVE: "[INCONCLUSIVE]",
+            InvestigationVerdict.UNVERIFIED_ANOMALY: "[ANOMALY]",
             InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: f"[{test_case.page_category.value}]",
             InvestigationVerdict.PASS: "[PASS]",
         }.get(verdict, "")
@@ -495,6 +543,11 @@ class BugInvestigator:
             return (
                 f"Failure was not consistently reproducible: {result.failure_reason}",
                 "Increase observation window and check for intermittent application behavior.",
+            )
+        if verdict == InvestigationVerdict.UNVERIFIED_ANOMALY:
+            return (
+                f"Reproducible behavioural anomaly against an inferred expectation: {result.failure_reason}",
+                "Confirm the intended behaviour with a requirement; if it holds, this is a product defect.",
             )
 
         # VERIFIED_PRODUCT_DEFECT — domain-specific diagnosis

@@ -26,6 +26,16 @@ app = FastAPI(title="VerityQA Local Demo Target App — Apex Portal with Planted
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
 
+def planted_bugs_enabled() -> bool:
+    """VERITYQA_FIXTURE_MODE=baseline serves the defect-free behaviour (default: bug-enabled)."""
+    return os.environ.get("VERITYQA_FIXTURE_MODE", "buggy").strip().lower() != "baseline"
+
+
+def ground_truth_disclosed() -> bool:
+    """The planted-bug manifest is only served to evaluators that opt in explicitly."""
+    return os.environ.get("VERITYQA_FIXTURE_DISCLOSE_BUGS") == "1"
+
+
 def load_template(filename: str) -> str:
     path = os.path.join(TEMPLATES_DIR, filename)
     with open(path, "r", encoding="utf-8") as f:
@@ -108,7 +118,14 @@ async def login_post(
 
     # ── BUG-01: Should enforce len(password) >= 6 but intentionally does NOT ──
     # Correct code: if len(password) < 6: return error
-    # Actual code: proceeds regardless ← PLANTED BUG
+    # Actual code: proceeds regardless ← PLANTED BUG (baseline mode enforces the rule)
+    if not planted_bugs_enabled() and len(password) < 6:
+        body = """
+        <h2>Sign In to Apex</h2>
+        <div class="error" id="loginError">Password must be at least 6 characters.</div>
+        <p><a href="/login">Try again</a></p>
+        """
+        return HTMLResponse(page_wrapper("Login Error", body))
 
     # Demo: only admit one specific credential pair as valid
     if username.strip().lower() == "admin@apex.com" and password == "Secret123!":
@@ -157,7 +174,12 @@ async def register_post(
 
     # ── BUG-02 PLANTED: Should enforce terms is not None, but does NOT ──
     # Correct: if not terms: errors.append("You must accept the Terms of Service.")
-    # Actual: terms value is silently ignored ← PLANTED BUG
+    # Actual: terms value is silently ignored ← PLANTED BUG (baseline mode enforces both rules)
+    if not planted_bugs_enabled():
+        if password != confirm_password:
+            errors.append("Passwords do not match.")
+        if not terms:
+            errors.append("You must accept the Terms of Service.")
 
     if errors:
         bullets = "".join(f"<li>{e}</li>" for e in errors)
@@ -194,7 +216,17 @@ async def search_get(q: Optional[str] = None):
 
     # ── BUG-04 PLANTED: Should reject empty q with validation message ──
     # Correct: if not q.strip(): return validation error
-    # Actual: empty string proceeds to "search" ← PLANTED BUG
+    # Actual: empty string proceeds to "search" ← PLANTED BUG (baseline mode rejects it)
+    if not planted_bugs_enabled() and not q.strip():
+        body = """
+        <h2>Catalog Search</h2>
+        <div class="error" role="alert">Please enter a search term.</div>
+        <form action="/search" method="GET">
+          <input type="search" name="q" value="" placeholder="Search..." style="width:75%;padding:8px;">
+          <button type="submit" id="searchBtn">Search</button>
+        </form>
+        """
+        return HTMLResponse(page_wrapper("Search", body))
 
     CATALOG = [
         {"id": "MS-001", "name": "Microservices Architecture Guide"},
@@ -241,7 +273,9 @@ async def search_get(q: Optional[str] = None):
 
 @app.get("/api/bugs", response_class=JSONResponse)
 async def list_planted_bugs():
-    """Exposes the planted bug manifest as JSON for benchmark runner reference."""
+    """Exposes the planted bug manifest to evaluators that opt in (never to the agent by default)."""
+    if not ground_truth_disclosed():
+        return JSONResponse({"detail": "Not Found"}, status_code=404)
     return JSONResponse({
         "planted_bugs": [
             {

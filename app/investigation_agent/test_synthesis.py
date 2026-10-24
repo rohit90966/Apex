@@ -4,7 +4,7 @@ Transforms discovered application map, inferred journeys, business rules,
 and confirmed bug leads into executable, evidence-grounded TestCase objects.
 """
 
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 import uuid
 
 from app.schemas import (
@@ -71,14 +71,54 @@ def _journey_invalid_reason(steps: List[ActionStep]) -> Optional[str]:
     return None
 
 
+def synthesize_with_diagnostics(
+    report: InvestigationReport,
+    max_cases: int = 35,
+) -> Tuple[List[TestCase], Dict[str, Any]]:
+    """
+    Canonical test synthesis for one investigation: (test cases, planning diagnostics).
+
+    Reports carrying an observed inventory (schema 2.0) are planned exclusively from that
+    inventory; if nothing can be grounded the result is empty and the diagnostics say why.
+    Older reports without an inventory fall back to the legacy journey/rule synthesizer below.
+    """
+    import os
+    from app.test_planning.planner import KnowledgeGuidedTestPlanner
+    planner = KnowledgeGuidedTestPlanner()
+    if os.environ.get("VERITYQA_LLM_TEST_PROPOSALS") == "1" and getattr(report, "observed_inventory", None):
+        # Opt-in: LLM-proposed scenarios on top of the deterministic plan, validated by the same grounding
+        # rules. Run in a worker thread so this stays safe inside a running event loop.
+        import asyncio
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            cases, coverage, _model = pool.submit(
+                lambda: asyncio.run(planner.plan_test_suite(report, target_count=max_cases))).result()
+    else:
+        cases, coverage, _model = planner.plan_test_suite_sync(report, target_count=max_cases)
+    diagnostics = dict(planner.last_diagnostics)
+    diagnostics["coverage_percentage"] = coverage.overall_coverage_percentage
+    if cases or getattr(report, "observed_inventory", None):
+        return cases[:max_cases], diagnostics
+    diagnostics["fallback"] = "legacy report without observed inventory: legacy journey synthesizer used"
+    return _legacy_synthesis(report, max_cases), diagnostics
+
+
 def synthesize_test_cases_from_investigation(
     report: InvestigationReport,
-    max_cases: int = 10,
+    max_cases: int = 35,
+    diagnostics: Optional[Dict[str, Any]] = None,
 ) -> List[TestCase]:
     """
-    Synthesizes concrete TestCase specifications from an InvestigationReport.
-    Guarantees all generated test cases are grounded in observed DOM states and transitions.
+    Synthesizes evidence-grounded TestCases for an investigation report (see synthesize_with_diagnostics).
+    When `diagnostics` is given it is filled with the planning diagnostics.
     """
+    cases, diag = synthesize_with_diagnostics(report, max_cases)
+    if diagnostics is not None:
+        diagnostics.update(diag)
+    return cases
+
+
+def _legacy_synthesis(report: InvestigationReport, max_cases: int) -> List[TestCase]:
     test_cases: List[TestCase] = []
     target_url = report.overview.target_url or "http://127.0.0.1:8000/"
 
@@ -112,6 +152,12 @@ def synthesize_test_cases_from_investigation(
         for s in steps:
             act = str(s.get("action", "")).upper()
             target = str(s.get("target") or "").strip()
+            if " ON " in act and not target:
+                # Compact form, e.g. "CLICK_CONTROL on #login-button"
+                raw_action = str(s.get("action", ""))
+                act, target = act.split(" ON ", 1)[0].strip(), raw_action[raw_action.lower().index(" on ") + 4:].strip()
+            if act.startswith("CLICK"):
+                act = "CLICK"
             evidence_ids.extend(s.get("evidence_refs", []) or [])
 
             if act == "NAVIGATE":

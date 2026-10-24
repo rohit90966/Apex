@@ -99,6 +99,8 @@ class InvestigationAgentState(TypedDict, total=False):
     sandbox_mode: Optional[bool]
     sandbox_origins: Optional[List[str]]
     handoff_contract: Optional[Any]
+    # Probes that never executed their action (wrong page, navigation failure, safety/budget block)
+    unexecuted_probes: Optional[List[Dict[str, Any]]]
 
     # Termination
     stopping_reason: str

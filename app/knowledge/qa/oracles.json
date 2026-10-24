@@ -1,0 +1,72 @@
+[
+  {
+    "id": "OR-BROWSER-VALIDITY", "kind": "ORACLE", "category": "browser_native_validation",
+    "title": "Browser constraint-validation state",
+    "description": "The browser's ValidityState for a field (valueMissing, tooShort, rangeOverflow, patternMismatch, typeMismatch).",
+    "oracle_strategy": "Read element.validity after input/submit. Expected flag comes from the HTML declaration.",
+    "expected_evidence": ["validity flags", "validationMessage"],
+    "false_positive_warnings": ["Proves only browser enforcement, never server enforcement"],
+    "confidence_requirements": "Confirmed outcome for the browser layer only.",
+    "applicability": {"all": ["has_forms"]}, "automation": {"status": "AUTOMATED", "implementation": "FIELD_VALIDITY"}
+  },
+  {
+    "id": "OR-VALUE-LENGTH", "kind": "ORACLE", "category": "browser_native_validation",
+    "title": "Stored value length",
+    "description": "Length of the field's value after input (maxlength truncation).",
+    "applicability": {"all": ["has_length_constraint"]}, "automation": {"status": "AUTOMATED", "implementation": "ELEMENT_VALUE_LENGTH"}
+  },
+  {
+    "id": "OR-ATTRIBUTABLE-FEEDBACK", "kind": "ORACLE", "category": "server_side_validation",
+    "title": "Feedback attributable to the violated rule",
+    "description": "After submission, rejection counts only if the field itself is invalid or a visible message names the field or the rule.",
+    "oracle_strategy": "Keywords from the field's label/name and the rule kind; unrelated errors (e.g. invalid credentials) do not count.",
+    "expected_evidence": ["post-submit visible messages", "field validity"],
+    "false_positive_warnings": ["A generic 'error' banner is not attributable", "Silent acceptance may be intended when the rule is only inferred"],
+    "confidence_requirements": "Confirmed only with a requirement or browser-layer rule; likely when the rule is HTML-declared/semantic.",
+    "applicability": {"all": ["has_forms"]}, "automation": {"status": "AUTOMATED", "implementation": "VALIDATION_FEEDBACK_SHOWN"}
+  },
+  {
+    "id": "OR-LAYER-DISTINCTION", "kind": "ORACLE", "category": "client_server_distinction",
+    "title": "Browser vs. server layer distinction",
+    "description": "The same rule is checked twice: once with browser validation active, once with client validation disabled.",
+    "false_positive_warnings": ["Disabling client validation is a controlled probe; it must be authorized"],
+    "applicability": {"all": ["has_post_form"]}, "automation": {"status": "AUTOMATED", "implementation": "SERVER_SIDE_ENFORCEMENT"}
+  },
+  {
+    "id": "OR-OBSERVED-STATE", "kind": "ORACLE", "category": "observed_regression",
+    "title": "Observed-state regression",
+    "description": "Routes, headings and transitions observed during this investigation are expected to recur.",
+    "false_positive_warnings": ["Data-dependent content", "Session-dependent routes"],
+    "applicability": {"all": ["has_multiple_routes"]}, "automation": {"status": "AUTOMATED", "implementation": "URL/TEXT/STATUS"}
+  },
+  {
+    "id": "OR-COLLECTION-INVARIANT", "kind": "ORACLE", "category": "metamorphic",
+    "title": "Collection ordering / filtering invariant",
+    "description": "Detected record collection is ordered by, or filtered on, the key the chosen option names.",
+    "false_positive_warnings": ["Collection detection is heuristic", "Option semantics are inferred"],
+    "confidence_requirements": "Unverified anomaly unless a requirement states the rule.",
+    "applicability": {"any": ["has_sort_control", "has_filter_control"]}, "automation": {"status": "AUTOMATED", "implementation": "LIST_SORTED/LIST_ALL_CONTAIN"}
+  },
+  {
+    "id": "OR-RENDER-ANOMALY", "kind": "ORACLE", "category": "invariant",
+    "title": "Rendering-anomaly invariant",
+    "description": "Visible text contains no NaN, undefined, null, [object Object] or exception traces.",
+    "false_positive_warnings": ["Pages documenting code may legitimately contain these words"],
+    "confidence_requirements": "Likely defect.",
+    "applicability": {"any": ["has_transitions", "has_multiple_routes"]}, "automation": {"status": "AUTOMATED", "implementation": "NO_TEXT_ANOMALY"}
+  },
+  {
+    "id": "OR-A11Y-HEURISTIC", "kind": "ORACLE", "category": "accessibility",
+    "title": "Heuristic accessible-name computation",
+    "description": "aria-label, labels, label[for], title, placeholder and text content; >20% unnamed controls fails.",
+    "false_positive_warnings": ["Not a full accessibility-tree computation"],
+    "confidence_requirements": "Likely defect.",
+    "applicability": {"all": ["has_interactive_controls"]}, "automation": {"status": "AUTOMATED", "implementation": "ACCESSIBILITY_VALID"}
+  },
+  {
+    "id": "OR-INCONCLUSIVE", "kind": "ORACLE", "category": "observability",
+    "title": "Insufficient observability",
+    "description": "When the oracle cannot observe what it needs (no records, no status, unknown rule) the outcome is INCOMPLETE, never PASS or FAIL.",
+    "applicability": {}, "automation": {"status": "AUTOMATED", "implementation": "NOT_EVALUABLE"}
+  }
+]

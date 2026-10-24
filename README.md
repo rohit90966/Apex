@@ -1,7 +1,7 @@
 # VerityQA — Autonomous AI QA Engineering Platform
 
 **Problem Statement:** iMocha CODE APEX 3.0 — IM-02: Autonomous AI QA Engineer  
-**Status:** Stabilized & Verified (296/296 Tests Passing)  
+**Status:** See [`docs/MULTI_WEBSITE_GENERALIZATION_REPORT.md`](docs/MULTI_WEBSITE_GENERALIZATION_REPORT.md) for the latest measured regression-suite and multi-website benchmark results  
 **Primary Engine:** Google Gemini (`gemini-flash-latest`) + 7-Node Cyclic LangGraph + Microsoft Playwright  
 **Local Engine (Optional):** Ollama (`llama3.2:3b` / `qwen2.5:7b`)  
 
@@ -80,9 +80,16 @@ Run the full automated regression test suite:
 ```powershell
 python -m pytest tests/ -q
 ```
-**Status: 296 passed in ~87s with 0 regressions.**
 
-Run the planted defect benchmark:
+Run the multi-website benchmark (starts the local fixtures itself, bug-enabled and baseline builds,
+then scores findings against evaluator-only ground truth in `benchmarks/ground_truth.py`):
 ```powershell
-python -m pytest tests/test_benchmark_runner.py -q
+python scripts/run_multi_website_benchmark.py                          # all local fixtures
+python scripts/run_multi_website_benchmark.py --targets taskdash --repeats 2
+python scripts/run_multi_website_benchmark.py --include-public         # adds SauceDemo (network)
 ```
+Outputs: `reports/multi_website_benchmark.{json,md}`, `reports/multi_website_findings.csv`,
+`reports/benchmark_exports/<run_id>.py` (the exported Playwright suites, executed as part of the run).
+
+Each fixture supports `VERITYQA_FIXTURE_MODE=baseline` (defect-free build). Test credentials are scoped
+to one origin via `VERITYQA_TEST_CREDENTIALS_ORIGIN` (see `.env.example`).

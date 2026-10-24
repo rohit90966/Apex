@@ -77,6 +77,10 @@ class InvestigationReportBuilder:
         frontier = state.get("frontier", {})
         rules = state.get("rules_and_hypotheses", [])
 
+        from app.intelligence.target_context import build_inventory_from_state, build_target_context
+        inventory = build_inventory_from_state(state)
+        target_context = build_target_context(state)
+
         # Section A: Overview
         successful_transitions = [t for t in transitions if t.status == "confirmed" and getattr(t, "is_successful", True)]
         in_page_mutations = sum(1 for t in successful_transitions if getattr(t, "is_in_page_mutation", False))
@@ -404,7 +408,16 @@ class InvestigationReportBuilder:
                 "Inspect secondary navigation links and interactive controls",
             ]
 
+        unexecuted_probes = list(state.get("unexecuted_probes") or [])
+        unexecuted_by_reason: Dict[str, int] = {}
+        for item in unexecuted_probes:
+            unexecuted_by_reason[item.get("reason", "UNKNOWN")] = unexecuted_by_reason.get(item.get("reason", "UNKNOWN"), 0) + 1
+
         coverage_frontier = {
+            # Probes that never executed their action; they are NOT tested coverage.
+            "unexecuted_probes_count": len(unexecuted_probes),
+            "unexecuted_probes_by_reason": unexecuted_by_reason,
+            "unexecuted_probes": unexecuted_probes[:30],
             "explored_states_count": len(states_dict),
             "unexplored_items_count": pending_frontier,
             "blocked_items_count": max(
@@ -435,6 +448,12 @@ class InvestigationReportBuilder:
         ]
         if actions_blocked > 0:
             limitations.append(f"Safety Policy Constrained: {actions_blocked} probe action(s) were blocked by the Safety Governor to enforce domain or action boundaries.")
+        if unexecuted_by_reason.get("MUTATION_BUDGET_EXHAUSTED"):
+            limitations.append(f"Mutation budget exhausted: {unexecuted_by_reason['MUTATION_BUDGET_EXHAUSTED']} planned probe(s) did not run; "
+                               "the forms they target are not covered by this investigation.")
+        if unexecuted_by_reason.get("TARGET_NOT_ON_CURRENT_PAGE"):
+            limitations.append(f"{unexecuted_by_reason['TARGET_NOT_ON_CURRENT_PAGE']} probe(s) were skipped because their target control "
+                               "was not on the current page; they are not counted as tested.")
         if actions_succ == 0:
             limitations.append("Zero probe actions were executed; all reported application structure reflects initial passive observation.")
         if not state.get("auth_verified") and state.get("auth_boundary_detected"):
@@ -460,27 +479,32 @@ class InvestigationReportBuilder:
             })
 
         if auth_verified:
-            u_name = auth_creds.get("username", "authorized_user")
-            p_word = auth_creds.get("password", "[REDACTED_SECRET]")
-            primary_steps.extend([
-                {
-                    "action": "FILL",
-                    "target": "input[name='user-name'], input[name='username'], input[name='email'], input[id='user-name'], input[id='username']",
-                    "value": u_name,
-                    "description": "Populate authorized username",
-                },
-                {
-                    "action": "FILL",
-                    "target": "input[name='password'], input[id='password']",
-                    "value": p_word,
-                    "description": "Populate authorized password",
-                },
-                {
-                    "action": "CLICK",
-                    "target": "input[type='submit'], button[type='submit'], input[name='login-button'], button#loginBtn",
-                    "description": "Submit login authentication",
-                },
-            ])
+            # Login selectors come from the login form observed in this run; the password is never
+            # copied into the report (the runner resolves the placeholder from scoped credentials).
+            from app.investigation_agent.test_synthesis import CREDENTIAL_PASSWORD_PLACEHOLDER
+            login_form = inventory.login_form()
+            user_field = next((f for f in login_form.fields if f.field_type in ("text", "email")), None) if login_form else None
+            pass_field = next((f for f in login_form.fields if f.field_type == "password"), None) if login_form else None
+            if user_field and pass_field and login_form.submit_selector:
+                primary_steps.extend([
+                    {
+                        "action": "FILL",
+                        "target": user_field.selector,
+                        "value": auth_creds.get("username", "authorized_user"),
+                        "description": "Populate authorized username",
+                    },
+                    {
+                        "action": "FILL",
+                        "target": pass_field.selector,
+                        "value": CREDENTIAL_PASSWORD_PLACEHOLDER,
+                        "description": "Populate authorized password",
+                    },
+                    {
+                        "action": "CLICK",
+                        "target": login_form.submit_selector,
+                        "description": "Submit login authentication",
+                    },
+                ])
 
         validation_steps = []
         exploratory_steps = []
@@ -645,6 +669,8 @@ class InvestigationReportBuilder:
             behavior_model=behavior_model_dict,
             playwright_test_script=playwright_script,
             decision_snapshots=state.get("decision_snapshots") or [],
+            target_context=target_context.model_dump(mode="json"),
+            observed_inventory=inventory.model_dump(mode="json"),
         )
 
     @classmethod

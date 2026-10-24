@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="22" time="17.557" timestamp="2026-10-24T21:55:44.436860+05:30" hostname="LAPTOP-R9FDVQQN"><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_01_search_items_empty_is_rejected_1" time="0.705"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8101/search?q='&gt;
+
+    def test_tc_field_01_search_items_empty_is_rejected_1(page: Page):
+        """
+        Test ID: TC-FIELD-01
+        Objective: Boundary test of 'Search items' on /search: EMPTY input (empty) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-apex_portal-buggy-r1-ec676b
+        """
+        page.goto('http://127.0.0.1:8101/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /search
+        page.goto('http://127.0.0.1:8101/search', wait_until='domcontentloaded')
+        # Step 2: Enter empty value for 'Search items' (empty)
+        page.locator('#q').first.fill('')
+        # Step 3: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#q"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 4: Submit the form
+        page.locator('#searchBtn').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#q', '["blank", "empty", "enter", "items", "missing", "provide", "required", "search"]')
+
+bench-apex_portal-buggy-r1-ec676b.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8101/search?q='&gt;, selector = '#q'
+expected = '["blank", "empty", "enter", "items", "missing", "provide", "required", "search"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-apex_portal-buggy-r1-ec676b.py:116: AssertionError</failure></testcase><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_tr_01_transition_forgot_password_on_login_2" time="0.733" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_route_01_route_reachable_with_stable_landmarks_3" time="0.673" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_02_search_items_whitespace_only_is_rejected_4" time="0.813"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8101/search?q=+++'&gt;
+
+    def test_tc_field_02_search_items_whitespace_only_is_rejected_4(page: Page):
+        """
+        Test ID: TC-FIELD-02
+        Objective: Boundary test of 'Search items' on /search: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-apex_portal-buggy-r1-ec676b
+        """
+        page.goto('http://127.0.0.1:8101/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /search
+        page.goto('http://127.0.0.1:8101/search', wait_until='domcontentloaded')
+        # Step 2: Enter whitespace value for 'Search items' (whitespace only)
+        page.locator('#q').first.fill('   ')
+        # Step 3: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#q"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 4: Submit the form
+        page.locator('#searchBtn').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#q', '["blank", "empty", "enter", "items", "missing", "provide", "required", "search"]')
+
+bench-apex_portal-buggy-r1-ec676b.py:224: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8101/search?q=+++'&gt;, selector = '#q'
+expected = '["blank", "empty", "enter", "items", "missing", "provide", "required", "search"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-apex_portal-buggy-r1-ec676b.py:116: AssertionError</failure></testcase><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_tr_02_transition_search_on_forgot_5" time="0.818" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_route_02_route_reachable_with_stable_landmarks_forgot_6" time="0.668" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_03_username_or_email_empty_is_rejected_7" time="0.816" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_tr_03_transition_register_on_8" time="0.700" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_route_03_route_reachable_with_stable_landmarks_login_9" time="0.658" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_04_username_or_email_whitespace_only_is_rejected_10" time="0.845" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_route_04_route_reachable_with_stable_landmarks_registration_11" time="0.750" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_05_password_empty_is_rejected_12" time="0.898" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_route_05_route_reachable_with_stable_landmarks_search_13" time="0.654" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_06_password_whitespace_only_is_rejected_14" time="0.787" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_07_password_minlength_1_5_is_rejected_15" time="0.865"><failure message="AssertionError: Expected feedback attributable to this rule; shown: ['message: Invalid credentials. Please try again.']&#10;assert []">page = &lt;Page url='http://127.0.0.1:8101/login'&gt;
+
+    def test_tc_field_07_password_minlength_1_5_is_rejected_15(page: Page):
+        """
+        Test ID: TC-FIELD-07
+        Objective: Boundary test of 'Password' on /login: TOO_SHORT input (minlength-1 (5)) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 6 characters)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-apex_portal-buggy-r1-ec676b
+        """
+        page.goto('http://127.0.0.1:8101/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /login
+        page.goto('http://127.0.0.1:8101/login', wait_until='domcontentloaded')
+        # Step 2: Enter valid 'Username or Email'
+        page.locator('#username').first.fill('QA Sample')
+        # Step 3: Enter too_short value for 'Password' (minlength-1 (5))
+        page.locator('#password').first.fill('QaBou')
+        # Step 4: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#password"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 5: Submit the form
+        page.locator('#loginBtn').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#password', '["6", "character", "characters", "least", "length", "password", "short"]')
+
+bench-apex_portal-buggy-r1-ec676b.py:426: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8101/login'&gt;, selector = '#password'
+expected = '["6", "character", "characters", "least", "length", "password", "short"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: ['message: Invalid credentials. Please try again.']
+E               assert []
+
+bench-apex_portal-buggy-r1-ec676b.py:116: AssertionError</failure></testcase><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_08_full_name_empty_is_rejected_16" time="0.898" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_09_full_name_whitespace_only_is_rejected_17" time="0.857" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_10_work_email_empty_is_rejected_18" time="0.800" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_11_work_email_missing_is_rejected_19" time="0.669" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_12_password_empty_is_rejected_20" time="0.909" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_13_confirm_password_empty_is_rejected_21" time="0.900" /><testcase classname="bench-apex_portal-buggy-r1-ec676b" name="test_tc_field_14_i_accept_the_terms_of_service_left_unchecked_is_rejected_22" time="0.808"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8101/register'&gt;
+
+    def test_tc_field_14_i_accept_the_terms_of_service_left_unchecked_is_rejected_22(page: Page):
+        """
+        Test ID: TC-FIELD-14
+        Objective: Boundary test of 'I accept the Terms of Service' on /registration: EMPTY input (empty) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Accepting the Terms of Service is required)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-apex_portal-buggy-r1-ec676b
+        """
+        page.goto('http://127.0.0.1:8101/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /registration
+        page.goto('http://127.0.0.1:8101/registration', wait_until='domcontentloaded')
+        # Step 2: Enter valid 'Full Name'
+        page.locator('#fullname').first.fill('QA Sample')
+        # Step 3: Enter valid 'Work Email'
+        page.locator('#email').first.fill('qa.tester@example.com')
+        # Step 4: Enter valid 'Password'
+        page.locator('#reg-password').first.fill('QaPassw0rd!x')
+        # Step 5: Enter valid 'Confirm Password'
+        page.locator('#confirm-password').first.fill('QaPassw0rd!x')
+        # Step 6: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#terms"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 7: Submit the form
+        page.locator('#registerBtn').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#terms', '["accept", "blank", "empty", "enter", "missing", "provide", "required", "service", "terms", "the"]')
+
+bench-apex_portal-buggy-r1-ec676b.py:606: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8101/register'&gt;, selector = '#terms'
+expected = '["accept", "blank", "empty", "enter", "missing", "provide", "required", "service", "terms", "the"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-apex_portal-buggy-r1-ec676b.py:116: AssertionError</failure></testcase></testsuite></testsuites>

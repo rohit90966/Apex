@@ -1,0 +1,349 @@
+[
+  {
+    "pattern_id": "PAT-AUTH-LOGIN-01",
+    "name": "User Authentication Valid Credentials Login",
+    "archetypes": [
+      "AUTHENTICATION",
+      "ECOMMERCE",
+      "SAAS_CRUD",
+      "BANKING_FINTECH",
+      "BOOKING_RESERVATIONS"
+    ],
+    "capabilities": [
+      "USER_AUTHENTICATION"
+    ],
+    "description": "Submitting valid authorized credentials navigates user past the authentication boundary to the main application inventory/dashboard.",
+    "preconditions": [
+      "User at login page (/ or /login)",
+      "Valid test credentials available"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Submitting valid credentials establishes active session token or cookie",
+      "Page transitions from login route to authenticated target route"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-AUTH-VALID-LOGIN",
+        "title": "Authenticate With Valid Test Credentials",
+        "objective": "Verify user enters valid credentials and transitions into the application.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "username_input",
+            "target_selector_hints": [
+              "#user-name",
+              "#username",
+              "input[name='user-name']",
+              "input[name='username']"
+            ],
+            "input_value": "${TEST_USERNAME}",
+            "description": "Fill test username"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "password_input",
+            "target_selector_hints": [
+              "#password",
+              "input[name='password']"
+            ],
+            "input_value": "${TEST_PASSWORD}",
+            "description": "Fill test password"
+          },
+          {
+            "step_number": 3,
+            "action_type": "CLICK",
+            "target_semantic": "login_button",
+            "target_selector_hints": [
+              "#login-button",
+              "input[type='submit']",
+              "button[type='submit']"
+            ],
+            "expected_state_or_fragment": "/inventory.html",
+            "assertion_type": "URL_CONTAINS",
+            "assertion_expected": "/inventory",
+            "description": "Click login button"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "URL_NOT_EQUAL",
+            "expected": "/login"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "login_form",
+      "auth_cookie_or_token"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-AUTH-LOGIN-02",
+    "name": "Authentication Missing Username Boundary Validation",
+    "archetypes": [
+      "AUTHENTICATION",
+      "ECOMMERCE",
+      "SAAS_CRUD",
+      "BANKING_FINTECH"
+    ],
+    "capabilities": [
+      "USER_AUTHENTICATION",
+      "FORM_VALIDATION"
+    ],
+    "description": "Submitting login form with empty username must display explicit validation error without page reload crash.",
+    "preconditions": [
+      "User at login page (/ or /login)"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Empty username must trigger visual error alert container",
+      "Error text must explicitly mention Username is required"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-AUTH-EMPTY-USERNAME",
+        "title": "Login With Empty Username Boundary",
+        "objective": "Verify attempting login with blank username displays validation error message.",
+        "category": "validation",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "username_input",
+            "target_selector_hints": [
+              "#user-name",
+              "#username",
+              "input[name='user-name']"
+            ],
+            "input_value": "",
+            "description": "Leave username blank"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "password_input",
+            "target_selector_hints": [
+              "#password",
+              "input[name='password']"
+            ],
+            "input_value": "${SAMPLE_TEXT}",
+            "description": "Fill dummy password"
+          },
+          {
+            "step_number": 3,
+            "action_type": "CLICK",
+            "target_semantic": "login_button",
+            "target_selector_hints": [
+              "#login-button",
+              "input[type='submit']",
+              "button[type='submit']"
+            ],
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Username is required",
+            "description": "Click login button"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "ALERT_VISIBLE",
+            "expected": "[data-test='error']"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-AUTH-EMPTY-USER",
+        "title": "Empty Username Submission",
+        "objective": "Verify error banner appears when username is missing.",
+        "boundary_type": "MISSING_REQUIRED_FIELD",
+        "invalid_input": {
+          "username": "",
+          "password": "password"
+        },
+        "expected_error_message_fragment": "Username is required"
+      }
+    ],
+    "evidence_requirements": [
+      "error_alert_element"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-AUTH-LOGIN-03",
+    "name": "Authentication Missing Password Boundary Validation",
+    "archetypes": [
+      "AUTHENTICATION",
+      "ECOMMERCE",
+      "SAAS_CRUD",
+      "BANKING_FINTECH"
+    ],
+    "capabilities": [
+      "USER_AUTHENTICATION",
+      "FORM_VALIDATION"
+    ],
+    "description": "Submitting login form with valid username but empty password displays password required error.",
+    "preconditions": [
+      "User at login page (/ or /login)"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Empty password triggers explicit validation container mentioning Password is required"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-AUTH-EMPTY-PASSWORD",
+        "title": "Login With Empty Password Boundary",
+        "objective": "Verify attempting login with empty password triggers error alert.",
+        "category": "validation",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "username_input",
+            "target_selector_hints": [
+              "#user-name",
+              "#username"
+            ],
+            "input_value": "${SAMPLE_TEXT}",
+            "description": "Fill username"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "password_input",
+            "target_selector_hints": [
+              "#password"
+            ],
+            "input_value": "",
+            "description": "Leave password blank"
+          },
+          {
+            "step_number": 3,
+            "action_type": "CLICK",
+            "target_semantic": "login_button",
+            "target_selector_hints": [
+              "#login-button"
+            ],
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Password is required",
+            "description": "Click login button"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "ALERT_VISIBLE",
+            "expected": "[data-test='error']"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-AUTH-EMPTY-PASS",
+        "title": "Empty Password Submission",
+        "objective": "Verify error banner appears when password is blank.",
+        "boundary_type": "MISSING_REQUIRED_FIELD",
+        "invalid_input": {
+          "username": "${SAMPLE_TEXT}",
+          "password": ""
+        },
+        "expected_error_message_fragment": "Password is required"
+      }
+    ],
+    "evidence_requirements": [
+      "error_alert_element"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  },
+  {
+    "pattern_id": "PAT-AUTH-LOGOUT-01",
+    "name": "User Authentication Logout and Session Termination",
+    "archetypes": [
+      "AUTHENTICATION",
+      "ECOMMERCE",
+      "SAAS_CRUD",
+      "BANKING_FINTECH"
+    ],
+    "capabilities": [
+      "USER_AUTHENTICATION",
+      "DRAWER_NAVIGATION"
+    ],
+    "description": "Clicking logout in the drawer menu resets user session and returns to login view.",
+    "preconditions": [
+      "Authenticated user session active",
+      "On application page with navigation drawer"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Logout clears authenticated session and returns to root / or /login"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-AUTH-LOGOUT",
+        "title": "Logout User Session Via Drawer",
+        "objective": "Verify clicking logout clears active session and navigates back to login view.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "CLICK",
+            "target_semantic": "drawer_toggle",
+            "target_selector_hints": [
+              "#react-burger-menu-btn"
+            ],
+            "description": "Open drawer menu"
+          },
+          {
+            "step_number": 2,
+            "action_type": "CLICK",
+            "target_semantic": "logout_link",
+            "target_selector_hints": [
+              "#logout_sidebar_link",
+              "a#logout_sidebar_link",
+              "a:text('Logout')"
+            ],
+            "expected_state_or_fragment": "/",
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Login",
+            "description": "Click logout link"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "URL_EQUALS_LOGIN",
+            "expected": "/"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [],
+    "evidence_requirements": [
+      "logout_button",
+      "login_page"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  }
+]

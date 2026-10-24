@@ -1,0 +1,84 @@
+[
+  {
+    "pattern_id": "PAT-BANK-XFER-01",
+    "name": "Banking Fund Transfer & Available Balance Verification",
+    "archetypes": [
+      "BANKING_FINTECH"
+    ],
+    "capabilities": [
+      "FINANCIAL_TRANSACTION",
+      "FORM_VALIDATION"
+    ],
+    "description": "Submitting a fund transfer decrements origin account balance and verifies sufficient funds before execution.",
+    "preconditions": [
+      "Authenticated banking user session",
+      "Active checking or savings account with positive balance"
+    ],
+    "risk_level": "HIGH",
+    "invariants": [
+      "Transfers exceeding current balance must be rejected with insufficient funds error",
+      "Successful transfer updates available balance by exact amount plus transaction fee"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-BANK-XFER-VALID",
+        "title": "Transfer Funds to Linked Account",
+        "objective": "Verify submitting transfer within balance limits updates account balance.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "amount_input",
+            "target_selector_hints": [
+              "#transfer-amount",
+              "input[name='amount']",
+              "#amount"
+            ],
+            "input_value": "50.00",
+            "description": "Enter transfer amount"
+          },
+          {
+            "step_number": 2,
+            "action_type": "CLICK",
+            "target_semantic": "submit_transfer",
+            "target_selector_hints": [
+              "#submit-transfer",
+              "button[type='submit']"
+            ],
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Transfer Successful",
+            "description": "Submit transfer"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "TRANSFER_CONFIRMED",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-BANK-INSUFFICIENT-FUNDS",
+        "title": "Transfer Exceeding Available Balance",
+        "objective": "Verify transfer exceeding balance is blocked with insufficient funds error.",
+        "boundary_type": "BALANCE_EXCEEDED",
+        "invalid_input": {
+          "amount": "999999999"
+        },
+        "expected_error_message_fragment": "Insufficient funds"
+      }
+    ],
+    "evidence_requirements": [
+      "account_balance_display",
+      "transaction_receipt"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  }
+]

@@ -1,0 +1,1010 @@
+﻿[benchmark] apex_portal buggy repeat 1 ...
+.\venv\Scripts\python.exe : [InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8101/search' does not match required state URL 'http://127.0.0.1:8101/login'
+At line:1 char:497
++ ... | Out-Null; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([InvestigationA...0.1:8101/login':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8101/search' does not 
+match required state URL 'http://127.0.0.1:8101/registration'
+[ProbeRunner] Step blocked by safety governor: SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Groq Request #1] API error on attempt 1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Home Page Load","objective":"Verify that the 
+home page loads and URL is correct","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\\\\\"]","val
+ue":"","description":"Click Home link to navigate to home page","assertion":{"assertion_type":"URL_CONTAINS","expected_
+value":"/","target_selector":"a[href=\\"/\\\\\\"]","description":"URL contains home route"}}]},{"name":"Login Page 
+Elements","objective":"Verify login page navigation and presence of login controls","steps":[{"step_number":1,"action":
+"NAVIGATE","selector":"a[href=\\"/login\\\\\\"]","value":"","description":"Click Login link from home page","assertion"
+:{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\\\\\"]","description":
+"URL contains login 
+route"}},{"step_number":2,"action":"FILL","selector":"#username","value":"user@example.com","description":"Enter userna
+me","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#username","description"
+:"Username field is visible"}},{"step_number":3,"action":"FILL","selector":"#password","value":"Enter secure 
+password","description":"Enter password","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","targe
+t_selector":"#password","description":"Password field is 
+visible"}},{"step_number":4,"action":"CLICK","selector":"#loginBtn","value":"","description":"Click Log In button","ass
+ertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#loginBtn","description":"Login 
+button is visible"}}]},{"name":"User Registration Flow","objective":"Create a new account and verify registration route
+","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/registration\\\\\\"]","value":"","description":"
+Click Register link from home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/registration","targ
+et_selector":"a[href=\\"/registration\\\\\\"]","description":"URL contains registration 
+route"}},{"step_number":2,"action":"FILL","selector":"#fullname","value":"Jane Doe","description":"Enter full name","as
+sertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#fullname","description":"Full 
+name field is 
+visible"}},{"step_number":3,"action":"FILL","selector":"#email","value":"jane@example.com","description":"Enter email a
+ddress","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#email","description
+":"Email field is 
+visible"}},{"step_number":4,"action":"FILL","selector":"#reg-password","value":"password","description":"Enter password
+","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#reg-password","descriptio
+n":"Password field is visible"}},{"step_number":5,"action":"FILL","selector":"#confirm-password","value":"confirm_passw
+ord","description":"Confirm password","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_s
+elector":"#confirm-password","description":"Confirm password field is 
+visible"}},{"step_number":6,"action":"CLICK","selector":"#terms","value":"","description":"Accept terms and conditions"
+,"assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"#terms","description":"Term
+s checkbox is visible"}},{"step_number":7,"action":"CLICK","selector":"#registerBtn","value":"","description":"Submit 
+registration form","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/registration","target_selector":"#re
+gisterBtn","description":"Remains on registration route after submission"}}]},{"name":"Forgot Password 
+Navigation","objective":"Navigate to forgot password page and verify heading","steps":[{"step_number":1,"action":"NAVIG
+ATE","selector":"a[href=\\"/login\\\\\\"]","value":"","description":"Click Login link from home page","assertion":{"ass
+ertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\\\\\"]","description":"URL 
+contains login 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/forgot\\\\\\"]","value":"","description":"Click 
+Forgot password link","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/forgot","target_selector":"a[href
+=\\"/forgot\\\\\\"]","description":"URL contains forgot 
+route"}},{"step_number":3,"action":"NONE","selector":"","value":"","description":"Verify password reset heading is 
+visible","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Password 
+Reset","target_selector":"a[href=\\"/forgot\\\\\\"]","description":"Password Reset text is visible on page"}}]}}'}}
+Task exception was never retrieved
+future: <Task finished name='Task-2597' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=22 PASS=18 FAIL=4 ERROR=0 findings=4
+[benchmark] apex_portal baseline repeat 1 ...
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not 
+match required state URL 'http://127.0.0.1:8111/login'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not 
+match required state URL 'http://127.0.0.1:8111/registration'
+[ProbeRunner] Step blocked by safety governor: SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Groq Request #1] API error on attempt 1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Home Page Load","objective":"Verify that the 
+home page loads and displays the main 
+heading","steps":[{"step_number":1,"action":"NAVIGATE","selector":"","value":"","description":"Navigate to home 
+route","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"","description":"URL 
+contains home route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/\\"]","value":"","description":"Click 
+Home link to ensure page is reachable","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Apex Demo Target 
+System","target_selector":"a[href=\\"/\\"]","description":"Main heading is visible on home page"}}]},{"name":"Search 
+No Results","objective":"Search for a nonexistent product and verify no results 
+message","steps":[{"step_number":1,"action":"NAVIGATE","selector":"","value":"","description":"Navigate to search 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/search","target_selector":"","description":"URL 
+contains search route"}},{"step_number":2,"action":"FILL","selector":"#q","value":"Abc123Xy","description":"Enter 
+nonexistent query into search 
+box","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#q","description":"Search 
+input is visible"}},{"step_number":3,"action":"CLICK","selector":"#searchBtn","value":"","description":"Click Search bu
+tton","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#searchBtn","description":
+"Search button is 
+visible"}},{"step_number":4,"action":"CLICK","selector":"#searchBtn","value":"","description":"Verify no results 
+message appears","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"No results found for 
+\\"Abc123Xy\\"","target_selector":"a[href=\\"/search\\"]","description":"No results text is 
+displayed"}}]},{"name":"Successful Login Redirect","objective":"Log in with valid credentials and verify redirect to 
+home with welcome 
+message","steps":[{"step_number":1,"action":"NAVIGATE","selector":"","value":"","description":"Navigate to login 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"","description":"URL 
+contains login 
+route"}},{"step_number":2,"action":"FILL","selector":"#username","value":"user@example.com","description":"Enter userna
+me","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#username","description":"Us
+ername field is visible"}},{"step_number":3,"action":"FILL","selector":"#password","value":"Enter secure 
+password","description":"Enter password","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_se
+lector":"#password","description":"Password field is 
+visible"}},{"step_number":4,"action":"CLICK","selector":"#loginBtn","value":"","description":"Click Log In button","ass
+ertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#loginBtn","description":"Login 
+button is visible"}},{"step_number":5,"action":"CLICK","selector":"#loginBtn","value":"","description":"Verify 
+redirect to home with welcome text","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Welcome to the Apex 
+Target Application","target_selector":"a[href=\\"/\\"]","description":"Welcome message is visible on home 
+page"}}]},{"name":"Forgot Password Navigation","objective":"Navigate from login to forgot password page and verify 
+content","steps":[{"step_number":1,"action":"NAVIGATE","selector":"","value":"","description":"Navigate to login 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"","description":"URL 
+contains login 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/forgot\\"]","value":"","description":"Click Forgot 
+password link","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/forgot","target_selector":"a[href=\\"/fo
+rgot\\"]","description":"URL contains forgot 
+route"}},{"step_number":3,"action":"CLICK","selector":"a[href=\\"/forgot\\"]","value":"","description":"Verify 
+password reset heading","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Password 
+Reset","target_selector":"a[href=\\"/login\\"]","description":"Password Reset text is 
+visible"}}]},{"name":"Registration Mismatched Passwords","objective":"Attempt registration with mismatched passwords 
+and verify error 
+message","steps":[{"step_number":1,"action":"NAVIGATE","selector":"","value":"","description":"Navigate to 
+registration page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/registration","target_selector":"","
+description":"URL contains registration route"}},{"step_number":2,"action":"FILL","selector":"#fullname","value":"Jane 
+Doe","description":"Enter full name","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_select
+or":"#fullname","description":"Full name field is visible"}}'}}
+[Groq Request #1] API error on attempt 2: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Home Page Load","objective":"Verify that the 
+home page loads and URL contains the root 
+route","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\"]","value":"","description":"Navigate 
+to Home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\"]","de
+scription":"URL contains home route"}}]},{"name":"Login Page Navigation","objective":"Navigate from Home to Login page 
+and verify URL and login button visibility","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\"]",
+"value":"","description":"Navigate to Home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","tar
+get_selector":"a[href=\\"/\\"]","description":"Home 
+URL"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\"]","value":"","description":"Click Login link",
+"assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\"]","descri
+ption":"Login page URL"}},{"step_number":3,"action":"CLICK","selector":"#loginBtn","value":"","description":"Verify 
+Login button is visible","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"visible","target_selector":"
+#loginBtn","description":"Login button visible"}}]},{"name":"Successful Login Attempt","objective":"Fill login 
+credentials and submit, then verify return to Home 
+page","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\"]","value":"","description":"Navigate to 
+Home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\"]","descr
+iption":"Home 
+URL"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\"]","value":"","description":"Open Login page","
+assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\"]","descrip
+tion":"Login 
+URL"}},{"step_number":3,"action":"FILL","selector":"#username","value":"user@example.com","description":"Enter username
+","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"visible","target_selector":"#username","description
+":"Username field visible"}},{"step_number":4,"action":"FILL","selector":"#password","value":"Enter secure 
+password","description":"Enter password","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"visible","ta
+rget_selector":"#password","description":"Password field 
+visible"}},{"step_number":5,"action":"CLICK","selector":"#loginBtn","value":"","description":"Submit login form","asser
+tion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\"]","description":"Returned
+ to Home after login"}}]},{"name":"Forgot Password Navigation","objective":"Access the Forgot Password page from Login 
+and verify 
+URL","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\"]","value":"","description":"Navigate to 
+Home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\"]","descr
+iption":"Home 
+URL"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\"]","value":"","description":"Open Login page","
+assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\"]","descrip
+tion":"Login 
+URL"}},{"step_number":3,"action":"CLICK","selector":"a[href=\\"/forgot\\"]","value":"","description":"Click Forgot 
+password link","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/forgot","target_selector":"a[href=\\"/fo
+rgot\\"]","description":"Forgot password page URL"}}]},{"name":"Search Page Navigation","objective":"Navigate to 
+Search page and verify search controls are 
+present","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\"]","value":"","description":"Navigate 
+to Home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\"]","de
+scription":"Home URL"}}'}}
+[Groq Request #1] API error on attempt 3: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Home Page Load","objective":"Verify that the 
+home page loads and key navigation links are visible","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=
+\\"/\\\\"]","value":"","description":"Navigate to home page via direct URL","assertion":{"assertion_type":"URL_CONTAINS
+","expected_value":"/","target_selector":"a[href=\\"/\\\\"]","description":"URL contains home 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\\\"]","value":"","description":"Check that 
+Login link is present","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"Login","target_selector":"a[hr
+ef=\\"/login\\\\"]","description":"Login link is visible"}}]},{"name":"Search No Results","objective":"Perform a 
+search that yields no results and verify the no-results message","steps":[{"step_number":1,"action":"NAVIGATE","selecto
+r":"a[href=\\"/\\\\"]","value":"","description":"Navigate to home page","assertion":{"assertion_type":"URL_CONTAINS","e
+xpected_value":"/","target_selector":"a[href=\\"/\\\\"]","description":"URL contains home 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/search\\\\"]","value":"","description":"Go to search 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/search","target_selector":"a[href=\\"/search\\\\"
+]","description":"URL contains search 
+route"}},{"step_number":3,"action":"FILL","selector":"#q","value":"Abc123Xy","description":"Enter a query that returns 
+no results","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"Abc123Xy","target_selector":"#q","descrip
+tion":"Search input contains entered 
+text"}},{"step_number":4,"action":"CLICK","selector":"#searchBtn","value":"","description":"Submit the search","asserti
+on":{"assertion_type":"URL_CONTAINS","expected_value":"/search","target_selector":"#searchBtn","description":"Remains 
+on search page after 
+search"}},{"step_number":5,"action":"CLICK","selector":"#searchBtn","value":"","description":"Verify no-results 
+message is displayed","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"No results found for 
+\\"Abc123Xy\\"","target_selector":"#searchBtn","description":"No results text is visible"}}]},{"name":"Login Page 
+Access","objective":"Navigate to the login page and verify login form elements are 
+present","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\\\"]","value":"","description":"Open 
+home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\\\"]","des
+cription":"URL contains home 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\\\"]","value":"","description":"Click Login li
+nk","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\\\"]","
+description":"URL contains login 
+route"}},{"step_number":3,"action":"CLICK","selector":"#loginBtn","value":"","description":"Check that login button is 
+visible","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"Log 
+In","target_selector":"#loginBtn","description":"Login button is visible"}}]},{"name":"Forgot Password 
+Navigation","objective":"Verify that the forgot password link leads to the password reset 
+page","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\\\"]","value":"","description":"Open home 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\\\"]","descript
+ion":"URL contains home 
+route"}},{"step_number":2,"action":"CLICK","selector":"a[href=\\"/login\\\\"]","value":"","description":"Go to login pa
+ge","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"a[href=\\"/login\\\\"]","
+description":"URL contains login 
+route"}},{"step_number":3,"action":"CLICK","selector":"a[href=\\"/forgot\\\\"]","value":"","description":"Click Forgot 
+password link","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/forgot","target_selector":"a[href=\\"/fo
+rgot\\\\"]","description":"URL contains forgot 
+route"}},{"step_number":4,"action":"CLICK","selector":"a[href=\\"/login\\\\"]","value":"","description":"Verify login 
+link is still visible on forgot page","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"Login","target_
+selector":"a[href=\\"/login\\\\"]","description":"Login link visible on forgot page"}}]},{"name":"Registration Page 
+Access","objective":"Navigate to the registration page and verify the registration form is 
+displayed","steps":[{"step_number":1,"action":"NAVIGATE","selector":"a[href=\\"/\\\\"]","value":"","description":"Open 
+home page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a[href=\\"/\\\\"]","des
+cription":"URL contains home route"}}'}}
+[TestSynthesis] LLM scenario synthesis skipped: Groq API error: Error code: 400 - {'error': {'message': "Failed to 
+generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'ty
+Task exception was never retrieved
+future: <Task finished name='Task-5438' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=22 PASS=22 FAIL=0 ERROR=0 findings=0
+[benchmark] taskdash buggy repeat 1 ...
+Task exception was never retrieved
+future: <Task finished name='Task-5910' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-5911' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-5912' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-5913' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[Groq Request #1] API error on attempt 1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Navigate to About Page","objective":"Verify that 
+clicking the About tab loads the About 
+page","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/about\\"]","value":"","description":"Click 
+the About tab in the navigation bar","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/about","target_sel
+ector":"a.tab[href=\\"/about\\"]","description":"URL should contain /about after clicking About 
+tab"}}]},{"name":"Create a New Task","objective":"Ensure a task can be created and the user is redirected to the task 
+list","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/create\\"]","value":"","description":"Open 
+the Create Task page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/create","target_selector":"a.tab[
+href=\\"/create\\"]","description":"URL should contain /create after clicking Create Task 
+tab"}},{"step_number":2,"action":"FILL","selector":"#title","value":"New Feature","description":"Enter task title","ass
+ertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#title","description":"Title input 
+should be visible"}},{"step_number":3,"action":"FILL","selector":"#description","value":"Add new 
+feature","description":"Enter optional description","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":""
+,"target_selector":"#description","description":"Description textarea should be 
+visible"}},{"step_number":4,"action":"SELECT","selector":"#priority","value":"Medium","description":"Select task priori
+ty","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"#priority","description":"Pr
+iority select should be 
+visible"}},{"step_number":5,"action":"CLICK","selector":"#submit-task","value":"","description":"Submit the new task","
+assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks","target_selector":"#submit-task","description":"A
+fter creation, URL should contain /tasks"}}]},{"name":"Filter Tasks by High Priority","objective":"Check that the 
+priority filter works and updates the URL","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/tasks\
+\"]","value":"","description":"Navigate to the All Tasks page","assertion":{"assertion_type":"URL_CONTAINS","expected_v
+alue":"/tasks","target_selector":"a.tab[href=\\"/tasks\\"]","description":"URL should contain /tasks after clicking 
+All Tasks tab"}},{"step_number":2,"action":"SELECT","selector":"#priority-filter","value":"High","description":"Select 
+High priority in the filter dropdown","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selec
+tor":"#priority-filter","description":"Priority filter should be 
+visible"}},{"step_number":3,"action":"CLICK","selector":"button.primary","value":"","description":"Apply the filter","a
+ssertion":{"assertion_type":"URL_CONTAINS","expected_value":"priority=High","target_selector":"button.primary","descrip
+tion":"URL should contain priority=High after filtering"}}]},{"name":"Reset Task Filters","objective":"Verify that the 
+Reset button clears filters and resets the priority selector to 
+All","steps":[{"step_number":1,"action":"CLICK","selector":"button.secondary","value":"","description":"Click the 
+Reset button on the Tasks page","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"All","target_selector":"
+#priority-filter","description":"Priority filter should display \'All\' after reset"}}]},{"name":"Navigate to Second 
+Page of Tasks","objective":"Ensure pagination works and the URL reflects the selected 
+page","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/tasks\\"]","value":"","description":"Go to 
+the All Tasks page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks","target_selector":"a.tab[hre
+f=\\"/tasks\\"]","description":"URL should contain /tasks"}},"step_number":2,"action":"CLICK","selector":"a[href=\\"/ta
+sks?priority=&status=&page=2\\"]","value":"","description":"Click the pagination link for page 2","assertion":{"asserti
+on_type":"URL_CONTAINS","expected_value":"page=2","target_selector":"a[href=\\"/tasks?priority=&status=&page=2\\"]","de
+scription":"URL should contain page=2 after clicking pagination link"}}]},{"name":"View Task Detail for Write Unit 
+Tests","objective":"Confirm that clicking a task link opens its detail page","steps":[{"step_number":1,"action":"CLICK"
+,"selector":"a[href=\\"/tasks/634bfef8\\"]","value":"","description":"Click the \'Write unit tests\' task link","assert
+ion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks/634bfef8","target_selector":"a[href=\\"/tasks/634bfef8\\
+"]","description":"URL should contain the task ID after clicking the task"}}]},{"name":"Return to Dashboard from About 
+Page","objective":"Test navigation back to the Dashboard from another 
+page","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/about\\"]","value":"","description":"Open 
+the About page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/about","target_selector":"a.tab[href=\\
+"/about\\"]","description":"URL should contain 
+/about"}},{"step_number":2,"action":"CLICK","selector":"a.tab[href=\\"/\\"]","value":"","description":"Click the 
+Dashboard tab","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/","target_selector":"a.tab[href=\\"/\\"]
+","description":"URL should return to the root after clicking Dashboard"}}]},{"name":"Verify Create Task Tab 
+Visibility on Create Page","objective":"Ensure the Create Task tab is present and highlighted on the Create page","step
+s":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/create\\"]","value":"","description":"Navigate to the 
+Create Task page","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"","target_selector":"a.tab[href=\\"
+/create\\"]","description":"Create Task tab should be visible on the Create page"}}]}]'}}
+Task exception was never retrieved
+future: <Task finished name='Task-6528' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=27 PASS=21 FAIL=5 ERROR=1 findings=5
+[benchmark] taskdash baseline repeat 1 ...
+[PageUnderstanding] LLM understanding call failed (2.19s): 2 validation errors for PageUnderstanding
+expected_user_journeys.4
+  Input should be a valid string [type=string_type, input_value=['Missing CSRF protection...el or role description'], 
+input_type=list]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type
+expected_user_journeys.7
+  Input should be a valid string [type=string_type, input_value=['Task ID appears both in...ol for task completion'], 
+input_type=list]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type. Falling back to rule-based.
+[Groq Request #1] API error on attempt 1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Navigate to About page","objective":"Verify that 
+the About page loads correctly from the navigation 
+tab","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/about\\"]","value":"","description":"Click 
+the About tab in the navigation bar","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/about","target_sel
+ector":"a.tab[href=\\"/about\\"]","description":"URL should contain 
+/about"}},{"step_number":2,"action":"NONE","selector":"a.tab[href=\\"/about\\"]","value":"","description":"Check that 
+the About page heading is visible","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"About 
+TaskDash","target_selector":"a.tab[href=\\"/about\\"]","description":"About TaskDash heading should be 
+visible"}}]},{"name":"Create a new task","objective":"Create a task and verify it redirects to the task 
+list","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/create\\"]","value":"","description":"Open 
+the Create Task page via the navigation tab","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/create","t
+arget_selector":"a.tab[href=\\"/create\\"]","description":"URL should contain 
+/create"}},{"step_number":2,"action":"FILL","selector":"#title","value":"New Feature","description":"Enter a title for 
+the new task","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Enter task 
+title","target_selector":"#title","description":"Title input placeholder should be 
+visible"}},{"step_number":3,"action":"FILL","selector":"#description","value":"Implement new 
+feature","description":"Enter an optional 
+description","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Optional task 
+description","target_selector":"#description","description":"Description textarea placeholder should be 
+visible"}},{"step_number":4,"action":"SELECT","selector":"#priority","value":"Medium","description":"Select Medium 
+priority for the task","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Medium","target_selector":"#prior
+ity","description":"Medium option should be 
+selected"}},{"step_number":5,"action":"CLICK","selector":"#submit-task","value":"","description":"Submit the new task",
+"assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks","target_selector":"#submit-task","description":"
+After creation, URL should contain /tasks"}}]},{"name":"Filter tasks by High priority","objective":"Apply a priority 
+filter and verify highpriority tasks are shown","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/t
+asks\\"]","value":"","description":"Navigate to the All Tasks page","assertion":{"assertion_type":"URL_CONTAINS","expec
+ted_value":"/tasks","target_selector":"a.tab[href=\\"/tasks\\"]","description":"URL should contain 
+/tasks"}},{"step_number":2,"action":"SELECT","selector":"#priority-filter","value":"High","description":"Select High 
+priority in the filter dropdown","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"High","target_selector"
+:"#priority-filter","description":"High option should be visible in the 
+filter"}},{"step_number":3,"action":"CLICK","selector":"button.primary","value":"","description":"Click the Filter 
+button to apply the filter","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"priority=High","target_selec
+tor":"button.primary","description":"URL should include priority=High query parameter"}},{"step_number":4,"action":"NON
+E","selector":"a[href=\\"/tasks/31b20a30\\"]","value":"","description":"Verify a highpriority task is displayed","asser
+tion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"true","target_selector":"a[href=\\"/tasks/31b20a30\\"]","de
+scription":"Set up CI/CD pipeline task link should be visible"}}]},{"name":"Reset task filters","objective":"Reset 
+applied filters and ensure the task list returns to the default 
+view","steps":[{"step_number":1,"action":"CLICK","selector":"a.tab[href=\\"/tasks\\"]","value":"","description":"Open 
+the All Tasks page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks","target_selector":"a.tab[hre
+f=\\"/tasks\\"]","description":"URL should contain 
+/tasks"}},{"step_number":2,"action":"SELECT","selector":"#priority-filter","value":"High","description":"Apply High 
+priority filter","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"High","target_selector":"#priority-filt
+er","description":"High option 
+selected"}},{"step_number":3,"action":"CLICK","selector":"button.primary","value":"","description":"Apply the filter","
+assertion":{"assertion_type":"URL_CONTAINS","expected_value":"priority=High","target_selector":"button.primary","descri
+ption":"URL should contain 
+priority=High"}},{"step_number":4,"action":"CLICK","selector":"button.secondary","value":"","description":"Click the 
+Reset button to clear filters","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/tasks","target_selector"
+:"button.secondary","description":"URL should revert to base /tasks without query parameters"}}]}}'}}
+Task exception was never retrieved
+future: <Task finished name='Task-7792' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=22 PASS=22 FAIL=0 ERROR=0 findings=0
+[benchmark] benchmark_shop buggy repeat 1 ...
+[Investigator:safety_gate] Step blocked (SUBMIT on #checkoutForm): Action blocked by safety policy: high-impact action 
+contains prohibited keyword 'checkout'
+[InvestigationAgenda] Journey 'E-Commerce Purchase Funnel' BLOCKED at step 4: Action blocked by safety policy: 
+high-impact action contains prohibited keyword 'checkout'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8103/products/2' does 
+not match required state URL 'http://127.0.0.1:8103/products/1'
+[InvestigationAgenda] Journey 'Entity Creation & Management Workflow' POSTCONDITION FAILED at step 0: Action executed 
+with no observable state effect
+[Groq Request #1] API error on attempt 1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please 
+adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 
+'json_validate_failed', 'failed_generation': '{"test_cases":[{"name":"Login and Verify Products 
+Catalog","objective":"Ensure a user can log in and see the products 
+catalog","steps":[{"step_number":1,"action":"CLICK","selector":"a[href=\\"/logout\\"]","value":"","description":"Click 
+Logout to navigate to login 
+page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/login","target_selector":"","description":"URL 
+should contain 
+/login"}},{"step_number":2,"action":"FILL","selector":"#username","value":"benchmark_user","description":"Enter usernam
+e","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"benchmark_user","target_selector":"#username","des
+cription":"Username field should contain entered 
+text"}},{"step_number":3,"action":"FILL","selector":"#password","value":"password123","description":"Enter password","a
+ssertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"password123","target_selector":"#password","description
+":"Password field should contain entered 
+text"}},{"step_number":4,"action":"CLICK","selector":"#login-button","value":"","description":"Submit login form","asse
+rtion":{"assertion_type":"URL_CONTAINS","expected_value":"/products","target_selector":"","description":"After login, 
+URL should contain 
+/products"}},{"step_number":5,"action":"CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Navigate 
+to Products Catalog","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Products 
+Catalog","target_selector":"a[href=\\"/products\\"]","description":"Products Catalog heading should be 
+visible"}}]},{"name":"Sort Products by Price Low to High","objective":"Verify product list can be sorted by price from 
+low to 
+high","steps":[{"step_number":1,"action":"CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Open 
+Products page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/products","target_selector":"","descript
+ion":"URL should contain 
+/products"}},{"step_number":2,"action":"SELECT","selector":"#product-sort","value":"lohi","description":"Select 
+\'Price: Low to High\' sorting option","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"#item-1-title"
+,"target_selector":"#item-1-title","description":"First product title should be visible after 
+sorting"}}]},{"name":"Add Alpha Device to Cart","objective":"Add the first product to the shopping cart and verify 
+cart 
+count","steps":[{"step_number":1,"action":"CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Open 
+Products page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/products","target_selector":"","descript
+ion":"URL should contain 
+/products"}},{"step_number":2,"action":"CLICK","selector":"#add-to-cart-1","value":"","description":"Click Add to Cart 
+for Alpha Device","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Cart 
+1","target_selector":"#cart-link","description":"Cart link should display count 1"}}]},{"name":"Remove Item from 
+Cart","objective":"Remove a product from the cart and verify cart count updates","steps":[{"step_number":1,"action":"CL
+ICK","selector":"a[href=\\"/products\\"]","value":"","description":"Open Products page","assertion":{"assertion_type":"
+URL_CONTAINS","expected_value":"/products","target_selector":"","description":"URL should contain 
+/products"}},{"step_number":2,"action":"CLICK","selector":"#add-to-cart-1","value":"","description":"Add Alpha Device 
+to cart","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Cart 
+1","target_selector":"#cart-link","description":"Cart count should be 
+1"}},{"step_number":3,"action":"CLICK","selector":"#cart-link","value":"","description":"Navigate to Shopping 
+Cart","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/cart","target_selector":"","description":"URL 
+should contain /cart"}},{"step_number":4,"action":"CLICK","selector":"#remove-item-1","value":"","description":"Remove 
+Alpha Device from cart","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Cart 
+0","target_selector":"#cart-link","description":"Cart count should return to 0"}}]},{"name":"Calculate Tax in 
+Cart","objective":"Trigger tax calculation and ensure the button remains functional","steps":[{"step_number":1,"action"
+:"CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Open Products page","assertion":{"assertion_typ
+e":"URL_CONTAINS","expected_value":"/products","target_selector":"","description":"URL should contain 
+/products"}},{"step_number":2,"action":"CLICK","selector":"#add-to-cart-2","value":"","description":"Add Beta Machine 
+to cart","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Cart 
+1","target_selector":"#cart-link","description":"Cart count should be 
+1"}},{"step_number":3,"action":"CLICK","selector":"#cart-link","value":"","description":"Go to Shopping 
+Cart","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/cart","target_selector":"","description":"URL 
+should contain 
+/cart"}},{"step_number":4,"action":"CLICK","selector":"#calculate-tax-btn","value":"","description":"Click Calculate 
+Tax button","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"#calculate-tax-btn","target_selector":"#c
+alculate-tax-btn","description":"Calculate Tax button should still be visible"}}]},{"name":"Proceed to 
+Checkout","objective":"Navigate from cart to checkout and verify checkout heading","steps":[{"step_number":1,"action":"
+CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Open Products page","assertion":{"assertion_type"
+:"URL_CONTAINS","expected_value":"/products","target_selector":"","description":"URL should contain 
+/products"}},{"step_number":2,"action":"CLICK","selector":"#add-to-cart-3","value":"","description":"Add Gamma System 
+to cart","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Cart 
+1","target_selector":"#cart-link","description":"Cart count should be 
+1"}},{"step_number":3,"action":"CLICK","selector":"#cart-link","value":"","description":"Open Shopping 
+Cart","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/cart","target_selector":"","description":"URL 
+should contain 
+/cart"}},{"step_number":4,"action":"CLICK","selector":"#checkout-button","value":"","description":"Proceed to Checkout"
+,"assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/checkout","target_selector":"","description":"URL 
+should contain 
+/checkout"}},{"step_number":5,"action":"CLICK","selector":"a[href=\\"/checkout\\"]","value":"","description":"Confirm 
+checkout page loaded","assertion":{"assertion_type":"TEXT_VISIBLE","expected_value":"Checkout: Shipping 
+Details","target_selector":"a[href=\\"/checkout\\"]","description":"Checkout heading should be 
+visible"}}]},{"name":"Open and Close Drawer","objective":"Test opening and closing the side drawer on the products page
+","steps":[{"step_number":1,"action":"CLICK","selector":"a[href=\\"/products\\"]","value":"","description":"Navigate 
+to Products page","assertion":{"assertion_type":"URL_CONTAINS","expected_value":"/products","target_selector":"","descr
+iption":"URL should contain 
+/products"}},{"step_number":2,"action":"CLICK","selector":"#menu-drawer-toggle","value":"","description":"Open the draw
+er","assertion":{"assertion_type":"ELEMENT_VISIBLE","expected_value":"#menu-drawer-toggle","target_selector":"#menu-dra
+wer-toggle","description":"Drawer toggle should be visible"}} ,{"step_number":3,"action":"CLICK","selector":"a.btn[href
+=\\"/products?sort=az&menu=closed\\"]","value":"","description":"Close the drawer","assertion":{"assertion_type":"URL_C
+ONTAINS","expected_value":"menu=closed","target_selector":"","description":"URL should indicate drawer is 
+closed"}}]}}'}}
+Task exception was never retrieved
+future: <Task finished name='Task-9201' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9209' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9210' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9211' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9212' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9213' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-9214' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=27 PASS=23 FAIL=3 ERROR=1 findings=3
+[benchmark] benchmark_shop baseline repeat 1 ...
+[Investigator:safety_gate] Step blocked (SUBMIT on #checkoutForm): Action blocked by safety policy: high-impact action 
+contains prohibited keyword 'checkout'
+[InvestigationAgenda] Journey 'E-Commerce Purchase Funnel' BLOCKED at step 4: Action blocked by safety policy: 
+high-impact action contains prohibited keyword 'checkout'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8113/products/2' does 
+not match required state URL 'http://127.0.0.1:8113/products/1'
+[InvestigationAgenda] Journey 'Entity Creation & Management Workflow' POSTCONDITION FAILED at step 0: Action executed 
+with no observable state effect
+Task exception was never retrieved
+future: <Task finished name='Task-10457' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[benchmark]   COMPLETED tests=25 PASS=19 FAIL=1 ERROR=5 findings=1
+[benchmark] wrote reports\llm\multi_website_benchmark_llm.json / .md and multi_website_findings.csv

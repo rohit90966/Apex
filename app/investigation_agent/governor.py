@@ -21,21 +21,36 @@ class SafetyGovernor:
     Guarantees probe actions adhere to security boundaries, domain allowlists, and mutation budgets.
     """
 
-    # Terminal financial, destructive, or administrative actions that are NEVER permitted even in sandbox mode
+    # Action semantics are classified from the action's target text (selector, label, href):
+    #   IRREVERSIBLE_COMMIT   - never permitted, on any host
+    #   TRANSACTION_COMMIT    - completes a (simulated) transaction; only on trusted/sandbox hosts,
+    #                           and only outside a transaction-entry route
+    #   TRANSACTION_ENTRY     - enters a transaction flow; only on trusted/sandbox hosts, never
+    #                           re-submitted from inside the flow
+    # Each class can be extended per deployment with a comma-separated env var, e.g.
+    # VERITYQA_TRANSACTION_COMMIT_KEYWORDS="confirm booking". Policy only ever becomes stricter.
     TERMINAL_FORBIDDEN_KEYWORDS = [
         "pay now", "complete purchase", "confirm payment", "delete account",
         "wipe", "drop database", "sudo", "transfer money", "execute code",
-        "place order", "finish", "buy now", "cancel account",
+        "place order", "buy now", "cancel account",
         "remove user", "terminate subscription"
     ]
 
-    # Synthetic checkout navigation and form-validation keywords permitted ONLY on explicitly authorized local/test sandbox origins
+    # TRANSACTION_COMMIT semantics (a control that finalises a simulated order or booking)
+    CHECKOUT_COMPLETION_KEYWORDS = [
+        "finish"
+    ]
+
+    # TRANSACTION_ENTRY semantics (a control that enters a checkout / payment flow)
     SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS = [
         "checkout"
     ]
 
+    TRANSACTION_COMMIT_KEYWORDS = CHECKOUT_COMPLETION_KEYWORDS
+    TRANSACTION_ENTRY_KEYWORDS = SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS
+
     # High-impact actions that must be blocked by default on all domains
-    FORBIDDEN_KEYWORDS = TERMINAL_FORBIDDEN_KEYWORDS + SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS
+    FORBIDDEN_KEYWORDS = TERMINAL_FORBIDDEN_KEYWORDS + SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS + CHECKOUT_COMPLETION_KEYWORDS
 
     MUTATING_KEYWORDS = [
         "delete", "remove", "pay", "order", "purchase", "send", "transfer", "wipe"
@@ -67,6 +82,11 @@ class SafetyGovernor:
         self.sandbox_mode: bool = bool(sandbox_mode)
         self.sandbox_origins: List[str] = self._normalize_approved_sandbox_origins(sandbox_origins or [])
 
+        # Deployment-specific action semantics extend (never relax) the built-in classes.
+        self.TERMINAL_FORBIDDEN_KEYWORDS = self.TERMINAL_FORBIDDEN_KEYWORDS + self._env_keywords("VERITYQA_IRREVERSIBLE_ACTION_KEYWORDS")
+        self.CHECKOUT_COMPLETION_KEYWORDS = self.CHECKOUT_COMPLETION_KEYWORDS + self._env_keywords("VERITYQA_TRANSACTION_COMMIT_KEYWORDS")
+        self.SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS = self.SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS + self._env_keywords("VERITYQA_TRANSACTION_ENTRY_KEYWORDS")
+
         # Reconcile configured allowlist from settings and local dev defaults
         base_hosts = [
             "localhost", "127.0.0.1", "127.0.0.1:8001", "127.0.0.1:8002",
@@ -77,6 +97,11 @@ class SafetyGovernor:
         # Deduplicate while preserving lowercased normalized form
         self.trusted_hosts: List[str] = list(dict.fromkeys(h.strip().lower() for h in all_hosts if h.strip()))
         self._allow_mutating = allow_mutating
+
+    @staticmethod
+    def _env_keywords(name: str) -> List[str]:
+        import os
+        return [k.strip().lower() for k in os.environ.get(name, "").split(",") if k.strip()]
 
     @classmethod
     def _is_local_or_test_hostname(cls, hostname: Optional[str]) -> bool:
@@ -246,8 +271,8 @@ class SafetyGovernor:
         # Terminal financial, destructive, or administrative actions are always UNSAFE_EXTERNAL
         if any(kw in target_action_str for kw in self.TERMINAL_FORBIDDEN_KEYWORDS):
             dom_risk = ActionRisk.UNSAFE_EXTERNAL
-        elif any(kw in target_action_str for kw in self.SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS):
-            # Checkout progression on authorized test hosts is a reversible interaction;
+        elif any(kw in target_action_str for kw in self.SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS) or any(kw in target_action_str for kw in self.CHECKOUT_COMPLETION_KEYWORDS):
+            # Checkout progression / completion on authorized test hosts is a reversible interaction;
             # on untrusted or unknown external origins it remains UNSAFE_EXTERNAL
             if self.is_host_trusted(current_url) or sandbox_verified:
                 dom_risk = ActionRisk.REVERSIBLE_INTERACTION
@@ -309,6 +334,15 @@ class SafetyGovernor:
                     reason = f"Action blocked by safety policy: checkout interaction on untrusted host '{current_url}'"
                     self.rejected_actions.add((action_type, target, reason))
                     return False, reason
+
+        # 1c. Checkout completion keyword guard (e.g. mock #finish button on /checkout-step-two.html)
+        for kw in self.CHECKOUT_COMPLETION_KEYWORDS:
+            if kw in target_action_str:
+                if "/checkout" in (current_url or "").lower():
+                    if not (self.is_host_trusted(current_url) or sandbox_verified):
+                        reason = f"Action blocked by safety policy: checkout completion interaction on untrusted host '{current_url}'"
+                        self.rejected_actions.add((action_type, target, reason))
+                        return False, reason
 
         effective_risk = self.assess_risk(action_type, target, llm_proposed_risk, current_url=current_url)
         is_mutating = (

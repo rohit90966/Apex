@@ -16,8 +16,13 @@ from app.schemas import (
 )
 from app.execution.executor import BrowserExecutor
 from app.execution.locator import LocatorResolver, LocatorConfidence
+from app.intelligence.target_context import canonical_origin
 
 logger = logging.getLogger("verityqa.runner")
+
+# Credential placeholders written by planners; resolved only from credentials scoped to the target origin.
+CREDENTIAL_PASSWORD_PLACEHOLDER = "${CREDENTIAL_PASSWORD}"
+CREDENTIAL_USERNAME_PLACEHOLDER = "${CREDENTIAL_USERNAME}"
 
 
 class QAPlanRunner:
@@ -227,9 +232,10 @@ class QAPlanRunner:
             return steps
 
         if is_login:
-            # Login journey synthesis — selectors grounded against observed DOM
-            username_val = "admin@apex.com"
-            password_val = "Secret123!"
+            # Login journey synthesis — selectors grounded against observed DOM. Valid credentials are
+            # placeholders resolved at run time from credentials scoped to the target origin.
+            username_val = CREDENTIAL_USERNAME_PLACEHOLDER
+            password_val = CREDENTIAL_PASSWORD_PLACEHOLDER
 
             is_length_test = any(
                 k in all_text for k in ["length", "short", "minlength", "minimum", "boundary", "1-character", "1 char", "policy"]
@@ -268,8 +274,8 @@ class QAPlanRunner:
             submit_selector = "button[type='submit'], #loginBtn, #login-button, [data-test='login-button'], input[type='submit']"
 
             if is_length_test:
-                username_val = "admin@apex.com"
-                password_val = "a"  # 1 character to expose BUG-01
+                username_val = "qa.tester@example.com"
+                password_val = "a"  # 1-character lower boundary for a minimum-length policy
                 if (
                     observed_minlength
                     or test_case.expected_behavior_source == ExpectedBehaviorSource.REQUIREMENT
@@ -287,7 +293,7 @@ class QAPlanRunner:
                         description="Expect browser form validity to flag too-short password if minlength is enforced",
                     )
             elif is_missing_password:
-                username_val = "standard_user"
+                username_val = "qa.tester@example.com"
                 password_val = ""
                 expected_assertion = ExecutionAssertion(
                     assertion_type=AssertionType.VALIDITY_VALUE_MISSING,
@@ -321,14 +327,11 @@ class QAPlanRunner:
                     description="Expect invalid credentials error message",
                 )
             else:
-                # Genuine positive login journey: assert navigation or success
+                # Genuine positive login journey: the login form must be dismissed after authentication.
                 expected_assertion = ExecutionAssertion(
-                    assertion_type=AssertionType.URL_CONTAINS,
-                    expected_value="/inventory",
-                    description=(
-                        "Expect navigation away from login page after successful authentication "
-                        "(URL changes — e.g. /inventory, /dashboard)"
-                    ),
+                    assertion_type=AssertionType.ELEMENT_NOT_VISIBLE,
+                    target_selector=password_selector,
+                    description="Expect the login form to be dismissed after successful authentication",
                 )
 
             steps.append(
@@ -555,6 +558,19 @@ class QAPlanRunner:
 
         return steps
 
+    @staticmethod
+    def origin_violation(test_case: TestCase, steps: List[ActionStep], target_url: str) -> Optional[str]:
+        """Why a case may not run against target_url (it belongs to, or navigates to, another origin)."""
+        origin = canonical_origin(target_url)
+        if test_case.target_origin and test_case.target_origin != origin:
+            return (f"Test case was derived from origin {test_case.target_origin} "
+                    f"and cannot be executed against {origin or target_url}.")
+        for s in steps:
+            if s.action == ActionType.NAVIGATE and s.value and s.value.startswith(("http://", "https://")) \
+                    and canonical_origin(s.value) != origin:
+                return f"Step {s.step_number} navigates to another origin ({canonical_origin(s.value)})."
+        return None
+
     async def run_test(self, test_case: TestCase, target_url: str) -> ExecutionResult:
         """Synthesizes steps and executes a single test case."""
         if test_case.status == TestCaseStatus.INVALID:
@@ -568,6 +584,16 @@ class QAPlanRunner:
                 failure_reason=f"Invalid test case: {test_case.invalid_reason or 'not executable'}",
             )
         steps = self.synthesize_steps(test_case, target_url)
+        violation = self.origin_violation(test_case, steps, target_url)
+        if violation:
+            return ExecutionResult(
+                test_id=test_case.test_id,
+                test_name=test_case.name,
+                status=ExecutionStatus.TEST_DEFINITION_ERROR,
+                total_steps=len(steps),
+                steps_completed=0,
+                failure_reason=f"Cross-target execution refused: {violation}",
+            )
         steps, missing_credential = self._resolve_credential_placeholders(steps, target_url)
         if missing_credential:
             return ExecutionResult(
@@ -576,7 +602,8 @@ class QAPlanRunner:
                 status=ExecutionStatus.BLOCKED,
                 total_steps=len(steps),
                 steps_completed=0,
-                failure_reason="Test requires a password for the target, but no test credentials are configured.",
+                failure_reason=(f"Test requires authorized credentials for {canonical_origin(target_url)}, "
+                                "but none are configured for that origin."),
             )
         return await self.executor.execute_steps(
             test_id=test_case.test_id,
@@ -588,19 +615,19 @@ class QAPlanRunner:
     @staticmethod
     def _resolve_credential_placeholders(steps: List[ActionStep], target_url: str):
         """
-        Replaces the password placeholder written by the investigation test synthesizer with the
-        target's configured test password, in memory only. Returns (steps, missing_credential).
+        Replaces credential placeholders with the credentials configured for the target's origin,
+        in memory only. Returns (steps, missing_credential).
         """
-        from app.investigation_agent.test_synthesis import CREDENTIAL_PASSWORD_PLACEHOLDER
-        if not any(s.value == CREDENTIAL_PASSWORD_PLACEHOLDER for s in steps):
+        placeholders = {CREDENTIAL_PASSWORD_PLACEHOLDER: "password", CREDENTIAL_USERNAME_PLACEHOLDER: "username"}
+        if not any(s.value in placeholders for s in steps):
             return steps, False
         from app.investigation_agent.authenticator import AuthenticationManager
         creds = AuthenticationManager.discover_credentials(target_url, None) or {}
-        password = creds.get("password")
-        if not password:
+        needed = {placeholders[s.value] for s in steps if s.value in placeholders}
+        if any(not creds.get(key) for key in needed):
             return steps, True
         resolved = [
-            s.model_copy(update={"value": password}) if s.value == CREDENTIAL_PASSWORD_PLACEHOLDER else s
+            s.model_copy(update={"value": creds[placeholders[s.value]]}) if s.value in placeholders else s
             for s in steps
         ]
         return resolved, False

@@ -121,7 +121,7 @@ def engine(monkeypatch):
     monkeypatch.setattr("app.investigation_agent.run_stateful_investigation", fake)
     monkeypatch.setattr(
         "app.investigation_agent.test_synthesis.synthesize_test_cases_from_investigation",
-        lambda report: _cases(fake.password),
+        lambda report, **kw: _cases(fake.password),
     )
     return fake
 
@@ -177,7 +177,7 @@ def test_blocked_report_is_not_presented_as_success(run_store, monkeypatch):
     monkeypatch.setattr("app.investigation_agent.run_stateful_investigation", fake)
     monkeypatch.setattr(
         "app.investigation_agent.test_synthesis.synthesize_test_cases_from_investigation",
-        lambda report: [],
+        lambda report, **kw: [],
     )
 
     events = _stream(_query(url=TARGET))

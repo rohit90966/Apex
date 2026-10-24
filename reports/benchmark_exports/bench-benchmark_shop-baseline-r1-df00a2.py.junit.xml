@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="25" time="57.370" timestamp="2026-10-24T23:31:28.162355+05:30" hostname="LAPTOP-R9FDVQQN"><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_field_01_first_name_empty_is_rejected_1" time="0.678" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_sort_01_sort_by_name_a_to_z_orders_records_text_asc_2" time="0.931" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_pat_01_login_with_empty_username_boundary_3" time="0.573" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_tr_01_transition_add_to_cart_on_products_4" time="0.639" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_route_01_route_reachable_with_stable_landmarks_cart_5" time="0.676" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_field_02_first_name_whitespace_only_is_rejected_6" time="0.674" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_sort_02_sort_by_name_z_to_a_orders_records_text_desc_7" time="0.930" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_pat_02_catalog_sorting_name_z_to_a_8" time="1.002" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_tr_02_transition_back_to_cart_on_checkout_9" time="0.605" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_route_02_route_reachable_with_stable_landmarks_checkout_10" time="0.627" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_field_03_postal_code_empty_is_rejected_11" time="0.647" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_sort_03_sort_by_price_low_to_high_orders_records_number_asc_12" time="0.915" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_pat_03_catalog_sorting_price_low_to_high_13" time="0.906" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_tr_03_transition_proceed_to_checkout_on_cart_14" time="0.631" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_route_03_route_reachable_with_stable_landmarks_login_15" time="0.486" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_field_04_postal_code_whitespace_only_is_rejected_16" time="0.648" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_sort_04_sort_by_price_high_to_low_orders_records_number_desc_17" time="0.915" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_tr_04_transition_products_on_checkout_18" time="0.630" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_route_04_route_reachable_with_stable_landmarks_products_19" time="0.574" /><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_01_login_and_view_product_catalog_20" time="0.509"><failure message="AssertionError: Expected URL to contain '/products', got 'http://127.0.0.1:8113/login?error=Username+is+required'&#10;assert '/products' in 'http://127.0.0.1:8113/login?error=username+is+required'&#10; +  where '/products' = &lt;built-in method lower of str object at 0x00000226D43A4530&gt;()&#10; +    where &lt;built-in method lower of str object at 0x00000226D43A4530&gt; = '/products'.lower&#10; +  and   'http://127.0.0.1:8113/login?error=username+is+required' = &lt;built-in method lower of str object at 0x00000226D49A7450&gt;()&#10; +    where &lt;built-in method lower of str object at 0x00000226D49A7450&gt; = 'http://127.0.0.1:8113/login?error=Username+is+required'.lower&#10; +      where 'http://127.0.0.1:8113/login?error=Username+is+required' = &lt;Page url='http://127.0.0.1:8113/login?error=Username+is+required'&gt;.url">page = &lt;Page url='http://127.0.0.1:8113/login?error=Username+is+required'&gt;
+
+    def test_tc_llm_01_login_and_view_product_catalog_20(page: Page):
+        """
+        Test ID: TC-LLM-01
+        Objective: Verify that a user can log in and is redirected to the products catalog page.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Click the Sign In button on the login page.
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('URL_CONTAINS', page, None, '/products')
+
+bench-benchmark_shop-baseline-r1-df00a2.py:679: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'URL_CONTAINS'
+page = &lt;Page url='http://127.0.0.1:8113/login?error=Username+is+required'&gt;
+selector = None, expected = '/products'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+&gt;           assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+E           AssertionError: Expected URL to contain '/products', got 'http://127.0.0.1:8113/login?error=Username+is+required'
+E           assert '/products' in 'http://127.0.0.1:8113/login?error=username+is+required'
+E            +  where '/products' = &lt;built-in method lower of str object at 0x00000226D43A4530&gt;()
+E            +    where &lt;built-in method lower of str object at 0x00000226D43A4530&gt; = '/products'.lower
+E            +  and   'http://127.0.0.1:8113/login?error=username+is+required' = &lt;built-in method lower of str object at 0x00000226D49A7450&gt;()
+E            +    where &lt;built-in method lower of str object at 0x00000226D49A7450&gt; = 'http://127.0.0.1:8113/login?error=Username+is+required'.lower
+E            +      where 'http://127.0.0.1:8113/login?error=Username+is+required' = &lt;Page url='http://127.0.0.1:8113/login?error=Username+is+required'&gt;.url
+
+bench-benchmark_shop-baseline-r1-df00a2.py:64: AssertionError</failure></testcase><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_02_add_alpha_device_to_cart_from_catalog_21" time="8.496"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#add-to-cart-1&quot;).first">page = &lt;Page url='http://127.0.0.1:8113/login'&gt;
+
+    def test_tc_llm_02_add_alpha_device_to_cart_from_catalog_21(page: Page):
+        """
+        Test ID: TC-LLM-02
+        Objective: Ensure that adding a product updates the cart count and the item appears in the cart.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Click Add to Cart for Alpha Device on the products page.
+&gt;       page.locator('#add-to-cart-1').first.click()
+
+bench-benchmark_shop-baseline-r1-df00a2.py:691: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000226D4BF2350&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000226D48B7880&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#add-to-cart-1").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_03_remove_item_from_cart_22" time="8.443"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#remove-item-1&quot;).first">page = &lt;Page url='http://127.0.0.1:8113/login'&gt;
+
+    def test_tc_llm_03_remove_item_from_cart_22(page: Page):
+        """
+        Test ID: TC-LLM-03
+        Objective: Confirm that removing a product clears it from the cart and updates the cart count.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Click Remove for the first item in the cart.
+&gt;       page.locator('#remove-item-1').first.click()
+
+bench-benchmark_shop-baseline-r1-df00a2.py:709: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000226D4BF2050&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000226D4A982C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#remove-item-1").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_04_navigate_to_product_detail_and_verify_heading_23" time="8.545"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#item-1-title&quot;).first">page = &lt;Page url='http://127.0.0.1:8113/login'&gt;
+
+    def test_tc_llm_04_navigate_to_product_detail_and_verify_heading_23(page: Page):
+        """
+        Test ID: TC-LLM-04
+        Objective: Check that clicking a product title opens its detail page with the correct heading.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Open the detail page for Alpha Device.
+&gt;       page.locator('#item-1-title').first.click()
+
+bench-benchmark_shop-baseline-r1-df00a2.py:723: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000226D4BF3550&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000226D49387C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#item-1-title").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_05_add_to_cart_from_product_detail_page_24" time="8.438"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#item-2-title&quot;).first">page = &lt;Page url='http://127.0.0.1:8113/login'&gt;
+
+    def test_tc_llm_05_add_to_cart_from_product_detail_page_24(page: Page):
+        """
+        Test ID: TC-LLM-05
+        Objective: Validate that a product can be added to the cart from its detail view.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Open the detail page for Beta Machine.
+&gt;       page.locator('#item-2-title').first.click()
+
+bench-benchmark_shop-baseline-r1-df00a2.py:737: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000226D4BF0750&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000226D4C1CA40&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#item-2-title").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-benchmark_shop-baseline-r1-df00a2" name="test_tc_llm_06_proceed_to_checkout_from_cart_25" time="8.455"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;#checkout-button&quot;).first">page = &lt;Page url='http://127.0.0.1:8113/login'&gt;
+
+    def test_tc_llm_06_proceed_to_checkout_from_cart_25(page: Page):
+        """
+        Test ID: TC-LLM-06
+        Objective: Ensure that the checkout button navigates to the shipping details page.
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-benchmark_shop-baseline-r1-df00a2
+        """
+        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')
+        # Step 1: Click Proceed to Checkout on the cart page.
+&gt;       page.locator('#checkout-button').first.click()
+
+bench-benchmark_shop-baseline-r1-df00a2.py:755: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000226D4BF3450&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000226D4CC1760&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("#checkout-button").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase></testsuite></testsuites>

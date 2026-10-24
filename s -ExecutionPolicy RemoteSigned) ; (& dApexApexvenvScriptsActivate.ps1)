@@ -1,0 +1,242 @@
+warning: in the working copy of 'app/export/playwright_exporter.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/knowledge/retriever_v2.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/static/src/components/GeneratedTests.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/test_planning/planner.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/test_planning/validator.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_dashboard_run_display_e2e.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_knowledge_guided_planner.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_runs_api.py', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/.env.example b/.env.example[m
+[1mindex 1130968..337b6a8 100644[m
+[1m--- a/.env.example[m
+[1m+++ b/.env.example[m
+[36m@@ -24,3 +24,17 @@[m [mVERITYQA_ARTIFACTS_DIR=artifacts[m
+ VERITYQA_HEADLESS=true[m
+ VERITYQA_MAX_TEST_CASES=15[m
+ VERITYQA_ALLOWED_HOSTS=127.0.0.1,localhost,saucedemo.com,www.saucedemo.com,https://sauce-demo.myshopify.com[m
+[32m+[m
+[32m+[m[32m# Test credentials are scoped to ONE origin. They are ignored unless VERITYQA_TEST_CREDENTIALS_ORIGIN[m
+[32m+[m[32m# names the target's scheme://host[:port]; they are never sent to any other host.[m
+[32m+[m[32m# VERITYQA_TEST_CREDENTIALS_ORIGIN=http://127.0.0.1:8003[m
+[32m+[m[32m# VERITYQA_TEST_USERNAME=[m
+[32m+[m[32m# VERITYQA_TEST_PASSWORD=[m
+[32m+[m
+[32m+[m[32m# Optional extra action-semantics keywords for the safety governor (comma-separated; can only add restrictions)[m
+[32m+[m[32m# VERITYQA_IRREVERSIBLE_ACTION_KEYWORDS=[m
+[32m+[m[32m# VERITYQA_TRANSACTION_COMMIT_KEYWORDS=[m
+[32m+[m[32m# VERITYQA_TRANSACTION_ENTRY_KEYWORDS=[m
+[32m+[m
+[32m+[m[32m# Local benchmark fixtures: VERITYQA_FIXTURE_MODE=baseline serves the defect-free build (default: planted bugs).[m
+[32m+[m[32m# VERITYQA_FIXTURE_DISCLOSE_BUGS=1 exposes the planted-bug manifest to evaluators only (never set it for agent runs).[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex b8bdbdf..11406d6 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1,7 +1,7 @@[m
+ # VerityQA — Autonomous AI QA Engineering Platform[m
+ [m
+ **Problem Statement:** iMocha CODE APEX 3.0 — IM-02: Autonomous AI QA Engineer  [m
+[31m-**Status:** Stabilized & Verified (296/296 Tests Passing)  [m
+[32m+[m[32m**Status:** See [`docs/MULTI_WEBSITE_GENERALIZATION_REPORT.md`](docs/MULTI_WEBSITE_GENERALIZATION_REPORT.md) for the latest measured regression-suite and multi-website benchmark results[m[41m  [m
+ **Primary Engine:** Google Gemini (`gemini-flash-latest`) + 7-Node Cyclic LangGraph + Microsoft Playwright  [m
+ **Local Engine (Optional):** Ollama (`llama3.2:3b` / `qwen2.5:7b`)  [m
+ [m
+[36m@@ -80,9 +80,16 @@[m [mRun the full automated regression test suite:[m
+ ```powershell[m
+ python -m pytest tests/ -q[m
+ ```[m
+[31m-**Status: 296 passed in ~87s with 0 regressions.**[m
+ [m
+[31m-Run the planted defect benchmark:[m
+[32m+[m[32mRun the multi-website benchmark (starts the local fixtures itself, bug-enabled and baseline builds,[m
+[32m+[m[32mthen scores findings against evaluator-only ground truth in `benchmarks/ground_truth.py`):[m
+ ```powershell[m
+[31m-python -m pytest tests/test_benchmark_runner.py -q[m
+[32m+[m[32mpython scripts/run_multi_website_benchmark.py                          # all local fixtures[m
+[32m+[m[32mpython scripts/run_multi_website_benchmark.py --targets taskdash --repeats 2[m
+[32m+[m[32mpython scripts/run_multi_website_benchmark.py --include-public         # adds SauceDemo (network)[m
+ ```[m
+[32m+[m[32mOutputs: `reports/multi_website_benchmark.{json,md}`, `reports/multi_website_findings.csv`,[m
+[32m+[m[32m`reports/benchmark_exports/<run_id>.py` (the exported Playwright suites, executed as part of the run).[m
+[32m+[m
+[32m+[m[32mEach fixture supports `VERITYQA_FIXTURE_MODE=baseline` (defect-free build). Test credentials are scoped[m
+[32m+[m[32mto one origin via `VERITYQA_TEST_CREDENTIALS_ORIGIN` (see `.env.example`).[m
+[1mdiff --git a/app/bugs/investigator.py b/app/bugs/investigator.py[m
+[1mindex 201170e..f8b2f14 100644[m
+[1m--- a/app/bugs/investigator.py[m
+[1m+++ b/app/bugs/investigator.py[m
+[36m@@ -47,10 +47,23 @@[m [mclass InvestigationVerdict(str, Enum):[m
+     LOCATOR_ERROR = "LOCATOR_ERROR"[m
+     AUTOMATION_ERROR = "AUTOMATION_ERROR"[m
+     ENVIRONMENT_ERROR = "ENVIRONMENT_ERROR"[m
+[32m+[m[32m    # Reproducible deviation from an expectation that was only inferred (e.g. ordering derived from an[m
+[32m+[m[32m    # option label). Reported as a behavioural anomaly, never as a confirmed defect.[m
+[32m+[m[32m    UNVERIFIED_ANOMALY = "UNVERIFIED_ANOMALY"[m
+ [m
+ [m
+[32m+[m[32m# Oracle classes produced by the evidence-grounded planner: their expectations were validated against[m
+[32m+[m[32m# this run's evidence at plan time, so the legacy oracle heuristics below do not apply to them.[m
+[32m+[m[32m_GROUNDED_ORACLE_CLASSES = {[m
+[32m+[m[32m    "FIELD_CONSTRAINT", "FORM_VALIDATION", "LIST_ORDERING", "FILTER_CONSISTENCY", "OBSERVED_STATE",[m
+[32m+[m[32m    "STATE_TRANSITION", "CRUD_STATE_CHANGE", "DOMAIN_PATTERN", "DEFECT_REGRESSION", "SPECIFICATION",[m
+[32m+[m[32m}[m
+[32m+[m[32m# Expected-behaviour sources that establish a rule; anything else is an inference.[m
+[32m+[m[32m_ESTABLISHED_SOURCES = {"REQUIREMENT", "HTML_CONSTRAINT", "OBSERVED"}[m
+[32m+[m
+ # Map new verdict → legacy VerificationStatus for schema compatibility[m
+ _VERDICT_TO_LEGACY = {[m
+[32m+[m[32m    InvestigationVerdict.UNVERIFIED_ANOMALY: VerificationStatus.POTENTIAL_DEFECT,[m
+     InvestigationVerdict.PASS: VerificationStatus.OBSERVED_NOT_REPRODUCED,[m
+     InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: VerificationStatus.CONFIRMED_REPRODUCIBLE,[m
+     InvestigationVerdict.INCONCLUSIVE: VerificationStatus.POTENTIAL_DEFECT,[m
+[36m@@ -125,6 +138,8 @@[m [mdef _is_test_definition_error(test_case: TestCase, result: ExecutionResult) -> T[m
+ [m
+     Returns (is_error, rationale).[m
+     """[m
+[32m+[m[32m    if test_case.oracle_class in _GROUNDED_ORACLE_CLASSES:[m
+[32m+[m[32m        return False, ""[m
+     reason = (result.failure_reason or "").lower()[m
+ [m
+     # Case 1: Expected literal text "required" or "invalid" — could be HTML5 validation[m
+[36m@@ -266,10 +281,18 @@[m [mclass BugInvestigator:[m
+                 except Exception as e:[m
+                     logger.warning("Retry %d failed with exception: %s", attempt + 1, e)[m
+ [m
+[31m-            # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing[m
+[32m+[m[32m            # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing against an established rule[m
+             if runs_failed == runs_total and verdict == InvestigationVerdict.INCONCLUSIVE:[m
+[31m-                verdict = InvestigationVerdict.VERIFIED_PRODUCT_DEFECT[m
+[31m-                verdict_rationale = f"Reproduced consistently: {runs_failed}/{runs_total} runs failed"[m
+[32m+[m[32m                source = self._failing_expectation_source(test_case, initial_result)[m
+[32m+[m[32m                if source in _ESTABLISHED_SOURCES:[m
+[32m+[m[32m                    verdict = InvestigationVerdict.VERIFIED_PRODUCT_DEFECT[m
+[32m+[m[32m                    verdict_rationale = (f"Reproduced consistently: {runs_failed}/{runs_total} runs failed "[m
+[32m+[m[32m                                         f"against a {source} expectation")[m
+[32m+[m[32m                else:[m
+[32m+[m[32m                    verdict = InvestigationVerdict.UNVERIFIED_ANOMALY[m
+[32m+[m[32m                    verdict_rationale = (f"Reproduced {runs_failed}/{runs_total} runs, but the expected behaviour "[m
+[32m+[m[32m                                         f"is a {source or 'unstated'} inference; an explicit requirement is needed "[m
+[32m+[m[32m                                         "to confirm it as a defect")[m
+ [m
+         repro_rate_str = f"{runs_failed}/{runs_total} runs failed"[m
+ [m
+[36m@@ -293,14 +316,38 @@[m [mclass BugInvestigator:[m
+             repro_rate_str=repro_rate_str,[m
+         )[m
+ [m
+[32m+[m[32m    @staticmethod[m
+[32m+[m[32m    def _failing_expectation_source(test_case: TestCase, result: ExecutionResult) -> Optional[str]:[m
+[32m+[m[32m        """expected_source of the assertion that failed (legacy cases fall back to the case-level source)."""[m
+[32m+[m[32m        for step in test_case.steps or []:[m
+[32m+[m[32m            num = step.get("step_number") if isinstance(step, dict) else getattr(step, "step_number", None)[m
+[32m+[m[32m            if num != result.failure_step:[m
+[32m+[m[32m                continue[m
+[32m+[m[32m            assertion = step.get("assertion") if isinstance(step, dict) else getattr(step, "assertion", None)[m
+[32m+[m[32m            source = (assertion or {}).get("expected_source") if isinstance(assertion, dict) else getattr(assertion, "expected_source", None)[m
+[32m+[m[32m            if source:[m
+[32m+[m[32m                return source[m
+[32m+[m[32m        legacy = getattr(test_case.expected_behavior_source, "value", str(test_case.expected_behavior_source))[m
+[32m+[m[32m        return {"REQUIREMENT": "REQUIREMENT", "CONTRACT": "HTML_CONSTRAINT",[m
+[32m+[m[32m                "OBSERVED_INVARIANT": "OBSERVED", "INVARIANT": "OBSERVED"}.get(legacy, "DERIVED_INFERENCE")[m
+[32m+[m
+     def _classify_failure([m
+         self,[m
+         test_case: TestCase,[m
+         result: ExecutionResult,[m
+     ) -> Tuple[InvestigationVerdict, str]:[m
+         """[m
+[31m-        Classify failure into one of 7 InvestigationVerdict categories.[m
+[32m+[m[32m        Classify failure into one of the InvestigationVerdict categories.[m
+[32m+[m[32m        The executor's own outcome class takes precedence over text heuristics.[m
+         """[m
+[32m+[m[32m        status_verdicts = {[m
+[32m+[m[32m            ExecutionStatus.LOCATOR_ERROR: (InvestigationVerdict.LOCATOR_ERROR, "Executor reported a locator failure."),[m
+[32m+[m[32m            ExecutionStatus.AUTOMATION_ERROR: (InvestigationVerdict.AUTOMATION_ERROR, "Executor reported an automation failure."),[m
+[32m+[m[32m            ExecutionStatus.ENVIRONMENT_ERROR: (InvestigationVerdict.ENVIRONMENT_ERROR, "Executor reported an environment failure."),[m
+[32m+[m[32m            ExecutionStatus.TEST_DEFINITION_ERROR: (InvestigationVerdict.TEST_DEFINITION_ERROR, "Test definition is invalid."),[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if result.status in status_verdicts:[m
+[32m+[m[32m            return status_verdicts[result.status][m
+         # Environment errors first — highest confidence[m
+         if _is_environment_error(result):[m
+             return ([m
+[36m@@ -388,6 +435,7 @@[m [mclass BugInvestigator:[m
+             InvestigationVerdict.ENVIRONMENT_ERROR: "[ENVIRONMENT_ERROR]",[m
+             InvestigationVerdict.TEST_DEFINITION_ERROR: "[TEST ORACLE]",[m
+             InvestigationVerdict.INCONCLUSIVE: "[INCONCLUSIVE]",[m
+[32m+[m[32m            InvestigationVerdict.UNVERIFIED_ANOMALY: "[ANOMALY]",[m
+             InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: f"[{test_case.page_category.value}]",[m
+             InvestigationVerdict.PASS: "[PASS]",[m
+         }.get(verdict, "")[m
+[36m@@ -496,6 +544,11 @@[m [mclass BugInvestigator:[m
+                 f"Failure was not consistently reproducible: {result.failure_reason}",[m
+                 "Increase observation window and check for intermittent application behavior.",[m
+             )[m
+[32m+[m[32m        if verdict == InvestigationVerdict.UNVERIFIED_ANOMALY:[m
+[32m+[m[32m            return ([m
+[32m+[m[32m                f"Reproducible behavioural anomaly against an inferred expectation: {result.failure_reason}",[m
+[32m+[m[32m                "Confirm the intended behaviour with a requirement; if it holds, this is a product defect.",[m
+[32m+[m[32m            )[m
+ [m
+         # VERIFIED_PRODUCT_DEFECT — domain-specific diagnosis[m
+         reason = (result.failure_reason or "").lower()[m
+[1mdiff --git a/app/execution/executor.py b/app/execution/executor.py[m
+[1mindex 9917215..88584eb 100644[m
+[1m--- a/app/execution/executor.py[m
+[1m+++ b/app/execution/executor.py[m
+[36m@@ -1,5 +1,7 @@[m
+ import os[m
+[32m+[m[32mimport re[m
+ import sys[m
+[32m+[m[32mimport json[m
+ import time[m
+ import asyncio[m
+ import logging[m
+[36m@@ -14,11 +16,58 @@[m [mfrom app.schemas import ([m
+     ExecutionStatus,[m
+     StepExecutionResult,[m
+     ExecutionResult,[m
+[32m+[m[32m    is_meaningful_assertion,[m
+ )[m
+ from app.config import get_settings[m
+ [m
+ logger = logging.getLogger("verityqa.execution")[m
+ [m
+[32m+[m[32m# Prefix of an assertion error meaning "the oracle could not observe what it needs" (INCOMPLETE, not FAIL).[m
+[32m+[m[32mNOT_EVALUABLE = "NOT_EVALUABLE:"[m
+[32m+[m
+[32m+[m[32m# Finds the page's primary record collection (largest group of same-signature visible siblings outside[m
+[32m+[m[32m# navigation chrome) and extracts per-record sort keys and texts. Generic: no site-specific selectors.[m
+[32m+[m[32mCOLLECTION_SCRIPT = """[m
+[32m+[m[32m(args) => {[m
+[32m+[m[32m  const key = args.key;[m
+[32m+[m[32m  // Cells are fields of a record, never records themselves.[m
+[32m+[m[32m  const skipTags = new Set(['A', 'BUTTON', 'OPTION', 'LABEL', 'INPUT', 'SCRIPT', 'STYLE', 'BR', 'SELECT', 'TH', 'TD']);[m
+[32m+[m[32m  const chrome = 'nav, header, footer, select, datalist, [role="navigation"], [role="menu"], [aria-hidden="true"]';[m
+[32m+[m[32m  const sig = el => el.tagName + '.' + (typeof el.className === 'string'[m
+[32m+[m[32m      ? el.className.trim().split(/\\s+/).filter(c => c && !/^(active|selected|current|odd|even)$/i.test(c)).sort().join('.') : '');[m
+[32m+[m[32m  const shown = el => el.tagName === 'TR' ? el.getClientRects().length > 0 : el.offsetParent !== null;[m
+[32m+[m[32m  const numberOf = t => {[m
+[32m+[m[32m    const m = t.match(/[$\\u20ac\\u00a3\\u20b9]\\s*-?\\d[\\d,]*(?:\\.\\d+)?/) || t.match(/-?\\d[\\d,]*(?:\\.\\d+)?/);[m
+[32m+[m[32m    return m ? parseFloat(m[0].replace(/[^\\d.\\-]/g, '')) : null;[m
+[32m+[m[32m  };[m
+[32m+[m[32m  const primaryText = el => {[m
+[32m+[m[32m    const p = el.querySelector('[class*="name"], [class*="title"], h1, h2, h3, h4, h5, a, strong, b');[m
+[32m+[m[32m    const t = ((p && p.innerText) || el.innerText || '').trim();[m
+[32m+[m[32m    return t.split('\\n')[0].trim();[m
+[32m+[m[32m  };[m
+[32m+[m[32m  let best = null;[m
+[32m+[m[32m  for (const parent of document.querySelectorAll('body *')) {[m
+[32m+[m[32m    if (parent.closest(chrome)) continue;[m
+[32m+[m[32m    const kids = Array.from(parent.children).filter(k => !skipTags.has(k.tagName) && shown(k) && !k.querySelector('th'));[m
+[32m+[m[32m    if (kids.length < 2) continue;[m
+[32m+[m[32m    const counts = {};[m
+[32m+[m[32m    kids.forEach(k => { const s = sig(k); counts[s] = (counts[s] || 0) + 1; });[m
+[32m+[m[32m    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];[m
+[32m+[m[32m    if (!top || top[1] < 2) continue;[m
+[32m+[m[32m    const items = kids.filter(k => sig(k) === top[0] && (k.innerText || '').trim().length > 0);[m
+[32m+[m[32m    if (items.length < 2) continue;[m
+[32m+[m[32m    const values = items.map(it => key === 'number' ? numberOf(it.innerText || '') : primaryText(it)).filter(v => v !== null && v !== '');[m
+[32m+[m[32m    if (values.length < items.length) continue;[m
+[32m+[m[32m    const avgLen = items.reduce((n, it) => n + (it.innerText || '').length, 0) / items.length;[m
+[32m+[m[32m    const score = items.length + (items[0].tagName === 'TR' || items[0].tagN

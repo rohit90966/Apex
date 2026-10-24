@@ -663,6 +663,12 @@ class InvestigationReport(BaseModel):
     playwright_test_script: Optional[str] = None
     decision_snapshots: List[Dict[str, Any]] = Field(default_factory=list)
 
+    # Target independence contract (schema 2.0): identity of this run and everything it observed
+    # on its own origin. Test planning may only reference evidence contained here.
+    report_schema_version: str = "2.0"
+    target_context: Optional[Dict[str, Any]] = None
+    observed_inventory: Optional[Dict[str, Any]] = None
+
     @property
     def markdown_report(self) -> str:
         """Returns the formatted markdown representation of the investigation report."""

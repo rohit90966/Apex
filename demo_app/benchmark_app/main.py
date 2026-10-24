@@ -309,7 +309,11 @@ async def cart_get(request: Request, show_tax: bool = False):
     # Controlled Mutation Support: Allows toggling between defective (NaN anomaly) and corrected behavior
     tax_display = ""
     if show_tax:
-        is_corrected = getattr(request.app.state, "tax_defect_corrected", False) or (os.environ.get("VERITYQA_BENCHMARK_CORRECT_TAX") == "1")
+        is_corrected = (
+            getattr(request.app.state, "tax_defect_corrected", False)
+            or os.environ.get("VERITYQA_BENCHMARK_CORRECT_TAX") == "1"
+            or os.environ.get("VERITYQA_FIXTURE_MODE", "").strip().lower() == "baseline"
+        )
         if is_corrected:
             tax = round(subtotal * 0.10, 2)
             total = subtotal + tax

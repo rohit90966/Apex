@@ -1,0 +1,94 @@
+[
+  {
+    "pattern_id": "PAT-BOOK-DATE-01",
+    "name": "Booking Check-In and Check-Out Date Chronology Validation",
+    "archetypes": [
+      "BOOKING_RESERVATIONS"
+    ],
+    "capabilities": [
+      "MULTI_STEP_WIZARD",
+      "FORM_VALIDATION"
+    ],
+    "description": "Reservation check-out date must be chronologically after the check-in date; past dates are disallowed.",
+    "preconditions": [
+      "Booking search or reservation view active"
+    ],
+    "risk_level": "LOW",
+    "invariants": [
+      "Check-out date earlier than or equal to check-in date must be rejected",
+      "Selecting invalid date range shows calendar boundary warning"
+    ],
+    "scenario_templates": [
+      {
+        "template_id": "ST-BOOK-VALID-DATES",
+        "title": "Select Valid Reservation Date Range",
+        "objective": "Verify selecting future check-in and check-out dates progresses to room availability.",
+        "category": "workflow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action_type": "FILL",
+            "target_semantic": "checkin_input",
+            "target_selector_hints": [
+              "#check-in",
+              "input[name='checkin']"
+            ],
+            "input_value": "2026-12-01",
+            "description": "Enter check-in date"
+          },
+          {
+            "step_number": 2,
+            "action_type": "FILL",
+            "target_semantic": "checkout_input",
+            "target_selector_hints": [
+              "#check-out",
+              "input[name='checkout']"
+            ],
+            "input_value": "2026-12-05",
+            "description": "Enter check-out date"
+          },
+          {
+            "step_number": 3,
+            "action_type": "CLICK",
+            "target_semantic": "search_button",
+            "target_selector_hints": [
+              "#search-btn",
+              "button[type='submit']"
+            ],
+            "assertion_type": "VISIBLE",
+            "assertion_expected": "Available",
+            "description": "Search available rooms"
+          }
+        ],
+        "assertions": [
+          {
+            "type": "RESULTS_VISIBLE",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "negative_scenarios": [
+      {
+        "scenario_id": "NEG-BOOK-REVERSE-DATES",
+        "title": "Check-out Before Check-in Date Boundary",
+        "objective": "Verify error banner when check-out date is earlier than check-in date.",
+        "boundary_type": "CHRONOLOGY_VIOLATION",
+        "invalid_input": {
+          "checkin": "2026-12-05",
+          "checkout": "2026-12-01"
+        },
+        "expected_error_message_fragment": "Check-out date must be after check-in date"
+      }
+    ],
+    "evidence_requirements": [
+      "calendar_container",
+      "error_alert"
+    ],
+    "version": "1.0.0",
+    "strategy": "TEMPLATE",
+    "domain_assumptions": [
+      "Selector hints, routes, option values and expected texts in this template were authored against one reference application (SauceDemo-style e-commerce). They are hypotheses: the planner uses a step or expectation only when it is observed on the current target."
+    ]
+  }
+]

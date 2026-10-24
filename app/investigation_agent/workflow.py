@@ -77,6 +77,11 @@ class InvestigationOrchestrator:
         self.agenda: Optional[InvestigationAgenda] = None
         self.event_callback = event_callback
         self._emitted_leads: Set[str] = set()
+        # Probes that never executed their action (reported, never counted as coverage).
+        self._unexecuted_probes: List[Dict[str, Any]] = []
+
+    def _record_unexecuted(self, question_id: Optional[str], reason: str, target: Optional[str], detail: str) -> None:
+        self._unexecuted_probes.append({"question_id": question_id, "reason": reason, "target": target, "detail": (detail or "")[:200]})
 
     def emit_event(self, event_type: str, data: Dict[str, Any]):
         if self.event_callback:
@@ -684,6 +689,9 @@ class InvestigationOrchestrator:
                 )
                 ledger.append(blocked_ev)
 
+                self._record_unexecuted(q.id if q else None,
+                                        "MUTATION_BUDGET_EXHAUSTED" if "Mutation budget exhausted" in reason else "SAFETY_POLICY",
+                                        target_str, reason)
                 return {
                     "action_validation_passed": False,
                     "actions_safety_blocked": state.get("actions_safety_blocked", 0) + 1,
@@ -823,13 +831,8 @@ class InvestigationOrchestrator:
                             duration_seconds=0.01,
                             script=script,
                         )
-                        actions_attempted = state.get("actions_attempted", 0) + 1
-                        return {
-                            "current_probe_result": res,
-                            "actions_attempted": actions_attempted,
-                            "actions_successful": state.get("actions_successful", 0),
-                            "actions_failed": state.get("actions_failed", 0) + 1,
-                        }
+                        # Nothing ran: this is not an attempted (or failed) action, only an unexecuted probe.
+                        return {"current_probe_result": res}
                     else:
                         ok, nav_url, status = self.session.navigate(src_url)
                         if not ok or status == 404:
@@ -880,12 +883,19 @@ class InvestigationOrchestrator:
         if not res or not q:
             return {}
 
+        # Probes that never ran their action are recorded as unexecuted (not as tested coverage).
+        err = res.error_message or ""
+        if "Mutation budget exhausted" in err:
+            self._record_unexecuted(q.id, "MUTATION_BUDGET_EXHAUSTED", q.target_element, err)
+
         # If the probe failed due to navigation failure or unsatisfied precondition, do not treat as an application defect lead
         if res.status == "FAILED" and (
-            "Navigation failure" in (res.error_message or "")
-            or "precondition" in (res.error_message or "").lower()
+            "Navigation failure" in err
+            or "precondition" in err.lower()
         ):
             logger.info("[Investigator:perceive_after] Probe failed due to navigation/precondition; skipping oracle defect creation")
+            self._record_unexecuted(q.id, "TARGET_NOT_ON_CURRENT_PAGE" if "precondition" in err.lower() else "NAVIGATION_FAILURE",
+                                    q.target_element, err)
             return {}
 
         prediction = q.prediction
@@ -1828,6 +1838,7 @@ class InvestigationOrchestrator:
         })
 
         logger.info("[Investigator] Generating final 14-section Investigation Report")
+        state["unexecuted_probes"] = list(self._unexecuted_probes)
         report = InvestigationReportBuilder.build_report(state)
 
         from app.investigation_agent.handoff_contract import build_handoff_contract

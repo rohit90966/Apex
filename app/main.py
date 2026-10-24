@@ -342,9 +342,10 @@ def _build_investigation_payload(report: Any) -> Dict[str, Any]:
     """
     synthesized_cases = []
     synthesis_error = None
+    planning_diagnostics: Dict[str, Any] = {}
     try:
-        from app.investigation_agent.test_synthesis import synthesize_test_cases_from_investigation
-        synthesized_cases = synthesize_test_cases_from_investigation(report)
+        from app.investigation_agent import test_synthesis
+        synthesized_cases = test_synthesis.synthesize_test_cases_from_investigation(report, diagnostics=planning_diagnostics)
     except Exception as synth_err:
         # The investigation itself stays valid, but test generation is recorded as failed, not as "0 cases".
         synthesis_error = f"{type(synth_err).__name__}: {str(synth_err)[:300]}"
@@ -394,6 +395,7 @@ def _build_investigation_payload(report: Any) -> Dict[str, Any]:
         "planning_summary": f"Synthesized {len(synthesized_cases)} evidence-grounded test cases from discovered workflows and verified transitions.",
     }
     res_data["test_generation"] = {"status": "failed" if synthesis_error else "completed", "error": synthesis_error}
+    res_data["test_planning"] = planning_diagnostics
     return res_data
 
 
@@ -936,6 +938,29 @@ async def get_report_content(filename: str):
     if not os.path.exists(fpath):
         raise HTTPException(status_code=404, detail="Report file not found.")
     return FileResponse(fpath, media_type="application/json")
+
+
+@app.get("/api/runs/{run_id}/export", response_class=PlainTextResponse)
+async def export_persisted_run(run_id: str):
+    """
+    Standalone pytest + Playwright script for a persisted investigation run, generated from exactly
+    the test cases (steps and assertions) the runner executes for that run.
+    """
+    try:
+        detail = run_store.get(run_id)
+    except InvalidRunId:
+        raise HTTPException(status_code=400, detail="Invalid run ID format.")
+    except RunNotFound:
+        raise HTTPException(status_code=404, detail=f"Run '{run_id}' not found.")
+    if not detail.test_cases:
+        raise HTTPException(status_code=404, detail=f"Run '{run_id}' has no test cases to export.")
+    cases = [TestCase(**c) for c in detail.test_cases]
+    script = test_exporter.export_to_python_script(cases, detail.run.target_url)
+    return PlainTextResponse(
+        content=script,
+        headers={"Content-Disposition": f"attachment; filename=verityqa_{run_id}.py"},
+        media_type="text/x-python",
+    )
 
 
 @app.get("/api/runs", response_model=RunListResponse)

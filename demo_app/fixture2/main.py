@@ -22,6 +22,7 @@ Planted defects:
   BUG-F2-03: Marking a task complete does NOT update its displayed status
 """
 
+import os
 import uuid
 from datetime import datetime
 from typing import List, Optional
@@ -64,13 +65,20 @@ _tasks: List[Task] = [
 PAGE_SIZE = 3
 
 
+def planted_bugs_enabled() -> bool:
+    """VERITYQA_FIXTURE_MODE=baseline serves the defect-free behaviour (default: bug-enabled)."""
+    return os.environ.get("VERITYQA_FIXTURE_MODE", "buggy").strip().lower() != "baseline"
+
+
 def _filter_tasks(priority: str = "", status: str = "", page: int = 1) -> tuple:
     filtered = _tasks
     # BUG-F2-02: priority filter is intentionally broken — ignores the selected priority
     # Correct logic would be:
     #   if priority:
     #       filtered = [t for t in filtered if t.priority == priority]
-    # Broken: filter is silently ignored
+    # Broken: filter is silently ignored (baseline mode applies it)
+    if priority and not planted_bugs_enabled():
+        filtered = [t for t in filtered if t.priority == priority]
     if status:
         filtered = [t for t in filtered if t.status == status]
     total = len(filtered)
@@ -291,7 +299,9 @@ async def mark_complete(task_id: str):
         raise HTTPException(status_code=404, detail="Task not found")
     # BUG-F2-03: Status is NOT updated despite the action succeeding visually.
     # Correct: task.status = "Done"
-    # Broken: the status field is left unchanged
+    # Broken: the status field is left unchanged (baseline mode updates it)
+    if not planted_bugs_enabled():
+        task.status = "Done"
     body = f"""
 <div class="card">
   <h2 class="success">✓ Task Marked as Done</h2>
@@ -335,7 +345,9 @@ async def create_task(
 ):
     # BUG-F2-01: Empty title is accepted without validation.
     # Correct behavior: if not title.strip(): redirect with error
-    # Buggy behavior: empty title task is created silently
+    # Buggy behavior: empty title task is created silently (baseline mode rejects it)
+    if not planted_bugs_enabled() and not title.strip():
+        return await create_task_form(error="Title is required.")
     new_task = Task(
         title=title.strip() if title.strip() else "(no title)",
         description=description.strip(),
@@ -360,6 +372,22 @@ async def create_task(
 
 @app.get("/about", response_class=HTMLResponse)
 async def about():
+    if os.environ.get("VERITYQA_FIXTURE_DISCLOSE_BUGS") != "1":
+        # The planted-defect list is ground truth: it is never shown to the agent under test.
+        body = """
+<div class="card">
+  <h2>About TaskDash</h2>
+  <p>TaskDash is a simple project task management dashboard.</p>
+  <h3>Features</h3>
+  <ul>
+    <li>Tab-based navigation (Dashboard / All Tasks / Create Task / About)</li>
+    <li>Filterable and paginated task list</li>
+    <li>Task detail page</li>
+    <li>Task creation form with validation</li>
+    <li>In-place status update via form submission</li>
+  </ul>
+</div>"""
+        return HTMLResponse(_base_html("About", "About", body))
     body = """
 <div class="card">
   <h2>About TaskDash</h2>

@@ -3,259 +3,11 @@
   "source_investigation_id": "inv-4a3a7393",
   "source_contract_version": "1.0.0",
   "target_url": "https://www.saucedemo.com/",
-  "generated_at": 1792770307.1585677,
+  "generated_at": 1792837568.9645019,
   "generation_strategy": "DETERMINISTIC_GROUNDED",
   "test_cases": [
     {
       "test_id": "TC-WF-01",
-      "title": "End-to-End Workflow: Swag Labs to Swag Labs (www.saucedemo.com/inventory-item.html)",
-      "category": "workflow",
-      "objective": "Verify multi-step user workflow across 6 verified transitions reaching Swag Labs (www.saucedemo.com/inventory-item.html).",
-      "priority": "HIGH",
-      "preconditions": [
-        "Application reachable at https://www.saucedemo.com/"
-      ],
-      "steps": [
-        {
-          "step_number": 1,
-          "action_type": "NAVIGATE",
-          "selector": "https://www.saucedemo.com/",
-          "semantic_locator": {
-            "role": "document",
-            "name": "Swag Labs",
-            "label": null,
-            "css": null
-          },
-          "input_value": null,
-          "description": "Navigate to initial workflow entry point https://www.saucedemo.com/",
-          "source_state_id": "st_root_view_view",
-          "target_state_id": "st_root_view_view",
-          "evidence_refs": [
-            "ev-e8dcfefd"
-          ]
-        },
-        {
-          "step_number": 2,
-          "action_type": "AUTHENTICATE",
-          "selector": "login_form",
-          "semantic_locator": {
-            "role": null,
-            "name": null,
-            "label": null,
-            "css": null
-          },
-          "input_value": null,
-          "description": "Execute AUTHENTICATE on 'login_form' to transition from st_root_view_view to st_inventoryhtml_products_view",
-          "source_state_id": "st_root_view_view",
-          "target_state_id": "st_inventoryhtml_products_view",
-          "evidence_refs": [
-            "ev-e8dcfefd"
-          ]
-        },
-        {
-          "step_number": 3,
-          "action_type": "SELECT_OPTION:select_cls_f9f1d0aa87__data_test__product_sort_containe",
-          "selector": "[data-test=\"product-sort-container\"]",
-          "semantic_locator": {
-            "role": "select",
-            "name": "Sort products",
-            "label": null,
-            "css": "[data-test=\"product-sort-container\"]"
-          },
-          "input_value": null,
-          "description": "Execute SELECT_OPTION:select_cls_f9f1d0aa87__data_test__product_sort_containe on '[data-test=\"product-sort-container\"]' to transition from st_inventoryhtml_products_view to st_inventoryhtml_products_view_opt_za",
-          "source_state_id": "st_inventoryhtml_products_view",
-          "target_state_id": "st_inventoryhtml_products_view_opt_za",
-          "evidence_refs": [
-            "ev-8f9001bc"
-          ]
-        },
-        {
-          "step_number": 4,
-          "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack",
-          "selector": "#add-to-cart-sauce-labs-backpack",
-          "semantic_locator": {
-            "role": "button",
-            "name": "Add to cart",
-            "label": null,
-            "css": "#add-to-cart-sauce-labs-backpack"
-          },
-          "input_value": null,
-          "description": "Execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack' to transition from st_inventoryhtml_products_view_opt_za to st_inventoryhtml_products_c1_opt_za",
-          "source_state_id": "st_inventoryhtml_products_view_opt_za",
-          "target_state_id": "st_inventoryhtml_products_c1_opt_za",
-          "evidence_refs": [
-            "ev-38db1e3c"
-          ]
-        },
-        {
-          "step_number": 5,
-          "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__",
-          "selector": "[data-test=\"shopping-cart-link\"]",
-          "semantic_locator": {
-            "role": null,
-            "name": null,
-            "label": null,
-            "css": "[data-test=\"shopping-cart-link\"]"
-          },
-          "input_value": null,
-          "description": "Execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test=\"shopping-cart-link\"]' to transition from st_inventoryhtml_products_c1_opt_za to st_carthtml_your_cart_c1",
-          "source_state_id": "st_inventoryhtml_products_c1_opt_za",
-          "target_state_id": "st_carthtml_your_cart_c1",
-          "evidence_refs": [
-            "ev-6afd20cd"
-          ]
-        },
-        {
-          "step_number": 6,
-          "action_type": "CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link",
-          "selector": "#item_4_title_link",
-          "semantic_locator": {
-            "role": "button",
-            "name": "View details for Sauce Labs Backpack",
-            "label": null,
-            "css": "#item_4_title_link"
-          },
-          "input_value": null,
-          "description": "Execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link' to transition from st_carthtml_your_cart_c1 to st_inventory-itemht_view_c1",
-          "source_state_id": "st_carthtml_your_cart_c1",
-          "target_state_id": "st_inventory-itemht_view_c1",
-          "evidence_refs": [
-            "ev-c420a9bb"
-          ]
-        },
-        {
-          "step_number": 7,
-          "action_type": "CLICK_CONTROL:control_cls_130d45a77e__remove",
-          "selector": "#remove",
-          "semantic_locator": {
-            "role": "button",
-            "name": "Remove",
-            "label": null,
-            "css": "#remove"
-          },
-          "input_value": null,
-          "description": "Execute CLICK_CONTROL:control_cls_130d45a77e__remove on '#remove' to transition from st_inventory-itemht_view_c1 to st_inventory-itemht_view_view",
-          "source_state_id": "st_inventory-itemht_view_c1",
-          "target_state_id": "st_inventory-itemht_view_view",
-          "evidence_refs": [
-            "ev-7b6e1b54"
-          ]
-        }
-      ],
-      "expected_results": [
-        {
-          "description": "Reached state 'st_inventoryhtml_products_view' at 'https://www.saucedemo.com/inventory.html'",
-          "verification_type": "URL_CONTAINS",
-          "expected_value": "www.saucedemo.com/inventory.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-e8dcfefd"
-          ]
-        },
-        {
-          "description": "Reached state 'st_inventoryhtml_products_view_opt_za' at 'https://www.saucedemo.com/inventory.html'",
-          "verification_type": "STATE_REACHED",
-          "expected_value": "www.saucedemo.com/inventory.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-8f9001bc"
-          ]
-        },
-        {
-          "description": "Reached state 'st_inventoryhtml_products_c1_opt_za' at 'https://www.saucedemo.com/inventory.html'",
-          "verification_type": "STATE_REACHED",
-          "expected_value": "www.saucedemo.com/inventory.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-38db1e3c"
-          ]
-        },
-        {
-          "description": "Reached state 'st_carthtml_your_cart_c1' at 'https://www.saucedemo.com/cart.html'",
-          "verification_type": "URL_CONTAINS",
-          "expected_value": "www.saucedemo.com/cart.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-6afd20cd"
-          ]
-        },
-        {
-          "description": "Reached state 'st_inventory-itemht_view_c1' at 'https://www.saucedemo.com/inventory-item.html?id=3'",
-          "verification_type": "URL_CONTAINS",
-          "expected_value": "www.saucedemo.com/inventory-item.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-c420a9bb"
-          ]
-        },
-        {
-          "description": "Reached state 'st_inventory-itemht_view_view' at 'https://www.saucedemo.com/inventory-item.html?id=4'",
-          "verification_type": "STATE_REACHED",
-          "expected_value": "www.saucedemo.com/inventory-item.html",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-7b6e1b54"
-          ]
-        }
-      ],
-      "postconditions": [
-        "Browser reaches verified target state 'st_inventory-itemht_view_view'"
-      ],
-      "cleanup_requirements": [
-        "Reset session / clear cart state after workflow execution"
-      ],
-      "source_state_ids": [
-        "st_root_view_view",
-        "st_inventoryhtml_products_view",
-        "st_inventoryhtml_products_view_opt_za",
-        "st_inventoryhtml_products_c1_opt_za",
-        "st_carthtml_your_cart_c1",
-        "st_inventory-itemht_view_c1",
-        "st_inventory-itemht_view_view"
-      ],
-      "source_transition_ids": [
-        "trans-48e98424",
-        "trans-ea715d90",
-        "trans-596f145f",
-        "trans-3a6c9655",
-        "trans-c0aac124",
-        "trans-4390a68d"
-      ],
-      "source_finding_ids": [],
-      "evidence_ids": [
-        "ev-e8dcfefd",
-        "ev-8f9001bc",
-        "ev-38db1e3c",
-        "ev-6afd20cd",
-        "ev-c420a9bb",
-        "ev-7b6e1b54"
-      ],
-      "confidence": 1.0,
-      "unresolved_assumptions": [],
-      "tags": [
-        "workflow",
-        "e2e",
-        "verified_journey"
-      ],
-      "safety_metadata": {
-        "classification": "REQUIRES_AUTH_CREDENTIALS",
-        "requires_authorization": true,
-        "requires_test_credentials": true,
-        "requires_sandbox": false,
-        "contains_destructive_or_financial_action": false,
-        "safe_for_unattended_execution": true,
-        "safety_notes": "Requires authorized test account credentials."
-      }
-    },
-    {
-      "test_id": "TC-WF-02",
       "title": "End-to-End Workflow: Swag Labs to Swag Labs (Your Cart)",
       "category": "workflow",
       "objective": "Verify multi-step user workflow across 5 verified transitions reaching Swag Labs (Your Cart).",
@@ -472,7 +224,7 @@
       }
     },
     {
-      "test_id": "TC-WF-03",
+      "test_id": "TC-WF-02",
       "title": "End-to-End Workflow: Swag Labs to Swag Labs (Products)",
       "category": "workflow",
       "objective": "Verify multi-step user workflow across 2 verified transitions reaching Swag Labs (Products).",
@@ -968,7 +720,8 @@
       "preconditions": [
         "Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html)",
         "Requires authenticated session",
-        "Cart/counter badge value = 1"
+        "Cart/counter badge value = 1",
+        "Prerequisite: Item 'item_4' is added to cart prior to test execution"
       ],
       "steps": [
         {
@@ -1699,85 +1452,11 @@
       "test_id": "TC-SD-01",
       "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of 'login_form' when Authenticated user session active.",
+      "objective": "Verify state-dependent behavior of '[data-test=\"product-sort-container\"]' when Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html)",
         "Authenticated user session active"
-      ],
-      "steps": [
-        {
-          "step_number": 1,
-          "action_type": "AUTHENTICATE",
-          "selector": "login_form",
-          "semantic_locator": {
-            "role": null,
-            "name": null,
-            "label": null,
-            "css": null
-          },
-          "input_value": null,
-          "description": "Under state condition (Authenticated user session active), execute AUTHENTICATE on 'login_form'",
-          "source_state_id": "st_root_view_view",
-          "target_state_id": "st_inventoryhtml_products_view",
-          "evidence_refs": [
-            "ev-e8dcfefd"
-          ]
-        }
-      ],
-      "expected_results": [
-        {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Products']",
-          "verification_type": "STATE_REACHED",
-          "expected_value": "st_inventoryhtml_products_view",
-          "is_verified_by_evidence": true,
-          "is_hypothesis_requiring_confirmation": false,
-          "evidence_refs": [
-            "ev-e8dcfefd"
-          ]
-        }
-      ],
-      "postconditions": [
-        "State 'st_inventoryhtml_products_view' invariants hold"
-      ],
-      "cleanup_requirements": [
-        "Restore default view/session state"
-      ],
-      "source_state_ids": [
-        "st_inventoryhtml_products_view",
-        "st_root_view_view"
-      ],
-      "source_transition_ids": [
-        "trans-48e98424"
-      ],
-      "source_finding_ids": [],
-      "evidence_ids": [
-        "ev-e8dcfefd"
-      ],
-      "confidence": 1.0,
-      "unresolved_assumptions": [],
-      "tags": [
-        "state_dependent",
-        "contextual_state"
-      ],
-      "safety_metadata": {
-        "classification": "REQUIRES_AUTH_CREDENTIALS",
-        "requires_authorization": true,
-        "requires_test_credentials": true,
-        "requires_sandbox": false,
-        "contains_destructive_or_financial_action": false,
-        "safe_for_unattended_execution": true,
-        "safety_notes": "Requires authorized test account credentials."
-      }
-    },
-    {
-      "test_id": "TC-SD-02",
-      "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)",
-      "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '[data-test=\"product-sort-container\"]' when Authenticated user session active; Selected sort/filter option = 'za'.",
-      "priority": "MEDIUM",
-      "preconditions": [
-        "Authenticated user session active",
-        "Selected sort/filter option = 'za'"
       ],
       "steps": [
         {
@@ -1791,7 +1470,7 @@
             "css": "[data-test=\"product-sort-container\"]"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; Selected sort/filter option = 'za'), execute SELECT_OPTION:select_cls_f9f1d0aa87__data_test__product_sort_containe on '[data-test=\"product-sort-container\"]'",
+          "description": "Under state condition (Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active), execute SELECT_OPTION:select_cls_f9f1d0aa87__data_test__product_sort_containe on '[data-test=\"product-sort-container\"]'",
           "source_state_id": "st_inventoryhtml_products_view",
           "target_state_id": "st_inventoryhtml_products_view_opt_za",
           "evidence_refs": [
@@ -1801,7 +1480,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'selected_option:za']",
+          "description": "State-conditioned transition succeeds and reaches target state 'st_inventoryhtml_products_view_opt_za'",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_inventoryhtml_products_view_opt_za",
           "is_verified_by_evidence": true,
@@ -1812,14 +1491,14 @@
         }
       ],
       "postconditions": [
-        "State 'st_inventoryhtml_products_view_opt_za' invariants hold"
+        "State 'st_inventoryhtml_products_view' invariants hold"
       ],
       "cleanup_requirements": [
         "Restore default view/session state"
       ],
       "source_state_ids": [
-        "st_inventoryhtml_products_view_opt_za",
-        "st_inventoryhtml_products_view"
+        "st_inventoryhtml_products_view",
+        "st_inventoryhtml_products_view_opt_za"
       ],
       "source_transition_ids": [
         "trans-ea715d90"
@@ -1845,15 +1524,15 @@
       }
     },
     {
-      "test_id": "TC-SD-03",
+      "test_id": "TC-SD-02",
       "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '#add-to-cart-sauce-labs-backpack' when Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1.",
+      "objective": "Verify state-dependent behavior of '#add-to-cart-sauce-labs-backpack' when Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html)",
         "Authenticated user session active",
-        "Selected sort/filter option = 'za'",
-        "Cart/counter badge value = 1"
+        "Selected sort/filter option = 'za'"
       ],
       "steps": [
         {
@@ -1867,7 +1546,7 @@
             "css": "#add-to-cart-sauce-labs-backpack"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'",
+          "description": "Under state condition (Browser is in state 'st_inventoryhtml_products_view_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'), execute CLICK_CONTROL:control_cls_f9f1d0aa87__add_to_cart_sauce_labs_backpack on '#add-to-cart-sauce-labs-backpack'",
           "source_state_id": "st_inventoryhtml_products_view_opt_za",
           "target_state_id": "st_inventoryhtml_products_c1_opt_za",
           "evidence_refs": [
@@ -1877,7 +1556,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'selected_option:za', 'counter_value:1']",
+          "description": "State-conditioned transition succeeds and reaches target state 'st_inventoryhtml_products_c1_opt_za'",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_inventoryhtml_products_c1_opt_za",
           "is_verified_by_evidence": true,
@@ -1888,14 +1567,14 @@
         }
       ],
       "postconditions": [
-        "State 'st_inventoryhtml_products_c1_opt_za' invariants hold"
+        "State 'st_inventoryhtml_products_view_opt_za' invariants hold"
       ],
       "cleanup_requirements": [
         "Restore default view/session state"
       ],
       "source_state_ids": [
-        "st_inventoryhtml_products_c1_opt_za",
-        "st_inventoryhtml_products_view_opt_za"
+        "st_inventoryhtml_products_view_opt_za",
+        "st_inventoryhtml_products_c1_opt_za"
       ],
       "source_transition_ids": [
         "trans-596f145f"
@@ -1921,13 +1600,15 @@
       }
     },
     {
-      "test_id": "TC-SD-04",
-      "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart, counter_value:1)",
+      "test_id": "TC-SD-03",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, selected_option:za)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '[data-test=\"shopping-cart-link\"]' when Authenticated user session active; Cart/counter badge value = 1.",
+      "objective": "Verify state-dependent behavior of '[data-test=\"shopping-cart-link\"]' when Browser is in state 'st_inventoryhtml_products_c1_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_inventoryhtml_products_c1_opt_za' (https://www.saucedemo.com/inventory.html)",
         "Authenticated user session active",
+        "Selected sort/filter option = 'za'",
         "Cart/counter badge value = 1"
       ],
       "steps": [
@@ -1942,7 +1623,7 @@
             "css": "[data-test=\"shopping-cart-link\"]"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test=\"shopping-cart-link\"]'",
+          "description": "Under state condition (Browser is in state 'st_inventoryhtml_products_c1_opt_za' (https://www.saucedemo.com/inventory.html); Authenticated user session active; Selected sort/filter option = 'za'; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_f9f1d0aa87__data_test__shopping_cart_link__ on '[data-test=\"shopping-cart-link\"]'",
           "source_state_id": "st_inventoryhtml_products_c1_opt_za",
           "target_state_id": "st_carthtml_your_cart_c1",
           "evidence_refs": [
@@ -1952,7 +1633,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Your Cart', 'counter_value:1']",
+          "description": "State-conditioned transition succeeds and reaches target state 'st_carthtml_your_cart_c1'",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_carthtml_your_cart_c1",
           "is_verified_by_evidence": true,
@@ -1963,14 +1644,14 @@
         }
       ],
       "postconditions": [
-        "State 'st_carthtml_your_cart_c1' invariants hold"
+        "State 'st_inventoryhtml_products_c1_opt_za' invariants hold"
       ],
       "cleanup_requirements": [
         "Restore default view/session state"
       ],
       "source_state_ids": [
-        "st_carthtml_your_cart_c1",
-        "st_inventoryhtml_products_c1_opt_za"
+        "st_inventoryhtml_products_c1_opt_za",
+        "st_carthtml_your_cart_c1"
       ],
       "source_transition_ids": [
         "trans-3a6c9655"
@@ -1996,15 +1677,15 @@
       }
     },
     {
-      "test_id": "TC-SD-05",
-      "title": "State-Dependent Behavior on www.saucedemo.com/inventory-item.html (counter_value:1)",
+      "test_id": "TC-SD-04",
+      "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart, counter_value:1)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '#item_4_title_link' when Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}.",
+      "objective": "Verify state-dependent behavior of '#item_4_title_link' when Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active; Cart/counter badge value = 1.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html)",
         "Authenticated user session active",
-        "Cart/counter badge value = 1",
-        "URL state parameters = {'id': '3'}"
+        "Cart/counter badge value = 1"
       ],
       "steps": [
         {
@@ -2018,7 +1699,7 @@
             "css": "#item_4_title_link"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'",
+          "description": "Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active; Cart/counter badge value = 1), execute CLICK_CONTROL:control_cls_528fee7b43__item_4_title_link on '#item_4_title_link'",
           "source_state_id": "st_carthtml_your_cart_c1",
           "target_state_id": "st_inventory-itemht_view_c1",
           "evidence_refs": [
@@ -2028,7 +1709,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['counter_value:1']",
+          "description": "State-conditioned transition succeeds and reaches target state 'st_inventory-itemht_view_c1'",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_inventory-itemht_view_c1",
           "is_verified_by_evidence": true,
@@ -2039,14 +1720,14 @@
         }
       ],
       "postconditions": [
-        "State 'st_inventory-itemht_view_c1' invariants hold"
+        "State 'st_carthtml_your_cart_c1' invariants hold"
       ],
       "cleanup_requirements": [
         "Restore default view/session state"
       ],
       "source_state_ids": [
-        "st_inventory-itemht_view_c1",
-        "st_carthtml_your_cart_c1"
+        "st_carthtml_your_cart_c1",
+        "st_inventory-itemht_view_c1"
       ],
       "source_transition_ids": [
         "trans-c0aac124"
@@ -2072,12 +1753,90 @@
       }
     },
     {
+      "test_id": "TC-SD-05",
+      "title": "State-Dependent Behavior on www.saucedemo.com/inventory-item.html (counter_value:1)",
+      "category": "state_dependent",
+      "objective": "Verify state-dependent behavior of '[data-test=\"shopping-cart-link\"]' when Browser is in state 'st_inventory-itemht_view_c1' (https://www.saucedemo.com/inventory-item.html?id=3); Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}.",
+      "priority": "MEDIUM",
+      "preconditions": [
+        "Browser is in state 'st_inventory-itemht_view_c1' (https://www.saucedemo.com/inventory-item.html?id=3)",
+        "Authenticated user session active",
+        "Cart/counter badge value = 1",
+        "URL state parameters = {'id': '3'}"
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "action_type": "CLICK_CONTROL:control_cls_130d45a77e__data_test__shopping_cart_link__",
+          "selector": "[data-test=\"shopping-cart-link\"]",
+          "semantic_locator": {
+            "role": "button",
+            "name": "Cart, 1 items",
+            "label": null,
+            "css": "[data-test=\"shopping-cart-link\"]"
+          },
+          "input_value": null,
+          "description": "Under state condition (Browser is in state 'st_inventory-itemht_view_c1' (https://www.saucedemo.com/inventory-item.html?id=3); Authenticated user session active; Cart/counter badge value = 1; URL state parameters = {'id': '3'}), execute CLICK_CONTROL:control_cls_130d45a77e__data_test__shopping_cart_link__ on '[data-test=\"shopping-cart-link\"]'",
+          "source_state_id": "st_inventory-itemht_view_c1",
+          "target_state_id": "st_carthtml_your_cart_c1",
+          "evidence_refs": [
+            "ev-c517496a"
+          ]
+        }
+      ],
+      "expected_results": [
+        {
+          "description": "State-conditioned transition succeeds and reaches target state 'st_carthtml_your_cart_c1'",
+          "verification_type": "STATE_REACHED",
+          "expected_value": "st_carthtml_your_cart_c1",
+          "is_verified_by_evidence": true,
+          "is_hypothesis_requiring_confirmation": false,
+          "evidence_refs": [
+            "ev-c517496a"
+          ]
+        }
+      ],
+      "postconditions": [
+        "State 'st_inventory-itemht_view_c1' invariants hold"
+      ],
+      "cleanup_requirements": [
+        "Restore default view/session state"
+      ],
+      "source_state_ids": [
+        "st_inventory-itemht_view_c1",
+        "st_carthtml_your_cart_c1"
+      ],
+      "source_transition_ids": [
+        "trans-1e67cc12"
+      ],
+      "source_finding_ids": [],
+      "evidence_ids": [
+        "ev-c517496a"
+      ],
+      "confidence": 1.0,
+      "unresolved_assumptions": [],
+      "tags": [
+        "state_dependent",
+        "contextual_state"
+      ],
+      "safety_metadata": {
+        "classification": "REQUIRES_AUTH_CREDENTIALS",
+        "requires_authorization": true,
+        "requires_test_credentials": true,
+        "requires_sandbox": false,
+        "contains_destructive_or_financial_action": false,
+        "safe_for_unattended_execution": true,
+        "safety_notes": "Requires authorized test account credentials."
+      }
+    },
+    {
       "test_id": "TC-SD-06",
       "title": "State-Dependent Behavior on www.saucedemo.com/cart.html (heading:Your Cart)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '#remove-sauce-labs-backpack' when Authenticated user session active.",
+      "objective": "Verify state-dependent behavior of '#remove-sauce-labs-backpack' when Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html)",
         "Authenticated user session active"
       ],
       "steps": [
@@ -2092,7 +1851,7 @@
             "css": "#remove-sauce-labs-backpack"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'",
+          "description": "Under state condition (Browser is in state 'st_carthtml_your_cart_c1' (https://www.saucedemo.com/cart.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_528fee7b43__remove_sauce_labs_backpack on '#remove-sauce-labs-backpack'",
           "source_state_id": "st_carthtml_your_cart_c1",
           "target_state_id": "st_carthtml_your_cart_view",
           "evidence_refs": [
@@ -2102,7 +1861,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Your Cart']",
+          "description": "Transition establishes conditioned state 'st_carthtml_your_cart_view' with distinguishing observations: ['heading:Your Cart']",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_carthtml_your_cart_view",
           "is_verified_by_evidence": true,
@@ -2149,41 +1908,42 @@
       "test_id": "TC-SD-07",
       "title": "State-Dependent Behavior on www.saucedemo.com/inventory-item.html (st_inventory-itemht_view_view)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '#item_3_title_link' when Authenticated user session active; URL state parameters = {'id': '4'}.",
+      "objective": "Verify state-dependent behavior of '#add-to-cart' when Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4); Authenticated user session active; URL state parameters = {'id': '4'}.",
       "priority": "MEDIUM",
       "preconditions": [
+        "Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4)",
         "Authenticated user session active",
         "URL state parameters = {'id': '4'}"
       ],
       "steps": [
         {
           "step_number": 1,
-          "action_type": "CLICK_CONTROL:control_cls_f9f1d0aa87__item_3_title_link",
-          "selector": "#item_3_title_link",
+          "action_type": "CLICK_CONTROL:control_cls_130d45a77e__add_to_cart",
+          "selector": "#add-to-cart",
           "semantic_locator": {
             "role": "button",
-            "name": "View details for Test.allTheThings() T-Shirt (Red)",
+            "name": "Add to cart",
             "label": null,
-            "css": "#item_3_title_link"
+            "css": "#add-to-cart"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_f9f1d0aa87__item_3_title_link on '#item_3_title_link'",
-          "source_state_id": "st_inventoryhtml_products_view",
-          "target_state_id": "st_inventory-itemht_view_view",
+          "description": "Under state condition (Browser is in state 'st_inventory-itemht_view_view' (https://www.saucedemo.com/inventory-item.html?id=4); Authenticated user session active; URL state parameters = {'id': '4'}), execute CLICK_CONTROL:control_cls_130d45a77e__add_to_cart on '#add-to-cart'",
+          "source_state_id": "st_inventory-itemht_view_view",
+          "target_state_id": "st_inventory-itemht_view_c1",
           "evidence_refs": [
-            "ev-e6108d1b"
+            "ev-24b8ad7c"
           ]
         }
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: []",
+          "description": "State-conditioned transition succeeds and reaches target state 'st_inventory-itemht_view_c1'",
           "verification_type": "STATE_REACHED",
-          "expected_value": "st_inventory-itemht_view_view",
+          "expected_value": "st_inventory-itemht_view_c1",
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-e6108d1b"
+            "ev-24b8ad7c"
           ]
         }
       ],
@@ -2195,14 +1955,14 @@
       ],
       "source_state_ids": [
         "st_inventory-itemht_view_view",
-        "st_inventoryhtml_products_view"
+        "st_inventory-itemht_view_c1"
       ],
       "source_transition_ids": [
-        "trans-556b8ed6"
+        "trans-da9ab197"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-e6108d1b"
+        "ev-24b8ad7c"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -2224,11 +1984,11 @@
       "test_id": "TC-SD-08",
       "title": "State-Dependent Behavior on www.saucedemo.com/inventory.html (heading:Products, menu_open:true)",
       "category": "state_dependent",
-      "objective": "Verify state-dependent behavior of '#react-burger-menu-btn' when Authenticated user session active; In-page navigation/filter drawer is open.",
+      "objective": "Verify state-dependent behavior of '#react-burger-menu-btn' when Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active.",
       "priority": "MEDIUM",
       "preconditions": [
-        "Authenticated user session active",
-        "In-page navigation/filter drawer is open"
+        "Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html)",
+        "Authenticated user session active"
       ],
       "steps": [
         {
@@ -2242,7 +2002,7 @@
             "css": "#react-burger-menu-btn"
           },
           "input_value": null,
-          "description": "Under state condition (Authenticated user session active; In-page navigation/filter drawer is open), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'",
+          "description": "Under state condition (Browser is in state 'st_inventoryhtml_products_view' (https://www.saucedemo.com/inventory.html); Authenticated user session active), execute CLICK_CONTROL:control_cls_f9f1d0aa87__react_burger_menu_btn on '#react-burger-menu-btn'",
           "source_state_id": "st_inventoryhtml_products_view",
           "target_state_id": "st_inventoryhtml_products_view_menu_open",
           "evidence_refs": [
@@ -2252,7 +2012,7 @@
       ],
       "expected_results": [
         {
-          "description": "State-conditioned transition succeeds with distinguishing observations: ['heading:Products', 'menu_open:true']",
+          "description": "Transition establishes conditioned state 'st_inventoryhtml_products_view_menu_open' with distinguishing observations: ['heading:Products', 'menu_open:true']",
           "verification_type": "STATE_REACHED",
           "expected_value": "st_inventoryhtml_products_view_menu_open",
           "is_verified_by_evidence": true,
@@ -2517,11 +2277,9 @@
       "st_root_view_view": [
         "TC-WF-01",
         "TC-WF-02",
-        "TC-WF-03",
         "TC-TR-01",
         "TC-TR-02",
         "TC-VAL-01",
-        "TC-SD-01",
         "TC-REG-01",
         "TC-HYP-01",
         "TC-HYP-02"
@@ -2529,7 +2287,6 @@
       "st_inventoryhtml_products_view": [
         "TC-WF-01",
         "TC-WF-02",
-        "TC-WF-03",
         "TC-TR-02",
         "TC-TR-03",
         "TC-TR-09",
@@ -2537,61 +2294,40 @@
         "TC-TR-13",
         "TC-TR-14",
         "TC-SD-01",
-        "TC-SD-02",
-        "TC-SD-07",
         "TC-SD-08"
       ],
       "st_inventoryhtml_products_view_opt_za": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-03",
         "TC-TR-04",
-        "TC-SD-02",
-        "TC-SD-03"
+        "TC-SD-01",
+        "TC-SD-02"
       ],
       "st_inventoryhtml_products_c1_opt_za": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-04",
         "TC-TR-05",
-        "TC-SD-03",
-        "TC-SD-04"
+        "TC-SD-02",
+        "TC-SD-03"
       ],
       "st_carthtml_your_cart_c1": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-05",
         "TC-TR-06",
         "TC-TR-07",
         "TC-TR-08",
+        "TC-SD-03",
         "TC-SD-04",
         "TC-SD-05",
         "TC-SD-06"
       ],
-      "st_inventory-itemht_view_c1": [
-        "TC-WF-01",
-        "TC-TR-06",
-        "TC-TR-07",
-        "TC-TR-10",
-        "TC-TR-11",
-        "TC-SD-05"
-      ],
-      "st_inventory-itemht_view_view": [
-        "TC-WF-01",
-        "TC-TR-09",
-        "TC-TR-10",
-        "TC-TR-11",
-        "TC-TR-12",
-        "TC-TR-13",
-        "TC-SD-07"
-      ],
       "st_carthtml_your_cart_view": [
-        "TC-WF-02",
+        "TC-WF-01",
         "TC-TR-08",
         "TC-SD-06"
       ],
       "st_inventoryhtml_products_view_menu_open": [
-        "TC-WF-03",
+        "TC-WF-02",
         "TC-TR-14",
         "TC-SD-08"
       ],
@@ -2599,50 +2335,53 @@
         "TC-TR-01",
         "TC-VAL-01",
         "TC-REG-01"
+      ],
+      "st_inventory-itemht_view_c1": [
+        "TC-TR-06",
+        "TC-TR-07",
+        "TC-TR-10",
+        "TC-TR-11",
+        "TC-SD-04",
+        "TC-SD-05",
+        "TC-SD-07"
+      ],
+      "st_inventory-itemht_view_view": [
+        "TC-TR-09",
+        "TC-TR-10",
+        "TC-TR-11",
+        "TC-TR-12",
+        "TC-TR-13",
+        "TC-SD-07"
       ]
     },
     "transitions_covered": {
       "trans-48e98424": [
         "TC-WF-01",
         "TC-WF-02",
-        "TC-WF-03",
-        "TC-TR-02",
-        "TC-SD-01"
+        "TC-TR-02"
       ],
       "trans-ea715d90": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-03",
-        "TC-SD-02"
+        "TC-SD-01"
       ],
       "trans-596f145f": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-04",
-        "TC-SD-03"
+        "TC-SD-02"
       ],
       "trans-3a6c9655": [
         "TC-WF-01",
-        "TC-WF-02",
         "TC-TR-05",
-        "TC-SD-04"
-      ],
-      "trans-c0aac124": [
-        "TC-WF-01",
-        "TC-TR-06",
-        "TC-SD-05"
-      ],
-      "trans-4390a68d": [
-        "TC-WF-01",
-        "TC-TR-11"
+        "TC-SD-03"
       ],
       "trans-c7e7fc51": [
-        "TC-WF-02",
+        "TC-WF-01",
         "TC-TR-08",
         "TC-SD-06"
       ],
       "trans-940ad8cc": [
-        "TC-WF-03",
+        "TC-WF-02",
         "TC-TR-14",
         "TC-SD-08"
       ],
@@ -2651,15 +2390,23 @@
         "TC-VAL-01",
         "TC-REG-01"
       ],
+      "trans-c0aac124": [
+        "TC-TR-06",
+        "TC-SD-04"
+      ],
       "trans-1e67cc12": [
-        "TC-TR-07"
+        "TC-TR-07",
+        "TC-SD-05"
       ],
       "trans-556b8ed6": [
-        "TC-TR-09",
-        "TC-SD-07"
+        "TC-TR-09"
       ],
       "trans-da9ab197": [
-        "TC-TR-10"
+        "TC-TR-10",
+        "TC-SD-07"
+      ],
+      "trans-4390a68d": [
+        "TC-TR-11"
       ],
       "trans-01abf48f": [
         "TC-TR-12"

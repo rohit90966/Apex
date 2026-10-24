@@ -188,7 +188,7 @@ def test_new_run_clears_previous_results_immediately(dashboard, page, monkeypatc
     monkeypatch.setattr("app.investigation_agent.run_stateful_investigation", slow_engine)
     monkeypatch.setattr(
         "app.investigation_agent.test_synthesis.synthesize_test_cases_from_investigation",
-        lambda report: [_case("TC-NEW-01")],
+        lambda report, **kw: [_case("TC-NEW-01")],
     )
     _load(page, base, old_run)
     assert "TC-OLD-01" in _open_tab(page, 3)

@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import List, Optional, Dict, Any
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, field_validator
 
 
 class PageCategory(str, Enum):
@@ -112,18 +112,18 @@ class TestCase(BaseModel):
     test_id: str
     name: str
     objective: str
-    page_category: PageCategory
+    page_category: PageCategory = PageCategory.GENERAL
     relevant_elements: List[str] = Field(default_factory=list)
-    action_description: str
-    expected_outcome: str
-    expected_behavior_source: ExpectedBehaviorSource
+    action_description: str = ""
+    expected_outcome: str = ""
+    expected_behavior_source: ExpectedBehaviorSource = ExpectedBehaviorSource.OBSERVED_INVARIANT
     evidence_to_collect: List[str] = Field(default_factory=list)
-    priority: Priority
+    priority: Priority = Priority.MEDIUM
     preconditions: List[str] = Field(default_factory=list)
     requires_test_account: bool = False
     safe_for_future_automation: bool = True
-    selection_reason: str
-    confidence: float = Field(ge=0.0, le=1.0)
+    selection_reason: str = "Empirically discovered scenario"
+    confidence: float = Field(default=0.9, ge=0.0, le=1.0)
     status: TestCaseStatus = TestCaseStatus.PROPOSED
     applied_pattern_ids: List[str] = Field(default_factory=list)
     # Evidence traceability — populated by DeterministicDerivationNode; optional for LLM-generated cases
@@ -136,6 +136,38 @@ class TestCase(BaseModel):
     # Structured contract specification
     spec: Optional[Dict[str, Any]] = None
     invalid_reason: Optional[str] = None
+    # Target independence contract: the investigation and origin this case was derived from.
+    # The runner refuses to execute a case against a different origin.
+    investigation_id: Optional[str] = None
+    target_origin: Optional[str] = None
+    # FUNCTIONAL cases carry a meaningful oracle; EXPLORATORY cases record behaviour without a verdict.
+    test_kind: str = "FUNCTIONAL"
+    spec_version: str = "2.0"
+    # QA knowledge entries (strategies / defect classes / oracles) that produced this case.
+    knowledge_ids: List[str] = Field(default_factory=list)
+
+    @field_validator("name", mode="before")
+    @classmethod
+    def _coerce_name(cls, v: Any) -> str:
+        if v is None:
+            return "Discovered Test Scenario"
+        s = str(v).strip()
+        return s if s else "Discovered Test Scenario"
+
+    @field_validator("objective", mode="before")
+    @classmethod
+    def _coerce_objective(cls, v: Any) -> str:
+        if v is None:
+            return "Verify target element behavior and state transitions"
+        s = str(v).strip()
+        return s if s else "Verify target element behavior and state transitions"
+
+    @field_validator("action_description", "expected_outcome", mode="before")
+    @classmethod
+    def _coerce_strings(cls, v: Any) -> str:
+        if v is None:
+            return ""
+        return str(v)
 
 
 class TestPlan(BaseModel):
@@ -222,6 +254,33 @@ class AssertionType(str, Enum):
     INPUT_MASKED = "INPUT_MASKED"
     ACCESSIBILITY_VALID = "ACCESSIBILITY_VALID"
     CUSTOM = "CUSTOM"
+    # Evidence-grounded oracles (schema 2.0)
+    FIELD_VALIDITY = "FIELD_VALIDITY"                    # expected_value: valueMissing|tooLong|tooShort|rangeOverflow|rangeUnderflow|patternMismatch|typeMismatch|valid
+    ELEMENT_VALUE_LENGTH = "ELEMENT_VALUE_LENGTH"        # expected_value: "==N" | "<=N" | ">=N"
+    VALIDATION_FEEDBACK_SHOWN = "VALIDATION_FEEDBACK_SHOWN"
+    NO_VALIDATION_FEEDBACK = "NO_VALIDATION_FEEDBACK"
+    LIST_SORTED = "LIST_SORTED"                          # expected_value: JSON {"key": "text|number", "direction": "asc|desc"}
+    LIST_ALL_CONTAIN = "LIST_ALL_CONTAIN"                # every record of the detected collection contains expected_value
+    SELECTED_VALUE = "SELECTED_VALUE"                    # control's current value equals expected_value
+    NO_TEXT_ANOMALY = "NO_TEXT_ANOMALY"                  # visible text has no NaN/undefined/[object Object]/tracebacks
+
+
+# Assertions that cannot fail on a rendered page and therefore never count as a verification.
+TRIVIAL_ASSERTION_SELECTORS = {"body", "html", ":root"}
+
+
+def is_meaningful_assertion(assertion: Optional["ExecutionAssertion"]) -> bool:
+    """False for assertions that verify nothing about product behaviour (e.g. 'body is visible')."""
+    if assertion is None:
+        return False
+    if assertion.assertion_type == AssertionType.CUSTOM:
+        return False
+    if assertion.assertion_type == AssertionType.ELEMENT_VISIBLE:
+        return (assertion.target_selector or "").strip().lower() not in TRIVIAL_ASSERTION_SELECTORS
+    if assertion.assertion_type in (AssertionType.TEXT_VISIBLE, AssertionType.TEXT_NOT_VISIBLE, AssertionType.URL_CONTAINS,
+                                    AssertionType.URL_EQUALS, AssertionType.SELECTED_VALUE):
+        return bool((assertion.expected_value or "").strip())
+    return True
 
 
 class ExecutionAssertion(BaseModel):
@@ -229,6 +288,16 @@ class ExecutionAssertion(BaseModel):
     target_selector: Optional[str] = None
     expected_value: Optional[str] = None
     description: str
+    # Where the expected outcome comes from: OBSERVED (seen in this run), HTML_CONSTRAINT, REQUIREMENT,
+    # DERIVED_INFERENCE (e.g. ordering inferred from an option label), TEST_DATA (value entered by the test).
+    expected_source: Optional[str] = None
+
+    @field_validator("description", mode="before")
+    @classmethod
+    def _coerce_desc(cls, v: Any) -> str:
+        if v is None:
+            return ""
+        return str(v)
 
 
 class ActionStep(BaseModel):
@@ -238,6 +307,13 @@ class ActionStep(BaseModel):
     value: Optional[str] = None
     description: str
     assertion: Optional[ExecutionAssertion] = None
+
+    @field_validator("description", mode="before")
+    @classmethod
+    def _coerce_desc(cls, v: Any) -> str:
+        if v is None:
+            return ""
+        return str(v)
 
 
 class ExecutionStatus(str, Enum):
@@ -282,6 +358,8 @@ class ExecutionResult(BaseModel):
     timestamp: str = ""
     assertions_evaluated: int = 0
     assertions_satisfied: int = 0
+    # Evaluated assertions that can actually detect a product defect (excludes e.g. 'body visible').
+    meaningful_assertions_evaluated: int = 0
     evidence_retained: Dict[str, Any] = Field(default_factory=dict)
 
 
@@ -295,6 +373,7 @@ class BugSeverity(str, Enum):
 
 class VerificationStatus(str, Enum):
     CONFIRMED_REPRODUCIBLE = "CONFIRMED_REPRODUCIBLE"
+    LIKELY_DEFECT = "LIKELY_DEFECT"
     POTENTIAL_DEFECT = "POTENTIAL_DEFECT"
     ENVIRONMENTAL_FAILURE = "ENVIRONMENTAL_FAILURE"
     OBSERVED_NOT_REPRODUCED = "OBSERVED_NOT_REPRODUCED"
@@ -319,6 +398,10 @@ class BugReport(BaseModel):
     console_errors: List[str] = Field(default_factory=list)
     suspected_cause: Optional[str] = None
     suggested_fix: Optional[str] = None
+    # Finding lifecycle class: CONFIRMED_DEFECT | LIKELY_DEFECT | UNVERIFIED_ANOMALY | INCONCLUSIVE |
+    # TEST_INFRASTRUCTURE_FAILURE | TEST_DEFINITION_ERROR (see app/findings/lifecycle.py)
+    classification: Optional[str] = None
+    expected_source: Optional[str] = None
 
 
 class BenchmarkManifestItem(BaseModel):

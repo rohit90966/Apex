@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="27" time="30.330" timestamp="2026-10-24T23:22:06.366220+05:30" hostname="LAPTOP-R9FDVQQN"><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_field_01_title_empty_is_rejected_1" time="1.039"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8102/create'&gt;
+
+    def test_tc_field_01_title_empty_is_rejected_1(page: Page):
+        """
+        Test ID: TC-FIELD-01
+        Objective: Boundary test of 'Title *' on /create: EMPTY input (empty) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Task title is required)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /create
+        page.goto('http://127.0.0.1:8102/create', wait_until='domcontentloaded')
+        # Step 2: Enter valid 'Description'
+        page.locator('#description').first.fill('QA Sample')
+        # Step 3: Enter valid 'Priority'
+        page.locator('#priority').first.select_option('High')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 4: Enter empty value for 'Title *' (empty)
+        page.locator('#title').first.fill('')
+        # Step 5: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#title"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 6: Submit the form
+        page.locator('#submit-task').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#title', '["blank", "empty", "enter", "missing", "provide", "required", "title"]')
+
+bench-taskdash-buggy-r1-8b2296.py:179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8102/create'&gt;, selector = '#title'
+expected = '["blank", "empty", "enter", "missing", "provide", "required", "title"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-taskdash-buggy-r1-8b2296.py:116: AssertionError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_filter_01_filter_priority_filter_high_shows_only_matching_records_2" time="0.955"><failure message="AssertionError: Expected every record to contain 'High'; non-matching: ['5a924df1 Update README Medium Open 2026-10-24 23:13 Mark Done']&#10;assert not ['5a924df1 Update README Medium Open 2026-10-24 23:13 Mark Done']">page = &lt;Page url='http://127.0.0.1:8102/tasks?priority=High&amp;status='&gt;
+
+    def test_tc_filter_01_filter_priority_filter_high_shows_only_matching_records_2(page: Page):
+        """
+        Test ID: TC-FILTER-01
+        Objective: Apply filter option 'High' and verify every listed record carries that value.
+        Expected: Every listed record shows 'High' after filtering
+        Expected-behaviour source: INFERRED
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /tasks
+        page.goto('http://127.0.0.1:8102/tasks', wait_until='domcontentloaded')
+        # Step 2: Choose filter option 'High'
+        page.locator('#priority-filter').first.select_option('High')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 3: Apply filter
+        page.locator('button[type="submit"], button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('LIST_ALL_CONTAIN', page, None, 'High')
+
+bench-taskdash-buggy-r1-8b2296.py:199: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_ALL_CONTAIN'
+page = &lt;Page url='http://127.0.0.1:8102/tasks?priority=High&amp;status='&gt;
+selector = None, expected = 'High'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            spec = json.loads(expected) if kind == "LIST_SORTED" else {"key": "text"}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec["key"], "needle": expected if kind == "LIST_ALL_CONTAIN" else ""})
+            if kind == "LIST_SORTED":
+                values = data.get("values") or []
+                if len(values) &lt; 2:
+                    incomplete("could not identify at least two records to compare")
+                if spec["key"] == "number":
+                    ordered = sorted(values, reverse=spec["direction"] == "desc")
+                else:
+                    ordered = sorted(values, key=lambda v: str(v).casefold(), reverse=spec["direction"] == "desc")
+                assert values == ordered, f"Records are not ordered by {spec['key']} {spec['direction']}: {values[:6]}"
+            else:
+                texts = data.get("texts") or []
+                if not texts:
+                    incomplete("could not identify any listed records")
+                missing = [t[:80] for t in texts if expected.lower() not in t.lower()]
+&gt;               assert not missing, f"Expected every record to contain {expected!r}; non-matching: {missing[:3]}"
+E               AssertionError: Expected every record to contain 'High'; non-matching: ['5a924df1 Update README Medium Open 2026-10-24 23:13 Mark Done']
+E               assert not ['5a924df1 Update README Medium Open 2026-10-24 23:13 Mark Done']
+
+bench-taskdash-buggy-r1-8b2296.py:139: AssertionError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_crud_01_submitting_create_task_form_reflects_the_entered_title_3" time="0.965" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_01_transition_create_task_on_4" time="0.632" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_route_01_route_reachable_with_stable_landmarks_5" time="0.646" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_field_02_title_whitespace_only_is_rejected_6" time="1.049"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8102/create'&gt;
+
+    def test_tc_field_02_title_whitespace_only_is_rejected_6(page: Page):
+        """
+        Test ID: TC-FIELD-02
+        Objective: Boundary test of 'Title *' on /create: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.
+        Expected: Submission rejected with feedback attributable to this rule (REQUIREMENT: Task title is required)
+        Expected-behaviour source: REQUIREMENT
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /create
+        page.goto('http://127.0.0.1:8102/create', wait_until='domcontentloaded')
+        # Step 2: Enter valid 'Description'
+        page.locator('#description').first.fill('QA Sample')
+        # Step 3: Enter valid 'Priority'
+        page.locator('#priority').first.select_option('High')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 4: Enter whitespace value for 'Title *' (whitespace only)
+        page.locator('#title').first.fill('   ')
+        # Step 5: Disable client-side validation to exercise the server-side rule stated by the requirement
+        page.evaluate('(() =&gt; { const el = document.querySelector("#title"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 6: Submit the form
+        page.locator('#submit-task').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#title', '["blank", "empty", "enter", "missing", "provide", "required", "title"]')
+
+bench-taskdash-buggy-r1-8b2296.py:280: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8102/create'&gt;, selector = '#title'
+expected = '["blank", "empty", "enter", "missing", "provide", "required", "title"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-taskdash-buggy-r1-8b2296.py:116: AssertionError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_filter_02_filter_priority_filter_medium_shows_only_matching_records_7" time="0.969"><failure message="AssertionError: Expected every record to contain 'Medium'; non-matching: ['3a4634ec Set up CI/CD pipeline High Open 2026-10-24 23:13 Mark Done', '634bfef8 Write unit tests High In Progress 2026-10-24 23:13 Mark Done']&#10;assert not ['3a4634ec Set up CI/CD pipeline High Open 2026-10-24 23:13 Mark Done', '634bfef8 Write unit tests High In Progress 2026-10-24 23:13 Mark Done']">page = &lt;Page url='http://127.0.0.1:8102/tasks?priority=Medium&amp;status='&gt;
+
+    def test_tc_filter_02_filter_priority_filter_medium_shows_only_matching_records_7(page: Page):
+        """
+        Test ID: TC-FILTER-02
+        Objective: Apply filter option 'Medium' and verify every listed record carries that value.
+        Expected: Every listed record shows 'Medium' after filtering
+        Expected-behaviour source: INFERRED
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Navigate to observed route /tasks
+        page.goto('http://127.0.0.1:8102/tasks', wait_until='domcontentloaded')
+        # Step 2: Choose filter option 'Medium'
+        page.locator('#priority-filter').first.select_option('Medium')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 3: Apply filter
+        page.locator('button[type="submit"], button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('LIST_ALL_CONTAIN', page, None, 'Medium')
+
+bench-taskdash-buggy-r1-8b2296.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_ALL_CONTAIN'
+page = &lt;Page url='http://127.0.0.1:8102/tasks?priority=Medium&amp;status='&gt;
+selector = None, expected = 'Medium'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            spec = json.loads(expected) if kind == "LIST_SORTED" else {"key": "text"}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec["key"], "needle": expected if kind == "LIST_ALL_CONTAIN" else ""})
+            if kind == "LIST_SORTED":
+                values = data.get("values") or []
+                if len(values) &lt; 2:
+                    incomplete("could not identify at least two records to compare")
+                if spec["key"] == "number":
+                    ordered = sorted(values, reverse=spec["direction"] == "desc")
+                else:
+                    ordered = sorted(values, key=lambda v: str(v).casefold(), reverse=spec["direction"] == "desc")
+                assert values == ordered, f"Records are not ordered by {spec['key']} {spec['direction']}: {values[:6]}"
+            else:
+                texts = data.get("texts") or []
+                if not texts:
+                    incomplete("could not identify any listed records")
+                missing = [t[:80] for t in texts if expected.lower() not in t.lower()]
+&gt;               assert not missing, f"Expected every record to contain {expected!r}; non-matching: {missing[:3]}"
+E               AssertionError: Expected every record to contain 'Medium'; non-matching: ['3a4634ec Set up CI/CD pipeline High Open 2026-10-24 23:13 Mark Done', '634bfef8 Write unit tests High In Progress 2026-10-24 23:13 Mark Done']
+E               assert not ['3a4634ec Set up CI/CD pipeline High Open 2026-10-24 23:13 Mark Done', '634bfef8 Write unit tests High In Progress 2026-10-24 23:13 Mark Done']
+
+bench-taskdash-buggy-r1-8b2296.py:139: AssertionError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_02_transition_update_readme_on_tasks_8" time="0.678" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_route_02_route_reachable_with_stable_landmarks_about_9" time="0.688" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_field_03_title_maxlength_1_99_is_accepted_10" time="1.074" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_filter_03_filter_status_filter_open_shows_only_matching_records_11" time="0.954" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_03_transition_dashboard_on_about_12" time="0.637" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_route_03_route_reachable_with_stable_landmarks_create_13" time="0.640" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_field_04_title_maxlength_100_is_accepted_14" time="1.132" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_filter_04_filter_status_filter_in_progress_shows_only_matching_records_15" time="0.926" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_04_transition_create_new_task_on_16" time="0.616" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_route_04_route_reachable_with_stable_landmarks_tasks_17" time="0.655" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_field_05_title_maxlength_1_101_is_rejected_18" time="0.705" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_05_transition_all_tasks_on_create_19" time="0.742" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_06_transition_create_task_on_about_20" time="0.873" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_07_transition_dashboard_on_create_21" time="0.733" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_tr_08_transition_view_all_8_tasks_on_22" time="0.730" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_llm_01_dashboard_navigation_23" time="0.953" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_llm_02_about_page_access_24" time="0.755" /><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_llm_03_create_new_task_25" time="1.101"><failure message="AssertionError: Expected URL to contain '/tasks', got 'http://127.0.0.1:8102/create'&#10;assert '/tasks' in 'http://127.0.0.1:8102/create'&#10; +  where '/tasks' = &lt;built-in method lower of str object at 0x000002C6F313EC40&gt;()&#10; +    where &lt;built-in method lower of str object at 0x000002C6F313EC40&gt; = '/tasks'.lower&#10; +  and   'http://127.0.0.1:8102/create' = &lt;built-in method lower of str object at 0x000002C6F46B8CB0&gt;()&#10; +    where &lt;built-in method lower of str object at 0x000002C6F46B8CB0&gt; = 'http://127.0.0.1:8102/create'.lower&#10; +      where 'http://127.0.0.1:8102/create' = &lt;Page url='http://127.0.0.1:8102/create'&gt;.url">page = &lt;Page url='http://127.0.0.1:8102/create'&gt;
+
+    def test_tc_llm_03_create_new_task_25(page: Page):
+        """
+        Test ID: TC-LLM-03
+        Objective: Create a new task and verify navigation to the tasks list
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Navigate to Create Task page
+        page.locator('a.tab[href="/create"]').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        check('URL_CONTAINS', page, '', '/create')
+        # Step 2: Enter task title
+        page.locator('#title').first.fill('New Feature')
+        check('ELEMENT_VISIBLE', page, '#title', '')
+        # Step 3: Enter optional description
+        page.locator('#description').first.fill('Add a new feature to the app')
+        check('ELEMENT_VISIBLE', page, '#description', '')
+        # Step 4: Select Medium priority
+        page.locator('#priority').first.select_option('Medium')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        check('ELEMENT_VISIBLE', page, '#priority', '')
+        # Step 5: Submit the new task
+        page.locator('#submit-task').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('URL_CONTAINS', page, '', '/tasks')
+
+bench-taskdash-buggy-r1-8b2296.py:629: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'URL_CONTAINS', page = &lt;Page url='http://127.0.0.1:8102/create'&gt;
+selector = '', expected = '/tasks'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+&gt;           assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+E           AssertionError: Expected URL to contain '/tasks', got 'http://127.0.0.1:8102/create'
+E           assert '/tasks' in 'http://127.0.0.1:8102/create'
+E            +  where '/tasks' = &lt;built-in method lower of str object at 0x000002C6F313EC40&gt;()
+E            +    where &lt;built-in method lower of str object at 0x000002C6F313EC40&gt; = '/tasks'.lower
+E            +  and   'http://127.0.0.1:8102/create' = &lt;built-in method lower of str object at 0x000002C6F46B8CB0&gt;()
+E            +    where &lt;built-in method lower of str object at 0x000002C6F46B8CB0&gt; = 'http://127.0.0.1:8102/create'.lower
+E            +      where 'http://127.0.0.1:8102/create' = &lt;Page url='http://127.0.0.1:8102/create'&gt;.url
+
+bench-taskdash-buggy-r1-8b2296.py:64: AssertionError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_llm_07_open_specific_task_detail_26" time="8.492"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;a[href=\&quot;/tasks/3a4634ec\&quot;]&quot;).first">page = &lt;Page url='http://127.0.0.1:8102/'&gt;
+
+    def test_tc_llm_07_open_specific_task_detail_26(page: Page):
+        """
+        Test ID: TC-LLM-07
+        Objective: Open the task 'Set up CI/CD pipeline' and verify navigation to its detail page
+        Expected:
+        Expected-behaviour source: INFERRED
+        Investigation: bench-taskdash-buggy-r1-8b2296
+        """
+        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')
+        # Step 1: Click task link
+&gt;       page.locator('a[href="/tasks/3a4634ec"]').first.click()
+
+bench-taskdash-buggy-r1-8b2296.py:641: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\venv\Lib\site-packages\playwright\sync_api\_generated.py:11021: in click
+    self._sync(
+..\..\venv\Lib\site-packages\playwright\_impl\_locator.py:174: in click
+    return await self._frame._click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000002C6F43F9750&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000002C6F467AA20&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 8000ms exceeded.
+E           Call log:
+E             - waiting for locator("a[href=\"/tasks/3a4634ec\"]").first
+
+..\..\venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</failure></testcase><testcase classname="bench-taskdash-buggy-r1-8b2296" name="test_tc_llm_08_create_tab_visibility_27" time="0.606" /></testsuite></testsuites>

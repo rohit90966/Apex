@@ -1,5 +1,7 @@
 import os
+import re
 import sys
+import json
 import time
 import asyncio
 import logging
@@ -14,10 +16,65 @@ from app.schemas import (
     ExecutionStatus,
     StepExecutionResult,
     ExecutionResult,
+    is_meaningful_assertion,
 )
 from app.config import get_settings
 
 logger = logging.getLogger("verityqa.execution")
+
+# Prefix of an assertion error meaning "the oracle could not observe what it needs" (INCOMPLETE, not FAIL).
+NOT_EVALUABLE = "NOT_EVALUABLE:"
+
+# Finds the page's primary record collection (largest group of same-signature visible siblings outside
+# navigation chrome) and extracts per-record sort keys and texts. Generic: no site-specific selectors.
+COLLECTION_SCRIPT = """
+(args) => {
+  const key = args.key;
+  // Cells are fields of a record, never records themselves.
+  const skipTags = new Set(['A', 'BUTTON', 'OPTION', 'LABEL', 'INPUT', 'SCRIPT', 'STYLE', 'BR', 'SELECT', 'TH', 'TD']);
+  const chrome = 'nav, header, footer, select, datalist, [role="navigation"], [role="menu"], [aria-hidden="true"]';
+  const sig = el => el.tagName + '.' + (typeof el.className === 'string'
+      ? el.className.trim().split(/\\s+/).filter(c => c && !/^(active|selected|current|odd|even)$/i.test(c)).sort().join('.') : '');
+  const shown = el => el.tagName === 'TR' ? el.getClientRects().length > 0 : el.offsetParent !== null;
+  const numberOf = t => {
+    const m = t.match(/[$\\u20ac\\u00a3\\u20b9]\\s*-?\\d[\\d,]*(?:\\.\\d+)?/) || t.match(/-?\\d[\\d,]*(?:\\.\\d+)?/);
+    return m ? parseFloat(m[0].replace(/[^\\d.\\-]/g, '')) : null;
+  };
+  const primaryText = el => {
+    const p = el.querySelector('[class*="name"], [class*="title"], h1, h2, h3, h4, h5, a, strong, b');
+    const t = ((p && p.innerText) || el.innerText || '').trim();
+    return t.split('\\n')[0].trim();
+  };
+  let best = null;
+  for (const parent of document.querySelectorAll('body *')) {
+    if (parent.closest(chrome)) continue;
+    const kids = Array.from(parent.children).filter(k => !skipTags.has(k.tagName) && shown(k) && !k.querySelector('th'));
+    if (kids.length < 2) continue;
+    const counts = {};
+    kids.forEach(k => { const s = sig(k); counts[s] = (counts[s] || 0) + 1; });
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+    if (!top || top[1] < 2) continue;
+    const items = kids.filter(k => sig(k) === top[0] && (k.innerText || '').trim().length > 0);
+    if (items.length < 2) continue;
+    const values = items.map(it => key === 'number' ? numberOf(it.innerText || '') : primaryText(it)).filter(v => v !== null && v !== '');
+    if (values.length < items.length) continue;
+    const avgLen = items.reduce((n, it) => n + (it.innerText || '').length, 0) / items.length;
+    const score = items.length + (items[0].tagName === 'TR' || items[0].tagName === 'LI' ? 0.5 : 0) + (avgLen > 20 ? 0.75 : 0);
+    if (!best || score > best.score) {
+      best = {score: score, values: values, texts: items.map(it => (it.innerText || '').replace(/\\s+/g, ' ').trim()), signature: top[0]};
+    }
+  }
+  return best || {values: [], texts: [], signature: null};
+}
+"""
+
+
+if sys.platform == "win32":
+    try:
+        if not isinstance(asyncio.get_event_loop_policy(), asyncio.WindowsProactorEventLoopPolicy):
+            asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    except Exception:
+        pass
 
 
 class BrowserExecutor:
@@ -43,7 +100,47 @@ class BrowserExecutor:
     ) -> ExecutionResult:
         """
         Executes a sequence of ActionSteps inside a fresh, isolated Playwright BrowserContext.
+        Transparently handles Windows SelectorEventLoop environments (e.g. uvicorn --reload)
+        by delegating execution to a dedicated ProactorEventLoop thread.
         """
+        if sys.platform == "win32":
+            loop = asyncio.get_running_loop()
+            if not isinstance(loop, getattr(asyncio, "ProactorEventLoop", ())):
+                return await asyncio.to_thread(
+                    self._execute_steps_in_thread,
+                    test_id,
+                    test_name,
+                    steps,
+                    initial_url,
+                    timeout_ms,
+                )
+        return await self._execute_steps_impl(test_id, test_name, steps, initial_url, timeout_ms)
+
+    def _execute_steps_in_thread(
+        self,
+        test_id: str,
+        test_name: str,
+        steps: List[ActionStep],
+        initial_url: Optional[str] = None,
+        timeout_ms: int = 8000,
+    ) -> ExecutionResult:
+        p_loop = asyncio.ProactorEventLoop()
+        asyncio.set_event_loop(p_loop)
+        try:
+            return p_loop.run_until_complete(
+                self._execute_steps_impl(test_id, test_name, steps, initial_url, timeout_ms)
+            )
+        finally:
+            p_loop.close()
+
+    async def _execute_steps_impl(
+        self,
+        test_id: str,
+        test_name: str,
+        steps: List[ActionStep],
+        initial_url: Optional[str] = None,
+        timeout_ms: int = 8000,
+    ) -> ExecutionResult:
         step_results: List[StepExecutionResult] = []
         console_logs: List[str] = []
         overall_status = ExecutionStatus.PASSED
@@ -53,6 +150,7 @@ class BrowserExecutor:
         dom_snippet: Optional[str] = None
         assertions_evaluated = 0
         assertions_satisfied = 0
+        meaningful_evaluated = 0
         evidence_retained: Dict[str, Any] = {}
 
         start_time = time.time()
@@ -73,6 +171,9 @@ class BrowserExecutor:
             page.on("console", lambda msg: console_logs.append(f"[{msg.type}] {msg.text}"))
             page.on("pageerror", lambda err: console_logs.append(f"[pageerror] {str(err)}"))
 
+            self._last_status = None
+            page.on("response", lambda resp: self._record_document_status(page, resp))
+
             if initial_url:
                 try:
                     await page.goto(initial_url, wait_until="domcontentloaded", timeout=timeout_ms)
@@ -87,34 +188,48 @@ class BrowserExecutor:
                 actual_val: Optional[str] = None
                 step_screenshot: Optional[str] = None
 
+                # 1. Execute the primary action. Failures here are never product verdicts:
+                #    a missing/unactionable element is a LOCATOR_ERROR, an unreachable target an
+                #    ENVIRONMENT_ERROR, anything else an AUTOMATION_ERROR.
                 try:
-                    # 1. Execute the primary action
                     await self._execute_action(page, step, timeout_ms)
-
-                    # 2. Check attached assertion if present
-                    if step.assertion:
-                        assertions_evaluated += 1
-                        expected_val = step.assertion.expected_value
-                        passed, actual_val, assert_err = await self._verify_assertion(
-                            page, step.assertion, timeout_ms
-                        )
-                        if passed:
-                            assertions_satisfied += 1
-                            evidence_retained[f"step_{step.step_number}_{step.assertion.assertion_type.value}"] = actual_val
-                        else:
-                            step_status = ExecutionStatus.FAILED
-                            error_msg = assert_err
-                            evidence_retained[f"step_{step.step_number}_{step.assertion.assertion_type.value}_failed"] = {
-                                "error": assert_err,
-                                "actual": actual_val,
-                            }
-                    
                 except PlaywrightError as pe:
-                    step_status = ExecutionStatus.FAILED
+                    step_status = self._classify_action_error(step, pe)
                     error_msg = f"Playwright error: {str(pe)}"
                 except Exception as ex:
                     step_status = ExecutionStatus.ERROR
                     error_msg = f"Execution error: {str(ex)}"
+
+                # 2. Check the attached assertion: only a failed evaluable assertion is FAILED.
+                if step_status == ExecutionStatus.PASSED and step.assertion:
+                    try:
+                        expected_val = step.assertion.expected_value
+                        passed, actual_val, assert_err = await self._verify_assertion(
+                            page, step.assertion, timeout_ms
+                        )
+                        if assert_err and assert_err.startswith(NOT_EVALUABLE):
+                            step_status = ExecutionStatus.INCONCLUSIVE
+                            error_msg = assert_err
+                        else:
+                            assertions_evaluated += 1
+                            if is_meaningful_assertion(step.assertion):
+                                meaningful_evaluated += 1
+                            if passed:
+                                assertions_satisfied += 1
+                                evidence_retained[f"step_{step.step_number}_{step.assertion.assertion_type.value}"] = actual_val
+                            else:
+                                step_status = ExecutionStatus.FAILED
+                                error_msg = assert_err
+                                evidence_retained[f"step_{step.step_number}_{step.assertion.assertion_type.value}_failed"] = {
+                                    "error": assert_err,
+                                    "actual": actual_val,
+                                }
+                    except PlaywrightError as pe:
+                        step_status = ExecutionStatus.AUTOMATION_ERROR
+                        error_msg = f"Assertion evaluation error: {str(pe)}"
+                    except Exception as ex:
+                        step_status = ExecutionStatus.ERROR
+                        error_msg = f"Assertion evaluation error: {str(ex)}"
 
                 step_duration = round(time.time() - step_start, 3)
 
@@ -140,7 +255,7 @@ class BrowserExecutor:
                 )
                 step_results.append(step_res)
 
-                if step_status in (ExecutionStatus.FAILED, ExecutionStatus.ERROR):
+                if step_status != ExecutionStatus.PASSED:
                     overall_status = step_status
                     failure_reason = error_msg or "Step assertion failed"
                     failure_step_num = step.step_number
@@ -152,6 +267,10 @@ class BrowserExecutor:
                 if assertions_satisfied < stated_assertions:
                     overall_status = ExecutionStatus.FAILED
                     failure_reason = f"Only {assertions_satisfied}/{stated_assertions} stated assertions were satisfied"
+                elif meaningful_evaluated == 0:
+                    # Only trivially-true checks (e.g. 'body is visible') ran: nothing was verified.
+                    overall_status = ExecutionStatus.INCONCLUSIVE
+                    failure_reason = "Only trivial assertions were evaluated; no product behaviour was verified"
             elif overall_status == ExecutionStatus.PASSED and assertions_evaluated == 0:
                 # Steps ran but nothing was verified: that is not a pass.
                 overall_status = ExecutionStatus.INCONCLUSIVE
@@ -177,6 +296,11 @@ class BrowserExecutor:
 
         total_duration = round(time.time() - start_time, 3)
 
+        # Zero-assertion tests must never count as PASS
+        if overall_status == ExecutionStatus.PASSED and assertions_evaluated == 0:
+            overall_status = ExecutionStatus.FAILED
+            failure_reason = "Test completed with 0 evaluated assertions. Zero-assertion tests cannot count as PASS."
+
         return ExecutionResult(
             test_id=test_id,
             test_name=test_name,
@@ -193,15 +317,43 @@ class BrowserExecutor:
             timestamp=time.strftime("%Y-%m-%d %H:%M:%S"),
             assertions_evaluated=assertions_evaluated,
             assertions_satisfied=assertions_satisfied,
+            meaningful_assertions_evaluated=meaningful_evaluated,
             evidence_retained=evidence_retained,
         )
+
+    def _record_document_status(self, page: Page, response: Any) -> None:
+        """Remembers the HTTP status of the latest main-frame document response (for STATUS_CODE)."""
+        try:
+            if response.request.resource_type == "document" and response.frame == page.main_frame:
+                self._last_status = response.status
+        except Exception:
+            pass
+
+    @staticmethod
+    def _classify_action_error(step: ActionStep, err: Exception) -> ExecutionStatus:
+        text = str(err)
+        if any(k in text for k in ("net::ERR_", "NS_ERROR_", "Target page, context or browser has been closed",
+                                   "Browser has been closed", "Connection refused")):
+            return ExecutionStatus.ENVIRONMENT_ERROR
+        if step.selector and ("Timeout" in text or "waiting for" in text or "not visible" in text
+                              or "did not match any elements" in text or "strict mode violation" in text
+                              or "did not find some options" in text):
+            return ExecutionStatus.LOCATOR_ERROR
+        return ExecutionStatus.AUTOMATION_ERROR
 
     async def _execute_action(self, page: Page, step: ActionStep, timeout_ms: int):
         """Dispatches structured step actions safely."""
         if step.action == ActionType.NAVIGATE:
             if not step.value:
                 raise ValueError("NAVIGATE action requires 'value' (target URL)")
-            await page.goto(step.value, wait_until="domcontentloaded", timeout=timeout_ms)
+            target_nav = step.value
+            if target_nav.startswith("/"):
+                cur_url = page.url
+                if cur_url and not cur_url.startswith("about:"):
+                    from urllib.parse import urlparse
+                    p = urlparse(cur_url)
+                    target_nav = f"{p.scheme}://{p.netloc}{target_nav}"
+            await page.goto(target_nav, wait_until="domcontentloaded", timeout=timeout_ms)
 
         elif step.action == ActionType.FILL:
             if not step.selector:
@@ -223,6 +375,9 @@ class BrowserExecutor:
                 raise ValueError("SELECT action requires 'selector' and 'value'")
             await page.wait_for_selector(step.selector, state="visible", timeout=timeout_ms)
             await page.select_option(step.selector, step.value, timeout=timeout_ms)
+            # A change handler may reload or re-render the page; let that settle before any oracle runs.
+            await page.wait_for_timeout(300)
+            await page.wait_for_load_state("domcontentloaded", timeout=min(timeout_ms, 5000))
 
         elif step.action == ActionType.PRESS_KEY:
             key = step.value or "Enter"
@@ -583,4 +738,138 @@ class BrowserExecutor:
             except Exception as e:
                 return False, str(e), f"Element attribute check error: {str(e)}"
 
-        return True, "Custom check passed", None
+        elif atype == AssertionType.STATUS_CODE:
+            status = getattr(self, "_last_status", None)
+            if status is None:
+                return False, None, f"{NOT_EVALUABLE} no document response status was captured"
+            m = re.match(r"^\s*(<=|>=|<|>|==)?\s*(\d{3})\s*$", expected or "")
+            if not m:
+                return False, None, f"{NOT_EVALUABLE} unsupported STATUS_CODE expectation '{expected}'"
+            op, num = m.group(1) or "==", int(m.group(2))
+            ok = {"<": status < num, "<=": status <= num, ">": status > num, ">=": status >= num, "==": status == num}[op]
+            return (True, str(status), None) if ok else (False, str(status), f"Expected HTTP status {op}{num}, got {status}")
+
+        elif atype == AssertionType.FIELD_VALIDITY:
+            res = await page.evaluate(
+                """(sel) => {
+                    const el = document.querySelector(sel);
+                    if (!el || !el.validity) return null;
+                    const v = el.validity;
+                    const flags = ['valueMissing','typeMismatch','patternMismatch','tooLong','tooShort',
+                                   'rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k => v[k]);
+                    return {valid: v.valid, flags: flags, message: el.validationMessage || '', value_length: (el.value || '').length};
+                }""",
+                assertion.target_selector or "",
+            )
+            if res is None:
+                return False, "field not present", f"Field '{assertion.target_selector}' is not present (the form may have been submitted)"
+            actual = "valid" if res["valid"] else ",".join(res["flags"]) or "invalid"
+            if expected == "valid":
+                ok = bool(res["valid"])
+            elif expected == "invalid":
+                ok = not res["valid"]
+            else:
+                ok = expected in res["flags"]
+            detail = f"validity={actual}; message='{res['message'][:80]}'"
+            return (True, detail, None) if ok else (False, detail, f"Expected field validity '{expected}', observed '{actual}'")
+
+        elif atype == AssertionType.ELEMENT_VALUE_LENGTH:
+            length = await page.evaluate(
+                "(sel) => { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }",
+                assertion.target_selector or "",
+            )
+            if length is None:
+                return False, "field not present", f"Field '{assertion.target_selector}' is not present"
+            m = re.match(r"^\s*(<=|>=|==)?\s*(\d+)\s*$", expected or "")
+            if not m:
+                return False, None, f"{NOT_EVALUABLE} unsupported length expectation '{expected}'"
+            op, num = m.group(1) or "==", int(m.group(2))
+            ok = {"<=": length <= num, ">=": length >= num, "==": length == num}[op]
+            return (True, f"length={length}", None) if ok else (False, f"length={length}", f"Expected value length {op}{num}, got {length}")
+
+        elif atype in (AssertionType.VALIDATION_FEEDBACK_SHOWN, AssertionType.NO_VALIDATION_FEEDBACK):
+            try:
+                await page.wait_for_load_state("domcontentloaded", timeout=min(timeout_ms, 5000))
+            except Exception:
+                pass
+            feedback = await page.evaluate(
+                """(sel) => {
+                    const visible = el => !!(el && el.offsetParent !== null && (el.innerText || '').trim().length > 0);
+                    const out = [];
+                    const field = sel ? document.querySelector(sel) : null;
+                    if (field && field.validity && !field.validity.valid) out.push('field invalid: ' + (field.validationMessage || 'constraint violated'));
+                    if (field && field.getAttribute('aria-invalid') === 'true') out.push('field aria-invalid');
+                    const msgs = document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]');
+                    for (const m of msgs) { if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); }
+                    return out;
+                }""",
+                assertion.target_selector or "",
+            )
+            # With rule keywords, a message counts only when it names the field or the rule; field-level
+            # invalidity always counts. Without keywords any validation feedback counts.
+            try:
+                keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            except ValueError:
+                keywords = []
+            attributable = [f for f in feedback if not f.startswith("message: ")
+                            or not keywords or any(k in f.lower() for k in keywords)]
+            unrelated = [f for f in feedback if f not in attributable]
+            shown = bool(attributable)
+            want = atype == AssertionType.VALIDATION_FEEDBACK_SHOWN
+            detail = "; ".join(attributable) if attributable else (
+                f"no feedback attributable to this rule (unrelated: {'; '.join(unrelated)})" if unrelated else "no validation feedback visible")
+            if shown == want:
+                return True, detail, None
+            return False, detail, ("Expected the submission to be rejected with feedback attributable to this rule, but "
+                                   + (f"only unrelated feedback was shown: {'; '.join(unrelated)}" if unrelated else "none was shown")
+                                   if want else f"Expected the submission to be accepted, but rule feedback was shown: {detail}")
+
+        elif atype == AssertionType.SELECTED_VALUE:
+            value = await page.evaluate(
+                "(sel) => { const el = document.querySelector(sel); return el ? el.value : null; }",
+                assertion.target_selector or "",
+            )
+            if value is None:
+                return False, "control not present", f"Control '{assertion.target_selector}' is not present"
+            return (True, value, None) if value == expected else (False, value, f"Expected selected value '{expected}', got '{value}'")
+
+        elif atype in (AssertionType.LIST_SORTED, AssertionType.LIST_ALL_CONTAIN):
+            if atype == AssertionType.LIST_SORTED:
+                try:
+                    spec = json.loads(expected)
+                except ValueError:
+                    return False, None, f"{NOT_EVALUABLE} LIST_SORTED needs a JSON ordering rule"
+                key = spec.get("key", "text")
+            else:
+                spec, key = {}, "text"
+            try:
+                await page.wait_for_load_state("domcontentloaded", timeout=min(timeout_ms, 5000))
+            except Exception:
+                pass
+            data = await page.evaluate(COLLECTION_SCRIPT, {"key": key, "needle": expected if atype == AssertionType.LIST_ALL_CONTAIN else ""})
+            values = (data or {}).get("values") or []
+            if len(values) < 2 and atype == AssertionType.LIST_SORTED:
+                return False, None, f"{NOT_EVALUABLE} could not identify at least two records to compare"
+            if atype == AssertionType.LIST_ALL_CONTAIN:
+                texts = (data or {}).get("texts") or []
+                if not texts:
+                    return False, None, f"{NOT_EVALUABLE} could not identify any listed records"
+                missing = [t[:80] for t in texts if expected.lower() not in t.lower()]
+                if missing:
+                    return False, f"{len(missing)}/{len(texts)} records lack '{expected}'", \
+                        f"Expected every listed record to contain '{expected}'; non-matching: {missing[:3]}"
+                return True, f"all {len(texts)} records contain '{expected}'", None
+            direction = spec.get("direction", "asc")
+            if key == "number":
+                ordered = sorted(values, reverse=direction == "desc")
+            else:
+                ordered = sorted(values, key=lambda v: str(v).casefold(), reverse=direction == "desc")
+            sample = ", ".join(str(v) for v in values[:6])
+            if list(values) == list(ordered):
+                return True, f"{len(values)} records ordered {key} {direction}: {sample}", None
+            return False, sample, f"Records are not ordered by {key} {direction}: {sample}"
+
+        elif atype == AssertionType.CUSTOM:
+            return False, None, f"{NOT_EVALUABLE} CUSTOM assertions have no executable oracle"
+
+        return False, None, f"{NOT_EVALUABLE} unsupported assertion type {atype.value}"

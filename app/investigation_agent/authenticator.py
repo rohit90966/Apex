@@ -99,12 +99,16 @@ class AuthenticationManager:
     @classmethod
     def discover_credentials(cls, url: str, user_provided_creds: Optional[Dict[str, str]] = None) -> Optional[Dict[str, str]]:
         """
-        Discovers test credentials safely from:
-        1. User-provided inspection request payload
-        2. Environment variables (`TARGET_USERNAME`, `TARGET_PASSWORD`, `SAUCEDEMO_USER`, etc.)
-        3. Approved demo application credentials whitelist
-        Never logs or leaks credentials.
+        Discovers test credentials for exactly one origin, from:
+        1. User-provided inspection request payload (for this request only)
+        2. Environment variables (`VERITYQA_TEST_USERNAME`/`VERITYQA_TEST_PASSWORD`, or
+           `TARGET_USERNAME`/`TARGET_PASSWORD`), only when `VERITYQA_TEST_CREDENTIALS_ORIGIN`
+           names the same origin as `url`
+        3. The authorized demo registry, keyed by exact host[:port]
+        Credentials are never returned for an unrelated host. Never logs or leaks credentials.
         """
+        from app.intelligence.target_context import canonical_origin
+
         if user_provided_creds and user_provided_creds.get("username"):
             return {
                 "username": user_provided_creds["username"],
@@ -112,15 +116,23 @@ class AuthenticationManager:
                 "source": "USER_PROVIDED",
             }
 
-        # Check env vars
+        origin = canonical_origin(url or "")
+        if not origin:
+            return None
+
         env_user = os.environ.get("VERITYQA_TEST_USERNAME") or os.environ.get("TARGET_USERNAME")
         env_pass = os.environ.get("VERITYQA_TEST_PASSWORD") or os.environ.get("TARGET_PASSWORD")
+        env_origin = canonical_origin(os.environ.get("VERITYQA_TEST_CREDENTIALS_ORIGIN", ""))
         if env_user and env_pass:
-            return {"username": env_user, "password": env_pass, "source": "ENVIRONMENT"}
+            if env_origin and env_origin == origin:
+                return {"username": env_user, "password": env_pass, "source": "ENVIRONMENT"}
+            if not env_origin:
+                logger.warning("[Auth] Environment test credentials ignored: set VERITYQA_TEST_CREDENTIALS_ORIGIN "
+                               "to the origin they are authorized for.")
 
-        # Check known target domain whitelist
+        netloc = origin.split("://", 1)[1]
         for domain, creds in cls._get_registry().items():
-            if domain in url.lower():
+            if domain.strip().lower() == netloc:
                 return {"username": creds["user"], "password": creds["pass"], "source": "DEMO_REGISTRY"}
 
         return None

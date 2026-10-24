@@ -102,6 +102,14 @@ def test_report_builder_reconstructs_auth_and_transitions():
         url="https://www.saucedemo.com/",
         normalized_route="/",
         page_title="Swag Labs Login",
+        forms=[{
+            "form_id": "login", "form_selector": "form", "method": "POST",
+            "submit_control_selector": "#login-button",
+            "fields": [
+                {"name": "user-name", "id": "user-name", "type": "text", "stable_selector": "#user-name"},
+                {"name": "password", "id": "password", "type": "password", "stable_selector": "#password"},
+            ],
+        }],
     )
     obs_inventory = UIStateObservation(
         state_id="st_inventory",
@@ -138,9 +146,11 @@ def test_report_builder_reconstructs_auth_and_transitions():
     assert report.playwright_test_script is not None
     script = report.playwright_test_script
 
-    # Verify that the exported script contains the full login sequence and subsequent action
+    # The exported script contains the full login sequence (selectors from the observed login form)
+    # and the subsequent action, but never the password itself.
     assert "page.goto('https://www.saucedemo.com/'" in script
-    assert "standard_user" in script
-    assert "secret_sauce" in script
+    assert "page.locator('#user-name').fill('standard_user')" in script
+    assert "secret_sauce" not in script
+    assert "VERITYQA_TEST_PASSWORD" in script
     assert "button#add-to-cart-sauce-labs-backpack" in script
     assert "assert page.url is not None" in script

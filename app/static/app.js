@@ -23600,6 +23600,11 @@ var VerityQAApp = (() => {
     if (typeof value === "number" && !Number.isFinite(value)) return NO_DATA;
     return String(value);
   }
+  function buildExecuteRequest(generatedTests, targetUrl) {
+    const runId = generatedTests?.run_id;
+    if (runId) return { target_url: targetUrl, run_id: runId };
+    return { target_url: targetUrl, test_cases: generatedTests?.test_cases || [] };
+  }
   function executionSummary(executionReport) {
     const executed = executionReport?.executed_count;
     if (typeof executed !== "number" || !Number.isFinite(executed)) return null;
@@ -23612,8 +23617,85 @@ var VerityQAApp = (() => {
       failed,
       setupFailures: executionReport.setup_failures_count ?? 0,
       passRate: executed > 0 ? (passed / executed * 100).toFixed(1) : null,
-      assertionValidity: typeof validity === "number" ? (validity * 100).toFixed(1) : null
+      assertionValidity: executed > 0 && typeof validity === "number" ? (validity * 100).toFixed(1) : null
     };
+  }
+  var EXECUTION_DISPLAY_STATUS = {
+    PASSED: "PASS",
+    FAILED: "FAIL",
+    PRODUCT_BEHAVIOR_DEVIATION: "FAIL",
+    ERROR: "ERROR",
+    LOCATOR_ERROR: "ERROR",
+    AUTOMATION_ERROR: "ERROR",
+    ENVIRONMENT_ERROR: "ERROR",
+    BLOCKED: "BLOCKED",
+    TEST_DEFINITION_ERROR: "INVALID",
+    INCONCLUSIVE: "INCOMPLETE",
+    SKIPPED: "SKIPPED"
+  };
+  var DISPLAY_STATUSES = ["PASS", "FAIL", "ERROR", "BLOCKED", "INVALID", "INCOMPLETE"];
+  function displayExecutionStatus(status) {
+    return EXECUTION_DISPLAY_STATUS[String(status || "").toUpperCase()] || "UNKNOWN";
+  }
+  function executionStatusBadgeClass(status) {
+    const display = displayExecutionStatus(status);
+    if (display === "PASS") return "badge-success";
+    if (display === "FAIL") return "badge-danger";
+    if (display === "INVALID" || display === "BLOCKED") return "badge-neutral";
+    return "badge-warning";
+  }
+  function executionStatusCounts(executionReport) {
+    const counts = Object.fromEntries(DISPLAY_STATUSES.map((s) => [s, 0]));
+    for (const r of executionReport?.results || []) {
+      const display = displayExecutionStatus(r.status);
+      counts[display] = (counts[display] || 0) + 1;
+    }
+    return counts;
+  }
+  function textOf(value) {
+    if (value === null || value === void 0) return null;
+    if (typeof value === "string") return value || null;
+    if (typeof value === "object" && typeof value.text === "string") return value.text || null;
+    return null;
+  }
+  function bugFindings(investigationReport, executionReport) {
+    const verified = [];
+    const unverified = [];
+    for (const lead of investigationReport?.confirmed_bug_leads || []) {
+      verified.push({
+        id: lead.id,
+        title: lead.title,
+        source: "Investigation",
+        verdict: "CONFIRMED BY REPRODUCER",
+        severity: lead.severity_guess || null,
+        detail: textOf(lead.actual),
+        evidence_ids: lead.evidence_ids || []
+      });
+    }
+    for (const lead of investigationReport?.unstable_or_rejected_leads || []) {
+      unverified.push({
+        id: lead.id,
+        title: lead.title,
+        source: "Investigation",
+        verdict: lead.status || "UNVERIFIED",
+        reason: textOf(lead.reproduction_failure_reason)
+      });
+    }
+    for (const bug of executionReport?.bug_reports || []) {
+      const item = {
+        id: bug.bug_id,
+        title: bug.title,
+        source: `Execution (${bug.test_id})`,
+        verdict: bug.verification_status,
+        severity: bug.severity || null,
+        detail: textOf(bug.actual_behavior) || textOf(bug.summary),
+        reproduction: textOf(bug.reproduction_rate),
+        reason: textOf(bug.summary)
+      };
+      if (bug.verification_status === "CONFIRMED_REPRODUCIBLE") verified.push(item);
+      else unverified.push(item);
+    }
+    return { verified, unverified };
   }
 
   // app/static/src/components/Overview.jsx
@@ -23942,25 +24024,46 @@ var VerityQAApp = (() => {
   }) {
     const [categoryFilter, setCategoryFilter] = (0, import_react4.useState)("ALL");
     const [searchTerm, setSearchTerm] = (0, import_react4.useState)("");
+    const [exportedScript, setExportedScript] = (0, import_react4.useState)("");
     const testCases = testSuite?.test_cases || investigationReport?.proposed_test_cases || [];
-    const targetUrl = testSuite?.target_url || investigationReport?.overview?.target_url || "https://www.saucedemo.com/";
+    const runId = investigationReport?.run_id || testSuite?.run_id || "";
+    const alignment = investigationReport?.test_planning?.requirement_alignment;
+    (0, import_react4.useEffect)(() => {
+      let cancelled = false;
+      setExportedScript("");
+      if (!runId) return void 0;
+      fetch(`/api/runs/${encodeURIComponent(runId)}/export`).then((r) => r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`))).then((text) => {
+        if (!cancelled) setExportedScript(text);
+      }).catch((err) => {
+        if (!cancelled) setExportedScript(`# Export unavailable for run ${runId}: ${err.message}`);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, [runId, testCases.length]);
     let wf = 0, trans = 0, func = 0, bnd = 0, a11y = 0;
     testCases.forEach((tc) => {
-      const cat = (tc.category || "").toLowerCase();
-      if (cat.includes("workflow")) wf++;
-      else if (cat.includes("transition")) trans++;
-      else if (cat.includes("boundary") || cat.includes("bva")) bnd++;
+      const cat = (tc.category || tc.oracle_class || "").toLowerCase();
+      const id = (tc.test_id || "").toLowerCase();
+      if (cat.includes("workflow") || id.includes("wf") || id.includes("journey")) wf++;
+      else if (cat.includes("transition") || id.includes("tr")) trans++;
+      else if (cat.includes("boundary") || cat.includes("bva") || cat.includes("validation") || id.includes("val")) bnd++;
       else if (cat.includes("access") || cat.includes("a11y")) a11y++;
       else func++;
     });
     const filtered = testCases.filter((tc) => {
-      const cat = (tc.category || "").toLowerCase();
-      const matchesCat = categoryFilter === "ALL" || categoryFilter === "workflow" && cat.includes("workflow") || categoryFilter === "state_transition" && cat.includes("transition") || categoryFilter === "boundary" && (cat.includes("boundary") || cat.includes("bva")) || categoryFilter === "accessibility" && (cat.includes("access") || cat.includes("a11y")) || categoryFilter === "functional" && !cat.includes("workflow") && !cat.includes("transition") && !cat.includes("boundary") && !cat.includes("access");
+      const cat = (tc.category || tc.oracle_class || "").toLowerCase();
+      const id = (tc.test_id || "").toLowerCase();
+      const isWf = cat.includes("workflow") || id.includes("wf") || id.includes("journey");
+      const isTr = cat.includes("transition") || id.includes("tr");
+      const isBnd = cat.includes("boundary") || cat.includes("bva") || cat.includes("validation") || id.includes("val");
+      const isA11y = cat.includes("access") || cat.includes("a11y");
+      const matchesCat = categoryFilter === "ALL" || categoryFilter === "workflow" && isWf || categoryFilter === "state_transition" && isTr || categoryFilter === "boundary" && isBnd || categoryFilter === "accessibility" && isA11y || categoryFilter === "functional" && !isWf && !isTr && !isBnd && !isA11y;
       const search = searchTerm.toLowerCase();
       const matchesSearch = !search || `${tc.test_id || ""} ${tc.name || tc.title || ""} ${tc.objective || ""}`.toLowerCase().includes(search);
       return matchesCat && matchesSearch;
     });
-    const playwrightScript = testSuite?.playwright_code || generatePlaywrightScript(testCases, targetUrl);
+    const playwrightScript = testSuite?.playwright_code || exportedScript || (runId ? "# Loading exported test script..." : "# The Playwright export is available once the investigation run has been saved.");
     const handleCopyCode = () => {
       navigator.clipboard.writeText(playwrightScript);
       onToast("Playwright Python test suite copied to clipboard!", "success");
@@ -23975,7 +24078,7 @@ var VerityQAApp = (() => {
       URL.revokeObjectURL(url);
       onToast("Downloaded Playwright test script", "success");
     };
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-panel" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-header" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "results-title-row" }, /* @__PURE__ */ import_react4.default.createElement("h1", { className: "view-title" }, "Generated Contract Test Suite"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "badge badge-emerald" }, testCases.length, " Test Cases")), /* @__PURE__ */ import_react4.default.createElement("p", { className: "view-subtitle" }, "Empirically derived test cases with observable preconditions, actions, and evidence traceability.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-actions" }, /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "btn btn-outline", onClick: handleCopyCode }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react4.default.createElement("rect", { x: "9", y: "9", width: "13", height: "13", rx: "2", ry: "2" }), /* @__PURE__ */ import_react4.default.createElement("path", { d: "M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" })), "Copy Playwright Code"), /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "btn btn-primary", onClick: () => onExecuteSuite(testCases) }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u25B6 Execute Tests via Playwright")))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "filter-bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "category-chips" }, /* @__PURE__ */ import_react4.default.createElement(
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-panel" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-header" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "results-title-row" }, /* @__PURE__ */ import_react4.default.createElement("h1", { className: "view-title" }, "Generated Contract Test Suite"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "badge badge-emerald" }, testCases.length, " Test Cases")), /* @__PURE__ */ import_react4.default.createElement("p", { className: "view-subtitle" }, "Empirically derived test cases with observable preconditions, actions, and evidence traceability.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "view-actions" }, /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "btn btn-outline", onClick: handleCopyCode }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react4.default.createElement("rect", { x: "9", y: "9", width: "13", height: "13", rx: "2", ry: "2" }), /* @__PURE__ */ import_react4.default.createElement("path", { d: "M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" })), "Copy Playwright Code"), /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "btn btn-primary", onClick: () => onExecuteSuite(testCases) }, /* @__PURE__ */ import_react4.default.createElement("span", null, "\u25B6 Execute Tests via Playwright")))), alignment && alignment.requirements && alignment.requirements.length > 0 && /* @__PURE__ */ import_react4.default.createElement("div", { className: "card", style: { marginBottom: "12px", borderLeft: `4px solid ${alignment.warning ? "var(--color-warning)" : "var(--accent-emerald)"}` } }, /* @__PURE__ */ import_react4.default.createElement("div", { style: { fontWeight: 600 } }, "Requirement alignment: ", alignment.matched, " matched, ", alignment.weak, " weak, ", alignment.unmatched, " unmatched"), alignment.warning && /* @__PURE__ */ import_react4.default.createElement("div", { style: { color: "var(--color-warning)", marginTop: "4px" } }, alignment.warning), /* @__PURE__ */ import_react4.default.createElement("ul", { style: { margin: "6px 0 0 16px", fontSize: "12px" } }, alignment.requirements.map((r, i) => /* @__PURE__ */ import_react4.default.createElement("li", { key: i }, /* @__PURE__ */ import_react4.default.createElement("strong", null, r.status), " \u2014 ", r.requirement, " ", /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-muted" }, "(", r.evidence, ")"))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "filter-bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "category-chips" }, /* @__PURE__ */ import_react4.default.createElement(
       "button",
       {
         type: "button",
@@ -24055,63 +24158,6 @@ var VerityQAApp = (() => {
       return /* @__PURE__ */ import_react4.default.createElement("div", { key: id, className: "tc-card" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "tc-header" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "tc-title-wrap" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "tc-id" }, id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "tc-name" }, name)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "tc-tags" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "source-tag" }, cat), /* @__PURE__ */ import_react4.default.createElement("span", { className: `pri-${pri}` }, pri), isRequirement && /* @__PURE__ */ import_react4.default.createElement("span", { className: "badge badge-emerald" }, "REQUIREMENT"), isExploratory && /* @__PURE__ */ import_react4.default.createElement("span", { className: "badge badge-amber" }, "EXPLORATORY HYPOTHESIS"))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "tc-body" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("strong", null, "Objective:"), " ", tc.objective || "Verify behavior"), tc.action_description && /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("strong", null, "Action:"), " ", tc.action_description), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("strong", null, "Expected:"), " ", tc.expected_outcome || tc.expected || "Conforms to invariants"), tc.preconditions && tc.preconditions.length > 0 && /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "4px", fontSize: "11px", color: "var(--text-muted)" } }, /* @__PURE__ */ import_react4.default.createElement("strong", null, "Preconditions:"), " ", tc.preconditions.join("; ")), tc.steps && tc.steps.length > 0 && /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "8px" } }, /* @__PURE__ */ import_react4.default.createElement("strong", { style: { fontSize: "11px", color: "var(--text-muted)", textTransform: "uppercase" } }, "Action Sequence (", tc.steps.length, " steps):"), /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "4px", display: "flex", flexDirection: "column", gap: "3px" } }, tc.steps.map((s, sIdx) => /* @__PURE__ */ import_react4.default.createElement("div", { key: sIdx, className: "mono", style: { fontSize: "11px", color: "var(--text-secondary)" } }, s.step_number || sIdx + 1, ". ", /* @__PURE__ */ import_react4.default.createElement("span", { style: { color: "var(--accent-cyan)" } }, s.action_type || s.action), " ", /* @__PURE__ */ import_react4.default.createElement("code", null, s.selector || s.target || ""))))), tc.evidence_ids && tc.evidence_ids.length > 0 && /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "6px", fontSize: "11px", color: "var(--text-muted)" } }, /* @__PURE__ */ import_react4.default.createElement("strong", null, "Empirical Evidence:"), " ", /* @__PURE__ */ import_react4.default.createElement("code", { className: "mono", style: { color: "var(--accent-emerald)" } }, tc.evidence_ids.join(", ")))));
     }) : /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-center text-muted p-20" }, "No test cases match filter.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "code-viewer-col" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "card sticky-code-card" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "card-header" }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("h3", { className: "card-title" }, "Playwright Python Test Suite"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "card-subtitle" }, "Self-contained executable test runner code")), /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "btn btn-xs btn-outline", onClick: handleDownloadScript }, "\u2B07 Download .py")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "code-editor-box" }, /* @__PURE__ */ import_react4.default.createElement("pre", { className: "code-block" }, /* @__PURE__ */ import_react4.default.createElement("code", null, playwrightScript)))))));
   }
-  function generatePlaywrightScript(testCases, targetUrl) {
-    let script = `# ==============================================================================
-# VerityQA Autonomous Playwright Behavioral Replay Test Script
-# Target: ${targetUrl}
-# Generated: ${(/* @__PURE__ */ new Date()).toISOString()}
-# Grounded in empirical investigation evidence
-# ==============================================================================
-
-import asyncio
-from playwright.async_api import async_playwright, expect
-
-TARGET_URL = "${targetUrl}"
-
-async def run_suite():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context()
-        page = await context.new_page()
-        print(f"[*] Navigating to {TARGET_URL}...")
-        await page.goto(TARGET_URL, wait_until="networkidle")
-
-`;
-    (testCases || []).slice(0, 15).forEach((tc, i) => {
-      const testId = tc.test_id || `TC_${i + 1}`;
-      script += `        # --- Test ${testId}: ${tc.name || tc.title || "Case"} ---
-        print("[RUN] ${testId}")
-`;
-      if (tc.steps && tc.steps.length > 0) {
-        tc.steps.forEach((s) => {
-          const act = s.action_type || s.action || "NAVIGATE";
-          const sel = s.selector || s.target;
-          if (act === "NAVIGATE") {
-            const navTarget = s.value || sel;
-            script += navTarget ? `        await page.goto("${navTarget}")
-` : `        await page.goto(TARGET_URL)
-`;
-          } else if (act === "CLICK" || act === "CLICK_CONTROL") {
-            script += `        await page.locator("${sel || "button"}").first.click()
-`;
-          } else if (act === "FILL") {
-            script += `        await page.locator("${sel || "input"}").first.fill("${s.input_value || s.value || "test"}")
-`;
-          }
-        });
-      }
-      script += `        print("[PASS] ${testId}")
-
-`;
-    });
-    script += `        await browser.close()
-        print("[SUCCESS] All autonomous contract tests executed.")
-
-if __name__ == "__main__":
-    asyncio.run(run_suite())
-`;
-    return script;
-  }
 
   // app/static/src/components/ExecutionAndBugs.jsx
   var import_react5 = __toESM(require_react());
@@ -24120,66 +24166,46 @@ if __name__ == "__main__":
     executionReport,
     onRunTestSuite,
     executingTests,
+    canExecute,
     onSelectTab,
     onViewScreenshot
   }) {
     const [selectedResult, setSelectedResult] = (0, import_react5.useState)(null);
     const [filterStatus, setFilterStatus] = (0, import_react5.useState)("ALL");
-    const [selectedBug, setSelectedBug] = (0, import_react5.useState)(null);
     const results = executionReport?.results || [];
-    const summary = executionReport?.summary || {};
-    const confirmedBugs = investigationReport?.verified_defects || investigationReport?.confirmed_bugs || executionReport?.confirmed_bugs || [];
-    const skepticRejections = investigationReport?.skeptic_rejections || investigationReport?.rejected_leads || [];
-    const filteredResults = results.filter((r) => {
-      if (filterStatus === "ALL") return true;
-      return r.status?.toUpperCase() === filterStatus;
-    });
-    const total = summary.total_tests ?? results.length;
-    const passed = summary.passed ?? results.filter((r) => r.status === "PASSED").length;
-    const failed = summary.failed ?? results.filter((r) => r.status === "FAILED").length;
-    const errors = summary.errors ?? results.filter((r) => r.status === "ERROR" || r.status === "SETUP_FAILURE").length;
-    const validityRate = summary.assertion_validity_rate != null ? `${(summary.assertion_validity_rate * 100).toFixed(1)}%` : total > 0 ? `${(passed / total * 100).toFixed(1)}%` : "N/A";
-    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "tab-pane active fade-in" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h2", { style: { margin: 0, fontSize: "1.4rem", fontWeight: 600 } }, "Test Suite Execution & Bug Verification"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", color: "var(--text-muted)", fontSize: "0.9rem" } }, "Real Playwright runner execution results, assertion validity metrics, and skeptic-filtered defect verifications.")), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", gap: "0.75rem" } }, /* @__PURE__ */ import_react5.default.createElement(
+    const counts = executionStatusCounts(executionReport);
+    const { verified, unverified } = bugFindings(investigationReport, executionReport);
+    const filteredResults = results.filter((r) => filterStatus === "ALL" || displayExecutionStatus(r.status) === filterStatus);
+    const metricCards = [
+      { label: "Executed", value: executionReport ? results.length : NO_DATA, sub: "Test cases run", color: null },
+      { label: "Pass", value: executionReport ? counts.PASS : NO_DATA, sub: "All stated assertions satisfied", color: "var(--color-success)" },
+      { label: "Fail", value: executionReport ? counts.FAIL : NO_DATA, sub: "An assertion was not satisfied", color: "var(--color-danger)" },
+      { label: "Error", value: executionReport ? counts.ERROR : NO_DATA, sub: "Runner, locator, or environment error", color: "var(--color-warning)" },
+      { label: "Blocked", value: executionReport ? counts.BLOCKED : NO_DATA, sub: "Could not run (e.g. credentials missing)", color: null },
+      { label: "Invalid", value: executionReport ? counts.INVALID : NO_DATA, sub: "Test case not executable as defined", color: null },
+      { label: "Incomplete", value: executionReport ? counts.INCOMPLETE : NO_DATA, sub: "Ran but verified nothing", color: null }
+    ];
+    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "tab-pane active fade-in" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h2", { style: { margin: 0, fontSize: "1.4rem", fontWeight: 600 } }, "Test Suite Execution & Bug Verification"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", color: "var(--text-muted)", fontSize: "0.9rem" } }, "Results of executing this run's generated test cases with the Playwright runner. Execution is started manually.")), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", gap: "0.75rem" } }, /* @__PURE__ */ import_react5.default.createElement(
       "button",
       {
         className: "btn btn-primary",
         onClick: onRunTestSuite,
-        disabled: executingTests || !investigationReport,
+        disabled: executingTests || !canExecute,
         id: "btn-execute-tests"
       },
-      executingTests ? /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("span", { className: "spinner", style: { width: "14px", height: "14px", marginRight: "6px", display: "inline-block" } }), "Executing Suite...") : /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, "\u25B6 Run Synthesized Test Suite")
-    )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metrics-grid", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, "Total Executed"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value" }, total), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, "Synthesized contract tests")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-card", style: { borderLeft: "4px solid var(--color-success)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, "Passed Tests"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: { color: "var(--color-success)" } }, passed), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, "Verified assertions")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-card", style: { borderLeft: "4px solid var(--color-danger)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, "Defects / Failed"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: { color: "var(--color-danger)" } }, failed), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, "Assertion or flow failures")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-card", style: { borderLeft: "4px solid var(--color-warning)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, "Setup / Errors"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: { color: "var(--color-warning)" } }, errors), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, "Precondition misses")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-card", style: { borderLeft: "4px solid var(--color-primary)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, "Assertion Validity"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: { color: "var(--color-primary)" } }, validityRate), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, "Empirically grounded"))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", style: { marginBottom: "1.5rem", border: confirmedBugs.length > 0 ? "1px solid rgba(239, 68, 68, 0.4)" : void 0 } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", color: confirmedBugs.length > 0 ? "var(--color-danger)" : "inherit" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u{1F6A8}"), " Confirmed Application Defects (", confirmedBugs.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Verified through 2-of-2 independent reproduction runs in fresh, isolated browser contexts.")), confirmedBugs.length > 0 && /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-danger" }, "Verified Defects")), confirmedBugs.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "2rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "2rem", marginBottom: "0.5rem" } }, "\u{1F6E1}\uFE0F"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No Confirmed Defects Detected"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, "All executed actions conformed to expected invariants, or candidate anomalies were resolved as non-reproducible.")) : /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" } }, confirmedBugs.map((bug, idx) => {
-      const bugId = bug.id || bug.defect_id || `BUG-${idx + 1}`;
-      const title = bug.title || bug.headline || bug.summary || "Unspecified Defect";
-      const reproRate = bug.reproduction_rate || bug.repro_rate || "\u2014";
-      const severity = bug.severity || "UNSPECIFIED";
-      const steps = bug.reproduction_steps || bug.steps || [];
-      const evidenceRefs = bug.evidence_ids || bug.evidence_references || [];
-      const screenshotPath = bug.screenshot_path || bug.screenshot;
-      return /* @__PURE__ */ import_react5.default.createElement(
-        "div",
-        {
-          key: bugId,
-          className: "card",
-          style: {
-            border: "1px solid var(--border-color)",
-            background: "rgba(239, 68, 68, 0.04)",
-            padding: "1.25rem"
-          }
-        },
-        /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" } }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-danger", style: { fontWeight: 700 } }, bugId), /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge badge-${severity === "CRITICAL" ? "danger" : "warning"}` }, severity), /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral", title: "Reproduced in fresh contexts" }, "\u{1F504} Repro Rate: ", /* @__PURE__ */ import_react5.default.createElement("strong", null, reproRate))), /* @__PURE__ */ import_react5.default.createElement("h4", { style: { margin: "0.5rem 0", fontSize: "1.05rem", color: "var(--color-danger)" } }, title), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontSize: "0.9rem", color: "var(--text-color)" } }, bug.description || bug.details || "Anomaly confirmed through isolated reproduction runs.")), screenshotPath && /* @__PURE__ */ import_react5.default.createElement(
-          "button",
-          {
-            className: "btn btn-secondary btn-sm",
-            onClick: () => onViewScreenshot(screenshotPath),
-            style: { display: "flex", alignItems: "center", gap: "0.4rem" }
-          },
-          "\u{1F4F8} View Screenshot"
-        )),
-        steps.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { style: { marginTop: "1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 600, color: "var(--text-muted)", marginBottom: "0.4rem" } }, "REPRODUCTION RECIPE (MINIMIZED TRACE):"), /* @__PURE__ */ import_react5.default.createElement("ol", { style: { margin: 0, paddingLeft: "1.25rem", fontSize: "0.85rem", color: "var(--text-color)" } }, steps.map((st, sIdx) => /* @__PURE__ */ import_react5.default.createElement("li", { key: sIdx, style: { marginBottom: "0.25rem" } }, typeof st === "string" ? st : `${st.action || st.type} on ${st.selector || st.target || "target"}`)))),
-        evidenceRefs.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { style: { marginTop: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" } }, /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.8rem", color: "var(--text-muted)" } }, "Evidence Traces:"), evidenceRefs.map((eid) => /* @__PURE__ */ import_react5.default.createElement("span", { key: eid, className: "badge badge-neutral", style: { fontSize: "0.75rem", fontFamily: "monospace" } }, eid)))
-      );
-    }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header" }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u2696\uFE0F"), " Skeptic Filter Ledger (", skepticRejections.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Candidate anomalies rigorously rejected to eliminate false positives (e.g., non-reproducible 404 probes or transient errors)."))), skepticRejections.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { style: { padding: "1rem", color: "var(--text-muted)", fontSize: "0.9rem", textAlign: "center" } }, "No candidate anomalies required skeptic rejection.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "table-container", style: { maxHeight: "240px", overflowY: "auto" } }, /* @__PURE__ */ import_react5.default.createElement("table", { className: "data-table" }, /* @__PURE__ */ import_react5.default.createElement("thead", null, /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("th", null, "Lead / Symptom"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Observed Location"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Rejection Reason"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Verdict"))), /* @__PURE__ */ import_react5.default.createElement("tbody", null, skepticRejections.map((item, idx) => /* @__PURE__ */ import_react5.default.createElement("tr", { key: idx }, /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontWeight: 500 } }, item.lead || item.symptom || item.title || "Candidate Lead"), /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontFamily: "monospace", fontSize: "0.85rem" } }, item.url || item.location || "-"), /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, item.rejection_reason || item.reason || "No rejection reason recorded"), /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral", style: { color: "var(--color-warning)" } }, "REJECTED (FALSE POSITIVE)")))))))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0 } }, "Detailed Test Execution Logs"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Inspect individual test run metrics, assertion evaluations, and browser logs.")), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", gap: "0.5rem" } }, ["ALL", "PASSED", "FAILED", "ERROR"].map((st) => /* @__PURE__ */ import_react5.default.createElement(
+      executingTests ? /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("span", { className: "spinner", style: { width: "14px", height: "14px", marginRight: "6px", display: "inline-block" } }), "Executing Suite...") : /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, "\u25B6 Run Generated Test Suite")
+    )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metrics-grid", style: { marginBottom: "1.5rem" } }, metricCards.map((card) => /* @__PURE__ */ import_react5.default.createElement("div", { key: card.label, className: "metric-card", style: card.color ? { borderLeft: `4px solid ${card.color}` } : void 0 }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, card.label), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: card.color ? { color: card.color } : void 0 }, card.value), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, card.sub)))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", id: "verified-findings", style: { marginBottom: "1.5rem", border: verified.length > 0 ? "1px solid rgba(239, 68, 68, 0.4)" : void 0 } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", color: verified.length > 0 ? "var(--color-danger)" : "inherit" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u{1F6A8}"), " Verified Findings (", verified.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Confirmed by the investigation's reproducer, or by repeated assertion failures during test execution."))), verified.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "2rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No verified findings"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, "Unverified leads, if any, are listed below and are not bugs until reproduced.")) : /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" } }, verified.map((bug, idx) => /* @__PURE__ */ import_react5.default.createElement(
+      "div",
+      {
+        key: bug.id || idx,
+        className: "card verified-finding",
+        style: { border: "1px solid var(--border-color)", background: "rgba(239, 68, 68, 0.04)", padding: "1.25rem" }
+      },
+      /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem", flexWrap: "wrap" } }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-danger", style: { fontWeight: 700 } }, bug.id || `FINDING-${idx + 1}`), /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral" }, bug.verdict), /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral" }, bug.source), bug.severity && /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-warning" }, bug.severity), bug.reproduction && /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral" }, "Reproduction: ", bug.reproduction)),
+      /* @__PURE__ */ import_react5.default.createElement("h4", { style: { margin: "0.5rem 0", fontSize: "1.05rem", color: "var(--color-danger)" } }, bug.title || NO_DATA),
+      bug.detail && /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontSize: "0.9rem" } }, bug.detail),
+      bug.evidence_ids && bug.evidence_ids.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { style: { marginTop: "0.75rem", fontSize: "0.8rem", color: "var(--text-muted)" } }, "Evidence: ", /* @__PURE__ */ import_react5.default.createElement("code", { className: "mono" }, bug.evidence_ids.join(", ")))
+    )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", id: "unverified-leads", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header" }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u2696\uFE0F"), " Unverified Leads (", unverified.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Candidate anomalies that were rejected or could not be reproduced. These are not confirmed bugs."))), unverified.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { style: { padding: "1rem", color: "var(--text-muted)", fontSize: "0.9rem", textAlign: "center" } }, "No unverified leads.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "table-container", style: { maxHeight: "240px", overflowY: "auto" } }, /* @__PURE__ */ import_react5.default.createElement("table", { className: "data-table" }, /* @__PURE__ */ import_react5.default.createElement("thead", null, /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("th", null, "Lead"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Source"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Verdict"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Reason"))), /* @__PURE__ */ import_react5.default.createElement("tbody", null, unverified.map((item, idx) => /* @__PURE__ */ import_react5.default.createElement("tr", { key: item.id || idx }, /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontWeight: 500 } }, item.title || NO_DATA), /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem" } }, item.source), /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral" }, item.verdict)), /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, item.reason || "No reason recorded"))))))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0 } }, "Test Execution Results"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, executionReport?.execution_id ? `Execution ${executionReport.execution_id}${executionReport.run_id ? ` for run ${executionReport.run_id}` : ""}` : "Per-test status, assertion counts, and step traces.")), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", gap: "0.5rem", flexWrap: "wrap" } }, ["ALL", ...DISPLAY_STATUSES].map((st) => /* @__PURE__ */ import_react5.default.createElement(
       "button",
       {
         key: st,
@@ -24187,28 +24213,20 @@ if __name__ == "__main__":
         onClick: () => setFilterStatus(st)
       },
       st
-    )))), results.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "3rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "2.5rem", marginBottom: "0.5rem" } }, "\u{1F9EA}"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No Test Execution Data Available"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 1rem 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, 'Click "Run Synthesized Test Suite" above to execute all generated contract tests against the application.'), /* @__PURE__ */ import_react5.default.createElement(
-      "button",
-      {
-        className: "btn btn-primary",
-        onClick: onRunTestSuite,
-        disabled: executingTests || !investigationReport
-      },
-      "\u25B6 Run Synthesized Test Suite"
-    )) : /* @__PURE__ */ import_react5.default.createElement("div", { className: "table-container" }, /* @__PURE__ */ import_react5.default.createElement("table", { className: "data-table" }, /* @__PURE__ */ import_react5.default.createElement("thead", null, /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("th", null, "Test ID"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Name / Intent"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Assertions"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Duration"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Action"))), /* @__PURE__ */ import_react5.default.createElement("tbody", null, filteredResults.map((res) => {
+    )))), results.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "3rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "2.5rem", marginBottom: "0.5rem" } }, "\u{1F9EA}"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No execution results yet"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 1rem 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, canExecute ? "Run the generated test suite to execute this run's test cases." : "Complete an investigation with generated test cases to enable execution.")) : /* @__PURE__ */ import_react5.default.createElement("div", { className: "table-container" }, /* @__PURE__ */ import_react5.default.createElement("table", { className: "data-table" }, /* @__PURE__ */ import_react5.default.createElement("thead", null, /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("th", null, "Test ID"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Assertions"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Duration"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Action"))), /* @__PURE__ */ import_react5.default.createElement("tbody", null, filteredResults.map((res, rIdx) => {
       const isExpanded = selectedResult?.test_id === res.test_id;
-      const statusClass = res.status === "PASSED" ? "badge-success" : res.status === "FAILED" ? "badge-danger" : "badge-warning";
-      return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, { key: res.test_id || Math.random() }, /* @__PURE__ */ import_react5.default.createElement(
+      return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, { key: res.test_id || rIdx }, /* @__PURE__ */ import_react5.default.createElement(
         "tr",
         {
+          className: "execution-result-row",
           style: { cursor: "pointer", background: isExpanded ? "rgba(99, 102, 241, 0.08)" : void 0 },
           onClick: () => setSelectedResult(isExpanded ? null : res)
         },
         /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontFamily: "monospace", fontWeight: 600 } }, res.test_id),
-        /* @__PURE__ */ import_react5.default.createElement("td", null, res.name || res.test_name || "Contract Test"),
-        /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${statusClass}` }, res.status || "UNKNOWN")),
-        /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem" } }, res.assertions_passed ?? 0, " / ", res.assertions_total ?? (res.assertions?.length || 0))),
-        /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, res.duration_ms != null ? `${(res.duration_ms / 1e3).toFixed(2)}s` : res.duration ? `${res.duration}s` : "-"),
+        /* @__PURE__ */ import_react5.default.createElement("td", null, res.test_name || NO_DATA),
+        /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${executionStatusBadgeClass(res.status)}`, title: res.status }, displayExecutionStatus(res.status))),
+        /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem" } }, res.assertions_satisfied ?? 0, " / ", res.assertions_evaluated ?? 0),
+        /* @__PURE__ */ import_react5.default.createElement("td", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, res.duration_seconds != null ? `${Number(res.duration_seconds).toFixed(2)}s` : NO_DATA),
         /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement(
           "button",
           {
@@ -24220,7 +24238,7 @@ if __name__ == "__main__":
           },
           isExpanded ? "Hide Details" : "View Trace"
         ))
-      ), isExpanded && /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("td", { colSpan: "6", style: { padding: "1rem", background: "rgba(0, 0, 0, 0.2)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.75rem" } }, res.error_message && /* @__PURE__ */ import_react5.default.createElement("div", { style: {
+      ), isExpanded && /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("td", { colSpan: "6", style: { padding: "1rem", background: "rgba(0, 0, 0, 0.2)" } }, /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.75rem" } }, res.failure_reason && /* @__PURE__ */ import_react5.default.createElement("div", { style: {
         padding: "0.75rem",
         background: "rgba(239, 68, 68, 0.1)",
         borderLeft: "4px solid var(--color-danger)",
@@ -24228,7 +24246,7 @@ if __name__ == "__main__":
         fontFamily: "monospace",
         fontSize: "0.85rem",
         color: "#fca5a5"
-      } }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Execution Failure:"), " ", res.error_message), res.step_results && res.step_results.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.4rem", color: "var(--text-muted)" } }, "STEP EXECUTION TRACE:"), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.35rem" } }, res.step_results.map((st, idx) => /* @__PURE__ */ import_react5.default.createElement(
+      } }, /* @__PURE__ */ import_react5.default.createElement("strong", null, displayExecutionStatus(res.status), ":"), " ", res.failure_reason), res.step_results && res.step_results.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.4rem", color: "var(--text-muted)" } }, "STEP EXECUTION TRACE:"), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.35rem" } }, res.step_results.map((st, idx) => /* @__PURE__ */ import_react5.default.createElement(
         "div",
         {
           key: idx,
@@ -24242,25 +24260,17 @@ if __name__ == "__main__":
             fontSize: "0.85rem"
           }
         },
-        /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("span", { style: { color: "var(--text-muted)", marginRight: "0.5rem" } }, "#", idx + 1), /* @__PURE__ */ import_react5.default.createElement("strong", null, st.action || st.action_type || "Action"), ": ", st.target_selector || st.target || st.url || "-"),
-        /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${st.status === "PASSED" || st.success ? "badge-success" : "badge-danger"}`, style: { fontSize: "0.75rem" } }, st.status || (st.success ? "PASSED" : "FAILED"))
-      )))), res.assertions && res.assertions.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.4rem", color: "var(--text-muted)" } }, "ASSERTION EVALUATIONS:"), /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.35rem" } }, res.assertions.map((ast, idx) => /* @__PURE__ */ import_react5.default.createElement(
-        "div",
+        /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("span", { style: { color: "var(--text-muted)", marginRight: "0.5rem" } }, "#", st.step_number ?? idx + 1), /* @__PURE__ */ import_react5.default.createElement("strong", null, st.action), ": ", st.description || NO_DATA, st.assertion_expected && /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.8rem", color: "var(--text-muted)" } }, "Expected: ", st.assertion_expected, st.assertion_actual ? ` | Actual: ${st.assertion_actual}` : ""), st.error_message && /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.8rem", color: "#fca5a5" } }, st.error_message)),
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${executionStatusBadgeClass(st.status)}`, style: { fontSize: "0.75rem" } }, displayExecutionStatus(st.status))
+      )))), res.final_screenshot && /* @__PURE__ */ import_react5.default.createElement(
+        "button",
         {
-          key: idx,
-          style: {
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0.4rem 0.6rem",
-            background: "rgba(255, 255, 255, 0.03)",
-            borderRadius: "4px",
-            fontSize: "0.85rem"
-          }
+          className: "btn btn-secondary btn-sm",
+          style: { alignSelf: "flex-start" },
+          onClick: () => onViewScreenshot(`/artifacts/${encodeURIComponent(res.final_screenshot)}`)
         },
-        /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("span", { style: { color: "var(--text-muted)", marginRight: "0.5rem" } }, "#", idx + 1), /* @__PURE__ */ import_react5.default.createElement("span", null, ast.type || "ASSERTION", ": ", ast.description || ast.expected || ast.field), ast.evidence_id && /* @__PURE__ */ import_react5.default.createElement("span", { className: "badge badge-neutral", style: { marginLeft: "0.5rem", fontSize: "0.7rem" } }, "Ref: ", ast.evidence_id)),
-        /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${ast.passed || ast.result === "PASSED" ? "badge-success" : "badge-danger"}`, style: { fontSize: "0.75rem" } }, ast.passed || ast.result === "PASSED" ? "PASSED" : "FAILED")
-      ))))))));
+        "\u{1F4F8} View Final Screenshot"
+      )))));
     }))))));
   }
 
@@ -24464,7 +24474,7 @@ if __name__ == "__main__":
   // app/static/src/App.jsx
   function App() {
     const [activeTab, setActiveTab] = (0, import_react7.useState)("overview");
-    const [targetUrl, setTargetUrl] = (0, import_react7.useState)("https://www.saucedemo.com/");
+    const [targetUrl, setTargetUrl] = (0, import_react7.useState)("");
     const [requirements, setRequirements] = (0, import_react7.useState)("");
     const [isInvestigating, setIsInvestigating] = (0, import_react7.useState)(false);
     const [liveEvents, setLiveEvents] = (0, import_react7.useState)([]);
@@ -24503,12 +24513,17 @@ if __name__ == "__main__":
     };
     const applyRun = (detail) => {
       const testCases = detail.test_cases || [];
+      const runId = detail.run?.run_id;
       setInvestigationReport(detail.report);
       if (detail.run?.target_url) setTargetUrl(detail.run.target_url);
-      setGeneratedTests({
-        test_cases: testCases,
-        python_code: generatePlaywrightCode(testCases, detail.run?.target_url)
-      });
+      setGeneratedTests({ test_cases: testCases, python_code: null, run_id: runId });
+      setExecutionReport(detail.latest_execution || null);
+      if (runId && testCases.length > 0) {
+        fetch(`/api/runs/${encodeURIComponent(runId)}/export`).then((r) => r.ok ? r.text() : null).then((code) => {
+          if (code) setGeneratedTests((prev) => prev && prev.run_id === runId ? { ...prev, python_code: code } : prev);
+        }).catch(() => {
+        });
+      }
     };
     const loadLatestRun = async () => {
       try {
@@ -24528,7 +24543,7 @@ if __name__ == "__main__":
           test_id: `TC-JOURNEY-${idx + 1}`,
           name: j.name || `Autonomous Journey ${idx + 1}`,
           intent: j.description || j.intent || "Verify journey integrity",
-          target_url: j.target_url || rep.target_url || "https://www.saucedemo.com/",
+          target_url: j.target_url || rep.target_url || "",
           preconditions: j.preconditions || [],
           action_steps: (j.steps || []).map((s, sIdx) => ({
             step_id: `step_${sIdx + 1}`,
@@ -24548,53 +24563,8 @@ if __name__ == "__main__":
       }
       setGeneratedTests({
         test_cases: tests,
-        python_code: rep.generated_code || rep.playwright_code || generatePlaywrightCode(tests, rep.target_url)
+        python_code: rep.generated_code || rep.playwright_code || null
       });
-    };
-    const generatePlaywrightCode = (tests, baseUrl) => {
-      return `"""
-VerityQA Synthesized Autonomous Playwright Test Suite
-Generated from empirical evidence and state transitions.
-Target: ${baseUrl || "https://www.saucedemo.com/"}
-"""
-import pytest
-from playwright.sync_api import sync_playwright, expect
-
-@pytest.fixture(scope="session")
-def browser_context():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(viewport={"width": 1280, "height": 800})
-        yield context
-        browser.close()
-
-${tests.map((t, idx) => `
-def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g, "_")}(browser_context):
-    """
-    Test ID: ${t.test_id}
-    Intent: ${t.intent || "Verify autonomous flow"}
-    """
-    page = browser_context.new_page()
-    page.goto("${t.target_url || baseUrl || "https://www.saucedemo.com/"}", wait_until="networkidle")
-    
-    # Step Execution Trace
-    ${(t.action_steps || []).map((s) => {
-        if (s.action === "fill" || s.action === "input") {
-          return `page.locator("${s.target}").fill("${s.value || "standard_user"}")`;
-        } else if (s.action === "click") {
-          return `page.locator("${s.target}").click()`;
-        } else {
-          return `# Step: ${s.action} on ${s.target}`;
-        }
-      }).join("\n    ")}
-    
-    # Empirical Assertions Grounded in Investigation Evidence
-    ${(t.assertions || []).map((a) => {
-        return `expect(page.locator("${a.target}")).to_be_visible()  # Evidence: ${a.evidence_id || "verified"}`;
-      }).join("\n    ")}
-    
-    page.close()
-`).join("\n")}`;
     };
     const loadSavedReport = async (filename) => {
       try {
@@ -24712,10 +24682,7 @@ def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g,
       showToast("Executing Synthesized Test Suite via Playwright Runner...", "info");
       setActiveTab("execution");
       try {
-        const payload = {
-          target_url: targetUrl,
-          test_cases: generatedTests?.test_cases || []
-        };
+        const payload = buildExecuteRequest(generatedTests, targetUrl);
         const res = await fetch("/api/tests/execute", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

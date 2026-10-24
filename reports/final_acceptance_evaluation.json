@@ -1,11 +1,10 @@
 {
   "total_ground_truth_states": 12,
-  "discovered_states_count": 9,
+  "discovered_states_count": 8,
   "matched_ground_truth_states": [
     "ST_LOGIN",
     "ST_LOGIN_ERROR",
     "ST_PRODUCTS",
-    "ST_PRODUCTS_SORT_ZA",
     "ST_PRODUCTS_DRAWER",
     "ST_PRODUCT_DETAIL_1",
     "ST_CART_EMPTY",
@@ -13,28 +12,29 @@
     "ST_CHECKOUT_STEP1"
   ],
   "missing_ground_truth_states": [
+    "ST_PRODUCTS_SORT_ZA",
     "ST_PRODUCTS_SORT_LOHI",
     "ST_CHECKOUT_REVIEW",
     "ST_ORDER_CONFIRMED"
   ],
-  "state_discovery_recall": 0.75,
-  "total_transitions_recorded": 9,
-  "verified_transitions_count": 9,
-  "transitions_with_evidence_count": 9,
+  "state_discovery_recall": 0.667,
+  "total_transitions_recorded": 8,
+  "verified_transitions_count": 8,
+  "transitions_with_evidence_count": 8,
   "transition_accuracy": 1.0,
   "evidence_support_ratio": 1.0,
   "total_seeded_defects": 1,
-  "detected_seeded_defects_count": 1,
+  "detected_seeded_defects_count": 0,
   "false_positive_leads_count": 0,
-  "seeded_defect_precision": 1.0,
-  "seeded_defect_recall": 1.0,
+  "seeded_defect_precision": 0.0,
+  "seeded_defect_recall": 0.0,
   "benign_warning_correctly_ignored": true,
-  "total_probes_evaluated": 10,
-  "deduplicated_candidates_count": 75,
+  "total_probes_evaluated": 9,
+  "deduplicated_candidates_count": 66,
   "redundant_probes_count": 0,
   "redundant_exploration_rate": 0.0,
-  "total_decision_snapshots": 10,
-  "adaptive_decisions_count": 10,
+  "total_decision_snapshots": 9,
+  "adaptive_decisions_count": 9,
   "adaptive_decision_quality": 1.0,
   "decision_trace_summary": [
     {
@@ -56,30 +56,30 @@
     {
       "step": 3,
       "from_state": "st_products_products_catal_view",
-      "action": "#cart-link",
-      "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+      "action": "#add-to-cart-1",
+      "hypothesis": "Investigate interactive control response: button 'Add to Cart'",
       "observed_effect": "ROUTE_TRANSITION",
       "evaluator_verdict": "USEFUL_EXPLORATION"
     },
     {
       "step": 4,
-      "from_state": "st_cart_shopping_cart_view",
-      "action": "#cart-link",
-      "hypothesis": "Investigate interactive control response: a 'Cart 0'",
-      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "from_state": "st_cart_shopping_cart_c1",
+      "action": "#remove-item-1",
+      "hypothesis": "Investigate interactive control response: button 'Remove'",
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
       "evaluator_verdict": "USEFUL_EXPLORATION"
     },
     {
       "step": 5,
       "from_state": "st_cart_shopping_cart_view",
-      "action": "#calculate-tax-btn",
-      "hypothesis": "Investigate interactive control response: a 'Calculate Tax'",
-      "observed_effect": "VALIDATION_FEEDBACK",
+      "action": "#cart-link",
+      "hypothesis": "Investigate interactive control response: a 'Cart 1'",
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
       "evaluator_verdict": "USEFUL_EXPLORATION"
     },
     {
       "step": 6,
-      "from_state": "st_cart_shopping_cart_view_with_error",
+      "from_state": "st_cart_shopping_cart_view",
       "action": "#checkout-button",
       "hypothesis": "Investigate interactive control response: a 'Proceed to Checkout'",
       "observed_effect": "ROUTE_TRANSITION",
@@ -104,27 +104,20 @@
     {
       "step": 9,
       "from_state": "st_products_products_catal_view",
-      "action": "#product-sort",
-      "hypothesis": "Investigate interactive control response: select 'Name: A to Z Name: Z to A Pric",
-      "observed_effect": "IN_PAGE_STATE_MUTATION",
-      "evaluator_verdict": "USEFUL_EXPLORATION"
-    },
-    {
-      "step": 10,
-      "from_state": "st_products_products_catal_view_opt_za",
-      "action": "/products?sort=za&menu=open",
-      "hypothesis": "Verify route transition reachability to /products?sort=za&menu=open",
-      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "action": "#cart-link",
+      "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+      "observed_effect": "ROUTE_TRANSITION",
       "evaluator_verdict": "USEFUL_EXPLORATION"
     }
   ],
   "workflow_completion_rate": 0.66,
-  "unique_states_per_action": 0.9,
+  "unique_states_per_action": 0.889,
   "unsuccessful_action_rate": 0.0,
-  "wall_clock_time": 196.85,
-  "llm_calls_count": 6,
+  "wall_clock_time": 16.59,
+  "llm_calls_count": 0,
   "stopping_reason": "Configured probe ceiling reached (10/10)",
   "unresolved_frontier_summary": {
-    "BUDGET_CEILING_REACHED": 34
+    "BUDGET_CEILING_REACHED": 28,
+    "SAFETY_POLICY_BLOCKED": 1
   }
 }

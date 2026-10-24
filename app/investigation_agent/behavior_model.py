@@ -108,7 +108,11 @@ class ApplicationBehaviorModel(BaseModel):
             if any(k in act for k in ("NAVIGATE", "GOTO")):
                 code_lines.append(f"        page.goto({repr(target)}, wait_until='domcontentloaded')")
             elif any(k in act for k in ("FILL", "TYPE")):
-                code_lines.append(f"        page.locator({repr(target)}).fill({repr(val)})")
+                if val == "${CREDENTIAL_PASSWORD}":
+                    # Never write a credential into an exported script.
+                    code_lines.append(f"        page.locator({repr(target)}).fill(__import__('os').environ['VERITYQA_TEST_PASSWORD'])")
+                else:
+                    code_lines.append(f"        page.locator({repr(target)}).fill({repr(val)})")
             elif any(k in act for k in ("CLICK", "SUBMIT")):
                 code_lines.append(f"        page.locator({repr(target)}).click()")
                 code_lines.append("        page.wait_for_timeout(400)")

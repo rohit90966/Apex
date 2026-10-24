@@ -12,10 +12,11 @@ import {
   fetchRun,
   fetchLatestCompletedRun,
 } from './runEvents.mjs';
+import { buildExecuteRequest } from './runDisplay.mjs';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
-  const [targetUrl, setTargetUrl] = useState('https://www.saucedemo.com/');
+  const [targetUrl, setTargetUrl] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isInvestigating, setIsInvestigating] = useState(false);
   const [liveEvents, setLiveEvents] = useState([]);
@@ -61,12 +62,21 @@ export default function App() {
   // Populates report and test-case state from the canonical GET /api/runs/{run_id} response.
   const applyRun = (detail) => {
     const testCases = detail.test_cases || [];
+    const runId = detail.run?.run_id;
     setInvestigationReport(detail.report);
     if (detail.run?.target_url) setTargetUrl(detail.run.target_url);
-    setGeneratedTests({
-      test_cases: testCases,
-      python_code: generatePlaywrightCode(testCases, detail.run?.target_url)
-    });
+    setGeneratedTests({ test_cases: testCases, python_code: null, run_id: runId });
+    // Show the run's last persisted execution (or none), never one from a different run.
+    setExecutionReport(detail.latest_execution || null);
+    // The downloadable script comes from the server exporter (same steps/assertions the runner executes).
+    if (runId && testCases.length > 0) {
+      fetch(`/api/runs/${encodeURIComponent(runId)}/export`)
+        .then((r) => (r.ok ? r.text() : null))
+        .then((code) => {
+          if (code) setGeneratedTests((prev) => (prev && prev.run_id === runId ? { ...prev, python_code: code } : prev));
+        })
+        .catch(() => {});
+    }
   };
 
   const loadLatestRun = async () => {
@@ -91,7 +101,7 @@ export default function App() {
         test_id: `TC-JOURNEY-${idx + 1}`,
         name: j.name || `Autonomous Journey ${idx + 1}`,
         intent: j.description || j.intent || 'Verify journey integrity',
-        target_url: j.target_url || rep.target_url || 'https://www.saucedemo.com/',
+        target_url: j.target_url || rep.target_url || '',
         preconditions: j.preconditions || [],
         action_steps: (j.steps || []).map((s, sIdx) => ({
           step_id: `step_${sIdx + 1}`,
@@ -110,56 +120,11 @@ export default function App() {
       }));
     }
 
+    // Saved report files carry no run ID, so only a script stored with the report can be offered.
     setGeneratedTests({
       test_cases: tests,
-      python_code: rep.generated_code || rep.playwright_code || generatePlaywrightCode(tests, rep.target_url)
+      python_code: rep.generated_code || rep.playwright_code || null
     });
-  };
-
-  const generatePlaywrightCode = (tests, baseUrl) => {
-    return `"""
-VerityQA Synthesized Autonomous Playwright Test Suite
-Generated from empirical evidence and state transitions.
-Target: ${baseUrl || 'https://www.saucedemo.com/'}
-"""
-import pytest
-from playwright.sync_api import sync_playwright, expect
-
-@pytest.fixture(scope="session")
-def browser_context():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(viewport={"width": 1280, "height": 800})
-        yield context
-        browser.close()
-
-${tests.map((t, idx) => `
-def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g, '_')}(browser_context):
-    """
-    Test ID: ${t.test_id}
-    Intent: ${t.intent || 'Verify autonomous flow'}
-    """
-    page = browser_context.new_page()
-    page.goto("${t.target_url || baseUrl || 'https://www.saucedemo.com/'}", wait_until="networkidle")
-    
-    # Step Execution Trace
-    ${(t.action_steps || []).map(s => {
-      if (s.action === 'fill' || s.action === 'input') {
-        return `page.locator("${s.target}").fill("${s.value || 'standard_user'}")`;
-      } else if (s.action === 'click') {
-        return `page.locator("${s.target}").click()`;
-      } else {
-        return `# Step: ${s.action} on ${s.target}`;
-      }
-    }).join('\n    ')}
-    
-    # Empirical Assertions Grounded in Investigation Evidence
-    ${(t.assertions || []).map(a => {
-      return `expect(page.locator("${a.target}")).to_be_visible()  # Evidence: ${a.evidence_id || 'verified'}`;
-    }).join('\n    ')}
-    
-    page.close()
-`).join('\n')}`;
   };
 
   const loadSavedReport = async (filename) => {
@@ -294,10 +259,7 @@ def test_${(t.name || `journey_${idx + 1}`).toLowerCase().replace(/[^a-z0-9]+/g,
     setActiveTab('execution');
 
     try {
-      const payload = {
-        target_url: targetUrl,
-        test_cases: generatedTests?.test_cases || []
-      };
+      const payload = buildExecuteRequest(generatedTests, targetUrl);
 
       const res = await fetch('/api/tests/execute', {
         method: 'POST',
