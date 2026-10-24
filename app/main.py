@@ -25,6 +25,7 @@ from app.schemas import (
     BugReport,
     BenchmarkRunSummary,
     PageCategory,
+    TestCase,
 )
 from app.exploration.graph import ExploreRequest, ExploreResponse
 from app.safety import validate_url_safety, SafetyViolation
@@ -340,11 +341,14 @@ def _build_investigation_payload(report: Any) -> Dict[str, Any]:
     and the persisted run: report + legacy summary + the synthesized test cases.
     """
     synthesized_cases = []
+    synthesis_error = None
     try:
         from app.investigation_agent.test_synthesis import synthesize_test_cases_from_investigation
         synthesized_cases = synthesize_test_cases_from_investigation(report)
     except Exception as synth_err:
-        logger.warning("[Investigation] Test synthesis non-critical error: %s", synth_err)
+        # The investigation itself stays valid, but test generation is recorded as failed, not as "0 cases".
+        synthesis_error = f"{type(synth_err).__name__}: {str(synth_err)[:300]}"
+        logger.error("[Investigation] Test case synthesis failed: %s", synthesis_error)
     test_plan_data = [tc.model_dump(mode="json") for tc in synthesized_cases]
 
     bva_count = sum(1 for r in report.business_rules_and_hypotheses if any(k in r.description.lower() for k in ("boundary", "length", "required", "min", "max", "format")))
@@ -389,6 +393,7 @@ def _build_investigation_payload(report: Any) -> Dict[str, Any]:
         "planning_mode": "STATEFUL_INVESTIGATION",
         "planning_summary": f"Synthesized {len(synthesized_cases)} evidence-grounded test cases from discovered workflows and verified transitions.",
     }
+    res_data["test_generation"] = {"status": "failed" if synthesis_error else "completed", "error": synthesis_error}
     return res_data
 
 
@@ -411,6 +416,7 @@ def _finalize_run(run_id: str, report: Any, secrets: Set[str]) -> Dict[str, Any]
         stopping_reason=report.overview.stopping_reason,
         secrets=secrets,
         report_status=report_status,
+        test_generation_error=payload["test_generation"]["error"],
     )
     return payload
 
@@ -755,15 +761,23 @@ async def export_run_script(run_id: str):
 @app.post("/api/tests/execute", response_model=ExecuteSuiteResponse)
 async def execute_tests(request: ExecuteSuiteRequest):
     """
-    Executes a synthesized contract test suite directly against the target URL.
-    Verifies failed tests via BugInvestigator to distinguish confirmed bugs from setup errors.
+    Executes a contract test suite directly against the target URL.
+    With run_id, the run's persisted test cases are executed (optionally only test_ids) and the
+    result is persisted against that run before it is returned.
+    Only assertion failures (FAILED) are sent to BugInvestigator; ERROR, BLOCKED, INCONCLUSIVE and
+    TEST_DEFINITION_ERROR results are never treated as product-defect signals.
     """
     validate_url_safety(request.target_url, settings.allowed_hosts_list)
     import time
+    from collections import Counter
     start_t = time.time()
     exec_id = f"exec-{uuid.uuid4().hex[:8]}"
 
-    if not request.test_cases:
+    test_cases = list(request.test_cases)
+    if request.run_id:
+        test_cases = _load_run_test_cases(request)
+
+    if not test_cases:
         return ExecuteSuiteResponse(
             execution_id=exec_id,
             target_url=request.target_url,
@@ -772,14 +786,15 @@ async def execute_tests(request: ExecuteSuiteRequest):
             passed_count=0,
             failed_count=0,
             setup_failures_count=0,
-            assertion_validity_rate=1.0,
+            assertion_validity_rate=0.0,
             results=[],
-            duration_seconds=0.0
+            duration_seconds=0.0,
+            run_id=request.run_id,
         )
 
     # Execute tests
     execution_results = await test_runner.run_all(
-        test_cases=request.test_cases,
+        test_cases=test_cases,
         target_url=request.target_url,
     )
 
@@ -788,12 +803,12 @@ async def execute_tests(request: ExecuteSuiteRequest):
     errors = sum(1 for r in execution_results if r.status == ExecutionStatus.ERROR)
     setup_failures = sum(1 for r in execution_results if r.status in (ExecutionStatus.LOCATOR_ERROR, ExecutionStatus.AUTOMATION_ERROR, ExecutionStatus.ENVIRONMENT_ERROR))
 
-    # Bug verification
+    # Bug verification: only assertion failures can indicate a product defect.
     bug_reports = []
     if request.verify_bugs:
         for res in execution_results:
-            if res.status in (ExecutionStatus.FAILED, ExecutionStatus.ERROR):
-                tc = next((t for t in request.test_cases if t.test_id == res.test_id), None)
+            if res.status == ExecutionStatus.FAILED:
+                tc = next((t for t in test_cases if t.test_id == res.test_id), None)
                 if tc:
                     try:
                         bug = await bug_investigator.investigate_failure(
@@ -806,12 +821,12 @@ async def execute_tests(request: ExecuteSuiteRequest):
                         logger.error("Bug investigation failed for %s: %s", res.test_id, b_err)
 
     duration = round(time.time() - start_t, 2)
-    assertion_validity = round(passed / len(execution_results), 3) if execution_results else 1.0
+    assertion_validity = round(passed / len(execution_results), 3) if execution_results else 0.0
 
-    return ExecuteSuiteResponse(
+    response = ExecuteSuiteResponse(
         execution_id=exec_id,
         target_url=request.target_url,
-        total_cases=len(request.test_cases),
+        total_cases=len(test_cases),
         executed_count=len(execution_results),
         passed_count=passed,
         failed_count=failed + errors,
@@ -820,7 +835,50 @@ async def execute_tests(request: ExecuteSuiteRequest):
         results=execution_results,
         bug_reports=bug_reports,
         duration_seconds=duration,
+        run_id=request.run_id,
+        status_counts=dict(Counter(getattr(r.status, "value", str(r.status)) for r in execution_results)),
     )
+
+    if request.run_id:
+        # Persist before reporting success, so a reload shows exactly this result.
+        try:
+            run_store.save_execution(
+                request.run_id,
+                response.model_dump(mode="json"),
+                secrets=collect_known_secrets(request.target_url),
+            )
+        except Exception as store_err:
+            error_text = _safe_error_text(store_err, collect_known_secrets(request.target_url))
+            logger.error("[Runs] Could not persist execution %s for run %s: %s", exec_id, request.run_id, error_text)
+            raise HTTPException(
+                status_code=500,
+                detail=f"Tests ran, but the results could not be saved for run {request.run_id}: {error_text[:150]}",
+            )
+    return response
+
+
+def _load_run_test_cases(request: ExecuteSuiteRequest):
+    """Resolves the persisted test cases of request.run_id, validating the request against the run."""
+    if request.test_cases:
+        raise HTTPException(status_code=400, detail="Provide either run_id or test_cases, not both.")
+    try:
+        detail = run_store.get(request.run_id)
+    except InvalidRunId:
+        raise HTTPException(status_code=400, detail="Invalid run ID format.")
+    except RunNotFound:
+        raise HTTPException(status_code=404, detail=f"Run '{request.run_id}' not found.")
+    if detail.run.status != "completed":
+        raise HTTPException(status_code=409, detail=f"Run '{request.run_id}' has no completed test cases (status: {detail.run.status.value}).")
+    if detail.run.target_url.rstrip("/") != request.target_url.rstrip("/"):
+        raise HTTPException(status_code=400, detail="target_url does not match the run's target.")
+    cases = [TestCase(**c) for c in detail.test_cases]
+    if request.test_ids:
+        wanted = set(request.test_ids)
+        unknown = wanted - {c.test_id for c in cases}
+        if unknown:
+            raise HTTPException(status_code=400, detail=f"Unknown test IDs for this run: {sorted(unknown)}")
+        cases = [c for c in cases if c.test_id in wanted]
+    return cases
 
 
 @app.get("/api/reports/latest")

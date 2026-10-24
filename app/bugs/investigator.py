@@ -250,7 +250,10 @@ class BugInvestigator:
                 try:
                     retry_res = await self.runner.run_test(test_case, target_url)
                     if retry_res.status in (ExecutionStatus.FAILED, ExecutionStatus.ERROR):
-                        runs_failed += 1
+                        # Only an assertion failure reproduces a product defect; an ERROR retry (crash,
+                        # timeout, environment) must never count toward confirmation.
+                        if retry_res.status == ExecutionStatus.FAILED:
+                            runs_failed += 1
                         # Re-classify on retry to detect flakes
                         retry_verdict, _ = self._classify_failure(test_case, retry_res)
                         if retry_verdict in (
@@ -261,7 +264,6 @@ class BugInvestigator:
                             verdict_rationale = f"Retry {attempt+1} confirmed {retry_verdict.value}"
                             break
                 except Exception as e:
-                    runs_total += 1
                     logger.warning("Retry %d failed with exception: %s", attempt + 1, e)
 
             # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing

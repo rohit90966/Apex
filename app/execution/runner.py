@@ -12,6 +12,7 @@ from app.schemas import (
     InspectionResult,
     PageCategory,
     ExpectedBehaviorSource,
+    TestCaseStatus,
 )
 from app.execution.executor import BrowserExecutor
 from app.execution.locator import LocatorResolver, LocatorConfidence
@@ -556,13 +557,53 @@ class QAPlanRunner:
 
     async def run_test(self, test_case: TestCase, target_url: str) -> ExecutionResult:
         """Synthesizes steps and executes a single test case."""
+        if test_case.status == TestCaseStatus.INVALID:
+            # Never substitute generic steps for an invalid case: that would let it "pass" without testing anything.
+            return ExecutionResult(
+                test_id=test_case.test_id,
+                test_name=test_case.name,
+                status=ExecutionStatus.TEST_DEFINITION_ERROR,
+                total_steps=len(test_case.steps or []),
+                steps_completed=0,
+                failure_reason=f"Invalid test case: {test_case.invalid_reason or 'not executable'}",
+            )
         steps = self.synthesize_steps(test_case, target_url)
+        steps, missing_credential = self._resolve_credential_placeholders(steps, target_url)
+        if missing_credential:
+            return ExecutionResult(
+                test_id=test_case.test_id,
+                test_name=test_case.name,
+                status=ExecutionStatus.BLOCKED,
+                total_steps=len(steps),
+                steps_completed=0,
+                failure_reason="Test requires a password for the target, but no test credentials are configured.",
+            )
         return await self.executor.execute_steps(
             test_id=test_case.test_id,
             test_name=test_case.name,
             steps=steps,
             initial_url=target_url,
         )
+
+    @staticmethod
+    def _resolve_credential_placeholders(steps: List[ActionStep], target_url: str):
+        """
+        Replaces the password placeholder written by the investigation test synthesizer with the
+        target's configured test password, in memory only. Returns (steps, missing_credential).
+        """
+        from app.investigation_agent.test_synthesis import CREDENTIAL_PASSWORD_PLACEHOLDER
+        if not any(s.value == CREDENTIAL_PASSWORD_PLACEHOLDER for s in steps):
+            return steps, False
+        from app.investigation_agent.authenticator import AuthenticationManager
+        creds = AuthenticationManager.discover_credentials(target_url, None) or {}
+        password = creds.get("password")
+        if not password:
+            return steps, True
+        resolved = [
+            s.model_copy(update={"value": password}) if s.value == CREDENTIAL_PASSWORD_PLACEHOLDER else s
+            for s in steps
+        ]
+        return resolved, False
 
     async def run_all(
         self, test_cases: List[TestCase], target_url: str, max_concurrent: int = 1

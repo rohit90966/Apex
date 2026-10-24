@@ -33,10 +33,12 @@ from app.runs.redaction import redact_secrets
 logger = logging.getLogger(__name__)
 
 RUN_ID_PATTERN = re.compile(r"^inv-[0-9a-f]{8,32}$")
+EXECUTION_ID_PATTERN = re.compile(r"^exec-[0-9a-f]{8,32}$")
 
 RUN_FILE = "run.json"
 REPORT_FILE = "report.json"
 TEST_CASES_FILE = "test_cases.json"
+EXECUTIONS_DIR = "executions"
 
 
 class RunStatus(str, Enum):
@@ -93,6 +95,11 @@ class RunRecord(BaseModel):
     # Set on completion from the report's own status (InvestigationStatus value), e.g. "blocked".
     report_status: Optional[str] = None
     report_outcome: Optional[ReportOutcome] = None
+    # Downstream stages, tracked separately from the investigation lifecycle.
+    test_generation_status: Optional[str] = None  # "completed" | "failed"
+    test_generation_error: Optional[str] = None
+    latest_execution_id: Optional[str] = None
+    execution_count: int = 0
 
 
 class RunListResponse(BaseModel):
@@ -103,6 +110,8 @@ class RunDetailResponse(BaseModel):
     run: RunRecord
     report: Optional[Dict[str, Any]] = None
     test_cases: List[Dict[str, Any]] = Field(default_factory=list)
+    # The most recent persisted ExecuteSuiteResponse for this run's test cases, if any.
+    latest_execution: Optional[Dict[str, Any]] = None
 
 
 class InvalidRunId(ValueError):
@@ -201,6 +210,7 @@ class RunStore:
         stopping_reason: Optional[str] = None,
         secrets: Optional[Iterable[str]] = None,
         report_status: Optional[str] = None,
+        test_generation_error: Optional[str] = None,
     ) -> RunRecord:
         run_dir = self._run_dir(run_id)
         with self._lock:
@@ -216,6 +226,29 @@ class RunStore:
                 error=None,
                 report_status=report_status,
                 report_outcome=report_outcome_for(report_status),
+                test_generation_status="failed" if test_generation_error else "completed",
+                test_generation_error=test_generation_error,
+            )
+
+    def save_execution(
+        self,
+        run_id: str,
+        execution: Dict[str, Any],
+        secrets: Optional[Iterable[str]] = None,
+    ) -> RunRecord:
+        """Persists one ExecuteSuiteResponse for this run and makes it the run's latest execution."""
+        execution_id = execution.get("execution_id")
+        if not isinstance(execution_id, str) or not EXECUTION_ID_PATTERN.fullmatch(execution_id):
+            raise ValueError("Invalid execution ID format")
+        run_dir = self._run_dir(run_id)
+        with self._lock:
+            record = self.get_record(run_id)
+            self._write_json(run_dir / EXECUTIONS_DIR / f"{execution_id}.json", redact_secrets(execution, secrets))
+            return self._update_locked(
+                run_id,
+                secrets,
+                latest_execution_id=execution_id,
+                execution_count=record.execution_count + 1,
             )
 
     def fail(self, run_id: str, error: str, secrets: Optional[Iterable[str]] = None) -> RunRecord:
@@ -262,7 +295,12 @@ class RunStore:
         cases_path = run_dir / TEST_CASES_FILE
         report = self._read_json(report_path) if report_path.is_file() else None
         test_cases = self._read_json(cases_path) if cases_path.is_file() else []
-        return RunDetailResponse(run=record, report=report, test_cases=test_cases)
+        latest_execution = None
+        if record.latest_execution_id and EXECUTION_ID_PATTERN.fullmatch(record.latest_execution_id):
+            execution_path = run_dir / EXECUTIONS_DIR / f"{record.latest_execution_id}.json"
+            if execution_path.is_file():
+                latest_execution = self._read_json(execution_path)
+        return RunDetailResponse(run=record, report=report, test_cases=test_cases, latest_execution=latest_execution)
 
     def list_runs(self) -> List[RunRecord]:
         if not self.root.is_dir():

@@ -152,6 +152,10 @@ class BrowserExecutor:
                 if assertions_satisfied < stated_assertions:
                     overall_status = ExecutionStatus.FAILED
                     failure_reason = f"Only {assertions_satisfied}/{stated_assertions} stated assertions were satisfied"
+            elif overall_status == ExecutionStatus.PASSED and assertions_evaluated == 0:
+                # Steps ran but nothing was verified: that is not a pass.
+                overall_status = ExecutionStatus.INCONCLUSIVE
+                failure_reason = "No assertions were evaluated; the steps ran but nothing was verified"
 
             # Collect final DOM snippet and screenshot
             try:

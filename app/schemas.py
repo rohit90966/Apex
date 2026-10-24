@@ -28,6 +28,8 @@ class Priority(str, Enum):
 
 class TestCaseStatus(str, Enum):
     PROPOSED = "PROPOSED"
+    # Cannot be executed meaningfully (no executable steps, missing selectors, or no assertions).
+    INVALID = "INVALID"
     __test__ = False
 
 
@@ -133,6 +135,7 @@ class TestCase(BaseModel):
     steps: Optional[List[Any]] = None
     # Structured contract specification
     spec: Optional[Dict[str, Any]] = None
+    invalid_reason: Optional[str] = None
 
 
 class TestPlan(BaseModel):
@@ -367,6 +370,10 @@ class ExecuteSuiteRequest(BaseModel):
     target_url: str
     test_cases: List[TestCase] = Field(default_factory=list)
     verify_bugs: bool = True
+    # When set, the run's persisted test cases are executed (optionally only test_ids) and the
+    # result is persisted against the run. Mutually exclusive with test_cases.
+    run_id: Optional[str] = None
+    test_ids: Optional[List[str]] = None
 
 
 class ExecuteSuiteResponse(BaseModel):
@@ -381,5 +388,8 @@ class ExecuteSuiteResponse(BaseModel):
     results: List[ExecutionResult] = Field(default_factory=list)
     bug_reports: List[BugReport] = Field(default_factory=list)
     duration_seconds: float = 0.0
+    run_id: Optional[str] = None
+    # Count of results per ExecutionStatus value (PASSED, FAILED, ERROR, BLOCKED, TEST_DEFINITION_ERROR, ...).
+    status_counts: Dict[str, int] = Field(default_factory=dict)
 
 

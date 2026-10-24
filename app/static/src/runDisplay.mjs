@@ -63,6 +63,101 @@ export function executionSummary(executionReport) {
     failed,
     setupFailures: executionReport.setup_failures_count ?? 0,
     passRate: executed > 0 ? ((passed / executed) * 100).toFixed(1) : null,
-    assertionValidity: typeof validity === 'number' ? (validity * 100).toFixed(1) : null,
+    assertionValidity: executed > 0 && typeof validity === 'number' ? (validity * 100).toFixed(1) : null,
   };
+}
+
+// Backend ExecutionStatus -> display status. Mirrors ExecutionStatus in app/schemas.py.
+const EXECUTION_DISPLAY_STATUS = {
+  PASSED: 'PASS',
+  FAILED: 'FAIL',
+  PRODUCT_BEHAVIOR_DEVIATION: 'FAIL',
+  ERROR: 'ERROR',
+  LOCATOR_ERROR: 'ERROR',
+  AUTOMATION_ERROR: 'ERROR',
+  ENVIRONMENT_ERROR: 'ERROR',
+  BLOCKED: 'BLOCKED',
+  TEST_DEFINITION_ERROR: 'INVALID',
+  INCONCLUSIVE: 'INCOMPLETE',
+  SKIPPED: 'SKIPPED',
+};
+
+export const DISPLAY_STATUSES = ['PASS', 'FAIL', 'ERROR', 'BLOCKED', 'INVALID', 'INCOMPLETE'];
+
+export function displayExecutionStatus(status) {
+  return EXECUTION_DISPLAY_STATUS[String(status || '').toUpperCase()] || 'UNKNOWN';
+}
+
+export function executionStatusBadgeClass(status) {
+  const display = displayExecutionStatus(status);
+  if (display === 'PASS') return 'badge-success';
+  if (display === 'FAIL') return 'badge-danger';
+  if (display === 'INVALID' || display === 'BLOCKED') return 'badge-neutral';
+  return 'badge-warning';
+}
+
+// Counts per display status, computed from the actual results.
+export function executionStatusCounts(executionReport) {
+  const counts = Object.fromEntries(DISPLAY_STATUSES.map((s) => [s, 0]));
+  for (const r of executionReport?.results || []) {
+    const display = displayExecutionStatus(r.status);
+    counts[display] = (counts[display] || 0) + 1;
+  }
+  return counts;
+}
+
+export function resultsByTestId(executionReport) {
+  const map = {};
+  for (const r of executionReport?.results || []) {
+    if (r.test_id) map[r.test_id] = r;
+  }
+  return map;
+}
+
+function textOf(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'string') return value || null;
+  if (typeof value === 'object' && typeof value.text === 'string') return value.text || null;
+  return null;
+}
+
+// Bug findings split into verified (independently reproduced) and unverified (candidates and rejections).
+export function bugFindings(investigationReport, executionReport) {
+  const verified = [];
+  const unverified = [];
+  for (const lead of investigationReport?.confirmed_bug_leads || []) {
+    verified.push({
+      id: lead.id,
+      title: lead.title,
+      source: 'Investigation',
+      verdict: 'CONFIRMED BY REPRODUCER',
+      severity: lead.severity_guess || null,
+      detail: textOf(lead.actual),
+      evidence_ids: lead.evidence_ids || [],
+    });
+  }
+  for (const lead of investigationReport?.unstable_or_rejected_leads || []) {
+    unverified.push({
+      id: lead.id,
+      title: lead.title,
+      source: 'Investigation',
+      verdict: lead.status || 'UNVERIFIED',
+      reason: textOf(lead.reproduction_failure_reason),
+    });
+  }
+  for (const bug of executionReport?.bug_reports || []) {
+    const item = {
+      id: bug.bug_id,
+      title: bug.title,
+      source: `Execution (${bug.test_id})`,
+      verdict: bug.verification_status,
+      severity: bug.severity || null,
+      detail: textOf(bug.actual_behavior) || textOf(bug.summary),
+      reproduction: textOf(bug.reproduction_rate),
+      reason: textOf(bug.summary),
+    };
+    if (bug.verification_status === 'CONFIRMED_REPRODUCIBLE') verified.push(item);
+    else unverified.push(item);
+  }
+  return { verified, unverified };
 }

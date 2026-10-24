@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
+import {
+  DISPLAY_STATUSES,
+  NO_DATA,
+  bugFindings,
+  displayExecutionStatus,
+  executionStatusBadgeClass,
+  executionStatusCounts,
+} from '../runDisplay.mjs';
 
 export default function ExecutionAndBugs({
   investigationReport,
   executionReport,
   onRunTestSuite,
   executingTests,
+  canExecute,
   onSelectTab,
   onViewScreenshot
 }) {
   const [selectedResult, setSelectedResult] = useState(null);
   const [filterStatus, setFilterStatus] = useState('ALL');
-  const [selectedBug, setSelectedBug] = useState(null);
 
   const results = executionReport?.results || [];
-  const summary = executionReport?.summary || {};
-  
-  // Confirmed defects and skeptic rejected leads from investigation report and execution
-  const confirmedBugs = investigationReport?.verified_defects || 
-                        investigationReport?.confirmed_bugs || 
-                        executionReport?.confirmed_bugs || [];
+  const counts = executionStatusCounts(executionReport);
+  const { verified, unverified } = bugFindings(investigationReport, executionReport);
 
-  const skepticRejections = investigationReport?.skeptic_rejections || 
-                           investigationReport?.rejected_leads || [];
+  const filteredResults = results.filter(r => filterStatus === 'ALL' || displayExecutionStatus(r.status) === filterStatus);
 
-  const filteredResults = results.filter(r => {
-    if (filterStatus === 'ALL') return true;
-    return r.status?.toUpperCase() === filterStatus;
-  });
-
-  const total = summary.total_tests ?? results.length;
-  const passed = summary.passed ?? results.filter(r => r.status === 'PASSED').length;
-  const failed = summary.failed ?? results.filter(r => r.status === 'FAILED').length;
-  const errors = summary.errors ?? results.filter(r => r.status === 'ERROR' || r.status === 'SETUP_FAILURE').length;
-  const validityRate = summary.assertion_validity_rate != null 
-    ? `${(summary.assertion_validity_rate * 100).toFixed(1)}%` 
-    : (total > 0 ? `${((passed / total) * 100).toFixed(1)}%` : 'N/A');
+  const metricCards = [
+    { label: 'Executed', value: executionReport ? results.length : NO_DATA, sub: 'Test cases run', color: null },
+    { label: 'Pass', value: executionReport ? counts.PASS : NO_DATA, sub: 'All stated assertions satisfied', color: 'var(--color-success)' },
+    { label: 'Fail', value: executionReport ? counts.FAIL : NO_DATA, sub: 'An assertion was not satisfied', color: 'var(--color-danger)' },
+    { label: 'Error', value: executionReport ? counts.ERROR : NO_DATA, sub: 'Runner, locator, or environment error', color: 'var(--color-warning)' },
+    { label: 'Blocked', value: executionReport ? counts.BLOCKED : NO_DATA, sub: 'Could not run (e.g. credentials missing)', color: null },
+    { label: 'Invalid', value: executionReport ? counts.INVALID : NO_DATA, sub: 'Test case not executable as defined', color: null },
+    { label: 'Incomplete', value: executionReport ? counts.INCOMPLETE : NO_DATA, sub: 'Ran but verified nothing', color: null },
+  ];
 
   return (
     <div className="tab-pane active fade-in">
@@ -44,14 +44,14 @@ export default function ExecutionAndBugs({
           <div>
             <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 600 }}>Test Suite Execution & Bug Verification</h2>
             <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Real Playwright runner execution results, assertion validity metrics, and skeptic-filtered defect verifications.
+              Results of executing this run's generated test cases with the Playwright runner. Execution is started manually.
             </p>
           </div>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button
               className="btn btn-primary"
               onClick={onRunTestSuite}
-              disabled={executingTests || !investigationReport}
+              disabled={executingTests || !canExecute}
               id="btn-execute-tests"
             >
               {executingTests ? (
@@ -60,7 +60,7 @@ export default function ExecutionAndBugs({
                   Executing Suite...
                 </>
               ) : (
-                <>▶ Run Synthesized Test Suite</>
+                <>▶ Run Generated Test Suite</>
               )}
             </button>
           </div>
@@ -69,181 +69,98 @@ export default function ExecutionAndBugs({
 
       {/* Metrics Row */}
       <div className="metrics-grid" style={{ marginBottom: '1.5rem' }}>
-        <div className="metric-card">
-          <div className="metric-label">Total Executed</div>
-          <div className="metric-value">{total}</div>
-          <div className="metric-sub">Synthesized contract tests</div>
-        </div>
-        <div className="metric-card" style={{ borderLeft: '4px solid var(--color-success)' }}>
-          <div className="metric-label">Passed Tests</div>
-          <div className="metric-value" style={{ color: 'var(--color-success)' }}>{passed}</div>
-          <div className="metric-sub">Verified assertions</div>
-        </div>
-        <div className="metric-card" style={{ borderLeft: '4px solid var(--color-danger)' }}>
-          <div className="metric-label">Defects / Failed</div>
-          <div className="metric-value" style={{ color: 'var(--color-danger)' }}>{failed}</div>
-          <div className="metric-sub">Assertion or flow failures</div>
-        </div>
-        <div className="metric-card" style={{ borderLeft: '4px solid var(--color-warning)' }}>
-          <div className="metric-label">Setup / Errors</div>
-          <div className="metric-value" style={{ color: 'var(--color-warning)' }}>{errors}</div>
-          <div className="metric-sub">Precondition misses</div>
-        </div>
-        <div className="metric-card" style={{ borderLeft: '4px solid var(--color-primary)' }}>
-          <div className="metric-label">Assertion Validity</div>
-          <div className="metric-value" style={{ color: 'var(--color-primary)' }}>{validityRate}</div>
-          <div className="metric-sub">Empirically grounded</div>
-        </div>
+        {metricCards.map(card => (
+          <div key={card.label} className="metric-card" style={card.color ? { borderLeft: `4px solid ${card.color}` } : undefined}>
+            <div className="metric-label">{card.label}</div>
+            <div className="metric-value" style={card.color ? { color: card.color } : undefined}>{card.value}</div>
+            <div className="metric-sub">{card.sub}</div>
+          </div>
+        ))}
       </div>
 
-      {/* Confirmed Defects Section (Top Priority for QA Engineer) */}
-      <div className="panel" style={{ marginBottom: '1.5rem', border: confirmedBugs.length > 0 ? '1px solid rgba(239, 68, 68, 0.4)' : undefined }}>
+      {/* Verified findings */}
+      <div className="panel" id="verified-findings" style={{ marginBottom: '1.5rem', border: verified.length > 0 ? '1px solid rgba(239, 68, 68, 0.4)' : undefined }}>
         <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', color: confirmedBugs.length > 0 ? 'var(--color-danger)' : 'inherit' }}>
-              <span>🚨</span> Confirmed Application Defects ({confirmedBugs.length})
+            <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', color: verified.length > 0 ? 'var(--color-danger)' : 'inherit' }}>
+              <span>🚨</span> Verified Findings ({verified.length})
             </h3>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Verified through 2-of-2 independent reproduction runs in fresh, isolated browser contexts.
+              Confirmed by the investigation's reproducer, or by repeated assertion failures during test execution.
             </span>
           </div>
-          {confirmedBugs.length > 0 && (
-            <span className="badge badge-danger">Verified Defects</span>
-          )}
         </div>
 
-        {confirmedBugs.length === 0 ? (
+        {verified.length === 0 ? (
           <div className="empty-state" style={{ padding: '2rem 1rem' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🛡️</div>
-            <p style={{ margin: 0, fontWeight: 500 }}>No Confirmed Defects Detected</p>
+            <p style={{ margin: 0, fontWeight: 500 }}>No verified findings</p>
             <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              All executed actions conformed to expected invariants, or candidate anomalies were resolved as non-reproducible.
+              Unverified leads, if any, are listed below and are not bugs until reproduced.
             </p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-            {confirmedBugs.map((bug, idx) => {
-              const bugId = bug.id || bug.defect_id || `BUG-${idx + 1}`;
-              const title = bug.title || bug.headline || bug.summary || 'Unspecified Defect';
-              const reproRate = bug.reproduction_rate || bug.repro_rate || '—';
-              const severity = bug.severity || 'UNSPECIFIED';
-              const steps = bug.reproduction_steps || bug.steps || [];
-              const evidenceRefs = bug.evidence_ids || bug.evidence_references || [];
-              const screenshotPath = bug.screenshot_path || bug.screenshot;
-
-              return (
-                <div 
-                  key={bugId} 
-                  className="card" 
-                  style={{ 
-                    border: '1px solid var(--border-color)', 
-                    background: 'rgba(239, 68, 68, 0.04)',
-                    padding: '1.25rem' 
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                        <span className="badge badge-danger" style={{ fontWeight: 700 }}>{bugId}</span>
-                        <span className={`badge badge-${severity === 'CRITICAL' ? 'danger' : 'warning'}`}>{severity}</span>
-                        <span className="badge badge-neutral" title="Reproduced in fresh contexts">
-                          🔄 Repro Rate: <strong>{reproRate}</strong>
-                        </span>
-                      </div>
-                      <h4 style={{ margin: '0.5rem 0', fontSize: '1.05rem', color: 'var(--color-danger)' }}>
-                        {title}
-                      </h4>
-                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-color)' }}>
-                        {bug.description || bug.details || 'Anomaly confirmed through isolated reproduction runs.'}
-                      </p>
-                    </div>
-
-                    {screenshotPath && (
-                      <button
-                        className="btn btn-secondary btn-sm"
-                        onClick={() => onViewScreenshot(screenshotPath)}
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}
-                      >
-                        📸 View Screenshot
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Reproduction Steps */}
-                  {steps.length > 0 && (
-                    <div style={{ marginTop: '1rem' }}>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-                        REPRODUCTION RECIPE (MINIMIZED TRACE):
-                      </div>
-                      <ol style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', color: 'var(--text-color)' }}>
-                        {steps.map((st, sIdx) => (
-                          <li key={sIdx} style={{ marginBottom: '0.25rem' }}>
-                            {typeof st === 'string' ? st : `${st.action || st.type} on ${st.selector || st.target || 'target'}`}
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  )}
-
-                  {/* Evidence IDs */}
-                  {evidenceRefs.length > 0 && (
-                    <div style={{ marginTop: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Evidence Traces:</span>
-                      {evidenceRefs.map(eid => (
-                        <span key={eid} className="badge badge-neutral" style={{ fontSize: '0.75rem', fontFamily: 'monospace' }}>
-                          {eid}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+            {verified.map((bug, idx) => (
+              <div
+                key={bug.id || idx}
+                className="card verified-finding"
+                style={{ border: '1px solid var(--border-color)', background: 'rgba(239, 68, 68, 0.04)', padding: '1.25rem' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
+                  <span className="badge badge-danger" style={{ fontWeight: 700 }}>{bug.id || `FINDING-${idx + 1}`}</span>
+                  <span className="badge badge-neutral">{bug.verdict}</span>
+                  <span className="badge badge-neutral">{bug.source}</span>
+                  {bug.severity && <span className="badge badge-warning">{bug.severity}</span>}
+                  {bug.reproduction && <span className="badge badge-neutral">Reproduction: {bug.reproduction}</span>}
                 </div>
-              );
-            })}
+                <h4 style={{ margin: '0.5rem 0', fontSize: '1.05rem', color: 'var(--color-danger)' }}>{bug.title || NO_DATA}</h4>
+                {bug.detail && <p style={{ margin: 0, fontSize: '0.9rem' }}>{bug.detail}</p>}
+                {bug.evidence_ids && bug.evidence_ids.length > 0 && (
+                  <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    Evidence: <code className="mono">{bug.evidence_ids.join(', ')}</code>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Skeptic Rejection Ledger (Transparency & Zero-Hallucination Proof) */}
-      <div className="panel" style={{ marginBottom: '1.5rem' }}>
+      {/* Unverified leads */}
+      <div className="panel" id="unverified-leads" style={{ marginBottom: '1.5rem' }}>
         <div className="panel-header">
           <div>
             <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>⚖️</span> Skeptic Filter Ledger ({skepticRejections.length})
+              <span>⚖️</span> Unverified Leads ({unverified.length})
             </h3>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Candidate anomalies rigorously rejected to eliminate false positives (e.g., non-reproducible 404 probes or transient errors).
+              Candidate anomalies that were rejected or could not be reproduced. These are not confirmed bugs.
             </span>
           </div>
         </div>
 
-        {skepticRejections.length === 0 ? (
+        {unverified.length === 0 ? (
           <div style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center' }}>
-            No candidate anomalies required skeptic rejection.
+            No unverified leads.
           </div>
         ) : (
           <div className="table-container" style={{ maxHeight: '240px', overflowY: 'auto' }}>
             <table className="data-table">
               <thead>
                 <tr>
-                  <th>Lead / Symptom</th>
-                  <th>Observed Location</th>
-                  <th>Rejection Reason</th>
+                  <th>Lead</th>
+                  <th>Source</th>
                   <th>Verdict</th>
+                  <th>Reason</th>
                 </tr>
               </thead>
               <tbody>
-                {skepticRejections.map((item, idx) => (
-                  <tr key={idx}>
-                    <td style={{ fontWeight: 500 }}>{item.lead || item.symptom || item.title || 'Candidate Lead'}</td>
-                    <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{item.url || item.location || '-'}</td>
-                    <td style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      {item.rejection_reason || item.reason || 'No rejection reason recorded'}
-                    </td>
-                    <td>
-                      <span className="badge badge-neutral" style={{ color: 'var(--color-warning)' }}>
-                        REJECTED (FALSE POSITIVE)
-                      </span>
-                    </td>
+                {unverified.map((item, idx) => (
+                  <tr key={item.id || idx}>
+                    <td style={{ fontWeight: 500 }}>{item.title || NO_DATA}</td>
+                    <td style={{ fontSize: '0.85rem' }}>{item.source}</td>
+                    <td><span className="badge badge-neutral">{item.verdict}</span></td>
+                    <td style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{item.reason || 'No reason recorded'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -256,13 +173,15 @@ export default function ExecutionAndBugs({
       <div className="panel">
         <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
           <div>
-            <h3 style={{ margin: 0 }}>Detailed Test Execution Logs</h3>
+            <h3 style={{ margin: 0 }}>Test Execution Results</h3>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Inspect individual test run metrics, assertion evaluations, and browser logs.
+              {executionReport?.execution_id
+                ? `Execution ${executionReport.execution_id}${executionReport.run_id ? ` for run ${executionReport.run_id}` : ''}`
+                : 'Per-test status, assertion counts, and step traces.'}
             </span>
           </div>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {['ALL', 'PASSED', 'FAILED', 'ERROR'].map(st => (
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {['ALL', ...DISPLAY_STATUSES].map(st => (
               <button
                 key={st}
                 className={`btn btn-sm ${filterStatus === st ? 'btn-primary' : 'btn-secondary'}`}
@@ -277,17 +196,12 @@ export default function ExecutionAndBugs({
         {results.length === 0 ? (
           <div className="empty-state" style={{ padding: '3rem 1rem' }}>
             <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>🧪</div>
-            <p style={{ margin: 0, fontWeight: 500 }}>No Test Execution Data Available</p>
+            <p style={{ margin: 0, fontWeight: 500 }}>No execution results yet</p>
             <p style={{ margin: '0.25rem 0 1rem 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Click "Run Synthesized Test Suite" above to execute all generated contract tests against the application.
+              {canExecute
+                ? 'Run the generated test suite to execute this run\'s test cases.'
+                : 'Complete an investigation with generated test cases to enable execution.'}
             </p>
-            <button
-              className="btn btn-primary"
-              onClick={onRunTestSuite}
-              disabled={executingTests || !investigationReport}
-            >
-              ▶ Run Synthesized Test Suite
-            </button>
           </div>
         ) : (
           <div className="table-container">
@@ -295,7 +209,7 @@ export default function ExecutionAndBugs({
               <thead>
                 <tr>
                   <th>Test ID</th>
-                  <th>Name / Intent</th>
+                  <th>Name</th>
                   <th>Status</th>
                   <th>Assertions</th>
                   <th>Duration</th>
@@ -303,37 +217,30 @@ export default function ExecutionAndBugs({
                 </tr>
               </thead>
               <tbody>
-                {filteredResults.map(res => {
+                {filteredResults.map((res, rIdx) => {
                   const isExpanded = selectedResult?.test_id === res.test_id;
-                  const statusClass = res.status === 'PASSED' 
-                    ? 'badge-success' 
-                    : res.status === 'FAILED' 
-                      ? 'badge-danger' 
-                      : 'badge-warning';
-
                   return (
-                    <React.Fragment key={res.test_id || Math.random()}>
-                      <tr 
+                    <React.Fragment key={res.test_id || rIdx}>
+                      <tr
+                        className="execution-result-row"
                         style={{ cursor: 'pointer', background: isExpanded ? 'rgba(99, 102, 241, 0.08)' : undefined }}
                         onClick={() => setSelectedResult(isExpanded ? null : res)}
                       >
                         <td style={{ fontFamily: 'monospace', fontWeight: 600 }}>{res.test_id}</td>
-                        <td>{res.name || res.test_name || 'Contract Test'}</td>
+                        <td>{res.test_name || NO_DATA}</td>
                         <td>
-                          <span className={`badge ${statusClass}`}>
-                            {res.status || 'UNKNOWN'}
+                          <span className={`badge ${executionStatusBadgeClass(res.status)}`} title={res.status}>
+                            {displayExecutionStatus(res.status)}
                           </span>
                         </td>
-                        <td>
-                          <span style={{ fontSize: '0.85rem' }}>
-                            {res.assertions_passed ?? 0} / {res.assertions_total ?? (res.assertions?.length || 0)}
-                          </span>
+                        <td style={{ fontSize: '0.85rem' }}>
+                          {res.assertions_satisfied ?? 0} / {res.assertions_evaluated ?? 0}
                         </td>
                         <td style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                          {res.duration_ms != null ? `${(res.duration_ms / 1000).toFixed(2)}s` : (res.duration ? `${res.duration}s` : '-')}
+                          {res.duration_seconds != null ? `${Number(res.duration_seconds).toFixed(2)}s` : NO_DATA}
                         </td>
                         <td>
-                          <button 
+                          <button
                             className="btn btn-secondary btn-sm"
                             onClick={(e) => {
                               e.stopPropagation();
@@ -345,26 +252,24 @@ export default function ExecutionAndBugs({
                         </td>
                       </tr>
 
-                      {/* Expanded Details Row */}
                       {isExpanded && (
                         <tr>
                           <td colSpan="6" style={{ padding: '1rem', background: 'rgba(0, 0, 0, 0.2)' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                              {res.error_message && (
-                                <div style={{ 
-                                  padding: '0.75rem', 
-                                  background: 'rgba(239, 68, 68, 0.1)', 
+                              {res.failure_reason && (
+                                <div style={{
+                                  padding: '0.75rem',
+                                  background: 'rgba(239, 68, 68, 0.1)',
                                   borderLeft: '4px solid var(--color-danger)',
                                   borderRadius: '4px',
                                   fontFamily: 'monospace',
                                   fontSize: '0.85rem',
                                   color: '#fca5a5'
                                 }}>
-                                  <strong>Execution Failure:</strong> {res.error_message}
+                                  <strong>{displayExecutionStatus(res.status)}:</strong> {res.failure_reason}
                                 </div>
                               )}
 
-                              {/* Action trace steps */}
                               {res.step_results && res.step_results.length > 0 && (
                                 <div>
                                   <div style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem', color: 'var(--text-muted)' }}>
@@ -372,10 +277,10 @@ export default function ExecutionAndBugs({
                                   </div>
                                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                                     {res.step_results.map((st, idx) => (
-                                      <div 
+                                      <div
                                         key={idx}
-                                        style={{ 
-                                          display: 'flex', 
+                                        style={{
+                                          display: 'flex',
                                           justifyContent: 'space-between',
                                           alignItems: 'center',
                                           padding: '0.4rem 0.6rem',
@@ -385,11 +290,19 @@ export default function ExecutionAndBugs({
                                         }}
                                       >
                                         <div>
-                                          <span style={{ color: 'var(--text-muted)', marginRight: '0.5rem' }}>#{idx + 1}</span>
-                                          <strong>{st.action || st.action_type || 'Action'}</strong>: {st.target_selector || st.target || st.url || '-'}
+                                          <span style={{ color: 'var(--text-muted)', marginRight: '0.5rem' }}>#{st.step_number ?? idx + 1}</span>
+                                          <strong>{st.action}</strong>: {st.description || NO_DATA}
+                                          {st.assertion_expected && (
+                                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                                              Expected: {st.assertion_expected}{st.assertion_actual ? ` | Actual: ${st.assertion_actual}` : ''}
+                                            </div>
+                                          )}
+                                          {st.error_message && (
+                                            <div style={{ fontSize: '0.8rem', color: '#fca5a5' }}>{st.error_message}</div>
+                                          )}
                                         </div>
-                                        <span className={`badge ${st.status === 'PASSED' || st.success ? 'badge-success' : 'badge-danger'}`} style={{ fontSize: '0.75rem' }}>
-                                          {st.status || (st.success ? 'PASSED' : 'FAILED')}
+                                        <span className={`badge ${executionStatusBadgeClass(st.status)}`} style={{ fontSize: '0.75rem' }}>
+                                          {displayExecutionStatus(st.status)}
                                         </span>
                                       </div>
                                     ))}
@@ -397,42 +310,14 @@ export default function ExecutionAndBugs({
                                 </div>
                               )}
 
-                              {/* Assertion details */}
-                              {res.assertions && res.assertions.length > 0 && (
-                                <div>
-                                  <div style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem', color: 'var(--text-muted)' }}>
-                                    ASSERTION EVALUATIONS:
-                                  </div>
-                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                                    {res.assertions.map((ast, idx) => (
-                                      <div 
-                                        key={idx}
-                                        style={{ 
-                                          display: 'flex', 
-                                          justifyContent: 'space-between',
-                                          alignItems: 'center',
-                                          padding: '0.4rem 0.6rem',
-                                          background: 'rgba(255, 255, 255, 0.03)',
-                                          borderRadius: '4px',
-                                          fontSize: '0.85rem'
-                                        }}
-                                      >
-                                        <div>
-                                          <span style={{ color: 'var(--text-muted)', marginRight: '0.5rem' }}>#{idx + 1}</span>
-                                          <span>{ast.type || 'ASSERTION'}: {ast.description || ast.expected || ast.field}</span>
-                                          {ast.evidence_id && (
-                                            <span className="badge badge-neutral" style={{ marginLeft: '0.5rem', fontSize: '0.7rem' }}>
-                                              Ref: {ast.evidence_id}
-                                            </span>
-                                          )}
-                                        </div>
-                                        <span className={`badge ${ast.passed || ast.result === 'PASSED' ? 'badge-success' : 'badge-danger'}`} style={{ fontSize: '0.75rem' }}>
-                                          {ast.passed || ast.result === 'PASSED' ? 'PASSED' : 'FAILED'}
-                                        </span>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
+                              {res.final_screenshot && (
+                                <button
+                                  className="btn btn-secondary btn-sm"
+                                  style={{ alignSelf: 'flex-start' }}
+                                  onClick={() => onViewScreenshot(`/artifacts/${encodeURIComponent(res.final_screenshot)}`)}
+                                >
+                                  📸 View Final Screenshot
+                                </button>
                               )}
                             </div>
                           </td>

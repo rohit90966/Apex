@@ -20,6 +20,56 @@ from app.schemas import (
 )
 from app.investigation_agent.models import InvestigationReport
 
+# FILL value standing in for the target's password; resolved by QAPlanRunner at execution time.
+CREDENTIAL_PASSWORD_PLACEHOLDER = "${CREDENTIAL_PASSWORD}"
+NO_STEPS_RULE_REASON = "No executable steps could be derived from this rule; it needs a defined probe before it can run."
+NO_STEPS_BUG_REASON = "The reproduction steps for this lead were not captured in executable form."
+
+_INTERACTION_ACTIONS = (ActionType.CLICK, ActionType.FILL, ActionType.SELECT)
+
+
+def _is_password_target(selector: str) -> bool:
+    return "password" in (selector or "").lower()
+
+
+def _step_assertion(step: Dict[str, Any], target_url: str) -> Optional[ExecutionAssertion]:
+    """Builds the assertion for a journey step from the state it was observed to reach."""
+    url_fragment = step.get("expected_url_fragment") or ""
+    legacy_url = step.get("expected_url") or ""
+    if not url_fragment and legacy_url and legacy_url != target_url:
+        url_fragment = legacy_url.replace(target_url, "").split("?")[0] or legacy_url
+    if url_fragment:
+        return ExecutionAssertion(
+            assertion_type=AssertionType.URL_CONTAINS,
+            expected_value=url_fragment,
+            description=f"Verify transition to route {url_fragment}",
+        )
+    if step.get("expected_heading"):
+        return ExecutionAssertion(
+            assertion_type=AssertionType.TEXT_VISIBLE,
+            expected_value=step["expected_heading"],
+            description=f"Verify landmark heading '{step['expected_heading']}' is visible",
+        )
+    if step.get("expected_selector"):
+        return ExecutionAssertion(
+            assertion_type=AssertionType.ELEMENT_VISIBLE,
+            target_selector=step["expected_selector"],
+            description=f"Verify key element '{step['expected_selector']}' is present",
+        )
+    return None
+
+
+def _journey_invalid_reason(steps: List[ActionStep]) -> Optional[str]:
+    """Explains why a synthesized journey cannot be executed meaningfully, or None when it can."""
+    if len(steps) <= 1:
+        return "No executable steps beyond opening the entry page."
+    for s in steps:
+        if s.action in _INTERACTION_ACTIONS and not s.selector:
+            return f"Step {s.step_number} ({s.action.value}) has no target selector."
+    if not any(s.assertion for s in steps):
+        return "No assertions could be derived; executing it would verify nothing."
+    return None
+
 
 def synthesize_test_cases_from_investigation(
     report: InvestigationReport,
@@ -32,7 +82,9 @@ def synthesize_test_cases_from_investigation(
     test_cases: List[TestCase] = []
     target_url = report.overview.target_url or "http://127.0.0.1:8000/"
 
-    # 1. Synthesize User Journey Test Cases from Inferred Journeys
+    # 1. Synthesize User Journey Test Cases from Inferred Journeys.
+    # InvestigationReportBuilder emits journey steps with separate fields: action, target, value,
+    # expected_url_fragment, expected_heading, expected_selector, evidence_refs.
     for idx, journey in enumerate(report.inferred_journeys[:4]):
         steps = journey.get("steps", [])
         if not steps:
@@ -58,55 +110,28 @@ def synthesize_test_cases_from_investigation(
 
         step_num = 2
         for s in steps:
-            act_text = s.get("action", "")
-            exp_url = s.get("expected_url", "")
-            exp_heading = s.get("expected_heading", "")
-            exp_sel = s.get("expected_selector", "")
-            s_ev = s.get("evidence_refs", [])
-            evidence_ids.extend(s_ev)
+            act = str(s.get("action", "")).upper()
+            target = str(s.get("target") or "").strip()
+            evidence_ids.extend(s.get("evidence_refs", []) or [])
 
-            # Parse action
-            action_type = ActionType.CLICK
-            selector = None
-            val = None
-
-            if "CLICK" in act_text:
-                action_type = ActionType.CLICK
-                if "on " in act_text:
-                    selector = act_text.split("on ", 1)[1].strip()
-            elif "FILL" in act_text or "INPUT" in act_text:
-                action_type = ActionType.FILL
-                if "on " in act_text:
-                    selector = act_text.split("on ", 1)[1].strip()
-                val = "test_value"
+            if act == "NAVIGATE":
+                if not target or target.rstrip("/") == target_url.rstrip("/"):
+                    continue  # Entry navigation is already step 1
+                action_type, selector, val = ActionType.NAVIGATE, None, target
+            elif act == "CLICK":
+                action_type, selector, val = ActionType.CLICK, target or None, None
+            elif act == "FILL":
+                action_type, selector = ActionType.FILL, target or None
+                # Never copy a credential into a test case; the runner resolves the placeholder at execution time.
+                val = CREDENTIAL_PASSWORD_PLACEHOLDER if _is_password_target(target) else s.get("value")
+            elif act == "SELECT_OPTION":
+                action_type, selector, val = ActionType.SELECT, target or None, s.get("value")
             else:
-                action_type = ActionType.CLICK
-                if "on " in act_text:
-                    selector = act_text.split("on ", 1)[1].strip()
+                # e.g. VERIFY_CONSTRAINT describes an observation, not an executable action.
+                continue
 
             if selector:
                 relevant_elements.append(selector)
-
-            # Build assertion if step produces milestone state
-            assertion = None
-            if exp_url and exp_url != target_url:
-                assertion = ExecutionAssertion(
-                    assertion_type=AssertionType.URL_CONTAINS,
-                    expected_value=exp_url.replace(target_url, "").split("?")[0] or exp_url,
-                    description=f"Verify transition to route {exp_url}",
-                )
-            elif exp_heading:
-                assertion = ExecutionAssertion(
-                    assertion_type=AssertionType.TEXT_VISIBLE,
-                    expected_value=exp_heading,
-                    description=f"Verify landmark heading '{exp_heading}' is visible",
-                )
-            elif exp_sel:
-                assertion = ExecutionAssertion(
-                    assertion_type=AssertionType.ELEMENT_VISIBLE,
-                    target_selector=exp_sel,
-                    description=f"Verify key element '{exp_sel}' is present",
-                )
 
             action_steps.append(
                 ActionStep(
@@ -114,8 +139,8 @@ def synthesize_test_cases_from_investigation(
                     action=action_type,
                     selector=selector,
                     value=val,
-                    description=act_text or f"Execute transition step {step_num}",
-                    assertion=assertion,
+                    description=s.get("description") or f"{act} {target}".strip(),
+                    assertion=_step_assertion(s, target_url),
                 )
             )
             step_num += 1
@@ -139,6 +164,7 @@ def synthesize_test_cases_from_investigation(
                     )
                     break
 
+        invalid_reason = _journey_invalid_reason(action_steps)
         tc = TestCase(
             test_id=tc_id,
             name=name,
@@ -155,7 +181,8 @@ def synthesize_test_cases_from_investigation(
             safe_for_future_automation=True,
             selection_reason="Validates end-to-end critical user journey discovered during autonomous exploration.",
             confidence=0.95,
-            status=TestCaseStatus.PROPOSED,
+            status=TestCaseStatus.INVALID if invalid_reason else TestCaseStatus.PROPOSED,
+            invalid_reason=invalid_reason,
             evidence_ids=list(dict.fromkeys(evidence_ids))[:5],
             oracle_class="SPECIFICATION",
             steps=action_steps,
@@ -183,7 +210,8 @@ def synthesize_test_cases_from_investigation(
             priority=Priority.MEDIUM,
             selection_reason=f"Validates discovered business rule {rule.rule_id} ({rule_cat}).",
             confidence=0.90,
-            status=TestCaseStatus.PROPOSED,
+            status=TestCaseStatus.INVALID,
+            invalid_reason=NO_STEPS_RULE_REASON,
             rule_ids=[rule.rule_id],
             evidence_ids=ev_ids,
             oracle_class="CONSTRAINT_DERIVED",
@@ -216,7 +244,8 @@ def synthesize_test_cases_from_investigation(
             priority=Priority.HIGH,
             selection_reason="Strictly confirmed defect via 2-of-2 isolated context reproduction.",
             confidence=1.0,
-            status=TestCaseStatus.PROPOSED,
+            status=TestCaseStatus.INVALID,
+            invalid_reason=NO_STEPS_BUG_REASON,
             evidence_ids=list(getattr(lead, "evidence_ids", []))[:5],
             oracle_class="GENERIC_HEURISTIC",
         )
