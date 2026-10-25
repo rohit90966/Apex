@@ -174,6 +174,54 @@ def test_execution_metrics_appear_only_after_a_real_execution(dashboard, page, m
     assert "No execution data yet" not in overview
 
 
+def _confirmed_lead():
+    return {"id": "lead_ui_1", "title": "Bypass: Confirmation field must match", "oracle_type": "CONVENTION",
+            "strength": "HIGH", "probe_family": "forms", "question_id": "q", "status": "CONFIRMED",
+            "source_url": UNRELATED_TARGET + "registration", "target_desc": "confirm_password",
+            "steps": [{"action_type": "FILL", "target": {"name": "confirm_password", "css": "#confirm-password"}}],
+            "expected": {"text": "Submission should be rejected"}, "actual": {"text": "accepted"},
+            "confirmation": {"runs": 2, "passed": 2}}
+
+
+def test_persisted_findings_are_shown_in_the_dashboard(dashboard, page):
+    base, store = dashboard
+    report = _report(InvestigationStatus.COMPLETED, "Investigation converged")
+    run = store.create(UNRELATED_TARGET)
+    payload = report.model_dump(mode="json")
+    payload["confirmed_bug_leads"] = [_confirmed_lead()]
+    store.complete(run.run_id, payload, [], report_status="completed")
+    finding_id = store.get(run.run_id).findings["findings"][0]["finding_id"]
+    _load(page, base, run.run_id)
+    page.locator("button.tab-btn", has_text=re.compile("Execution", re.I)).first.click()
+    panel = page.locator("#findings-panel")
+    panel.wait_for(state="visible")
+    text = panel.inner_text()
+    assert "Findings (1)" in text and "LIKELY_DEFECT" in text and "investigation" in text
+    assert page.locator(f'[data-finding-id="{finding_id}"]').count() == 1
+
+
+def test_dashboard_execution_is_persisted_against_the_run(dashboard, page, monkeypatch):
+    base, store = dashboard
+    run_id = _persist(store, InvestigationStatus.COMPLETED, "Investigation converged", ["TC-INV-RULE-01"])
+
+    async def fake_run_all(test_cases, target_url, max_concurrent=1):
+        return [ExecutionResult(test_id=tc.test_id, test_name=tc.name, total_steps=1, steps_completed=1,
+                                status=ExecutionStatus.PASSED, assertions_evaluated=1, meaningful_assertions_evaluated=1)
+                for tc in test_cases]
+
+    monkeypatch.setattr(main.test_runner, "run_all", fake_run_all)
+    _load(page, base, run_id)
+    _open_tab(page, 3)
+    with page.expect_request(lambda r: r.url.endswith("/api/tests/execute")) as req:
+        page.get_by_role("button", name=re.compile("Execute", re.I)).first.click()
+    assert req.value.post_data_json.get("run_id") == run_id
+    assert "test_cases" not in req.value.post_data_json
+    page.wait_for_timeout(800)
+    detail = store.get(run_id)
+    assert detail.latest_execution is not None and detail.run.execution_count == 1
+    assert detail.latest_execution["results"][0]["test_id"] == "TC-INV-RULE-01"
+
+
 def test_new_run_clears_previous_results_immediately(dashboard, page, monkeypatch):
     base, store = dashboard
     old_run = _persist(store, InvestigationStatus.COMPLETED, "Investigation converged", ["TC-OLD-01"])
@@ -204,7 +252,7 @@ def test_new_run_clears_previous_results_immediately(dashboard, page, monkeypatc
     assert "STATUS: —" in overview
     assert "No execution data yet" in overview
 
-    page.wait_for_function("() => document.querySelector('button.tab-btn.active')?.innerText.includes('Investigation Results')",
+    page.wait_for_function("() => document.querySelector('button.tab-btn.active')?.innerText.includes('Results')",
                            timeout=30_000)
     tests_tab = _open_tab(page, 3)
     assert "TC-NEW-01" in tests_tab

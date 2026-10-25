@@ -19,7 +19,7 @@ from app.runs import (
     redact_secrets,
     report_outcome_for,
 )
-from app.runs.store import RUN_FILE, REPORT_FILE, TEST_CASES_FILE
+from app.runs.store import FINDINGS_FILE, RUN_FILE, REPORT_FILE, TEST_CASES_FILE
 from app.investigation_agent.models import InvestigationStatus
 from app.investigation_agent.workflow import InvestigationOrchestrator
 
@@ -143,7 +143,7 @@ def test_writes_are_atomic_and_leave_no_temp_files(store):
     run = store.create("http://127.0.0.1:8001/")
     store.complete(run.run_id, {"k": "v"}, [{"test_id": "TC-1"}])
     names = sorted(os.listdir(store.root / run.run_id))
-    assert names == sorted([RUN_FILE, REPORT_FILE, TEST_CASES_FILE])
+    assert names == sorted([RUN_FILE, REPORT_FILE, TEST_CASES_FILE, FINDINGS_FILE])
 
 
 def test_recover_interrupted_runs_marks_them_failed(store):

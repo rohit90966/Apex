@@ -120,6 +120,16 @@ class AuthenticationManager:
         if not origin:
             return None
 
+        # Website profiles (VERITYQA_CREDENTIALS_<PROFILE>_*), bound to an exact origin; also covers the legacy
+        # origin-scoped VERITYQA_TEST_* variables. Two profiles for one origin are ambiguous: none is guessed.
+        from app.auth import credentials as registry
+        status, profile = registry.resolve(origin)
+        if status == registry.FOUND:
+            return profile.as_credentials()
+        if status == registry.AMBIGUOUS:
+            logger.warning("[Auth] Several credential profiles match %s; none used (select a profile).", origin)
+            return None
+
         env_user = os.environ.get("VERITYQA_TEST_USERNAME") or os.environ.get("TARGET_USERNAME")
         env_pass = os.environ.get("VERITYQA_TEST_PASSWORD") or os.environ.get("TARGET_PASSWORD")
         env_origin = canonical_origin(os.environ.get("VERITYQA_TEST_CREDENTIALS_ORIGIN", ""))
@@ -131,6 +141,11 @@ class AuthenticationManager:
                                "to the origin they are authorized for.")
 
         netloc = origin.split("://", 1)[1]
+        host = netloc.rsplit(":", 1)[0].strip("[]").lower()
+        if host in ("127.0.0.1", "localhost", "::1", "0.0.0.0"):
+            # A local host:port identifies a port, not an application: the same port serves unrelated apps over
+            # time, so registry credentials are never applied locally. Use the origin-scoped environment variables.
+            return None
         for domain, creds in cls._get_registry().items():
             if domain.strip().lower() == netloc:
                 return {"username": creds["user"], "password": creds["pass"], "source": "DEMO_REGISTRY"}
@@ -147,93 +162,46 @@ class AuthenticationManager:
         Executes bounded, safe authentication submission through Playwright.
         Resolves field locators using resilient selector patterns.
         """
-        p = session.page
+        from app.auth.login import login_sync
         signals: List[str] = []
-
         try:
-            # 1. Resolve username input
-            user_sel = "input[name='user-name'], input[name='username'], input[name='email'], input[id='user-name'], input[id='username'], input[type='text']:visible"
-            # 2. Resolve password input
-            pass_sel = "input[name='password'], input[id='password'], input[type='password']:visible"
-            # 3. Resolve submit button
-            submit_sel = "input[type='submit'], button[type='submit'], input[name='login-button'], button#loginBtn, button:has-text('Login'), button:has-text('Sign In')"
+            # The login form is discovered in the live DOM (no assumed selectors); configured profile selectors are
+            # validated before use. Navigation to a profile's login page goes through the session (host checks).
+            def _navigate(url: str) -> bool:
+                ok, _, status = session.navigate(url)
+                return bool(ok) and status != 404
 
-            # Fill username
-            p.wait_for_selector(user_sel, timeout=5000)
-            p.fill(user_sel, credentials["username"])
-            signals.append("Resolved and populated username field")
-
-            # Fill password (never logged)
-            p.wait_for_selector(pass_sel, timeout=5000)
-            p.fill(pass_sel, credentials["password"])
-            signals.append("Resolved and populated password field")
-
-            # Submit
-            p.click(submit_sel, timeout=5000)
-            signals.append("Clicked authentication submission control")
-
-            # Wait for navigation or dynamic DOM transformation
-            try:
-                p.wait_for_load_state("domcontentloaded", timeout=7000)
-            except Exception:
-                pass
-            p.wait_for_timeout(1500)
-
-            # Verification of success
-            new_url = p.url or ""
-            is_success, reason = cls.verify_auth_success(p, new_url)
-
-            if is_success:
-                signals.append(f"Authentication verified: {reason}")
-                return True, reason, signals
-            else:
-                signals.append(f"Authentication check failed: {reason}")
-                return False, reason, signals
-
+            outcome = login_sync(session.page, credentials, navigate=_navigate)
+            signals.append(f"Authentication state: {outcome.state.value}")
+            if outcome.ok:
+                signals.append(f"Authentication verified: {outcome.reason}")
+                return True, outcome.reason, signals
+            signals.append(f"Authentication check failed: {outcome.reason}")
+            return False, f"{outcome.state.value}: {outcome.reason}", signals
         except Exception as e:
             err = f"Auth exception: {str(e)[:120]}"
             signals.append(err)
             return False, err, signals
 
     @classmethod
-    def verify_auth_success(cls, page, new_url: str) -> Tuple[bool, str]:
+    def verify_auth_success(cls, page, new_url: str, before_url: str = "") -> Tuple[bool, str]:
         """
-        Verifies whether authentication actually succeeded using multi-signal evidence:
-        - Route progression (e.g., /inventory, /dashboard)
-        - Disappearance of password input
-        - Appearance of logout/sign-out controls or user badges
-        - Appearance of product inventory or dashboard landmarks
+        Authentication succeeded only when, after submitting, no login error is shown and no password field is
+        still visible. A route change or a logout control is recorded as supporting evidence. Generic page
+        landmarks (e.g. a <main> element) and URL keywords prove nothing and are not used.
         """
-        # 1. Check URL change
-        url_lower = new_url.lower()
-        if any(k in url_lower for k in ("/inventory", "/dashboard", "/app", "/tasks", "/home")):
-            return True, f"Navigated to authenticated route: {new_url}"
-
-        # 2. Check for dashboard or authenticated content landmarks
-        has_landmark = page.evaluate("""() => {
-            const dashboard = document.querySelector('main, #dashboard, .dashboard-container, [role="main"], article, .content-area');
-            const logout = Array.from(document.querySelectorAll('a, button')).find(el => /log\\s*out|sign\\s*out/i.test(el.textContent || el.id || ''));
-            if (logout) return 'logout_control_present';
-            const userBadge = document.querySelector('.user-profile, .avatar, [aria-label*="user"], [aria-label*="profile"]');
-            if (userBadge) return 'user_profile_badge';
-            if (dashboard) return 'authenticated_content_container';
-            return null;
+        state = page.evaluate("""() => {
+            const visible = el => !!el && el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden';
+            const errSel = '[role="alert"], [data-test=error], .error-message, .error, .alert-danger, .alert-error, .invalid-feedback, .field-error';
+            const err = Array.from(document.querySelectorAll(errSel)).find(e => visible(e) && (e.innerText || '').trim());
+            const pwd = Array.from(document.querySelectorAll('input[type=password]')).some(visible);
+            const logout = Array.from(document.querySelectorAll('a, button')).some(el => visible(el) && /log\\s*out|sign\\s*out/i.test(el.textContent || el.id || ''));
+            return {error: err ? err.innerText.trim().slice(0, 80) : null, passwordVisible: pwd, logout: logout};
         }""")
-
-        if has_landmark:
-            return True, f"Detected authenticated landmark: {has_landmark}"
-
-        # 3. Check if password input is gone
-        pass_count = page.evaluate("() => document.querySelectorAll('input[type=password]').length")
-        if pass_count == 0:
-            return True, "Login form dismissed; password field no longer in DOM"
-
-        # 4. Check for explicit error messages
-        error_msg = page.evaluate("""() => {
-            const err = document.querySelector('[data-test=error], .error-message, .error, .alert-danger');
-            return err ? (err.innerText || '').trim() : null;
-        }""")
-        if error_msg:
-            return False, f"Server displayed login error: {error_msg[:80]}"
-
-        return False, "Login form still present without state change"
+        if state.get("error"):
+            return False, f"Server displayed login error: {state['error']}"
+        if state.get("passwordVisible"):
+            return False, "Login form still present (password field visible) after submission"
+        route_changed = bool(before_url) and new_url.split("?")[0].rstrip("/") != before_url.split("?")[0].rstrip("/")
+        evidence = [e for e, ok in (("route changed to " + new_url, route_changed), ("logout control present", state.get("logout"))) if ok]
+        return True, "Login form dismissed without error" + (f" ({'; '.join(evidence)})" if evidence else "")

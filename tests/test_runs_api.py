@@ -313,7 +313,10 @@ def test_streamed_and_persisted_output_contains_no_secrets(run_store, engine):
 def test_demo_registry_password_is_redacted_without_env_override(run_store, engine, monkeypatch):
     monkeypatch.delenv("VERITYQA_TEST_USERNAME")
     monkeypatch.delenv("VERITYQA_TEST_PASSWORD")
-    registry_password = AuthenticationManager.discover_credentials(TARGET, None)["password"]
+    # Registry credentials are never applied to loopback targets (a local port identifies a port, not an app),
+    # but any registry password that reaches an event or artefact must still be redacted.
+    assert AuthenticationManager.discover_credentials(TARGET, None) is None
+    registry_password = next(iter(AuthenticationManager._get_registry().values()))["pass"]
     engine.password = registry_password
 
     events = _stream(_query(url=TARGET))

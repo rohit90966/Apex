@@ -24,6 +24,7 @@ export default function App() {
   const [generatedTests, setGeneratedTests] = useState(null);
   const [executingTests, setExecutingTests] = useState(false);
   const [executionReport, setExecutionReport] = useState(null);
+  const [findings, setFindings] = useState(null);
   const [benchmarkRunning, setBenchmarkRunning] = useState(null);
   const [benchmarkResults, setBenchmarkResults] = useState(null);
   const [savedReports, setSavedReports] = useState([]);
@@ -68,6 +69,7 @@ export default function App() {
     setGeneratedTests({ test_cases: testCases, python_code: null, run_id: runId });
     // Show the run's last persisted execution (or none), never one from a different run.
     setExecutionReport(detail.latest_execution || null);
+    setFindings(detail.findings || null);
     // The downloadable script comes from the server exporter (same steps/assertions the runner executes).
     if (runId && testCases.length > 0) {
       fetch(`/api/runs/${encodeURIComponent(runId)}/export`)
@@ -270,6 +272,10 @@ export default function App() {
       if (res.ok) {
         const result = await res.json();
         setExecutionReport(result);
+        // Findings are recomputed server-side from the persisted execution; reload them for this run.
+        if (result.run_id) {
+          fetchRun(result.run_id).then((detail) => setFindings(detail?.findings || null)).catch(() => {});
+        }
         showToast(`Suite Execution Complete: ${result.summary?.passed || 0} passed, ${result.summary?.failed || 0} failed.`, 'success');
       } else {
         const errText = await res.text();
@@ -424,10 +430,10 @@ export default function App() {
       <nav className="tab-nav">
         {[
           { id: 'overview', label: 'Overview', icon: '🏠' },
-          { id: 'investigation', label: 'Investigation', icon: '🔍', badge: isInvestigating ? 'Active' : null },
-          { id: 'results', label: 'Investigation Results', icon: '🗺️', count: investigationReport?.states?.length },
-          { id: 'tests', label: 'Generated Tests', icon: '🧪', count: generatedTests?.test_cases?.length },
-          { id: 'execution', label: 'Execution & Bug Findings', icon: '🚨', count: investigationReport?.verified_defects?.length || executionReport?.summary?.failed },
+          { id: 'investigation', label: 'Investigate', icon: '🔍', badge: isInvestigating ? 'Active' : null },
+          { id: 'results', label: 'Results', icon: '🗺️', count: investigationReport?.states?.length },
+          { id: 'tests', label: 'Tests', icon: '🧪', count: generatedTests?.test_cases?.length },
+          { id: 'execution', label: 'Execution', icon: '🚨', count: investigationReport?.verified_defects?.length || executionReport?.summary?.failed },
           { id: 'reports', label: 'Reports & Benchmarks', icon: '📊' }
         ].map(tab => (
           <button
@@ -499,6 +505,7 @@ export default function App() {
           <ExecutionAndBugs
             investigationReport={investigationReport}
             executionReport={executionReport}
+            findings={findings}
             onRunTestSuite={handleRunTestSuite}
             executingTests={executingTests}
             onSelectTab={setActiveTab}

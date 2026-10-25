@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "CONFIRMED_DEFECT": 3,
+    "UNVERIFIED_ANOMALY": 2
+  },
+  "findings": [
+    {
+      "finding_id": "F-09e60994f527",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_e3c8b1ba",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_13e59bb0"
+          ],
+          "screenshots": [
+            "investigate_probe_before_ad473bda.png",
+            "investigate_probe_after_00e73bca.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_e3c8b1ba",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/2",
+      "subject": "/events/2?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-176c9a0420a6",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_59061f5c",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_53f2638c"
+          ],
+          "screenshots": [
+            "investigate_probe_before_01acec9e.png",
+            "investigate_probe_after_67e1b560.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_59061f5c",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/3",
+      "subject": "/events/3?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-7c572d76c04d",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_20277683",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_406e1ea9"
+          ],
+          "screenshots": [
+            "investigate_probe_before_fb44747f.png",
+            "investigate_probe_after_7bf082b6.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_20277683",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/1",
+      "subject": "/events/1?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-2211488dce38",
+      "classification": "UNVERIFIED_ANOMALY",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-867df2e83c98:TC-SORT-02",
+          "execution_id": "exec-867df2e83c98",
+          "test_id": "TC-SORT-02",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number asc as option 'Price: Low to High' states",
+          "observed": "Records are not ordered by number asc: 120, 18, 250, 45, 75, 9.5",
+          "screenshots": [
+            "exec_TC-SORT-02_1792875595.png",
+            "exec_TC-SORT-02_1792875595.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-867df2e83c98:TC-SORT-03",
+          "execution_id": "exec-867df2e83c98",
+          "test_id": "TC-SORT-03",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number desc as option 'Price: High to Low' states",
+          "observed": "Records are not ordered by number desc: 9.5, 75, 45, 250, 18, 120",
+          "screenshots": [
+            "exec_TC-SORT-03_1792875608.png",
+            "exec_TC-SORT-03_1792875608.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "UNVERIFIED_ANOMALY",
+          "because": "exec-867df2e83c98:TC-SORT-02",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-INVARIANT-SORT",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[ANOMALY] Sort by 'Price: Low to High' orders records (number, asc): UNVERIFIED_ANOMALY",
+      "route": "/events",
+      "subject": "#sort",
+      "rule": "LIST_ORDERING"
+    },
+    {
+      "finding_id": "F-de1ef5589328",
+      "classification": "UNVERIFIED_ANOMALY",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-867df2e83c98:TC-FILTER-01",
+          "execution_id": "exec-867df2e83c98",
+          "test_id": "TC-FILTER-01",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record shows 'All categories' after filtering",
+          "observed": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+          "screenshots": [
+            "exec_TC-FILTER-01_1792875580.png",
+            "exec_TC-FILTER-01_1792875580.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-867df2e83c98:TC-FILTER-02",
+          "execution_id": "exec-867df2e83c98",
+          "test_id": "TC-FILTER-02",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record shows 'Music' after filtering",
+          "observed": "Expected every listed record to contain 'Music'; non-matching: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "screenshots": [
+            "exec_TC-FILTER-02_1792875593.png",
+            "exec_TC-FILTER-02_1792875593.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "UNVERIFIED_ANOMALY",
+          "because": "exec-867df2e83c98:TC-FILTER-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-METAMORPHIC-FILTER",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[ANOMALY] Filter '#category' = 'All categories' shows only matching records: UNVERIFIED_ANOMALY",
+      "route": "/events",
+      "subject": "#category",
+      "rule": "FILTER_CONSISTENCY"
+    }
+  ],
+  "sources": {
+    "investigation": 3,
+    "execution": 2
+  }
+}

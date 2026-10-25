@@ -1,0 +1,4921 @@
+[
+  {
+    "test_id": "TC-FIELD-01",
+    "name": "Email: empty is rejected",
+    "objective": "Boundary test of 'Email' on /login: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Password'; Enter empty value for 'Email' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-email",
+      "field_label": "Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "",
+        "description": "Enter empty value for 'Email' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#login-email",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-01",
+    "name": "Email: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Password'; Enter empty value for 'Email'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-email",
+      "field_label": "Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "",
+        "description": "Enter empty value for 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#login-email",
+          "expected_value": "[\"blank\", \"email\", \"empty\", \"enter\", \"login\", \"missing\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-XF-01",
+    "name": "Confirm password must match Password",
+    "objective": "'Confirm password' is semantically the confirmation of 'Password'; a differing value must be rejected. The pairing is inferred from field names/labels (no explicit requirement).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#email",
+      "#password",
+      "#terms",
+      "#confirm-password",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter a value in 'Confirm password' that differs from 'Password'; Disable client-side validation so the submission reache",
+    "expected_outcome": "Mismatch rejected with feedback about the confirmation",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-CROSS-FIELD"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-CROSS-FIELD"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "paired_with": "#password",
+      "input_value": "QaPassw0rd!Z",
+      "input_class": "MISMATCH",
+      "constraint_kind": "CROSS_FIELD_EQUALITY",
+      "constraint_source": "SEMANTIC_CONVENTION",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!Z",
+        "description": "Enter a value in 'Confirm password' that differs from 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"confirm\", \"identical\", \"match\", \"password\", \"same\"]",
+          "description": "Mismatched 'Confirm password' is rejected",
+          "expected_source": "SEMANTIC_CONVENTION"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-CROSS-FIELD",
+      "DC-VAL-CROSS-FIELD"
+    ]
+  },
+  {
+    "test_id": "TC-FILTER-01",
+    "name": "Filter '#category' = 'All categories' shows only matching records",
+    "objective": "Apply filter option 'All categories' and verify every listed record carries that value.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#category",
+      "#apply-filters"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Choose filter option 'All categories'; Apply filter",
+    "expected_outcome": "Every listed record shows 'All categories' after filtering",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-METAMORPHIC-FILTER"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-METAMORPHIC-FILTER"
+    ],
+    "oracle_class": "FILTER_CONSISTENCY",
+    "derived_values": {
+      "control": "#category",
+      "option": "All categories",
+      "option_label": "All categories",
+      "rule_source": "filter semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#category",
+        "value": "All categories",
+        "description": "Choose filter option 'All categories'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#apply-filters",
+        "value": null,
+        "description": "Apply filter",
+        "assertion": {
+          "assertion_type": "LIST_ALL_CONTAIN",
+          "target_selector": null,
+          "expected_value": "All categories",
+          "description": "Every listed record shows 'All categories' after filtering",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-METAMORPHIC-FILTER",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-01",
+    "name": "Sort by 'Name: A to Z' orders records (text, asc)",
+    "objective": "Select 'Name: A to Z' on #sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#sort",
+      "#apply-filters"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Choose sort option 'Name: A to Z'; Apply sort",
+    "expected_outcome": "Records ordered by text asc as option 'Name: A to Z' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#sort",
+      "option": "name_asc",
+      "option_label": "Name: A to Z",
+      "key": "text",
+      "direction": "asc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#sort",
+        "value": "name_asc",
+        "description": "Choose sort option 'Name: A to Z'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#apply-filters",
+        "value": null,
+        "description": "Apply sort",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"direction\": \"asc\"}",
+          "description": "Records ordered by text asc as option 'Name: A to Z' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-01",
+    "name": "Accessible names on /",
+    "objective": "Interactive controls on / expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/",
+        "description": "Navigate to observed route /",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-01",
+    "name": "Transition: 'Harbor Events' on /bookings",
+    "objective": "Verify activating 'Harbor Events' on /bookings produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "a.brand[href=\"/\"]"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /bookings; Activate 'Harbor Events'",
+    "expected_outcome": "Transition reaches / (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-0fd23be8"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/bookings",
+        "description": "Navigate to observed route /bookings",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "a.brand[href=\"/\"]",
+        "value": null,
+        "description": "Activate 'Harbor Events'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/",
+          "description": "Transition reaches / (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-01",
+    "name": "Route reachable with stable landmarks: /",
+    "objective": "Verify / remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Welcome to Harbor Events'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_root_welcome_to_har_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/",
+        "description": "Navigate to observed route /",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Welcome to Harbor Events",
+          "description": "Stable heading 'Welcome to Harbor Events' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-02",
+    "name": "Email: missing @ is rejected",
+    "objective": "Boundary test of 'Email' on /login: FORMAT_INVALID input (missing @) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter format_invalid value for 'Email' (missing @)",
+    "expected_outcome": "Field validity is 'typeMismatch' (HTML_CONSTRAINT: type=\"email\")",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-email",
+      "field_label": "Email",
+      "input_value": "qa.tester.example.com",
+      "input_class": "FORMAT_INVALID",
+      "boundary": "missing @",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "type=\"email\"",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "typeMismatch",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "qa.tester.example.com",
+        "description": "Enter format_invalid value for 'Email' (missing @)",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#login-email",
+          "expected_value": "typeMismatch",
+          "description": "Field validity is 'typeMismatch' (HTML_CONSTRAINT: type=\"email\")",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-02",
+    "name": "Email: format invalid is rejected by the application (client validation disabled)",
+    "objective": "The page declares type=\"email\" on 'Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Password'; Enter format_invalid value for 'Email'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-email",
+      "field_label": "Email",
+      "input_value": "qa.tester.example.com",
+      "input_class": "FORMAT_INVALID",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "type=\"email\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "qa.tester.example.com",
+        "description": "Enter format_invalid value for 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#login-email",
+          "expected_value": "[\"email\", \"login\"]",
+          "description": "Application rejects the value the page declares invalid (type=\"email\")",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-FILTER-02",
+    "name": "Filter '#category' = 'Music' shows only matching records",
+    "objective": "Apply filter option 'Music' and verify every listed record carries that value.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#category",
+      "#apply-filters"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Choose filter option 'Music'; Apply filter",
+    "expected_outcome": "Every listed record shows 'Music' after filtering",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-METAMORPHIC-FILTER"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-METAMORPHIC-FILTER"
+    ],
+    "oracle_class": "FILTER_CONSISTENCY",
+    "derived_values": {
+      "control": "#category",
+      "option": "Music",
+      "option_label": "Music",
+      "rule_source": "filter semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#category",
+        "value": "Music",
+        "description": "Choose filter option 'Music'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#apply-filters",
+        "value": null,
+        "description": "Apply filter",
+        "assertion": {
+          "assertion_type": "LIST_ALL_CONTAIN",
+          "target_selector": null,
+          "expected_value": "Music",
+          "description": "Every listed record shows 'Music' after filtering",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-METAMORPHIC-FILTER",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-02",
+    "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+    "objective": "Select 'Price: Low to High' on #sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#sort",
+      "#apply-filters"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Choose sort option 'Price: Low to High'; Apply sort",
+    "expected_outcome": "Records ordered by number asc as option 'Price: Low to High' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#sort",
+      "option": "price_asc",
+      "option_label": "Price: Low to High",
+      "key": "number",
+      "direction": "asc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#sort",
+        "value": "price_asc",
+        "description": "Choose sort option 'Price: Low to High'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#apply-filters",
+        "value": null,
+        "description": "Apply sort",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"asc\"}",
+          "description": "Records ordered by number asc as option 'Price: Low to High' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-02",
+    "name": "Accessible names on /bookings",
+    "objective": "Interactive controls on /bookings expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /bookings; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/bookings",
+        "description": "Navigate to observed route /bookings",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-02",
+    "name": "Transition: 'Harbor Jazz Night' on /",
+    "objective": "Verify activating 'Harbor Jazz Night' on / produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "a[href=\"/events/1\"]"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /; Activate 'Harbor Jazz Night'",
+    "expected_outcome": "Transition reveals 'Harbor Jazz Night' (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-02541e01"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/",
+        "description": "Navigate to observed route /",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "a[href=\"/events/1\"]",
+        "value": null,
+        "description": "Activate 'Harbor Jazz Night'",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Harbor Jazz Night",
+          "description": "Transition reveals 'Harbor Jazz Night' (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-02",
+    "name": "Route reachable with stable landmarks: /bookings",
+    "objective": "Verify /bookings remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /bookings; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'My Bookings'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_bookings_my_bookings_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/bookings",
+        "description": "Navigate to observed route /bookings",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "My Bookings",
+          "description": "Stable heading 'My Bookings' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-03",
+    "name": "Password: empty is rejected",
+    "objective": "Boundary test of 'Password' on /login: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Email'; Enter empty value for 'Password' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "",
+        "description": "Enter empty value for 'Password' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#login-password",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-03",
+    "name": "Password: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Email'; Enter empty value for 'Password'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "",
+        "description": "Enter empty value for 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#login-password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"login\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-03",
+    "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+    "objective": "Select 'Price: High to Low' on #sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#sort",
+      "#apply-filters"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Choose sort option 'Price: High to Low'; Apply sort",
+    "expected_outcome": "Records ordered by number desc as option 'Price: High to Low' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#sort",
+      "option": "price_desc",
+      "option_label": "Price: High to Low",
+      "key": "number",
+      "direction": "desc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#sort",
+        "value": "price_desc",
+        "description": "Choose sort option 'Price: High to Low'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#apply-filters",
+        "value": null,
+        "description": "Apply sort",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"desc\"}",
+          "description": "Records ordered by number desc as option 'Price: High to Low' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-03",
+    "name": "Accessible names on /events",
+    "objective": "Interactive controls on /events expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-03",
+    "name": "Route reachable with stable landmarks: /events",
+    "objective": "Verify /events remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /events; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Events'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_events_events_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/events",
+        "description": "Navigate to observed route /events",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Events",
+          "description": "Stable heading 'Events' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-04",
+    "name": "Password: minlength-1 (7) is rejected",
+    "objective": "Boundary test of 'Password' on /login: TOO_SHORT input (minlength-1 (7)) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Enter valid 'Email'; Enter too_short value for 'Password' (minlength-1 (7)); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 8 characters)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#login-password",
+      "field_label": "Password",
+      "input_value": "QaBound",
+      "input_class": "TOO_SHORT",
+      "boundary": "minlength-1 (7)",
+      "constraint_kind": "MIN_LENGTH",
+      "constraint_value": "8",
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password must be at least 8 characters",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "QaBound",
+        "description": "Enter too_short value for 'Password' (minlength-1 (7))",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#login-password",
+          "expected_value": "[\"8\", \"character\", \"characters\", \"least\", \"length\", \"login\", \"password\", \"short\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 8 characters)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-04",
+    "name": "Email: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Password'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Email'; Disable client-side validation so the submission reaches the application (contr",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "",
+        "description": "Enter empty value for 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#email",
+          "expected_value": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-04",
+    "name": "Route reachable with stable landmarks: /login",
+    "objective": "Verify /login remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /login; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Log in'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_login_log_in_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Navigate to observed route /login",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Log in",
+          "description": "Stable heading 'Log in' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-05",
+    "name": "Full name: maxlength-1 (59) is accepted",
+    "objective": "Boundary test of 'Full name' on /register: VALID input (maxlength-1 (59)) must be accepted per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid value for 'Full name' (maxlength-1 (59))",
+    "expected_outcome": "Field value length ==59 (HTML_CONSTRAINT: maxlength=\"60\")",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#full-name",
+      "field_label": "Full name",
+      "input_value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+      "input_class": "VALID",
+      "boundary": "maxlength-1 (59)",
+      "constraint_kind": "MAX_LENGTH",
+      "constraint_value": "60",
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "maxlength=\"60\"",
+      "expected": "ACCEPT",
+      "oracle": "VALUE_LENGTH",
+      "oracle_expected": "==59",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+        "description": "Enter valid value for 'Full name' (maxlength-1 (59))",
+        "assertion": {
+          "assertion_type": "ELEMENT_VALUE_LENGTH",
+          "target_selector": "#full-name",
+          "expected_value": "==59",
+          "description": "Field value length ==59 (HTML_CONSTRAINT: maxlength=\"60\")",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-05",
+    "name": "Email: format invalid is rejected by the application (client validation disabled)",
+    "objective": "The page declares type=\"email\" on 'Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Password'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter format_invalid value for 'Email'; Disable client-side validation so the submission reaches the applicati",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Email",
+      "input_value": "qa.tester.example.com",
+      "input_class": "FORMAT_INVALID",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "type=\"email\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester.example.com",
+        "description": "Enter format_invalid value for 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#email",
+          "expected_value": "[\"email\"]",
+          "description": "Application rejects the value the page declares invalid (type=\"email\")",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-05",
+    "name": "Route reachable with stable landmarks: /register",
+    "objective": "Verify /register remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Create an account'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Create an account",
+          "description": "Stable heading 'Create an account' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-06",
+    "name": "Full name: maxlength (60) is accepted",
+    "objective": "Boundary test of 'Full name' on /register: VALID input (maxlength (60)) must be accepted per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid value for 'Full name' (maxlength (60))",
+    "expected_outcome": "Field value length ==60 (HTML_CONSTRAINT: maxlength=\"60\")",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#full-name",
+      "field_label": "Full name",
+      "input_value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+      "input_class": "VALID",
+      "boundary": "maxlength (60)",
+      "constraint_kind": "MAX_LENGTH",
+      "constraint_value": "60",
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "maxlength=\"60\"",
+      "expected": "ACCEPT",
+      "oracle": "VALUE_LENGTH",
+      "oracle_expected": "==60",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+        "description": "Enter valid value for 'Full name' (maxlength (60))",
+        "assertion": {
+          "assertion_type": "ELEMENT_VALUE_LENGTH",
+          "target_selector": "#full-name",
+          "expected_value": "==60",
+          "description": "Field value length ==60 (HTML_CONSTRAINT: maxlength=\"60\")",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-06",
+    "name": "Password: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#email",
+      "#confirm-password",
+      "#terms",
+      "#password",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Email'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Password'; Disable client-side validation so the submission reaches the application (contr",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "",
+        "description": "Enter empty value for 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-07",
+    "name": "Full name: maxlength+1 (61) is rejected",
+    "objective": "Boundary test of 'Full name' on /register: TOO_LONG input (maxlength+1 (61)) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter too_long value for 'Full name' (maxlength+1 (61))",
+    "expected_outcome": "Field value length ==60 (HTML_CONSTRAINT: maxlength=\"60\")",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#full-name",
+      "field_label": "Full name",
+      "input_value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+      "input_class": "TOO_LONG",
+      "boundary": "maxlength+1 (61)",
+      "constraint_kind": "MAX_LENGTH",
+      "constraint_value": "60",
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "maxlength=\"60\"",
+      "expected": "REJECT",
+      "oracle": "VALUE_LENGTH",
+      "oracle_expected": "==60",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+        "description": "Enter too_long value for 'Full name' (maxlength+1 (61))",
+        "assertion": {
+          "assertion_type": "ELEMENT_VALUE_LENGTH",
+          "target_selector": "#full-name",
+          "expected_value": "==60",
+          "description": "Field value length ==60 (HTML_CONSTRAINT: maxlength=\"60\")",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-07",
+    "name": "Password: too short is rejected by the application (client validation disabled)",
+    "objective": "The page declares minlength=\"8\" on 'Password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#email",
+      "#confirm-password",
+      "#terms",
+      "#password",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Email'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter too_short value for 'Password'; Disable client-side validation so the submission reaches the application (c",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "QaBound",
+      "input_class": "TOO_SHORT",
+      "constraint_kind": "MIN_LENGTH",
+      "constraint_value": "8",
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "minlength=\"8\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaBound",
+        "description": "Enter too_short value for 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"8\", \"character\", \"characters\", \"least\", \"length\", \"password\", \"short\"]",
+          "description": "Application rejects the value the page declares invalid (minlength=\"8\")",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-08",
+    "name": "Full name: empty is rejected",
+    "objective": "Boundary test of 'Full name' on /register: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#email",
+      "#password",
+      "#confirm-password",
+      "#terms",
+      "#full-name",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Email'; Enter valid 'Password'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Full name' (empty); Disable client-side validation to exercise the server-side rule stated ",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#full-name",
+      "field_label": "Full name",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Full name is required for registration",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "",
+        "description": "Enter empty value for 'Full name' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#full-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-08",
+    "name": "Confirm password: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Confirm password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#email",
+      "#password",
+      "#terms",
+      "#confirm-password",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Confirm password'; Disable client-side validation so the submission reaches the application (contr",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "field_label": "Confirm password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "",
+        "description": "Enter empty value for 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"blank\", \"confirm\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-09",
+    "name": "Full name: whitespace only is rejected",
+    "objective": "Boundary test of 'Full name' on /register: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#email",
+      "#password",
+      "#confirm-password",
+      "#terms",
+      "#full-name",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Email'; Enter valid 'Password'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter whitespace value for 'Full name' (whitespace only); Disable client-side validation to exercise the server-si",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#full-name",
+      "field_label": "Full name",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Full name is required for registration",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Full name' (whitespace only)",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#full-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-09",
+    "name": "Confirm password: too short is rejected by the application (client validation disabled)",
+    "objective": "The page declares minlength=\"8\" on 'Confirm password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#email",
+      "#password",
+      "#terms",
+      "#confirm-password",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter too_short value for 'Confirm password'; Disable client-side validation so the submission reaches the application (c",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "field_label": "Confirm password",
+      "input_value": "QaBound",
+      "input_class": "TOO_SHORT",
+      "constraint_kind": "MIN_LENGTH",
+      "constraint_value": "8",
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "minlength=\"8\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester@example.com",
+        "description": "Enter valid 'Email'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaBound",
+        "description": "Enter too_short value for 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null
+      },
+      {
+        "step_number": 12,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"8\", \"character\", \"characters\", \"confirm\", \"least\", \"length\", \"password\", \"short\"]",
+          "description": "Application rejects the value the page declares invalid (minlength=\"8\")",
+          "expected_source": "HTML_DECLARED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-12",
+    "name": "Email: empty is rejected",
+    "objective": "Boundary test of 'Email' on /register: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#login-email",
+      "#login-password",
+      "#login-button",
+      "#full-name",
+      "#password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#register-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /register; Enter valid 'Full name'; Enter valid 'Password'; Enter valid 'Confirm password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Email' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-harbor_events-baseline-r1-ae06f5",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_register_create_an_acco_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#login-email",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#login-password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/events",
+          "description": "Authenticated landing route /events (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8211/register",
+        "description": "Navigate to observed route /register",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#full-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm password'",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "",
+        "description": "Enter empty value for 'Email' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 11,
+        "action": "CLICK",
+        "selector": "#register-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#email",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-harbor_events-baseline-r1-ae06f5",
+    "target_origin": "http://127.0.0.1:8211",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  }
+]

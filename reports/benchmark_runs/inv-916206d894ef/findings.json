@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "CONFIRMED_DEFECT": 2,
+    "UNVERIFIED_ANOMALY": 1
+  },
+  "findings": [
+    {
+      "finding_id": "F-0b5710a3fb09",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f80ab989d889:TC-FIELD-01",
+          "execution_id": "exec-f80ab989d889",
+          "test_id": "TC-FIELD-01",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Task title is required)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-FIELD-01_1792873916.png",
+            "exec_TC-FIELD-01_1792873916.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f80ab989d889:TC-FIELD-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[GENERAL] Title *: empty is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/create",
+      "subject": "#title",
+      "rule": "REQUIRED:EMPTY"
+    },
+    {
+      "finding_id": "F-a194ad8f3ffb",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f80ab989d889:TC-FIELD-02",
+          "execution_id": "exec-f80ab989d889",
+          "test_id": "TC-FIELD-02",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Task title is required)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-FIELD-02_1792873928.png",
+            "exec_TC-FIELD-02_1792873928.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f80ab989d889:TC-FIELD-02",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[GENERAL] Title *: whitespace only is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/create",
+      "subject": "#title",
+      "rule": "REQUIRED:WHITESPACE"
+    },
+    {
+      "finding_id": "F-6dbfe30e1ef0",
+      "classification": "UNVERIFIED_ANOMALY",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f80ab989d889:TC-FILTER-01",
+          "execution_id": "exec-f80ab989d889",
+          "test_id": "TC-FILTER-01",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record shows 'High' after filtering",
+          "observed": "Expected every listed record to contain 'High'; non-matching: ['264061bc Update README Medium Open 2026-10-25 01:54 Mark Done']",
+          "screenshots": [
+            "exec_TC-FILTER-01_1792873918.png",
+            "exec_TC-FILTER-01_1792873918.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-f80ab989d889:TC-FILTER-02",
+          "execution_id": "exec-f80ab989d889",
+          "test_id": "TC-FILTER-02",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record shows 'Medium' after filtering",
+          "observed": "Expected every listed record to contain 'Medium'; non-matching: ['607fc8cc Set up CI/CD pipeline High Open 2026-10-25 01:54 Mark Done', '31d351c1 Write unit tests High In Progress 2026-10-25 01:54 Mark Done']",
+          "screenshots": [
+            "exec_TC-FILTER-02_1792873930.png",
+            "exec_TC-FILTER-02_1792873930.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "UNVERIFIED_ANOMALY",
+          "because": "exec-f80ab989d889:TC-FILTER-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-METAMORPHIC-FILTER",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[ANOMALY] Filter '#priority-filter' = 'High' shows only matching records: UNVERIFIED_ANOMALY",
+      "route": "/tasks",
+      "subject": "#priority-filter",
+      "rule": "FILTER_CONSISTENCY"
+    }
+  ],
+  "sources": {
+    "investigation": 0,
+    "execution": 3
+  }
+}

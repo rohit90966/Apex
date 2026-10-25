@@ -1,0 +1,4211 @@
+{
+  "overview": {
+    "target_url": "http://127.0.0.1:8113/",
+    "final_url": "http://127.0.0.1:8113/products",
+    "http_status": 200,
+    "user_description": "Small online shop with login, product catalogue, sorting, cart and checkout.",
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "start_time": "2026-10-25 02:07:39",
+    "end_time": "2026-10-25 02:08:48",
+    "duration_seconds": 69.44,
+    "browser_execution_time": 27.44,
+    "status": "budget_exhausted",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 12,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 39.854,
+    "retries_count": 0,
+    "pages_discovered": 6,
+    "meaningful_states_discovered": 11,
+    "candidates_discovered": 52,
+    "actions_evaluated": 18,
+    "actions_attempted": 16,
+    "actions_successful": 15,
+    "actions_verified_effects": 15,
+    "actions_failed": 1,
+    "actions_safety_blocked": 1,
+    "transitions_observed": 15,
+    "route_transitions_observed": 11,
+    "same_route_state_transitions": 4,
+    "in_page_mutations_observed": 4,
+    "pending_frontier_count": 29,
+    "evidence_ledger_count": 20,
+    "deduplicated_candidates_count": 142,
+    "total_headings_discovered": 9,
+    "total_forms_discovered": 8,
+    "total_inputs_discovered": 9,
+    "total_buttons_discovered": 7,
+    "total_links_discovered": 25,
+    "stopping_reason": "Max mutating action budget reached (15/15)"
+  },
+  "application_understanding": "The application at http://127.0.0.1:8113/ presents an interactive web service. Authentication was verified, unlocking the internal authenticated application experience. Observed key functional landmarks include: Checkout: Shipping Details, Products Catalog, Gamma System, Beta Machine, System Access Portal. Extracted 11 distinct UI states across 15 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'Small online shop with login, product catalogue, sorting, cart and checkout.'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "Authenticate users so they can view and interact with the product catalog.",
+    "application_domain": "e-commerce",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "System Access Portal",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Products Catalog",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Alpha Device",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Beta Machine",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Gamma System",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Shopping Cart",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Alpha Device Details",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Checkout: Shipping Details",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Beta Machine Details",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "a[href=\"/products\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#cart-link",
+        "semantic_role": "a",
+        "inferred_purpose": "Cart 0",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "a[href=\"/logout\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Logout",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#username",
+        "semantic_role": "input",
+        "inferred_purpose": "benchmark_user",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#password",
+        "semantic_role": "input",
+        "inferred_purpose": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#login-button",
+        "semantic_role": "button",
+        "inferred_purpose": "Sign In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#product-sort",
+        "semantic_role": "select",
+        "inferred_purpose": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#menu-drawer-toggle",
+        "semantic_role": "a",
+        "inferred_purpose": "Open Drawer",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#item-1-title",
+        "semantic_role": "a",
+        "inferred_purpose": "Alpha Device",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#add-to-cart-1",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to Cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "#item-2-title",
+        "semantic_role": "a",
+        "inferred_purpose": "Beta Machine",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "#add-to-cart-2",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to Cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "#item-3-title",
+        "semantic_role": "a",
+        "inferred_purpose": "Gamma System",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "#add-to-cart-3",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to Cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#remove-item-1",
+        "semantic_role": "button",
+        "inferred_purpose": "Remove",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#calculate-tax-btn",
+        "semantic_role": "a",
+        "inferred_purpose": "Calculate Tax",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#checkout-button",
+        "semantic_role": "a",
+        "inferred_purpose": "Proceed to Checkout",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "a.btn[href=\"/products\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Continue Shopping",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "a.btn[href=\"/products?sort=az&menu=closed\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Close Drawer",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#back-to-products",
+        "semantic_role": "a",
+        "inferred_purpose": "\u2190 Back to Catalog",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#detail-add-to-cart",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to Cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#first-name",
+        "semantic_role": "input",
+        "inferred_purpose": "John",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#last-name",
+        "semantic_role": "input",
+        "inferred_purpose": "Doe",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#postal-code",
+        "semantic_role": "input",
+        "inferred_purpose": "10001",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#continue-checkout-btn",
+        "semantic_role": "button",
+        "inferred_purpose": "Continue to Review",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "a.btn[href=\"/cart\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Back to Cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "loginForm",
+        "target_action": "/login",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_1",
+        "target_action": "/cart/add",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_2",
+        "target_action": "/cart/add",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_3",
+        "target_action": "/cart/add",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "checkoutForm",
+        "target_action": "/checkout",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_login_system_access__view",
+      "st_login_system_access__view_error_Username_is_re_with_error",
+      "st_products_products_catal_view",
+      "st_cart_shopping_cart_c1",
+      "st_cart_shopping_cart_view",
+      "st_cart_shopping_cart_view_show_tax_true",
+      "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "st_products_products_catal_view_sort_az_menu_closed",
+      "st_products_n_alpha_device_d_view",
+      "st_checkout_checkout_shipp_view",
+      "st_products_n_beta_machine_d_view"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_login_system_access__view' on http://127.0.0.1:8113/login with 6 controls and 1 forms.",
+      "Observed state 'st_login_system_access__view_error_Username_is_re_with_error' on http://127.0.0.1:8113/login?error=Username+is+required with 6 controls and 1 forms.",
+      "Form validation constraint enforced on http://127.0.0.1:8113/login?error=Username+is+required: 'Username is required' (.alert-danger)",
+      "Observed state 'st_products_products_catal_view' on http://127.0.0.1:8113/products with 11 controls and 3 forms.",
+      "Observed state 'st_cart_shopping_cart_c1' on http://127.0.0.1:8113/cart with 7 controls and 1 forms.",
+      "Observed state 'st_cart_shopping_cart_view' on http://127.0.0.1:8113/cart with 6 controls and 0 forms.",
+      "Observed state 'st_cart_shopping_cart_view_show_tax_true' on http://127.0.0.1:8113/cart?show_tax=true with 6 controls and 0 forms.",
+      "Observed state 'st_products_products_catal_view_sort_az_menu_open_menu_open' on http://127.0.0.1:8113/products?sort=az&menu=open with 12 controls and 3 forms.",
+      "Navigation drawer opened on http://127.0.0.1:8113/products?sort=az&menu=open: sliding menu items visible in active DOM",
+      "Observed state 'st_products_products_catal_view_sort_az_menu_closed' on http://127.0.0.1:8113/products?sort=az&menu=closed with 11 controls and 3 forms.",
+      "Observed state 'st_products_n_alpha_device_d_view' on http://127.0.0.1:8113/products/1 with 5 controls and 1 forms.",
+      "Observed state 'st_checkout_checkout_shipp_view' on http://127.0.0.1:8113/checkout with 8 controls and 1 forms.",
+      "Observed state 'st_products_n_beta_machine_d_view' on http://127.0.0.1:8113/products/2 with 5 controls and 1 forms."
+    ],
+    "inferred_hypotheses": [
+      "Dynamic counter remains at \"0\" and is marked heuristic throughout the session.",
+      "No active modal or alerts are ever present on this page.",
+      "Navigation structure (Products, Cart 0, Logout) stays constant regardless of authentication state.",
+      "Form field names (username, password) and placeholders remain unchanged.",
+      "Heading \"System Access Portal\" is always present.",
+      "Navigation links (Products, Cart 0, Logout) are rendered even before authentication.",
+      "Form always posts to \"/login\" via POST method.",
+      "Validation error \"Username is required\" appears whenever the username field is empty.",
+      "Navigation links (Products, Cart, Logout) remain constant across sessions",
+      "Number of product forms matches the number of listed products",
+      "Sort select options (Name A\u2011Z, Name Z\u2011A, Price Low\u2011High, Price High\u2011Low) are static",
+      "Cart counter starts at 0 and only changes via successful Add\u2011to\u2011Cart actions",
+      "The navigation banner always includes links to Products, Cart (with item count), and Logout regardless of cart state.",
+      "Each cart item consistently renders a \u201cRemove\u201d button tied to a hidden product_id field.",
+      "The \u201cProceed to Checkout\u201d link only appears when the cart subtotal is greater than $0.",
+      "The cart counter displayed in the navigation should always match the actual number of items in the cart",
+      "Subtotal text must equal the sum of line\u2011item prices (zero when cart is empty)",
+      "No modal dialogs are present on the cart page (dynamic_signals.menu_open false)",
+      "Cart counter displayed in navigation matches the actual number of items in the cart",
+      "When counter is 0, page shows \"Your cart is empty\" and monetary values are $0.00",
+      "Proceed to Checkout link is present but should be disabled or hidden when cart is empty",
+      "Navigation links (Products, Cart, Logout) are always present",
+      "Each product entry includes a hidden form with product_id and an Add to Cart button",
+      "Cart counter reflects number of items added via the forms",
+      "Sort select defaults to 'Name: A to Z' and retains selection across page loads",
+      "The cart counter (displayed in the navigation link) reflects the number of items added and starts at 0",
+      "All Add to Cart forms submit to the same \"/cart/add\" endpoint with a hidden product_id field",
+      "Navigation links (Products, Cart, Logout) and the page title remain constant across sessions",
+      "Sort dropdown options are static and always include Name A\u2011Z, Name Z\u2011A, Price Low\u2011High, Price High\u2011Low",
+      "Cart count displayed in the navigation updates only after a successful add",
+      "The hidden product_id field should always match the product shown in the heading",
+      "The \"Add to Cart\" button appears only when the product is available",
+      "Navigation links (Products, Cart, Logout) remain constant across pages",
+      "Form action is consistently POST to /checkout",
+      "Cart counter displayed (currently 0) should reflect session state",
+      "Button label \"Continue to Review\" remains constant"
+    ],
+    "unknowns": [
+      "Credentials are submitted without explicit required validation, increasing chance of empty submissions.",
+      "Form lacks CSRF protection token, exposing potential request\u2011forgery attacks.",
+      "Navigation links (Products, Cart, Logout) are visible before authentication, possibly leaking internal routes.",
+      "No ARIA attributes or explicit accessibility markings on form fields, reducing accessibility compliance.",
+      "Missing client\u2011side required attributes may allow empty submissions leading to server\u2011side errors.",
+      "Potential CSRF vulnerability as no anti\u2011forgery token is evident in the form.",
+      "Password transmitted without indication of TLS enforcement could be insecure.",
+      "Error messages rendered in .alert-danger could be XSS vectors if not properly escaped.",
+      "Missing CSRF protection on the POST /cart/add forms",
+      "Hidden product_id fields can be tampered with to add unintended items or exploit server\u2011side logic",
+      "Potential XSS if product names are not properly escaped",
+      "No client\u2011side validation feedback (aria_invalid_fields empty) may hide input errors",
+      "POST form for item removal lacks visible CSRF protection, exposing potential CSRF attacks.",
+      "Tax calculation is triggered via a GET parameter (show_tax) which could be manipulated for price tampering or injection.",
+      "Hidden product_id field is not validated client\u2011side, risking malformed or malicious IDs being submitted.",
+      "Incorrect cart count or subtotal leading to billing errors",
+      "Tax calculation endpoint could be manipulated for price distortion",
+      "Unauthenticated or stale sessions allowing unauthorized checkout",
+      "CSRF on state\u2011changing links (e.g., logout, checkout)",
+      "Empty\u2011cart edge case may allow checkout without items",
+      "Tax calculation link could be vulnerable to CSRF or URL manipulation",
+      "Dynamic monetary values (subtotal/tax/total) could be subject to injection/XSS if not sanitized",
+      "Session hijacking risk if logout link is not protected",
+      "Missing CSRF protection on POST forms",
+      "Hidden product_id fields can be tampered",
+      "Potential XSS via product names or other dynamic content",
+      "Logout performed via GET link may be vulnerable to CSRF",
+      "POST forms lack CSRF protection, making them vulnerable to cross\u2011site request forgery",
+      "Hidden product_id fields can be tampered with to add unintended items or manipulate pricing",
+      "No apparent input validation or sanitisation could allow XSS via product names or other dynamic content",
+      "Authentication/authorization checks for cart actions are not evident, risking unauthorized cart modifications",
+      "Missing CSRF protection on the POST /cart/add form",
+      "Hidden product_id field could be tampered with",
+      "Potential XSS if product description or price is not escaped",
+      "Logout link may be a GET request, vulnerable to CSRF",
+      "Missing required attribute on shipping fields may allow empty or invalid data",
+      "Potential CSRF vulnerability due to lack of visible anti\u2011CSRF token",
+      "Input fields not explicitly sanitized could lead to XSS or injection attacks",
+      "Running on localhost without HTTPS may expose data in transit"
+    ],
+    "investigation_uncertainty": 0.617,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": true,
+    "login_url": "http://127.0.0.1:8113/",
+    "credentials_available": true,
+    "credentials_source": "[REDACTED_SECRET]",
+    "authentication_attempted": true,
+    "authentication_verified": true,
+    "verification_signals": [
+      "Observed single password field typical of authentication form",
+      "Resolved and populated username field",
+      "Resolved and populated password field",
+      "Clicked authentication submission control",
+      "Authentication verified: Detected authenticated landmark: logout_control_present"
+    ],
+    "protected_functionality_accessible": [
+      "Unlocked view at http://127.0.0.1:8113/products"
+    ],
+    "unresolved_or_blocked_areas": [
+      "#continue-checkout-btn"
+    ]
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_login_system_access__view",
+      "route_or_url": "http://127.0.0.1:8113/login",
+      "apparent_purpose": "System Access Portal (Login View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "input: benchmark_user",
+        "input: \u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_login_system_access__view",
+        "ev-864846c2",
+        "ev_auth_st_products_products_catal_view"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_login_system_access__view_error_Username_is_re_with_error",
+      "route_or_url": "http://127.0.0.1:8113/login?error=Username+is+required",
+      "apparent_purpose": "System Access Portal (Login View) [Validation Alert: Username is required]",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "input: benchmark_user",
+        "input: \u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-864846c2"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_products_catal_view",
+      "route_or_url": "http://127.0.0.1:8113/products",
+      "apparent_purpose": "Products Catalog (Products View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "select: Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "a: Open Drawer"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_auth_st_products_products_catal_view",
+        "ev-bf7627a5",
+        "ev-3ba1667f"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_cart_shopping_cart_c1",
+      "route_or_url": "http://127.0.0.1:8113/cart",
+      "apparent_purpose": "Shopping Cart (Cart View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 1",
+        "a: Logout",
+        "button: Remove",
+        "a: Calculate Tax"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-3ba1667f",
+        "ev-c3cef25d"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_cart_shopping_cart_view",
+      "route_or_url": "http://127.0.0.1:8113/cart",
+      "apparent_purpose": "Shopping Cart (Cart View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "a: Calculate Tax",
+        "a: Proceed to Checkout"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-c3cef25d",
+        "ev-f8e2f92d",
+        "ev-7e7a30b9"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_cart_shopping_cart_view_show_tax_true",
+      "route_or_url": "http://127.0.0.1:8113/cart?show_tax=true",
+      "apparent_purpose": "Shopping Cart (Cart View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "a: Calculate Tax",
+        "a: Proceed to Checkout"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-f8e2f92d",
+        "ev-e213b5dc",
+        "ev-98f5710b"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "route_or_url": "http://127.0.0.1:8113/products?sort=az&menu=open",
+      "apparent_purpose": "Products Catalog (Products View) [Navigation Drawer Open]",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "select: Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "a: Hide Drawer"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-98f5710b",
+        "ev-1882a7df"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_products_catal_view_sort_az_menu_closed",
+      "route_or_url": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+      "apparent_purpose": "Products Catalog (Products View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "select: Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "a: Open Drawer"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-1882a7df",
+        "ev-cca28849"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_n_alpha_device_d_view",
+      "route_or_url": "http://127.0.0.1:8113/products/1",
+      "apparent_purpose": "Alpha Device Details (Products/1 View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "a: \u2190 Back to Catalog",
+        "button: Add to Cart"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-cca28849",
+        "ev-7e7a30b9"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_checkout_checkout_shipp_view",
+      "route_or_url": "http://127.0.0.1:8113/checkout",
+      "apparent_purpose": "Checkout: Shipping Details (Checkout View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "input: John",
+        "input: Doe"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-477b0631",
+        "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792874314026",
+        "ev-e90e042d"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_products_n_beta_machine_d_view",
+      "route_or_url": "http://127.0.0.1:8113/products/2",
+      "apparent_purpose": "Beta Machine Details (Products/2 View)",
+      "relevant_controls_summary": [
+        "a: Products",
+        "a: Cart 0",
+        "a: Logout",
+        "a: \u2190 Back to Catalog",
+        "button: Add to Cart"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-123e4565",
+        "ev-a57d70ac",
+        "ev-8650c1f0"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_login_system_access__view",
+      "action_taken": "[Validation / Constraint Branch] FILL:required_blank_all_loginForm on required_blank_all_loginForm",
+      "target_element": "required_blank_all_loginForm",
+      "to_state": "st_login_system_access__view_error_Username_is_re_with_error",
+      "observed_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "evidence_id": "ev-864846c2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_login_system_access__view",
+      "action_taken": "[Primary Workflow] AUTHENTICATE on login_form",
+      "target_element": "login_form",
+      "to_state": "st_products_products_catal_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-bf7627a5",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_products_products_catal_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1 on #add-to-cart-1",
+      "target_element": "#add-to-cart-1",
+      "to_state": "st_cart_shopping_cart_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-3ba1667f",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart_c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_6865a249d8__remove_item_1 on #remove-item-1",
+      "target_element": "#remove-item-1",
+      "to_state": "st_cart_shopping_cart_view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-c3cef25d",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_6865a249d8__calculate_tax_btn on #calculate-tax-btn",
+      "target_element": "#calculate-tax-btn",
+      "to_state": "st_cart_shopping_cart_view_show_tax_true",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-f8e2f92d",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_cart_shopping_cart_view_show_tax_true",
+      "action_taken": "[Exploratory / Return Branch] NAVIGATE_LINK:nav_link_97092 on /products?sort=az&menu=open",
+      "target_element": "/products?sort=az&menu=open",
+      "to_state": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-98f5710b",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_53793 on /products?sort=az&menu=closed",
+      "target_element": "/products?sort=az&menu=closed",
+      "to_state": "st_products_products_catal_view_sort_az_menu_closed",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "evidence_id": "ev-1882a7df",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_products_products_catal_view_sort_az_menu_closed",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_41974 on /products/1",
+      "target_element": "/products/1",
+      "to_state": "st_products_n_alpha_device_d_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-cca28849",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 9,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_products_n_alpha_device_d_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_bc5a50dca5__cart_link on #cart-link",
+      "target_element": "#cart-link",
+      "to_state": "st_cart_shopping_cart_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-7e7a30b9",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 10,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_cart_shopping_cart_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_43606 on /checkout",
+      "target_element": "/checkout",
+      "to_state": "st_checkout_checkout_shipp_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-477b0631",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 11,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_checkout_checkout_shipp_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_c2cdedc327_a_btn_href___cart__ on a.btn[href=\"/cart\"]",
+      "target_element": "a.btn[href=\"/cart\"]",
+      "to_state": "st_cart_shopping_cart_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-e90e042d",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 12,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_cart_shopping_cart_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_6865a249d8__checkout_button on #checkout-button",
+      "target_element": "#checkout-button",
+      "to_state": "st_checkout_checkout_shipp_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-fdef7bae",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 13,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_checkout_checkout_shipp_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_c2cdedc327_a_href___products__ on a[href=\"/products\"]",
+      "target_element": "a[href=\"/products\"]",
+      "to_state": "st_products_products_catal_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-ad8bf00e",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 14,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_products_products_catal_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_54920 on /products/2",
+      "target_element": "/products/2",
+      "to_state": "st_products_n_beta_machine_d_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-123e4565",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 15,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_products_n_beta_machine_d_view",
+      "action_taken": "[Exploratory / Return Branch] NAVIGATE_LINK:nav_link_49428 on /products",
+      "target_element": "/products",
+      "to_state": "st_products_products_catal_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-8650c1f0",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-bca0d0d7: Verify form submission behavior for required_blank on required_blank_all_loginForm resulted in Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+    "Transition trans-e37ecc2d: Verify valid authentication transitions past login boundary at http://127.0.0.1:8113/login resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-e0fbbf6e: Investigate interactive control response: button 'Add to Cart' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-e15b7614: Investigate interactive control response: button 'Remove' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-35d5d51b: Investigate interactive control response: a 'Calculate Tax' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-fce15bfe: Verify route transition reachability to /products?sort=az&menu=open resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-a3be0668: Verify route transition reachability to /products?sort=az&menu=closed resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+    "Transition trans-23bb1412: Verify route transition reachability to /products/1 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-20909e61: Investigate interactive control response: a 'Cart 0' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-f2eaa18f: Verify route transition reachability to /checkout resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-e8b66b42: Investigate interactive control response: a 'Back to Cart' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-c58e79ac: Investigate interactive control response: a 'Proceed to Checkout' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-d8c40b01: Investigate interactive control response: a 'Products' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-ab77f0f9: Verify route transition reachability to /products/2 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-ae110498: Verify route transition reachability to /products resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Recorded Observation [SAFETY_DECISION]: SAFETY_DECISION: Step (SUBMIT on #checkoutForm) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'"
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "RULE-AUTH-001",
+      "description": "Authentication permits transition from login boundary into the protected application workspace.",
+      "category": "observed_behavior",
+      "source": "Browser Authentication Interaction",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated using configured test credentials.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "RULE-VAL-001",
+      "description": "Form validation constraint enforced: 'Username is required' displayed on invalid or incomplete submission.",
+      "category": "observed_behavior",
+      "source": "Live DOM Element: .alert-danger",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated without required form fields populated.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "RULE-NAV-002",
+      "description": "Expandable navigation drawer: Menu toggle triggers visible navigation controls without route change.",
+      "category": "observed_behavior",
+      "source": "Live DOM Navigation Drawer",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated within active browser viewport.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "unexecuted_probes_count": 3,
+    "unexecuted_probes_by_reason": {
+      "TARGET_NOT_ON_CURRENT_PAGE": 2,
+      "SAFETY_POLICY": 1
+    },
+    "unexecuted_probes": [
+      {
+        "question_id": "q_ctrl_select_cls_65e639ba95__product_sort",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "#product-sort",
+        "detail": "Precondition unsatisfied: Target '#product-sort' is for 'http://127.0.0.1:8113/products', but current active journey state is 'http://127.0.0.1:8113/cart?show_tax=true'"
+      },
+      {
+        "question_id": "q_form_cls_c2cdedc327_form_happy_checkoutForm",
+        "reason": "SAFETY_POLICY",
+        "target": "#checkoutForm",
+        "detail": "Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_bc5a50dca5__detail_add_to_cart",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "#detail-add-to-cart",
+        "detail": "Step failed (CLICK_CONTROL on #detail-add-to-cart): Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8113/products/2' does not match required state URL 'http://127.0.0.1:8113/products/1"
+      }
+    ],
+    "explored_states_count": 11,
+    "unexplored_items_count": 29,
+    "blocked_items_count": 1,
+    "unexplored_candidates": [
+      {
+        "target": "a[href=\"/products\"]",
+        "rationale": "Investigate interactive control response: a 'Products'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "#cart-link",
+        "rationale": "Investigate interactive control response: a 'Cart 0'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/products",
+        "rationale": "Verify route transition reachability to /products",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/cart",
+        "rationale": "Verify route transition reachability to /cart",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_97592c154a",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "#cart-link",
+        "rationale": "Investigate interactive control response: a 'Cart 0'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "#menu-drawer-toggle",
+        "rationale": "Investigate interactive control response: a 'Open Drawer'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "#item-1-title",
+        "rationale": "Investigate interactive control response: a 'Alpha Device'",
+        "category": "discovery",
+        "priority": 0.592,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/products",
+        "rationale": "Verify route transition reachability to /products",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/cart",
+        "rationale": "Verify route transition reachability to /cart",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/products/3",
+        "rationale": "Verify route transition reachability to /products/3",
+        "category": "discovery",
+        "priority": 0.676,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_65e639ba95",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "a[href=\"/products\"]",
+        "rationale": "Investigate interactive control response: a 'Products'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "#cart-link",
+        "rationale": "Investigate interactive control response: a 'Cart 1'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "a.btn[href=\"/products\"]",
+        "rationale": "Investigate interactive control response: a 'Continue Shopping'",
+        "category": "discovery",
+        "priority": 0.663,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Investigate interactive control response: a 'Products'",
+      "Investigate interactive control response: a 'Cart 0'",
+      "Verify route transition reachability to /products"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_login_system_access__view",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of http://127.0.0.1:8113/login with 6 interactive controls and 1 forms",
+      "state_ref": "st_login_system_access__view",
+      "screenshot": "investigate_step_0_e3ea0093.png"
+    },
+    {
+      "evidence_id": "ev-864846c2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_97592c154a_required_blank_all_loginForm]: verdict=MATCHED. Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+      "state_ref": "st_login_system_access__view",
+      "screenshot": "investigate_probe_after_b6f8d042.png"
+    },
+    {
+      "evidence_id": "ev_auth_st_products_products_catal_view",
+      "type": "AUTH_VERIFICATION",
+      "summary": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8113/products",
+      "state_ref": "st_login_system_access__view",
+      "screenshot": "investigate_auth_after_af72fef2.png"
+    },
+    {
+      "evidence_id": "ev-bf7627a5",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_auth_cls_97592c154a]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_login_system_access__view",
+      "screenshot": "investigate_auth_after_af72fef2.png"
+    },
+    {
+      "evidence_id": "ev-3ba1667f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_65e639ba95__add_to_cart_1]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_products_products_catal_view",
+      "screenshot": "investigate_probe_after_46f0e8f0.png"
+    },
+    {
+      "evidence_id": "ev-c3cef25d",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_6865a249d8__remove_item_1]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart_c1",
+      "screenshot": "investigate_probe_after_7b07b15a.png"
+    },
+    {
+      "evidence_id": "ev-f8e2f92d",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_6865a249d8__calculate_tax_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart_view",
+      "screenshot": "investigate_probe_after_e9edb514.png"
+    },
+    {
+      "evidence_id": "ev-e213b5dc",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_select_cls_65e639ba95__product_sort]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart_view_show_tax_true",
+      "screenshot": "investigate_precond_skip_before_98f442ae.png"
+    },
+    {
+      "evidence_id": "ev-98f5710b",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_65e639ba95_nav_link_97092]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_cart_shopping_cart_view_show_tax_true",
+      "screenshot": "investigate_probe_after_2072fe16.png"
+    },
+    {
+      "evidence_id": "ev-1882a7df",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_b2df862a4d_nav_link_53793]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "state_ref": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "screenshot": "investigate_probe_after_513ba65f.png"
+    },
+    {
+      "evidence_id": "ev-cca28849",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_65e639ba95_nav_link_41974]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_products_products_catal_view_sort_az_menu_closed",
+      "screenshot": "investigate_probe_after_fc83c972.png"
+    },
+    {
+      "evidence_id": "ev-7e7a30b9",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_bc5a50dca5__cart_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_products_n_alpha_device_d_view",
+      "screenshot": "investigate_probe_after_ca32586c.png"
+    },
+    {
+      "evidence_id": "ev-477b0631",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_6865a249d8_nav_link_43606]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_cart_shopping_cart_view",
+      "screenshot": "investigate_probe_after_1e2fbc10.png"
+    },
+    {
+      "evidence_id": "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792874314026",
+      "type": "SAFETY_DECISION",
+      "summary": "SAFETY_DECISION: Step (SUBMIT on #checkoutForm) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "state_ref": "st_checkout_checkout_shipp_view",
+      "screenshot": null
+    },
+    {
+      "evidence_id": "ev-e90e042d",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c2cdedc327_a_btn_href___cart__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_checkout_checkout_shipp_view",
+      "screenshot": "investigate_probe_after_b06eb249.png"
+    },
+    {
+      "evidence_id": "ev-fdef7bae",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_6865a249d8__checkout_button]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_cart_shopping_cart_view",
+      "screenshot": "investigate_probe_after_14e94790.png"
+    },
+    {
+      "evidence_id": "ev-ad8bf00e",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c2cdedc327_a_href___products__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_checkout_checkout_shipp_view",
+      "screenshot": "investigate_probe_after_49b71acc.png"
+    },
+    {
+      "evidence_id": "ev-123e4565",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_65e639ba95_nav_link_54920]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_products_products_catal_view",
+      "screenshot": "investigate_probe_after_0732139a.png"
+    },
+    {
+      "evidence_id": "ev-a57d70ac",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_bc5a50dca5__detail_add_to_cart]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_products_n_beta_machine_d_view",
+      "screenshot": "investigate_probe_after_5fe56ad8.png"
+    },
+    {
+      "evidence_id": "ev-8650c1f0",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_bc5a50dca5_nav_link_49428]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_products_n_beta_machine_d_view",
+      "screenshot": "investigate_probe_after_680699a4.png"
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried.",
+    "Safety Policy Constrained: 1 probe action(s) were blocked by the Safety Governor to enforce domain or action boundaries.",
+    "2 probe(s) were skipped because their target control was not on the current page; they are not counted as tested."
+  ],
+  "confirmed_bug_leads": [],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/",
+          "description": "Navigate to entry view: http://127.0.0.1:8113/"
+        },
+        {
+          "action": "FILL",
+          "target": "#username",
+          "value": "benchmark_user",
+          "description": "Populate authorized username"
+        },
+        {
+          "action": "FILL",
+          "target": "#password",
+          "value": "${CREDENTIAL_PASSWORD}",
+          "description": "Populate authorized password"
+        },
+        {
+          "action": "CLICK",
+          "target": "#login-button",
+          "description": "Submit login authentication"
+        },
+        {
+          "action": "CLICK",
+          "target": "#add-to-cart-1",
+          "description": "Trigger #add-to-cart-1",
+          "expected_transition": "st_cart_shopping_cart_c1",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-3ba1667f"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#remove-item-1",
+          "description": "Trigger #remove-item-1",
+          "expected_transition": "st_cart_shopping_cart_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-c3cef25d"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#calculate-tax-btn",
+          "description": "Trigger #calculate-tax-btn",
+          "expected_transition": "st_cart_shopping_cart_view_show_tax_true",
+          "expected_url_fragment": "",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-f8e2f92d"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+          "description": "Navigate to http://127.0.0.1:8113/products?sort=az&menu=closed",
+          "expected_transition": "st_products_products_catal_view_sort_az_menu_closed",
+          "expected_url_fragment": "",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-1882a7df"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/products/1",
+          "description": "Navigate to http://127.0.0.1:8113/products/1",
+          "expected_transition": "st_products_n_alpha_device_d_view",
+          "expected_url_fragment": "/products/1",
+          "expected_heading": "Alpha Device Details",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-cca28849"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/checkout",
+          "description": "Navigate to http://127.0.0.1:8113/checkout",
+          "expected_transition": "st_checkout_checkout_shipp_view",
+          "expected_url_fragment": "/checkout",
+          "expected_heading": "Checkout: Shipping Details",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-477b0631"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/products/2",
+          "description": "Navigate to http://127.0.0.1:8113/products/2",
+          "expected_transition": "st_products_n_beta_machine_d_view",
+          "expected_url_fragment": "/products/2",
+          "expected_heading": "Beta Machine Details",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-123e4565"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "required_blank_all_loginForm",
+          "description": "Verify form submission behavior for required_blank on required_blank_all_loginForm -> Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+          "expected_transition": "st_login_system_access__view_error_Username_is_re_with_error",
+          "evidence_refs": [
+            "ev-864846c2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/products?sort=az&menu=open",
+          "description": "Navigate to http://127.0.0.1:8113/products?sort=az&menu=open",
+          "expected_transition": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "expected_url_fragment": "/products",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-98f5710b"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#cart-link",
+          "description": "Trigger #cart-link",
+          "expected_transition": "st_cart_shopping_cart_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-7e7a30b9"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.btn[href=\"/cart\"]",
+          "description": "Trigger a.btn[href=\"/cart\"]",
+          "expected_transition": "st_cart_shopping_cart_view",
+          "expected_url_fragment": "/cart",
+          "expected_heading": "Shopping Cart",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-e90e042d"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#checkout-button",
+          "description": "Trigger #checkout-button",
+          "expected_transition": "st_checkout_checkout_shipp_view",
+          "expected_url_fragment": "/checkout",
+          "expected_heading": "Checkout: Shipping Details",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-fdef7bae"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/products\"]",
+          "description": "Trigger a[href=\"/products\"]",
+          "expected_transition": "st_products_products_catal_view",
+          "expected_url_fragment": "/products",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-ad8bf00e"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8113/products",
+          "description": "Navigate to http://127.0.0.1:8113/products",
+          "expected_transition": "st_products_products_catal_view",
+          "expected_url_fragment": "/products",
+          "expected_heading": "Products Catalog",
+          "expected_selector": "a[href=\"/products\"]",
+          "evidence_refs": [
+            "ev-8650c1f0"
+          ]
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "journey_purchase",
+      "name": "E-Commerce Purchase Funnel",
+      "description": "Catalogue item selection -> Cart accumulation -> Cart modification -> Checkout navigation -> Order confirmation",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Add Product 1 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_65e639ba95__add_to_cart_1",
+          "executed_target": "#add-to-cart-1",
+          "expected_postcondition": "cart_badge_increment",
+          "before_value": "0",
+          "after_value": "1",
+          "verification_details": "Cart item added with verified mutation diff (badge: 0 -> 1)",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_0",
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Navigate to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "shopping-cart|cart-link|view cart|/cart|\\bcart\\b",
+          "expected_role": "link",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_cart",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Cart route verified on http://127.0.0.1:8113/cart",
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Modify Cart Quantity",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "cart-qty-inc|qty-plus|qty-inc|increase|add-qty|cart-qty|qty-minus|decrement|remove|delete|(?<![a-zA-Z0-9_])[+-](?![a-zA-Z0-9_])",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": false,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_6865a249d8__remove_item_1",
+          "executed_target": "#remove-item-1",
+          "expected_postcondition": "quantity_modified",
+          "before_value": "1",
+          "after_value": "0",
+          "verification_details": "Cart item quantity changed from 1 to 0",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_purchase_2",
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 3,
+          "name": "Proceed to Checkout",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "checkout|proceed",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_checkout",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Checkout route reached on http://127.0.0.1:8113/checkout",
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 4,
+          "name": "Fill and Submit Checkout Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "checkout|shipping|place-order|place order|order|submit|form",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "FAILED",
+          "completed": false,
+          "executed_question_id": "q_form_cls_c2cdedc327_form_happy_checkoutForm",
+          "executed_target": "form_happy_checkoutForm",
+          "expected_postcondition": "checkout_form_submitted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": "Safety policy blocked step: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 5,
+          "name": "Confirm Order",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "confirm|confirmation|finish|place-order|complete",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "order_confirmed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 4,
+      "status": "BLOCKED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": "Safety policy blocked step: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
+      "evidence_refs": [
+        "ev_journey_journey_purchase_0",
+        "ev_journey_journey_purchase_2"
+      ]
+    },
+    {
+      "journey_id": "journey_search_filter",
+      "name": "Search & Filter Discovery Workflow",
+      "description": "Query input -> Filter application -> Results exploration and interaction",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Input Search Query",
+          "action_type": "FILL",
+          "target_pattern": "search|query|find|filter|keyword",
+          "expected_role": "textbox",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "query_entered",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Apply Search or Filter",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "search|filter|apply|submit|btn-filter|go",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "results_updated",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Inspect Filtered Result",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "item|card|result|title|link|view|project",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "detail_viewed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    },
+    {
+      "journey_id": "journey_creation",
+      "name": "Entity Creation & Management Workflow",
+      "description": "Trigger creation action -> Input entity attributes -> Submit form -> Verify entity state",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Trigger Entity Creation",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "create|new|add|compose|plus|btn-create",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "FAILED",
+          "completed": false,
+          "executed_question_id": "q_ctrl_control_cls_bc5a50dca5__detail_add_to_cart",
+          "executed_target": "#detail-add-to-cart",
+          "expected_postcondition": "creation_form_opened",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Action executed with no observable state effect",
+          "failure_reason": "Action executed with no observable state effect",
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Submit Entity Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "form|create|save|submit|project",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "entity_persisted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "BLOCKED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": "Action executed with no observable state effect",
+      "evidence_refs": []
+    }
+  ],
+  "active_journey_id": null,
+  "behavior_model": {
+    "state_classes": {
+      "st_login_system_access__view": {
+        "id": "st_login_system_access__view",
+        "class_id": "st_login_system_access__view",
+        "primary_purpose": "System Access Portal (Login View)",
+        "representative_route": "http://127.0.0.1:8113/login",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#username",
+          "#password"
+        ],
+        "outbound_transitions": [
+          "st_login_system_access__view_error_Username_is_re_with_error",
+          "st_products_products_catal_view"
+        ]
+      },
+      "st_login_system_access__view_error_Username_is_re_with_error": {
+        "id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "class_id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "primary_purpose": "System Access Portal (Login View) [Validation Alert: Username is required]",
+        "representative_route": "http://127.0.0.1:8113/login?error=Username+is+required",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#username",
+          "#password"
+        ],
+        "outbound_transitions": []
+      },
+      "st_products_products_catal_view": {
+        "id": "st_products_products_catal_view",
+        "class_id": "st_products_products_catal_view",
+        "primary_purpose": "Products Catalog (Products View)",
+        "representative_route": "http://127.0.0.1:8113/products",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_c1",
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      "st_cart_shopping_cart_c1": {
+        "id": "st_cart_shopping_cart_c1",
+        "class_id": "st_cart_shopping_cart_c1",
+        "primary_purpose": "Shopping Cart (Cart View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:8113/cart",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#remove-item-1",
+          "#calculate-tax-btn"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view"
+        ]
+      },
+      "st_cart_shopping_cart_view": {
+        "id": "st_cart_shopping_cart_view",
+        "class_id": "st_cart_shopping_cart_view",
+        "primary_purpose": "Shopping Cart (Cart View)",
+        "representative_route": "http://127.0.0.1:8113/cart",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#calculate-tax-btn",
+          "#checkout-button"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view_show_tax_true",
+          "st_checkout_checkout_shipp_view",
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      "st_cart_shopping_cart_view_show_tax_true": {
+        "id": "st_cart_shopping_cart_view_show_tax_true",
+        "class_id": "st_cart_shopping_cart_view_show_tax_true",
+        "primary_purpose": "Shopping Cart (Cart View)",
+        "representative_route": "http://127.0.0.1:8113/cart?show_tax=true",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#calculate-tax-btn",
+          "#checkout-button"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view_sort_az_menu_open_menu_open"
+        ]
+      },
+      "st_products_products_catal_view_sort_az_menu_open_menu_open": {
+        "id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "class_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "primary_purpose": "Products Catalog (Products View) [Navigation Drawer Open]",
+        "representative_route": "http://127.0.0.1:8113/products?sort=az&menu=open",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      "st_products_products_catal_view_sort_az_menu_closed": {
+        "id": "st_products_products_catal_view_sort_az_menu_closed",
+        "class_id": "st_products_products_catal_view_sort_az_menu_closed",
+        "primary_purpose": "Products Catalog (Products View)",
+        "representative_route": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      "st_products_n_alpha_device_d_view": {
+        "id": "st_products_n_alpha_device_d_view",
+        "class_id": "st_products_n_alpha_device_d_view",
+        "primary_purpose": "Alpha Device Details (Products/1 View)",
+        "representative_route": "http://127.0.0.1:8113/products/1",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#back-to-products",
+          "#detail-add-to-cart"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view"
+        ]
+      },
+      "st_checkout_checkout_shipp_view": {
+        "id": "st_checkout_checkout_shipp_view",
+        "class_id": "st_checkout_checkout_shipp_view",
+        "primary_purpose": "Checkout: Shipping Details (Checkout View)",
+        "representative_route": "http://127.0.0.1:8113/checkout",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#first-name",
+          "#last-name"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view",
+          "st_products_products_catal_view"
+        ]
+      },
+      "st_products_n_beta_machine_d_view": {
+        "id": "st_products_n_beta_machine_d_view",
+        "class_id": "st_products_n_beta_machine_d_view",
+        "primary_purpose": "Beta Machine Details (Products/2 View)",
+        "representative_route": "http://127.0.0.1:8113/products/2",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#back-to-products",
+          "#detail-add-to-cart"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view"
+        ]
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_login_system_access__view",
+        "target_class": "st_login_system_access__view_error_Username_is_re_with_error",
+        "trigger_action": "FILL:required_blank_all_loginForm",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_system_access__view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "AUTHENTICATE",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view",
+        "target_class": "st_cart_shopping_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_c1",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__remove_item_1",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_cart_shopping_cart_view_show_tax_true",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__calculate_tax_btn",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view_show_tax_true",
+        "target_class": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "trigger_action": "NAVIGATE_LINK:nav_link_97092",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "target_class": "st_products_products_catal_view_sort_az_menu_closed",
+        "trigger_action": "NAVIGATE_LINK:nav_link_53793",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view_sort_az_menu_closed",
+        "target_class": "st_products_n_alpha_device_d_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_41974",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_n_alpha_device_d_view",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_bc5a50dca5__cart_link",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_checkout_checkout_shipp_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_43606",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout_shipp_view",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c2cdedc327_a_btn_href___cart__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_checkout_checkout_shipp_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__checkout_button",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout_shipp_view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c2cdedc327_a_href___products__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view",
+        "target_class": "st_products_n_beta_machine_d_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_54920",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_n_beta_machine_d_view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_49428",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Authentication permits transition from login boundary into the protected application workspace.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-AUTH-001"
+        ]
+      },
+      {
+        "description": "Form validation constraint enforced: 'Username is required' displayed on invalid or incomplete submission.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-VAL-001"
+        ]
+      },
+      {
+        "description": "Expandable navigation drawer: Menu toggle triggers visible navigation controls without route change.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-NAV-002"
+        ]
+      },
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/",
+            "description": "Navigate to entry view: http://127.0.0.1:8113/"
+          },
+          {
+            "action": "FILL",
+            "target": "#username",
+            "value": "benchmark_user",
+            "description": "Populate authorized username"
+          },
+          {
+            "action": "FILL",
+            "target": "#password",
+            "value": "${CREDENTIAL_PASSWORD}",
+            "description": "Populate authorized password"
+          },
+          {
+            "action": "CLICK",
+            "target": "#login-button",
+            "description": "Submit login authentication"
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-to-cart-1",
+            "description": "Trigger #add-to-cart-1",
+            "expected_transition": "st_cart_shopping_cart_c1",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-3ba1667f"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#remove-item-1",
+            "description": "Trigger #remove-item-1",
+            "expected_transition": "st_cart_shopping_cart_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Shopping Cart",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-c3cef25d"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#calculate-tax-btn",
+            "description": "Trigger #calculate-tax-btn",
+            "expected_transition": "st_cart_shopping_cart_view_show_tax_true",
+            "expected_url_fragment": "",
+            "expected_heading": "Shopping Cart",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-f8e2f92d"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+            "description": "Navigate to http://127.0.0.1:8113/products?sort=az&menu=closed",
+            "expected_transition": "st_products_products_catal_view_sort_az_menu_closed",
+            "expected_url_fragment": "",
+            "expected_heading": "Products Catalog",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-1882a7df"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/products/1",
+            "description": "Navigate to http://127.0.0.1:8113/products/1",
+            "expected_transition": "st_products_n_alpha_device_d_view",
+            "expected_url_fragment": "/products/1",
+            "expected_heading": "Alpha Device Details",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-cca28849"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/checkout",
+            "description": "Navigate to http://127.0.0.1:8113/checkout",
+            "expected_transition": "st_checkout_checkout_shipp_view",
+            "expected_url_fragment": "/checkout",
+            "expected_heading": "Checkout: Shipping Details",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-477b0631"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/products/2",
+            "description": "Navigate to http://127.0.0.1:8113/products/2",
+            "expected_transition": "st_products_n_beta_machine_d_view",
+            "expected_url_fragment": "/products/2",
+            "expected_heading": "Beta Machine Details",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-123e4565"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Validation & Constraint Verification",
+        "steps": [
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "required_blank_all_loginForm",
+            "description": "Verify form submission behavior for required_blank on required_blank_all_loginForm -> Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
+            "expected_transition": "st_login_system_access__view_error_Username_is_re_with_error",
+            "evidence_refs": [
+              "ev-864846c2"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/products?sort=az&menu=open",
+            "description": "Navigate to http://127.0.0.1:8113/products?sort=az&menu=open",
+            "expected_transition": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+            "expected_url_fragment": "/products",
+            "expected_heading": "Products Catalog",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-98f5710b"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#cart-link",
+            "description": "Trigger #cart-link",
+            "expected_transition": "st_cart_shopping_cart_view",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-7e7a30b9"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.btn[href=\"/cart\"]",
+            "description": "Trigger a.btn[href=\"/cart\"]",
+            "expected_transition": "st_cart_shopping_cart_view",
+            "expected_url_fragment": "/cart",
+            "expected_heading": "Shopping Cart",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-e90e042d"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#checkout-button",
+            "description": "Trigger #checkout-button",
+            "expected_transition": "st_checkout_checkout_shipp_view",
+            "expected_url_fragment": "/checkout",
+            "expected_heading": "Checkout: Shipping Details",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-fdef7bae"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/products\"]",
+            "description": "Trigger a[href=\"/products\"]",
+            "expected_transition": "st_products_products_catal_view",
+            "expected_url_fragment": "/products",
+            "expected_heading": "Products Catalog",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-ad8bf00e"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8113/products",
+            "description": "Navigate to http://127.0.0.1:8113/products",
+            "expected_transition": "st_products_products_catal_view",
+            "expected_url_fragment": "/products",
+            "expected_heading": "Products Catalog",
+            "expected_selector": "a[href=\"/products\"]",
+            "evidence_refs": [
+              "ev-8650c1f0"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [],
+    "transitions": [
+      {
+        "source_class": "st_login_system_access__view",
+        "target_class": "st_login_system_access__view_error_Username_is_re_with_error",
+        "trigger_action": "FILL:required_blank_all_loginForm",
+        "expected_outcome": "Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_system_access__view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "AUTHENTICATE",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view",
+        "target_class": "st_cart_shopping_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_c1",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__remove_item_1",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_cart_shopping_cart_view_show_tax_true",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__calculate_tax_btn",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view_show_tax_true",
+        "target_class": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "trigger_action": "NAVIGATE_LINK:nav_link_97092",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "target_class": "st_products_products_catal_view_sort_az_menu_closed",
+        "trigger_action": "NAVIGATE_LINK:nav_link_53793",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view_sort_az_menu_closed",
+        "target_class": "st_products_n_alpha_device_d_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_41974",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_n_alpha_device_d_view",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_bc5a50dca5__cart_link",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_checkout_checkout_shipp_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_43606",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout_shipp_view",
+        "target_class": "st_cart_shopping_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c2cdedc327_a_btn_href___cart__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_cart_shopping_cart_view",
+        "target_class": "st_checkout_checkout_shipp_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_6865a249d8__checkout_button",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_checkout_checkout_shipp_view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c2cdedc327_a_href___products__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_products_products_catal_view",
+        "target_class": "st_products_n_beta_machine_d_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_54920",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_products_n_beta_machine_d_view",
+        "target_class": "st_products_products_catal_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_49428",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_login_system_access__view",
+        "class_id": "st_login_system_access__view",
+        "primary_purpose": "System Access Portal (Login View)",
+        "representative_route": "http://127.0.0.1:8113/login",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#username",
+          "#password"
+        ],
+        "outbound_transitions": [
+          "st_login_system_access__view_error_Username_is_re_with_error",
+          "st_products_products_catal_view"
+        ]
+      },
+      {
+        "id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "class_id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "primary_purpose": "System Access Portal (Login View) [Validation Alert: Username is required]",
+        "representative_route": "http://127.0.0.1:8113/login?error=Username+is+required",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#username",
+          "#password"
+        ],
+        "outbound_transitions": []
+      },
+      {
+        "id": "st_products_products_catal_view",
+        "class_id": "st_products_products_catal_view",
+        "primary_purpose": "Products Catalog (Products View)",
+        "representative_route": "http://127.0.0.1:8113/products",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_c1",
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      {
+        "id": "st_cart_shopping_cart_c1",
+        "class_id": "st_cart_shopping_cart_c1",
+        "primary_purpose": "Shopping Cart (Cart View) [Badge Counter: 1]",
+        "representative_route": "http://127.0.0.1:8113/cart",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#remove-item-1",
+          "#calculate-tax-btn"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view"
+        ]
+      },
+      {
+        "id": "st_cart_shopping_cart_view",
+        "class_id": "st_cart_shopping_cart_view",
+        "primary_purpose": "Shopping Cart (Cart View)",
+        "representative_route": "http://127.0.0.1:8113/cart",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#calculate-tax-btn",
+          "#checkout-button"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view_show_tax_true",
+          "st_checkout_checkout_shipp_view",
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "id": "st_cart_shopping_cart_view_show_tax_true",
+        "class_id": "st_cart_shopping_cart_view_show_tax_true",
+        "primary_purpose": "Shopping Cart (Cart View)",
+        "representative_route": "http://127.0.0.1:8113/cart?show_tax=true",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#calculate-tax-btn",
+          "#checkout-button"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view_sort_az_menu_open_menu_open"
+        ]
+      },
+      {
+        "id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "class_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "primary_purpose": "Products Catalog (Products View) [Navigation Drawer Open]",
+        "representative_route": "http://127.0.0.1:8113/products?sort=az&menu=open",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "id": "st_products_products_catal_view_sort_az_menu_closed",
+        "class_id": "st_products_products_catal_view_sort_az_menu_closed",
+        "primary_purpose": "Products Catalog (Products View)",
+        "representative_route": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#product-sort",
+          "#menu-drawer-toggle"
+        ],
+        "outbound_transitions": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "id": "st_products_n_alpha_device_d_view",
+        "class_id": "st_products_n_alpha_device_d_view",
+        "primary_purpose": "Alpha Device Details (Products/1 View)",
+        "representative_route": "http://127.0.0.1:8113/products/1",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#back-to-products",
+          "#detail-add-to-cart"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view"
+        ]
+      },
+      {
+        "id": "st_checkout_checkout_shipp_view",
+        "class_id": "st_checkout_checkout_shipp_view",
+        "primary_purpose": "Checkout: Shipping Details (Checkout View)",
+        "representative_route": "http://127.0.0.1:8113/checkout",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#first-name",
+          "#last-name"
+        ],
+        "outbound_transitions": [
+          "st_cart_shopping_cart_view",
+          "st_products_products_catal_view"
+        ]
+      },
+      {
+        "id": "st_products_n_beta_machine_d_view",
+        "class_id": "st_products_n_beta_machine_d_view",
+        "primary_purpose": "Beta Machine Details (Products/2 View)",
+        "representative_route": "http://127.0.0.1:8113/products/2",
+        "key_controls": [
+          "a[href=\"/products\"]",
+          "#cart-link",
+          "a[href=\"/logout\"]",
+          "#back-to-products",
+          "#detail-add-to-cart"
+        ],
+        "outbound_transitions": [
+          "st_products_products_catal_view"
+        ]
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: http://127.0.0.1:8113/\n        page.goto('http://127.0.0.1:8113/', wait_until='domcontentloaded')\n        # Step 2: Populate authorized username\n        page.locator('#username').fill('benchmark_user')\n        # Step 3: Populate authorized password\n        page.locator('#password').fill(__import__('os').environ['VERITYQA_TEST_PASSWORD'])\n        # Step 4: Submit login authentication\n        page.locator('#login-button').click()\n        page.wait_for_timeout(400)\n        # Step 5: Trigger #add-to-cart-1 [Evidence: ev-3ba1667f]\n        page.locator('#add-to-cart-1').click()\n        page.wait_for_timeout(400)\n        assert '/cart' in page.url, f'Expected /cart in URL, got {page.url}'\n        assert 'Shopping Cart' in page.locator('body').inner_text(), f'Expected heading/landmark Shopping Cart'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 6: Trigger #remove-item-1 [Evidence: ev-c3cef25d]\n        page.locator('#remove-item-1').click()\n        page.wait_for_timeout(400)\n        assert 'Shopping Cart' in page.locator('body').inner_text(), f'Expected heading/landmark Shopping Cart'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 7: Trigger #calculate-tax-btn [Evidence: ev-f8e2f92d]\n        page.locator('#calculate-tax-btn').click()\n        page.wait_for_timeout(400)\n        assert 'Shopping Cart' in page.locator('body').inner_text(), f'Expected heading/landmark Shopping Cart'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 8: Navigate to http://127.0.0.1:8113/products?sort=az&menu=closed [Evidence: ev-1882a7df]\n        page.goto('http://127.0.0.1:8113/products?sort=az&menu=closed', wait_until='domcontentloaded')\n        assert 'Products Catalog' in page.locator('body').inner_text(), f'Expected heading/landmark Products Catalog'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 9: Navigate to http://127.0.0.1:8113/products/1 [Evidence: ev-cca28849]\n        page.goto('http://127.0.0.1:8113/products/1', wait_until='domcontentloaded')\n        assert '/products/1' in page.url, f'Expected /products/1 in URL, got {page.url}'\n        assert 'Alpha Device Details' in page.locator('body').inner_text(), f'Expected heading/landmark Alpha Device Details'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 10: Navigate to http://127.0.0.1:8113/checkout [Evidence: ev-477b0631]\n        page.goto('http://127.0.0.1:8113/checkout', wait_until='domcontentloaded')\n        assert '/checkout' in page.url, f'Expected /checkout in URL, got {page.url}'\n        assert 'Checkout: Shipping Details' in page.locator('body').inner_text(), f'Expected heading/landmark Checkout: Shipping Details'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n        # Step 11: Navigate to http://127.0.0.1:8113/products/2 [Evidence: ev-123e4565]\n        page.goto('http://127.0.0.1:8113/products/2', wait_until='domcontentloaded')\n        assert '/products/2' in page.url, f'Expected /products/2 in URL, got {page.url}'\n        assert 'Beta Machine Details' in page.locator('body').inner_text(), f'Expected heading/landmark Beta Machine Details'\n        assert page.locator('a[href=\"/products\"]').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792874266.254132,
+      "from_state_id": "st_login_system_access__view",
+      "from_url": "http://127.0.0.1:8113/login",
+      "question_id": "q_form_cls_97592c154a_required_blank_all_loginForm",
+      "selected_action": "required_blank_all_loginForm",
+      "probe_family": "forms",
+      "category": "discovery",
+      "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_loginForm",
+      "priority_score": 1.31,
+      "observed_effect": "VALIDATION_FEEDBACK",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
+      "to_url": "http://127.0.0.1:8113/login?error=Username+is+required",
+      "is_productive": true
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792874271.7375193,
+      "from_state_id": "st_login_system_access__view",
+      "from_url": "http://127.0.0.1:8113/login?error=Username+is+required",
+      "question_id": "q_auth_cls_97592c154a",
+      "selected_action": "login_form",
+      "probe_family": "auth",
+      "category": "discovery",
+      "hypothesis": "Verify valid authentication transitions past login boundary at http://127.0.0.1:8113/login",
+      "priority_score": 0.92,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_products_catal_view",
+      "to_url": "http://127.0.0.1:8113/products",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792874275.5761986,
+      "from_state_id": "st_products_products_catal_view",
+      "from_url": "http://127.0.0.1:8113/products",
+      "question_id": "q_ctrl_control_cls_65e639ba95__add_to_cart_1",
+      "selected_action": "#add-to-cart-1",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add to Cart'",
+      "priority_score": 0.8515,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_c1",
+      "to_url": "http://127.0.0.1:8113/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792874279.1566331,
+      "from_state_id": "st_cart_shopping_cart_c1",
+      "from_url": "http://127.0.0.1:8113/cart",
+      "question_id": "q_ctrl_control_cls_6865a249d8__remove_item_1",
+      "selected_action": "#remove-item-1",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Remove'",
+      "priority_score": 0.675,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_view",
+      "to_url": "http://127.0.0.1:8113/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792874282.7134564,
+      "from_state_id": "st_cart_shopping_cart_view",
+      "from_url": "http://127.0.0.1:8113/cart",
+      "question_id": "q_ctrl_control_cls_6865a249d8__calculate_tax_btn",
+      "selected_action": "#calculate-tax-btn",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Calculate Tax'",
+      "priority_score": 1.0675,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_view_show_tax_true",
+      "to_url": "http://127.0.0.1:8113/cart?show_tax=true",
+      "is_productive": true
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792874283.1322868,
+      "from_state_id": "st_cart_shopping_cart_view_show_tax_true",
+      "from_url": "http://127.0.0.1:8113/cart?show_tax=true",
+      "question_id": "q_ctrl_select_cls_65e639ba95__product_sort",
+      "selected_action": "#product-sort",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: select 'Name: A to Z Name: Z to A Price: Low to High Price: High to Low'",
+      "priority_score": 0.7175,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_view_show_tax_true",
+      "to_url": "http://127.0.0.1:8113/cart?show_tax=true",
+      "is_productive": false
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792874287.8403175,
+      "from_state_id": "st_cart_shopping_cart_view_show_tax_true",
+      "from_url": "http://127.0.0.1:8113/cart?show_tax=true",
+      "question_id": "q_nav_cls_65e639ba95_nav_link_97092",
+      "selected_action": "/products?sort=az&menu=open",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products?sort=az&menu=open",
+      "priority_score": 0.6765,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "to_url": "http://127.0.0.1:8113/products?sort=az&menu=open",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792874291.761724,
+      "from_state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "from_url": "http://127.0.0.1:8113/products?sort=az&menu=open",
+      "question_id": "q_nav_cls_b2df862a4d_nav_link_53793",
+      "selected_action": "/products?sort=az&menu=closed",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products?sort=az&menu=closed",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_products_catal_view_sort_az_menu_closed",
+      "to_url": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792874304.4476085,
+      "from_state_id": "st_products_products_catal_view_sort_az_menu_closed",
+      "from_url": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+      "question_id": "q_nav_cls_65e639ba95_nav_link_41974",
+      "selected_action": "/products/1",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products/1",
+      "priority_score": 0.6765,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_n_alpha_device_d_view",
+      "to_url": "http://127.0.0.1:8113/products/1",
+      "is_productive": true
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792874306.0261905,
+      "from_state_id": "st_products_n_alpha_device_d_view",
+      "from_url": "http://127.0.0.1:8113/products/1",
+      "question_id": "q_ctrl_control_cls_bc5a50dca5__cart_link",
+      "selected_action": "#cart-link",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Cart 0'",
+      "priority_score": 0.7915,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_view",
+      "to_url": "http://127.0.0.1:8113/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792874314.0068214,
+      "from_state_id": "st_cart_shopping_cart_view",
+      "from_url": "http://127.0.0.1:8113/cart",
+      "question_id": "q_nav_cls_6865a249d8_nav_link_43606",
+      "selected_action": "/checkout",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /checkout",
+      "priority_score": 1.0265,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_checkout_checkout_shipp_view",
+      "to_url": "http://127.0.0.1:8113/checkout",
+      "is_productive": true
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792874315.559636,
+      "from_state_id": "st_checkout_checkout_shipp_view",
+      "from_url": "http://127.0.0.1:8113/checkout",
+      "question_id": "q_ctrl_control_cls_c2cdedc327_a_btn_href___cart__",
+      "selected_action": "a.btn[href=\"/cart\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Back to Cart'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_cart_shopping_cart_view",
+      "to_url": "http://127.0.0.1:8113/cart",
+      "is_productive": true
+    },
+    {
+      "step_number": 13,
+      "timestamp": 1792874317.1267178,
+      "from_state_id": "st_cart_shopping_cart_view",
+      "from_url": "http://127.0.0.1:8113/cart",
+      "question_id": "q_ctrl_control_cls_6865a249d8__checkout_button",
+      "selected_action": "#checkout-button",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Proceed to Checkout'",
+      "priority_score": 1.0135,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_checkout_checkout_shipp_view",
+      "to_url": "http://127.0.0.1:8113/checkout",
+      "is_productive": true
+    },
+    {
+      "step_number": 14,
+      "timestamp": 1792874318.6502614,
+      "from_state_id": "st_checkout_checkout_shipp_view",
+      "from_url": "http://127.0.0.1:8113/checkout",
+      "question_id": "q_ctrl_control_cls_c2cdedc327_a_href___products__",
+      "selected_action": "a[href=\"/products\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Products'",
+      "priority_score": 1.0605,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_products_catal_view",
+      "to_url": "http://127.0.0.1:8113/products",
+      "is_productive": true
+    },
+    {
+      "step_number": 15,
+      "timestamp": 1792874320.3646858,
+      "from_state_id": "st_products_products_catal_view",
+      "from_url": "http://127.0.0.1:8113/products",
+      "question_id": "q_nav_cls_65e639ba95_nav_link_54920",
+      "selected_action": "/products/2",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products/2",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_n_beta_machine_d_view",
+      "to_url": "http://127.0.0.1:8113/products/2",
+      "is_productive": true
+    },
+    {
+      "step_number": 16,
+      "timestamp": 1792874321.5286577,
+      "from_state_id": "st_products_n_beta_machine_d_view",
+      "from_url": "http://127.0.0.1:8113/products/2",
+      "question_id": "q_ctrl_control_cls_bc5a50dca5__detail_add_to_cart",
+      "selected_action": "#detail-add-to-cart",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add to Cart'",
+      "priority_score": 0.7175,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_n_beta_machine_d_view",
+      "to_url": "http://127.0.0.1:8113/products/2",
+      "is_productive": false
+    },
+    {
+      "step_number": 17,
+      "timestamp": 1792874328.9743333,
+      "from_state_id": "st_products_n_beta_machine_d_view",
+      "from_url": "http://127.0.0.1:8113/products/2",
+      "question_id": "q_nav_cls_bc5a50dca5_nav_link_49428",
+      "selected_action": "/products",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /products",
+      "priority_score": 0.975,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_products_products_catal_view",
+      "to_url": "http://127.0.0.1:8113/products",
+      "is_productive": true
+    }
+  ],
+  "report_schema_version": "2.0",
+  "target_context": {
+    "schema_version": "2.0",
+    "run_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "origin": "http://127.0.0.1:8113",
+    "start_url": "http://127.0.0.1:8113/",
+    "final_url": "http://127.0.0.1:8113/products",
+    "investigated_at": "2026-10-25T02:08:48+0530",
+    "description": "Small online shop with login, product catalogue, sorting, cart and checkout.",
+    "requirements": [
+      "First name is required at checkout",
+      "Postal code is required at checkout"
+    ],
+    "credentials_available": true,
+    "credential_source": "[REDACTED_SECRET]"
+  },
+  "observed_inventory": {
+    "schema_version": "2.0",
+    "run_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "origin": "http://127.0.0.1:8113",
+    "provenance": "LIVE_INVESTIGATION",
+    "states": [
+      {
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "title": "Authentication \u2014 Verity Benchmark Portal",
+        "headings": [
+          "System Access Portal"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout System Access Portal Please enter test credentials to access the product catalog. Username Password Sign In",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "ENTRY"
+      },
+      {
+        "state_id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "url": "http://127.0.0.1:8113/login?error=Username+is+required",
+        "route": "/login",
+        "title": "Authentication \u2014 Verity Benchmark Portal",
+        "headings": [
+          "System Access Portal"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout System Access Portal Please enter test credentials to access the product catalog. Username is required Username Password Sign In",
+        "validation_message": "Username is required",
+        "validation_locator": ".alert-danger",
+        "reached_by": "FORM_SUBMISSION"
+      },
+      {
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "title": "Products \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Products Catalog",
+          "Alpha Device",
+          "Beta Machine",
+          "Gamma System"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Products Catalog Sort By: Name: A to Z Name: Z to A Price: Low to High Price: High to Low Open Drawer Alpha Device High-precision core automation unit $15.00 Add to Cart Beta Machine Industrial telemetry analysis station $35.00 Add to Cart Gamma System Enterprise distributed control matrix $95.00 Add to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "title": "Your Cart \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Shopping Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 1 Logout Shopping Cart Alpha Device $15.00 Remove Subtotal: $15.00 Calculate Tax Proceed to Checkout Continue Shopping",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_cart_shopping_cart_view",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "title": "Your Cart \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Shopping Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Shopping Cart Your cart is empty. Subtotal: $0.00 Calculate Tax Proceed to Checkout Continue Shopping",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_cart_shopping_cart_view_show_tax_true",
+        "url": "http://127.0.0.1:8113/cart?show_tax=true",
+        "route": "/cart",
+        "title": "Your Cart \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Shopping Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Shopping Cart Your cart is empty. Subtotal: $0.00 Tax: $0.00 | Total: $0.00 Calculate Tax Proceed to Checkout Continue Shopping",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "url": "http://127.0.0.1:8113/products?sort=az&menu=open",
+        "route": "/products",
+        "title": "Products \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Products Catalog",
+          "Alpha Device",
+          "Beta Machine",
+          "Gamma System"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Products Catalog Sort By: Name: A to Z Name: Z to A Price: Low to High Price: High to Low Hide Drawer Filter & Telemetry Drawer (In-Page Modifier) Active Category: Automation Hardware | Warehouse: Zone-1 Close Drawer Alpha Device High-precision core automation unit $15.00 Add to Cart Beta Machine Industrial telemetry analysis station $35.00 Add to Cart Gamma System Enterprise distributed control matrix $95.00 Add to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_products_products_catal_view_sort_az_menu_closed",
+        "url": "http://127.0.0.1:8113/products?sort=az&menu=closed",
+        "route": "/products",
+        "title": "Products \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Products Catalog",
+          "Alpha Device",
+          "Beta Machine",
+          "Gamma System"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Products Catalog Sort By: Name: A to Z Name: Z to A Price: Low to High Price: High to Low Open Drawer Alpha Device High-precision core automation unit $15.00 Add to Cart Beta Machine Industrial telemetry analysis station $35.00 Add to Cart Gamma System Enterprise distributed control matrix $95.00 Add to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "title": "Alpha Device Detail \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Alpha Device Details"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout \u2190 Back to Catalog Alpha Device Details High-precision core automation unit $15.00 Add to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "title": "Checkout \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Checkout: Shipping Details"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout Checkout: Shipping Details First Name Last Name Postal Code Continue to Review Back to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "title": "Beta Machine Detail \u2014 Verity Benchmark Portal",
+        "headings": [
+          "Beta Machine Details"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Verity Benchmark System Products Cart 0 Logout \u2190 Back to Catalog Beta Machine Details Industrial telemetry analysis station $35.00 Add to Cart",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      }
+    ],
+    "controls": [
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 0",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "#username",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "benchmark_user",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "#password",
+        "tag": "input",
+        "control_type": "password",
+        "role": "input",
+        "name": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "#login-button",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Sign In",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 0",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#product-sort",
+        "tag": "select",
+        "control_type": "select",
+        "role": "select",
+        "name": "Name: A to Z Name: Z to A Price: Low to High Price: High to Low",
+        "href": "",
+        "options": [
+          "az",
+          "za",
+          "lohi",
+          "hilo"
+        ],
+        "option_labels": [
+          "Name: A to Z",
+          "Name: Z to A",
+          "Price: Low to High",
+          "Price: High to Low"
+        ],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#menu-drawer-toggle",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Open Drawer",
+        "href": "/products?sort=az&menu=open",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#item-1-title",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Alpha Device",
+        "href": "/products/1",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-1",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Add to Cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#item-2-title",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Beta Machine",
+        "href": "/products/2",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-2",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Add to Cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#item-3-title",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Gamma System",
+        "href": "/products/3",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-3",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Add to Cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 1",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "#remove-item-1",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Remove",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1"
+        ]
+      },
+      {
+        "selector": "#calculate-tax-btn",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Calculate Tax",
+        "href": "/cart?show_tax=true",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "#checkout-button",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Proceed to Checkout",
+        "href": "/checkout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "a.btn[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Continue Shopping",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1",
+          "st_cart_shopping_cart_view",
+          "st_cart_shopping_cart_view_show_tax_true"
+        ]
+      },
+      {
+        "selector": "a.btn[href=\"/products?sort=az&menu=closed\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Close Drawer",
+        "href": "/products?sort=az&menu=closed",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "url": "http://127.0.0.1:8113/products?sort=az&menu=open",
+        "route": "/products",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_products_catal_view_sort_az_menu_open_menu_open"
+        ]
+      },
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 0",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "selector": "#back-to-products",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "\u2190 Back to Catalog",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "selector": "#detail-add-to-cart",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Add to Cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 0",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "#first-name",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "John",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "#last-name",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Doe",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "#postal-code",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "10001",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "#continue-checkout-btn",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Continue to Review",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "a.btn[href=\"/cart\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Back to Cart",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/products\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Products",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      {
+        "selector": "#cart-link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Cart 0",
+        "href": "/cart",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/logout\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Logout",
+        "href": "/logout",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      {
+        "selector": "#back-to-products",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "\u2190 Back to Catalog",
+        "href": "/products",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      },
+      {
+        "selector": "#detail-add-to-cart",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Add to Cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      }
+    ],
+    "forms": [
+      {
+        "form_id": "loginForm",
+        "form_selector": "#loginForm",
+        "action": "/login",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#login-button",
+        "state_id": "st_login_system_access__view",
+        "url": "http://127.0.0.1:8113/login",
+        "route": "/login",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#username",
+            "name": "username",
+            "field_id": "username",
+            "label": "Username",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#password",
+            "name": "password",
+            "field_id": "password",
+            "label": "Password",
+            "field_type": "password",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_login_system_access__view",
+          "st_login_system_access__view_error_Username_is_re_with_error"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/cart/add",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#add-to-cart-1",
+        "state_id": "st_products_products_catal_view",
+        "url": "http://127.0.0.1:8113/products",
+        "route": "/products",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "[name=\"product_id\"]",
+            "name": "product_id",
+            "field_id": "",
+            "label": "",
+            "field_type": "hidden",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_products_products_catal_view",
+          "st_products_products_catal_view_sort_az_menu_open_menu_open",
+          "st_products_products_catal_view_sort_az_menu_closed"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/cart/remove",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#remove-item-1",
+        "state_id": "st_cart_shopping_cart_c1",
+        "url": "http://127.0.0.1:8113/cart",
+        "route": "/cart",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "[name=\"product_id\"]",
+            "name": "product_id",
+            "field_id": "",
+            "label": "",
+            "field_type": "hidden",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_cart_shopping_cart_c1"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/cart/add",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#detail-add-to-cart",
+        "state_id": "st_products_n_alpha_device_d_view",
+        "url": "http://127.0.0.1:8113/products/1",
+        "route": "/products/1",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "[name=\"product_id\"]",
+            "name": "product_id",
+            "field_id": "",
+            "label": "",
+            "field_type": "hidden",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_products_n_alpha_device_d_view"
+        ]
+      },
+      {
+        "form_id": "checkoutForm",
+        "form_selector": "#checkoutForm",
+        "action": "/checkout",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#continue-checkout-btn",
+        "state_id": "st_checkout_checkout_shipp_view",
+        "url": "http://127.0.0.1:8113/checkout",
+        "route": "/checkout",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "#first-name",
+            "name": "first_name",
+            "field_id": "first-name",
+            "label": "First Name",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#last-name",
+            "name": "last_name",
+            "field_id": "last-name",
+            "label": "Last Name",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#postal-code",
+            "name": "postal_code",
+            "field_id": "postal-code",
+            "label": "Postal Code",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_checkout_checkout_shipp_view"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/cart/add",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#detail-add-to-cart",
+        "state_id": "st_products_n_beta_machine_d_view",
+        "url": "http://127.0.0.1:8113/products/2",
+        "route": "/products/2",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "[name=\"product_id\"]",
+            "name": "product_id",
+            "field_id": "",
+            "label": "",
+            "field_type": "hidden",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_products_n_beta_machine_d_view"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "trans-bca0d0d7",
+        "source_state_id": "st_login_system_access__view",
+        "destination_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
+        "action_type": "FILL:required_blank_all_loginForm",
+        "target": "required_blank_all_loginForm",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evidence_ids": [
+          "ev-864846c2"
+        ]
+      },
+      {
+        "transition_id": "trans-e37ecc2d",
+        "source_state_id": "st_login_system_access__view",
+        "destination_state_id": "st_products_products_catal_view",
+        "action_type": "AUTHENTICATE",
+        "target": "login_form",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-bf7627a5"
+        ]
+      },
+      {
+        "transition_id": "trans-e0fbbf6e",
+        "source_state_id": "st_products_products_catal_view",
+        "destination_state_id": "st_cart_shopping_cart_c1",
+        "action_type": "CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1",
+        "target": "#add-to-cart-1",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-3ba1667f"
+        ]
+      },
+      {
+        "transition_id": "trans-e15b7614",
+        "source_state_id": "st_cart_shopping_cart_c1",
+        "destination_state_id": "st_cart_shopping_cart_view",
+        "action_type": "CLICK_CONTROL:control_cls_6865a249d8__remove_item_1",
+        "target": "#remove-item-1",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-c3cef25d"
+        ]
+      },
+      {
+        "transition_id": "trans-35d5d51b",
+        "source_state_id": "st_cart_shopping_cart_view",
+        "destination_state_id": "st_cart_shopping_cart_view_show_tax_true",
+        "action_type": "CLICK_CONTROL:control_cls_6865a249d8__calculate_tax_btn",
+        "target": "#calculate-tax-btn",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-f8e2f92d"
+        ]
+      },
+      {
+        "transition_id": "trans-fce15bfe",
+        "source_state_id": "st_cart_shopping_cart_view_show_tax_true",
+        "destination_state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "action_type": "NAVIGATE_LINK:nav_link_97092",
+        "target": "/products?sort=az&menu=open",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-98f5710b"
+        ]
+      },
+      {
+        "transition_id": "trans-a3be0668",
+        "source_state_id": "st_products_products_catal_view_sort_az_menu_open_menu_open",
+        "destination_state_id": "st_products_products_catal_view_sort_az_menu_closed",
+        "action_type": "NAVIGATE_LINK:nav_link_53793",
+        "target": "/products?sort=az&menu=closed",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-1882a7df"
+        ]
+      },
+      {
+        "transition_id": "trans-23bb1412",
+        "source_state_id": "st_products_products_catal_view_sort_az_menu_closed",
+        "destination_state_id": "st_products_n_alpha_device_d_view",
+        "action_type": "NAVIGATE_LINK:nav_link_41974",
+        "target": "/products/1",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-cca28849"
+        ]
+      },
+      {
+        "transition_id": "trans-20909e61",
+        "source_state_id": "st_products_n_alpha_device_d_view",
+        "destination_state_id": "st_cart_shopping_cart_view",
+        "action_type": "CLICK_CONTROL:control_cls_bc5a50dca5__cart_link",
+        "target": "#cart-link",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-7e7a30b9"
+        ]
+      },
+      {
+        "transition_id": "trans-f2eaa18f",
+        "source_state_id": "st_cart_shopping_cart_view",
+        "destination_state_id": "st_checkout_checkout_shipp_view",
+        "action_type": "NAVIGATE_LINK:nav_link_43606",
+        "target": "/checkout",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-477b0631"
+        ]
+      },
+      {
+        "transition_id": "trans-e8b66b42",
+        "source_state_id": "st_checkout_checkout_shipp_view",
+        "destination_state_id": "st_cart_shopping_cart_view",
+        "action_type": "CLICK_CONTROL:control_cls_c2cdedc327_a_btn_href___cart__",
+        "target": "a.btn[href=\"/cart\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-e90e042d"
+        ]
+      },
+      {
+        "transition_id": "trans-c58e79ac",
+        "source_state_id": "st_cart_shopping_cart_view",
+        "destination_state_id": "st_checkout_checkout_shipp_view",
+        "action_type": "CLICK_CONTROL:control_cls_6865a249d8__checkout_button",
+        "target": "#checkout-button",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-fdef7bae"
+        ]
+      },
+      {
+        "transition_id": "trans-d8c40b01",
+        "source_state_id": "st_checkout_checkout_shipp_view",
+        "destination_state_id": "st_products_products_catal_view",
+        "action_type": "CLICK_CONTROL:control_cls_c2cdedc327_a_href___products__",
+        "target": "a[href=\"/products\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-ad8bf00e"
+        ]
+      },
+      {
+        "transition_id": "trans-ab77f0f9",
+        "source_state_id": "st_products_products_catal_view",
+        "destination_state_id": "st_products_n_beta_machine_d_view",
+        "action_type": "NAVIGATE_LINK:nav_link_54920",
+        "target": "/products/2",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-123e4565"
+        ]
+      },
+      {
+        "transition_id": "trans-ae110498",
+        "source_state_id": "st_products_n_beta_machine_d_view",
+        "destination_state_id": "st_products_products_catal_view",
+        "action_type": "NAVIGATE_LINK:nav_link_49428",
+        "target": "/products",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-8650c1f0"
+        ]
+      }
+    ],
+    "auth": {
+      "boundary_observed": true,
+      "login_route": "/login",
+      "credentials_available": true,
+      "credential_source": "[REDACTED_SECRET]",
+      "verified": true
+    },
+    "requirements": [
+      "First name is required at checkout",
+      "Postal code is required at checkout"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "investigation_id": "inv-530a4fc3",
-  "exported_at": 1792858590.0563443,
+  "investigation_id": "inv-be83fae9",
+  "exported_at": 1792887665.600235,
   "application_origin": "http://127.0.0.1:8995",
   "target_url": "http://127.0.0.1:8995/login",
   "investigated_routes": [
@@ -1336,7 +1336,7 @@
   ],
   "verified_transitions": [
     {
-      "transition_id": "trans-fcaef27a",
+      "transition_id": "trans-6a43487c",
       "source_state_id": "st_login_system_access__view",
       "destination_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
       "action_type": "FILL:required_blank_all_loginForm",
@@ -1356,12 +1356,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-f44bf1e4",
+      "transition_id": "trans-7ce5bdc8",
       "source_state_id": "st_login_system_access__view",
       "destination_state_id": "st_products_products_catal_view",
       "action_type": "AUTHENTICATE",
@@ -1380,12 +1380,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-9d102ff7"
+        "ev-f52097ef"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-c0f27c35",
+      "transition_id": "trans-0706218c",
       "source_state_id": "st_products_products_catal_view",
       "destination_state_id": "st_cart_shopping_cart_c1",
       "action_type": "CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1",
@@ -1406,12 +1406,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-7a54292c"
+        "ev-1f3e6c60"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-88dc1c31",
+      "transition_id": "trans-0a8e350b",
       "source_state_id": "st_cart_shopping_cart_c1",
       "destination_state_id": "st_cart_shopping_cart_view",
       "action_type": "CLICK_CONTROL:control_cls_6865a249d8__remove_item_1",
@@ -1433,12 +1433,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-2085772e"
+        "ev-e3d55937"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-b220470e",
+      "transition_id": "trans-a342d8d2",
       "source_state_id": "st_cart_shopping_cart_view",
       "destination_state_id": "st_checkout_checkout_shipp_view",
       "action_type": "CLICK_CONTROL:control_cls_6865a249d8__checkout_button",
@@ -1459,12 +1459,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-161387a0"
+        "ev-ae0351d1"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-20dd5cf4",
+      "transition_id": "trans-2395d044",
       "source_state_id": "st_checkout_checkout_shipp_view",
       "destination_state_id": "st_cart_shopping_cart_view",
       "action_type": "CLICK_CONTROL:control_cls_c2cdedc327__cart_link",
@@ -1485,12 +1485,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-8abee5c6"
+        "ev-59151499"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-271e29ff",
+      "transition_id": "trans-9dc9c8df",
       "source_state_id": "st_cart_shopping_cart_view",
       "destination_state_id": "st_products_products_catal_view",
       "action_type": "CLICK_CONTROL:control_cls_6865a249d8_a_btn_href___products__",
@@ -1511,12 +1511,12 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-d4334086"
+        "ev-a1aff30b"
       ],
       "confidence": 1.0
     },
     {
-      "transition_id": "trans-4628f488",
+      "transition_id": "trans-1262e0fe",
       "source_state_id": "st_products_products_catal_view",
       "destination_state_id": "st_cart_shopping_cart_view",
       "action_type": "CLICK_CONTROL:control_cls_65e639ba95__cart_link",
@@ -1537,7 +1537,7 @@
       "verification_outcome": "VERIFIED",
       "repeatability": "REPEATABLE",
       "evidence_ids": [
-        "ev-ed8eb1f8"
+        "ev-59c56331"
       ],
       "confidence": 1.0
     }
@@ -1545,7 +1545,7 @@
   "evidence_ledger": [
     {
       "evidence_id": "ev_init_st_login_system_access__view",
-      "timestamp": 1792858573.8924098,
+      "timestamp": 1792887582.8041263,
       "associated_state_id": "st_login_system_access__view",
       "before_state_id": "st_login_system_access__view",
       "after_state_id": null,
@@ -1558,12 +1558,12 @@
       "verification_status": "OBSERVED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_step_0_cafe7265.png",
+      "screenshot_artifact_path": "artifacts\\investigate_step_0_dcbc849f.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-88502797",
-      "timestamp": 1792858576.2707093,
+      "evidence_id": "ev-f91bf9fa",
+      "timestamp": 1792887592.8194282,
       "associated_state_id": "st_login_system_access__view",
       "before_state_id": "st_login_system_access__view",
       "after_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
@@ -1576,30 +1576,30 @@
       "verification_status": "VERIFIED",
       "locator": ".alert-danger",
       "validation_message": "Username is required",
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_97343d63.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_49b0cbde.png",
       "trace_artifact_path": null
     },
     {
       "evidence_id": "ev_auth_st_products_products_catal_view",
-      "timestamp": 1792858579.1033368,
+      "timestamp": 1792887594.557387,
       "associated_state_id": "st_login_system_access__view",
       "before_state_id": "st_login_system_access__view",
       "after_state_id": "st_products_products_catal_view",
       "evidence_type": "AUTH_VERIFICATION",
-      "dom_or_a11y_observation": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
-      "action_summary": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
+      "dom_or_a11y_observation": "Authentication verified: login form dismissed; logout control present -> navigated to http://127.0.0.1:8995/products",
+      "action_summary": "Authentication verified: login form dismissed; logout control present -> navigated to http://127.0.0.1:8995/products",
       "pre_snapshot_summary": "URL=http://127.0.0.1:8995/login | title='Authentication — Verity Benchmark Portal' | controls=6",
       "post_snapshot_summary": "URL=http://127.0.0.1:8995/products | title='Products — Verity Benchmark Portal' | controls=11",
-      "observed_result": "Authentication verified: Detected authenticated landmark: logout_control_present -> navigated to http://127.0.0.1:8995/products",
+      "observed_result": "Authentication verified: login form dismissed; logout control present -> navigated to http://127.0.0.1:8995/products",
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_auth_after_808bd3f3.png",
+      "screenshot_artifact_path": "artifacts\\investigate_auth_after_ab40c7b5.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-9d102ff7",
-      "timestamp": 1792858579.1056256,
+      "evidence_id": "ev-f52097ef",
+      "timestamp": 1792887598.1881878,
       "associated_state_id": "st_login_system_access__view",
       "before_state_id": "st_login_system_access__view",
       "after_state_id": "st_products_products_catal_view",
@@ -1612,12 +1612,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_auth_after_808bd3f3.png",
+      "screenshot_artifact_path": "artifacts\\investigate_auth_after_ab40c7b5.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-7a54292c",
-      "timestamp": 1792858580.7074027,
+      "evidence_id": "ev-1f3e6c60",
+      "timestamp": 1792887603.2818756,
       "associated_state_id": "st_products_products_catal_view",
       "before_state_id": "st_products_products_catal_view",
       "after_state_id": "st_cart_shopping_cart_c1",
@@ -1630,12 +1630,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_3f8cf78e.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_1c7ff2df.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-2085772e",
-      "timestamp": 1792858582.292651,
+      "evidence_id": "ev-e3d55937",
+      "timestamp": 1792887651.458271,
       "associated_state_id": "st_cart_shopping_cart_c1",
       "before_state_id": "st_cart_shopping_cart_c1",
       "after_state_id": "st_cart_shopping_cart_view",
@@ -1648,12 +1648,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_bed078ad.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_7d4143eb.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-b26182e3",
-      "timestamp": 1792858583.8382292,
+      "evidence_id": "ev-aaf6170b",
+      "timestamp": 1792887652.8851323,
       "associated_state_id": "st_cart_shopping_cart_view",
       "before_state_id": "st_cart_shopping_cart_view",
       "after_state_id": "st_cart_shopping_cart_view",
@@ -1666,12 +1666,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_238fdf70.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_1936c44e.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-161387a0",
-      "timestamp": 1792858585.349534,
+      "evidence_id": "ev-ae0351d1",
+      "timestamp": 1792887657.809251,
       "associated_state_id": "st_cart_shopping_cart_view",
       "before_state_id": "st_cart_shopping_cart_view",
       "after_state_id": "st_checkout_checkout_shipp_view",
@@ -1684,12 +1684,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_cb4c195d.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_1f0e04f5.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792858585359",
-      "timestamp": 1792858585.3598208,
+      "evidence_id": "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792887657817",
+      "timestamp": 1792887657.8176687,
       "associated_state_id": "st_checkout_checkout_shipp_view",
       "before_state_id": "st_checkout_checkout_shipp_view",
       "after_state_id": null,
@@ -1706,8 +1706,8 @@
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-8abee5c6",
-      "timestamp": 1792858586.8826365,
+      "evidence_id": "ev-59151499",
+      "timestamp": 1792887659.234821,
       "associated_state_id": "st_checkout_checkout_shipp_view",
       "before_state_id": "st_checkout_checkout_shipp_view",
       "after_state_id": "st_cart_shopping_cart_view",
@@ -1720,12 +1720,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_f1898ed1.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_660b30f5.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-d4334086",
-      "timestamp": 1792858588.4630404,
+      "evidence_id": "ev-a1aff30b",
+      "timestamp": 1792887660.6772108,
       "associated_state_id": "st_cart_shopping_cart_view",
       "before_state_id": "st_cart_shopping_cart_view",
       "after_state_id": "st_products_products_catal_view",
@@ -1738,12 +1738,12 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_3e1d4dc1.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_c66e3549.png",
       "trace_artifact_path": null
     },
     {
-      "evidence_id": "ev-ed8eb1f8",
-      "timestamp": 1792858590.0438392,
+      "evidence_id": "ev-59c56331",
+      "timestamp": 1792887665.5908337,
       "associated_state_id": "st_products_products_catal_view",
       "before_state_id": "st_products_products_catal_view",
       "after_state_id": "st_cart_shopping_cart_view",
@@ -1756,7 +1756,7 @@
       "verification_status": "VERIFIED",
       "locator": null,
       "validation_message": null,
-      "screenshot_artifact_path": "artifacts\\investigate_probe_after_3a6ef192.png",
+      "screenshot_artifact_path": "artifacts\\investigate_probe_after_30cd7b91.png",
       "trace_artifact_path": null
     }
   ],
@@ -1780,14 +1780,14 @@
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_97592c154a_nav_link_23595",
+        "candidate_id": "q_nav_cls_97592c154a_nav_link_72067",
         "candidate_type": "nav",
         "target": "/products",
         "parent_state_id": "cls_97592c154a",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_97592c154a_nav_link_23388",
+        "candidate_id": "q_nav_cls_97592c154a_nav_link_28146",
         "candidate_type": "nav",
         "target": "/cart",
         "parent_state_id": "cls_97592c154a",
@@ -1822,42 +1822,42 @@
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_23595",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_72067",
         "candidate_type": "nav",
         "target": "/products",
         "parent_state_id": "cls_65e639ba95",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_23388",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_28146",
         "candidate_type": "nav",
         "target": "/cart",
         "parent_state_id": "cls_65e639ba95",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_82706",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_24189",
         "candidate_type": "nav",
         "target": "/products?sort=az&menu=open",
         "parent_state_id": "cls_65e639ba95",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_9805",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_50430",
         "candidate_type": "nav",
         "target": "/products/1",
         "parent_state_id": "cls_65e639ba95",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_87354",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_12070",
         "candidate_type": "nav",
         "target": "/products/2",
         "parent_state_id": "cls_65e639ba95",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_65e639ba95_nav_link_11021",
+        "candidate_id": "q_nav_cls_65e639ba95_nav_link_81964",
         "candidate_type": "nav",
         "target": "/products/3",
         "parent_state_id": "cls_65e639ba95",
@@ -1885,28 +1885,28 @@
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_6865a249d8_nav_link_23595",
+        "candidate_id": "q_nav_cls_6865a249d8_nav_link_72067",
         "candidate_type": "nav",
         "target": "/products",
         "parent_state_id": "cls_6865a249d8",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_6865a249d8_nav_link_23388",
+        "candidate_id": "q_nav_cls_6865a249d8_nav_link_28146",
         "candidate_type": "nav",
         "target": "/cart",
         "parent_state_id": "cls_6865a249d8",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_6865a249d8_nav_link_27453",
+        "candidate_id": "q_nav_cls_6865a249d8_nav_link_62902",
         "candidate_type": "nav",
         "target": "/cart?show_tax=true",
         "parent_state_id": "cls_6865a249d8",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_6865a249d8_nav_link_15388",
+        "candidate_id": "q_nav_cls_6865a249d8_nav_link_55797",
         "candidate_type": "nav",
         "target": "/checkout",
         "parent_state_id": "cls_6865a249d8",
@@ -1941,14 +1941,14 @@
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_c2cdedc327_nav_link_23595",
+        "candidate_id": "q_nav_cls_c2cdedc327_nav_link_72067",
         "candidate_type": "nav",
         "target": "/products",
         "parent_state_id": "cls_c2cdedc327",
         "unresolved_reason": "BUDGET_CEILING_REACHED"
       },
       {
-        "candidate_id": "q_nav_cls_c2cdedc327_nav_link_23388",
+        "candidate_id": "q_nav_cls_c2cdedc327_nav_link_28146",
         "candidate_type": "nav",
         "target": "/cart",
         "parent_state_id": "cls_c2cdedc327",
@@ -1972,7 +1972,7 @@
         "target": "high_impact_control",
         "source_state_id": "st_checkout_checkout_shipp_view",
         "reason": "SAFETY_DECISION: Step (SUBMIT on #checkoutForm) blocked: Action blocked by safety policy: high-impact action contains prohibited keyword 'checkout'",
-        "evidence_id": "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792858585359"
+        "evidence_id": "ev_blocked_q_form_cls_c2cdedc327_form_happy_checkoutForm_1792887657817"
       }
     ],
     "authentication_boundaries": {
@@ -2023,7 +2023,7 @@
           "expected_heading": "Shopping Cart",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-7a54292c"
+            "ev-1f3e6c60"
           ]
         },
         {
@@ -2035,7 +2035,7 @@
           "expected_heading": "Shopping Cart",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-2085772e"
+            "ev-e3d55937"
           ]
         },
         {
@@ -2047,7 +2047,7 @@
           "expected_heading": "Checkout: Shipping Details",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ]
@@ -2061,7 +2061,7 @@
           "description": "Verify form submission behavior for required_blank on required_blank_all_loginForm -> Verdict MATCHED (VALIDATION_FEEDBACK): 2/2 signals matched.",
           "expected_transition": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ]
@@ -2078,7 +2078,7 @@
           "expected_heading": "Shopping Cart",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-8abee5c6"
+            "ev-59151499"
           ]
         },
         {
@@ -2090,7 +2090,7 @@
           "expected_heading": "Products Catalog",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-d4334086"
+            "ev-a1aff30b"
           ]
         },
         {
@@ -2102,7 +2102,7 @@
           "expected_heading": "Shopping Cart",
           "expected_selector": "a[href=\"/products\"]",
           "evidence_refs": [
-            "ev-ed8eb1f8"
+            "ev-59c56331"
           ]
         }
       ]

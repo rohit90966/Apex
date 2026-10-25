@@ -9,15 +9,9 @@ export default function Investigation({
   liveEvents,
   currentStatus,
 }) {
-  const [description, setDescription] = useState(
-    'E-commerce shopping application with authentication, inventory catalog, cart, and checkout funnel'
-  );
-  const [requirements, setRequirements] = useState(
-    'Users must authenticate with standard credentials to view inventory\n' +
-    'Adding an item to the cart must increment the cart badge count\n' +
-    'Cart items must be preserved through the checkout funnel\n' +
-    'Checkout step two requires valid first name, last name, and postal code'
-  );
+  // Empty by default: description and requirements describe the target being tested, never a sample site.
+  const [description, setDescription] = useState('');
+  const [requirements, setRequirements] = useState('');
   const [useStreaming, setUseStreaming] = useState(true);
 
   const presets = [

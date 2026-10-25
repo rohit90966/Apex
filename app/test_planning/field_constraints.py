@@ -24,6 +24,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from pydantic import BaseModel, Field
 
 from app.intelligence.target_context import ObservedField, ObservedForm
+from app.test_data import UNIQUE_TOKEN, has_identity_semantics
 
 SOURCE_HTML = "HTML_CONSTRAINT"
 SOURCE_REQUIREMENT = "REQUIREMENT"
@@ -131,13 +132,15 @@ def valid_filler(field: ObservedField) -> Optional[str]:
     if field.pattern:
         return _pattern_candidate(field.pattern, want_match=True)
     if ftype == "email":
-        base = "qa.tester@example.com"
+        base = f"qa.{UNIQUE_TOKEN}@example.com"  # unique per execution: emails are usually account keys
     elif ftype == "url":
         base = "https://example.com/qa"
     elif ftype == "tel":
         base = "5550100"
     elif ftype == "password":
         base = "QaPassw0rd!x"
+    elif has_identity_semantics(field):
+        base = f"qa{UNIQUE_TOKEN}"
     else:
         base = "QA Sample"
     lo = field.minlength or 0
@@ -407,7 +410,7 @@ def _cases_for_constraint(field: ObservedField, c: FieldConstraint, form: Observ
         return cases
 
     if c.kind == "TYPE_EMAIL" and not field.pattern:
-        cases.append(BoundaryCase(boundary="missing @", input_class="FORMAT_INVALID", input_value="qa.tester.example.com",
+        cases.append(BoundaryCase(boundary="missing @", input_class="FORMAT_INVALID", input_value=f"qa.tester.{UNIQUE_TOKEN}.example.com",
                                   expected=EXPECT_REJECT, oracle="FIELD_VALIDITY", oracle_expected="typeMismatch",
                                   requires_submit=False, **base))
         return cases

@@ -1,9 +1,9 @@
 {
-  "execution_id": "exec-f6565795",
-  "source_investigation_id": "inv-530a4fc3",
+  "execution_id": "exec-0310ce85",
+  "source_investigation_id": "inv-fc1c90d9",
   "target_url": "http://127.0.0.1:8996",
-  "executed_at": 1792858831.4792533,
-  "duration_seconds": 6.45,
+  "executed_at": 1792877591.5912483,
+  "duration_seconds": 6.31,
   "total_generated_cases": 19,
   "exported_count": 19,
   "executable_without_manual_edits_count": 17,
@@ -26,11 +26,11 @@
       "title": "End-to-End Workflow: Authentication — Verity Benchmark Portal to Checkout — Verity Benchmark Portal (Checkout: Shipping Details)",
       "category": "workflow",
       "status": "PASSED",
-      "duration_seconds": 0.86,
+      "duration_seconds": 0.877,
       "source_evidence_ids": [
-        "ev-9d102ff7",
-        "ev-ed8eb1f8",
-        "ev-161387a0"
+        "ev-b3d3b46a",
+        "ev-e1362c5c",
+        "ev-7c4f1f18"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
@@ -39,9 +39,9 @@
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-f44bf1e4",
-        "trans-4628f488",
-        "trans-b220470e"
+        "trans-a43076d5",
+        "trans-0fa3a0bf",
+        "trans-76459b17"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -64,16 +64,16 @@
       "title": "State Transition: FILL:required_blank_all_loginForm on required_blank_all_loginForm (st_login_system_access__view -> st_login_system_access__view_error_Username_is_re_with_error)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.16,
+      "duration_seconds": 0.159,
       "source_evidence_ids": [
-        "ev-88502797"
+        "ev-39e390ec"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-ff4d5fc4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -94,14 +94,14 @@
       "status": "PASSED",
       "duration_seconds": 0.557,
       "source_evidence_ids": [
-        "ev-9d102ff7"
+        "ev-b3d3b46a"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-f44bf1e4"
+        "trans-a43076d5"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -120,16 +120,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_65e639ba95__add_to_cart_1 on #add-to-cart-1 (st_products_products_catal_view -> st_cart_shopping_cart_c1)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.263,
+      "duration_seconds": 0.228,
       "source_evidence_ids": [
-        "ev-7a54292c"
+        "ev-a85ec0c8"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
         "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-c0f27c35"
+        "trans-3b124be0"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -150,16 +150,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8__remove_item_1 on #remove-item-1 (st_cart_shopping_cart_c1 -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.323,
+      "duration_seconds": 0.315,
       "source_evidence_ids": [
-        "ev-2085772e"
+        "ev-07bf7d17"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_c1",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-88dc1c31"
+        "trans-3b3f5d08"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -182,16 +182,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8__checkout_button on #checkout-button (st_cart_shopping_cart_view -> st_checkout_checkout_shipp_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.22,
+      "duration_seconds": 0.225,
       "source_evidence_ids": [
-        "ev-161387a0"
+        "ev-7c4f1f18"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_view",
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-b220470e"
+        "trans-76459b17"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -212,16 +212,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_c2cdedc327__cart_link on #cart-link (st_checkout_checkout_shipp_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.219,
+      "duration_seconds": 0.217,
       "source_evidence_ids": [
-        "ev-8abee5c6"
+        "ev-1ce62147"
       ],
       "source_state_ids": [
         "st_checkout_checkout_shipp_view",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-20dd5cf4"
+        "trans-171344af"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -242,16 +242,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_6865a249d8_a_btn_href___products__ on a.btn[href=\"/products\"] (st_cart_shopping_cart_view -> st_products_products_catal_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.221,
+      "duration_seconds": 0.216,
       "source_evidence_ids": [
-        "ev-d4334086"
+        "ev-7b8717b2"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_view",
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-271e29ff"
+        "trans-aa960a05"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -272,16 +272,16 @@
       "title": "State Transition: CLICK_CONTROL:control_cls_65e639ba95__cart_link on #cart-link (st_products_products_catal_view -> st_cart_shopping_cart_view)",
       "category": "transition",
       "status": "PASSED",
-      "duration_seconds": 0.219,
+      "duration_seconds": 0.227,
       "source_evidence_ids": [
-        "ev-ed8eb1f8"
+        "ev-e1362c5c"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-4628f488"
+        "trans-0fa3a0bf"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -302,16 +302,16 @@
       "title": "Form Validation Rejection: required_blank_all_loginForm on 127.0.0.1:8995/login",
       "category": "validation",
       "status": "PASSED",
-      "duration_seconds": 0.164,
+      "duration_seconds": 0.151,
       "source_evidence_ids": [
-        "ev-88502797"
+        "ev-39e390ec"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-ff4d5fc4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -330,16 +330,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.152,
+      "duration_seconds": 0.154,
       "source_evidence_ids": [
-        "ev-88502797"
+        "ev-39e390ec"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-ff4d5fc4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -358,16 +358,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/login (heading:System Access Portal, validation_error:Username is required)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.15,
+      "duration_seconds": 0.148,
       "source_evidence_ids": [
-        "ev-88502797"
+        "ev-39e390ec"
       ],
       "source_state_ids": [
         "st_login_system_access__view_error_Username_is_re_with_error",
         "st_login_system_access__view"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-ff4d5fc4"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -386,16 +386,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/products (heading:Products Catalog, heading:Alpha Device)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.247,
+      "duration_seconds": 0.243,
       "source_evidence_ids": [
-        "ev-7a54292c"
+        "ev-a85ec0c8"
       ],
       "source_state_ids": [
         "st_products_products_catal_view",
         "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-c0f27c35"
+        "trans-3b124be0"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -416,16 +416,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:1)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.303,
+      "duration_seconds": 0.324,
       "source_evidence_ids": [
-        "ev-2085772e"
+        "ev-07bf7d17"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_c1",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-88dc1c31"
+        "trans-3b3f5d08"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -448,16 +448,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/cart (heading:Shopping Cart, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.266,
+      "duration_seconds": 0.245,
       "source_evidence_ids": [
-        "ev-161387a0"
+        "ev-7c4f1f18"
       ],
       "source_state_ids": [
         "st_cart_shopping_cart_view",
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-b220470e"
+        "trans-76459b17"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -478,16 +478,16 @@
       "title": "State-Dependent Behavior on 127.0.0.1:8995/checkout (heading:Checkout: Shipping Details, counter_value:0)",
       "category": "state_dependent",
       "status": "PASSED",
-      "duration_seconds": 0.231,
+      "duration_seconds": 0.264,
       "source_evidence_ids": [
-        "ev-8abee5c6"
+        "ev-1ce62147"
       ],
       "source_state_ids": [
         "st_checkout_checkout_shipp_view",
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-20dd5cf4"
+        "trans-171344af"
       ],
       "source_finding_ids": [],
       "error_message": null,
@@ -508,16 +508,16 @@
       "title": "Behavioral Regression Baseline: required_blank_all_loginForm",
       "category": "regression",
       "status": "PASSED",
-      "duration_seconds": 0.16,
+      "duration_seconds": 0.153,
       "source_evidence_ids": [
-        "ev-88502797"
+        "ev-39e390ec"
       ],
       "source_state_ids": [
         "st_login_system_access__view",
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-ff4d5fc4"
       ],
       "source_finding_ids": [],
       "error_message": null,

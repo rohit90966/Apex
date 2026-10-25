@@ -129,7 +129,8 @@ class GroundedTestValidator:
                     spec = json.loads(a.expected_value or "")
                 except ValueError:
                     return "LIST_SORTED assertion has no machine-readable ordering rule."
-                if spec.get("key") not in ("text", "number") or spec.get("direction") not in ("asc", "desc"):
+                if spec.get("key") not in ("text", "number") or (
+                        spec.get("direction") not in ("asc", "desc") and spec.get("any_direction") is not True):
                     return "LIST_SORTED assertion ordering rule is incomplete."
         if test_case.test_kind != "EXPLORATORY" and not any(is_meaningful_assertion(a) for a in assertions):
             return "Test case has no meaningful oracle (only trivially-true assertions)."

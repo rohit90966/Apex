@@ -1,0 +1,27 @@
+{
+  "run_id": "inv-c549a289d070",
+  "target_url": "http://127.0.0.1:8211/",
+  "description": "Event listings with filtering and sorting, account registration, sign-in, ticket booking and booking management.",
+  "requirements": [
+    "Full name is required for registration",
+    "Email must be a valid email address",
+    "Password must be at least 8 characters",
+    "Password and confirmation must match",
+    "Accepting the Terms of Service is required",
+    "Attendee name is required when booking",
+    "Ticket quantity must be between 1 and 10"
+  ],
+  "status": "completed",
+  "created_at": "2026-10-24T21:04:03.024511+00:00",
+  "started_at": "2026-10-24T21:04:03.025530+00:00",
+  "finished_at": "2026-10-24T21:04:03.122852+00:00",
+  "stopping_reason": null,
+  "error": null,
+  "test_case_count": 35,
+  "report_status": null,
+  "report_outcome": "unknown",
+  "test_generation_status": "completed",
+  "test_generation_error": null,
+  "latest_execution_id": "exec-db358b7be172",
+  "execution_count": 1
+}

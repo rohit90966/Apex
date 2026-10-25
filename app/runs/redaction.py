@@ -74,6 +74,11 @@ def collect_known_secrets(target_url: str) -> Set[str]:
                 secrets.add(entry["pass"])
     except Exception:
         pass
+    try:
+        from app.auth.credentials import all_secret_values
+        secrets.update(all_secret_values())
+    except Exception:
+        pass
     for env_name in ("VERITYQA_TEST_PASSWORD", "TARGET_PASSWORD"):
         if os.environ.get(env_name):
             secrets.add(os.environ[env_name])

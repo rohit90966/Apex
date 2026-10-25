@@ -1,0 +1,97 @@
+{
+ "origin": "https://www.saucedemo.com",
+ "runs": [
+  {
+   "run_id": "inv-1feb069308c1",
+   "at": "2026-10-25T05:08:57",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-ROUTE-REGRESSION",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "INCONCLUSIVE": 2,
+    "PASSED": 21,
+    "LOCATOR_ERROR": 3,
+    "BLOCKED": 2
+   },
+   "findings": {}
+  },
+  {
+   "run_id": "inv-d9e7cb600f1a",
+   "at": "2026-10-25T05:34:30",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-ROUTE-REGRESSION",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "BLOCKED": 18,
+    "PASSED": 4,
+    "ERROR": 6
+   },
+   "findings": {}
+  },
+  {
+   "run_id": "inv-d9e7cb600f1a",
+   "at": "2026-10-25T05:48:19",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-ROUTE-REGRESSION",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "BLOCKED": 12,
+    "PASSED": 4,
+    "ERROR": 12
+   },
+   "findings": {}
+  },
+  {
+   "run_id": "inv-d9e7cb600f1a",
+   "at": "2026-10-25T05:52:07",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-ROUTE-REGRESSION",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "BLOCKED": 8,
+    "PASSED": 4,
+    "ERROR": 16
+   },
+   "findings": {}
+  },
+  {
+   "run_id": "inv-d9e7cb600f1a",
+   "at": "2026-10-25T06:02:46",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-ROUTE-REGRESSION",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "INCONCLUSIVE": 2,
+    "PASSED": 21,
+    "LOCATOR_ERROR": 3,
+    "BLOCKED": 2
+   },
+   "findings": {}
+  }
+ ]
+}

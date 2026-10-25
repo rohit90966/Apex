@@ -1,0 +1,26 @@
+{
+  "run_id": "inv-98b5fa085a0e",
+  "target_url": "http://127.0.0.1:8101/",
+  "description": "Portal with sign-in, account registration and catalogue search.",
+  "requirements": [
+    "Username is required to sign in",
+    "Password is required to sign in",
+    "Password must be at least 6 characters",
+    "Full name is required for registration",
+    "Accepting the Terms of Service is required",
+    "Search query is required"
+  ],
+  "status": "completed",
+  "created_at": "2026-10-24T20:27:37.765345+00:00",
+  "started_at": "2026-10-24T20:27:37.766489+00:00",
+  "finished_at": "2026-10-24T20:27:37.834544+00:00",
+  "stopping_reason": null,
+  "error": null,
+  "test_case_count": 31,
+  "report_status": null,
+  "report_outcome": "unknown",
+  "test_generation_status": "completed",
+  "test_generation_error": null,
+  "latest_execution_id": "exec-b2b5599ec17f",
+  "execution_count": 1
+}

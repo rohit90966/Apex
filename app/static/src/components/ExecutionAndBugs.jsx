@@ -15,7 +15,8 @@ export default function ExecutionAndBugs({
   executingTests,
   canExecute,
   onSelectTab,
-  onViewScreenshot
+  onViewScreenshot,
+  findings
 }) {
   const [selectedResult, setSelectedResult] = useState(null);
   const [filterStatus, setFilterStatus] = useState('ALL');
@@ -27,11 +28,12 @@ export default function ExecutionAndBugs({
   const filteredResults = results.filter(r => filterStatus === 'ALL' || displayExecutionStatus(r.status) === filterStatus);
 
   const metricCards = [
-    { label: 'Executed', value: executionReport ? results.length : NO_DATA, sub: 'Test cases run', color: null },
+    { label: 'Attempted', value: executionReport ? results.length : NO_DATA, sub: 'Test cases started', color: null },
+    { label: 'Assertion reached', value: executionReport ? results.filter((r) => (r.assertions_evaluated || 0) > 0).length : NO_DATA, sub: 'Setup succeeded and the test's own assertions ran', color: null },
     { label: 'Pass', value: executionReport ? counts.PASS : NO_DATA, sub: 'All stated assertions satisfied', color: 'var(--color-success)' },
     { label: 'Fail', value: executionReport ? counts.FAIL : NO_DATA, sub: 'An assertion was not satisfied', color: 'var(--color-danger)' },
     { label: 'Error', value: executionReport ? counts.ERROR : NO_DATA, sub: 'Runner, locator, or environment error', color: 'var(--color-warning)' },
-    { label: 'Blocked', value: executionReport ? counts.BLOCKED : NO_DATA, sub: 'Could not run (e.g. credentials missing)', color: null },
+    { label: 'Blocked', value: executionReport ? counts.BLOCKED : NO_DATA, sub: 'A prerequisite (login, navigation, credentials) failed before the assertion', color: null },
     { label: 'Invalid', value: executionReport ? counts.INVALID : NO_DATA, sub: 'Test case not executable as defined', color: null },
     { label: 'Incomplete', value: executionReport ? counts.INCOMPLETE : NO_DATA, sub: 'Ran but verified nothing', color: null },
   ];
@@ -66,6 +68,34 @@ export default function ExecutionAndBugs({
           </div>
         </div>
       </div>
+
+      {/* Unified findings (investigation + execution), persisted with the run */}
+      {findings && (
+        <div className="panel" id="findings-panel" style={{ marginBottom: '1.5rem' }}>
+          <h3 style={{ margin: '0 0 0.5rem 0' }}>Findings ({findings.findings.length})</h3>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+            {Object.entries(findings.counts || {}).map(([k, v]) => `${k}: ${v}`).join(' · ') || 'No reproduced findings for this run.'}
+          </div>
+          {findings.findings.length > 0 && (
+            <table className="data-table" style={{ width: '100%', fontSize: '0.85rem' }}>
+              <thead>
+                <tr><th>Classification</th><th>Finding</th><th>Where</th><th>Evidence sources</th><th>Regression tests</th></tr>
+              </thead>
+              <tbody>
+                {findings.findings.map((f) => (
+                  <tr key={f.finding_id} data-finding-id={f.finding_id}>
+                    <td><span className={`badge ${f.classification === 'CONFIRMED_DEFECT' ? 'badge-danger' : f.classification === 'LIKELY_DEFECT' ? 'badge-amber' : 'badge-neutral'}`}>{f.classification}</span></td>
+                    <td>{f.title}</td>
+                    <td className="mono">{f.route} {f.subject}</td>
+                    <td>{f.sources.map((s) => `${s.kind}: ${s.classification}`).join('; ')}{f.observations && f.observations.length ? ` (+${f.observations.length} later observation(s))` : ''}</td>
+                    <td className="mono">{(f.regression_test_ids || []).join(', ') || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
 
       {/* Metrics Row */}
       <div className="metrics-grid" style={{ marginBottom: '1.5rem' }}>

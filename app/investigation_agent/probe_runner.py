@@ -273,6 +273,8 @@ class ProbeRunner:
                 required_state_id=req_state,
             )
             steps_executed += 1
+            if ok and self.governor.is_mutating_action(step.action_type, target_str, session.page.url or current_url):
+                self.governor.record_mutation()  # one executed mutating step = one unit of budget
 
             if not ok:
                 status = "FAILED"

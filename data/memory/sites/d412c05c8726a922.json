@@ -1,0 +1,24 @@
+{
+ "origin": "http://127.0.0.1:8001",
+ "runs": [
+  {
+   "run_id": "inv-eb9c7c98fd25",
+   "at": "2026-10-25T04:12:48",
+   "strategies": [
+    "TS-A11Y-NAMES",
+    "TS-CROSS-FIELD",
+    "TS-EP-BVA",
+    "TS-INVARIANT",
+    "TS-INVARIANT-SORT",
+    "TS-METAMORPHIC-FILTER",
+    "TS-ROUTE-REGRESSION",
+    "TS-SERVER-ENFORCEMENT",
+    "TS-STATE-TRANSITION"
+   ],
+   "outcomes": {
+    "BLOCKED": 35
+   },
+   "findings": {}
+  }
+ ]
+}

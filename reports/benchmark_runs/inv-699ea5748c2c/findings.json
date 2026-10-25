@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "CONFIRMED_DEFECT": 4,
+    "LIKELY_DEFECT": 6
+  },
+  "findings": [
+    {
+      "finding_id": "F-09e60994f527",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_fe1506af",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_94d0b499"
+          ],
+          "screenshots": [
+            "investigate_probe_before_a5cbf955.png",
+            "investigate_probe_after_09c29aa2.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_fe1506af",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/2",
+      "subject": "/events/2?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-176c9a0420a6",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_67be9e7d",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_732af7f8"
+          ],
+          "screenshots": [
+            "investigate_probe_before_4ee15acb.png",
+            "investigate_probe_after_840f278a.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_67be9e7d",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/3",
+      "subject": "/events/3?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-7c572d76c04d",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_a46c14b1",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_8a68f60d"
+          ],
+          "screenshots": [
+            "investigate_probe_before_fabf8a9b.png",
+            "investigate_probe_after_b6eded9d.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_a46c14b1",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/1",
+      "subject": "/events/1?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-9a40d532a694",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_afb605c0",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+          "evidence_ids": [
+            "probe_probe_c09b90a6"
+          ],
+          "screenshots": [
+            "investigate_probe_before_4ad1036f.png",
+            "investigate_probe_after_aa5d0fa4.png"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_afb605c0",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/4",
+      "subject": "/events/4?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors"
+    },
+    {
+      "finding_id": "F-038cc28c91c5",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-REC-01",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-REC-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "The record is removed or its content changes after the command",
+          "observed": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "screenshots": [
+            "exec_TC-REC-01_1792880447.png",
+            "exec_TC-REC-01_1792880447.png"
+          ],
+          "knowledge_ids": [
+            "TS-RECORD-COMMAND",
+            "DC-STATE-PERSISTENCE",
+            "DC-FN-CRUD"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-REC-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-RECORD-COMMAND",
+        "DC-STATE-PERSISTENCE",
+        "DC-FN-CRUD"
+      ],
+      "title": "[LIKELY] 'Cancel' on a record of /bookings changes that record: LIKELY_DEFECT",
+      "route": "/bookings",
+      "subject": "#cancel-booking-1",
+      "rule": "RECORD_EFFECT"
+    },
+    {
+      "finding_id": "F-2174314efcfc",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-XF-01",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-XF-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Mismatch rejected with feedback about the confirmation",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-XF-01_1792880446.png",
+            "exec_TC-XF-01_1792880446.png"
+          ],
+          "knowledge_ids": [
+            "TS-CROSS-FIELD",
+            "DC-VAL-CROSS-FIELD"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-XF-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-CROSS-FIELD",
+        "DC-VAL-CROSS-FIELD"
+      ],
+      "title": "[LIKELY] Confirm password must match Password: LIKELY_DEFECT",
+      "route": "/register",
+      "subject": "#confirm-password",
+      "rule": "CROSS_FIELD_EQUALITY:MISMATCH"
+    },
+    {
+      "finding_id": "F-2211488dce38",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-SORT-02",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-SORT-02",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number asc as option 'Price: Low to High' states",
+          "observed": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "screenshots": [
+            "exec_TC-SORT-02_1792880462.png",
+            "exec_TC-SORT-02_1792880462.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-SORT-03",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-SORT-03",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number desc as option 'Price: High to Low' states",
+          "observed": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "screenshots": [
+            "exec_TC-SORT-03_1792880475.png",
+            "exec_TC-SORT-03_1792880475.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-SORT-02",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-INVARIANT-SORT",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[LIKELY] Sort by 'Price: Low to High' orders records (number, asc): LIKELY_DEFECT",
+      "route": "/events",
+      "subject": "#sort",
+      "rule": "LIST_ORDERING"
+    },
+    {
+      "finding_id": "F-3fff40975f1b",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-SRV-05",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-SRV-05",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "HTML_DECLARED",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to the declared rule",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-SRV-05_1792880492.png",
+            "exec_TC-SRV-05_1792880492.png"
+          ],
+          "knowledge_ids": [
+            "TS-SERVER-ENFORCEMENT",
+            "DC-VAL-CLIENT-SERVER",
+            "DC-VAL-CHOICE",
+            "OR-LAYER-DISTINCTION"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-SRV-05",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-SERVER-ENFORCEMENT",
+        "DC-VAL-CLIENT-SERVER",
+        "DC-VAL-CHOICE",
+        "OR-LAYER-DISTINCTION"
+      ],
+      "title": "[LIKELY] Email: format invalid is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "route": "/register",
+      "subject": "#email",
+      "rule": "TYPE_EMAIL:FORMAT_INVALID:SERVER"
+    },
+    {
+      "finding_id": "F-d45d19aa29b6",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-SRV-11",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-SRV-11",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "HTML_DECLARED",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to the declared rule",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-SRV-11_1792880498.png",
+            "exec_TC-SRV-11_1792880498.png"
+          ],
+          "knowledge_ids": [
+            "TS-SERVER-ENFORCEMENT",
+            "DC-VAL-CLIENT-SERVER",
+            "DC-VAL-CHOICE",
+            "OR-LAYER-DISTINCTION"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-SRV-11",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-SERVER-ENFORCEMENT",
+        "DC-VAL-CLIENT-SERVER",
+        "DC-VAL-CHOICE",
+        "OR-LAYER-DISTINCTION"
+      ],
+      "title": "[LIKELY] Tickets: below min is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "route": "/events/1",
+      "subject": "#quantity",
+      "rule": "MIN_VALUE:BELOW_MIN:SERVER"
+    },
+    {
+      "finding_id": "F-de1ef5589328",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-FILTER-01",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-FILTER-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record's category value is 'Music'",
+          "observed": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "screenshots": [
+            "exec_TC-FILTER-01_1792880449.png",
+            "exec_TC-FILTER-01_1792880449.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-2840b97b72a5:TC-FILTER-02",
+          "execution_id": "exec-2840b97b72a5",
+          "test_id": "TC-FILTER-02",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record's category value is 'Workshop'",
+          "observed": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "screenshots": [
+            "exec_TC-FILTER-02_1792880459.png",
+            "exec_TC-FILTER-02_1792880459.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-2840b97b72a5:TC-FILTER-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-METAMORPHIC-FILTER",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[LIKELY] Filter '#category' = 'Music' shows only matching records: LIKELY_DEFECT",
+      "route": "/events",
+      "subject": "#category",
+      "rule": "FILTER_CONSISTENCY"
+    }
+  ],
+  "sources": {
+    "investigation": 4,
+    "execution": 6
+  }
+}

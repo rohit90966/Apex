@@ -94,14 +94,18 @@ def evaluate_always_on_oracles(result: ProbeResult) -> List[OracleFinding]:
     if result.diff and result.diff.text_anomalies_added:
         for anomaly in result.diff.text_anomalies_added:
             is_high = any(k in anomaly.lower() for k in ("traceback", "internal server error", "[object object]", "referenceerror"))
+            from app.investigation_agent.perception import anomaly_context
+            context = anomaly_context(getattr(result.after_obs, "text_snippet", "") or "", anomaly) if result.after_obs else anomaly
             findings.append(
                 OracleFinding(
                     oracle_type=OracleType.TECHNICAL,
                     strength=OracleStrength.HIGH if is_high else OracleStrength.MEDIUM,
                     title=f"Text Anomaly: '{anomaly}'",
-                    description=f"Detected anomaly '{anomaly}' rendered in visible text after interaction.",
+                    description=(f"Detected anomaly '{anomaly}' rendered in visible text after interaction "
+                                 f"(rendered: '{context}'). Expected property: displayed values are well-formed; "
+                                 f"'{anomaly}' was absent before the interaction and appeared in a value position."),
                     evidence_refs=[f"script_{result.script_id}"],
-                    details={"anomaly": anomaly},
+                    details={"anomaly": anomaly, "rendered_context": context},
                 )
             )
 

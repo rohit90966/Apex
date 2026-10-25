@@ -203,9 +203,10 @@ def test_saucedemo_capabilities_retained_with_own_evidence():
     assert {tc.derived_values["option"] for tc in sort_cases} == {"az", "za", "lohi", "hilo"}
     for tc in sort_cases:
         assert tc.requires_test_account
-        login = [s for s in tc.steps if s.selector in ("#user-name", "#password")]
-        assert {s.value for s in login} == {"${CREDENTIAL_USERNAME}", "${CREDENTIAL_PASSWORD}"}
-        assert tc.steps[3].assertion.expected_value == "/inventory.html"  # observed post-login landing route
+        entry = tc.steps[0]   # one auth-aware setup navigation; login happens at run time (app/auth/session.py)
+        assert entry.action == ActionType.NAVIGATE and entry.setup and entry.requires_login
+        assert entry.value.endswith("/inventory.html") and entry.login_url == "https://www.saucedemo.com/"
+        assert not any("${CREDENTIAL" in (s.value or "") for s in tc.steps)
 
 
 # ── Invariants and adversarial scenarios ─────────────────────────────────────
@@ -257,8 +258,13 @@ def test_scenario_7_patterns_require_evidenced_capabilities():
     retriever = KnowledgePatternRetriever()
     ids = {r.pattern.pattern_id for r in retriever.retrieve_patterns(model, max_patterns=50)}
     assert "PAT-ECOM-CART-01" not in ids and "PAT-BANK-XFER-01" not in ids
-    assert "PAT-GEN-FIELDS-01" in ids and "PAT-GEN-ROUTE-01" in ids
     assert any(r.pattern_id == "PAT-ECOM-CART-01" for r in retriever.last_rejected)
+    # Generic strategies come from the QA knowledge base, gated by the evidence profile.
+    from app.knowledge.qa_retrieval import QAKnowledgeRetriever, evidence_profile
+    tf = inventory_from_report(taskflow_report())
+    selected = {r.entry.id for r in QAKnowledgeRetriever().retrieve(evidence_profile(tf))}
+    assert {"TS-EP-BVA", "TS-ROUTE-REGRESSION", "TS-INVARIANT-SORT"} <= selected
+    assert "TS-CROSS-FIELD" not in selected  # no confirmation pair on this target
 
 
 def test_scenario_8_unconventional_routes_and_selectors_are_used_as_observed():
@@ -284,8 +290,10 @@ async def test_scenario_10_auth_needed_without_credentials_is_blocked_not_guesse
     for k in ("VERITYQA_TEST_USERNAME", "VERITYQA_TEST_PASSWORD", "TARGET_USERNAME", "TARGET_PASSWORD", "VERITYQA_TEST_CREDENTIALS_ORIGIN"):
         monkeypatch.delenv(k, raising=False)
     cases, diag, _ = plan(shop_report(with_creds=False))
-    assert not [tc for tc in cases if tc.oracle_class == "LIST_ORDERING"]
-    assert any(u["route"] == "/inventory.html" for u in diag["unreachable_routes"])
+    # Tests of protected pages are planned with an authentication-required entry; without credentials they are
+    # BLOCKED at run time with AUTH_CREDENTIALS_MISSING (tests/test_dynamic_auth.py), never guessed or passed.
+    sort_cases = [tc for tc in cases if tc.oracle_class == "LIST_ORDERING"]
+    assert sort_cases and all(tc.steps[0].setup and tc.steps[0].requires_login for tc in sort_cases)
     case = TestCase(test_id="A", name="auth", objective="o", target_origin="http://127.0.0.1:8003", steps=[
         ActionStep(step_number=1, action=ActionType.FILL, selector="#pw", value="${CREDENTIAL_PASSWORD}", description="pw",
                    assertion=ExecutionAssertion(assertion_type=AssertionType.URL_CONTAINS, expected_value="/x", description="d"))])
@@ -536,7 +544,10 @@ def test_export_preserves_assertions_and_never_prints_pass():
     assert "secret_sauce" not in script and "standard_user" not in script
     semantics = {s["test_id"]: s for s in exporter.export_semantics(cases, "https://www.saucedemo.com/")}
     for (name, fn), tc in zip(funcs.items(), cases):
-        calls = [n for n in ast.walk(fn) if isinstance(n, ast.Call) and getattr(n.func, "id", None) == "check"]
+        # Every assertion is evaluated: product checks via check(), prerequisite checks via setup_check()
+        # (a failure there skips as BLOCKED), record effects via record_changed().
+        calls = [n for n in ast.walk(fn) if isinstance(n, ast.Call)
+                 and getattr(n.func, "id", None) in ("check", "setup_check", "record_changed")]
         assert len(calls) == len(semantics[tc.test_id]["assertions"])
     assert "pytest.skip('INVALID: bad oracle')" in script
 

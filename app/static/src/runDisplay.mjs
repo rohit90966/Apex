@@ -159,11 +159,11 @@ export function bugFindings(investigationReport, executionReport) {
       id: bug.bug_id,
       title: bug.title,
       source: `Execution (${bug.test_id})`,
-      verdict: bug.verification_status,
+      verdict: bug.classification || bug.verification_status,
       severity: bug.severity || null,
       detail: textOf(bug.actual_behavior) || textOf(bug.summary),
       reproduction: textOf(bug.reproduction_rate),
-      reason: textOf(bug.summary),
+      reason: textOf(bug.verdict_rationale) || textOf(bug.summary),
     };
     if (bug.verification_status === 'CONFIRMED_REPRODUCIBLE') verified.push(item);
     else unverified.push(item);

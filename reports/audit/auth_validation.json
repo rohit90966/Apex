@@ -1,0 +1,135 @@
+[
+  {
+    "site": "harbor",
+    "credentials_configured": true,
+    "rows": [
+      {
+        "test": "protected /bookings",
+        "status": "PASSED",
+        "auth_state": "AUTHENTICATED",
+        "login_performed": true,
+        "session_reused": false,
+        "reason": ""
+      },
+      {
+        "test": "protected again /bookings",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": true,
+        "reason": ""
+      },
+      {
+        "test": "public /events",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": true,
+        "reason": ""
+      }
+    ],
+    "counts": {
+      "PASSED": 3
+    }
+  },
+  {
+    "site": "benchmark_shop",
+    "credentials_configured": true,
+    "rows": [
+      {
+        "test": "protected /products",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": false,
+        "reason": ""
+      },
+      {
+        "test": "protected again /products",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": false,
+        "reason": ""
+      },
+      {
+        "test": "public /login",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": false,
+        "reason": ""
+      }
+    ],
+    "counts": {
+      "PASSED": 3
+    }
+  },
+  {
+    "site": "apex",
+    "credentials_configured": true,
+    "rows": [
+      {
+        "test": "public /search",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": false,
+        "reason": ""
+      }
+    ],
+    "counts": {
+      "PASSED": 1
+    }
+  },
+  {
+    "site": "taskdash",
+    "credentials_configured": false,
+    "rows": [
+      {
+        "test": "public /tasks",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": false,
+        "reason": ""
+      }
+    ],
+    "counts": {
+      "PASSED": 1
+    }
+  },
+  {
+    "site": "saucedemo",
+    "credentials_configured": true,
+    "rows": [
+      {
+        "test": "protected /inventory.html",
+        "status": "PASSED",
+        "auth_state": "AUTHENTICATED",
+        "login_performed": true,
+        "session_reused": false,
+        "reason": ""
+      },
+      {
+        "test": "protected again /inventory.html",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": true,
+        "reason": ""
+      },
+      {
+        "test": "public /",
+        "status": "PASSED",
+        "auth_state": "AUTH_NOT_REQUIRED",
+        "login_performed": false,
+        "session_reused": true,
+        "reason": ""
+      }
+    ],
+    "counts": {
+      "PASSED": 3
+    }
+  }
+]

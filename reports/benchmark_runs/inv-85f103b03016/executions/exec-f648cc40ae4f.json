@@ -1,0 +1,2757 @@
+{
+  "execution_id": "exec-f648cc40ae4f",
+  "target_url": "http://127.0.0.1:8101/",
+  "results": [
+    {
+      "test_id": "TC-FIELD-01",
+      "test_name": "Search items: empty is rejected",
+      "status": "FAILED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /search",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter empty value for 'Search items' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.058,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.136,
+          "screenshot_path": "step_TC-FIELD-01_4_1792875111.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"items\", \"missing\", \"provide\", \"required\", \"search\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 1.912,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 4,
+      "final_screenshot": "exec_TC-FIELD-01_1792875111.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Search: </title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Catalog Search</h2>\n    <form action=\"/search\" method=\"GET\">\n      <input type=\"search\" name=\"q\" value=\"\" placeholder=\"Search...\" style=\"width: 75%; padding: 8px;\">\n      <button type=\"submit\" id=\"searchBtn\" style=\"padding:8px 14px;background:#0066cc;color:white;border:none;border-radius:4px;\">Search</button>\n    </form>\n    \n        <h3>No results found for \"\"</h3>\n        <p class=\"info\">Try different keywords or browse the c",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:21:51",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    },
+    {
+      "test_id": "TC-SRV-01",
+      "test_name": "Work Email: empty is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.017,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.086,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.282,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"work\"]",
+          "assertion_actual": "message: Valid email address is required."
+        }
+      ],
+      "duration_seconds": 2.001,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-01_1792875113.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Registration Error</h2>\n        <div class=\"error\"><ul><li>Valid email address is required.</li></ul></div>\n        <p><a href=\"/registration\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:21:53",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "message: Valid email address is required."
+      }
+    },
+    {
+      "test_id": "TC-XF-01",
+      "test_name": "Confirm Password must match Password",
+      "status": "FAILED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.023,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.017,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.084,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter a value in 'Confirm Password' that differs from 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.299,
+          "screenshot_path": "step_TC-XF-01_8_1792875115.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"confirm\", \"identical\", \"match\", \"password\", \"same\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.258,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 8,
+      "final_screenshot": "exec_TC-XF-01_1792875115.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:21:56",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    },
+    {
+      "test_id": "TC-REG-01",
+      "test_name": "Regression of confirmed lead: Bypass: Confirmation field 'confirm_password' must match 'password'",
+      "status": "FAILED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter the lead's value into #fullname",
+          "status": "PASSED",
+          "duration_seconds": 0.055,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter the lead's value into #email",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter the lead's value into #reg-password",
+          "status": "PASSED",
+          "duration_seconds": 0.079,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "FILL",
+          "description": "Enter the lead's value into #confirm-password",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Activate #terms",
+          "status": "PASSED",
+          "duration_seconds": 0.266,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "CLICK",
+          "description": "Submit the form as in the confirmed lead",
+          "status": "FAILED",
+          "duration_seconds": 0.091,
+          "screenshot_path": "step_TC-REG-01_7_1792875117.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"confirm\", \"match\", \"password\", \"passwords\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.013,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 7,
+      "final_screenshot": "exec_TC-REG-01_1792875117.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, Abc123Xy! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa+run_9@example.test.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:21:58",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_7_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    },
+    {
+      "test_id": "TC-A11Y-01",
+      "test_name": "Accessible names on /",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.041,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 4 interactive controls verified with computed accessible names (a='Home', a='Login', a='Register', a='Search Products')"
+        }
+      ],
+      "duration_seconds": 1.857,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-01_1792875119.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Demo Portal - Home</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    header { border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; }\n    nav a { margin-right: 15px; font-weight: bold; text-decoration: none; color: #0066cc; }\n    .content { background: white; padding: 25px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Apex Demo Target System</h1>\n    <nav>\n      <a href=\"/\">Home</a>\n      <a href=\"/login\">Login</a>\n      <a href=\"/registration\">Register</a>\n      <a href=\"/search\">Search Products</a>\n    </nav>\n  </header>\n  <div class=\"content\">\n    <h2>Welcome to the Apex Target Application</h2>\n    <p>This local service provides representative test targets for VerityQA autonomous AI QA engineering inspection.</p>\n    <h3>System Modules</h3>\n    <ul>\n      <li>Authentication and Session Access</li>\n      <li>New User Registration &amp; Verification</li>\n      <li>Catalog and Inventory Search</li>\n    </ul>\n  </div>\n\n\n</body></html>",
+      "console_logs": [],
+      "timestamp": "2026-10-25 02:21:59",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 4 interactive controls verified with computed accessible names (a='Home', a='Login', a='Register', a='Search Products')"
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "test_name": "Transition: 'Forgot password?' on /login",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Forgot password?'",
+          "status": "PASSED",
+          "duration_seconds": 0.193,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/forgot",
+          "assertion_actual": "http://127.0.0.1:8101/forgot"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.2,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-01_1792875121.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Forgot Password</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\"><h2>Password Reset</h2><p>Enter your email to receive a reset link.</p></div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:02",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8101/forgot",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-01",
+      "test_name": "Route reachable with stable landmarks: /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Apex Demo Target System",
+          "assertion_actual": "Found text 'Apex Demo Target System'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.377,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-01_1792875123.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Demo Portal - Home</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    header { border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; }\n    nav a { margin-right: 15px; font-weight: bold; text-decoration: none; color: #0066cc; }\n    .content { background: white; padding: 25px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Apex Demo Target System</h1>\n    <nav>\n      <a href=\"/\">Home</a>\n      <a href=\"/login\">Login</a>\n      <a href=\"/registration\">Register</a>\n      <a href=\"/search\">Search Products</a>\n    </nav>\n  </header>\n  <div class=\"content\">\n    <h2>Welcome to the Apex Target Application</h2>\n    <p>This local service provides representative test targets for VerityQA autonomous AI QA engineering inspection.</p>\n    <h3>System Modules</h3>\n    <ul>\n      <li>Authentication and Session Access</li>\n      <li>New User Registration &amp; Verification</li>\n      <li>Catalog and Inventory Search</li>\n    </ul>\n  </div>\n\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:04",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'Apex Demo Target System'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-02",
+      "test_name": "Search items: whitespace only is rejected",
+      "status": "FAILED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /search",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Search items' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.162,
+          "screenshot_path": "step_TC-FIELD-02_4_1792875125.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"items\", \"missing\", \"provide\", \"required\", \"search\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 1.94,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 4,
+      "final_screenshot": "exec_TC-FIELD-02_1792875126.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Search:    </title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Catalog Search</h2>\n    <form action=\"/search\" method=\"GET\">\n      <input type=\"search\" name=\"q\" value=\"   \" placeholder=\"Search...\" style=\"width: 75%; padding: 8px;\">\n      <button type=\"submit\" id=\"searchBtn\" style=\"padding:8px 14px;background:#0066cc;color:white;border:none;border-radius:4px;\">Search</button>\n    </form>\n    \n        <h3>No results found for \"   \"</h3>\n        <p class=\"info\">Try different keywords or bro",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:06",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    },
+    {
+      "test_id": "TC-SRV-02",
+      "test_name": "Work Email: format invalid is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.086,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter format_invalid value for 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.018,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.293,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"email\", \"work\"]",
+          "assertion_actual": "message: Valid email address is required."
+        }
+      ],
+      "duration_seconds": 1.956,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-02_1792875127.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Registration Error</h2>\n        <div class=\"error\"><ul><li>Valid email address is required.</li></ul></div>\n        <p><a href=\"/registration\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:08",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "message: Valid email address is required."
+      }
+    },
+    {
+      "test_id": "TC-A11Y-02",
+      "test_name": "Accessible names on /forgot",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /forgot",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 4 interactive controls verified with computed accessible names (a='Home', a='Login', a='Register', a='Search')"
+        }
+      ],
+      "duration_seconds": 1.674,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-02_1792875129.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Forgot Password</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\"><h2>Password Reset</h2><p>Enter your email to receive a reset link.</p></div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:10",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 4 interactive controls verified with computed accessible names (a='Home', a='Login', a='Register', a='Search')"
+      }
+    },
+    {
+      "test_id": "TC-TR-02",
+      "test_name": "Transition: 'Search' on /forgot",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /forgot",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Search'",
+          "status": "PASSED",
+          "duration_seconds": 0.231,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/search",
+          "assertion_actual": "http://127.0.0.1:8101/search"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.101,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-02_1792875131.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Product Search</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .search-container { max-width: 600px; margin: 20px auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }\n    .search-bar { display: flex; gap: 8px; }\n    input[type=\"search\"] { flex: 1; padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 4px; }\n    button { padding: 10px 18px; background: #0066cc; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }\n    .results-area { margin-top: 25px; }\n  </style>\n</head>\n<body>\n  <div class=\"search-container\">\n    <h2>Catalog Search</h2>\n    <p>Find components, modules, and documentation across the Apex ecosystem.</p>\n    <form action=\"/search\" method=\"GET\">\n      <div class=\"search-bar\">\n        <input type=\"search\" id=\"q\" name=\"q\" placeholder=\"Enter keywords or item code...\" required=\"\" aria-label=\"Search items\" style=\"\">\n        <button type=\"submit\" id=\"searchBtn\">Search</button>\n      </div>\n    </form>\n    <div class=\"results-area\">\n      <h3>Popular Categories</h3>\n      <ul>\n        <li>Microservices Architecture</li>\n        <li>Security Scanners</li>\n        <li>Continuous Integration Agents</li>\n      </ul>\n    </div>\n  </div>\n\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:12",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8101/search",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-02",
+      "test_name": "Route reachable with stable landmarks: /forgot",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /forgot",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Password Reset",
+          "assertion_actual": "Found text 'Password Reset'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.813,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-02_1792875133.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Forgot Password</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\"><h2>Password Reset</h2><p>Enter your email to receive a reset link.</p></div>\n\n</body></html>",
+      "console_logs": [],
+      "timestamp": "2026-10-25 02:22:14",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'Password Reset'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-03",
+      "test_name": "Username or Email: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.038,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.15,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Username or Email' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.043,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.326,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"username\"]",
+          "assertion_actual": "message: Both username and password are required."
+        }
+      ],
+      "duration_seconds": 1.82,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-03_1792875135.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\">Both username and password are required.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:15",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Both username and password are required."
+      }
+    },
+    {
+      "test_id": "TC-SRV-03",
+      "test_name": "Password: empty is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.117,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.023,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.235,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.094,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"reg\", \"required\"]",
+          "assertion_actual": "message: Password is required."
+        }
+      ],
+      "duration_seconds": 1.942,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-03_1792875137.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Registration Error</h2>\n        <div class=\"error\"><ul><li>Password is required.</li></ul></div>\n        <p><a href=\"/registration\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:17",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "message: Password is required."
+      }
+    },
+    {
+      "test_id": "TC-A11Y-03",
+      "test_name": "Accessible names on /login",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 5 interactive controls verified with computed accessible names (username='user@example.com', password='Enter secure password', loginBtn='Log In', a='Create a new account', a='Forgot password?')"
+        }
+      ],
+      "duration_seconds": 1.882,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-03_1792875138.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - User Login</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .login-card { max-width: 380px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 16px; }\n    label { display: block; font-weight: 600; margin-bottom: 6px; }\n    input[type=\"text\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    button { width: 100%; padding: 10px; background: #0066cc; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }\n    .aux-links { margin-top: 15px; text-align: center; font-size: 13px; }\n  </style>\n</head>\n<body>\n  <div class=\"login-card\">\n    <h2>Sign In to Apex</h2>\n    <form action=\"/login\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username or Email</label>\n        <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"user@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"password\">Password</label>\n        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter secure password\" required=\"\" style=\"\">\n      </div>\n      <button type=\"submit\" id=\"loginBtn\">Log In</button>\n    </form>\n    <div class=\"aux-links\">\n      <a href=\"/registration\">Create a new account</a> | <a href=\"/forgot\">Forgot p",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:19",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 5 interactive controls verified with computed accessible names (username='user@example.com', password='Enter secure password', loginBtn='Log In', a='Create a new account', a='Forgot password?')"
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "test_name": "Transition: 'Register' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Register'",
+          "status": "PASSED",
+          "duration_seconds": 0.216,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/registration",
+          "assertion_actual": "http://127.0.0.1:8101/registration"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.091,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-03_1792875140.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:21",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8101/registration",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-03",
+      "test_name": "Route reachable with stable landmarks: /login",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Sign In to Apex",
+          "assertion_actual": "Found text 'Sign In to Apex'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.708,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-03_1792875142.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - User Login</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .login-card { max-width: 380px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 16px; }\n    label { display: block; font-weight: 600; margin-bottom: 6px; }\n    input[type=\"text\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    button { width: 100%; padding: 10px; background: #0066cc; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }\n    .aux-links { margin-top: 15px; text-align: center; font-size: 13px; }\n  </style>\n</head>\n<body>\n  <div class=\"login-card\">\n    <h2>Sign In to Apex</h2>\n    <form action=\"/login\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username or Email</label>\n        <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"user@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"password\">Password</label>\n        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter secure password\" required=\"\" style=\"\">\n      </div>\n      <button type=\"submit\" id=\"loginBtn\">Log In</button>\n    </form>\n    <div class=\"aux-links\">\n      <a href=\"/registration\">Create a new account</a> | <a href=\"/forgot\">Forgot p",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:24",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'Sign In to Apex'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-04",
+      "test_name": "Username or Email: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Username or Email' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.024,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.462,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"username\"]",
+          "assertion_actual": "message: Both username and password are required."
+        }
+      ],
+      "duration_seconds": 2.216,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-04_1792875146.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\">Both username and password are required.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:26",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Both username and password are required."
+      }
+    },
+    {
+      "test_id": "TC-SRV-04",
+      "test_name": "Confirm Password: empty is rejected by the application (client validation disabled)",
+      "status": "FAILED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.043,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.135,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.037,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.249,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.038,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "FAILED",
+          "duration_seconds": 0.134,
+          "screenshot_path": "step_TC-SRV-04_8_1792875148.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"blank\", \"confirm\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.771,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 8,
+      "final_screenshot": "exec_TC-SRV-04_1792875148.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:29",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-04",
+      "test_name": "Route reachable with stable landmarks: /registration",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Create an Apex Account",
+          "assertion_actual": "Found text 'Create an Apex Account'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.105,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-04_1792875150.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:31",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'Create an Apex Account'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-05",
+      "test_name": "Password: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Username or Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.055,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Password' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.09,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.479,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Both username and password are required."
+        }
+      ],
+      "duration_seconds": 2.755,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-05_1792875153.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\">Both username and password are required.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:34",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Both username and password are required."
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-05",
+      "test_name": "Route reachable with stable landmarks: /search",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /search",
+          "status": "PASSED",
+          "duration_seconds": 0.027,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Catalog Search",
+          "assertion_actual": "Found text 'Catalog Search'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.765,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-05_1792875155.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Product Search</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .search-container { max-width: 600px; margin: 20px auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }\n    .search-bar { display: flex; gap: 8px; }\n    input[type=\"search\"] { flex: 1; padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 4px; }\n    button { padding: 10px 18px; background: #0066cc; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }\n    .results-area { margin-top: 25px; }\n  </style>\n</head>\n<body>\n  <div class=\"search-container\">\n    <h2>Catalog Search</h2>\n    <p>Find components, modules, and documentation across the Apex ecosystem.</p>\n    <form action=\"/search\" method=\"GET\">\n      <div class=\"search-bar\">\n        <input type=\"search\" id=\"q\" name=\"q\" placeholder=\"Enter keywords or item code...\" required=\"\" aria-label=\"Search items\" style=\"\">\n        <button type=\"submit\" id=\"searchBtn\">Search</button>\n      </div>\n    </form>\n    <div class=\"results-area\">\n      <h3>Popular Categories</h3>\n      <ul>\n        <li>Microservices Architecture</li>\n        <li>Security Scanners</li>\n        <li>Continuous Integration Agents</li>\n      </ul>\n    </div>\n  </div>\n\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:36",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'Catalog Search'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-06",
+      "test_name": "Password: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.042,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Username or Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.121,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Password' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.328,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Both username and password are required."
+        }
+      ],
+      "duration_seconds": 2.43,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-06_1792875157.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\">Both username and password are required.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:38",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Both username and password are required."
+      }
+    },
+    {
+      "test_id": "TC-FIELD-07",
+      "test_name": "Password: minlength-1 (5) is rejected",
+      "status": "FAILED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Username or Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.059,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter too_short value for 'Password' (minlength-1 (5))",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.112,
+          "screenshot_path": "step_TC-FIELD-07_5_1792875159.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+          "assertion_expected": "[\"6\", \"character\", \"characters\", \"least\", \"length\", \"password\", \"short\"]",
+          "assertion_actual": "no feedback attributable to this rule (unrelated: message: Invalid credentials. Please try again.)"
+        }
+      ],
+      "duration_seconds": 2.017,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+      "failure_step": 5,
+      "final_screenshot": "exec_TC-FIELD-07_1792875159.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\" id=\"loginError\">Invalid credentials. Please try again.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:40",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+          "actual": "no feedback attributable to this rule (unrelated: message: Invalid credentials. Please try again.)"
+        }
+      }
+    },
+    {
+      "test_id": "TC-FIELD-08",
+      "test_name": "Full Name: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.085,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Full Name' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.018,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.295,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"full\", \"fullname\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Full name is required."
+        }
+      ],
+      "duration_seconds": 1.827,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-08_1792875161.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Registration Error</h2>\n        <div class=\"error\"><ul><li>Full name is required.</li></ul></div>\n        <p><a href=\"/registration\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:42",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "message: Full name is required."
+      }
+    },
+    {
+      "test_id": "TC-FIELD-09",
+      "test_name": "Full Name: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.098,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Full Name' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.302,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"full\", \"fullname\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Full name is required."
+        }
+      ],
+      "duration_seconds": 1.754,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-09_1792875163.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Error</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Registration Error</h2>\n        <div class=\"error\"><ul><li>Full name is required.</li></ul></div>\n        <p><a href=\"/registration\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:44",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "message: Full name is required."
+      }
+    },
+    {
+      "test_id": "TC-FIELD-10",
+      "test_name": "Work Email: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.027,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.097,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Work Email' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.024,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.257,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "valueMissing",
+          "assertion_actual": "validity=valueMissing; message='Please fill out this field.'"
+        }
+      ],
+      "duration_seconds": 1.893,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-10_1792875165.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:46",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_7_FIELD_VALIDITY": "validity=valueMissing; message='Please fill out this field.'"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-11",
+      "test_name": "Work Email: missing @ is rejected",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter format_invalid value for 'Work Email' (missing @)",
+          "status": "PASSED",
+          "duration_seconds": 0.064,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "typeMismatch",
+          "assertion_actual": "validity=typeMismatch; message='Please include an '@' in the email address. 'qa.tester.example.com' is missing a'"
+        }
+      ],
+      "duration_seconds": 1.829,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-11_1792875166.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:47",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_FIELD_VALIDITY": "validity=typeMismatch; message='Please include an '@' in the email address. 'qa.tester.example.com' is missing a'"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-12",
+      "test_name": "Password: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.085,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Password' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.018,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.262,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "valueMissing",
+          "assertion_actual": "validity=valueMissing; message='Please fill out this field.'"
+        }
+      ],
+      "duration_seconds": 1.939,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-12_1792875169.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:22:49",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_7_FIELD_VALIDITY": "validity=valueMissing; message='Please fill out this field.'"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-13",
+      "test_name": "Confirm Password: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.059,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.019,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.085,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.266,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Confirm Password' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.069,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "valueMissing",
+          "assertion_actual": "validity=valueMissing; message='Please fill out this field.'"
+        }
+      ],
+      "duration_seconds": 2.411,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-13_1792875171.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Apex Portal - Account Registration</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .reg-card { max-width: 440px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n    .form-group { margin-bottom: 14px; }\n    label { display: block; font-weight: 600; margin-bottom: 5px; }\n    input[type=\"text\"], input[type=\"email\"], input[type=\"password\"] { width: 100%; padding: 8px 12px; box-sizing: border-box; }\n    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 10px; }\n    button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"reg-card\">\n    <h2>Create an Apex Account</h2>\n    <form action=\"/register\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"fullname\">Full Name</label>\n        <input type=\"text\" id=\"fullname\" name=\"fullname\" placeholder=\"Jane Doe\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"email\">Work Email</label>\n        <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"jane@example.com\" required=\"\" style=\"\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"reg-password\">Password</label>\n        <input type=\"password\" id=\"reg-password\" name=\"passwo",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:52",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_7_FIELD_VALIDITY": "validity=valueMissing; message='Please fill out this field.'"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-14",
+      "test_name": "I accept the Terms of Service: left unchecked is rejected",
+      "status": "FAILED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /registration",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.068,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Work Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.086,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.293,
+          "screenshot_path": "step_TC-FIELD-14_7_1792875173.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"accept\", \"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"service\", \"terms\", \"the\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 1.913,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 7,
+      "final_screenshot": "exec_TC-FIELD-14_1792875173.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:22:54",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_7_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        }
+      }
+    }
+  ],
+  "bug_reports": [
+    {
+      "bug_id": "BUG-ELD-01",
+      "title": "[GENERAL] Search items: empty is rejected: VERIFIED_PRODUCT_DEFECT",
+      "severity": "MEDIUM",
+      "verification_status": "CONFIRMED_REPRODUCIBLE",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FIELD-01",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Verified product defect in 'Search items: empty is rejected' (step 4). Actual behavior deviated from expected specification: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /search",
+        "3. Enter empty value for 'Search items' (empty)",
+        "4. Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "5. Submit the form"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-FIELD-01_1792875111.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: VERIFIED_PRODUCT_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Search: </title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Catalog Search</h2>\n    <form action=\"/search\" method=\"GET\">\n      <input type=\"search\" name=\"q\" value=\"\" placeholder=\"Search...\" style=\"width: 75%; padding: 8px;\">\n      <button type=\"submit\" id=\"searchBtn\" style=\"padding:8px 14px;background:#0066cc;color:white;border:none;border-radius:4px;\">Search</button>\n    </form>\n    \n        <h3>No results found for \"\"</h3>\n        <p class=\"info\">Try different keywords or browse the c",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "suspected_cause": "Application failed to meet expected condition: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Review backend handler and UI flow for the failed step.",
+      "classification": "CONFIRMED_DEFECT",
+      "expected_source": "REQUIREMENT"
+    },
+    {
+      "bug_id": "BUG--XF-01",
+      "title": "[LIKELY] Confirm Password must match Password: LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-XF-01",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Test 'Confirm Password must match Password' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /registration",
+        "3. Enter valid 'Full Name'",
+        "4. Enter valid 'Work Email'",
+        "5. Enter valid 'Password'",
+        "6. Tick required 'I accept the Terms of Service'",
+        "7. Enter a value in 'Confirm Password' that differs from 'Password'",
+        "8. Disable client-side validation so the submission reaches the application (controlled probe)",
+        "9. Submit the form"
+      ],
+      "expected_behavior": "Mismatch rejected with feedback about the confirmation",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-XF-01_1792875115.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION"
+    },
+    {
+      "bug_id": "BUG-REG-01",
+      "title": "[LIKELY] Regression of confirmed lead: Bypass: Confirmation field 'confirm_password' must match 'password': LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-REG-01",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Test 'Regression of confirmed lead: Bypass: Confirmation field 'confirm_password' must match 'password'' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a INVESTIGATION_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /registration",
+        "3. Enter the lead's value into #fullname",
+        "4. Enter the lead's value into #email",
+        "5. Enter the lead's value into #reg-password",
+        "6. Enter the lead's value into #confirm-password",
+        "7. Activate #terms",
+        "8. Submit the form as in the confirmed lead"
+      ],
+      "expected_behavior": "Submission should be rejected: Reject submission when passwords do not match",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-REG-01_1792875117.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, Abc123Xy! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa+run_9@example.test.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "INVESTIGATION_CONVENTION"
+    },
+    {
+      "bug_id": "BUG-ELD-02",
+      "title": "[GENERAL] Search items: whitespace only is rejected: VERIFIED_PRODUCT_DEFECT",
+      "severity": "MEDIUM",
+      "verification_status": "CONFIRMED_REPRODUCIBLE",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FIELD-02",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Verified product defect in 'Search items: whitespace only is rejected' (step 4). Actual behavior deviated from expected specification: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /search",
+        "3. Enter whitespace value for 'Search items' (whitespace only)",
+        "4. Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "5. Submit the form"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-FIELD-02_1792875126.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: VERIFIED_PRODUCT_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Search:    </title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Catalog Search</h2>\n    <form action=\"/search\" method=\"GET\">\n      <input type=\"search\" name=\"q\" value=\"   \" placeholder=\"Search...\" style=\"width: 75%; padding: 8px;\">\n      <button type=\"submit\" id=\"searchBtn\" style=\"padding:8px 14px;background:#0066cc;color:white;border:none;border-radius:4px;\">Search</button>\n    </form>\n    \n        <h3>No results found for \"   \"</h3>\n        <p class=\"info\">Try different keywords or bro",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "suspected_cause": "Application failed to meet expected condition: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Review backend handler and UI flow for the failed step.",
+      "classification": "CONFIRMED_DEFECT",
+      "expected_source": "REQUIREMENT"
+    },
+    {
+      "bug_id": "BUG-SRV-04",
+      "title": "[LIKELY] Confirm Password: empty is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-SRV-04",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Test 'Confirm Password: empty is rejected by the application (client validation disabled)' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a HTML_DECLARED expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /registration",
+        "3. Enter valid 'Full Name'",
+        "4. Enter valid 'Work Email'",
+        "5. Enter valid 'Password'",
+        "6. Tick required 'I accept the Terms of Service'",
+        "7. Enter empty value for 'Confirm Password'",
+        "8. Disable client-side validation so the submission reaches the application (controlled probe)",
+        "9. Submit the form to the application"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to the declared rule",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-SRV-04_1792875148.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "HTML_DECLARED"
+    },
+    {
+      "bug_id": "BUG-ELD-07",
+      "title": "[LOGIN] Password: minlength-1 (5) is rejected: VERIFIED_PRODUCT_DEFECT",
+      "severity": "CRITICAL",
+      "verification_status": "CONFIRMED_REPRODUCIBLE",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FIELD-07",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Verified product defect in 'Password: minlength-1 (5) is rejected' (step 5). Actual behavior deviated from expected specification: Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /login",
+        "3. Enter valid 'Username or Email'",
+        "4. Enter too_short value for 'Password' (minlength-1 (5))",
+        "5. Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "6. Submit the form"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 6 characters)",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+      "evidence_screenshot": "exec_TC-FIELD-07_1792875159.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.; Classification: VERIFIED_PRODUCT_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Login</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n        <h2>Sign In to Apex</h2>\n        <div class=\"error\" id=\"loginError\">Invalid credentials. Please try again.</div>\n        <p><a href=\"/login\">Try again</a></p>\n        </div>\n\n</body></html>",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Password length validation missing: Short password accepted without minimum length enforcement.",
+      "suggested_fix": "Enforce password minimum length requirements on backend authentication handler.",
+      "classification": "CONFIRMED_DEFECT",
+      "expected_source": "REQUIREMENT"
+    },
+    {
+      "bug_id": "BUG-ELD-14",
+      "title": "[GENERAL] I accept the Terms of Service: left unchecked is rejected: VERIFIED_PRODUCT_DEFECT",
+      "severity": "HIGH",
+      "verification_status": "CONFIRMED_REPRODUCIBLE",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FIELD-14",
+      "target_url": "http://127.0.0.1:8101/",
+      "summary": "Verified product defect in 'I accept the Terms of Service: left unchecked is rejected' (step 7). Actual behavior deviated from expected specification: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8101/",
+        "2. Navigate to observed route /registration",
+        "3. Enter valid 'Full Name'",
+        "4. Enter valid 'Work Email'",
+        "5. Enter valid 'Password'",
+        "6. Enter valid 'Confirm Password'",
+        "7. Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "8. Submit the form"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Accepting the Terms of Service is required)",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-FIELD-14_1792875173.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: VERIFIED_PRODUCT_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Registration Success</title>\n  <style>\n    body { font-family: sans-serif; margin: 40px; background: #fafafa; }\n    .card { max-width: 500px; margin: 40px auto; background: white; padding: 30px;\n             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }\n    .success { color: #28a745; font-weight: bold; border: 1px solid #28a745; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .error   { color: #dc3545; font-weight: bold; border: 1px solid #dc3545; padding: 12px;\n                border-radius: 4px; margin-top: 14px; }\n    .info    { color: #0066cc; padding: 12px; border: 1px solid #ccc; border-radius: 4px;\n                margin-top: 14px; }\n    nav a { margin-right: 15px; font-weight: bold; color: #0066cc; text-decoration: none; }\n    nav { margin-bottom: 24px; }\n  </style>\n</head>\n<body>\n  <nav>\n    <a href=\"/\">Home</a><a href=\"/login\">Login</a>\n    <a href=\"/registration\">Register</a><a href=\"/search\">Search</a>\n  </nav>\n  <div class=\"card\">\n    <h2>Account Created</h2>\n    <div class=\"success\">\n      Welcome, QA Sample! Your Apex account has been created successfully.\n      <br>A confirmation email has been sent to qa.tester@example.com.\n    </div>\n    <p><a href=\"/login\">Sign in now</a></p>\n    </div>\n\n</body></html>",
+      "console_errors": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Terms acceptance validation bypass: Account created without accepted terms.",
+      "suggested_fix": "Enforce mandatory terms acceptance on backend registration handler.",
+      "classification": "CONFIRMED_DEFECT",
+      "expected_source": "REQUIREMENT"
+    }
+  ]
+}

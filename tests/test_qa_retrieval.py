@@ -371,7 +371,8 @@ def test_findings_lifecycle_classifies_locator_error_as_infra():
     assert cls == FindingClass.TEST_INFRASTRUCTURE_FAILURE
 
 
-def test_findings_lifecycle_classifies_likely_defect_for_inferred_oracle():
+def test_findings_lifecycle_classifies_inferred_oracle_as_anomaly():
+    """An expectation derived only from option-label semantics is not strong enough for a likely defect."""
     from app.findings.lifecycle import classify_execution_result, FindingClass
     from app.schemas import ExecutionStatus
 
@@ -382,17 +383,22 @@ def test_findings_lifecycle_classifies_likely_defect_for_inferred_oracle():
             expected_source="DERIVED_INFERENCE",
         ))],
     )
-    cls = classify_execution_result(result, tc)
-    assert cls == FindingClass.LIKELY_DEFECT
+    assert classify_execution_result(result, tc) == FindingClass.UNVERIFIED_ANOMALY
+    strong = SimpleNamespace(oracle_class="FIELD_CONSTRAINT", steps=[SimpleNamespace(assertion=SimpleNamespace(
+        expected_source="HTML_DECLARED"))])
+    assert classify_execution_result(result, strong) == FindingClass.LIKELY_DEFECT
 
 
 def test_findings_lifecycle_classifies_investigation_lead():
     from app.findings.lifecycle import classify_investigation_lead, FindingClass
 
+    # A reproduced convention-based lead is strong but not an established rule.
     lead_confirmed_high = SimpleNamespace(
         status="CONFIRMED", oracle_type="CONVENTION", strength="HIGH",
     )
-    assert classify_investigation_lead(lead_confirmed_high) == FindingClass.CONFIRMED_DEFECT
+    assert classify_investigation_lead(lead_confirmed_high) == FindingClass.LIKELY_DEFECT
+    technical = SimpleNamespace(status="CONFIRMED", oracle_type="TECHNICAL", strength="HIGH")
+    assert classify_investigation_lead(technical) == FindingClass.CONFIRMED_DEFECT
 
     lead_unstable = SimpleNamespace(status="UNSTABLE", oracle_type="SUSPICION", strength="LOW")
     assert classify_investigation_lead(lead_unstable) == FindingClass.UNVERIFIED_ANOMALY

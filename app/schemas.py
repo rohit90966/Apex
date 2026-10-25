@@ -263,6 +263,7 @@ class AssertionType(str, Enum):
     LIST_ALL_CONTAIN = "LIST_ALL_CONTAIN"                # every record of the detected collection contains expected_value
     SELECTED_VALUE = "SELECTED_VALUE"                    # control's current value equals expected_value
     NO_TEXT_ANOMALY = "NO_TEXT_ANOMALY"                  # visible text has no NaN/undefined/[object Object]/tracebacks
+    RECORD_CHANGED = "RECORD_CHANGED"                    # the record containing the step's control is removed or changed by the step
 
 
 # Assertions that cannot fail on a rendered page and therefore never count as a verification.
@@ -307,6 +308,14 @@ class ActionStep(BaseModel):
     value: Optional[str] = None
     description: str
     assertion: Optional[ExecutionAssertion] = None
+    # A prerequisite (login, navigation path), not the behaviour under test: if it fails the test is BLOCKED
+    # (setup failure), never a pass or failure of the target behaviour.
+    setup: bool = False
+    # Setup NAVIGATE only: reach the page with the authentication it needs (app/auth/session.py). requires_login
+    # is a hint from the investigation (the page's content was only seen in a session); a redirect to a login
+    # gate is detected at run time either way. login_url = the observed login page for this origin.
+    requires_login: bool = False
+    login_url: Optional[str] = None
 
     @field_validator("description", mode="before")
     @classmethod
@@ -402,6 +411,10 @@ class BugReport(BaseModel):
     # TEST_INFRASTRUCTURE_FAILURE | TEST_DEFINITION_ERROR (see app/findings/lifecycle.py)
     classification: Optional[str] = None
     expected_source: Optional[str] = None
+    # Why the classification was reached, and every execution attempt behind it (status, failing step,
+    # reason, per-attempt test-data namespace), so the verdict can be audited.
+    verdict_rationale: Optional[str] = None
+    attempts: List[Dict[str, Any]] = Field(default_factory=list)
 
 
 class BenchmarkManifestItem(BaseModel):
@@ -474,5 +487,12 @@ class ExecuteSuiteResponse(BaseModel):
     run_id: Optional[str] = None
     # Count of results per ExecutionStatus value (PASSED, FAILED, ERROR, BLOCKED, TEST_DEFINITION_ERROR, ...).
     status_counts: Dict[str, int] = Field(default_factory=dict)
+    # executed_count = test cases attempted. assertions_reached_count = tests whose own (non-setup) assertions
+    # were actually evaluated; only those can PASS or FAIL.
+    assertions_reached_count: int = 0
+    error_count: int = 0
+    blocked_count: int = 0
+    incomplete_count: int = 0
+    invalid_count: int = 0
 
 

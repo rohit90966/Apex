@@ -1,0 +1,15 @@
+﻿[benchmark] apex_portal buggy repeat 1 ...
+.\venv\Scripts\python.exe : [InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8101/search' does not match required state URL 'http://127.0.0.1:8101/login'
+At line:1 char:399
++ ... -oss-120b'; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([InvestigationA...0.1:8101/login':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8101/search' does not 
+match required state URL 'http://127.0.0.1:8101/registration'
+[ProbeRunner] Step blocked by safety governor: SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)

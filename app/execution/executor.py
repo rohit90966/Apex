@@ -25,6 +25,12 @@ logger = logging.getLogger("verityqa.execution")
 # Prefix of an assertion error meaning "the oracle could not observe what it needs" (INCOMPLETE, not FAIL).
 NOT_EVALUABLE = "NOT_EVALUABLE:"
 
+# User-facing text that indicates a broken computation or an unhandled error.
+# Same value-position rule as the investigation perception (app/investigation_agent/perception.py): a
+# placeholder is an anomaly where a value is rendered, not in prose. Plain strings so the exporter can embed them.
+TEXT_ANOMALY_PATTERNS = (r"(?m)(?:^|[:=$€£₹])[ \t]*NaN\b", r"(?m)(?:^|[:=$€£₹])[ \t]*undefined\b",
+                         r"\[object Object\]", r"Traceback \(most recent call last\)")
+
 # Finds the page's primary record collection (largest group of same-signature visible siblings outside
 # navigation chrome) and extracts per-record sort keys and texts. Generic: no site-specific selectors.
 COLLECTION_SCRIPT = """
@@ -45,6 +51,18 @@ COLLECTION_SCRIPT = """
     const t = ((p && p.innerText) || el.innerText || '').trim();
     return t.split('\\n')[0].trim();
   };
+  // A record's own fields: table cells for rows, otherwise its leaf elements' texts.
+  const fieldsOf = el => el.tagName === 'TR'
+      ? Array.from(el.cells).map(c => (c.innerText || '').trim())
+      : Array.from(el.querySelectorAll('*')).filter(n => n.children.length === 0)
+          .map(n => (n.innerText || n.textContent || '').trim()).filter(t => t);
+  const headersOf = el => {
+    const table = el.tagName === 'TR' ? el.closest('table') : null;
+    if (!table) return [];
+    const head = table.querySelectorAll('thead th');
+    const cells = head.length ? head : (table.querySelector('tr') ? table.querySelector('tr').querySelectorAll('th') : []);
+    return Array.from(cells).map(h => (h.innerText || '').trim());
+  };
   let best = null;
   for (const parent of document.querySelectorAll('body *')) {
     if (parent.closest(chrome)) continue;
@@ -61,13 +79,67 @@ COLLECTION_SCRIPT = """
     const avgLen = items.reduce((n, it) => n + (it.innerText || '').length, 0) / items.length;
     const score = items.length + (items[0].tagName === 'TR' || items[0].tagName === 'LI' ? 0.5 : 0) + (avgLen > 20 ? 0.75 : 0);
     if (!best || score > best.score) {
-      best = {score: score, values: values, texts: items.map(it => (it.innerText || '').replace(/\\s+/g, ' ').trim()), signature: top[0]};
+      best = {score: score, values: values, texts: items.map(it => (it.innerText || '').replace(/\\s+/g, ' ').trim()),
+              fields: items.map(fieldsOf), headers: headersOf(items[0]), signature: top[0]};
     }
   }
   return best || {values: [], texts: [], signature: null};
 }
 """
 
+
+# The repeated record (row, list item, card) that contains a control, captured before acting on it.
+RECORD_SNAPSHOT_SCRIPT = """
+(sel) => {
+  const el = document.querySelector(sel);
+  if (!el) return null;
+  const norm = t => (t || '').replace(/\\s+/g, ' ').trim();
+  let rec = el.closest('tr, li, article, [role="row"], [role="listitem"]');
+  for (let a = el.parentElement; !rec && a && a !== document.body; a = a.parentElement) {
+    const p = a.parentElement;
+    if (p && Array.from(p.children).filter(k => k.tagName === a.tagName && k.className === a.className).length >= 2) rec = a;
+  }
+  if (!rec || !rec.parentElement) return null;
+  const text = norm(rec.innerText);
+  const count = Array.from(rec.parentElement.children).filter(k => k.tagName === rec.tagName && norm(k.innerText) === text).length;
+  return {id: rec.id || '', tag: rec.tagName, text: text, count: count};
+}
+"""
+
+# How many records identical to the snapshot exist now (by id when the record has one).
+RECORD_COUNT_SCRIPT = """
+(s) => {
+  const norm = t => (t || '').replace(/\\s+/g, ' ').trim();
+  if (s.id) {
+    const r = document.getElementById(s.id);
+    return r && norm(r.innerText) === s.text ? 1 : 0;
+  }
+  return Array.from(document.querySelectorAll(s.tag)).filter(k => norm(k.innerText) === s.text).length;
+}
+"""
+
+
+def record_unchanged(snapshot, count_after):
+    """True when the record a command acted on is still present with identical content."""
+    return bool(snapshot) and count_after >= (1 if snapshot.get("id") else snapshot.get("count", 1))
+
+from app.execution import list_oracles  # noqa: E402
+from app.auth import credentials as auth_registry  # noqa: E402
+from app.auth.session import SessionCache, ensure_page, session_reuse_enabled  # noqa: E402
+
+SETUP_FAILED = "SETUP_FAILED"
+
+
+class AuthSetupFailed(Exception):
+    """The page a test needs could not be reached with the authentication it requires."""
+
+    def __init__(self, access):
+        super().__init__(f"{access.state.value}: {access.reason}")
+        self.access = access
+
+
+class SetupValueLost(Exception):
+    """A prerequisite input did not keep the value it was filled with."""
 
 if sys.platform == "win32":
     try:
@@ -89,6 +161,10 @@ class BrowserExecutor:
         self.headless = headless if headless is not None else settings.verityqa_headless
         self.artifacts_dir = artifacts_dir or settings.verityqa_artifacts_dir
         os.makedirs(self.artifacts_dir, exist_ok=True)
+        self.session_cache = SessionCache()   # authenticated sessions of the current run (memory only)
+        self._context = None
+        self._auth_reused = False
+        self._auth_events = []
 
     async def execute_steps(
         self,
@@ -160,10 +236,22 @@ class BrowserExecutor:
                 headless=self.headless,
                 args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
             )
-            context: BrowserContext = await browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent="VerityQA-Autonomous-QA-Agent/1.0",
-            )
+            # A fresh context per test. An authenticated session from earlier in this run (same origin and
+            # credential profile only) is started from a copy of its storage state; contexts are never shared.
+            self._auth_reused = False
+            self._auth_events = []
+            storage_state = None
+            entry = next((s for s in steps if s.action == ActionType.NAVIGATE and s.setup and s.value), None)
+            if entry is not None and session_reuse_enabled():
+                status, profile = auth_registry.resolve(entry.value)
+                if profile is not None:
+                    storage_state = self.session_cache.get(auth_registry.canonical_origin(entry.value), profile.name)
+                    self._auth_reused = storage_state is not None
+            context_kwargs = {"viewport": {"width": 1280, "height": 800}, "user_agent": "VerityQA-Autonomous-QA-Agent/1.0"}
+            if storage_state is not None:
+                context_kwargs["storage_state"] = storage_state
+            context: BrowserContext = await browser.new_context(**context_kwargs)
+            self._context = context
             page: Page = await context.new_page()
             page.set_default_timeout(timeout_ms)
 
@@ -191,11 +279,24 @@ class BrowserExecutor:
                 # 1. Execute the primary action. Failures here are never product verdicts:
                 #    a missing/unactionable element is a LOCATOR_ERROR, an unreachable target an
                 #    ENVIRONMENT_ERROR, anything else an AUTOMATION_ERROR.
+                record_snapshot = None
+                if step.assertion and step.assertion.assertion_type == AssertionType.RECORD_CHANGED and step.selector:
+                    try:
+                        record_snapshot = await page.evaluate(RECORD_SNAPSHOT_SCRIPT, step.selector)
+                    except PlaywrightError:
+                        record_snapshot = None
+                self._record_snapshot = record_snapshot
                 try:
                     await self._execute_action(page, step, timeout_ms)
                 except PlaywrightError as pe:
                     step_status = self._classify_action_error(step, pe)
                     error_msg = f"Playwright error: {str(pe)}"
+                except SetupValueLost as lost:
+                    step_status = ExecutionStatus.AUTOMATION_ERROR
+                    error_msg = f"Setup value not retained: {lost}"
+                except AuthSetupFailed as blocked:
+                    step_status = ExecutionStatus.BLOCKED
+                    error_msg = str(blocked)
                 except Exception as ex:
                     step_status = ExecutionStatus.ERROR
                     error_msg = f"Execution error: {str(ex)}"
@@ -210,6 +311,13 @@ class BrowserExecutor:
                         if assert_err and assert_err.startswith(NOT_EVALUABLE):
                             step_status = ExecutionStatus.INCONCLUSIVE
                             error_msg = assert_err
+                        elif step.setup:
+                            # A precondition check: recorded, but not one of the test's assertions.
+                            evidence_retained.setdefault("setup_checks", []).append(
+                                {"step": step.step_number, "passed": bool(passed), "actual": actual_val})
+                            if not passed:
+                                step_status = ExecutionStatus.FAILED
+                                error_msg = assert_err
                         else:
                             assertions_evaluated += 1
                             if is_meaningful_assertion(step.assertion):
@@ -259,10 +367,21 @@ class BrowserExecutor:
                     overall_status = step_status
                     failure_reason = error_msg or "Step assertion failed"
                     failure_step_num = step.step_number
+                    if step.setup:
+                        # The behaviour under test was never reached: a setup failure, not a product verdict.
+                        evidence_retained["setup_failure"] = {
+                            "step": step.step_number, "action": step.action.value, "selector": step.selector,
+                            "underlying_status": step_status.value, "reason": failure_reason[:300],
+                            "url": page.url, "screenshot": step_screenshot,
+                        }
+                        overall_status = ExecutionStatus.BLOCKED
+                        failure_reason = f"{SETUP_FAILED}: step {step.step_number} ({step.action.value}) — {failure_reason}"
                     break
 
+            if self._auth_events:
+                evidence_retained["auth"] = self._auth_events
             # A test passes only when its stated assertions have actually been evaluated and satisfied
-            stated_assertions = sum(1 for s in steps if s.assertion is not None)
+            stated_assertions = sum(1 for s in steps if s.assertion is not None and not s.setup)
             if overall_status == ExecutionStatus.PASSED and stated_assertions > 0:
                 if assertions_satisfied < stated_assertions:
                     overall_status = ExecutionStatus.FAILED
@@ -353,7 +472,18 @@ class BrowserExecutor:
                     from urllib.parse import urlparse
                     p = urlparse(cur_url)
                     target_nav = f"{p.scheme}://{p.netloc}{target_nav}"
-            await page.goto(target_nav, wait_until="domcontentloaded", timeout=timeout_ms)
+            if step.setup:
+                # Entry navigation: reach the page with the authentication it needs, then verify it was reached.
+                access = await ensure_page(page, self._context, target_nav, requires_login=step.requires_login,
+                                           login_url=step.login_url, cache=self.session_cache,
+                                           session_reused=self._auth_reused, timeout_ms=timeout_ms)
+                self._auth_events.append({"step": step.step_number, "state": access.state.value, "profile": access.profile,
+                                          "login_performed": access.login_performed, "session_reused": access.session_reused,
+                                          "reason": access.reason[:200]})
+                if not access.ok:
+                    raise AuthSetupFailed(access)
+            else:
+                await page.goto(target_nav, wait_until="domcontentloaded", timeout=timeout_ms)
 
         elif step.action == ActionType.FILL:
             if not step.selector:
@@ -361,6 +491,11 @@ class BrowserExecutor:
             # Wait for selector to be visible and editable
             await page.wait_for_selector(step.selector, state="visible", timeout=timeout_ms)
             await page.fill(step.selector, step.value or "", timeout=timeout_ms)
+            if step.setup:
+                # A prerequisite value must be in the field when the step completes (lengths only: may be a secret).
+                kept = await page.input_value(step.selector, timeout=timeout_ms)
+                if kept != (step.value or ""):
+                    raise SetupValueLost(f"field {step.selector} holds {len(kept)} chars after filling {len(step.value or '')}")
 
         elif step.action == ActionType.CLICK:
             if not step.selector:
@@ -839,35 +974,59 @@ class BrowserExecutor:
                     spec = json.loads(expected)
                 except ValueError:
                     return False, None, f"{NOT_EVALUABLE} LIST_SORTED needs a JSON ordering rule"
-                key = spec.get("key", "text")
             else:
-                spec, key = {}, "text"
+                # {"value": ..., "domain": [...]} compares each record's own field; a bare string is the
+                # legacy whole-record substring check.
+                try:
+                    spec = json.loads(expected) if (expected or "").lstrip().startswith("{") else {}
+                except ValueError:
+                    spec = {}
+            key = spec.get("key", "text")
             try:
                 await page.wait_for_load_state("domcontentloaded", timeout=min(timeout_ms, 5000))
             except Exception:
                 pass
-            data = await page.evaluate(COLLECTION_SCRIPT, {"key": key, "needle": expected if atype == AssertionType.LIST_ALL_CONTAIN else ""})
-            values = (data or {}).get("values") or []
-            if len(values) < 2 and atype == AssertionType.LIST_SORTED:
-                return False, None, f"{NOT_EVALUABLE} could not identify at least two records to compare"
-            if atype == AssertionType.LIST_ALL_CONTAIN:
+            data = await page.evaluate(COLLECTION_SCRIPT, {"key": key, "needle": ""})
+            if atype == AssertionType.LIST_SORTED:
+                verdict, actual, message = list_oracles.evaluate_sorted(data, spec)
+            elif "domain" in spec:
+                verdict, actual, message = list_oracles.evaluate_filter(data, spec.get("value", ""), spec["domain"])
+            else:
                 texts = (data or {}).get("texts") or []
                 if not texts:
                     return False, None, f"{NOT_EVALUABLE} could not identify any listed records"
                 missing = [t[:80] for t in texts if expected.lower() not in t.lower()]
                 if missing:
-                    return False, f"{len(missing)}/{len(texts)} records lack '{expected}'", \
-                        f"Expected every listed record to contain '{expected}'; non-matching: {missing[:3]}"
+                    return False, f"{len(missing)}/{len(texts)} records lack '{expected}'",                         f"Expected every listed record to contain '{expected}'; non-matching: {missing[:3]}"
                 return True, f"all {len(texts)} records contain '{expected}'", None
-            direction = spec.get("direction", "asc")
-            if key == "number":
-                ordered = sorted(values, reverse=direction == "desc")
-            else:
-                ordered = sorted(values, key=lambda v: str(v).casefold(), reverse=direction == "desc")
-            sample = ", ".join(str(v) for v in values[:6])
-            if list(values) == list(ordered):
-                return True, f"{len(values)} records ordered {key} {direction}: {sample}", None
-            return False, sample, f"Records are not ordered by {key} {direction}: {sample}"
+            if verdict == "not_evaluable":
+                return False, None, f"{NOT_EVALUABLE} {message}"
+            return verdict == "pass", actual, message
+
+        elif atype == AssertionType.RECORD_CHANGED:
+            snapshot = getattr(self, "_record_snapshot", None)
+            if not snapshot:
+                return False, None, f"{NOT_EVALUABLE} the control is not inside a repeated record (row, item or card)"
+            try:
+                await page.wait_for_load_state("domcontentloaded", timeout=min(timeout_ms, 5000))
+            except Exception:
+                pass
+            count_after = await page.evaluate(RECORD_COUNT_SCRIPT, snapshot)
+            if record_unchanged(snapshot, count_after):
+                return False, snapshot["text"][:120], f"Record unchanged after the action: '{snapshot['text'][:120]}'"
+            return True, f"record changed or removed (was: '{snapshot['text'][:80]}')", None
+
+        elif atype == AssertionType.NO_TEXT_ANOMALY:
+            text = await page.evaluate("() => (document.body && document.body.innerText) || ''")
+            found = []
+            for pattern in TEXT_ANOMALY_PATTERNS:
+                m = re.search(pattern, text or "")
+                if m:
+                    start = max(0, m.start() - 40)
+                    found.append(text[start:m.end() + 40].replace("\n", " ").strip())
+            if found:
+                return False, "; ".join(found[:3]), f"Rendered text contains anomalies: {found[:3]}"
+            return True, "no rendering anomalies", None
 
         elif atype == AssertionType.CUSTOM:
             return False, None, f"{NOT_EVALUABLE} CUSTOM assertions have no executable oracle"

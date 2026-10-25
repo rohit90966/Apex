@@ -109,6 +109,15 @@ async def test_validation_feedback_oracles(page_url):
 
 
 @pytest.mark.asyncio
+async def test_render_anomaly_oracle(page_url, tmp_path):
+    assert (await _run(page_url, _observe(_a(AssertionType.NO_TEXT_ANOMALY)))).status == ExecutionStatus.PASSED
+    bad = tmp_path / "bad.html"
+    bad.write_text("<html><body><div id='t'>Tax: $NaN | Total: $NaN</div></body></html>", encoding="utf-8")
+    res = await _run(bad.as_uri(), _observe(_a(AssertionType.NO_TEXT_ANOMALY)))
+    assert res.status == ExecutionStatus.FAILED and "NaN" in res.failure_reason
+
+
+@pytest.mark.asyncio
 async def test_status_code_oracle(page_url):
     assert (await _run(page_url, _observe(_a(AssertionType.STATUS_CODE, None, "<400")))).status == ExecutionStatus.PASSED
     assert (await _run(page_url, _observe(_a(AssertionType.STATUS_CODE, None, "==404")))).status == ExecutionStatus.FAILED

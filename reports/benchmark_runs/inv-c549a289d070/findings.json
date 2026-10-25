@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "UNVERIFIED_ANOMALY": 1
+  },
+  "findings": [
+    {
+      "finding_id": "F-7ef87c7caba5",
+      "classification": "UNVERIFIED_ANOMALY",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-db358b7be172:TC-FILTER-01",
+          "execution_id": "exec-db358b7be172",
+          "test_id": "TC-FILTER-01",
+          "status": "FAILED",
+          "classification": "UNVERIFIED_ANOMALY",
+          "expected_source": "DERIVED_INFERENCE",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record shows 'All categories' after filtering",
+          "observed": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+          "screenshots": [
+            "exec_TC-FILTER-01_1792875776.png",
+            "exec_TC-FILTER-01_1792875776.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "UNVERIFIED_ANOMALY",
+          "because": "exec-db358b7be172:TC-FILTER-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-METAMORPHIC-FILTER",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[ANOMALY] Filter '#category' = 'All categories' shows only matching records: UNVERIFIED_ANOMALY",
+      "route": "/events",
+      "subject": "#category",
+      "rule": "FILTER_CONSISTENCY"
+    }
+  ],
+  "sources": {
+    "investigation": 0,
+    "execution": 1
+  }
+}

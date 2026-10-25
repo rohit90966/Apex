@@ -87,13 +87,17 @@ def _urls_compatible(current_url: str, required_url: str) -> bool:
     """Checks if the current browser URL is compatible with the required state URL."""
     if not required_url or not current_url:
         return True
-    c = current_url.split("#")[0].rstrip("/").lower()
-    r = required_url.split("#")[0].rstrip("/").lower()
-    if r.startswith("/"):
-        return c.endswith(r) or r in c
-    if "://" in r and "://" in c:
-        return c == r or c.split("://", 1)[1] == r.split("://", 1)[1]
-    return c == r or r in c
+    from urllib.parse import parse_qsl, urlsplit
+
+    def key(url: str, with_host: bool):
+        parts = urlsplit(url.split("#")[0])
+        path = parts.path.rstrip("/") or "/"
+        query = tuple(sorted(parse_qsl(parts.query, keep_blank_values=True)))  # query is state: order-insensitive
+        return ((parts.netloc.lower(),) if with_host else ()) + (path, query)
+
+    # Exact page identity (path + query); the host is compared when both URLs carry one.
+    with_host = "://" in required_url and "://" in current_url
+    return key(current_url, with_host) == key(required_url, with_host)
 
 
 class InvestigationActionExecutor:

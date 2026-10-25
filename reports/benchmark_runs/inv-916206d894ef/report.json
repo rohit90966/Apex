@@ -1,0 +1,3631 @@
+{
+  "overview": {
+    "target_url": "http://127.0.0.1:8102/",
+    "final_url": "http://127.0.0.1:8102/about",
+    "http_status": 200,
+    "user_description": "Project task management dashboard with task list, filters and task creation.",
+    "investigation_id": "bench-taskdash-buggy-r1-6cb5a2",
+    "start_time": "2026-10-25 02:01:12",
+    "end_time": "2026-10-25 02:01:54",
+    "duration_seconds": 42.73,
+    "browser_execution_time": 24.02,
+    "status": "budget_exhausted",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 8,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 16.988,
+    "retries_count": 0,
+    "pages_discovered": 7,
+    "meaningful_states_discovered": 7,
+    "candidates_discovered": 79,
+    "actions_evaluated": 15,
+    "actions_attempted": 15,
+    "actions_successful": 15,
+    "actions_verified_effects": 15,
+    "actions_failed": 0,
+    "actions_safety_blocked": 0,
+    "transitions_observed": 15,
+    "route_transitions_observed": 15,
+    "same_route_state_transitions": 0,
+    "in_page_mutations_observed": 0,
+    "pending_frontier_count": 64,
+    "evidence_ledger_count": 16,
+    "deduplicated_candidates_count": 123,
+    "total_headings_discovered": 16,
+    "total_forms_discovered": 8,
+    "total_inputs_discovered": 5,
+    "total_buttons_discovered": 10,
+    "total_links_discovered": 34,
+    "stopping_reason": "Max mutating action budget reached (15/15)"
+  },
+  "application_understanding": "The application at http://127.0.0.1:8102/ presents an interactive web service. Operated within public/unauthenticated surface. Observed key functional landmarks include: Set up CI/CD pipeline, \ud83d\udccb TaskDash, Task List (8 tasks), About TaskDash, Quick Stats. Extracted 7 distinct UI states across 15 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'Project task management dashboard with task list, filters and task creation.'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "Give users a concise overview of their tasks and fast access to task\u2011management actions",
+    "application_domain": "dashboard",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "\ud83d\udccb TaskDash",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Recent Activity",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Quick Stats",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Create New Task",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Task List (8 tasks)",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Update README",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "About TaskDash",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Features",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Set up CI/CD pipeline",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Write unit tests",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "a.tab[href=\"/\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Dashboard",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "a.tab[href=\"/tasks\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "All Tasks",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "a.tab[href=\"/create\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Create Task",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "a.tab[href=\"/about\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "About",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "a[href=\"/tasks\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "View all 8 tasks \u2192",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "a[href=\"/create\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "+ Create new task",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#title",
+        "semantic_role": "input",
+        "inferred_purpose": "Enter task title",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#description",
+        "semantic_role": "textarea",
+        "inferred_purpose": "Optional task description",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#priority",
+        "semantic_role": "select",
+        "inferred_purpose": "High Medium Low",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "#submit-task",
+        "semantic_role": "button",
+        "inferred_purpose": "Create Task",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#priority-filter",
+        "semantic_role": "select",
+        "inferred_purpose": "All High Medium Low",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#status-filter",
+        "semantic_role": "select",
+        "inferred_purpose": "All Open In Progress Done",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "button.primary",
+        "semantic_role": "button",
+        "inferred_purpose": "Filter",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "button.secondary",
+        "semantic_role": "button",
+        "inferred_purpose": "Reset",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "a[href=\"/tasks/607fc8cc\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Set up CI/CD pipeline",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "a[href=\"/tasks/31d351c1\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Write unit tests",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "a[href=\"/tasks/264061bc\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Update README",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_15",
+        "selector": "a.current[href=\"/tasks?priority=&status=&page=1\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "1",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "a[href=\"/tasks?priority=&status=&page=2\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "2",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "a[href=\"/tasks?priority=&status=&page=3\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "3",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "create-task-form",
+        "target_action": "/create",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_1",
+        "target_action": "/tasks",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_2",
+        "target_action": "/tasks/607fc8cc/complete",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_3",
+        "target_action": "/tasks/31d351c1/complete",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      },
+      {
+        "form_id": "form_4",
+        "target_action": "/tasks/264061bc/complete",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_root__taskdash_tab_dashboard",
+      "st_create__taskdash_tab_createtask",
+      "st_tasks__taskdash_tab_alltasks",
+      "st_tasks_264061bc__taskdash_tab_alltasks",
+      "st_about__taskdash_tab_about",
+      "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "st_tasks_31d351c1__taskdash_tab_alltasks"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_root__taskdash_tab_dashboard' on http://127.0.0.1:8102/ with 6 controls and 0 forms.",
+      "Observed state 'st_create__taskdash_tab_createtask' on http://127.0.0.1:8102/create with 8 controls and 1 forms.",
+      "Observed state 'st_tasks__taskdash_tab_alltasks' on http://127.0.0.1:8102/tasks with 18 controls and 4 forms.",
+      "Observed state 'st_tasks_264061bc__taskdash_tab_alltasks' on http://127.0.0.1:8102/tasks/264061bc with 6 controls and 1 forms.",
+      "Observed state 'st_about__taskdash_tab_about' on http://127.0.0.1:8102/about with 4 controls and 0 forms.",
+      "Observed state 'st_tasks_607fc8cc__taskdash_tab_alltasks' on http://127.0.0.1:8102/tasks/607fc8cc with 6 controls and 1 forms.",
+      "Observed state 'st_tasks_31d351c1__taskdash_tab_alltasks' on http://127.0.0.1:8102/tasks/31d351c1 with 6 controls and 1 forms."
+    ],
+    "inferred_hypotheses": [
+      "Navigation links (Dashboard, All Tasks, Create Task, About) remain constant across sessions",
+      "Task count summary (e.g., \u201c8 Total Tasks 5 Open 1 Done\u201d) should always match the underlying data store",
+      "Active tab state reflects the currently selected navigation item",
+      "No modal dialogs are open by default (has_active_modal = false)",
+      "Navigation links (Dashboard, All Tasks, Create Task, About) appear on every page",
+      "Form action is consistently POST to /create and uses the same field names",
+      "Active tab reflects the current page (Create Task) and no modal is ever active on this view",
+      "The heading \"Task List (8 tasks)\" should always match the number of task entries rendered",
+      "Each task entry consistently includes a link with the task name and a corresponding \"Mark Done\" button",
+      "Filter form always contains two optional select fields (priority and status) and a Filter button",
+      "Reset controls appear both as a link and a button, providing equivalent functionality",
+      "Navigation links (Dashboard, All Tasks, Create Task, About) appear on every page.",
+      "Task ID is reflected both in the URL and in the page content (heading/paragraph).",
+      "The \u201cMark as Done\u201d button always submits a POST to /tasks/<id>/complete with no fields.",
+      "Page title follows the pattern \"TaskDash \u2014 Task: <Task Name>\".",
+      "Consistent top\u2011level navigation links (Dashboard, All Tasks, Create Task, About) appear on every page.",
+      "Active tab state is reflected in dynamic signals (active_tab = \"About\").",
+      "No interactive forms or modals are present on this page.",
+      "Navigation bar links (Dashboard, All Tasks, Create Task, About) are present on every page",
+      "Task ID appears both in URL and form action, tying the operation to a specific resource",
+      "Heading hierarchy: level\u20111 app title, level\u20112 task title",
+      "Mark as Done button only rendered for incomplete tasks",
+      "The navigation bar always contains links: Dashboard, All Tasks, Create Task, About.",
+      "The task ID appears both in the URL path and in the form action, ensuring consistency.",
+      "The page never displays active modals or alerts in its default state."
+    ],
+    "unknowns": [
+      "Unauthenticated or insufficiently authorized users could view task data",
+      "Task titles displayed in the recent\u2011activity table may be vulnerable to XSS if not properly escaped",
+      "Missing CSRF protection on state\u2011changing actions such as task creation",
+      "Potential information leakage through detailed task counts for unauthorized users",
+      "Lack of client\u2011side or server\u2011side validation may allow empty or malformed task data",
+      "Missing CSRF token or other anti\u2011forgery measures could expose the POST endpoint to attacks",
+      "Potential accessibility issues such as insufficient ARIA labeling or reliance on placeholders for meaning",
+      "Missing CSRF protection on task\u2011completion POST endpoints",
+      "Potential lack of authentication/authorization checks for task actions",
+      "Unlabeled form controls may hinder accessibility",
+      "Task titles rendered without sanitization could lead to XSS",
+      "Missing CSRF protection on the POST /tasks/{id}/complete form.",
+      "Accidental completion \u2013 no confirmation dialog before marking a task as done.",
+      "Potential unauthorized access if authentication/authorization checks are absent.",
+      "Limited accessibility feedback \u2013 no ARIA live region for status change.",
+      "Potential missing or incomplete accessibility markup (e.g., list items truncated, lack of ARIA labels).",
+      "Stale or broken navigation links could mislead users.",
+      "Content accuracy \u2013 outdated feature descriptions could cause misinformation.",
+      "Potential CSRF vulnerability on the POST /tasks/.../complete endpoint",
+      "Missing confirmation or undo for marking a task as done",
+      "Insufficient access control may allow unauthorized users to modify task status",
+      "Limited ARIA attributes could affect screen\u2011reader navigation",
+      "CSRF vulnerability on the POST /tasks/{id}/complete endpoint.",
+      "Missing authorization checks could allow a user to complete tasks they shouldn't access.",
+      "No confirmation dialog before marking a task as done may lead to accidental completions.",
+      "Potential XSS if task fields (e.g., title) are not properly escaped when rendered."
+    ],
+    "investigation_uncertainty": 0.81,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": false,
+    "login_url": null,
+    "credentials_available": false,
+    "credentials_source": null,
+    "authentication_attempted": false,
+    "authentication_verified": false,
+    "verification_signals": [],
+    "protected_functionality_accessible": [],
+    "unresolved_or_blocked_areas": []
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_root__taskdash_tab_dashboard",
+      "route_or_url": "http://127.0.0.1:8102/",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Entry View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "a: View all 8 tasks \u2192"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_root__taskdash_tab_dashboard",
+        "ev-a31622af",
+        "ev-a5bd431e"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_create__taskdash_tab_createtask",
+      "route_or_url": "http://127.0.0.1:8102/create",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Create View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "input: Enter task title"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-a31622af",
+        "ev-9dbea1bf",
+        "ev-72a68176"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_tasks__taskdash_tab_alltasks",
+      "route_or_url": "http://127.0.0.1:8102/tasks",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Tasks View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "select: All High Medium Low"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-9dbea1bf",
+        "ev-138bf584",
+        "ev-5d177f14"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "route_or_url": "http://127.0.0.1:8102/tasks/264061bc",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Tasks/264061Bc View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "button: Mark as Done"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-138bf584",
+        "ev-4281012f"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_about__taskdash_tab_about",
+      "route_or_url": "http://127.0.0.1:8102/about",
+      "apparent_purpose": "\ud83d\udccb TaskDash (About View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-4281012f",
+        "ev-a5bd431e",
+        "ev-20d6607c"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "route_or_url": "http://127.0.0.1:8102/tasks/607fc8cc",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Tasks/607Fc8Cc View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "button: Mark as Done"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-8f4d02f5",
+        "ev-20d6607c"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "route_or_url": "http://127.0.0.1:8102/tasks/31d351c1",
+      "apparent_purpose": "\ud83d\udccb TaskDash (Tasks/31D351C1 View)",
+      "relevant_controls_summary": [
+        "a: Dashboard",
+        "a: All Tasks",
+        "a: Create Task",
+        "a: About",
+        "button: Mark as Done"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-47e32dd4",
+        "ev-3ecfde86"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root__taskdash_tab_dashboard",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_b481531a43_a_tab_href___create__ on a.tab[href=\"/create\"]",
+      "target_element": "a.tab[href=\"/create\"]",
+      "to_state": "st_create__taskdash_tab_createtask",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-a31622af",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_create__taskdash_tab_createtask",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_30984 on /tasks",
+      "target_element": "/tasks",
+      "to_state": "st_tasks__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-9dbea1bf",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_tasks__taskdash_tab_alltasks",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_a51ee0b57b_a_href___tasks_264061bc__ on a[href=\"/tasks/264061bc\"]",
+      "target_element": "a[href=\"/tasks/264061bc\"]",
+      "to_state": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-138bf584",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_88637 on /about",
+      "target_element": "/about",
+      "to_state": "st_about__taskdash_tab_about",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-4281012f",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_about__taskdash_tab_about",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href_____ on a.tab[href=\"/\"]",
+      "target_element": "a.tab[href=\"/\"]",
+      "to_state": "st_root__taskdash_tab_dashboard",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-a5bd431e",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_root__taskdash_tab_dashboard",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_b481531a43_a_href___create__ on a[href=\"/create\"]",
+      "target_element": "a[href=\"/create\"]",
+      "to_state": "st_create__taskdash_tab_createtask",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-72a68176",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_create__taskdash_tab_createtask",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___tasks__ on a.tab[href=\"/tasks\"]",
+      "target_element": "a.tab[href=\"/tasks\"]",
+      "to_state": "st_tasks__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-5d177f14",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_tasks__taskdash_tab_alltasks",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_66793 on /tasks/607fc8cc",
+      "target_element": "/tasks/607fc8cc",
+      "to_state": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-8f4d02f5",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 9,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_ec2a050d09_a_tab_href___about__ on a.tab[href=\"/about\"]",
+      "target_element": "a.tab[href=\"/about\"]",
+      "to_state": "st_about__taskdash_tab_about",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-20d6607c",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 10,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_about__taskdash_tab_about",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href___create__ on a.tab[href=\"/create\"]",
+      "target_element": "a.tab[href=\"/create\"]",
+      "to_state": "st_create__taskdash_tab_createtask",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-a8e47c75",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 11,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_create__taskdash_tab_createtask",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href_____ on a.tab[href=\"/\"]",
+      "target_element": "a.tab[href=\"/\"]",
+      "to_state": "st_root__taskdash_tab_dashboard",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-86cb754b",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 12,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_root__taskdash_tab_dashboard",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_b481531a43_a_href___tasks__ on a[href=\"/tasks\"]",
+      "target_element": "a[href=\"/tasks\"]",
+      "to_state": "st_tasks__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-298e46f2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 13,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_tasks__taskdash_tab_alltasks",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_12961 on /tasks/31d351c1",
+      "target_element": "/tasks/31d351c1",
+      "to_state": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-47e32dd4",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 14,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_5ece4d694d_a_tab_href___create__ on a.tab[href=\"/create\"]",
+      "target_element": "a.tab[href=\"/create\"]",
+      "to_state": "st_create__taskdash_tab_createtask",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-3ecfde86",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 15,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_create__taskdash_tab_createtask",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___about__ on a.tab[href=\"/about\"]",
+      "target_element": "a.tab[href=\"/about\"]",
+      "to_state": "st_about__taskdash_tab_about",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-4d073764",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-653b7c14: Investigate interactive control response: a 'Create Task' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-1f4b5e64: Verify route transition reachability to /tasks resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-56e93441: Investigate interactive control response: a 'Update README' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-cdedb94e: Verify route transition reachability to /about resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-dde82324: Investigate interactive control response: a 'Dashboard' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-02e8776d: Investigate interactive control response: a '+ Create new task' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-72c557d3: Investigate interactive control response: a 'All Tasks' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-1a4a0a4b: Verify route transition reachability to /tasks/607fc8cc resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-9704983f: Investigate interactive control response: a 'About' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-0d05ac04: Investigate interactive control response: a 'Create Task' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-3f7ac3d9: Investigate interactive control response: a 'Dashboard' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-41c96355: Investigate interactive control response: a 'View all 8 tasks \u2192' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-506b35a9: Verify route transition reachability to /tasks/31d351c1 resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-869be381: Investigate interactive control response: a 'Create Task' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-d7e2a1a8: Investigate interactive control response: a 'About' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "unexecuted_probes_count": 0,
+    "unexecuted_probes_by_reason": {},
+    "unexecuted_probes": [],
+    "explored_states_count": 7,
+    "unexplored_items_count": 64,
+    "blocked_items_count": 0,
+    "unexplored_candidates": [
+      {
+        "target": "a.tab[href=\"/tasks\"]",
+        "rationale": "Investigate interactive control response: a 'All Tasks'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "a.tab[href=\"/about\"]",
+        "rationale": "Investigate interactive control response: a 'About'",
+        "category": "discovery",
+        "priority": 0.558,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/tasks",
+        "rationale": "Verify route transition reachability to /tasks",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/create",
+        "rationale": "Verify route transition reachability to /create",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/about",
+        "rationale": "Verify route transition reachability to /about",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_b481531a43",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "form_happy_create-task-form",
+        "rationale": "Verify form submission behavior for happy on form_happy_create-task-form",
+        "category": "discovery",
+        "priority": 1.009,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "required_blank_all_create-task-form",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_create-task-form",
+        "category": "discovery",
+        "priority": 1.009,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.975,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/create",
+        "rationale": "Verify route transition reachability to /create",
+        "category": "discovery",
+        "priority": 0.975,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "/about",
+        "rationale": "Verify route transition reachability to /about",
+        "category": "discovery",
+        "priority": 0.87,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_c8dd0649d9",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.892,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "form_happy_form_1",
+        "rationale": "Verify form submission behavior for happy on form_happy_form_1",
+        "category": "discovery",
+        "priority": 0.561,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      },
+      {
+        "target": "required_blank_all_form_1",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+        "category": "discovery",
+        "priority": 0.561,
+        "reason_unexplored": "Investigation operational ceiling reached before exploration (Max mutating action budget reached (15/15))"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Investigate interactive control response: a 'All Tasks'",
+      "Investigate interactive control response: a 'About'",
+      "Verify route transition reachability to /"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_root__taskdash_tab_dashboard",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of http://127.0.0.1:8102/ with 6 interactive controls and 0 forms",
+      "state_ref": "st_root__taskdash_tab_dashboard",
+      "screenshot": "investigate_step_0_699e5fc9.png"
+    },
+    {
+      "evidence_id": "ev-a31622af",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_b481531a43_a_tab_href___create__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_root__taskdash_tab_dashboard",
+      "screenshot": "investigate_probe_after_90390c75.png"
+    },
+    {
+      "evidence_id": "ev-9dbea1bf",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_c8dd0649d9_nav_link_30984]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_create__taskdash_tab_createtask",
+      "screenshot": "investigate_probe_after_3928cfec.png"
+    },
+    {
+      "evidence_id": "ev-138bf584",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a51ee0b57b_a_href___tasks_264061bc__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_tasks__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_5e608359.png"
+    },
+    {
+      "evidence_id": "ev-4281012f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_a7c4dee6a5_nav_link_88637]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_5a056d66.png"
+    },
+    {
+      "evidence_id": "ev-a5bd431e",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_d85de82ef2_a_tab_href_____]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_about__taskdash_tab_about",
+      "screenshot": "investigate_probe_after_8a2479d9.png"
+    },
+    {
+      "evidence_id": "ev-72a68176",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_b481531a43_a_href___create__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_root__taskdash_tab_dashboard",
+      "screenshot": "investigate_probe_after_1af36108.png"
+    },
+    {
+      "evidence_id": "ev-5d177f14",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c8dd0649d9_a_tab_href___tasks__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_create__taskdash_tab_createtask",
+      "screenshot": "investigate_probe_after_d6219f49.png"
+    },
+    {
+      "evidence_id": "ev-8f4d02f5",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_a51ee0b57b_nav_link_66793]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_tasks__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_8d8a919a.png"
+    },
+    {
+      "evidence_id": "ev-20d6607c",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_ec2a050d09_a_tab_href___about__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_f0f55eeb.png"
+    },
+    {
+      "evidence_id": "ev-a8e47c75",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_d85de82ef2_a_tab_href___create__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_about__taskdash_tab_about",
+      "screenshot": "investigate_probe_after_f6f8f87e.png"
+    },
+    {
+      "evidence_id": "ev-86cb754b",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c8dd0649d9_a_tab_href_____]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_create__taskdash_tab_createtask",
+      "screenshot": "investigate_probe_after_256b7fa7.png"
+    },
+    {
+      "evidence_id": "ev-298e46f2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_b481531a43_a_href___tasks__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_root__taskdash_tab_dashboard",
+      "screenshot": "investigate_probe_after_062f2dde.png"
+    },
+    {
+      "evidence_id": "ev-47e32dd4",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_a51ee0b57b_nav_link_12961]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_tasks__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_02ce3290.png"
+    },
+    {
+      "evidence_id": "ev-3ecfde86",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_5ece4d694d_a_tab_href___create__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "screenshot": "investigate_probe_after_57840ca1.png"
+    },
+    {
+      "evidence_id": "ev-4d073764",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c8dd0649d9_a_tab_href___about__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_create__taskdash_tab_createtask",
+      "screenshot": "investigate_probe_after_b66ef922.png"
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried."
+  ],
+  "confirmed_bug_leads": [],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8102/",
+          "description": "Navigate to entry view: http://127.0.0.1:8102/"
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/create\"]",
+          "description": "Trigger a.tab[href=\"/create\"]",
+          "expected_transition": "st_create__taskdash_tab_createtask",
+          "expected_url_fragment": "/create",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-a31622af"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8102/tasks",
+          "description": "Navigate to http://127.0.0.1:8102/tasks",
+          "expected_transition": "st_tasks__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-9dbea1bf"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/tasks/264061bc\"]",
+          "description": "Trigger a[href=\"/tasks/264061bc\"]",
+          "expected_transition": "st_tasks_264061bc__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks/264061bc",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-138bf584"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8102/about",
+          "description": "Navigate to http://127.0.0.1:8102/about",
+          "expected_transition": "st_about__taskdash_tab_about",
+          "expected_url_fragment": "/about",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-4281012f"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8102/tasks/607fc8cc",
+          "description": "Navigate to http://127.0.0.1:8102/tasks/607fc8cc",
+          "expected_transition": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks/607fc8cc",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-8f4d02f5"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8102/tasks/31d351c1",
+          "description": "Navigate to http://127.0.0.1:8102/tasks/31d351c1",
+          "expected_transition": "st_tasks_31d351c1__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks/31d351c1",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-47e32dd4"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/\"]",
+          "description": "Trigger a.tab[href=\"/\"]",
+          "expected_transition": "st_root__taskdash_tab_dashboard",
+          "expected_url_fragment": "",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-a5bd431e"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/create\"]",
+          "description": "Trigger a[href=\"/create\"]",
+          "expected_transition": "st_create__taskdash_tab_createtask",
+          "expected_url_fragment": "/create",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-72a68176"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/tasks\"]",
+          "description": "Trigger a.tab[href=\"/tasks\"]",
+          "expected_transition": "st_tasks__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-5d177f14"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/about\"]",
+          "description": "Trigger a.tab[href=\"/about\"]",
+          "expected_transition": "st_about__taskdash_tab_about",
+          "expected_url_fragment": "/about",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-20d6607c"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/create\"]",
+          "description": "Trigger a.tab[href=\"/create\"]",
+          "expected_transition": "st_create__taskdash_tab_createtask",
+          "expected_url_fragment": "/create",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-a8e47c75"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/\"]",
+          "description": "Trigger a.tab[href=\"/\"]",
+          "expected_transition": "st_root__taskdash_tab_dashboard",
+          "expected_url_fragment": "",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-86cb754b"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/tasks\"]",
+          "description": "Trigger a[href=\"/tasks\"]",
+          "expected_transition": "st_tasks__taskdash_tab_alltasks",
+          "expected_url_fragment": "/tasks",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-298e46f2"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/create\"]",
+          "description": "Trigger a.tab[href=\"/create\"]",
+          "expected_transition": "st_create__taskdash_tab_createtask",
+          "expected_url_fragment": "/create",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-3ecfde86"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a.tab[href=\"/about\"]",
+          "description": "Trigger a.tab[href=\"/about\"]",
+          "expected_transition": "st_about__taskdash_tab_about",
+          "expected_url_fragment": "/about",
+          "expected_heading": "\ud83d\udccb TaskDash",
+          "expected_selector": "a.tab[href=\"/\"]",
+          "evidence_refs": [
+            "ev-4d073764"
+          ]
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "journey_creation",
+      "name": "Entity Creation & Management Workflow",
+      "description": "Trigger creation action -> Input entity attributes -> Submit form -> Verify entity state",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Trigger Entity Creation",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "create|new|add|compose|plus|btn-create",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "creation_form_opened",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Submit Entity Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "form|create|save|submit|project",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "entity_persisted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    },
+    {
+      "journey_id": "journey_search_filter",
+      "name": "Search & Filter Discovery Workflow",
+      "description": "Query input -> Filter application -> Results exploration and interaction",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Input Search Query",
+          "action_type": "FILL",
+          "target_pattern": "search|query|find|filter|keyword",
+          "expected_role": "textbox",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "query_entered",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Apply Search or Filter",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "search|filter|apply|submit|btn-filter|go",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "results_updated",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Inspect Filtered Result",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "item|card|result|title|link|view|project",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "detail_viewed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    }
+  ],
+  "active_journey_id": null,
+  "behavior_model": {
+    "state_classes": {
+      "st_root__taskdash_tab_dashboard": {
+        "id": "st_root__taskdash_tab_dashboard",
+        "class_id": "st_root__taskdash_tab_dashboard",
+        "primary_purpose": "\ud83d\udccb TaskDash (Entry View)",
+        "representative_route": "http://127.0.0.1:8102/",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "a[href=\"/tasks\"]"
+        ],
+        "outbound_transitions": [
+          "st_create__taskdash_tab_createtask",
+          "st_create__taskdash_tab_createtask",
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      "st_create__taskdash_tab_createtask": {
+        "id": "st_create__taskdash_tab_createtask",
+        "class_id": "st_create__taskdash_tab_createtask",
+        "primary_purpose": "\ud83d\udccb TaskDash (Create View)",
+        "representative_route": "http://127.0.0.1:8102/create",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "#title"
+        ],
+        "outbound_transitions": [
+          "st_tasks__taskdash_tab_alltasks",
+          "st_tasks__taskdash_tab_alltasks",
+          "st_root__taskdash_tab_dashboard",
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      "st_tasks__taskdash_tab_alltasks": {
+        "id": "st_tasks__taskdash_tab_alltasks",
+        "class_id": "st_tasks__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks View)",
+        "representative_route": "http://127.0.0.1:8102/tasks",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "#priority-filter"
+        ],
+        "outbound_transitions": [
+          "st_tasks_264061bc__taskdash_tab_alltasks",
+          "st_tasks_607fc8cc__taskdash_tab_alltasks",
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      "st_tasks_264061bc__taskdash_tab_alltasks": {
+        "id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "class_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/264061Bc View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/264061bc",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      "st_about__taskdash_tab_about": {
+        "id": "st_about__taskdash_tab_about",
+        "class_id": "st_about__taskdash_tab_about",
+        "primary_purpose": "\ud83d\udccb TaskDash (About View)",
+        "representative_route": "http://127.0.0.1:8102/about",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]"
+        ],
+        "outbound_transitions": [
+          "st_root__taskdash_tab_dashboard",
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      "st_tasks_607fc8cc__taskdash_tab_alltasks": {
+        "id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "class_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/607Fc8Cc View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      "st_tasks_31d351c1__taskdash_tab_alltasks": {
+        "id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "class_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/31D351C1 View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/31d351c1",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_30984",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_a51ee0b57b_a_href___tasks_264061bc__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "NAVIGATE_LINK:nav_link_88637",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_about__taskdash_tab_about",
+        "target_class": "st_root__taskdash_tab_dashboard",
+        "trigger_action": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href_____",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___tasks__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_66793",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "CLICK_CONTROL:control_cls_ec2a050d09_a_tab_href___about__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_about__taskdash_tab_about",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_root__taskdash_tab_dashboard",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href_____",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_href___tasks__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_12961",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_5ece4d694d_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___about__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8102/",
+            "description": "Navigate to entry view: http://127.0.0.1:8102/"
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/create\"]",
+            "description": "Trigger a.tab[href=\"/create\"]",
+            "expected_transition": "st_create__taskdash_tab_createtask",
+            "expected_url_fragment": "/create",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-a31622af"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8102/tasks",
+            "description": "Navigate to http://127.0.0.1:8102/tasks",
+            "expected_transition": "st_tasks__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-9dbea1bf"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/tasks/264061bc\"]",
+            "description": "Trigger a[href=\"/tasks/264061bc\"]",
+            "expected_transition": "st_tasks_264061bc__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks/264061bc",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-138bf584"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8102/about",
+            "description": "Navigate to http://127.0.0.1:8102/about",
+            "expected_transition": "st_about__taskdash_tab_about",
+            "expected_url_fragment": "/about",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-4281012f"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8102/tasks/607fc8cc",
+            "description": "Navigate to http://127.0.0.1:8102/tasks/607fc8cc",
+            "expected_transition": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks/607fc8cc",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-8f4d02f5"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8102/tasks/31d351c1",
+            "description": "Navigate to http://127.0.0.1:8102/tasks/31d351c1",
+            "expected_transition": "st_tasks_31d351c1__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks/31d351c1",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-47e32dd4"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/\"]",
+            "description": "Trigger a.tab[href=\"/\"]",
+            "expected_transition": "st_root__taskdash_tab_dashboard",
+            "expected_url_fragment": "",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-a5bd431e"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/create\"]",
+            "description": "Trigger a[href=\"/create\"]",
+            "expected_transition": "st_create__taskdash_tab_createtask",
+            "expected_url_fragment": "/create",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-72a68176"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/tasks\"]",
+            "description": "Trigger a.tab[href=\"/tasks\"]",
+            "expected_transition": "st_tasks__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-5d177f14"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/about\"]",
+            "description": "Trigger a.tab[href=\"/about\"]",
+            "expected_transition": "st_about__taskdash_tab_about",
+            "expected_url_fragment": "/about",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-20d6607c"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/create\"]",
+            "description": "Trigger a.tab[href=\"/create\"]",
+            "expected_transition": "st_create__taskdash_tab_createtask",
+            "expected_url_fragment": "/create",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-a8e47c75"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/\"]",
+            "description": "Trigger a.tab[href=\"/\"]",
+            "expected_transition": "st_root__taskdash_tab_dashboard",
+            "expected_url_fragment": "",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-86cb754b"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/tasks\"]",
+            "description": "Trigger a[href=\"/tasks\"]",
+            "expected_transition": "st_tasks__taskdash_tab_alltasks",
+            "expected_url_fragment": "/tasks",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-298e46f2"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/create\"]",
+            "description": "Trigger a.tab[href=\"/create\"]",
+            "expected_transition": "st_create__taskdash_tab_createtask",
+            "expected_url_fragment": "/create",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-3ecfde86"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a.tab[href=\"/about\"]",
+            "description": "Trigger a.tab[href=\"/about\"]",
+            "expected_transition": "st_about__taskdash_tab_about",
+            "expected_url_fragment": "/about",
+            "expected_heading": "\ud83d\udccb TaskDash",
+            "expected_selector": "a.tab[href=\"/\"]",
+            "evidence_refs": [
+              "ev-4d073764"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [],
+    "transitions": [
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_30984",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_a51ee0b57b_a_href___tasks_264061bc__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "NAVIGATE_LINK:nav_link_88637",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_about__taskdash_tab_about",
+        "target_class": "st_root__taskdash_tab_dashboard",
+        "trigger_action": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href_____",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___tasks__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_66793",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "CLICK_CONTROL:control_cls_ec2a050d09_a_tab_href___about__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_about__taskdash_tab_about",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_root__taskdash_tab_dashboard",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href_____",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_root__taskdash_tab_dashboard",
+        "target_class": "st_tasks__taskdash_tab_alltasks",
+        "trigger_action": "CLICK_CONTROL:control_cls_b481531a43_a_href___tasks__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_tasks__taskdash_tab_alltasks",
+        "target_class": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "trigger_action": "NAVIGATE_LINK:nav_link_12961",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "target_class": "st_create__taskdash_tab_createtask",
+        "trigger_action": "CLICK_CONTROL:control_cls_5ece4d694d_a_tab_href___create__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_create__taskdash_tab_createtask",
+        "target_class": "st_about__taskdash_tab_about",
+        "trigger_action": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___about__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_root__taskdash_tab_dashboard",
+        "class_id": "st_root__taskdash_tab_dashboard",
+        "primary_purpose": "\ud83d\udccb TaskDash (Entry View)",
+        "representative_route": "http://127.0.0.1:8102/",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "a[href=\"/tasks\"]"
+        ],
+        "outbound_transitions": [
+          "st_create__taskdash_tab_createtask",
+          "st_create__taskdash_tab_createtask",
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "id": "st_create__taskdash_tab_createtask",
+        "class_id": "st_create__taskdash_tab_createtask",
+        "primary_purpose": "\ud83d\udccb TaskDash (Create View)",
+        "representative_route": "http://127.0.0.1:8102/create",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "#title"
+        ],
+        "outbound_transitions": [
+          "st_tasks__taskdash_tab_alltasks",
+          "st_tasks__taskdash_tab_alltasks",
+          "st_root__taskdash_tab_dashboard",
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "id": "st_tasks__taskdash_tab_alltasks",
+        "class_id": "st_tasks__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks View)",
+        "representative_route": "http://127.0.0.1:8102/tasks",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "#priority-filter"
+        ],
+        "outbound_transitions": [
+          "st_tasks_264061bc__taskdash_tab_alltasks",
+          "st_tasks_607fc8cc__taskdash_tab_alltasks",
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "class_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/264061Bc View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/264061bc",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "id": "st_about__taskdash_tab_about",
+        "class_id": "st_about__taskdash_tab_about",
+        "primary_purpose": "\ud83d\udccb TaskDash (About View)",
+        "representative_route": "http://127.0.0.1:8102/about",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]"
+        ],
+        "outbound_transitions": [
+          "st_root__taskdash_tab_dashboard",
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "class_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/607Fc8Cc View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "class_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "primary_purpose": "\ud83d\udccb TaskDash (Tasks/31D351C1 View)",
+        "representative_route": "http://127.0.0.1:8102/tasks/31d351c1",
+        "key_controls": [
+          "a.tab[href=\"/\"]",
+          "a.tab[href=\"/tasks\"]",
+          "a.tab[href=\"/create\"]",
+          "a.tab[href=\"/about\"]",
+          "button.primary"
+        ],
+        "outbound_transitions": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: http://127.0.0.1:8102/\n        page.goto('http://127.0.0.1:8102/', wait_until='domcontentloaded')\n        # Step 2: Trigger a.tab[href=\"/create\"] [Evidence: ev-a31622af]\n        page.locator('a.tab[href=\"/create\"]').click()\n        page.wait_for_timeout(400)\n        assert '/create' in page.url, f'Expected /create in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n        # Step 3: Navigate to http://127.0.0.1:8102/tasks [Evidence: ev-9dbea1bf]\n        page.goto('http://127.0.0.1:8102/tasks', wait_until='domcontentloaded')\n        assert '/tasks' in page.url, f'Expected /tasks in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n        # Step 4: Trigger a[href=\"/tasks/264061bc\"] [Evidence: ev-138bf584]\n        page.locator('a[href=\"/tasks/264061bc\"]').click()\n        page.wait_for_timeout(400)\n        assert '/tasks/264061bc' in page.url, f'Expected /tasks/264061bc in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n        # Step 5: Navigate to http://127.0.0.1:8102/about [Evidence: ev-4281012f]\n        page.goto('http://127.0.0.1:8102/about', wait_until='domcontentloaded')\n        assert '/about' in page.url, f'Expected /about in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n        # Step 6: Navigate to http://127.0.0.1:8102/tasks/607fc8cc [Evidence: ev-8f4d02f5]\n        page.goto('http://127.0.0.1:8102/tasks/607fc8cc', wait_until='domcontentloaded')\n        assert '/tasks/607fc8cc' in page.url, f'Expected /tasks/607fc8cc in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n        # Step 7: Navigate to http://127.0.0.1:8102/tasks/31d351c1 [Evidence: ev-47e32dd4]\n        page.goto('http://127.0.0.1:8102/tasks/31d351c1', wait_until='domcontentloaded')\n        assert '/tasks/31d351c1' in page.url, f'Expected /tasks/31d351c1 in URL, got {page.url}'\n        assert '\ud83d\udccb TaskDash' in page.locator('body').inner_text(), f'Expected heading/landmark \ud83d\udccb TaskDash'\n        assert page.locator('a.tab[href=\"/\"]').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792873878.903134,
+      "from_state_id": "st_root__taskdash_tab_dashboard",
+      "from_url": "http://127.0.0.1:8102/",
+      "question_id": "q_ctrl_control_cls_b481531a43_a_tab_href___create__",
+      "selected_action": "a.tab[href=\"/create\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Create Task'",
+      "priority_score": 1.2015,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_create__taskdash_tab_createtask",
+      "to_url": "http://127.0.0.1:8102/create",
+      "is_productive": true
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792873882.8929632,
+      "from_state_id": "st_create__taskdash_tab_createtask",
+      "from_url": "http://127.0.0.1:8102/create",
+      "question_id": "q_nav_cls_c8dd0649d9_nav_link_30984",
+      "selected_action": "/tasks",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /tasks",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792873886.582983,
+      "from_state_id": "st_tasks__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks",
+      "question_id": "q_ctrl_control_cls_a51ee0b57b_a_href___tasks_264061bc__",
+      "selected_action": "a[href=\"/tasks/264061bc\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Update README'",
+      "priority_score": 1.2015,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks/264061bc",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792873890.7777035,
+      "from_state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks/264061bc",
+      "question_id": "q_nav_cls_a7c4dee6a5_nav_link_88637",
+      "selected_action": "/about",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /about",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_about__taskdash_tab_about",
+      "to_url": "http://127.0.0.1:8102/about",
+      "is_productive": true
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792873892.3979142,
+      "from_state_id": "st_about__taskdash_tab_about",
+      "from_url": "http://127.0.0.1:8102/about",
+      "question_id": "q_ctrl_control_cls_d85de82ef2_a_tab_href_____",
+      "selected_action": "a.tab[href=\"/\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Dashboard'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root__taskdash_tab_dashboard",
+      "to_url": "http://127.0.0.1:8102/",
+      "is_productive": true
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792873893.96818,
+      "from_state_id": "st_root__taskdash_tab_dashboard",
+      "from_url": "http://127.0.0.1:8102/",
+      "question_id": "q_ctrl_control_cls_b481531a43_a_href___create__",
+      "selected_action": "a[href=\"/create\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a '+ Create new task'",
+      "priority_score": 1.2015,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_create__taskdash_tab_createtask",
+      "to_url": "http://127.0.0.1:8102/create",
+      "is_productive": true
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792873895.5401938,
+      "from_state_id": "st_create__taskdash_tab_createtask",
+      "from_url": "http://127.0.0.1:8102/create",
+      "question_id": "q_ctrl_control_cls_c8dd0649d9_a_tab_href___tasks__",
+      "selected_action": "a.tab[href=\"/tasks\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'All Tasks'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792873899.8418524,
+      "from_state_id": "st_tasks__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks",
+      "question_id": "q_nav_cls_a51ee0b57b_nav_link_66793",
+      "selected_action": "/tasks/607fc8cc",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /tasks/607fc8cc",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks/607fc8cc",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792873903.3605392,
+      "from_state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks/607fc8cc",
+      "question_id": "q_ctrl_control_cls_ec2a050d09_a_tab_href___about__",
+      "selected_action": "a.tab[href=\"/about\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'About'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_about__taskdash_tab_about",
+      "to_url": "http://127.0.0.1:8102/about",
+      "is_productive": true
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792873904.893984,
+      "from_state_id": "st_about__taskdash_tab_about",
+      "from_url": "http://127.0.0.1:8102/about",
+      "question_id": "q_ctrl_control_cls_d85de82ef2_a_tab_href___create__",
+      "selected_action": "a.tab[href=\"/create\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Create Task'",
+      "priority_score": 1.0965,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_create__taskdash_tab_createtask",
+      "to_url": "http://127.0.0.1:8102/create",
+      "is_productive": true
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792873906.44804,
+      "from_state_id": "st_create__taskdash_tab_createtask",
+      "from_url": "http://127.0.0.1:8102/create",
+      "question_id": "q_ctrl_control_cls_c8dd0649d9_a_tab_href_____",
+      "selected_action": "a.tab[href=\"/\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Dashboard'",
+      "priority_score": 1.0365,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root__taskdash_tab_dashboard",
+      "to_url": "http://127.0.0.1:8102/",
+      "is_productive": true
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792873908.031684,
+      "from_state_id": "st_root__taskdash_tab_dashboard",
+      "from_url": "http://127.0.0.1:8102/",
+      "question_id": "q_ctrl_control_cls_b481531a43_a_href___tasks__",
+      "selected_action": "a[href=\"/tasks\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'View all 8 tasks \u2192'",
+      "priority_score": 1.0605,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks",
+      "is_productive": true
+    },
+    {
+      "step_number": 13,
+      "timestamp": 1792873911.6700213,
+      "from_state_id": "st_tasks__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks",
+      "question_id": "q_nav_cls_a51ee0b57b_nav_link_12961",
+      "selected_action": "/tasks/31d351c1",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /tasks/31d351c1",
+      "priority_score": 1.1440000000000001,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "to_url": "http://127.0.0.1:8102/tasks/31d351c1",
+      "is_productive": true
+    },
+    {
+      "step_number": 14,
+      "timestamp": 1792873913.2574358,
+      "from_state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+      "from_url": "http://127.0.0.1:8102/tasks/31d351c1",
+      "question_id": "q_ctrl_control_cls_5ece4d694d_a_tab_href___create__",
+      "selected_action": "a.tab[href=\"/create\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Create Task'",
+      "priority_score": 1.0965,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_create__taskdash_tab_createtask",
+      "to_url": "http://127.0.0.1:8102/create",
+      "is_productive": true
+    },
+    {
+      "step_number": 15,
+      "timestamp": 1792873914.7871866,
+      "from_state_id": "st_create__taskdash_tab_createtask",
+      "from_url": "http://127.0.0.1:8102/create",
+      "question_id": "q_ctrl_control_cls_c8dd0649d9_a_tab_href___about__",
+      "selected_action": "a.tab[href=\"/about\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'About'",
+      "priority_score": 1.0365,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_about__taskdash_tab_about",
+      "to_url": "http://127.0.0.1:8102/about",
+      "is_productive": true
+    }
+  ],
+  "report_schema_version": "2.0",
+  "target_context": {
+    "schema_version": "2.0",
+    "run_id": "bench-taskdash-buggy-r1-6cb5a2",
+    "origin": "http://127.0.0.1:8102",
+    "start_url": "http://127.0.0.1:8102/",
+    "final_url": "http://127.0.0.1:8102/about",
+    "investigated_at": "2026-10-25T02:01:54+0530",
+    "description": "Project task management dashboard with task list, filters and task creation.",
+    "requirements": [
+      "Task title is required",
+      "Task title must be at most 100 characters"
+    ],
+    "credentials_available": false,
+    "credential_source": null
+  },
+  "observed_inventory": {
+    "schema_version": "2.0",
+    "run_id": "bench-taskdash-buggy-r1-6cb5a2",
+    "origin": "http://127.0.0.1:8102",
+    "provenance": "LIVE_INVESTIGATION",
+    "states": [
+      {
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "title": "TaskDash \u2014 Dashboard",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Recent Activity",
+          "Quick Stats"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About 8 Total Tasks 5 Open 1 Done Recent Activity Title Priority Status Created Update dependencies Low Done 2026-10-25 01:54 Performance audit High Open 2026-10-25 01:54 Add dark mode Low Open 2026-10-25 01:54 View all 8 tasks \u2192 Quick Stats High priority tasks: 4 Completion rate: 12% + Create new task",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "ENTRY"
+      },
+      {
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "title": "TaskDash \u2014 Create Task",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Create New Task"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About Create New Task Title * Description Priority High Medium Low Create Task",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "title": "TaskDash \u2014 All Tasks",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Task List (8 tasks)"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About Task List (8 tasks) Priority: All High Medium Low Status: All Open In Progress Done Filter Reset ID Title Priority Status Created Action 607fc8cc Set up CI/CD pipeline High Open 2026-10-25 01:54 Mark Done 31d351c1 Write unit tests High In Progress 2026-10-25 01:54 Mark Done 264061bc Update README Medium Open 2026-10-25 01:54 Mark Done Page: 1 2 3 (8 total)",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "title": "TaskDash \u2014 Task: Update README",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Update README"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About Update README ID: 264061bc Priority: Medium Status: Open Description: Add usage instructions and screenshots Created: 2026-10-25 01:54 Mark as Done \u2190 Back to Task List",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_about__taskdash_tab_about",
+        "url": "http://127.0.0.1:8102/about",
+        "route": "/about",
+        "title": "TaskDash \u2014 About",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "About TaskDash",
+          "Features"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About About TaskDash TaskDash is a simple project task management dashboard. Features Tab-based navigation (Dashboard / All Tasks / Create Task / About) Filterable and paginated task list Task detail page Task creation form with validation In-place status update via form submission",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "title": "TaskDash \u2014 Task: Set up CI/CD pipeline",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Set up CI/CD pipeline"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About Set up CI/CD pipeline ID: 607fc8cc Priority: High Status: Open Description: Configure GitHub Actions for automated testing Created: 2026-10-25 01:54 Mark as Done \u2190 Back to Task List",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "title": "TaskDash \u2014 Task: Write unit tests",
+        "headings": [
+          "\ud83d\udccb TaskDash",
+          "Write unit tests"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "\ud83d\udccb TaskDash Project Task Management Dashboard Dashboard All Tasks Create Task About Write unit tests ID: 31d351c1 Priority: High Status: In Progress Description: Cover all service layer methods Created: 2026-10-25 01:54 Mark as Done \u2190 Back to Task List",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      }
+    ],
+    "controls": [
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "View all 8 tasks \u2192",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "+ Create new task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root__taskdash_tab_dashboard",
+        "url": "http://127.0.0.1:8102/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root__taskdash_tab_dashboard"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "#title",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Enter task title",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "#description",
+        "tag": "textarea",
+        "control_type": "textarea",
+        "role": "textarea",
+        "name": "Optional task description",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "#priority",
+        "tag": "select",
+        "control_type": "select",
+        "role": "select",
+        "name": "High Medium Low",
+        "href": "",
+        "options": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "option_labels": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "#submit-task",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Create Task",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "#priority-filter",
+        "tag": "select",
+        "control_type": "select",
+        "role": "select",
+        "name": "All High Medium Low",
+        "href": "",
+        "options": [
+          "All",
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "option_labels": [
+          "All",
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "#status-filter",
+        "tag": "select",
+        "control_type": "select",
+        "role": "select",
+        "name": "All Open In Progress Done",
+        "href": "",
+        "options": [
+          "All",
+          "Open",
+          "In Progress",
+          "Done"
+        ],
+        "option_labels": [
+          "All",
+          "Open",
+          "In Progress",
+          "Done"
+        ],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "button.primary",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Filter",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Reset",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "button.secondary",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Reset",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks/607fc8cc\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Set up CI/CD pipeline",
+        "href": "/tasks/607fc8cc",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks/31d351c1\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Write unit tests",
+        "href": "/tasks/31d351c1",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks/264061bc\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Update README",
+        "href": "/tasks/264061bc",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.current[href=\"/tasks?priority=&status=&page=1\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "1",
+        "href": "/tasks?priority=&status=&page=1",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks?priority=&status=&page=2\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "2",
+        "href": "/tasks?priority=&status=&page=2",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks?priority=&status=&page=3\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "3",
+        "href": "/tasks?priority=&status=&page=3",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "button.primary",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Mark as Done",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "\u2190 Back to Task List",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_about__taskdash_tab_about",
+        "url": "http://127.0.0.1:8102/about",
+        "route": "/about",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_about__taskdash_tab_about",
+        "url": "http://127.0.0.1:8102/about",
+        "route": "/about",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_about__taskdash_tab_about",
+        "url": "http://127.0.0.1:8102/about",
+        "route": "/about",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_about__taskdash_tab_about",
+        "url": "http://127.0.0.1:8102/about",
+        "route": "/about",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_about__taskdash_tab_about"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "button.primary",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Mark as Done",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "\u2190 Back to Task List",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Dashboard",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "All Tasks",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/create\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create Task",
+        "href": "/create",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a.tab[href=\"/about\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "/about",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "button.primary",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Mark as Done",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "selector": "a[href=\"/tasks\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "\u2190 Back to Task List",
+        "href": "/tasks",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      }
+    ],
+    "forms": [
+      {
+        "form_id": "create-task-form",
+        "form_selector": "#create-task-form",
+        "action": "/create",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#submit-task",
+        "state_id": "st_create__taskdash_tab_createtask",
+        "url": "http://127.0.0.1:8102/create",
+        "route": "/create",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#title",
+            "name": "title",
+            "field_id": "title",
+            "label": "Title *",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": 100,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#description",
+            "name": "description",
+            "field_id": "description",
+            "label": "Description",
+            "field_type": "textarea",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#priority",
+            "name": "priority",
+            "field_id": "priority",
+            "label": "Priority",
+            "field_type": "select",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [
+              "High",
+              "Medium",
+              "Low"
+            ],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_create__taskdash_tab_createtask"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/tasks",
+        "method": "GET",
+        "novalidate": false,
+        "submit_selector": "button[type=\"submit\"], button",
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#priority-filter",
+            "name": "priority",
+            "field_id": "priority-filter",
+            "label": "",
+            "field_type": "select",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [
+              "All",
+              "High",
+              "Medium",
+              "Low"
+            ],
+            "checked": null
+          },
+          {
+            "selector": "#status-filter",
+            "name": "status",
+            "field_id": "status-filter",
+            "label": "",
+            "field_type": "select",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [
+              "All",
+              "Open",
+              "In Progress",
+              "Done"
+            ],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "form_id": "form_2",
+        "form_selector": "form",
+        "action": "/tasks/607fc8cc/complete",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "button[type=\"submit\"], button",
+        "state_id": "st_tasks__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks",
+        "route": "/tasks",
+        "authenticated": false,
+        "fields": [],
+        "seen_in_states": [
+          "st_tasks__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/tasks/264061bc/complete",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "button[type=\"submit\"], button",
+        "state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/264061bc",
+        "route": "/tasks/264061bc",
+        "authenticated": false,
+        "fields": [],
+        "seen_in_states": [
+          "st_tasks_264061bc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/tasks/607fc8cc/complete",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "button[type=\"submit\"], button",
+        "state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/607fc8cc",
+        "route": "/tasks/607fc8cc",
+        "authenticated": false,
+        "fields": [],
+        "seen_in_states": [
+          "st_tasks_607fc8cc__taskdash_tab_alltasks"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/tasks/31d351c1/complete",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "button[type=\"submit\"], button",
+        "state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "url": "http://127.0.0.1:8102/tasks/31d351c1",
+        "route": "/tasks/31d351c1",
+        "authenticated": false,
+        "fields": [],
+        "seen_in_states": [
+          "st_tasks_31d351c1__taskdash_tab_alltasks"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "trans-653b7c14",
+        "source_state_id": "st_root__taskdash_tab_dashboard",
+        "destination_state_id": "st_create__taskdash_tab_createtask",
+        "action_type": "CLICK_CONTROL:control_cls_b481531a43_a_tab_href___create__",
+        "target": "a.tab[href=\"/create\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-a31622af"
+        ]
+      },
+      {
+        "transition_id": "trans-1f4b5e64",
+        "source_state_id": "st_create__taskdash_tab_createtask",
+        "destination_state_id": "st_tasks__taskdash_tab_alltasks",
+        "action_type": "NAVIGATE_LINK:nav_link_30984",
+        "target": "/tasks",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-9dbea1bf"
+        ]
+      },
+      {
+        "transition_id": "trans-56e93441",
+        "source_state_id": "st_tasks__taskdash_tab_alltasks",
+        "destination_state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "action_type": "CLICK_CONTROL:control_cls_a51ee0b57b_a_href___tasks_264061bc__",
+        "target": "a[href=\"/tasks/264061bc\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-138bf584"
+        ]
+      },
+      {
+        "transition_id": "trans-cdedb94e",
+        "source_state_id": "st_tasks_264061bc__taskdash_tab_alltasks",
+        "destination_state_id": "st_about__taskdash_tab_about",
+        "action_type": "NAVIGATE_LINK:nav_link_88637",
+        "target": "/about",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-4281012f"
+        ]
+      },
+      {
+        "transition_id": "trans-dde82324",
+        "source_state_id": "st_about__taskdash_tab_about",
+        "destination_state_id": "st_root__taskdash_tab_dashboard",
+        "action_type": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href_____",
+        "target": "a.tab[href=\"/\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-a5bd431e"
+        ]
+      },
+      {
+        "transition_id": "trans-02e8776d",
+        "source_state_id": "st_root__taskdash_tab_dashboard",
+        "destination_state_id": "st_create__taskdash_tab_createtask",
+        "action_type": "CLICK_CONTROL:control_cls_b481531a43_a_href___create__",
+        "target": "a[href=\"/create\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-72a68176"
+        ]
+      },
+      {
+        "transition_id": "trans-72c557d3",
+        "source_state_id": "st_create__taskdash_tab_createtask",
+        "destination_state_id": "st_tasks__taskdash_tab_alltasks",
+        "action_type": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___tasks__",
+        "target": "a.tab[href=\"/tasks\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-5d177f14"
+        ]
+      },
+      {
+        "transition_id": "trans-1a4a0a4b",
+        "source_state_id": "st_tasks__taskdash_tab_alltasks",
+        "destination_state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "action_type": "NAVIGATE_LINK:nav_link_66793",
+        "target": "/tasks/607fc8cc",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-8f4d02f5"
+        ]
+      },
+      {
+        "transition_id": "trans-9704983f",
+        "source_state_id": "st_tasks_607fc8cc__taskdash_tab_alltasks",
+        "destination_state_id": "st_about__taskdash_tab_about",
+        "action_type": "CLICK_CONTROL:control_cls_ec2a050d09_a_tab_href___about__",
+        "target": "a.tab[href=\"/about\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-20d6607c"
+        ]
+      },
+      {
+        "transition_id": "trans-0d05ac04",
+        "source_state_id": "st_about__taskdash_tab_about",
+        "destination_state_id": "st_create__taskdash_tab_createtask",
+        "action_type": "CLICK_CONTROL:control_cls_d85de82ef2_a_tab_href___create__",
+        "target": "a.tab[href=\"/create\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-a8e47c75"
+        ]
+      },
+      {
+        "transition_id": "trans-3f7ac3d9",
+        "source_state_id": "st_create__taskdash_tab_createtask",
+        "destination_state_id": "st_root__taskdash_tab_dashboard",
+        "action_type": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href_____",
+        "target": "a.tab[href=\"/\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-86cb754b"
+        ]
+      },
+      {
+        "transition_id": "trans-41c96355",
+        "source_state_id": "st_root__taskdash_tab_dashboard",
+        "destination_state_id": "st_tasks__taskdash_tab_alltasks",
+        "action_type": "CLICK_CONTROL:control_cls_b481531a43_a_href___tasks__",
+        "target": "a[href=\"/tasks\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-298e46f2"
+        ]
+      },
+      {
+        "transition_id": "trans-506b35a9",
+        "source_state_id": "st_tasks__taskdash_tab_alltasks",
+        "destination_state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "action_type": "NAVIGATE_LINK:nav_link_12961",
+        "target": "/tasks/31d351c1",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-47e32dd4"
+        ]
+      },
+      {
+        "transition_id": "trans-869be381",
+        "source_state_id": "st_tasks_31d351c1__taskdash_tab_alltasks",
+        "destination_state_id": "st_create__taskdash_tab_createtask",
+        "action_type": "CLICK_CONTROL:control_cls_5ece4d694d_a_tab_href___create__",
+        "target": "a.tab[href=\"/create\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-3ecfde86"
+        ]
+      },
+      {
+        "transition_id": "trans-d7e2a1a8",
+        "source_state_id": "st_create__taskdash_tab_createtask",
+        "destination_state_id": "st_about__taskdash_tab_about",
+        "action_type": "CLICK_CONTROL:control_cls_c8dd0649d9_a_tab_href___about__",
+        "target": "a.tab[href=\"/about\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-4d073764"
+        ]
+      }
+    ],
+    "auth": {
+      "boundary_observed": false,
+      "login_route": null,
+      "credentials_available": false,
+      "credential_source": null,
+      "verified": false
+    },
+    "requirements": [
+      "Task title is required",
+      "Task title must be at most 100 characters"
+    ]
+  }
+}

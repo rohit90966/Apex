@@ -16,6 +16,7 @@ site-specific defaults: if something was not observed, no test depends on it.
 from __future__ import annotations
 
 import json
+from collections import Counter
 import logging
 import re
 import time
@@ -35,11 +36,19 @@ from app.intelligence.target_context import (
     canonical_origin,
     inventory_from_report,
     is_instance_route,
+    route_template,
     route_of,
+)
+from app.knowledge.qa_retrieval import (
+    QAKnowledgeRetriever,
+    evidence_profile,
+    find_confirmation_pairs,
+    is_record_command_form,
 )
 from app.knowledge.retriever_v2 import KnowledgePatternRetriever, RetrievedKnowledgePattern
 from app.llm.base import BaseLLMProvider
 from app.llm.factory import get_llm_provider
+from app.test_data import UNIQUE_TOKEN
 from app.schemas import (
     ActionStep,
     ActionType,
@@ -98,6 +107,28 @@ def parse_sort_option(value: str, label: str = "") -> Optional[Tuple[str, str]]:
     return key, direction
 
 
+# What each generator tests (TestCase.test_kind); the application archetype is a property of the site, not of tests.
+TEST_KINDS = {
+    "field": "FIELD_VALIDATION", "server": "SERVER_VALIDATION", "crossfield": "CROSS_FIELD_VALIDATION",
+    "record": "RECORD_COMMAND", "filter": "FILTERING", "sort": "SORTING", "a11y": "ACCESSIBILITY",
+    "transition": "STATE_TRANSITION", "route": "ROUTE_REACHABILITY", "regression": "LEAD_REGRESSION",
+    "pattern": "DOMAIN_TEMPLATE", "crud": "CREATE_REFLECTION",
+}
+
+
+_SORT_DIRECTION_WORDS = {"sort", "by", "low", "lowest", "high", "highest", "to", "a", "z", "az", "za", "asc", "desc",
+                         "ascending", "descending", "first", "last", "newest", "oldest", "latest", "earliest",
+                         "soonest", "lohi", "hilo", "lo", "hi", "order", "from"}
+
+
+def sort_subject(text: str) -> str:
+    """The key a sort option names ('Price: Low to High' -> 'price'); '' when it names none."""
+    for w in re.split(r"[^a-z0-9]+", (text or "").lower()):
+        if w and w not in _SORT_DIRECTION_WORDS and not w.isdigit():
+            return w
+    return ""
+
+
 def _words(*texts: str) -> Set[str]:
     out: Set[str] = set()
     for t in texts:
@@ -112,7 +143,16 @@ _RULE_KEYWORDS = {
     "MAX_LENGTH": ["characters", "character", "length", "long", "most"],
     "EXACT_LENGTH": ["characters", "character", "length"],
     "EXACT_DIGITS": ["digits", "digit", "numeric"],
+    "MIN_VALUE": ["least", "minimum", "between", "range", "greater"],
+    "MAX_VALUE": ["most", "maximum", "between", "range", "less"],
 }
+
+
+def _numeric(value: Any) -> Optional[float]:
+    try:
+        return float(value) if value is not None and str(value).strip() != "" else None
+    except (TypeError, ValueError):
+        return None
 
 
 def rule_keywords(constraint: Any, field: Optional[ObservedField]) -> List[str]:
@@ -193,8 +233,23 @@ class KnowledgeGuidedTestPlanner:
             [r for r in (tctx.get("requirements") if isinstance(tctx, dict) else []) or [] if r] + list(inventory.requirements)
         ))
         intel_model = self.classifier.classify_from_investigation(report)
-        retrieved = self.retriever.retrieve_patterns(intel_model, max_patterns=30)
+        retrieved = [r for r in self.retriever.retrieve_patterns(intel_model, max_patterns=30) if r.pattern.strategy == "TEMPLATE"]
         run_id = inventory.run_id or (getattr(overview, "investigation_id", "") if overview is not None else "")
+
+        # Structured QA knowledge: which test strategies apply to what this run observed.
+        confirmed_leads = sum(1 for lead in (getattr(report, "confirmed_bug_leads", None) or [])
+                              if str(lead.get("status") if isinstance(lead, dict) else getattr(lead, "status", "")) == "CONFIRMED")
+        profile = evidence_profile(inventory, requirements, confirmed_leads)
+        try:
+            from app.knowledge.memory import strategy_effectiveness
+            effectiveness = strategy_effectiveness()
+        except Exception as e:  # memory is advisory; planning never depends on it
+            logger.debug("[TestSynthesis] strategy memory unavailable: %s", e)
+            effectiveness = {}
+        qa_retriever = QAKnowledgeRetriever()
+        strategies = qa_retriever.retrieve(profile, kinds=("TEST_STRATEGY",), effectiveness=effectiveness)
+        strategy_excluded = list(qa_retriever.last_excluded)
+        defect_classes = qa_retriever.retrieve(profile, kinds=("DEFECT_CLASS",), include_not_automated=True, max_entries=60)
         diagnostics: Dict[str, Any] = {
             "run_id": run_id,
             "target_origin": inventory.origin,
@@ -206,6 +261,13 @@ class KnowledgeGuidedTestPlanner:
             "unknown_capabilities": intel_model.unknown_capabilities,
             "retrieved_patterns": [r.pattern.pattern_id for r in retrieved],
             "ineligible_patterns": [r.model_dump() for r in self.retriever.last_rejected],
+            "evidence_profile": {k: profile.evidence.get(k, []) for k, v in profile.predicates.items() if v},
+            "knowledge_selected": [{"id": r.entry.id, "title": r.entry.title, "score": r.score,
+                                    "implementation": r.entry.automation.implementation, "matched": r.matched_predicates}
+                                   for r in strategies],
+            "knowledge_excluded": [e.model_dump() for e in strategy_excluded],
+            "defect_classes_applicable": [{"id": r.entry.id, "title": r.entry.title,
+                                           "automation": r.entry.automation.status} for r in defect_classes],
             "inapplicable_templates": [],
             "unknown_constraints": [],
             "unmapped_requirements": [],
@@ -221,6 +283,8 @@ class KnowledgeGuidedTestPlanner:
             "requirements": requirements,
             "model": intel_model,
             "retrieved": retrieved,
+            "strategies": strategies,
+            "profile": profile,
             "run_id": run_id,
             "diag": diagnostics,
             "counters": {},
@@ -256,28 +320,32 @@ class KnowledgeGuidedTestPlanner:
                                description="Login form dismissed after authentication", expected_source="OBSERVED")
         )
         return [
-            ActionStep(step_number=0, action=ActionType.NAVIGATE, value=self._url(ctx, form.route),
+            ActionStep(step_number=0, action=ActionType.NAVIGATE, setup=True, value=self._url(ctx, form.route),
                        description=f"Open observed login route {form.route}"),
-            ActionStep(step_number=0, action=ActionType.FILL, selector=user.selector, value=CREDENTIAL_USERNAME_PLACEHOLDER,
+            ActionStep(step_number=0, action=ActionType.FILL, setup=True, selector=user.selector, value=CREDENTIAL_USERNAME_PLACEHOLDER,
                        description="Enter authorized username (resolved at run time from origin-scoped credentials)"),
-            ActionStep(step_number=0, action=ActionType.FILL, selector=pwd.selector, value=CREDENTIAL_PASSWORD_PLACEHOLDER,
+            ActionStep(step_number=0, action=ActionType.FILL, setup=True, selector=pwd.selector, value=CREDENTIAL_PASSWORD_PLACEHOLDER,
                        description="Enter authorized password (resolved at run time from origin-scoped credentials)"),
-            ActionStep(step_number=0, action=ActionType.CLICK, selector=form.submit_selector,
+            ActionStep(step_number=0, action=ActionType.CLICK, setup=True, selector=form.submit_selector,
                        description="Submit observed login form", assertion=assertion),
         ]
 
     def _entry_steps(self, ctx: Dict[str, Any], route: str) -> Optional[Tuple[List[ActionStep], bool]]:
-        """Steps that reach `route`; (steps, needs_auth). None when the route cannot be reached."""
+        """
+        Steps that reach `route`; (steps, needs_auth). One setup NAVIGATE: at run time it opens the page, logs in
+        with the origin's configured credentials if the page turns out to need a session (redirect to a login gate,
+        or `requires_login` from investigation evidence), retries once and verifies the page was reached; otherwise
+        the test is BLOCKED with the authentication state (e.g. AUTH_CREDENTIALS_MISSING).
+        """
         inv: ObservedInventory = ctx["inventory"]
-        nav = ActionStep(step_number=0, action=ActionType.NAVIGATE, value=self._url(ctx, route),
-                         description=f"Navigate to observed route {route}")
-        if inv.requires_auth(route):
-            prelude = self._auth_prelude(ctx)
-            if prelude is None:
-                ctx["diag"]["unreachable_routes"].append({"route": route, "reason": "only observed while authenticated; no login form/credentials for this origin"})
-                return None
-            return [s.model_copy() for s in prelude] + [nav], True
-        return [nav], False
+        login = inv.login_form()
+        # The page that hosts the login form is reachable without logging in (by definition), and testing it
+        # after logging in would test a different state.
+        needs = inv.requires_auth(route) and not (login is not None and login.route == route)
+        nav = ActionStep(step_number=0, action=ActionType.NAVIGATE, value=self._url(ctx, route), setup=True,
+                         requires_login=needs, login_url=self._url(ctx, login.route) if login is not None else None,
+                         description=f"Open observed route {route}" + (" (authenticated)" if needs else ""))
+        return [nav], needs
 
     def _next_id(self, ctx: Dict[str, Any], prefix: str) -> str:
         n = ctx["counters"].get(prefix, 0) + 1
@@ -350,6 +418,38 @@ class KnowledgeGuidedTestPlanner:
         return cases
 
     # ── Strategy: observed state transitions ─────────────────────────────
+    @staticmethod
+    def _replayable_path(inv: ObservedInventory, target: Any, max_depth: int = 3) -> Optional[List[Any]]:
+        """
+        Clicks that lead from a directly reachable state to `target`, from the recorded transition graph.
+        [] when the target itself is reached by navigation; None when no replayable path was observed.
+        Only plain clicks are replayed (no form input), so the prerequisite cannot change test data.
+        """
+        def reachable(state: Any) -> bool:
+            return state.reached_by in ("ENTRY", "NAVIGATION", "AUTHENTICATION") and state.route in inv.form_routes()
+
+        if reachable(target):
+            return []
+        frontier: List[Tuple[Any, List[Any]]] = [(target, [])]
+        visited = {target.state_id}
+        for _ in range(max_depth):
+            nxt: List[Tuple[Any, List[Any]]] = []
+            for state, path in frontier:
+                for tr in inv.transitions:
+                    act = tr.action_type.upper()
+                    if tr.destination_state_id != state.state_id or "CLICK" not in act or any(
+                            k in act for k in ("FORM", "FILL", "SUBMIT", "AUTH")):
+                        continue
+                    prev = inv.state(tr.source_state_id)
+                    if prev is None or prev.state_id in visited or tr.target not in inv.selectors():
+                        continue
+                    if reachable(prev):
+                        return [tr] + path
+                    visited.add(prev.state_id)
+                    nxt.append((prev, [tr] + path))
+            frontier = nxt
+        return None
+
     def _transition_cases(self, ctx: Dict[str, Any]) -> List[TestCase]:
         inv: ObservedInventory = ctx["inventory"]
         selectors = inv.selectors()
@@ -362,25 +462,39 @@ class KnowledgeGuidedTestPlanner:
             src, dst = inv.state(tr.source_state_id), inv.state(tr.destination_state_id or "")
             if not src or not dst or tr.target not in selectors:
                 continue
-            if src.route not in inv.navigable_routes() or (src.route, tr.target) in seen:
+            if src.route not in inv.form_routes() or (src.route, tr.target) in seen:
                 continue
             if src.reached_by == "FORM_SUBMISSION":
                 continue  # the control lives on a page produced by a submission, not on the route itself
             if not any(c.selector == tr.target and c.route == src.route for c in inv.controls):
+                continue
+            prerequisite = self._replayable_path(inv, src)
+            if prerequisite is None:
+                ctx["diag"]["exploratory_hypotheses"].append({
+                    "control": tr.target, "route": src.route,
+                    "reason": "the source state was reached by interactions that cannot be replayed (no recorded click path)"})
                 continue
             if dst.route != src.route and not is_instance_route(dst.route):
                 assertion = ExecutionAssertion(assertion_type=AssertionType.URL_CONTAINS, expected_value=dst.route,
                                                description=f"Transition reaches {dst.route} (observed)", expected_source="OBSERVED")
             else:
                 new_headings = [h for h in dst.headings if h not in src.headings]
-                if not new_headings:
-                    continue
-                assertion = ExecutionAssertion(assertion_type=AssertionType.TEXT_VISIBLE, expected_value=new_headings[0],
-                                               description=f"Transition reveals '{new_headings[0]}' (observed)", expected_source="OBSERVED")
-            entry = self._entry_steps(ctx, src.route)
+                if new_headings:
+                    assertion = ExecutionAssertion(assertion_type=AssertionType.TEXT_VISIBLE, expected_value=new_headings[0],
+                                                   description=f"Transition reveals '{new_headings[0]}' (observed)", expected_source="OBSERVED")
+                else:
+                    # Same page, same headings: the observed content is not an independent expectation (it may be
+                    # the defect), so only the generic rendering invariant is asserted after the action.
+                    assertion = ExecutionAssertion(assertion_type=AssertionType.NO_TEXT_ANOMALY, expected_source="GENERIC_INVARIANT",
+                                                   description="No NaN/undefined/[object Object]/tracebacks rendered after the action")
+            root = inv.state(prerequisite[0].source_state_id) if prerequisite else src
+            entry = self._entry_steps(ctx, root.route)
             if entry is None:
                 continue
             steps, needs_auth = entry
+            for pre in prerequisite:  # recorded clicks that produced the source state (e.g. add an item first)
+                steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=pre.target, setup=True,
+                                        description=f"Prerequisite: activate '{pre.target}' (observed path to the source state)"))
             ctrl = next(c for c in inv.controls if c.selector == tr.target and c.route == src.route)
             steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=tr.target,
                                     description=f"Activate '{ctrl.name or tr.target}'", assertion=assertion))
@@ -436,26 +550,38 @@ class KnowledgeGuidedTestPlanner:
                     break
                 steps, needs_auth = entry
                 key, direction = rule
+                subject = sort_subject(label or opt)
+                # Two oracles of different strength: an order that is not monotonic in the named key is wrong
+                # whatever the option means; the direction itself is read from the label (inference).
+                monotonic = ExecutionAssertion(
+                    assertion_type=AssertionType.LIST_SORTED,
+                    expected_value=json.dumps({"key": key, "any_direction": True, "column_hint": subject}),
+                    description=f"Records are ordered by {subject or key} (monotonic in either direction)",
+                    expected_source="SEMANTIC_CONVENTION")
                 assertion = ExecutionAssertion(
                     assertion_type=AssertionType.LIST_SORTED,
-                    expected_value=json.dumps({"key": key, "direction": direction}),
+                    expected_value=json.dumps({"key": key, "direction": direction, "column_hint": subject}),
                     description=f"Records ordered by {key} {direction} as option '{label or opt}' states",
                     expected_source="DERIVED_INFERENCE")
                 steps.append(ActionStep(step_number=0, action=ActionType.SELECT, selector=src["selector"], value=opt,
-                                        description=f"Choose sort option '{label or opt}'",
-                                        assertion=None if src["form"] else assertion))
+                                        description=f"Choose sort option '{label or opt}'"))
                 if src["form"] is not None:
                     if not src["form"].submit_selector:
                         continue
                     steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=src["form"].submit_selector,
-                                            description="Apply sort", assertion=assertion))
+                                            description="Apply sort"))
+                steps.append(ActionStep(step_number=0, action=ActionType.OBSERVE_STATE, description="Check the order is monotonic",
+                                        assertion=monotonic))
+                steps.append(ActionStep(step_number=0, action=ActionType.OBSERVE_STATE, description="Check the order direction",
+                                        assertion=assertion))
                 cases.append(self._case(
                     ctx, "SORT", f"Sort by '{label or opt}' orders records ({key}, {direction})",
                     f"Select '{label or opt}' on {src['selector']} and verify the listed records follow that order.",
                     steps, "LIST_ORDERING", ExpectedBehaviorSource.INFERRED, needs_auth=needs_auth,
                     rule_ids=[pattern_id], evidence_ids=[src["state_id"]],
                     derived={"control": src["selector"], "option": opt, "option_label": label, "key": key,
-                             "direction": direction, "rule_source": "option label semantics (derived inference)"},
+                             "direction": direction, "column_hint": subject,
+                             "rule_source": "monotonic order in the named key (convention); direction from label (inference)"},
                     expected_outcome=assertion.description,
                 ))
         return cases
@@ -480,9 +606,15 @@ class KnowledgeGuidedTestPlanner:
                     break
                 steps, needs_auth = entry
                 expected = label or opt
+                # The oracle compares each record's own field against the selection; the field is the one whose
+                # values come from this filter's options, identified in the page at run time.
+                domain = [lb or op for op, lb in zip(src["options"], list(src["labels"]) + [""] * len(src["options"]))
+                          if op.strip()]
                 assertion = ExecutionAssertion(
-                    assertion_type=AssertionType.LIST_ALL_CONTAIN, expected_value=expected,
-                    description=f"Every listed record shows '{expected}' after filtering", expected_source="DERIVED_INFERENCE")
+                    assertion_type=AssertionType.LIST_ALL_CONTAIN,
+                    expected_value=json.dumps({"value": expected, "domain": domain}),
+                    description=f"Every listed record's {', '.join(sorted(src['words']))[:40] or 'filtered'} value is '{expected}'",
+                    expected_source="SEMANTIC_CONVENTION")
                 steps.append(ActionStep(step_number=0, action=ActionType.SELECT, selector=src["selector"], value=opt,
                                         description=f"Choose filter option '{expected}'",
                                         assertion=None if form else assertion))
@@ -496,8 +628,8 @@ class KnowledgeGuidedTestPlanner:
                     f"Apply filter option '{expected}' and verify every listed record carries that value.",
                     steps, "FILTER_CONSISTENCY", ExpectedBehaviorSource.INFERRED, needs_auth=needs_auth,
                     rule_ids=[pattern_id], evidence_ids=[src["state_id"]],
-                    derived={"control": src["selector"], "option": opt, "option_label": label,
-                             "rule_source": "filter semantics (derived inference)"},
+                    derived={"control": src["selector"], "option": opt, "option_label": label, "domain": domain,
+                             "rule_source": "record field drawn from the filter's options must equal the selection (convention)"},
                     expected_outcome=assertion.description,
                 ))
                 used += 1
@@ -553,10 +685,10 @@ class KnowledgeGuidedTestPlanner:
     def _field_boundary_cases(self, ctx: Dict[str, Any], pattern_id: str) -> List[TestCase]:
         inv: ObservedInventory = ctx["inventory"]
         cases: List[TestCase] = []
-        navigable = set(inv.navigable_routes())
+        navigable = set(inv.form_routes())
         seen_forms: Set[Tuple[str, Tuple[str, ...]]] = set()
         for form in inv.forms:
-            key = (form.route, tuple(f.selector for f in form.fields))
+            key = (route_template(form.route), tuple(f.selector for f in form.fields))
             if key in seen_forms or form.route not in navigable or not form.submit_selector or not inv.reproducible(form):
                 continue
             seen_forms.add(key)
@@ -631,7 +763,6 @@ class KnowledgeGuidedTestPlanner:
                     },
                     expected_outcome=assertion.description,
                 ))
-        cases.extend(self._observed_validation_cases(ctx, pattern_id))
         return cases
 
     def _observed_validation_cases(self, ctx: Dict[str, Any], pattern_id: str) -> List[TestCase]:
@@ -671,7 +802,7 @@ class KnowledgeGuidedTestPlanner:
     def _reflection_cases(self, ctx: Dict[str, Any], pattern_id: str) -> List[TestCase]:
         inv: ObservedInventory = ctx["inventory"]
         cases: List[TestCase] = []
-        navigable = set(inv.navigable_routes())
+        navigable = set(inv.form_routes())
         for form in inv.forms:
             words = _words(form.action, form.form_id, form.submit_selector)
             if form.method != "POST" or not (words & {"create", "new", "add", "save"}) or form.is_login_form:
@@ -807,7 +938,9 @@ class KnowledgeGuidedTestPlanner:
                 entry_steps, needs_auth = entry
             if steps and steps[0].action == ActionType.NAVIGATE and entry_steps and entry_steps[-1].action == ActionType.NAVIGATE \
                     and entry_steps[-1].value == steps[0].value:
-                entry_steps = entry_steps[:-1]
+                if steps[0].assertion and not entry_steps[-1].assertion:
+                    entry_steps[-1] = entry_steps[-1].model_copy(update={"assertion": steps[0].assertion})
+                steps = steps[1:]
             cases.append(self._case(
                 ctx, "PAT", f"{st.title}", st.objective or pat.description, entry_steps + steps,
                 "DOMAIN_PATTERN", ExpectedBehaviorSource.OBSERVED_INVARIANT, needs_auth=needs_auth,
@@ -816,6 +949,236 @@ class KnowledgeGuidedTestPlanner:
                 category=PageCategory.LOGIN if fills_password else PageCategory.GENERAL,
             ))
         return cases
+
+    # ── Strategy: server-side enforcement of HTML-declared constraints ────
+    @staticmethod
+    def _no_validate_step(field_selector: str) -> ActionStep:
+        sel = json.dumps(field_selector)
+        return ActionStep(
+            step_number=0, action=ActionType.EVAL_JS,
+            value=f"(() => {{ const el = document.querySelector({sel}); if (el && el.form) el.form.noValidate = true; }})()",
+            description="Disable client-side validation so the submission reaches the application (controlled probe)")
+
+    def _server_enforcement_cases(self, ctx: Dict[str, Any], strategy_id: str) -> List[TestCase]:
+        """
+        Distinguishes browser blocking from application behaviour: for each HTML-declared rule, submit one
+        violating value with client validation disabled and expect feedback attributable to the rule.
+        The HTML declaration is the only rule source, so failures are likely (not confirmed) defects.
+        """
+        from app.test_planning.field_constraints import (
+            FieldConstraint, SOURCE_HTML, _pattern_candidate, html_constraints, text_of_length)
+        inv: ObservedInventory = ctx["inventory"]
+        navigable = set(inv.form_routes())
+        cases: List[TestCase] = []
+        seen_forms: Set[Tuple[str, Tuple[str, ...]]] = set()
+        for form in inv.forms:
+            key = (route_template(form.route), tuple(f.selector for f in form.fields))
+            if (form.method not in ("POST", "GET") or key in seen_forms or form.route not in navigable
+                    or not form.submit_selector or not inv.reproducible(form)):
+                continue
+            seen_forms.add(key)
+            covered = {(bc.field_selector, bc.constraint.kind) for bc in plan_form_boundaries(form, ctx["requirements"]).cases
+                       if bc.constraint.source == SOURCE_REQUIREMENT and bc.requires_submit}
+            per_form = 0
+            for field in form.fields:
+                for c in html_constraints(field):
+                    if (field.selector, c.kind) in covered or per_form >= 6:
+                        continue
+                    toggle = field.field_type in ("checkbox", "radio")
+                    if c.kind == "REQUIRED":
+                        value, input_class = (None, "UNCHECKED") if toggle else ("", "EMPTY")
+                    elif c.kind == "MIN_LENGTH" and not form.is_login_form:
+                        value, input_class = text_of_length(int(c.value) - 1), "TOO_SHORT"
+                    elif c.kind == "PATTERN":
+                        value, input_class = _pattern_candidate(c.value or "", want_match=False), "FORMAT_INVALID"
+                    elif c.kind == "TYPE_EMAIL":
+                        value, input_class = f"qa.tester.{UNIQUE_TOKEN}.example.com", "FORMAT_INVALID"
+                    elif c.kind in ("MIN_VALUE", "MAX_VALUE") and _numeric(c.value) is not None:
+                        step = _numeric(field.step) or 1.0
+                        bound = _numeric(c.value)
+                        out = bound - step if c.kind == "MIN_VALUE" else bound + step
+                        value = str(int(out)) if float(out).is_integer() else str(out)
+                        input_class = "BELOW_MIN" if c.kind == "MIN_VALUE" else "ABOVE_MAX"
+                    else:
+                        continue  # maxlength: servers commonly truncate; numeric/date handled by the browser oracle
+                    if value is None and not toggle:
+                        continue
+                    entry = self._entry_steps(ctx, form.route)
+                    if entry is None:
+                        break
+                    steps, needs_auth = entry
+                    others = self._fill_steps(form, skip=field.selector)
+                    if others is None:
+                        continue
+                    steps.extend(others)
+                    if not toggle:
+                        steps.append(ActionStep(step_number=0, action=ActionType.FILL, selector=field.selector, value=value,
+                                                description=f"Enter {input_class.lower()} value for '{field.label or field.name}'"))
+                    steps.append(self._no_validate_step(field.selector))
+                    steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=form.submit_selector,
+                                            description="Submit the form to the application",
+                                            assertion=ExecutionAssertion(
+                                                assertion_type=AssertionType.VALIDATION_FEEDBACK_SHOWN,
+                                                target_selector=field.selector,
+                                                expected_value=json.dumps(rule_keywords(c, field)),
+                                                expected_source="HTML_DECLARED",
+                                                description=f"Application rejects the value the page declares invalid ({c.source_detail})")))
+                    per_form += 1
+                    label = field.label or field.name or field.selector
+                    cases.append(self._case(
+                        ctx, "SRV", f"{label}: {input_class.lower().replace('_', ' ')} is rejected by the application (client validation disabled)",
+                        f"The page declares {c.source_detail} on '{label}'. With browser validation disabled, the application "
+                        "itself must reject the violating submission.",
+                        steps, "FIELD_CONSTRAINT", ExpectedBehaviorSource.CONTRACT, needs_auth=needs_auth,
+                        rule_ids=[strategy_id], evidence_ids=[form.state_id],
+                        category=PageCategory.LOGIN if form.is_login_form else PageCategory.GENERAL,
+                        derived={"field_selector": field.selector, "field_label": label,
+                                 **({"toggle_state": "unchecked"} if toggle else {"input_value": value}),
+                                 "input_class": input_class, "constraint_kind": c.kind, "constraint_value": c.value,
+                                 "constraint_source": "HTML_DECLARED", "constraint_detail": c.source_detail,
+                                 "layer": "SERVER", "expected": "REJECT"},
+                        expected_outcome="Submission rejected with feedback attributable to the declared rule",
+                    ))
+        return cases
+
+    # ── Strategy: per-record commands take effect ─────────────────────────
+    def _record_command_cases(self, ctx: Dict[str, Any], strategy_id: str) -> List[TestCase]:
+        """
+        A field-less POST whose action names one record (cancel/complete/archive/remove ...) must remove or
+        change the record that exposed it. The record is compared before and after on the same page.
+        """
+        from app.investigation_agent.governor import SafetyGovernor
+        from app.investigation_agent.models import ActionRisk
+        governor = SafetyGovernor()
+        inv: ObservedInventory = ctx["inventory"]
+        routes = set(inv.form_routes())
+        cases: List[TestCase] = []
+        seen: Set[Tuple[str, str]] = set()
+        for form in inv.forms:
+            if not is_record_command_form(form) or form.route not in routes or not inv.reproducible(form):
+                continue
+            ctrl = next((c for c in inv.controls if c.selector == form.submit_selector and c.route == form.route), None)
+            name = (ctrl.name if ctrl else "") or form.submit_selector
+            key = (route_template(form.route), (name or "").strip().lower())
+            if key in seen:
+                continue  # one command per kind per page template
+            page_url = self._url(ctx, form.route)
+            risk = governor.assess_risk("CLICK_CONTROL", f"{name} {form.action}", is_post_form=True, current_url=page_url)
+            if risk == ActionRisk.UNSAFE_EXTERNAL or not governor.allows_mutations_for_url(page_url):
+                ctx["diag"]["exploratory_hypotheses"].append({
+                    "control": form.submit_selector, "route": form.route,
+                    "reason": "per-record command not permitted by the safety policy on this host; not executed"})
+                continue
+            entry = self._entry_steps(ctx, form.route)
+            if entry is None:
+                continue
+            seen.add(key)
+            steps, needs_auth = entry
+            steps.append(ActionStep(
+                step_number=0, action=ActionType.CLICK, selector=form.submit_selector,
+                description=f"Activate '{name}' on one record",
+                assertion=ExecutionAssertion(
+                    assertion_type=AssertionType.RECORD_CHANGED, target_selector=form.submit_selector,
+                    expected_source="SEMANTIC_CONVENTION",
+                    description=f"The record '{name}' was issued on is removed or changed")))
+            cases.append(self._case(
+                ctx, "REC", f"'{name}' on a record of {form.route} changes that record",
+                f"Issue the per-record command '{name}' ({form.method} {form.action}) and verify the record it was "
+                "issued on is removed or changed; a confirmation message alone is not evidence.",
+                steps, "RECORD_EFFECT", ExpectedBehaviorSource.INFERRED, needs_auth=needs_auth,
+                rule_ids=[strategy_id], evidence_ids=[form.state_id],
+                derived={"control": form.submit_selector, "command": name, "action": form.action,
+                         "rule_source": "a per-record command must take effect on its record (convention)"},
+                expected_outcome="The record is removed or its content changes after the command",
+                preconditions=["At least one record exposing the command exists"],
+            ))
+        return cases
+
+    # ── Strategy: cross-field confirmation consistency ────────────────────
+    def _cross_field_cases(self, ctx: Dict[str, Any], strategy_id: str) -> List[TestCase]:
+        inv: ObservedInventory = ctx["inventory"]
+        navigable = set(inv.form_routes())
+        cases: List[TestCase] = []
+        for form in inv.forms:
+            if form.route not in navigable or not form.submit_selector or not inv.reproducible(form):
+                continue
+            for src, conf in find_confirmation_pairs(form.fields):
+                base_value = valid_filler(src)
+                if base_value is None:
+                    continue
+                differing = (base_value[:-1] + ("Z" if base_value[-1] != "Z" else "Y"))
+                entry = self._entry_steps(ctx, form.route)
+                if entry is None:
+                    continue
+                steps, needs_auth = entry
+                others = self._fill_steps(form, skip=conf.selector, value_overrides={src.selector: base_value})
+                if others is None:
+                    continue
+                steps.extend(others)
+                steps.append(ActionStep(step_number=0, action=ActionType.FILL, selector=conf.selector, value=differing,
+                                        description=f"Enter a value in '{conf.label or conf.name}' that differs from '{src.label or src.name}'"))
+                steps.append(self._no_validate_step(conf.selector))
+                keywords = sorted({w for w in _words(conf.label, conf.name, src.label, src.name) if len(w) >= 3} | {"match", "same", "identical"})
+                steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=form.submit_selector,
+                                        description="Submit the form",
+                                        assertion=ExecutionAssertion(
+                                            assertion_type=AssertionType.VALIDATION_FEEDBACK_SHOWN, target_selector=conf.selector,
+                                            expected_value=json.dumps(keywords), expected_source="SEMANTIC_CONVENTION",
+                                            description=f"Mismatched '{conf.label or conf.name}' is rejected")))
+                cases.append(self._case(
+                    ctx, "XF", f"{conf.label or conf.name} must match {src.label or src.name}",
+                    f"'{conf.label or conf.name}' is semantically the confirmation of '{src.label or src.name}'; a differing value "
+                    "must be rejected. The pairing is inferred from field names/labels (no explicit requirement).",
+                    steps, "FIELD_CONSTRAINT", ExpectedBehaviorSource.INFERRED, needs_auth=needs_auth,
+                    rule_ids=[strategy_id], evidence_ids=[form.state_id],
+                    derived={"field_selector": conf.selector, "paired_with": src.selector, "input_value": differing,
+                             "input_class": "MISMATCH", "constraint_kind": "CROSS_FIELD_EQUALITY",
+                             "constraint_source": "SEMANTIC_CONVENTION", "expected": "REJECT"},
+                    expected_outcome="Mismatch rejected with feedback about the confirmation",
+                ))
+        return cases
+
+    # ── Strategy: accessible names per route ──────────────────────────────
+    def _accessibility_cases(self, ctx: Dict[str, Any], strategy_id: str) -> List[TestCase]:
+        inv: ObservedInventory = ctx["inventory"]
+        cases: List[TestCase] = []
+        for route in inv.navigable_routes():
+            if len(inv.controls_for_route(route)) < 3:
+                continue
+            entry = self._entry_steps(ctx, route)
+            if entry is None:
+                continue
+            steps, needs_auth = entry
+            steps.append(ActionStep(step_number=0, action=ActionType.OBSERVE_STATE, description="Audit accessible names",
+                                    assertion=ExecutionAssertion(assertion_type=AssertionType.ACCESSIBILITY_VALID,
+                                                                 expected_source="ACCESSIBILITY_HEURISTIC",
+                                                                 description="At least 80% of interactive controls expose an accessible name")))
+            cases.append(self._case(ctx, "A11Y", f"Accessible names on {route}",
+                                    f"Interactive controls on {route} expose accessible names (heuristic computation).",
+                                    steps, "ACCESSIBILITY", ExpectedBehaviorSource.INFERRED, needs_auth=needs_auth,
+                                    priority=Priority.LOW, rule_ids=[strategy_id]))
+            if len(cases) >= 3:
+                break
+        return cases
+
+    # ── Strategy: rendering-anomaly invariant on replayed interactions ────
+    _ANOMALY_TOKENS = ("NaN", "undefined", "[object Object]", "Traceback (most recent call last)")
+
+    def _add_render_anomaly_checks(self, ctx: Dict[str, Any], cases: List[TestCase], entry: Any) -> None:
+        inv: ObservedInventory = ctx["inventory"]
+        polluted = {s.route for s in inv.states if any(t in (s.text_snippet or "") for t in self._ANOMALY_TOKENS)}
+        for tc in cases:
+            if any(s.assertion and s.assertion.assertion_type == AssertionType.NO_TEXT_ANOMALY for s in tc.steps):
+                continue  # the case already is the invariant check
+            last_nav = next((s for s in reversed(tc.steps) if s.action == ActionType.NAVIGATE), None)
+            if last_nav and route_of(last_nav.value or "") in polluted:
+                continue  # the anomaly was already observed there: that is a lead, not a regression expectation
+            tc.steps.append(ActionStep(step_number=len(tc.steps) + 1, action=ActionType.OBSERVE_STATE,
+                                       description="Check rendered text for anomalies",
+                                       assertion=ExecutionAssertion(assertion_type=AssertionType.NO_TEXT_ANOMALY,
+                                                                    expected_source="GENERIC_INVARIANT",
+                                                                    description="No NaN/undefined/[object Object]/tracebacks rendered")))
+            tc.knowledge_ids = list(dict.fromkeys(tc.knowledge_ids + [entry.id] + [r for r in entry.related_ids if r.startswith("DC-")]))
 
     # ── Regression tests for confirmed investigation leads ─────────────────
     def _lead_regression_cases(self, ctx: Dict[str, Any]) -> List[TestCase]:
@@ -1027,35 +1390,72 @@ class KnowledgeGuidedTestPlanner:
         if inv.provenance == PROVENANCE_LEGACY:
             return self._legacy_journey_cases(ctx) + self._legacy_route_cases(ctx)
 
+        # Each selected QA strategy names the generator that implements it; generators only use this run's
+        # evidence. A strategy is applied once even if several entries share its implementation.
+        generators = {
+            "FIELD_BOUNDARIES": ("field", lambda sid: self._field_boundary_cases(ctx, sid)),
+            "SERVER_SIDE_ENFORCEMENT": ("server", lambda sid: self._server_enforcement_cases(ctx, sid)),
+            "CROSS_FIELD_CONFIRMATION": ("crossfield", lambda sid: self._cross_field_cases(ctx, sid)),
+            "OBSERVED_VALIDATION": ("field", lambda sid: self._observed_validation_cases(ctx, sid)),
+            "SORT_ORDER": ("sort", lambda sid: self._sort_cases(ctx, sid)),
+            "FILTER_RESULTS": ("filter", lambda sid: self._filter_cases(ctx, sid)),
+            "SUBMISSION_REFLECTION": ("crud", lambda sid: self._reflection_cases(ctx, sid)),
+            "OBSERVED_TRANSITIONS": ("transition", lambda sid: self._transition_cases(ctx)),
+            "ROUTE_REACHABILITY": ("route", lambda sid: self._route_cases(ctx, sid)),
+            "LEAD_REGRESSION": ("regression", lambda sid: self._lead_regression_cases(ctx)),
+            "ACCESSIBLE_NAMES": ("a11y", lambda sid: self._accessibility_cases(ctx, sid)),
+            "TEMPLATE_PATTERNS": ("pattern", lambda sid: [tc for ret in ctx["retrieved"] for tc in self._template_cases(ctx, ret)]),
+            "RECORD_COMMAND_EFFECT": ("record", lambda sid: self._record_command_cases(ctx, sid)),
+        }
         buckets: Dict[str, List[TestCase]] = {}
-        for ret in ctx["retrieved"]:
-            strategy = ret.pattern.strategy
-            pid = ret.pattern.pattern_id
-            if strategy == "ROUTE_REACHABILITY":
-                buckets.setdefault("route", []).extend(self._route_cases(ctx, pid))
-            elif strategy == "SORT_ORDER":
-                buckets.setdefault("sort", []).extend(self._sort_cases(ctx, pid))
-            elif strategy == "FILTER_RESULTS":
-                buckets.setdefault("filter", []).extend(self._filter_cases(ctx, pid))
-            elif strategy == "FIELD_BOUNDARIES":
-                buckets.setdefault("field", []).extend(self._field_boundary_cases(ctx, pid))
-            elif strategy == "SUBMISSION_REFLECTION":
-                buckets.setdefault("crud", []).extend(self._reflection_cases(ctx, pid))
-            else:
-                buckets.setdefault("pattern", []).extend(self._template_cases(ctx, ret))
-        buckets.setdefault("transition", []).extend(self._transition_cases(ctx))
-        buckets.setdefault("regression", []).extend(self._lead_regression_cases(ctx))
+        applied: Set[str] = set()
+        anomaly_strategy = None
+        for sel in ctx["strategies"]:
+            impl = sel.entry.automation.implementation
+            if impl == "RENDER_ANOMALY_INVARIANT":
+                anomaly_strategy = sel.entry
+                continue
+            if impl not in generators or impl in applied:
+                continue
+            applied.add(impl)
+            bucket, gen = generators[impl]
+            produced = gen(sel.entry.id)
+            related = [rid for rid in sel.entry.related_ids if rid.startswith(("DC-", "OR-"))]
+            for tc in produced:
+                tc.knowledge_ids = list(dict.fromkeys(tc.knowledge_ids + [sel.entry.id] + related))
+            for tc in produced:
+                tc.test_kind = TEST_KINDS.get(bucket, tc.test_kind)
+            buckets.setdefault(bucket, []).extend(produced)
+        if anomaly_strategy is not None:
+            self._add_render_anomaly_checks(ctx, buckets.get("transition", []) + buckets.get("route", []), anomaly_strategy)
+        ctx["diag"]["strategies_applied"] = sorted(applied | ({"RENDER_ANOMALY_INVARIANT"} if anomaly_strategy else set()))
         ctx["buckets"] = {k: len(v) for k, v in buckets.items()}
 
-        # Round-robin across categories so a cap keeps the suite diverse.
-        order = ["field", "regression", "filter", "sort", "pattern", "crud", "transition", "route"]
-        queues = [list(buckets.get(k, [])) for k in order]
+        # Round-robin across categories, and within a category across the pages/forms it covers, so a cap keeps
+        # every observed form and page represented instead of exhausting the first form's boundary cases.
+        order = ["field", "server", "crossfield", "regression", "record", "filter", "sort", "pattern", "crud", "a11y", "transition", "route"]
+        queues = [self._interleave_by_subject(inv, buckets.get(k, [])) for k in order]
         merged: List[TestCase] = []
         while any(queues):
             for q in queues:
                 if q:
                     merged.append(q.pop(0))
         return merged
+
+    @staticmethod
+    def _interleave_by_subject(inv: ObservedInventory, cases: List[TestCase]) -> List[TestCase]:
+        """Orders cases round-robin over the page template of the state they were derived from."""
+        groups: Dict[str, List[TestCase]] = {}
+        for tc in cases:
+            state = next((inv.state(e) for e in tc.evidence_ids or [] if inv.state(e)), None)
+            groups.setdefault(route_template(state.route) if state else "", []).append(tc)
+        queues = list(groups.values())
+        out: List[TestCase] = []
+        while any(queues):
+            for q in queues:
+                if q:
+                    out.append(q.pop(0))
+        return out
 
     def _finalize(self, ctx: Dict[str, Any], candidates: List[TestCase], target_count: int):
         inv: ObservedInventory = ctx["inventory"]
@@ -1087,9 +1487,13 @@ class KnowledgeGuidedTestPlanner:
         )
         for tc in selected:
             tracker.record_scenario(tc)
-        logger.info("[TestSynthesis] %s: %d candidates, %d valid, %d selected, %d rejected (origin=%s, run=%s)",
-                    ctx["model"].primary_archetype.value, len(candidates), len(valid_cases), len(selected),
-                    len(rejected), ctx["origin"], ctx["run_id"])
+        kinds = Counter(tc.test_kind for tc in selected)
+        diag["selected_by_kind"] = dict(kinds)
+        logger.info("[TestSynthesis] %d candidates, %d valid, %d selected, %d rejected; selected by kind: %s "
+                    "(application archetype=%s, origin=%s, run=%s)",
+                    len(candidates), len(valid_cases), len(selected), len(rejected),
+                    ", ".join(f"{k}={n}" for k, n in sorted(kinds.items())),
+                    ctx["model"].primary_archetype.value, ctx["origin"], ctx["run_id"])
         return selected, tracker.compute_coverage(total_scenarios=len(selected)), ctx["model"]
 
     # ── Optional LLM proposals (validated like every other candidate) ──────
@@ -1140,4 +1544,5 @@ description}}). Every test needs an assertion about an observed route, heading/t
                 cases.append(self._case(ctx, "LLM", item.get("name") or "LLM-proposed scenario",
                                         item.get("objective") or "LLM-proposed scenario over observed controls",
                                         steps, "LLM_SYNTHESIZED", ExpectedBehaviorSource.INFERRED, confidence=0.6))
+                cases[-1].test_kind = "LLM_PROPOSED"
         return cases

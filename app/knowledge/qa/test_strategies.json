@@ -34,8 +34,8 @@
     "id": "TS-SERVER-ENFORCEMENT", "kind": "TEST_STRATEGY", "category": "layer_distinction",
     "title": "Server-side enforcement of declared constraints",
     "description": "Distinguish browser-native blocking from application behaviour: disable client validation and submit one value violating each declared constraint.",
-    "applicability": {"all": ["has_post_form"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
-    "preconditions": ["Form submission is authorized on the target"],
+    "applicability": {"all": ["has_forms"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
+    "preconditions": ["Form submission is authorized on the target (GET forms are read-only and preferred)"],
     "test_strategy": "One probe per field and rule kind, skipped when an explicit requirement already exercises the same field server-side.",
     "oracle_strategy": "OR-ATTRIBUTABLE-FEEDBACK; failures are likely defects because the HTML declaration is the only rule source.",
     "related_ids": ["DC-VAL-CLIENT-SERVER", "DC-VAL-CHOICE", "OR-LAYER-DISTINCTION"],
@@ -135,5 +135,17 @@
     "applicability": {"all": ["has_create_form"]},
     "limitations": ["Not automated"],
     "automation": {"status": "NOT_AUTOMATED"}, "risk": "MEDIUM"
+  },
+  {
+    "id": "TS-RECORD-COMMAND", "kind": "TEST_STRATEGY", "category": "state_transition",
+    "title": "Per-record command takes effect",
+    "description": "A command issued on one record of a list (a POST whose target names that record, e.g. cancel, archive, complete, remove) must remove or change that record; a success message alone is not evidence.",
+    "applicability": {"all": ["has_record_command"]},
+    "test_strategy": "Open the list, snapshot the record that contains the command control, activate it, and compare the record after the response.",
+    "oracle_strategy": "OR-RECORD-CHANGED: the record is absent or its content differs; identical content after the command is a likely defect (convention), never confirmed without a requirement.",
+    "related_ids": ["DC-STATE-PERSISTENCE", "DC-FN-CRUD"],
+    "false_positive_warnings": ["Commands that are read-only by nature (view, download, export, print, copy, share) are excluded", "A command may legitimately be a no-op (already cancelled); the record must have exposed the command"],
+    "safety": ["Changes one record per execution; only issued where the safety governor allows mutations"],
+    "automation": {"status": "AUTOMATED", "implementation": "RECORD_COMMAND_EFFECT"}, "risk": "HIGH"
   }
 ]

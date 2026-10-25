@@ -33,13 +33,16 @@ class SafetyGovernor:
         "pay now", "complete purchase", "confirm payment", "delete account",
         "wipe", "drop database", "sudo", "transfer money", "execute code",
         "place order", "buy now", "cancel account",
-        "remove user", "terminate subscription"
+        "remove user", "terminate subscription",
+        # Checkout-finalisation keywords are unconditionally blocked on every host: they commit
+        # an order and cannot be safely undone by the agent.
+        "finish",
     ]
 
-    # TRANSACTION_COMMIT semantics (a control that finalises a simulated order or booking)
-    CHECKOUT_COMPLETION_KEYWORDS = [
-        "finish"
-    ]
+    # TRANSACTION_COMMIT semantics -- the base keyword ("finish") is already in TERMINAL_FORBIDDEN_KEYWORDS
+    # and therefore unconditionally blocked. This list exists only for env-var extension:
+    # VERITYQA_TRANSACTION_COMMIT_KEYWORDS="confirm booking"
+    CHECKOUT_COMPLETION_KEYWORDS: list = []
 
     # TRANSACTION_ENTRY semantics (a control that enters a checkout / payment flow)
     SANDBOX_SYNTHETIC_CHECKOUT_KEYWORDS = [
@@ -77,7 +80,11 @@ class SafetyGovernor:
     ):
         self.settings = get_settings()
         self.mutation_budget = mutation_budget
+        # Accounting: approvals never consume budget; only an executed mutating step does (record_mutation),
+        # and never beyond the budget. Blocked = refused because the budget was exhausted.
         self.mutations_executed = 0
+        self.mutations_approved = 0
+        self.mutations_blocked = 0
         self.rejected_actions: Set[Tuple[str, str, str]] = set()
         self.sandbox_mode: bool = bool(sandbox_mode)
         self.sandbox_origins: List[str] = self._normalize_approved_sandbox_origins(sandbox_origins or [])
@@ -345,10 +352,7 @@ class SafetyGovernor:
                         return False, reason
 
         effective_risk = self.assess_risk(action_type, target, llm_proposed_risk, current_url=current_url)
-        is_mutating = (
-            effective_risk == ActionRisk.POTENTIALLY_MUTATING
-            or action_type in ("FILL", "SUBMIT")
-        )
+        is_mutating = self._is_mutating(action_type, effective_risk)
 
         if not current_url or not self.is_host_trusted(current_url):
             if is_mutating:
@@ -392,10 +396,12 @@ class SafetyGovernor:
             if self.mutations_executed >= self.mutation_budget:
                 reason = f"SAFETY_BLOCKED: Mutation budget exhausted ({self.mutations_executed}/{self.mutation_budget})"
                 self.rejected_actions.add((action_type, target, reason))
+                if not dry_run:
+                    self.mutations_blocked += 1
                 return False, reason
 
             if not dry_run:
-                self.mutations_executed += 1
+                self.mutations_approved += 1
 
         return True, "Action safety approved"
 
@@ -420,6 +426,25 @@ class SafetyGovernor:
                 return False, reason
         return True, "Probe approved"
 
-    def record_mutation(self):
-        """Records an actual executed mutation against the safety budget."""
+    @staticmethod
+    def _is_mutating(action_type: str, effective_risk: "ActionRisk") -> bool:
+        return effective_risk == ActionRisk.POTENTIALLY_MUTATING or action_type in ("FILL", "SUBMIT")
+
+    def is_mutating_action(self, action_type: str, target: str, current_url: str = "") -> bool:
+        """Whether executing this action consumes mutation budget (same rule can_execute applies)."""
+        return self._is_mutating(action_type, self.assess_risk(action_type, target, current_url=current_url))
+
+    def record_mutation(self) -> bool:
+        """
+        Commits one executed mutating step against the budget. Never exceeds the budget: at the limit the
+        mutation is counted as blocked and False is returned (callers must not have executed it).
+        """
+        if self.mutations_executed >= self.mutation_budget:
+            self.mutations_blocked += 1
+            return False
         self.mutations_executed += 1
+        return True
+
+    def budget_status(self) -> Dict[str, int]:
+        return {"budget": self.mutation_budget, "executed": self.mutations_executed,
+                "approved": self.mutations_approved, "blocked": self.mutations_blocked}

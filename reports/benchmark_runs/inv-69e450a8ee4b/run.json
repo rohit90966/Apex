@@ -1,0 +1,22 @@
+{
+  "run_id": "inv-69e450a8ee4b",
+  "target_url": "http://127.0.0.1:8103/",
+  "description": "Small online shop with login, product catalogue, sorting, cart and checkout.",
+  "requirements": [
+    "First name is required at checkout",
+    "Postal code is required at checkout"
+  ],
+  "status": "completed",
+  "created_at": "2026-10-24T20:37:16.198265+00:00",
+  "started_at": "2026-10-24T20:37:16.199328+00:00",
+  "finished_at": "2026-10-24T20:37:16.332198+00:00",
+  "stopping_reason": null,
+  "error": null,
+  "test_case_count": 22,
+  "report_status": null,
+  "report_outcome": "unknown",
+  "test_generation_status": "completed",
+  "test_generation_error": null,
+  "latest_execution_id": "exec-a07db31d1945",
+  "execution_count": 1
+}

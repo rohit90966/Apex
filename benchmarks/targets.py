@@ -21,6 +21,7 @@ class TargetSpec:
     target_class: str
     description: str
     app_module: Optional[str] = None          # uvicorn "module:app" for local fixtures
+    app_dir: Optional[str] = None             # directory uvicorn imports app_module from (default: repo root)
     ports: Dict[str, int] = field(default_factory=dict)  # mode -> port
     public_url: Optional[str] = None
     requirements: List[str] = field(default_factory=list)
@@ -37,11 +38,32 @@ class TargetSpec:
 
 TARGETS: List[TargetSpec] = [
     TargetSpec(
+        key="harbor_events",
+        name="Harbor Events (demo site)",
+        target_class=REPOSITORY_FIXTURE,
+        description="Event listings with filtering and sorting, account registration, sign-in, ticket booking and booking management.",
+        app_module="demo_site.main:app",
+        ports={"buggy": 8201, "baseline": 8211},
+        requirements=[
+            "Full name is required for registration",
+            "Email must be a valid email address",
+            "Password must be at least 8 characters",
+            "Password and confirmation must match",
+            "Accepting the Terms of Service is required",
+            "Attendee name is required when booking",
+            "Ticket quantity must be between 1 and 10",
+        ],
+        credentials={"username": "demo@harbor.test", "password": "Harbor#2026"},
+    ),
+    # Legacy fixtures, moved to archive/legacy_demo_sites; not run by default. Unrelated applications for
+    # checking that changes generalize beyond the current demo site.
+    TargetSpec(
         key="apex_portal",
-        name="Apex Demo Portal (fixture 1)",
+        name="Apex Demo Portal (legacy fixture 1)",
         target_class=REPOSITORY_FIXTURE,
         description="Portal with sign-in, account registration and catalogue search.",
         app_module="demo_app.main:app",
+        app_dir="archive/legacy_demo_sites",
         ports={"buggy": 8101, "baseline": 8111},
         requirements=[
             "Username is required to sign in",
@@ -54,10 +76,11 @@ TARGETS: List[TargetSpec] = [
     ),
     TargetSpec(
         key="taskdash",
-        name="TaskDash (fixture 2)",
+        name="TaskDash (legacy fixture 2)",
         target_class=REPOSITORY_FIXTURE,
         description="Project task management dashboard with task list, filters and task creation.",
         app_module="demo_app.fixture2.main:app",
+        app_dir="archive/legacy_demo_sites",
         ports={"buggy": 8102, "baseline": 8112},
         requirements=[
             "Task title is required",
@@ -66,20 +89,14 @@ TARGETS: List[TargetSpec] = [
     ),
     TargetSpec(
         key="benchmark_shop",
-        name="Intelligence benchmark shop (controlled synthetic e-commerce)",
+        name="Intelligence benchmark shop (legacy controlled synthetic e-commerce)",
         target_class=CONTROLLED_SYNTHETIC,
         description="Small online shop with login, product catalogue, sorting, cart and checkout.",
         app_module="demo_app.benchmark_app.main:app",
+        app_dir="archive/legacy_demo_sites",
         ports={"buggy": 8103, "baseline": 8113},
         requirements=["First name is required at checkout", "Postal code is required at checkout"],
         credentials={"username": "benchmark_user", "password": "secret_benchmark"},
-    ),
-    TargetSpec(
-        key="taskflow",
-        name="TaskFlow (fixture 3)",
-        target_class=REPOSITORY_FIXTURE,
-        description="Task and project management SaaS.",
-        expected_port_url="http://127.0.0.1:8003/",
     ),
     TargetSpec(
         key="saucedemo",

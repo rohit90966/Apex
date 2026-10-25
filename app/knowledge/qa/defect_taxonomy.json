@@ -81,7 +81,7 @@
     "id": "DC-VAL-CLIENT-SERVER", "kind": "DEFECT_CLASS", "category": "input_validation",
     "title": "Client-side and server-side validation disagree",
     "description": "A constraint the page declares (HTML attributes) is enforced only by the browser; the server accepts the violating submission.",
-    "applicability": {"all": ["has_post_form"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
+    "applicability": {"all": ["has_forms"], "any": ["has_required_field", "has_length_constraint", "has_pattern_constraint", "has_required_checkbox", "has_email_field"]},
     "hypothesis_method": "Every browser-enforced declaration is a claim about the application's rule; check whether the server enforces it.",
     "test_strategy": "Disable client validation for the field's form (noValidate) and submit one violating value per declared rule.",
     "oracle_strategy": "Feedback attributable to the field/rule after submission.",
@@ -170,8 +170,9 @@
     "applicability": {"all": ["has_post_form"]},
     "test_strategy": "Perform the action, then revisit the record and compare its state.",
     "oracle_strategy": "Before/after state comparison across navigation.",
-    "limitations": ["Not automated: requires record identity tracking across pages"],
-    "automation": {"status": "NOT_AUTOMATED"}, "risk": "HIGH"
+    "limitations": ["Automated only for per-record commands on a list page (same-page before/after record comparison); changes visible only on other pages are not tracked"],
+    "related_ids": ["TS-RECORD-COMMAND"],
+    "automation": {"status": "PARTIAL", "implementation": "RECORD_COMMAND_EFFECT"}, "risk": "HIGH"
   },
   {
     "id": "DC-STATE-DERIVED", "kind": "DEFECT_CLASS", "category": "state_consistency",

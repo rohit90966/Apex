@@ -1,0 +1,1558 @@
+{
+  "execution_id": "exec-d2cef169c00f",
+  "target_url": "http://127.0.0.1:8112/",
+  "results": [
+    {
+      "test_id": "TC-FIELD-01",
+      "test_name": "Title *: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Description'",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Enter valid 'Priority'",
+          "status": "PASSED",
+          "duration_seconds": 0.32,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter empty value for 'Title *' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.083,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"title\"]",
+          "assertion_actual": "message: Title is required."
+        }
+      ],
+      "duration_seconds": 1.776,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-01_1792874048.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:08",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_6_VALIDATION_FEEDBACK_SHOWN": "message: Title is required."
+      }
+    },
+    {
+      "test_id": "TC-FILTER-01",
+      "test_name": "Filter '#priority-filter' = 'High' shows only matching records",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.037,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'High'",
+          "status": "PASSED",
+          "duration_seconds": 0.357,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "PASSED",
+          "duration_seconds": 0.091,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "High",
+          "assertion_actual": "all 3 records contain 'High'"
+        }
+      ],
+      "duration_seconds": 2.873,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FILTER-01_1792874050.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:11",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN": "all 3 records contain 'High'"
+      }
+    },
+    {
+      "test_id": "TC-CRUD-01",
+      "test_name": "Submitting #create-task-form reflects the entered Title *",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.049,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Title *'",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Description'",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "SELECT",
+          "description": "Enter valid 'Priority'",
+          "status": "PASSED",
+          "duration_seconds": 0.356,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the create form",
+          "status": "PASSED",
+          "duration_seconds": 0.119,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "VQA b039be 1",
+          "assertion_actual": "Found text 'VQA b039be 1'"
+        }
+      ],
+      "duration_seconds": 1.942,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-CRUD-01_1792874053.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Task Created</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                           ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:13",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_TEXT_VISIBLE": "Found text 'VQA b039be 1'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-01",
+      "test_name": "Accessible names on /",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.046,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.009,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 6 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About', a='View all 9 tasks \u2192')"
+        }
+      ],
+      "duration_seconds": 1.566,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-01_1792874054.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Dashboard</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:15",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 6 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About', a='View all 9 tasks \u2192')"
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "test_name": "Transition: 'Create Task' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.049,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Create Task'",
+          "status": "PASSED",
+          "duration_seconds": 0.212,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/create",
+          "assertion_actual": "http://127.0.0.1:8112/create"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.267,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-01_1792874056.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:17",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/create",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-01",
+      "test_name": "Route reachable with stable landmarks: /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.084,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "\ud83d\udccb TaskDash",
+          "assertion_actual": "Found text '\ud83d\udccb TaskDash'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.007,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.027,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-01_1792874058.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Dashboard</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:19",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text '\ud83d\udccb TaskDash'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-02",
+      "test_name": "Title *: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.055,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Description'",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Enter valid 'Priority'",
+          "status": "PASSED",
+          "duration_seconds": 0.356,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Title *' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.064,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.135,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"title\"]",
+          "assertion_actual": "message: Title is required."
+        }
+      ],
+      "duration_seconds": 1.983,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-02_1792874061.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:21",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_6_VALIDATION_FEEDBACK_SHOWN": "message: Title is required."
+      }
+    },
+    {
+      "test_id": "TC-FILTER-02",
+      "test_name": "Filter '#priority-filter' = 'Medium' shows only matching records",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'Medium'",
+          "status": "PASSED",
+          "duration_seconds": 0.369,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "PASSED",
+          "duration_seconds": 0.091,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Medium",
+          "assertion_actual": "all 2 records contain 'Medium'"
+        }
+      ],
+      "duration_seconds": 1.705,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FILTER-02_1792874062.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:23",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN": "all 2 records contain 'Medium'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-02",
+      "test_name": "Accessible names on /about",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /about",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 4 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About')"
+        }
+      ],
+      "duration_seconds": 1.512,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-02_1792874064.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 About</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             borde",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:24",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 4 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About')"
+      }
+    },
+    {
+      "test_id": "TC-TR-02",
+      "test_name": "Transition: 'Update README' on /tasks",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Update README'",
+          "status": "PASSED",
+          "duration_seconds": 0.203,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Update README",
+          "assertion_actual": "Found text 'Update README'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.276,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-02_1792874065.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Task: Update README</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                    ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:27",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Update README'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-02",
+      "test_name": "Route reachable with stable landmarks: /about",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /about",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "\ud83d\udccb TaskDash",
+          "assertion_actual": "Found text '\ud83d\udccb TaskDash'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.594,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-02_1792874067.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 About</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             borde",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:28",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text '\ud83d\udccb TaskDash'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-03",
+      "test_name": "Title *: maxlength-1 (99) is accepted",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Description'",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Enter valid 'Priority'",
+          "status": "PASSED",
+          "duration_seconds": 0.387,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid value for 'Title *' (maxlength-1 (99))",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.094,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"100\", \"character\", \"characters\", \"length\", \"long\", \"most\", \"title\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 1.955,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-03_1792874070.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Task Created</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                           ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:30",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_6_NO_VALIDATION_FEEDBACK": "no validation feedback visible"
+      }
+    },
+    {
+      "test_id": "TC-FILTER-03",
+      "test_name": "Filter '#status-filter' = 'Open' shows only matching records",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'Open'",
+          "status": "PASSED",
+          "duration_seconds": 0.36,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "PASSED",
+          "duration_seconds": 0.092,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Open",
+          "assertion_actual": "all 3 records contain 'Open'"
+        }
+      ],
+      "duration_seconds": 2.028,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FILTER-03_1792874071.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:32",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN": "all 3 records contain 'Open'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-03",
+      "test_name": "Accessible names on /create",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.046,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 8 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About', title='Enter task title')"
+        }
+      ],
+      "duration_seconds": 2.055,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-03_1792874073.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:34",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 8 interactive controls verified with computed accessible names (a='Dashboard', a='All Tasks', a='Create Task', a='About', title='Enter task title')"
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "test_name": "Transition: 'Dashboard' on /about",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /about",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Dashboard'",
+          "status": "PASSED",
+          "duration_seconds": 0.376,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/",
+          "assertion_actual": "http://127.0.0.1:8112/"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.122,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-03_1792874076.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Dashboard</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:36",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-03",
+      "test_name": "Route reachable with stable landmarks: /create",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "\ud83d\udccb TaskDash",
+          "assertion_actual": "Found text '\ud83d\udccb TaskDash'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.686,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-03_1792874077.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:38",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text '\ud83d\udccb TaskDash'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-04",
+      "test_name": "Title *: maxlength (100) is accepted",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.049,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Description'",
+          "status": "PASSED",
+          "duration_seconds": 0.114,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Enter valid 'Priority'",
+          "status": "PASSED",
+          "duration_seconds": 0.326,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid value for 'Title *' (maxlength (100))",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.128,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"100\", \"character\", \"characters\", \"length\", \"long\", \"most\", \"title\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.153,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-04_1792874079.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Task Created</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                           ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:40",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_6_NO_VALIDATION_FEEDBACK": "no validation feedback visible"
+      }
+    },
+    {
+      "test_id": "TC-FILTER-04",
+      "test_name": "Filter '#status-filter' = 'In Progress' shows only matching records",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'In Progress'",
+          "status": "PASSED",
+          "duration_seconds": 0.368,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "PASSED",
+          "duration_seconds": 0.099,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "In Progress",
+          "assertion_actual": "all 2 records contain 'In Progress'"
+        }
+      ],
+      "duration_seconds": 1.731,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FILTER-04_1792874081.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:42",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN": "all 2 records contain 'In Progress'"
+      }
+    },
+    {
+      "test_id": "TC-TR-04",
+      "test_name": "Transition: '+ Create new task' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate '+ Create new task'",
+          "status": "PASSED",
+          "duration_seconds": 0.245,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/create",
+          "assertion_actual": "http://127.0.0.1:8112/create"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.803,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-04_1792874083.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:44",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/create",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-04",
+      "test_name": "Route reachable with stable landmarks: /tasks",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /tasks",
+          "status": "PASSED",
+          "duration_seconds": 0.023,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "\ud83d\udccb TaskDash",
+          "assertion_actual": "Found text '\ud83d\udccb TaskDash'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.683,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-04_1792874085.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:45",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text '\ud83d\udccb TaskDash'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-05",
+      "test_name": "Title *: maxlength+1 (101) is rejected",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter too_long value for 'Title *' (maxlength+1 (101))",
+          "status": "PASSED",
+          "duration_seconds": 0.116,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "==100",
+          "assertion_actual": "length=100"
+        }
+      ],
+      "duration_seconds": 1.984,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-05_1792874087.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:47",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ELEMENT_VALUE_LENGTH": "length=100"
+      }
+    },
+    {
+      "test_id": "TC-TR-05",
+      "test_name": "Transition: 'All Tasks' on /create",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'All Tasks'",
+          "status": "PASSED",
+          "duration_seconds": 0.213,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/tasks",
+          "assertion_actual": "http://127.0.0.1:8112/tasks"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.931,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-05_1792874088.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:49",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/tasks",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-TR-06",
+      "test_name": "Transition: 'Create Task' on /about",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /about",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Create Task'",
+          "status": "PASSED",
+          "duration_seconds": 0.178,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/create",
+          "assertion_actual": "http://127.0.0.1:8112/create"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.693,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-06_1792874090.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Create Task</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                            ",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:51",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/create",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-TR-07",
+      "test_name": "Transition: 'Dashboard' on /create",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /create",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Dashboard'",
+          "status": "PASSED",
+          "duration_seconds": 0.176,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/",
+          "assertion_actual": "http://127.0.0.1:8112/"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.061,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-07_1792874092.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 Dashboard</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:53",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-TR-08",
+      "test_name": "Transition: 'View all 8 tasks \u2192' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.027,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'View all 8 tasks \u2192'",
+          "status": "PASSED",
+          "duration_seconds": 0.168,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/tasks",
+          "assertion_actual": "http://127.0.0.1:8112/tasks"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.599,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-08_1792874094.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n<meta charset=\"UTF-8\">\n<title>TaskDash \u2014 All Tasks</title>\n<style>\n  body { font-family: system-ui, sans-serif; margin: 0; background: #f0f2f5; color: #1a1a2e; }\n  .header { background: #16213e; color: white; padding: 1rem 2rem; }\n  .tabs { display:flex; gap:.5rem; background:#0f3460; padding:.5rem 2rem; }\n  .tab { color:#ccc; text-decoration:none; padding:.4rem .9rem; border-radius:4px; }\n  .tab.active, .tab:hover { background:#e94560; color:white; }\n  .container { max-width:900px; margin:2rem auto; padding:0 1rem; }\n  .card { background:white; border-radius:8px; padding:1.5rem; margin-bottom:1rem;\n           box-shadow:0 2px 4px rgba(0,0,0,.08); }\n  .badge { display:inline-block; padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }\n  .badge-High { background:#fee2e2; color:#dc2626; }\n  .badge-Medium { background:#fef3c7; color:#d97706; }\n  .badge-Low { background:#d1fae5; color:#059669; }\n  .badge-Open { background:#dbeafe; color:#2563eb; }\n  .badge-In.Progress, .badge-In\\ Progress { background:#ede9fe; color:#7c3aed; }\n  .badge-Done { background:#d1fae5; color:#059669; }\n  table { width:100%; border-collapse:collapse; }\n  th { background:#f8fafc; text-align:left; padding:.7rem; border-bottom:2px solid #e2e8f0; }\n  td { padding:.7rem; border-bottom:1px solid #f1f5f9; }\n  tr:hover { background:#fafafa; }\n  input, select, textarea { width:100%; padding:.5rem; border:1px solid #d1d5db;\n                             b",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 02:04:55",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8112/tasks",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    }
+  ],
+  "bug_reports": []
+}

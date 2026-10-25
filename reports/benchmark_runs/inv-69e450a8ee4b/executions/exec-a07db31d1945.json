@@ -1,0 +1,2274 @@
+{
+  "execution_id": "exec-a07db31d1945",
+  "target_url": "http://127.0.0.1:8103/",
+  "results": [
+    {
+      "test_id": "TC-FIELD-01",
+      "test_name": "First Name: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 10,
+      "steps_completed": 10,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.027,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.128,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter valid 'Last Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "FILL",
+          "description": "Enter valid 'Postal Code'",
+          "status": "PASSED",
+          "duration_seconds": 0.016,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "FILL",
+          "description": "Enter empty value for 'First Name' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 9,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 10,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.143,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"first\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "assertion_actual": "message: First name is required"
+        }
+      ],
+      "duration_seconds": 1.672,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-01_1792874195.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:36",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_10_VALIDATION_FEEDBACK_SHOWN": "message: First name is required"
+      }
+    },
+    {
+      "test_id": "TC-SORT-01",
+      "test_name": "Sort by 'Name: A to Z' orders records (text, asc)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.128,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Choose sort option 'Name: A to Z'",
+          "status": "PASSED",
+          "duration_seconds": 0.363,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"direction\": \"asc\"}",
+          "assertion_actual": "3 records ordered text asc: Alpha Device, Beta Machine, Gamma System"
+        }
+      ],
+      "duration_seconds": 1.868,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-01_1792874197.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:38",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_LIST_SORTED": "3 records ordered text asc: Alpha Device, Beta Machine, Gamma System"
+      }
+    },
+    {
+      "test_id": "TC-PAT-01",
+      "test_name": "Login With Empty Username Boundary",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.039,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Leave username blank",
+          "status": "PASSED",
+          "duration_seconds": 0.062,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Fill dummy password",
+          "status": "PASSED",
+          "duration_seconds": 0.077,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Click login button",
+          "status": "PASSED",
+          "duration_seconds": 0.311,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Username is required",
+          "assertion_actual": "Found text 'Username is required'"
+        }
+      ],
+      "duration_seconds": 2.0,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-01_1792874199.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Authentication \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: ",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:06:40",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_TEXT_VISIBLE": "Found text 'Username is required'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-01",
+      "test_name": "Accessible names on /cart",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.049,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.156,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /cart",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 6 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 0', a='Logout', calculate-tax-btn='Calculate Tax', checkout-button='Proceed to Checkout')"
+        }
+      ],
+      "duration_seconds": 1.822,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-01_1792874201.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Your Cart \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6c",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:41",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_ACCESSIBILITY_VALID": "All 6 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 0', a='Logout', calculate-tax-btn='Calculate Tax', checkout-button='Proceed to Checkout')"
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "test_name": "Transition: 'Add to Cart' on /products",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.129,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.082,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Activate 'Add to Cart'",
+          "status": "PASSED",
+          "duration_seconds": 0.11,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/cart",
+          "assertion_actual": "http://127.0.0.1:8103/cart"
+        },
+        {
+          "step_number": 7,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.686,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-01_1792874203.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Your Cart \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6c",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:43",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_URL_CONTAINS": "http://127.0.0.1:8103/cart",
+        "step_7_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-01",
+      "test_name": "Route reachable with stable landmarks: /cart",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.12,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /cart",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Shopping Cart",
+          "assertion_actual": "Found text 'Shopping Cart'"
+        }
+      ],
+      "duration_seconds": 1.645,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-01_1792874204.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Your Cart \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6c",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:45",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_5_STATUS_CODE": "200",
+        "step_6_TEXT_VISIBLE": "Found text 'Shopping Cart'"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-02",
+      "test_name": "First Name: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 10,
+      "steps_completed": 10,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.042,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.181,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter valid 'Last Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.042,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "FILL",
+          "description": "Enter valid 'Postal Code'",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'First Name' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.019,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 9,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 10,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.224,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"first\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "assertion_actual": "message: First name is required"
+        }
+      ],
+      "duration_seconds": 2.034,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-02_1792874206.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:47",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_10_VALIDATION_FEEDBACK_SHOWN": "message: First name is required"
+      }
+    },
+    {
+      "test_id": "TC-SORT-02",
+      "test_name": "Sort by 'Name: Z to A' orders records (text, desc)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.123,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.027,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Choose sort option 'Name: Z to A'",
+          "status": "PASSED",
+          "duration_seconds": 0.357,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"direction\": \"desc\"}",
+          "assertion_actual": "3 records ordered text desc: Gamma System, Beta Machine, Alpha Device"
+        }
+      ],
+      "duration_seconds": 1.881,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-02_1792874208.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:49",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_LIST_SORTED": "3 records ordered text desc: Gamma System, Beta Machine, Alpha Device"
+      }
+    },
+    {
+      "test_id": "TC-PAT-02",
+      "test_name": "Catalog Sorting Name (Z to A)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.038,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.067,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.079,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.228,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.04,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Select Z to A sorting option",
+          "status": "PASSED",
+          "duration_seconds": 0.382,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products",
+          "assertion_actual": "Found text 'Products'"
+        }
+      ],
+      "duration_seconds": 2.217,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-02_1792874210.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:51",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_TEXT_VISIBLE": "Found text 'Products'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-02",
+      "test_name": "Accessible names on /checkout",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.13,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 8 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 1', a='Logout', first_name='John', last_name='Doe')"
+        }
+      ],
+      "duration_seconds": 1.626,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-02_1792874212.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:52",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_ACCESSIBILITY_VALID": "All 8 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 1', a='Logout', first_name='John', last_name='Doe')"
+      }
+    },
+    {
+      "test_id": "TC-TR-02",
+      "test_name": "Transition: 'Back to Cart' on /checkout",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.036,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.068,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.078,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.237,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.035,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Activate 'Back to Cart'",
+          "status": "PASSED",
+          "duration_seconds": 0.151,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/cart",
+          "assertion_actual": "http://127.0.0.1:8103/cart"
+        },
+        {
+          "step_number": 7,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.006,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.306,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-02_1792874214.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Your Cart \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6c",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:55",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_URL_CONTAINS": "http://127.0.0.1:8103/cart",
+        "step_7_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-02",
+      "test_name": "Route reachable with stable landmarks: /checkout",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.033,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.29,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.055,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Checkout: Shipping Details",
+          "assertion_actual": "Found text 'Checkout: Shipping Details'"
+        },
+        {
+          "step_number": 7,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.944,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-02_1792874216.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:57",
+      "assertions_evaluated": 4,
+      "assertions_satisfied": 4,
+      "meaningful_assertions_evaluated": 4,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_5_STATUS_CODE": "200",
+        "step_6_TEXT_VISIBLE": "Found text 'Checkout: Shipping Details'",
+        "step_7_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-03",
+      "test_name": "Postal Code: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 10,
+      "steps_completed": 10,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.123,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter valid 'First Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "FILL",
+          "description": "Enter valid 'Last Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "FILL",
+          "description": "Enter empty value for 'Postal Code' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 9,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 10,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.088,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"code\", \"empty\", \"enter\", \"missing\", \"postal\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Postal code is required"
+        }
+      ],
+      "duration_seconds": 1.686,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-03_1792874218.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:06:58",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_10_VALIDATION_FEEDBACK_SHOWN": "message: Postal code is required"
+      }
+    },
+    {
+      "test_id": "TC-SORT-03",
+      "test_name": "Sort by 'Price: Low to High' orders records (number, asc)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.026,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.148,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price: Low to High'",
+          "status": "PASSED",
+          "duration_seconds": 0.375,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"direction\": \"asc\"}",
+          "assertion_actual": "3 records ordered number asc: 15, 35, 95"
+        }
+      ],
+      "duration_seconds": 1.975,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-03_1792874220.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:00",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_LIST_SORTED": "3 records ordered number asc: 15, 35, 95"
+      }
+    },
+    {
+      "test_id": "TC-PAT-03",
+      "test_name": "Catalog Sorting Price (Low to High)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.135,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Select Low to High price sorting",
+          "status": "PASSED",
+          "duration_seconds": 0.377,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products",
+          "assertion_actual": "Found text 'Products'"
+        }
+      ],
+      "duration_seconds": 1.938,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-03_1792874222.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:02",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_TEXT_VISIBLE": "Found text 'Products'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-03",
+      "test_name": "Accessible names on /login",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 6 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 0', a='Logout', username='benchmark_user', password='\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022')"
+        }
+      ],
+      "duration_seconds": 1.673,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-03_1792874223.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Authentication \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: ",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:07:04",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 6 interactive controls verified with computed accessible names (a='Products', cart-link='Cart 0', a='Logout', username='benchmark_user', password='\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022')"
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "test_name": "Transition: 'Proceed to Checkout' on /cart",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.033,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.058,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.074,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.257,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /cart",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Activate 'Proceed to Checkout'",
+          "status": "PASSED",
+          "duration_seconds": 0.168,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/checkout",
+          "assertion_actual": "http://127.0.0.1:8103/checkout"
+        }
+      ],
+      "duration_seconds": 2.119,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-03_1792874226.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:06",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_URL_CONTAINS": "http://127.0.0.1:8103/checkout"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-03",
+      "test_name": "Route reachable with stable landmarks: /login",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "System Access Portal",
+          "assertion_actual": "Found text 'System Access Portal'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.755,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-03_1792874227.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Authentication \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: ",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 02:07:08",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_1_STATUS_CODE": "200",
+        "step_2_TEXT_VISIBLE": "Found text 'System Access Portal'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-FIELD-04",
+      "test_name": "Postal Code: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 10,
+      "steps_completed": 10,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.32,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.036,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter valid 'First Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.085,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "FILL",
+          "description": "Enter valid 'Last Name'",
+          "status": "PASSED",
+          "duration_seconds": 0.024,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Postal Code' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 9,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 10,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.1,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"code\", \"empty\", \"enter\", \"missing\", \"postal\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Postal code is required"
+        }
+      ],
+      "duration_seconds": 1.918,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-04_1792874229.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Checkout \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:10",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_10_VALIDATION_FEEDBACK_SHOWN": "message: Postal code is required"
+      }
+    },
+    {
+      "test_id": "TC-SORT-04",
+      "test_name": "Sort by 'Price: High to Low' orders records (number, desc)",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.037,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.061,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.138,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price: High to Low'",
+          "status": "PASSED",
+          "duration_seconds": 0.355,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"direction\": \"desc\"}",
+          "assertion_actual": "3 records ordered number desc: 95, 35, 15"
+        }
+      ],
+      "duration_seconds": 2.03,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-04_1792874231.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:12",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_LIST_SORTED": "3 records ordered number desc: 95, 35, 15"
+      }
+    },
+    {
+      "test_id": "TC-TR-04",
+      "test_name": "Transition: 'Products' on /checkout",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.079,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.058,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.229,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /checkout",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "CLICK",
+          "description": "Activate 'Products'",
+          "status": "PASSED",
+          "duration_seconds": 0.148,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 7,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.909,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-04_1792874233.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:14",
+      "assertions_evaluated": 3,
+      "assertions_satisfied": 3,
+      "meaningful_assertions_evaluated": 3,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_6_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_7_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-04",
+      "test_name": "Route reachable with stable landmarks: /products",
+      "status": "PASSED",
+      "total_steps": 7,
+      "steps_completed": 7,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed login route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.033,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit observed login form",
+          "status": "PASSED",
+          "duration_seconds": 0.125,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/products",
+          "assertion_actual": "http://127.0.0.1:8103/products"
+        },
+        {
+          "step_number": 5,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /products",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products Catalog",
+          "assertion_actual": "Found text 'Products Catalog'"
+        },
+        {
+          "step_number": 7,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.95,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-04_1792874235.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"UTF-8\">\n  <title>Products \u2014 Verity Benchmark Portal</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; margin: 0; background: #f4f6f8; }\n    header { background: #1a202c; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }\n    header a { color: white; text-decoration: none; font-weight: 600; margin-left: 16px; }\n    .badge { background: #e53e3e; color: white; border-radius: 9999px; padding: 2px 8px; font-size: 12px; font-weight: bold; margin-left: 4px; }\n    .container { max-width: 960px; margin: 24px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n    .alert-danger { background: #fed7d7; color: #9b2c2c; border: 1px solid #feb2b2; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 500; }\n    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }\n    .product-card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; }\n    .product-card h3 { margin-top: 0; }\n    .product-card a { color: #2b6cb0; text-decoration: none; font-weight: 600; }\n    .btn { background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }\n    .btn:hover { background: #2b6cb",
+      "console_logs": [
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)",
+        "[warning] Analytics: tracking pixel ping delayed (non-critical)"
+      ],
+      "timestamp": "2026-10-25 02:07:16",
+      "assertions_evaluated": 4,
+      "assertions_satisfied": 4,
+      "meaningful_assertions_evaluated": 4,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "http://127.0.0.1:8103/products",
+        "step_5_STATUS_CODE": "200",
+        "step_6_TEXT_VISIBLE": "Found text 'Products Catalog'",
+        "step_7_NO_TEXT_ANOMALY": "no rendering anomalies"
+      }
+    }
+  ],
+  "bug_reports": []
+}

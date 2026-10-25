@@ -13,12 +13,20 @@ True negatives are not reported: the benchmarks define no universe of negative c
 
 from typing import Any, Dict, List, Optional
 
-from benchmarks.ground_truth import DEFECT_MODES, defects_for, has_ground_truth
+from benchmarks.ground_truth import DEFECT_MODES, defects_for, has_ground_truth  # noqa: F401
 
-CONFIRMED = "CONFIRMED_REPRODUCIBLE"
-INVESTIGATION_CONFIRMED = "INVESTIGATION_CONFIRMED"
+CONFIRMED = "CONFIRMED_DEFECT"
+LIKELY = "LIKELY_DEFECT"
 ANOMALY = "UNVERIFIED_ANOMALY"
-DETECTION_CLASSES = {CONFIRMED, INVESTIGATION_CONFIRMED}
+# Older labels kept readable: CONFIRMED_REPRODUCIBLE (bug-report status), INVESTIGATION_CONFIRMED (earlier harness).
+_ALIASES = {"CONFIRMED_REPRODUCIBLE": CONFIRMED, "INVESTIGATION_CONFIRMED": LIKELY}
+# Primary detection metric: reproduced findings (confirmed or likely). Confirmed-only is reported alongside.
+DETECTION_CLASSES = {CONFIRMED, LIKELY}
+
+
+def _cls(f: Dict[str, Any]) -> str:
+    c = f.get("classification")
+    return _ALIASES.get(c, c)
 
 
 def findings_from_investigation(report: Any) -> List[Dict[str, Any]]:
@@ -26,8 +34,10 @@ def findings_from_investigation(report: Any) -> List[Dict[str, Any]]:
     Confirmed, reproduced investigation leads as scorable findings. Leads that were not confirmed by the
     reproducer (status other than CONFIRMED) are never counted.
     """
+    from app.findings.lifecycle import classify_investigation_lead
     out: List[Dict[str, Any]] = []
-    for lead in getattr(report, "confirmed_bug_leads", None) or []:
+    leads = report.get("confirmed_bug_leads") if isinstance(report, dict) else getattr(report, "confirmed_bug_leads", None)
+    for lead in leads or []:
         get = (lambda k, d=None: lead.get(k, d)) if isinstance(lead, dict) else (lambda k, d=None: getattr(lead, k, d))
         if str(get("status", "")) != "CONFIRMED":
             continue
@@ -46,7 +56,8 @@ def findings_from_investigation(report: Any) -> List[Dict[str, Any]]:
             "name": str(get("title") or ""),
             "oracle_class": "INVESTIGATION_LEAD",
             "derived_values": {"field_selector": field_selector, "lead_target": target_name},
-            "classification": INVESTIGATION_CONFIRMED,
+            "classification": classify_investigation_lead(lead).value,
+            "oracle_type": str(getattr(get("oracle_type"), "value", get("oracle_type"))),
             "failure_reason": actual_text,
             "actual_behavior": actual_text,
             "reproduction": get("confirmation"),
@@ -54,6 +65,46 @@ def findings_from_investigation(report: Any) -> List[Dict[str, Any]]:
                       for s in steps],
         })
     return out
+
+
+def defect_stages(target_key: str, mode: str, observed_routes: List[str], planned: List[Dict[str, Any]],
+                  executed_status: Dict[str, str], findings: List[Dict[str, Any]],
+                  persisted: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Where each planted defect was (or was not) handled:
+      discovered -> test_generated -> test_executed -> reproduced -> persisted -> regression_test
+    `planned` are finding-shaped views of generated test cases; `persisted` are the findings read back
+    from the run store (the data the dashboard renders).
+    """
+    if not has_ground_truth(target_key) or mode not in DEFECT_MODES:
+        return []
+    rows = []
+    for d in defects_for(target_key):
+        matched_cases = [c for c in planned if d["match"](c)]
+        executed = [c for c in matched_cases if executed_status.get(c["test_id"]) not in (None, "BLOCKED", "TEST_DEFINITION_ERROR", "SKIPPED")]
+        reproduced = [f for f in findings if _cls(f) in DETECTION_CLASSES and d["match"](f)]
+        via_lead = [f for f in reproduced if f.get("source") == "investigation"]
+        stored = [p for p in persisted if p.get("classification") in DETECTION_CLASSES
+                  and any(d["match"](s) for s in p.get("_match_views", []))]
+        row = {
+            "defect_id": d["id"], "title": d["title"], "route": d.get("route"),
+            "discovered": d.get("route") in observed_routes,
+            "test_generated": bool(matched_cases),
+            "test_executed": bool(executed),
+            "reproduced": bool(reproduced),
+            "reproduced_by": sorted({f.get("source", "execution") for f in reproduced}),
+            "classification": sorted({_cls(f) for f in reproduced}),
+            "persisted": bool(stored),
+            "regression_test": bool(matched_cases) or any(p.get("regression_test_ids") for p in stored),
+            "matched_tests": [c["test_id"] for c in matched_cases][:6],
+            "executed_statuses": sorted({executed_status.get(c["test_id"], "NOT_RUN") for c in matched_cases}),
+        }
+        stages = ["discovered", "test_generated", "test_executed", "reproduced", "persisted"]
+        if via_lead and not row["test_generated"]:
+            stages = ["discovered", "reproduced", "persisted"]  # found by investigation alone
+        row["missed_at"] = next((s for s in stages if not row[s]), None)
+        rows.append(row)
+    return rows
 
 
 def _ratio(num: int, den: int) -> Optional[float]:
@@ -71,8 +122,9 @@ def score(target_key: str, mode: str, findings: List[Dict[str, Any]]) -> Dict[st
         return {"ground_truth": False, "note": "No ground truth for this target; detection metrics undefined."}
 
     defects = defects_for(target_key) if mode in DEFECT_MODES else []
-    confirmed = [f for f in findings if f.get("classification") in DETECTION_CLASSES]
-    anomalies = [f for f in findings if f.get("classification") == ANOMALY]
+    confirmed = [f for f in findings if _cls(f) in DETECTION_CLASSES]
+    anomalies = [f for f in findings if _cls(f) == ANOMALY]
+    strictly_confirmed = [f for f in findings if _cls(f) == CONFIRMED]
 
     def matches(pool: List[Dict[str, Any]]) -> Dict[str, List[str]]:
         hits: Dict[str, List[str]] = {}
@@ -110,6 +162,10 @@ def score(target_key: str, mode: str, findings: List[Dict[str, Any]]) -> Dict[st
                   if next((f.get("source", "execution") for f in confirmed if f["test_id"] == tid), "execution") == src]
             for src in ("execution", "investigation")
         },
+        # Confirmed-only view (excludes likely defects): established expectations only.
+        "detected_confirmed_only": sorted(matches(strictly_confirmed)),
+        "false_positives_confirmed_only": [f["test_id"] for f in strictly_confirmed
+                                           if f["test_id"] not in {t for ids in matches(strictly_confirmed).values() for t in ids}],
         "tp": tp,
         "fp": fp,
         "fn": fn,

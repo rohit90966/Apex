@@ -462,7 +462,7 @@ class InvestigationReportBuilder:
         # Phase 6: Behavior Model & Bug Leads Integration
         bug_leads = state.get("bug_leads") or []
         confirmed_leads = [b for b in bug_leads if getattr(b, "status", "") == "CONFIRMED"]
-        unstable_or_rejected = [b for b in bug_leads if getattr(b, "status", "") in ("UNSTABLE", "SUSPECTED", "REJECTED")]
+        unstable_or_rejected = [b for b in bug_leads if getattr(b, "status", "") in ("UNSTABLE", "SUSPECTED", "REJECTED", "SETUP_BLOCKED")]
 
         # Inferred Journeys
         inferred_journeys = []

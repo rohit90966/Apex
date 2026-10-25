@@ -13,3 +13,11 @@ data/runs/
 
 node_modules/*
 shopsphere/
+
+# Local secrets and browser session material (never commit)
+.env.*
+!.env.example
+*storage_state*.json
+*storageState*.json
+*.har
+playwright-traces/

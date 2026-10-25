@@ -197,7 +197,7 @@ async def serve_root_style():
     """Serves the primary stylesheet at root for relative linking."""
     style_file = os.path.join(static_dir, "style.css")
     if os.path.exists(style_file):
-        return FileResponse(style_file, media_type="text/css")
+        return FileResponse(style_file, media_type="text/css", headers={"Cache-Control": "no-cache"})
     raise HTTPException(status_code=404, detail="style.css not found.")
 
 
@@ -206,7 +206,7 @@ async def serve_root_js():
     """Serves the primary JavaScript controller at root for relative linking."""
     js_file = os.path.join(static_dir, "app.js")
     if os.path.exists(js_file):
-        return FileResponse(js_file, media_type="application/javascript")
+        return FileResponse(js_file, media_type="application/javascript", headers={"Cache-Control": "no-cache"})
     raise HTTPException(status_code=404, detail="app.js not found.")
 
 
@@ -801,9 +801,15 @@ async def execute_tests(request: ExecuteSuiteRequest):
     )
 
     passed = sum(1 for r in execution_results if r.status == ExecutionStatus.PASSED)
-    failed = sum(1 for r in execution_results if r.status == ExecutionStatus.FAILED)
-    errors = sum(1 for r in execution_results if r.status == ExecutionStatus.ERROR)
-    setup_failures = sum(1 for r in execution_results if r.status in (ExecutionStatus.LOCATOR_ERROR, ExecutionStatus.AUTOMATION_ERROR, ExecutionStatus.ENVIRONMENT_ERROR))
+    failed = sum(1 for r in execution_results if r.status in (ExecutionStatus.FAILED, ExecutionStatus.PRODUCT_BEHAVIOR_DEVIATION))
+    errors = sum(1 for r in execution_results if r.status in (ExecutionStatus.ERROR, ExecutionStatus.LOCATOR_ERROR,
+                                                              ExecutionStatus.AUTOMATION_ERROR, ExecutionStatus.ENVIRONMENT_ERROR))
+    blocked = sum(1 for r in execution_results if r.status == ExecutionStatus.BLOCKED)
+    incomplete = sum(1 for r in execution_results if r.status == ExecutionStatus.INCONCLUSIVE)
+    invalid = sum(1 for r in execution_results if r.status == ExecutionStatus.TEST_DEFINITION_ERROR)
+    reached = sum(1 for r in execution_results if (r.assertions_evaluated or 0) > 0)
+    # A setup failure is a test whose prerequisite (login, navigation path) failed before its assertion ran.
+    setup_failures = blocked
 
     # Bug verification: only assertion failures can indicate a product defect.
     bug_reports = []
@@ -831,8 +837,13 @@ async def execute_tests(request: ExecuteSuiteRequest):
         total_cases=len(test_cases),
         executed_count=len(execution_results),
         passed_count=passed,
-        failed_count=failed + errors,
+        failed_count=failed,
         setup_failures_count=setup_failures,
+        assertions_reached_count=reached,
+        error_count=errors,
+        blocked_count=blocked,
+        incomplete_count=incomplete,
+        invalid_count=invalid,
         assertion_validity_rate=assertion_validity,
         results=execution_results,
         bug_reports=bug_reports,
@@ -856,6 +867,12 @@ async def execute_tests(request: ExecuteSuiteRequest):
                 status_code=500,
                 detail=f"Tests ran, but the results could not be saved for run {request.run_id}: {error_text[:150]}",
             )
+        try:  # experience for future strategy ranking; advisory only, never blocks the request
+            from app.knowledge.memory import record_execution
+            from app.intelligence.target_context import canonical_origin
+            record_execution(request.run_id, canonical_origin(request.target_url), test_cases, execution_results, bug_reports)
+        except Exception as mem_err:
+            logger.warning("[Memory] Could not record execution %s: %s", exec_id, mem_err)
     return response
 
 

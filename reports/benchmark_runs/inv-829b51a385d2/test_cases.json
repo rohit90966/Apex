@@ -1,0 +1,3371 @@
+[
+  {
+    "test_id": "TC-FIELD-01",
+    "name": "Search items: empty is rejected",
+    "objective": "Boundary test of 'Search items' on /search: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#q",
+      "#searchBtn"
+    ],
+    "action_description": "Navigate to observed route /search; Enter empty value for 'Search items' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_search_catalog_search_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#q",
+      "field_label": "Search items",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Search query is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/search",
+        "description": "Navigate to observed route /search",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#q",
+        "value": "",
+        "description": "Enter empty value for 'Search items' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#q\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#searchBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#q",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"items\", \"missing\", \"provide\", \"required\", \"search\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-01",
+    "name": "Work Email: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Work Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Password'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Work Email'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Work Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "",
+        "description": "Enter empty value for 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#email",
+          "expected_value": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"work\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-XF-01",
+    "name": "Confirm Password must match Password",
+    "objective": "'Confirm Password' is semantically the confirmation of 'Password'; a differing value must be rejected. The pairing is inferred from field names/labels (no explicit requirement).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#reg-password",
+      "#terms",
+      "#confirm-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter a value in 'Confirm Password' that differs from 'Password'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form",
+    "expected_outcome": "Mismatch rejected with feedback about the confirmation",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-CROSS-FIELD"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-CROSS-FIELD"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "paired_with": "#reg-password",
+      "input_value": "QaPassw0rd!Z",
+      "input_class": "MISMATCH",
+      "constraint_kind": "CROSS_FIELD_EQUALITY",
+      "constraint_source": "SEMANTIC_CONVENTION",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!Z",
+        "description": "Enter a value in 'Confirm Password' that differs from 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"confirm\", \"identical\", \"match\", \"password\", \"same\"]",
+          "description": "Mismatched 'Confirm Password' is rejected",
+          "expected_source": "SEMANTIC_CONVENTION"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-CROSS-FIELD",
+      "DC-VAL-CROSS-FIELD"
+    ]
+  },
+  {
+    "test_id": "TC-REG-01",
+    "name": "Regression of confirmed lead: Bypass: Confirmation field 'confirm_password' must match 'password'",
+    "objective": "Replay confirmed lead lead_89e8d2fd (CONVENTION oracle, reproduced 2/2) and verify the application now rejects the submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter the lead's value into #fullname; Enter the lead's value into #email; Enter the lead's value into #reg-password; Enter the lead's value into #confirm-password; Activate #terms; Submit the form as in the confirmed lead",
+    "expected_outcome": "Submission should be rejected: Reject submission when passwords do not match",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "HIGH",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "probe_probe_556d5cba",
+      "st_register_account_create_view"
+    ],
+    "rule_ids": [],
+    "oracle_class": "DEFECT_REGRESSION",
+    "derived_values": {
+      "source_lead_id": "lead_89e8d2fd",
+      "lead_oracle_type": "CONVENTION",
+      "field_selector": "#confirm-password",
+      "lead_expected": "Submission should be rejected: Reject submission when passwords do not match"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "Abc123Xy",
+        "description": "Enter the lead's value into #fullname",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa+run_9@example.test",
+        "description": "Enter the lead's value into #email",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "Vqa!run_99x",
+        "description": "Enter the lead's value into #reg-password",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "Vqa!run_99x_diff9x",
+        "description": "Enter the lead's value into #confirm-password",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Activate #terms",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form as in the confirmed lead",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"confirm\", \"match\", \"password\", \"passwords\"]",
+          "description": "Submission rejected with feedback attributable to the rule: Submission should be rejected: Reject submission when passwords do not match",
+          "expected_source": "INVESTIGATION_CONVENTION"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-REGRESSION-LEAD",
+      "OR-ATTRIBUTABLE-FEEDBACK"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-01",
+    "name": "Accessible names on /",
+    "objective": "Interactive controls on / expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/",
+        "description": "Navigate to observed route /",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-01",
+    "name": "Transition: 'Forgot password?' on /login",
+    "objective": "Verify activating 'Forgot password?' on /login produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "a[href=\"/forgot\"]"
+    ],
+    "action_description": "Navigate to observed route /login; Activate 'Forgot password?'",
+    "expected_outcome": "Transition reaches /forgot (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-97107282"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "a[href=\"/forgot\"]",
+        "value": null,
+        "description": "Activate 'Forgot password?'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/forgot",
+          "description": "Transition reaches /forgot (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-01",
+    "name": "Route reachable with stable landmarks: /",
+    "objective": "Verify / remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Apex Demo Target System'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_root_apex_demo_targ_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/",
+        "description": "Navigate to observed route /",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Apex Demo Target System",
+          "description": "Stable heading 'Apex Demo Target System' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-03",
+    "name": "Username or Email: empty is rejected",
+    "objective": "Boundary test of 'Username or Email' on /login: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#password",
+      "#username",
+      "#loginBtn"
+    ],
+    "action_description": "Navigate to observed route /login; Enter valid 'Password'; Enter empty value for 'Username or Email' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required to sign in)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#username",
+      "field_label": "Username or Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Username is required to sign in",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "",
+        "description": "Enter empty value for 'Username or Email' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#username\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#loginBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#username",
+          "expected_value": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"username\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required to sign in)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-02",
+    "name": "Work Email: format invalid is rejected by the application (client validation disabled)",
+    "objective": "The page declares type=\"email\" on 'Work Email'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Password'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter format_invalid value for 'Work Email'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Work Email",
+      "input_value": "qa.tester.${RUN_UNIQUE}.example.com",
+      "input_class": "FORMAT_INVALID",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "type=\"email\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester.${RUN_UNIQUE}.example.com",
+        "description": "Enter format_invalid value for 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#email",
+          "expected_value": "[\"email\", \"work\"]",
+          "description": "Application rejects the value the page declares invalid (type=\"email\")",
+          "expected_source": "HTML_DECLARED"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-02",
+    "name": "Accessible names on /forgot",
+    "objective": "Interactive controls on /forgot expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /forgot; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/forgot",
+        "description": "Navigate to observed route /forgot",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-02",
+    "name": "Transition: 'Search' on /forgot",
+    "objective": "Verify activating 'Search' on /forgot produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "a[href=\"/forgot\"]",
+      "a[href=\"/search\"]"
+    ],
+    "action_description": "Navigate to observed route /login; Prerequisite: activate 'a[href=\"/forgot\"]' (observed path to the source state); Activate 'Search'",
+    "expected_outcome": "Transition reaches /search (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-d118140e"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "a[href=\"/forgot\"]",
+        "value": null,
+        "description": "Prerequisite: activate 'a[href=\"/forgot\"]' (observed path to the source state)",
+        "assertion": null,
+        "setup": true
+      },
+      {
+        "step_number": 3,
+        "action": "CLICK",
+        "selector": "a[href=\"/search\"]",
+        "value": null,
+        "description": "Activate 'Search'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/search",
+          "description": "Transition reaches /search (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-02",
+    "name": "Route reachable with stable landmarks: /forgot",
+    "objective": "Verify /forgot remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /forgot; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Password Reset'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_forgot_password_reset_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/forgot",
+        "description": "Navigate to observed route /forgot",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Password Reset",
+          "description": "Stable heading 'Password Reset' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-08",
+    "name": "Full Name: empty is rejected",
+    "objective": "Boundary test of 'Full Name' on /registration: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#email",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#fullname",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Work Email'; Enter valid 'Password'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Full Name' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#fullname",
+      "field_label": "Full Name",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Full name is required for registration",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "",
+        "description": "Enter empty value for 'Full Name' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#fullname\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#fullname",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"full\", \"fullname\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-03",
+    "name": "Password: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#confirm-password",
+      "#terms",
+      "#reg-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Password'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#reg-password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "",
+        "description": "Enter empty value for 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#reg-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#reg-password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"reg\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-03",
+    "name": "Accessible names on /login",
+    "objective": "Interactive controls on /login expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /login; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-03",
+    "name": "Transition: 'Register' on /",
+    "objective": "Verify activating 'Register' on / produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "a[href=\"/registration\"]"
+    ],
+    "action_description": "Navigate to observed route /; Activate 'Register'",
+    "expected_outcome": "Transition reaches /registration (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-abeb226a"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/",
+        "description": "Navigate to observed route /",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "a[href=\"/registration\"]",
+        "value": null,
+        "description": "Activate 'Register'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/registration",
+          "description": "Transition reaches /registration (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-03",
+    "name": "Route reachable with stable landmarks: /login",
+    "objective": "Verify /login remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /login; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Sign In to Apex'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Sign In to Apex",
+          "description": "Stable heading 'Sign In to Apex' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-02",
+    "name": "Search items: whitespace only is rejected",
+    "objective": "Boundary test of 'Search items' on /search: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#q",
+      "#searchBtn"
+    ],
+    "action_description": "Navigate to observed route /search; Enter whitespace value for 'Search items' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_search_catalog_search_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#q",
+      "field_label": "Search items",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Search query is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/search",
+        "description": "Navigate to observed route /search",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#q",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Search items' (whitespace only)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#q\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#searchBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#q",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"items\", \"missing\", \"provide\", \"required\", \"search\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SRV-04",
+    "name": "Confirm Password: empty is rejected by the application (client validation disabled)",
+    "objective": "The page declares required attribute on 'Confirm Password'. With browser validation disabled, the application itself must reject the violating submission.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#reg-password",
+      "#terms",
+      "#confirm-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Confirm Password'; Disable client-side validation so the submission reaches the application (controlled probe); Submit the form to the application",
+    "expected_outcome": "Submission rejected with feedback attributable to the declared rule",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-SERVER-ENFORCEMENT"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "field_label": "Confirm Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "required attribute",
+      "layer": "SERVER",
+      "expected": "REJECT"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "",
+        "description": "Enter empty value for 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form to the application",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#confirm-password",
+          "expected_value": "[\"blank\", \"confirm\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Application rejects the value the page declares invalid (required attribute)",
+          "expected_source": "HTML_DECLARED"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-SERVER-ENFORCEMENT",
+      "DC-VAL-CLIENT-SERVER",
+      "DC-VAL-CHOICE",
+      "OR-LAYER-DISTINCTION"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-04",
+    "name": "Route reachable with stable landmarks: /registration",
+    "objective": "Verify /registration remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /registration; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Create an Apex Account'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Create an Apex Account",
+          "description": "Stable heading 'Create an Apex Account' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-04",
+    "name": "Username or Email: whitespace only is rejected",
+    "objective": "Boundary test of 'Username or Email' on /login: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#password",
+      "#username",
+      "#loginBtn"
+    ],
+    "action_description": "Navigate to observed route /login; Enter valid 'Password'; Enter whitespace value for 'Username or Email' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required to sign in)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#username",
+      "field_label": "Username or Email",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Username is required to sign in",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Username or Email' (whitespace only)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#username\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#loginBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#username",
+          "expected_value": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"username\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required to sign in)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-05",
+    "name": "Route reachable with stable landmarks: /search",
+    "objective": "Verify /search remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /search; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Catalog Search'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_search_catalog_search_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/search",
+        "description": "Navigate to observed route /search",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Catalog Search",
+          "description": "Stable heading 'Catalog Search' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-09",
+    "name": "Full Name: whitespace only is rejected",
+    "objective": "Boundary test of 'Full Name' on /registration: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#email",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#fullname",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Work Email'; Enter valid 'Password'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter whitespace value for 'Full Name' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#fullname",
+      "field_label": "Full Name",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Full name is required for registration",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Full Name' (whitespace only)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#fullname\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 8,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#fullname",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"full\", \"fullname\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Full name is required for registration)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-05",
+    "name": "Password: empty is rejected",
+    "objective": "Boundary test of 'Password' on /login: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#loginBtn"
+    ],
+    "action_description": "Navigate to observed route /login; Enter valid 'Username or Email'; Enter empty value for 'Password' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required to sign in)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password is required to sign in",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "qa${RUN_UNIQUE}",
+        "description": "Enter valid 'Username or Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "",
+        "description": "Enter empty value for 'Password' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#loginBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required to sign in)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-10",
+    "name": "Work Email: empty is rejected",
+    "objective": "Boundary test of 'Work Email' on /registration: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#reg-password",
+      "#confirm-password",
+      "#terms",
+      "#email",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Password'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Work Email' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Work Email",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "",
+        "description": "Enter empty value for 'Work Email' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#email",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-06",
+    "name": "Password: whitespace only is rejected",
+    "objective": "Boundary test of 'Password' on /login: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#loginBtn"
+    ],
+    "action_description": "Navigate to observed route /login; Enter valid 'Username or Email'; Enter whitespace value for 'Password' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required to sign in)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password is required to sign in",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "qa${RUN_UNIQUE}",
+        "description": "Enter valid 'Username or Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Password' (whitespace only)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#loginBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required to sign in)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-11",
+    "name": "Work Email: missing @ is rejected",
+    "objective": "Boundary test of 'Work Email' on /registration: FORMAT_INVALID input (missing @) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#email"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter format_invalid value for 'Work Email' (missing @)",
+    "expected_outcome": "Field validity is 'typeMismatch' (HTML_CONSTRAINT: type=\"email\")",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Work Email",
+      "input_value": "qa.tester.${RUN_UNIQUE}.example.com",
+      "input_class": "FORMAT_INVALID",
+      "boundary": "missing @",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "type=\"email\"",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "typeMismatch",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.tester.${RUN_UNIQUE}.example.com",
+        "description": "Enter format_invalid value for 'Work Email' (missing @)",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#email",
+          "expected_value": "typeMismatch",
+          "description": "Field validity is 'typeMismatch' (HTML_CONSTRAINT: type=\"email\")",
+          "expected_source": "HTML_CONSTRAINT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-07",
+    "name": "Password: minlength-1 (5) is rejected",
+    "objective": "Boundary test of 'Password' on /login: TOO_SHORT input (minlength-1 (5)) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#loginBtn"
+    ],
+    "action_description": "Navigate to observed route /login; Enter valid 'Username or Email'; Enter too_short value for 'Password' (minlength-1 (5)); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 6 characters)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_login_sign_in_to_ape_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "QaBou",
+      "input_class": "TOO_SHORT",
+      "boundary": "minlength-1 (5)",
+      "constraint_kind": "MIN_LENGTH",
+      "constraint_value": "6",
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password must be at least 6 characters",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "qa${RUN_UNIQUE}",
+        "description": "Enter valid 'Username or Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaBou",
+        "description": "Enter too_short value for 'Password' (minlength-1 (5))",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#loginBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"6\", \"character\", \"characters\", \"least\", \"length\", \"password\", \"short\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 6 characters)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-12",
+    "name": "Password: empty is rejected",
+    "objective": "Boundary test of 'Password' on /registration: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#confirm-password",
+      "#terms",
+      "#reg-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Confirm Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Password' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#reg-password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "",
+        "description": "Enter empty value for 'Password' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#reg-password",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-13",
+    "name": "Confirm Password: empty is rejected",
+    "objective": "Boundary test of 'Confirm Password' on /registration: EMPTY input (empty) must be rejected per HTML_CONSTRAINT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#reg-password",
+      "#terms",
+      "#confirm-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Password'; Tick required 'I accept the Terms of Service'; Enter empty value for 'Confirm Password' (empty); Submit the form",
+    "expected_outcome": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+    "expected_behavior_source": "CONTRACT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#confirm-password",
+      "field_label": "Confirm Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "HTML_CONSTRAINT",
+      "constraint_detail": "required attribute",
+      "expected": "REJECT",
+      "oracle": "FIELD_VALIDITY",
+      "oracle_expected": "valueMissing",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#terms",
+        "value": null,
+        "description": "Tick required 'I accept the Terms of Service'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "",
+        "description": "Enter empty value for 'Confirm Password' (empty)",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "FIELD_VALIDITY",
+          "target_selector": "#confirm-password",
+          "expected_value": "valueMissing",
+          "description": "Field validity is 'valueMissing' (HTML_CONSTRAINT: required attribute)",
+          "expected_source": "HTML_CONSTRAINT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-14",
+    "name": "I accept the Terms of Service: left unchecked is rejected",
+    "objective": "Boundary test of 'I accept the Terms of Service' on /registration: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#fullname",
+      "#email",
+      "#reg-password",
+      "#confirm-password",
+      "#registerBtn"
+    ],
+    "action_description": "Navigate to observed route /registration; Enter valid 'Full Name'; Enter valid 'Work Email'; Enter valid 'Password'; Enter valid 'Confirm Password'; Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Accepting the Terms of Service is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-apex_portal-buggy-r1-74547b",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_registration_create_an_apex_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#terms",
+      "field_label": "I accept the Terms of Service",
+      "toggle_state": "unchecked",
+      "input_class": "UNCHECKED",
+      "boundary": "left unchecked",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Accepting the Terms of Service is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8101/registration",
+        "description": "Navigate to observed route /registration",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#fullname",
+        "value": "QA Sample",
+        "description": "Enter valid 'Full Name'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#email",
+        "value": "qa.${RUN_UNIQUE}@example.com",
+        "description": "Enter valid 'Work Email'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 4,
+        "action": "FILL",
+        "selector": "#reg-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 5,
+        "action": "FILL",
+        "selector": "#confirm-password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Confirm Password'",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 6,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#terms\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false
+      },
+      {
+        "step_number": 7,
+        "action": "CLICK",
+        "selector": "#registerBtn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#terms",
+          "expected_value": "[\"accept\", \"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\", \"service\", \"terms\", \"the\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Accepting the Terms of Service is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-apex_portal-buggy-r1-74547b",
+    "target_origin": "http://127.0.0.1:8101",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  }
+]

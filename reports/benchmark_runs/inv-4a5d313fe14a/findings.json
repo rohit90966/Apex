@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "LIKELY_DEFECT": 1
+  },
+  "findings": [
+    {
+      "finding_id": "F-9ae11f6e8b6b",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_e48bd71e",
+          "classification": "LIKELY_DEFECT",
+          "oracle": "CONVENTION",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Submission should be rejected: Reject submission when passwords do not match",
+          "observed": "Form submission accepted (status ACCEPTED) despite violating constraint: Confirmation field 'confirm_password' must match 'password'",
+          "evidence_ids": [
+            "probe_probe_65ce5e96",
+            "st_register_registration_e_view"
+          ],
+          "screenshots": [
+            "investigate_probe_before_935cfe43.png",
+            "investigate_probe_after_ac049bd4.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "kind": "execution",
+          "ref": "exec-fcd369c23d2e:TC-REG-01",
+          "execution_id": "exec-fcd369c23d2e",
+          "test_id": "TC-REG-01",
+          "status": "PASSED",
+          "classification": "PASSED",
+          "expected_source": null,
+          "reproduction": null,
+          "expected": "Submission should be rejected: Reject submission when passwords do not match",
+          "observed": null,
+          "screenshots": [
+            "exec_TC-REG-01_1792873790.png"
+          ],
+          "knowledge_ids": [
+            "TS-REGRESSION-LEAD",
+            "OR-ATTRIBUTABLE-FEEDBACK"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "lead:lead_e48bd71e",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [
+        "TC-REG-01"
+      ],
+      "knowledge_ids": [
+        "TS-REGRESSION-LEAD",
+        "OR-ATTRIBUTABLE-FEEDBACK"
+      ],
+      "title": "Bypass: Confirmation field 'confirm_password' must match 'password'",
+      "route": "/registration",
+      "subject": "#confirm-password",
+      "rule": "forms:Submission should be rejected: Reject submission when passwords do not match"
+    }
+  ],
+  "sources": {
+    "investigation": 1,
+    "execution": 0
+  }
+}

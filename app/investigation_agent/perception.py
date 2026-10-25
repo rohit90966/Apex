@@ -21,10 +21,13 @@ AUTH_PARAM_PATTERN = re.compile(
     re.IGNORECASE
 )
 
+# Placeholder values are anomalies only where a value is rendered (line start, after ':' or '=', after a
+# currency symbol): "Fee: $NaN" is a broken value, "cannot be null" is prose.
+VALUE_POSITION = r"(?:(?<=^)|(?<=\n)|(?<=[:=])\s*|(?<=[$\u20ac\u00a3\u20b9])\s*)"
 ANOMALY_PATTERNS = [
-    re.compile(r"\bundefined\b"),
-    re.compile(r"\bNaN\b"),
-    re.compile(r"\bnull\b"),
+    re.compile(VALUE_POSITION + r"(undefined)\b", re.MULTILINE),
+    re.compile(VALUE_POSITION + r"(NaN)\b", re.MULTILINE),
+    re.compile(VALUE_POSITION + r"(null)\b", re.MULTILINE),
     re.compile(r"\[object Object\]"),
     re.compile(r"Traceback \(most recent call last\):", re.IGNORECASE),
     re.compile(r"Internal Server Error", re.IGNORECASE),
@@ -124,7 +127,7 @@ DYNAMIC_SIGNALS_SCRIPT = """
     // 4. Alerts and status live regions
     const alerts = [];
     let alertLocator = '[role="alert"]';
-    const alertSelectors = '[role="alert"], [role="status"], [aria-live="assertive"], [aria-live="polite"], .alert-danger, .error-message, .error-message-container, .invalid-feedback, .field-error';
+    const alertSelectors = '[role="alert"], [role="status"], [aria-live="assertive"], [aria-live="polite"], .alert-danger, .error-message, .error-message-container, .invalid-feedback, .field-error, .error, .errors, .alert-error';
     for (const el of document.querySelectorAll(alertSelectors)) {
         const rect = el.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) continue;
@@ -251,7 +254,7 @@ EXTENDED_FORMS_SCRIPT = """
             // Options for select
             let selectOptions = [];
             if (tag === 'select') {
-                selectOptions = Array.from(input.options).map(o => (o.value || o.text || '').trim()).filter(Boolean);
+                selectOptions = Array.from(input.options).map(o => (o.value || '').trim()).filter(Boolean);  // empty value = placeholder/reset
             }
 
             fields.push({
@@ -340,10 +343,22 @@ def scan_text_anomalies(text: str) -> List[str]:
     for pat in ANOMALY_PATTERNS:
         match = pat.search(text)
         if match:
-            found = match.group(0).strip()
+            found = (match.group(1) if match.groups() else match.group(0)).strip()
             if found not in anomalies:
                 anomalies.append(found)
     return anomalies
+
+
+def anomaly_context(text: str, token: str, width: int = 40) -> str:
+    """The rendered line around the first value-position occurrence of an anomaly token (evidence)."""
+    for pat in ANOMALY_PATTERNS:
+        m = pat.search(text or "")
+        if m and (m.group(1) if m.groups() else m.group(0)).strip() == token:
+            line_start = text.rfind("\n", 0, m.start()) + 1
+            line_end = text.find("\n", m.end())
+            line = text[line_start:line_end if line_end != -1 else len(text)]
+            return line.strip()[: width * 2]
+    return token
 
 
 def compute_state_class_and_instance(

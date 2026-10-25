@@ -1,0 +1,178 @@
+[
+  {
+    "defect": "HE-01",
+    "mode": "buggy",
+    "inputs": {
+      "email": "not-an-email"
+    },
+    "observed": "account created",
+    "expected_correct_behaviour": "server rejects a malformed email",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-02",
+    "mode": "buggy",
+    "inputs": {
+      "password": "8 chars",
+      "confirm_password": "different 8 chars"
+    },
+    "observed": "account created",
+    "expected_correct_behaviour": "server rejects mismatched confirmation",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-03",
+    "mode": "buggy",
+    "inputs": {
+      "sort": "price_asc"
+    },
+    "observed": [
+      120.0,
+      18.0,
+      250.0,
+      45.0,
+      75.0,
+      9.5
+    ],
+    "expected_correct_behaviour": "prices ascending",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-04",
+    "mode": "buggy",
+    "inputs": {
+      "category": "Music"
+    },
+    "observed": [
+      "Music",
+      "Sports",
+      "Music",
+      "Conference"
+    ],
+    "expected_correct_behaviour": "only Music events",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-05",
+    "mode": "buggy",
+    "inputs": {
+      "quantity": "0"
+    },
+    "observed": "booking created",
+    "expected_correct_behaviour": "server rejects quantity outside 1..10",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-06",
+    "mode": "buggy",
+    "inputs": {
+      "cancel": "booking 1"
+    },
+    "observed": {
+      "message": "Booking cancelled.",
+      "status_after": "Confirmed"
+    },
+    "expected_correct_behaviour": "booking 1 status becomes Cancelled",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-07",
+    "mode": "buggy",
+    "inputs": {
+      "breakdown": 1
+    },
+    "observed": {
+      "fee_rate_defined": false,
+      "rendered_fee": "$NaN"
+    },
+    "expected_correct_behaviour": "service fee computed from a configured rate (browser check below)",
+    "defect_observed": true
+  },
+  {
+    "defect": "HE-01",
+    "mode": "baseline",
+    "inputs": {
+      "email": "not-an-email"
+    },
+    "observed": "rejected: Enter a valid email address.",
+    "expected_correct_behaviour": "server rejects a malformed email",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-02",
+    "mode": "baseline",
+    "inputs": {
+      "password": "8 chars",
+      "confirm_password": "different 8 chars"
+    },
+    "observed": "rejected: Passwords do not match.",
+    "expected_correct_behaviour": "server rejects mismatched confirmation",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-03",
+    "mode": "baseline",
+    "inputs": {
+      "sort": "price_asc"
+    },
+    "observed": [
+      9.5,
+      18.0,
+      45.0,
+      75.0,
+      120.0,
+      250.0
+    ],
+    "expected_correct_behaviour": "prices ascending",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-04",
+    "mode": "baseline",
+    "inputs": {
+      "category": "Music"
+    },
+    "observed": [
+      "Music",
+      "Music"
+    ],
+    "expected_correct_behaviour": "only Music events",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-05",
+    "mode": "baseline",
+    "inputs": {
+      "quantity": "0"
+    },
+    "observed": "rejected: You can book between 1 and 10 tickets.",
+    "expected_correct_behaviour": "server rejects quantity outside 1..10",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-06",
+    "mode": "baseline",
+    "inputs": {
+      "cancel": "booking 1"
+    },
+    "observed": {
+      "message": "Booking cancelled.",
+      "status_after": "Cancelled"
+    },
+    "expected_correct_behaviour": "booking 1 status becomes Cancelled",
+    "defect_observed": false
+  },
+  {
+    "defect": "HE-07",
+    "mode": "baseline",
+    "inputs": {
+      "breakdown": 1
+    },
+    "observed": {
+      "fee_rate_defined": true,
+      "rendered_fee": "$2.25"
+    },
+    "expected_correct_behaviour": "service fee computed from a configured rate (browser check below)",
+    "defect_observed": false
+  }
+]

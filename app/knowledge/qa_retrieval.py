@@ -48,6 +48,7 @@ PREDICATES: Dict[str, str] = {
     "has_filter_control": "a select in a GET form or named as a filter",
     "has_search_field": "a search-type or q/query/search field",
     "has_create_form": "a POST form whose action/submit denotes create/new/add/save",
+    "has_record_command": "a field-less POST form whose action targets one record (an instance path), i.e. a per-record command",
     "has_collection": "repeated record controls (a list/table of records)",
     "has_links": "same-origin links",
     "has_multiple_routes": "two or more routes reachable by navigation",
@@ -70,7 +71,7 @@ PREDICATES: Dict[str, str] = {
 PLANNER_IMPLEMENTATIONS = {
     "ROUTE_REACHABILITY", "OBSERVED_TRANSITIONS", "FIELD_BOUNDARIES", "SERVER_SIDE_ENFORCEMENT",
     "CROSS_FIELD_CONFIRMATION", "SORT_ORDER", "FILTER_RESULTS", "SUBMISSION_REFLECTION", "RENDER_ANOMALY_INVARIANT",
-    "ACCESSIBLE_NAMES", "LEAD_REGRESSION", "OBSERVED_VALIDATION", "TEMPLATE_PATTERNS",
+    "ACCESSIBLE_NAMES", "LEAD_REGRESSION", "OBSERVED_VALIDATION", "TEMPLATE_PATTERNS", "RECORD_COMMAND_EFFECT",
 }
 
 _RISK_WEIGHT = {"HIGH": 0.3, "MEDIUM": 0.2, "LOW": 0.1}
@@ -83,6 +84,24 @@ def _words(*texts: str) -> Set[str]:
         spaced = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", t or "")
         out.update(w for w in re.split(r"[^a-z0-9]+", spaced.lower()) if w)
     return out
+
+
+# Commands that need not change the record they are issued on: read-only ones, and ones whose effect is
+# elsewhere (a message sent, a copy created, an external sync). A RECORD_CHANGED check would misreport them.
+READ_ONLY_COMMAND_WORDS = {"view", "details", "detail", "open", "show", "download", "export", "print", "copy", "share",
+                           "preview", "resend", "send", "notify", "remind", "email", "refresh", "sync", "duplicate",
+                           "clone", "invite", "test", "check", "verify", "validate", "retry"}
+
+
+def is_record_command_form(form: Any) -> bool:
+    """A POST form without user-editable fields whose action path names one record (e.g. /items/7/archive)."""
+    from app.intelligence.target_context import is_instance_route, route_of
+    editable = [f for f in getattr(form, "fields", []) or [] if getattr(f, "field_type", "") not in ("hidden", "submit", "button")]
+    action = getattr(form, "action", "") or ""
+    if getattr(form, "method", "") != "POST" or editable or not action or not getattr(form, "submit_selector", ""):
+        return False
+    words = _words(action, getattr(form, "submit_selector", ""))
+    return is_instance_route(route_of(action)) and not (words & READ_ONLY_COMMAND_WORDS)
 
 
 def find_confirmation_pairs(fields: Iterable[Any]) -> List[Tuple[Any, Any]]:
@@ -162,6 +181,8 @@ def evidence_profile(inventory: Any, requirements: Optional[List[str]] = None, c
                     add("has_sort_control", tag)
                 elif form.method == "GET" or words & FILTER_WORDS:
                     add("has_filter_control", tag)
+        if is_record_command_form(form):
+            add("has_record_command", f"POST {form.action} ({form.submit_selector}) on {form.route}")
         for src, conf in find_confirmation_pairs(form.fields):
             add("has_confirmation_pair", f"{conf.selector} confirms {src.selector} on {form.route}")
 

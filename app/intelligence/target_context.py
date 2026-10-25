@@ -66,6 +66,11 @@ def is_instance_route(route: str) -> bool:
     return any(_INSTANCE_SEGMENT.match(seg) for seg in (route or "").split("/") if seg)
 
 
+def route_template(route: str) -> str:
+    """Route with instance identifiers replaced by '{id}' (/tasks/3f2a9c1b -> /tasks/{id})."""
+    return "/" + "/".join("{id}" if _INSTANCE_SEGMENT.match(seg) else seg for seg in (route or "").split("/") if seg)
+
+
 class TargetContext(BaseModel):
     """Identity of one investigation of one target."""
     schema_version: str = INVENTORY_SCHEMA_VERSION
@@ -209,6 +214,25 @@ class ObservedInventory(BaseModel):
                 continue
             result.append(route)
         return sorted(result)
+
+    def linked_instance_routes(self) -> List[str]:
+        """
+        Instance routes (e.g. /items/42) that a test can reach: reached by navigation and linked from a
+        page on a navigable (non-instance) route, so the record existed in content the test can see.
+        One representative per route template, since sibling instances share the same page template.
+        """
+        navigable = set(self.navigable_routes())
+        linked = {route_of(c.href) for c in self.controls if c.href and c.route in navigable}
+        chosen: Dict[str, str] = {}
+        for s in self.states:
+            if (is_instance_route(s.route) and s.route in linked and s.reached_by != "FORM_SUBMISSION"
+                    and route_template(s.route) not in chosen):
+                chosen[route_template(s.route)] = s.route
+        return sorted(chosen.values())
+
+    def form_routes(self) -> List[str]:
+        """Routes on which a test can exercise forms and controls: navigable routes plus linked instance routes."""
+        return sorted(set(self.navigable_routes()) | set(self.linked_instance_routes()))
 
     def stable_headings(self, route: str) -> List[str]:
         """Headings present in every navigation-reached observation of a route."""

@@ -1,0 +1,2626 @@
+[
+  {
+    "test_id": "TC-FIELD-01",
+    "name": "First Name: empty is rejected",
+    "objective": "Boundary test of 'First Name' on /checkout: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#last-name",
+      "#postal-code",
+      "#first-name",
+      "#continue-checkout-btn"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Enter valid 'Last Name'; Enter valid 'Postal Code'; Enter empty value for 'First Name' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: First name is required at checkout)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_checkout_checkout_shipp_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#first-name",
+      "field_label": "First Name",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "First name is required at checkout",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#last-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Last Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#postal-code",
+        "value": "QA Sample",
+        "description": "Enter valid 'Postal Code'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#first-name",
+        "value": "",
+        "description": "Enter empty value for 'First Name' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#first-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "CLICK",
+        "selector": "#continue-checkout-btn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#first-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"first\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: First name is required at checkout)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-01",
+    "name": "Sort by 'Name: A to Z' orders records (text, asc)",
+    "objective": "Select 'Name: A to Z' on #product-sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Choose sort option 'Name: A to Z'",
+    "expected_outcome": "Records ordered by text asc as option 'Name: A to Z' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_products_products_catal_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#product-sort",
+      "option": "az",
+      "option_label": "Name: A to Z",
+      "key": "text",
+      "direction": "asc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "az",
+        "description": "Choose sort option 'Name: A to Z'",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"direction\": \"asc\"}",
+          "description": "Records ordered by text asc as option 'Name: A to Z' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-01",
+    "name": "Login With Empty Username Boundary",
+    "objective": "Verify attempting login with blank username displays validation error message.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Navigate to observed route /login; Leave username blank; Fill dummy password; Click login button",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-AUTH-LOGIN-02 resolved against controls observed on this target (Capabilities evidenced: ['FORM_VALIDATION', 'USER_AUTHENTICATION']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-AUTH-LOGIN-02"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-AUTH-LOGIN-02"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "",
+        "description": "Leave username blank",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Fill dummy password",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Click login button",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Username is required",
+          "description": "'Username is required' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-01",
+    "name": "Accessible names on /cart",
+    "objective": "Interactive controls on /cart expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /cart; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/cart",
+        "description": "Navigate to observed route /cart",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-01",
+    "name": "Transition: 'Add to Cart' on /products",
+    "objective": "Verify activating 'Add to Cart' on /products produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#add-to-cart-1"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Activate 'Add to Cart'",
+    "expected_outcome": "Transition reaches /cart (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-3ba1667f"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "#add-to-cart-1",
+        "value": null,
+        "description": "Activate 'Add to Cart'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/cart",
+          "description": "Transition reaches /cart (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-01",
+    "name": "Route reachable with stable landmarks: /cart",
+    "objective": "Verify /cart remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /cart; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Shopping Cart'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_cart_shopping_cart_c1",
+      "st_cart_shopping_cart_view",
+      "st_cart_shopping_cart_view_show_tax_true"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/cart",
+        "description": "Navigate to observed route /cart",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Shopping Cart",
+          "description": "Stable heading 'Shopping Cart' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-02",
+    "name": "First Name: whitespace only is rejected",
+    "objective": "Boundary test of 'First Name' on /checkout: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#last-name",
+      "#postal-code",
+      "#first-name",
+      "#continue-checkout-btn"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Enter valid 'Last Name'; Enter valid 'Postal Code'; Enter whitespace value for 'First Name' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: First name is required at checkout)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_checkout_checkout_shipp_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#first-name",
+      "field_label": "First Name",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "First name is required at checkout",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#last-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Last Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#postal-code",
+        "value": "QA Sample",
+        "description": "Enter valid 'Postal Code'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#first-name",
+        "value": "   ",
+        "description": "Enter whitespace value for 'First Name' (whitespace only)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#first-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "CLICK",
+        "selector": "#continue-checkout-btn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#first-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"first\", \"missing\", \"name\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: First name is required at checkout)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-02",
+    "name": "Sort by 'Name: Z to A' orders records (text, desc)",
+    "objective": "Select 'Name: Z to A' on #product-sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Choose sort option 'Name: Z to A'",
+    "expected_outcome": "Records ordered by text desc as option 'Name: Z to A' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_products_products_catal_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#product-sort",
+      "option": "za",
+      "option_label": "Name: Z to A",
+      "key": "text",
+      "direction": "desc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "za",
+        "description": "Choose sort option 'Name: Z to A'",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"direction\": \"desc\"}",
+          "description": "Records ordered by text desc as option 'Name: Z to A' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-02",
+    "name": "Catalog Sorting Name (Z to A)",
+    "objective": "Verify selecting 'za' reorders the catalog items in reverse alphabetical order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Select Z to A sorting option",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CATALOG-01 resolved against controls observed on this target (Capabilities evidenced: ['CATALOG_BROWSING', 'PAGINATION_SORTING']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "za",
+        "description": "Select Z to A sorting option",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products",
+          "description": "'Products' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-02",
+    "name": "Accessible names on /checkout",
+    "objective": "Interactive controls on /checkout expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-02",
+    "name": "Transition: 'Back to Cart' on /checkout",
+    "objective": "Verify activating 'Back to Cart' on /checkout produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "a.btn[href=\"/cart\"]"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Activate 'Back to Cart'",
+    "expected_outcome": "Transition reaches /cart (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-e90e042d"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "a.btn[href=\"/cart\"]",
+        "value": null,
+        "description": "Activate 'Back to Cart'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/cart",
+          "description": "Transition reaches /cart (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-02",
+    "name": "Route reachable with stable landmarks: /checkout",
+    "objective": "Verify /checkout remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Checkout: Shipping Details'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_checkout_checkout_shipp_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Checkout: Shipping Details",
+          "description": "Stable heading 'Checkout: Shipping Details' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-03",
+    "name": "Postal Code: empty is rejected",
+    "objective": "Boundary test of 'Postal Code' on /checkout: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#first-name",
+      "#last-name",
+      "#postal-code",
+      "#continue-checkout-btn"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Enter valid 'First Name'; Enter valid 'Last Name'; Enter empty value for 'Postal Code' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Postal code is required at checkout)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_checkout_checkout_shipp_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#postal-code",
+      "field_label": "Postal Code",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Postal code is required at checkout",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#first-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'First Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#last-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Last Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#postal-code",
+        "value": "",
+        "description": "Enter empty value for 'Postal Code' (empty)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#postal-code\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "CLICK",
+        "selector": "#continue-checkout-btn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#postal-code",
+          "expected_value": "[\"blank\", \"code\", \"empty\", \"enter\", \"missing\", \"postal\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Postal code is required at checkout)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-03",
+    "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+    "objective": "Select 'Price: Low to High' on #product-sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Choose sort option 'Price: Low to High'",
+    "expected_outcome": "Records ordered by number asc as option 'Price: Low to High' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_products_products_catal_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#product-sort",
+      "option": "lohi",
+      "option_label": "Price: Low to High",
+      "key": "number",
+      "direction": "asc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "lohi",
+        "description": "Choose sort option 'Price: Low to High'",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"asc\"}",
+          "description": "Records ordered by number asc as option 'Price: Low to High' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-03",
+    "name": "Catalog Sorting Price (Low to High)",
+    "objective": "Verify selecting 'lohi' reorders catalog items from lowest price to highest.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Select Low to High price sorting",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CATALOG-01 resolved against controls observed on this target (Capabilities evidenced: ['CATALOG_BROWSING', 'PAGINATION_SORTING']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "lohi",
+        "description": "Select Low to High price sorting",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products",
+          "description": "'Products' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-03",
+    "name": "Accessible names on /login",
+    "objective": "Interactive controls on /login expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /login; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Navigate to observed route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-03",
+    "name": "Transition: 'Proceed to Checkout' on /cart",
+    "objective": "Verify activating 'Proceed to Checkout' on /cart produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#checkout-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /cart; Activate 'Proceed to Checkout'",
+    "expected_outcome": "Transition reaches /checkout (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-fdef7bae"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/cart",
+        "description": "Navigate to observed route /cart",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "#checkout-button",
+        "value": null,
+        "description": "Activate 'Proceed to Checkout'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/checkout",
+          "description": "Transition reaches /checkout (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-03",
+    "name": "Route reachable with stable landmarks: /login",
+    "objective": "Verify /login remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Navigate to observed route /login; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'System Access Portal'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_login_system_access__view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Navigate to observed route /login",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "System Access Portal",
+          "description": "Stable heading 'System Access Portal' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-04",
+    "name": "Postal Code: whitespace only is rejected",
+    "objective": "Boundary test of 'Postal Code' on /checkout: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#first-name",
+      "#last-name",
+      "#postal-code",
+      "#continue-checkout-btn"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Enter valid 'First Name'; Enter valid 'Last Name'; Enter whitespace value for 'Postal Code' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Postal code is required at checkout)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_checkout_checkout_shipp_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#postal-code",
+      "field_label": "Postal Code",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Postal code is required at checkout",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "FILL",
+        "selector": "#first-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'First Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 7,
+        "action": "FILL",
+        "selector": "#last-name",
+        "value": "QA Sample",
+        "description": "Enter valid 'Last Name'",
+        "assertion": null
+      },
+      {
+        "step_number": 8,
+        "action": "FILL",
+        "selector": "#postal-code",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Postal Code' (whitespace only)",
+        "assertion": null
+      },
+      {
+        "step_number": 9,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#postal-code\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null
+      },
+      {
+        "step_number": 10,
+        "action": "CLICK",
+        "selector": "#continue-checkout-btn",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#postal-code",
+          "expected_value": "[\"blank\", \"code\", \"empty\", \"enter\", \"missing\", \"postal\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Postal code is required at checkout)",
+          "expected_source": "REQUIREMENT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-04",
+    "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+    "objective": "Select 'Price: High to Low' on #product-sort and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "#product-sort"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Choose sort option 'Price: High to Low'",
+    "expected_outcome": "Records ordered by number desc as option 'Price: High to Low' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_products_products_catal_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "#product-sort",
+      "option": "hilo",
+      "option_label": "Price: High to Low",
+      "key": "number",
+      "direction": "desc",
+      "rule_source": "option label semantics (derived inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "SELECT",
+        "selector": "#product-sort",
+        "value": "hilo",
+        "description": "Choose sort option 'Price: High to Low'",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"desc\"}",
+          "description": "Records ordered by number desc as option 'Price: High to Low' states",
+          "expected_source": "DERIVED_INFERENCE"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-TR-04",
+    "name": "Transition: 'Products' on /checkout",
+    "objective": "Verify activating 'Products' on /checkout produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button",
+      "a[href=\"/products\"]"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /checkout; Activate 'Products'",
+    "expected_outcome": "Transition reaches /products (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-ad8bf00e"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/checkout",
+        "description": "Navigate to observed route /checkout",
+        "assertion": null
+      },
+      {
+        "step_number": 6,
+        "action": "CLICK",
+        "selector": "a[href=\"/products\"]",
+        "value": null,
+        "description": "Activate 'Products'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Transition reaches /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-04",
+    "name": "Route reachable with stable landmarks: /products",
+    "objective": "Verify /products remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#username",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed login route /login; Enter authorized username (resolved at run time from origin-scoped credentials); Enter authorized password (resolved at run time from origin-scoped credentials); Submit observed login form; Navigate to observed route /products; Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Products Catalog'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-benchmark_shop-baseline-r1-c518b2",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_products_products_catal_view",
+      "st_products_products_catal_view_sort_az_menu_open_menu_open",
+      "st_products_products_catal_view_sort_az_menu_closed"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/login",
+        "description": "Open observed login route /login",
+        "assertion": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#username",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Enter authorized username (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Enter authorized password (resolved at run time from origin-scoped credentials)",
+        "assertion": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit observed login form",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/products",
+          "description": "Authenticated landing route /products (observed)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 5,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "http://127.0.0.1:8113/products",
+        "description": "Navigate to observed route /products",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products Catalog",
+          "description": "Stable heading 'Products Catalog' observed on every visit",
+          "expected_source": "OBSERVED"
+        }
+      },
+      {
+        "step_number": 7,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        }
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-benchmark_shop-baseline-r1-c518b2",
+    "target_origin": "http://127.0.0.1:8113",
+    "test_kind": "FUNCTIONAL",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  }
+]

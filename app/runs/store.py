@@ -39,6 +39,7 @@ RUN_FILE = "run.json"
 REPORT_FILE = "report.json"
 TEST_CASES_FILE = "test_cases.json"
 EXECUTIONS_DIR = "executions"
+FINDINGS_FILE = "findings.json"
 
 
 class RunStatus(str, Enum):
@@ -112,6 +113,10 @@ class RunDetailResponse(BaseModel):
     test_cases: List[Dict[str, Any]] = Field(default_factory=list)
     # The most recent persisted ExecuteSuiteResponse for this run's test cases, if any.
     latest_execution: Optional[Dict[str, Any]] = None
+    # Unified findings (investigation + execution), see app/findings/registry.py.
+    findings: Optional[Dict[str, Any]] = None
+    # Artifacts the run record refers to that are not on disk (reported, never silently ignored).
+    missing_artifacts: List[str] = Field(default_factory=list)
 
 
 class InvalidRunId(ValueError):
@@ -216,6 +221,10 @@ class RunStore:
         with self._lock:
             self._write_json(run_dir / REPORT_FILE, redact_secrets(report, secrets))
             self._write_json(run_dir / TEST_CASES_FILE, redact_secrets(list(test_cases), secrets))
+            try:
+                self._refresh_findings_locked(run_id, secrets)
+            except Exception as e:  # findings are derived; never lose the run because of them
+                logger.error("[RunStore] Could not build findings for %s: %s", run_id, e)
             return self._update_locked(
                 run_id,
                 secrets,
@@ -244,12 +253,14 @@ class RunStore:
         with self._lock:
             record = self.get_record(run_id)
             self._write_json(run_dir / EXECUTIONS_DIR / f"{execution_id}.json", redact_secrets(execution, secrets))
-            return self._update_locked(
+            updated = self._update_locked(
                 run_id,
                 secrets,
                 latest_execution_id=execution_id,
                 execution_count=record.execution_count + 1,
             )
+            self._refresh_findings_locked(run_id, secrets)
+            return updated
 
     def fail(self, run_id: str, error: str, secrets: Optional[Iterable[str]] = None) -> RunRecord:
         return self._update(run_id, secrets, status=RunStatus.FAILED, finished_at=_utc_now(), error=error)
@@ -295,12 +306,50 @@ class RunStore:
         cases_path = run_dir / TEST_CASES_FILE
         report = self._read_json(report_path) if report_path.is_file() else None
         test_cases = self._read_json(cases_path) if cases_path.is_file() else []
+        missing: List[str] = []
+        if record.status == RunStatus.COMPLETED:
+            missing += [name for name, p in ((REPORT_FILE, report_path), (TEST_CASES_FILE, cases_path)) if not p.is_file()]
         latest_execution = None
         if record.latest_execution_id and EXECUTION_ID_PATTERN.fullmatch(record.latest_execution_id):
             execution_path = run_dir / EXECUTIONS_DIR / f"{record.latest_execution_id}.json"
             if execution_path.is_file():
                 latest_execution = self._read_json(execution_path)
-        return RunDetailResponse(run=record, report=report, test_cases=test_cases, latest_execution=latest_execution)
+            else:
+                missing.append(f"{EXECUTIONS_DIR}/{record.latest_execution_id}.json")
+        findings_path = run_dir / FINDINGS_FILE
+        if findings_path.is_file():
+            findings = self._read_json(findings_path)
+        else:
+            # Runs persisted before the findings registry existed: derive from their artifacts (read-only).
+            findings = self._build_findings(run_id, record, report, test_cases) if report is not None else None
+        return RunDetailResponse(run=record, report=report, test_cases=test_cases, latest_execution=latest_execution,
+                                 findings=findings, missing_artifacts=missing)
+
+    def _executions(self, run_id: str) -> List[Dict[str, Any]]:
+        directory = self._run_dir(run_id) / EXECUTIONS_DIR
+        if not directory.is_dir():
+            return []
+        files = sorted((p for p in directory.glob("exec-*.json") if p.is_file()), key=lambda p: p.stat().st_mtime)
+        out = []
+        for p in files:
+            try:
+                out.append(self._read_json(p))
+            except Exception as e:
+                logger.warning("[RunStore] Unreadable execution %s: %s", p, e)
+        return out
+
+    def _build_findings(self, run_id: str, record: RunRecord, report: Optional[Dict[str, Any]],
+                        test_cases: List[Dict[str, Any]]) -> Dict[str, Any]:
+        from app.findings.registry import build_findings
+        return build_findings(report, test_cases, self._executions(run_id), target_url=record.target_url)
+
+    def _refresh_findings_locked(self, run_id: str, secrets: Optional[Iterable[str]] = None) -> None:
+        """Recomputes findings.json from the persisted report, test cases and executions (caller holds the lock)."""
+        run_dir = self._run_dir(run_id)
+        report = self._read_json(run_dir / REPORT_FILE) if (run_dir / REPORT_FILE).is_file() else None
+        cases = self._read_json(run_dir / TEST_CASES_FILE) if (run_dir / TEST_CASES_FILE).is_file() else []
+        findings = self._build_findings(run_id, self.get_record(run_id), report, cases)
+        self._write_json(run_dir / FINDINGS_FILE, redact_secrets(findings, secrets))
 
     def list_runs(self) -> List[RunRecord]:
         if not self.root.is_dir():

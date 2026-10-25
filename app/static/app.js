@@ -23686,11 +23686,11 @@ var VerityQAApp = (() => {
         id: bug.bug_id,
         title: bug.title,
         source: `Execution (${bug.test_id})`,
-        verdict: bug.verification_status,
+        verdict: bug.classification || bug.verification_status,
         severity: bug.severity || null,
         detail: textOf(bug.actual_behavior) || textOf(bug.summary),
         reproduction: textOf(bug.reproduction_rate),
-        reason: textOf(bug.summary)
+        reason: textOf(bug.verdict_rationale) || textOf(bug.summary)
       };
       if (bug.verification_status === "CONFIRMED_REPRODUCIBLE") verified.push(item);
       else unverified.push(item);
@@ -23744,12 +23744,8 @@ var VerityQAApp = (() => {
     liveEvents,
     currentStatus
   }) {
-    const [description, setDescription] = (0, import_react2.useState)(
-      "E-commerce shopping application with authentication, inventory catalog, cart, and checkout funnel"
-    );
-    const [requirements, setRequirements] = (0, import_react2.useState)(
-      "Users must authenticate with standard credentials to view inventory\nAdding an item to the cart must increment the cart badge count\nCart items must be preserved through the checkout funnel\nCheckout step two requires valid first name, last name, and postal code"
-    );
+    const [description, setDescription] = (0, import_react2.useState)("");
+    const [requirements, setRequirements] = (0, import_react2.useState)("");
     const [useStreaming, setUseStreaming] = (0, import_react2.useState)(true);
     const presets = [
       { label: "SauceDemo E-Commerce", url: "https://www.saucedemo.com/" },
@@ -24168,7 +24164,8 @@ var VerityQAApp = (() => {
     executingTests,
     canExecute,
     onSelectTab,
-    onViewScreenshot
+    onViewScreenshot,
+    findings
   }) {
     const [selectedResult, setSelectedResult] = (0, import_react5.useState)(null);
     const [filterStatus, setFilterStatus] = (0, import_react5.useState)("ALL");
@@ -24177,11 +24174,12 @@ var VerityQAApp = (() => {
     const { verified, unverified } = bugFindings(investigationReport, executionReport);
     const filteredResults = results.filter((r) => filterStatus === "ALL" || displayExecutionStatus(r.status) === filterStatus);
     const metricCards = [
-      { label: "Executed", value: executionReport ? results.length : NO_DATA, sub: "Test cases run", color: null },
+      { label: "Attempted", value: executionReport ? results.length : NO_DATA, sub: "Test cases started", color: null },
+    { label: "Assertion reached", value: executionReport ? results.filter((r) => (r.assertions_evaluated || 0) > 0).length : NO_DATA, sub: "Setup succeeded and the test's own assertions ran", color: null },
       { label: "Pass", value: executionReport ? counts.PASS : NO_DATA, sub: "All stated assertions satisfied", color: "var(--color-success)" },
       { label: "Fail", value: executionReport ? counts.FAIL : NO_DATA, sub: "An assertion was not satisfied", color: "var(--color-danger)" },
       { label: "Error", value: executionReport ? counts.ERROR : NO_DATA, sub: "Runner, locator, or environment error", color: "var(--color-warning)" },
-      { label: "Blocked", value: executionReport ? counts.BLOCKED : NO_DATA, sub: "Could not run (e.g. credentials missing)", color: null },
+      { label: "Blocked", value: executionReport ? counts.BLOCKED : NO_DATA, sub: "A prerequisite (login, navigation, credentials) failed before the assertion", color: null },
       { label: "Invalid", value: executionReport ? counts.INVALID : NO_DATA, sub: "Test case not executable as defined", color: null },
       { label: "Incomplete", value: executionReport ? counts.INCOMPLETE : NO_DATA, sub: "Ran but verified nothing", color: null }
     ];
@@ -24194,7 +24192,7 @@ var VerityQAApp = (() => {
         id: "btn-execute-tests"
       },
       executingTests ? /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("span", { className: "spinner", style: { width: "14px", height: "14px", marginRight: "6px", display: "inline-block" } }), "Executing Suite...") : /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, "\u25B6 Run Generated Test Suite")
-    )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metrics-grid", style: { marginBottom: "1.5rem" } }, metricCards.map((card) => /* @__PURE__ */ import_react5.default.createElement("div", { key: card.label, className: "metric-card", style: card.color ? { borderLeft: `4px solid ${card.color}` } : void 0 }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, card.label), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: card.color ? { color: card.color } : void 0 }, card.value), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, card.sub)))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", id: "verified-findings", style: { marginBottom: "1.5rem", border: verified.length > 0 ? "1px solid rgba(239, 68, 68, 0.4)" : void 0 } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", color: verified.length > 0 ? "var(--color-danger)" : "inherit" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u{1F6A8}"), " Verified Findings (", verified.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Confirmed by the investigation's reproducer, or by repeated assertion failures during test execution."))), verified.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "2rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No verified findings"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, "Unverified leads, if any, are listed below and are not bugs until reproduced.")) : /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" } }, verified.map((bug, idx) => /* @__PURE__ */ import_react5.default.createElement(
+    )))), findings && /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", id: "findings-panel", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: "0 0 0.5rem 0" } }, "Findings (", findings.findings.length, ")"), /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "0.5rem" } }, Object.entries(findings.counts || {}).map(([k, v]) => `${k}: ${v}`).join(" \u00B7 ") || "No reproduced findings for this run."), findings.findings.length > 0 && /* @__PURE__ */ import_react5.default.createElement("table", { className: "data-table", style: { width: "100%", fontSize: "0.85rem" } }, /* @__PURE__ */ import_react5.default.createElement("thead", null, /* @__PURE__ */ import_react5.default.createElement("tr", null, /* @__PURE__ */ import_react5.default.createElement("th", null, "Classification"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Finding"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Where"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Evidence sources"), /* @__PURE__ */ import_react5.default.createElement("th", null, "Regression tests"))), /* @__PURE__ */ import_react5.default.createElement("tbody", null, findings.findings.map((f) => /* @__PURE__ */ import_react5.default.createElement("tr", { key: f.finding_id, "data-finding-id": f.finding_id }, /* @__PURE__ */ import_react5.default.createElement("td", null, /* @__PURE__ */ import_react5.default.createElement("span", { className: `badge ${f.classification === "CONFIRMED_DEFECT" ? "badge-danger" : f.classification === "LIKELY_DEFECT" ? "badge-amber" : "badge-neutral"}` }, f.classification)), /* @__PURE__ */ import_react5.default.createElement("td", null, f.title), /* @__PURE__ */ import_react5.default.createElement("td", { className: "mono" }, f.route, " ", f.subject), /* @__PURE__ */ import_react5.default.createElement("td", null, f.sources.map((src) => `${src.kind}: ${src.classification}`).join("; "), f.observations && f.observations.length ? ` (+${f.observations.length} later observation(s))` : ""), /* @__PURE__ */ import_react5.default.createElement("td", { className: "mono" }, (f.regression_test_ids || []).join(", ") || "\u2014")))))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metrics-grid", style: { marginBottom: "1.5rem" } }, metricCards.map((card) => /* @__PURE__ */ import_react5.default.createElement("div", { key: card.label, className: "metric-card", style: card.color ? { borderLeft: `4px solid ${card.color}` } : void 0 }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-label" }, card.label), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-value", style: card.color ? { color: card.color } : void 0 }, card.value), /* @__PURE__ */ import_react5.default.createElement("div", { className: "metric-sub" }, card.sub)))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel", id: "verified-findings", style: { marginBottom: "1.5rem", border: verified.length > 0 ? "1px solid rgba(239, 68, 68, 0.4)" : void 0 } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel-header", style: { display: "flex", justifyContent: "space-between", alignItems: "center" } }, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("h3", { style: { margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", color: verified.length > 0 ? "var(--color-danger)" : "inherit" } }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u{1F6A8}"), " Verified Findings (", verified.length, ")"), /* @__PURE__ */ import_react5.default.createElement("span", { style: { fontSize: "0.85rem", color: "var(--text-muted)" } }, "Confirmed by the investigation's reproducer, or by repeated assertion failures during test execution."))), verified.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "empty-state", style: { padding: "2rem 1rem" } }, /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: 0, fontWeight: 500 } }, "No verified findings"), /* @__PURE__ */ import_react5.default.createElement("p", { style: { margin: "0.25rem 0 0 0", fontSize: "0.85rem", color: "var(--text-muted)" } }, "Unverified leads, if any, are listed below and are not bugs until reproduced.")) : /* @__PURE__ */ import_react5.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" } }, verified.map((bug, idx) => /* @__PURE__ */ import_react5.default.createElement(
       "div",
       {
         key: bug.id || idx,
@@ -24482,6 +24480,7 @@ var VerityQAApp = (() => {
     const [generatedTests, setGeneratedTests] = (0, import_react7.useState)(null);
     const [executingTests, setExecutingTests] = (0, import_react7.useState)(false);
     const [executionReport, setExecutionReport] = (0, import_react7.useState)(null);
+    const [findings, setFindings] = (0, import_react7.useState)(null);
     const [benchmarkRunning, setBenchmarkRunning] = (0, import_react7.useState)(null);
     const [benchmarkResults, setBenchmarkResults] = (0, import_react7.useState)(null);
     const [savedReports, setSavedReports] = (0, import_react7.useState)([]);
@@ -24518,6 +24517,7 @@ var VerityQAApp = (() => {
       if (detail.run?.target_url) setTargetUrl(detail.run.target_url);
       setGeneratedTests({ test_cases: testCases, python_code: null, run_id: runId });
       setExecutionReport(detail.latest_execution || null);
+      setFindings(detail.findings || null);
       if (runId && testCases.length > 0) {
         fetch(`/api/runs/${encodeURIComponent(runId)}/export`).then((r) => r.ok ? r.text() : null).then((code) => {
           if (code) setGeneratedTests((prev) => prev && prev.run_id === runId ? { ...prev, python_code: code } : prev);
@@ -24691,6 +24691,10 @@ var VerityQAApp = (() => {
         if (res.ok) {
           const result = await res.json();
           setExecutionReport(result);
+          if (result.run_id) {
+            fetchRun(result.run_id).then((detail) => setFindings(detail?.findings || null)).catch(() => {
+            });
+          }
           showToast(`Suite Execution Complete: ${result.summary?.passed || 0} passed, ${result.summary?.failed || 0} failed.`, "success");
         } else {
           const errText = await res.text();
@@ -24798,10 +24802,10 @@ var VerityQAApp = (() => {
       )
     ), /* @__PURE__ */ import_react7.default.createElement("header", { className: "app-header" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "header-left" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "brand-logo", style: { display: "flex", alignItems: "center", gap: "0.6rem" } }, /* @__PURE__ */ import_react7.default.createElement("span", { style: { fontSize: "1.75rem" } }, "\u26A1"), /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem" } }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "brand-title", style: { fontSize: "1.25rem", fontWeight: 700, letterSpacing: "-0.02em" } }, "VERITY", /* @__PURE__ */ import_react7.default.createElement("span", { style: { color: "var(--color-primary)" } }, "QA")), /* @__PURE__ */ import_react7.default.createElement("span", { className: "badge badge-primary", style: { fontSize: "0.65rem", textTransform: "uppercase" } }, "AUTONOMOUS AI QA")), /* @__PURE__ */ import_react7.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--text-muted)" } }, "Observe \xB7 Understand \xB7 Model \xB7 Plan \xB7 Test \xB7 Verify")))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "header-right", style: { display: "flex", alignItems: "center", gap: "1rem" } }, isInvestigating && /* @__PURE__ */ import_react7.default.createElement("div", { className: "investigation-indicator", style: { display: "flex", alignItems: "center", gap: "0.5rem", background: "rgba(99, 102, 241, 0.15)", padding: "0.35rem 0.75rem", borderRadius: "20px", border: "1px solid var(--color-primary)" } }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "spinner", style: { width: "12px", height: "12px" } }), /* @__PURE__ */ import_react7.default.createElement("span", { style: { fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 600 } }, "Autonomous Probe Active")), /* @__PURE__ */ import_react7.default.createElement("div", { style: { fontSize: "0.85rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.5rem" } }, /* @__PURE__ */ import_react7.default.createElement("span", null, "Target:"), /* @__PURE__ */ import_react7.default.createElement("span", { style: { color: "var(--text-color)", fontFamily: "monospace", fontWeight: 600 } }, targetUrl ? new URL(targetUrl.startsWith("http") ? targetUrl : `https://${targetUrl}`).hostname : "None")))), /* @__PURE__ */ import_react7.default.createElement("nav", { className: "tab-nav" }, [
       { id: "overview", label: "Overview", icon: "\u{1F3E0}" },
-      { id: "investigation", label: "Investigation", icon: "\u{1F50D}", badge: isInvestigating ? "Active" : null },
-      { id: "results", label: "Investigation Results", icon: "\u{1F5FA}\uFE0F", count: investigationReport?.states?.length },
-      { id: "tests", label: "Generated Tests", icon: "\u{1F9EA}", count: generatedTests?.test_cases?.length },
-      { id: "execution", label: "Execution & Bug Findings", icon: "\u{1F6A8}", count: investigationReport?.verified_defects?.length || executionReport?.summary?.failed },
+      { id: "investigation", label: "Investigate", icon: "\u{1F50D}", badge: isInvestigating ? "Active" : null },
+      { id: "results", label: "Results", icon: "\u{1F5FA}\uFE0F", count: investigationReport?.states?.length },
+      { id: "tests", label: "Tests", icon: "\u{1F9EA}", count: generatedTests?.test_cases?.length },
+      { id: "execution", label: "Execution", icon: "\u{1F6A8}", count: investigationReport?.verified_defects?.length || executionReport?.summary?.failed },
       { id: "reports", label: "Reports & Benchmarks", icon: "\u{1F4CA}" }
     ].map((tab) => /* @__PURE__ */ import_react7.default.createElement(
       "button",
@@ -24857,6 +24861,7 @@ var VerityQAApp = (() => {
       {
         investigationReport,
         executionReport,
+        findings,
         onRunTestSuite: handleRunTestSuite,
         executingTests,
         onSelectTab: setActiveTab,

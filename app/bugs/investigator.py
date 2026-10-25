@@ -22,7 +22,7 @@ import uuid
 import logging
 import re
 from enum import Enum
-from typing import List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from app.schemas import (
     ExecutionResult,
@@ -34,6 +34,7 @@ from app.schemas import (
     PageCategory,
 )
 from app.execution.runner import QAPlanRunner
+from app.findings import lifecycle
 
 logger = logging.getLogger("verityqa.bugs")
 
@@ -50,19 +51,24 @@ class InvestigationVerdict(str, Enum):
     # Reproducible deviation from an expectation that was only inferred (e.g. ordering derived from an
     # option label). Reported as a behavioural anomaly, never as a confirmed defect.
     UNVERIFIED_ANOMALY = "UNVERIFIED_ANOMALY"
+    # Reproducible failure against a strong but not established expectation (see app/findings/lifecycle.py).
+    LIKELY_DEFECT = "LIKELY_DEFECT"
+    # A prerequisite step (login, navigation path) failed: the behaviour under test was never reached.
+    SETUP_FAILED = "SETUP_FAILED"
 
 
 # Oracle classes produced by the evidence-grounded planner: their expectations were validated against
 # this run's evidence at plan time, so the legacy oracle heuristics below do not apply to them.
 _GROUNDED_ORACLE_CLASSES = {
     "FIELD_CONSTRAINT", "FORM_VALIDATION", "LIST_ORDERING", "FILTER_CONSISTENCY", "OBSERVED_STATE",
-    "STATE_TRANSITION", "CRUD_STATE_CHANGE", "DOMAIN_PATTERN", "DEFECT_REGRESSION", "SPECIFICATION",
+    "STATE_TRANSITION", "CRUD_STATE_CHANGE", "DOMAIN_PATTERN", "DEFECT_REGRESSION", "SPECIFICATION", "ACCESSIBILITY",
 }
-# Expected-behaviour sources that establish a rule; anything else is an inference.
-_ESTABLISHED_SOURCES = {"REQUIREMENT", "HTML_CONSTRAINT", "OBSERVED"}
+# Expected-behaviour sources that establish a rule (single source of truth: the findings lifecycle).
+_ESTABLISHED_SOURCES = lifecycle.ESTABLISHED_SOURCES
 
 # Map new verdict → legacy VerificationStatus for schema compatibility
 _VERDICT_TO_LEGACY = {
+    InvestigationVerdict.LIKELY_DEFECT: VerificationStatus.LIKELY_DEFECT,
     InvestigationVerdict.UNVERIFIED_ANOMALY: VerificationStatus.POTENTIAL_DEFECT,
     InvestigationVerdict.PASS: VerificationStatus.OBSERVED_NOT_REPRODUCED,
     InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: VerificationStatus.CONFIRMED_REPRODUCIBLE,
@@ -71,7 +77,36 @@ _VERDICT_TO_LEGACY = {
     InvestigationVerdict.LOCATOR_ERROR: VerificationStatus.TEST_ORACLE_DEFECT,
     InvestigationVerdict.AUTOMATION_ERROR: VerificationStatus.ENVIRONMENTAL_FAILURE,
     InvestigationVerdict.ENVIRONMENT_ERROR: VerificationStatus.ENVIRONMENTAL_FAILURE,
+    InvestigationVerdict.SETUP_FAILED: VerificationStatus.ENVIRONMENTAL_FAILURE,
 }
+
+
+_VERDICT_TO_FINDING = {
+    InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: lifecycle.CONFIRMED,
+    InvestigationVerdict.LIKELY_DEFECT: lifecycle.LIKELY,
+    InvestigationVerdict.UNVERIFIED_ANOMALY: lifecycle.ANOMALY,
+    InvestigationVerdict.INCONCLUSIVE: lifecycle.INCONCLUSIVE,
+    InvestigationVerdict.TEST_DEFINITION_ERROR: lifecycle.DEFINITION,
+    InvestigationVerdict.LOCATOR_ERROR: lifecycle.INFRA,
+    InvestigationVerdict.AUTOMATION_ERROR: lifecycle.INFRA,
+    InvestigationVerdict.ENVIRONMENT_ERROR: lifecycle.INFRA,
+    InvestigationVerdict.PASS: lifecycle.PASSED,
+    InvestigationVerdict.SETUP_FAILED: lifecycle.BLOCKED,
+}
+
+
+def _attempt_record(attempt: int, result: ExecutionResult) -> Dict[str, Any]:
+    """What one execution attempt observed (no input values; the per-attempt test-data namespace only)."""
+    return {
+        "attempt": attempt,
+        "status": getattr(result.status, "value", str(result.status)),
+        "failure_step": result.failure_step,
+        "failure_reason": (result.failure_reason or "")[:300],
+        "counted": True,
+        "test_data_namespace": (result.evidence_retained or {}).get("test_data_namespace"),
+        "setup_failure": (result.evidence_retained or {}).get("setup_failure"),
+        "timestamp": result.timestamp,
+    }
 
 
 def _is_locator_error(result: ExecutionResult) -> bool:
@@ -257,42 +292,75 @@ class BugInvestigator:
         # ----------------------------------------------------------------
         runs_total = 1
         runs_failed = 1
+        attempts = [_attempt_record(1, initial_result)]
         should_retry = verdict == InvestigationVerdict.INCONCLUSIVE
 
         if should_retry:
             for attempt in range(self.verification_retries):
-                runs_total += 1
                 try:
                     retry_res = await self.runner.run_test(test_case, target_url)
-                    if retry_res.status in (ExecutionStatus.FAILED, ExecutionStatus.ERROR):
-                        # Only an assertion failure reproduces a product defect; an ERROR retry (crash,
-                        # timeout, environment) must never count toward confirmation.
-                        if retry_res.status == ExecutionStatus.FAILED:
-                            runs_failed += 1
-                        # Re-classify on retry to detect flakes
-                        retry_verdict, _ = self._classify_failure(test_case, retry_res)
-                        if retry_verdict in (
-                            InvestigationVerdict.LOCATOR_ERROR,
-                            InvestigationVerdict.AUTOMATION_ERROR,
-                        ):
-                            verdict = retry_verdict
-                            verdict_rationale = f"Retry {attempt+1} confirmed {retry_verdict.value}"
-                            break
                 except Exception as e:
                     logger.warning("Retry %d failed with exception: %s", attempt + 1, e)
+                    attempts.append({"attempt": attempt + 2, "status": "EXCEPTION", "counted": False, "failure_reason": str(e)[:300]})
+                    continue
+                record = _attempt_record(attempt + 2, retry_res)
+                attempts.append(record)
+                if retry_res.status == ExecutionStatus.BLOCKED:
+                    record["counted"] = False  # setup failed: the behaviour under test was not reached
+                    continue
+                retry_verdict, _ = self._classify_failure(test_case, retry_res) if retry_res.status != ExecutionStatus.PASSED else (None, "")
+                if retry_verdict in (InvestigationVerdict.LOCATOR_ERROR, InvestigationVerdict.AUTOMATION_ERROR,
+                                     InvestigationVerdict.ENVIRONMENT_ERROR):
+                    # The retry broke before its oracle could run; it says nothing about the initial failure,
+                    # which did reach its oracle.
+                    record["counted"] = False
+                    record["infrastructure"] = retry_verdict.value
+                    continue
+                # Only an evaluated outcome (the oracle ran) is evidence either way; an infrastructure error or a
+                # not-evaluable retry neither reproduces nor refutes the failure.
+                if retry_res.status == ExecutionStatus.PASSED:
+                    runs_total += 1
+                elif (retry_res.status == ExecutionStatus.FAILED and retry_res.failure_step is not None
+                      and initial_result.failure_step is not None and retry_res.failure_step < initial_result.failure_step):
+                    # Failed before reaching the step under test (e.g. the login prelude): the oracle never ran.
+                    record["counted"] = False
+                    record["reproduces_initial"] = False
+                elif retry_res.status == ExecutionStatus.FAILED:
+                    runs_total += 1
+                    # A failure at a different (later) step is a different failure, not a reproduction of this one.
+                    if retry_res.failure_step == initial_result.failure_step:
+                        runs_failed += 1
+                        record["reproduces_initial"] = True
+                    else:
+                        record["reproduces_initial"] = False
+                else:
+                    record["counted"] = False
 
             # Upgrade to VERIFIED_PRODUCT_DEFECT if consistently failing against an established rule
-            if runs_failed == runs_total and verdict == InvestigationVerdict.INCONCLUSIVE:
+            if runs_total > 1 and runs_failed == runs_total and verdict == InvestigationVerdict.INCONCLUSIVE:
                 source = self._failing_expectation_source(test_case, initial_result)
-                if source in _ESTABLISHED_SOURCES:
+                finding_class = lifecycle.classify_reproduced_failure(source)
+                if finding_class == lifecycle.FindingClass.CONFIRMED_DEFECT:
                     verdict = InvestigationVerdict.VERIFIED_PRODUCT_DEFECT
                     verdict_rationale = (f"Reproduced consistently: {runs_failed}/{runs_total} runs failed "
                                          f"against a {source} expectation")
+                elif finding_class == lifecycle.FindingClass.LIKELY_DEFECT:
+                    verdict = InvestigationVerdict.LIKELY_DEFECT
+                    verdict_rationale = (f"Reproduced {runs_failed}/{runs_total} runs against a {source} expectation "
+                                         "(strong but not an explicit requirement); likely defect")
                 else:
                     verdict = InvestigationVerdict.UNVERIFIED_ANOMALY
                     verdict_rationale = (f"Reproduced {runs_failed}/{runs_total} runs, but the expected behaviour "
                                          f"is a {source or 'unstated'} inference; an explicit requirement is needed "
                                          "to confirm it as a defect")
+            elif verdict == InvestigationVerdict.INCONCLUSIVE:
+                if runs_total == 1:
+                    verdict_rationale = ("The failure could not be re-evaluated: every retry ended without an evaluated "
+                                         "oracle (infrastructure error or not evaluable); it is neither confirmed nor refuted.")
+                else:
+                    verdict_rationale = (f"The failure reproduced in {runs_failed}/{runs_total} evaluated runs. A passing "
+                                         "retry does not prove correct behaviour; the outcome is unstable and needs review "
+                                         "(see attempts for each run's observation).")
 
         repro_rate_str = f"{runs_failed}/{runs_total} runs failed"
 
@@ -314,6 +382,7 @@ class BugInvestigator:
             ver_status=ver_status,
             severity=severity,
             repro_rate_str=repro_rate_str,
+            attempts=attempts,
         )
 
     @staticmethod
@@ -345,6 +414,8 @@ class BugInvestigator:
             ExecutionStatus.AUTOMATION_ERROR: (InvestigationVerdict.AUTOMATION_ERROR, "Executor reported an automation failure."),
             ExecutionStatus.ENVIRONMENT_ERROR: (InvestigationVerdict.ENVIRONMENT_ERROR, "Executor reported an environment failure."),
             ExecutionStatus.TEST_DEFINITION_ERROR: (InvestigationVerdict.TEST_DEFINITION_ERROR, "Test definition is invalid."),
+            ExecutionStatus.BLOCKED: (InvestigationVerdict.SETUP_FAILED,
+                                      "A prerequisite step failed or could not run; the behaviour under test was not reached."),
         }
         if result.status in status_verdicts:
             return status_verdicts[result.status]
@@ -424,6 +495,7 @@ class BugInvestigator:
         ver_status: VerificationStatus,
         severity: BugSeverity,
         repro_rate_str: str,
+        attempts: Optional[List[Dict[str, Any]]] = None,
     ) -> BugReport:
         tid = test_case.test_id
         short_id = tid[-6:] if len(tid) >= 6 else uuid.uuid4().hex[:6].upper()
@@ -436,8 +508,10 @@ class BugInvestigator:
             InvestigationVerdict.TEST_DEFINITION_ERROR: "[TEST ORACLE]",
             InvestigationVerdict.INCONCLUSIVE: "[INCONCLUSIVE]",
             InvestigationVerdict.UNVERIFIED_ANOMALY: "[ANOMALY]",
+            InvestigationVerdict.LIKELY_DEFECT: "[LIKELY]",
             InvestigationVerdict.VERIFIED_PRODUCT_DEFECT: f"[{test_case.page_category.value}]",
             InvestigationVerdict.PASS: "[PASS]",
+            InvestigationVerdict.SETUP_FAILED: "[SETUP_FAILED]",
         }.get(verdict, "")
 
         title = f"{verdict_prefix} {test_case.name}: {verdict.value}"
@@ -501,6 +575,10 @@ class BugInvestigator:
             console_errors=initial_result.console_logs[:10],  # cap at 10 lines
             suspected_cause=suspected_cause,
             suggested_fix=suggested_fix,
+            classification=_VERDICT_TO_FINDING.get(verdict, lifecycle.INCONCLUSIVE),
+            expected_source=self._failing_expectation_source(test_case, initial_result),
+            verdict_rationale=verdict_rationale,
+            attempts=attempts or [_attempt_record(1, initial_result)],
         )
 
     def _diagnose_cause(
@@ -543,6 +621,11 @@ class BugInvestigator:
             return (
                 f"Failure was not consistently reproducible: {result.failure_reason}",
                 "Increase observation window and check for intermittent application behavior.",
+            )
+        if verdict == InvestigationVerdict.LIKELY_DEFECT:
+            return (
+                f"Reproducible failure against a strong expectation: {result.failure_reason}",
+                "Confirm the rule against the product requirements; if it holds, fix the application.",
             )
         if verdict == InvestigationVerdict.UNVERIFIED_ANOMALY:
             return (

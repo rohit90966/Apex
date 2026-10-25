@@ -49,6 +49,47 @@ from app.investigation_agent.understanding import PageUnderstandingEngine, PageU
 logger = logging.getLogger(__name__)
 
 
+
+def establish_probe_state(session: Any, required_url: Optional[str], selector: Optional[str],
+                          journey_active: bool = False) -> Optional[tuple]:
+    """
+    Brings the browser to the page a probe requires and revalidates its target there.
+    Returns None when the probe may run, else (reason, detail) and the probe must not run:
+      JOURNEY_STATE       - a journey is in progress elsewhere; navigating would discard its state
+      NAVIGATION_FAILURE  - the required page could not be loaded
+      STATE_NOT_REACHED   - navigation was redirected (e.g. to a login page): the state needs more than a URL
+      TARGET_NOT_PRESENT  - the page was reached but the probe's target is not on it
+    Navigation goes through the session (same host allowlist/SSRF checks as any other navigation).
+    """
+    from app.investigation_agent.browser_actions import _urls_compatible
+    current = session.page.url if session.page else ""
+    if required_url and not _urls_compatible(current, required_url):
+        if journey_active:
+            return ("JOURNEY_STATE", f"probe requires {required_url}; an active journey is on {current}")
+        ok, landed, status = session.navigate(required_url)
+        if not ok or status == 404:
+            return ("NAVIGATION_FAILURE", f"navigation to {required_url} failed (status={status})")
+        if not _urls_compatible(landed or (session.page.url if session.page else ""), required_url):
+            return ("STATE_NOT_REACHED", f"navigation to {required_url} ended on {landed}")
+        try:
+            session.settle()
+        except Exception:
+            pass
+    if selector and not session.resolve_target(selector).get("present"):
+        return ("TARGET_NOT_PRESENT", f"'{selector}' is not on {session.page.url if session.page else required_url}")
+    return None
+
+
+def probe_sent_state_changing_request(res: Any) -> bool:
+    """
+    The mutation budget limits side effects on the application, so only probes that sent a state-changing
+    request (anything but GET/HEAD/OPTIONS) count against it; navigating or opening a menu changes the page,
+    not the application's data.
+    """
+    return bool(res and any(
+        (getattr(e, "method", "") or "").upper() not in ("", "GET", "HEAD", "OPTIONS")
+        for e in (getattr(res, "network_events", None) or [])))
+
 class InvestigationOrchestrator:
     """
     Stateful Investigation Agent orchestrator.
@@ -805,69 +846,36 @@ class InvestigationOrchestrator:
                 "evidence_ledger": ledger,
             }
 
-        # Ensure browser is at the question's source_url if the target is not present on current page
+        # Establish the probe's state before acting: the required page is decided by URL (query string included),
+        # never by whether a same-template selector happens to exist on the current page.
         if q and q.metadata.get("source_url") and self.session.page:
             src_url = q.metadata["source_url"]
             first_step = script.steps[0] if script.steps else None
             if first_step and first_step.action_type != "NAVIGATE_LINK":
                 if not getattr(first_step, "required_url", None):
                     first_step.required_url = src_url
+                required = first_step.required_url
                 t_sel = first_step.raw_target or (first_step.target.css if first_step.target else None)
-                target_present = bool(t_sel and self.session.resolve_target(t_sel).get("present"))
-                if not target_present:
-                    curr_url = self.session.page.url if self.session.page else ""
-                    # If target requires a different URL and an active journey is executing on current page,
-                    # do not disrupt the journey or waste 3s waiting for an absent element.
-                    if self.agenda and self.agenda.active_journey_id and curr_url.rstrip("/") != src_url.rstrip("/"):
-                        logger.info("[Investigator:execute_probe] Target %s belongs to %s, current journey view is %s; skipping out-of-context probe", t_sel, src_url, curr_url)
-                        before_obs = self.session.capture_observation("precond_skip_before")
-                        res = ProbeResult(
-                            script_id=script.script_id,
-                            status="FAILED",
-                            steps_executed=0,
-                            before_obs=before_obs,
-                            after_obs=before_obs,
-                            error_message=f"Precondition unsatisfied: Target '{t_sel}' is for '{src_url}', but current active journey state is '{curr_url}'",
-                            duration_seconds=0.01,
-                            script=script,
-                        )
-                        # Nothing ran: this is not an attempted (or failed) action, only an unexecuted probe.
-                        return {"current_probe_result": res}
-                    else:
-                        ok, nav_url, status = self.session.navigate(src_url)
-                        if not ok or status == 404:
-                            logger.warning("[Investigator:execute_probe] Direct navigation to required state %s failed (status=%s)", src_url, status)
-                            # Handle as navigation failure: do not execute probe on entry page or wrong view
-                            before_obs = self.session.capture_observation("nav_fail_before")
-                            self.session.drain_mutations()
-                            self.session.mark_errors()
-                            res = ProbeResult(
-                                script_id=script.script_id,
-                                status="FAILED",
-                                steps_executed=0,
-                                before_obs=before_obs,
-                                after_obs=before_obs,
-                                error_message=f"Route precondition failed: navigation to '{src_url}' returned HTTP {status} (expected route guard / session required)",
-                                duration_seconds=0.05,
-                                script=script,
-                            )
-                            actions_attempted = state.get("actions_attempted", 0) + 1
-                            return {
-                                "current_probe_result": res,
-                                "actions_attempted": actions_attempted,
-                                "actions_successful": state.get("actions_successful", 0),
-                                "actions_failed": state.get("actions_failed", 0) + 1,
-                            }
+                blocked = establish_probe_state(self.session, required, t_sel,
+                                                journey_active=bool(self.agenda and self.agenda.active_journey_id))
+                if blocked is not None:
+                    reason, detail = blocked
+                    logger.info("[Investigator:execute_probe] Probe not executed (%s): %s", reason, detail)
+                    self._record_unexecuted(q.id, reason, t_sel, detail)
+                    obs = self.session.capture_observation("precond_blocked")
+                    res = ProbeResult(script_id=script.script_id, status="FAILED", steps_executed=0, before_obs=obs,
+                                      after_obs=obs, error_message=f"Precondition unsatisfied ({reason}): {detail}",
+                                      duration_seconds=0.01, script=script)
+                    # Nothing ran: not an attempted (or failed) action, and no budget is consumed.
+                    return {"current_probe_result": res}
 
         res = self.runner.run_probe(self.session, script, run_id=f"run_{state.get('actions_attempted', 0)}")
         actions_attempted = state.get("actions_attempted", 0) + 1
         actions_successful = state.get("actions_successful", 0) + (1 if res.status == "SUCCESS" else 0)
         actions_failed = state.get("actions_failed", 0) + (1 if res.status != "SUCCESS" else 0)
 
-        if res.status == "SUCCESS":
-            for step in script.steps:
-                if step.action_type in ("FILL", "SUBMIT", "CHECK", "UNCHECK"):
-                    self.runner.governor.record_mutation()
+        # Mutation budget is committed per executed mutating step inside ProbeRunner (never here, to avoid
+        # counting one action twice).
 
         return {
             "current_probe_result": res,
@@ -894,8 +902,9 @@ class InvestigationOrchestrator:
             or "precondition" in err.lower()
         ):
             logger.info("[Investigator:perceive_after] Probe failed due to navigation/precondition; skipping oracle defect creation")
-            self._record_unexecuted(q.id, "TARGET_NOT_ON_CURRENT_PAGE" if "precondition" in err.lower() else "NAVIGATION_FAILURE",
-                                    q.target_element, err)
+            if not any(u.get("question_id") == q.id for u in self._unexecuted_probes):
+                self._record_unexecuted(q.id, "TARGET_NOT_ON_CURRENT_PAGE" if "precondition" in err.lower() else "NAVIGATION_FAILURE",
+                                        q.target_element, err)
             return {}
 
         prediction = q.prediction
@@ -1007,10 +1016,10 @@ class InvestigationOrchestrator:
         summary = state.get("probe_summary", "")
         comp = state.get("probe_comparison")
 
-        is_mutating = bool(res and res.diff and res.diff.is_significant)
+        is_mutating = probe_sent_state_changing_request(res)
         is_route_change = bool(res and res.before_obs and res.after_obs and (res.before_obs.url.split('?')[0].rstrip('/') != res.after_obs.url.split('?')[0].rstrip('/')))
         is_state_change = bool(res and res.before_obs and res.after_obs and (res.before_obs.state_id != res.after_obs.state_id))
-        is_productive = is_route_change or is_state_change or is_mutating
+        is_productive = is_route_change or is_state_change or is_mutating or bool(res and res.diff and res.diff.is_significant)
         if self.agenda and q:
             self.agenda.record_probe_outcome(
                 question_id=q.id,
@@ -1828,7 +1837,7 @@ class InvestigationOrchestrator:
         state["bug_leads"] = all_final_leads
 
         confirmed = [l for l in all_final_leads if getattr(l, "status", "") == "CONFIRMED"]
-        unstable = [l for l in all_final_leads if getattr(l, "status", "") in ("UNSTABLE", "SUSPECTED", "REJECTED")]
+        unstable = [l for l in all_final_leads if getattr(l, "status", "") in ("UNSTABLE", "SUSPECTED", "REJECTED", "SETUP_BLOCKED")]
 
         self.emit_event("REPRO_RESULT", {
             "total_evaluated": len(raw_leads),

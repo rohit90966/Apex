@@ -10,7 +10,7 @@ Ground truth is loaded by the evaluator after all runs complete.
 
 Usage:
     python scripts/run_multi_website_benchmark.py                     # local fixtures, both modes
-    python scripts/run_multi_website_benchmark.py --targets taskdash --modes buggy,baseline --repeats 2
+    python scripts/run_multi_website_benchmark.py --targets harbor_events --modes buggy,baseline --repeats 2
     python scripts/run_multi_website_benchmark.py --include-public    # also SauceDemo (network)
 Outputs: reports/multi_website_benchmark.json, reports/multi_website_benchmark.md,
          reports/multi_website_findings.csv, reports/benchmark_exports/<run_id>.py
@@ -46,12 +46,14 @@ from app.intelligence.target_context import canonical_origin, inventory_from_rep
 from app.investigation_agent import run_stateful_investigation  # noqa: E402
 from app.investigation_agent.test_synthesis import synthesize_with_diagnostics  # noqa: E402
 from app.knowledge.repository import get_knowledge_repository  # noqa: E402
+from app.runs import RunStore  # noqa: E402
 from app.schemas import ActionType, ExecutionStatus, is_meaningful_assertion  # noqa: E402
 from benchmarks.targets import TARGETS, PUBLIC_INDEPENDENT, TargetSpec  # noqa: E402
 
-SUITE_VERSION = "multi-website-benchmark/1.0"
+SUITE_VERSION = "multi-website-benchmark/1.1"
 REPORTS = os.path.join(ROOT, "reports")
 EXPORTS = os.path.join(REPORTS, "benchmark_exports")
+BENCH_RUNS = os.path.join(REPORTS, "benchmark_runs")  # benchmark runs persisted like dashboard runs
 
 STATUS_BUCKET = {
     ExecutionStatus.PASSED: "PASS",
@@ -93,7 +95,8 @@ def _start_fixture(target: TargetSpec, mode: str) -> subprocess.Popen:
     env.pop("VERITYQA_FIXTURE_DISCLOSE_BUGS", None)  # the agent must never see the manifest
     port = target.ports[mode]
     proc = subprocess.Popen(
-        [sys.executable, "-m", "uvicorn", target.app_module, "--host", "127.0.0.1", "--port", str(port), "--log-level", "warning"],
+        [sys.executable, "-m", "uvicorn", target.app_module, "--host", "127.0.0.1", "--port", str(port), "--log-level", "warning"]
+        + (["--app-dir", os.path.join(ROOT, target.app_dir)] if target.app_dir else []),
         cwd=ROOT, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     for _ in range(60):
@@ -176,13 +179,13 @@ async def run_one(target: TargetSpec, mode: str, repeat: int, args) -> Dict[str,
 
         investigator = BugInvestigator(runner=runner, verification_retries=2)
         findings: List[Dict[str, Any]] = []
+        bug_reports: List[Any] = []
         for tc, res in zip(cases, results):
             if res.status != ExecutionStatus.FAILED:
                 continue
             bug = await investigator.investigate_failure(res, tc, url)
-            verdict = (InvestigationVerdict.UNVERIFIED_ANOMALY.value if bug.title.startswith("[ANOMALY]")
-                       else "CONFIRMED_REPRODUCIBLE" if bug.verification_status.value == "CONFIRMED_REPRODUCIBLE"
-                       else bug.verification_status.value)
+            bug_reports.append(bug)
+            verdict = bug.classification or "INCONCLUSIVE"
             failing = next((s for s in tc.steps if s.step_number == res.failure_step), None)
             findings.append({
                 "source": "execution",
@@ -195,6 +198,19 @@ async def run_one(target: TargetSpec, mode: str, repeat: int, args) -> Dict[str,
             })
         from benchmarks.evaluator import findings_from_investigation
         findings.extend(findings_from_investigation(report))  # confirmed (2-of-2 reproduced) investigation leads
+
+        # Persist exactly as the dashboard path does, then read the findings back through the store API.
+        store = RunStore(BENCH_RUNS)
+        stored = store.create(url, target.description, target.requirements)
+        store.mark_running(stored.run_id)
+        store.complete(stored.run_id, report=report.model_dump(mode="json"),
+                       test_cases=[tc.model_dump(mode="json") for tc in cases])
+        store.save_execution(stored.run_id, {
+            "execution_id": f"exec-{uuid.uuid4().hex[:12]}", "target_url": url,
+            "results": [r.model_dump(mode="json") for r in results],
+            "bug_reports": [b.model_dump(mode="json") for b in bug_reports],
+        })
+        persisted_detail = store.get(stored.run_id)
         t4 = time.time()
 
         os.makedirs(EXPORTS, exist_ok=True)
@@ -319,7 +335,30 @@ async def run_one(target: TargetSpec, mode: str, repeat: int, args) -> Dict[str,
               "verdict_agreement": agree, "verdict_total": len(cases), "disagreements": disagreements,
               "exported_outcomes": dict(Counter(exported.values())), "export_run_seconds": round(t5 - t4, 2)}
 
+    # Per-defect stage analysis (ground truth is only consulted by the evaluator, after the run).
+    from benchmarks.evaluator import defect_stages
+    views_by_id = {f["test_id"]: f for f in findings}
+    persisted_findings = (persisted_detail.findings or {}).get("findings", [])
+    for pf in persisted_findings:
+        pf["_match_views"] = [views_by_id[k] for k in
+                              [s.get("test_id") or ("LEAD:" + s["ref"].split(":", 1)[1] if s.get("ref", "").startswith("lead:") else "")
+                               for s in pf.get("sources", [])] if k in views_by_id]
+    planned_views = [{"test_id": tc.test_id, "name": tc.name, "oracle_class": tc.oracle_class,
+                      "derived_values": tc.derived_values or {}, "failure_reason": "",
+                      "steps": [f"{s.action.value} {s.selector or s.value or ''}".strip() for s in tc.steps]} for tc in cases]
+    stages = defect_stages(target.key, mode, sorted(inv.routes()), planned_views,
+                           {r.test_id: r.status.value for r in results}, findings, persisted_findings)
+    for pf in persisted_findings:
+        pf.pop("_match_views", None)
+
     record.update(
+        persisted_run_id=persisted_detail.run.run_id,
+        persisted_findings_counts=(persisted_detail.findings or {}).get("counts", {}),
+        missing_artifacts=persisted_detail.missing_artifacts,
+        defect_stages=stages,
+        knowledge_selected=[k["id"] for k in diag.get("knowledge_selected", [])],
+        strategies_applied=diag.get("strategies_applied", []),
+        requirement_alignment={k: diag.get("requirement_alignment", {}).get(k) for k in ("matched", "weak", "unmatched", "warning")},
         status="COMPLETED",
         investigation=investigation, generation=generation, execution=execution, export=export,
         findings=findings,
@@ -383,10 +422,21 @@ def write_markdown(summary: Dict[str, Any], path: str) -> None:
                  f"{', '.join(s['detected_by_execution']) or '-'} | {', '.join(s['detected_by_investigation']) or '-'} | "
                  f"{', '.join(s['missed_defect_ids']) or '-'} | {', '.join(s['detected_as_anomaly_only']) or '-'} | "
                  f"{_fmt(s['false_alarms_on_defect_free_build'])} |")
+    stage_rows = [(r, s) for r in runs for s in r.get("defect_stages", [])]
+    if stage_rows:
+        yn = lambda v: "yes" if v else "no"  # noqa: E731
+        L += ["", "## Per-defect pipeline stages (bug-enabled builds)", "",
+              "| Run | Defect | Route discovered | Test generated | Test executed | Reproduced (by) | Class | Persisted & shown in UI data | Regression test | Missed at |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
+        for r, s in stage_rows:
+            L.append(f"| `{r['run_id']}` | {s['defect_id']} | {yn(s['discovered'])} | {yn(s['test_generated'])} | {yn(s['test_executed'])} "
+                     f"({', '.join(s['executed_statuses'])}) | {yn(s['reproduced'])} ({', '.join(s['reproduced_by']) or '-'}) | "
+                     f"{', '.join(s['classification']) or '-'} | {yn(s['persisted'])} | {yn(s['regression_test'])} | {s['missed_at'] or '-'} |")
     agg = summary["aggregate"]
-    L += ["", "## Aggregate (confirmed findings only, buggy builds)", "",
+    L += ["", "## Aggregate (reproduced findings = confirmed + likely, bug-enabled builds; sums over repeats)", "",
           f"- TP {agg['tp']}, FP {agg['fp']}, FN {agg['fn']}; precision {_fmt(agg['precision'])}, recall {_fmt(agg['recall'])}, F1 {_fmt(agg['f1'])}",
-          f"- False alarms on defect-free (baseline) builds: {agg['baseline_false_alarms']}",
+          f"- Detected with confirmed-only findings: {agg.get('detected_confirmed_only')}",
+          f"- False alarms on defect-free (baseline) builds: {agg['baseline_false_alarms']} (confirmed-only: {agg.get('baseline_false_alarms_confirmed_only')})",
           f"- Cross-target selector leaks: {agg['cross_target_selector_leaks']}; irrelevant patterns accepted: {agg['irrelevant_patterns_accepted']}",
           f"- Export verdict agreement: {agg['export_agreement']}/{agg['export_total']}", ""]
     L += ["## Generation and coverage", "",
@@ -416,7 +466,7 @@ def write_markdown(summary: Dict[str, Any], path: str) -> None:
 
 async def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--targets", default="apex_portal,taskdash,benchmark_shop,taskflow")
+    ap.add_argument("--targets", default="harbor_events")
     ap.add_argument("--modes", default="buggy,baseline")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--include-public", action="store_true", help="also run public targets (network required)")
@@ -424,8 +474,9 @@ async def main() -> None:
     ap.add_argument("--max-seconds", type=float, default=150.0)
     ap.add_argument("--out", default=os.path.join(REPORTS, "multi_website_benchmark"))
     args = ap.parse_args()
+    os.environ["VERITYQA_MEMORY_DISABLED"] = "1"  # evaluations must not be influenced by earlier evaluations
 
-    wanted = [k.strip() for k in args.targets.split(",") if k.strip()]
+    wanted =[k.strip() for k in args.targets.split(",") if k.strip()]
     if args.include_public:
         wanted += [t.key for t in TARGETS if t.target_class == PUBLIC_INDEPENDENT and t.key not in wanted]
     modes = [m.strip() for m in args.modes.split(",") if m.strip()]
@@ -511,6 +562,10 @@ async def main() -> None:
         "tp": tp, "fp": fp, "fn": fn, "precision": precision, "recall": recall,
         "f1": round(2 * precision * recall / (precision + recall), 3) if precision and recall else None,
         "baseline_false_alarms": sum(r["score"]["fp"] for r in completed if r["score"].get("ground_truth") and r["mode"] == "baseline"),
+        "baseline_false_alarms_confirmed_only": sum(len(r["score"].get("false_positives_confirmed_only", []))
+                                                    for r in completed if r["score"].get("ground_truth") and r["mode"] == "baseline"),
+        "detected_confirmed_only": sum(len(r["score"].get("detected_confirmed_only", [])) for r in completed
+                                       if r["score"].get("ground_truth") and r["mode"] == "buggy"),
         "cross_target_selector_leaks": leaks,
         "irrelevant_patterns_accepted": sum(r["generation"]["irrelevant_patterns_accepted"] for r in completed),
         "export_agreement": sum(r["export"]["verdict_agreement"] for r in completed),

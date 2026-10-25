@@ -235,7 +235,7 @@ class BugLead(BaseModel):
     network_excerpt: Optional[Dict[str, Any]] = None
     console_excerpt: Optional[List[str]] = None
     severity_guess: str = "MEDIUM"
-    status: str = "LEAD"  # "LEAD", "CONFIRMED", "UNSTABLE", "REJECTED"
+    status: str = "LEAD"  # "LEAD", "CONFIRMED", "UNSTABLE", "REJECTED" (disproven), "SETUP_BLOCKED" (unresolved)
     confirmation: Dict[str, Any] = Field(default_factory=lambda: {"runs": 0, "passed": 0})
     reproduction_outcome: Optional[ReproductionOutcome] = None
     reproduction_runs: List[Dict[str, Any]] = Field(default_factory=list)

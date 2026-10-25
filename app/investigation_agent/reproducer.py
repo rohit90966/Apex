@@ -24,6 +24,7 @@ from app.investigation_agent.models import (
 )
 from app.investigation_agent.browser_session import StatefulBrowserSession
 from app.investigation_agent.browser_actions import InvestigationActionExecutor
+from app.investigation_agent.authenticator import AuthenticationManager
 from app.investigation_agent.probe_runner import ProbeRunner
 from app.investigation_agent.comparator import classify_form_submission, FormSubmitOutcome
 from app.investigation_agent.oracles import evaluate_always_on_oracles
@@ -39,11 +40,12 @@ class BugReproducer:
 
     def __init__(self, headless: bool = True):
         self.headless = headless
+        self.auth_credentials: Optional[Dict[str, str]] = None  # in memory only; never written to a lead
 
     def _convert_dict_steps_to_script(self, lead: BugLead, steps_list: List[Dict[str, Any]]) -> ProbeScript:
         """Converts step dictionaries into a runnable ProbeScript."""
         probe_steps = []
-        for s in steps_list:
+        for idx, s in enumerate(steps_list):
             target_data = s.get("target")
             sem_target = None
             raw_target = s.get("raw_target")
@@ -62,7 +64,8 @@ class BugReproducer:
                     raw_target=raw_target,
                     resolved_value=s.get("value") or s.get("resolved_value"),
                     key_to_press=s.get("key") or s.get("key_to_press"),
-                    required_url=s.get("required_url") or lead.source_url,
+                    # Only the first step starts on the lead's page; later steps run wherever earlier ones led.
+                    required_url=s.get("required_url") or (lead.source_url if idx == 0 else None),
                     is_prerequisite=s.get("is_prerequisite", False),
                 )
             )
@@ -110,26 +113,34 @@ class BugReproducer:
             prev, trans = parent_map[curr]
             path.append(trans)
             curr = prev
-
         path.reverse()
 
-        for t in path:
-            act = getattr(t, "action_type", "CLICK_CONTROL")
-            target_desc = getattr(t, "target_element_desc", "")
-            if "AUTHENTICATE" in act:
-                if auth_credentials:
-                    setup_steps.extend([
-                        {"action_type": "FILL", "raw_target": "#user-name, input[name=user-name], input[name=username]", "value": auth_credentials.get("username", "testuser"), "is_prerequisite": True},
-                        {"action_type": "FILL", "raw_target": "#password, input[name=password]", "value": auth_credentials.get("password", "testpassword"), "is_prerequisite": True},
-                        {"action_type": "CLICK_CONTROL", "raw_target": "#login-button, input[type=submit], button[type=submit]", "is_prerequisite": True},
-                    ])
-            elif act in ("CLICK_CONTROL", "NAVIGATE_LINK") and target_desc:
-                setup_steps.append({
-                    "action_type": act,
-                    "raw_target": target_desc,
-                    "is_prerequisite": True,
-                })
+        def _url_of(state_id: str) -> str:
+            st = (states or {}).get(state_id)
+            return (getattr(st, "url", None) or (st.get("url") if isinstance(st, dict) else "") or "") if st else ""
 
+        def _page(url: str) -> str:
+            return (url or "").split("#")[0].split("?")[0].rstrip("/")
+
+        # Authentication: replayed through the login page the investigation authenticated on. Credentials are
+        # resolved at replay time for this origin and never stored in the lead.
+        auth = next((t for t in path if "AUTHENTICATE" in (getattr(t, "action_type", "") or "")), None)
+        if auth is not None:
+            setup_steps.append({"action_type": "AUTHENTICATE", "login_url": _url_of(getattr(auth, "source_state_id", "")),
+                                "is_prerequisite": True})
+
+        # In-page state: trailing clicks whose source and destination are the same page (the lead's page is then
+        # reached by navigating to its URL; earlier navigation clicks are not replayed).
+        trailing: List[Dict[str, Any]] = []
+        for t in reversed(path):
+            act = getattr(t, "action_type", "") or ""
+            src, dst = _url_of(getattr(t, "source_state_id", "")), _url_of(getattr(t, "destination_state_id", ""))
+            target_desc = getattr(t, "target_element_desc", "") or getattr(t, "target", "")
+            if "CLICK" not in act or not target_desc or not src or _page(src) != _page(dst):
+                break
+            trailing.insert(0, {"action_type": "CLICK_CONTROL", "raw_target": target_desc, "is_prerequisite": True,
+                                "page_url": src})
+        setup_steps.extend(trailing)
         return setup_steps
 
     def _test_replay_run(
@@ -159,29 +170,43 @@ class BugReproducer:
                 if not ok or status == 404:
                     return False, ReproductionOutcome.REPRODUCTION_SETUP_FAILED, None, f"Initial navigation to target URL {target_url} failed (status={status})"
 
-                # Execute prerequisite setup steps if any
                 effective_setup = setup_steps if setup_steps is not None else (lead.setup_steps or [])
-                if effective_setup:
-                    for s_idx, s in enumerate(effective_setup):
-                        act_type = s.get("action_type", "CLICK_CONTROL")
-                        raw_target = s.get("raw_target") or (s.get("target", {}).get("css") if isinstance(s.get("target"), dict) else str(s.get("target") or ""))
-                        val = s.get("value") or s.get("resolved_value")
-                        ok_step, outcome_str, fail_reason, _ = InvestigationActionExecutor.execute_action(
-                            session=session,
-                            action_type=act_type,
-                            target=raw_target,
-                            value=val,
-                            timeout_ms=3000,
-                        )
-                        if not ok_step:
-                            return False, ReproductionOutcome.REPRODUCTION_SETUP_FAILED, None, f"Prerequisite setup step {s_idx} ({act_type} on {raw_target}) failed: {outcome_str} ({fail_reason})"
-                elif lead.source_url and lead.source_url != target_url:
-                    # Attempt direct navigation to source URL
+
+                def _setup_failed(detail: str):
+                    return (False, ReproductionOutcome.REPRODUCTION_SETUP_FAILED, None,
+                            f"{detail} [initial={target_url}, current={session.page.url}]")
+
+                for s_idx, s in enumerate(st for st in effective_setup if st.get("action_type") == "AUTHENTICATE"):
+                    creds = self.auth_credentials or AuthenticationManager.discover_credentials(target_url, None)
+                    if not creds:
+                        return _setup_failed("Setup requires authentication but no credentials are authorized for this origin")
+                    login_url = s.get("login_url") or ""
+                    if login_url:
+                        ok_nav, _, status = session.navigate(login_url)
+                        if not ok_nav or status == 404:
+                            return _setup_failed(f"Login page {login_url} unreachable (status={status})")
+                    ok_auth, why, _signals = AuthenticationManager.attempt_authentication(session, creds)
+                    if not ok_auth:
+                        return _setup_failed(f"Authentication setup failed: {why}")
+
+                if lead.source_url and lead.source_url.split("#")[0].rstrip("/") != (session.page.url or "").split("#")[0].rstrip("/"):
                     ok_nav, nav_url, status = session.navigate(lead.source_url)
                     if not ok_nav or status == 404:
-                        return False, ReproductionOutcome.REPRODUCTION_SETUP_FAILED, None, f"Navigation to required source URL {lead.source_url} failed with status {status}"
-                    if target_url.rstrip("/") == nav_url.rstrip("/") and lead.source_url.rstrip("/") != target_url.rstrip("/"):
-                        return False, ReproductionOutcome.REPRODUCTION_SETUP_FAILED, None, f"Direct navigation to {lead.source_url} redirected to entry URL (session/auth required)"
+                        return _setup_failed(f"Navigation to required source URL {lead.source_url} failed with status {status}")
+                    if (nav_url or "").split("?")[0].rstrip("/") != lead.source_url.split("?")[0].rstrip("/"):
+                        return _setup_failed(f"Navigation to {lead.source_url} was redirected to {nav_url} (session or authentication required)")
+
+                for s_idx, s in enumerate(st for st in effective_setup if st.get("action_type") != "AUTHENTICATE"):
+                    act_type = s.get("action_type", "CLICK_CONTROL")
+                    raw_target = s.get("raw_target") or (s.get("target", {}).get("css") if isinstance(s.get("target"), dict) else str(s.get("target") or ""))
+                    present = session.resolve_target(raw_target) if raw_target else {"present": True}
+                    if not present.get("present"):
+                        return _setup_failed(f"Prerequisite step {s_idx} target '{raw_target}' not present ({present.get('reason')})")
+                    ok_step, outcome_str, fail_reason, _ = InvestigationActionExecutor.execute_action(
+                        session=session, action_type=act_type, target=raw_target,
+                        value=s.get("value") or s.get("resolved_value"), timeout_ms=3000)
+                    if not ok_step:
+                        return _setup_failed(f"Prerequisite step {s_idx} ({act_type} on {raw_target}) failed: {outcome_str} ({fail_reason})")
 
                 # Pre-probe verification: target elements must exist and be visible
                 if script.steps:
@@ -334,6 +359,8 @@ class BugReproducer:
 
         if not lead.steps:
             lead.steps = [{"action_type": "OBSERVE", "raw_target": None}]
+        if auth_credentials:
+            self.auth_credentials = auth_credentials
 
         # Reconstruct prerequisite setup steps if not already attached
         if not lead.setup_steps:
@@ -388,17 +415,26 @@ class BugReproducer:
             logger.warning("[BugReproducer] Lead '%s' is UNSTABLE (1 of 2): %s", lead.title, lead.reproduction_failure_reason)
 
         else:
-            # 0 of 2 reproductions
-            lead.status = "REJECTED"
-            if outcome_1 == ReproductionOutcome.REPRODUCTION_SETUP_FAILED or outcome_2 == ReproductionOutcome.REPRODUCTION_SETUP_FAILED:
-                lead.reproduction_outcome = ReproductionOutcome.REPRODUCTION_SETUP_FAILED
-                lead.reproduction_failure_reason = f"Reproduction setup failed: {reason_1 or reason_2}"
-            elif outcome_1 == ReproductionOutcome.ACTION_EXECUTION_FAILED or outcome_2 == ReproductionOutcome.ACTION_EXECUTION_FAILED:
-                lead.reproduction_outcome = ReproductionOutcome.ACTION_EXECUTION_FAILED
-                lead.reproduction_failure_reason = f"Action execution failed during replay: {reason_1 or reason_2}"
-            else:
+            # 0 of 2 reproductions. Only replays whose oracle actually ran are evidence against the lead.
+            not_reached = (ReproductionOutcome.REPRODUCTION_SETUP_FAILED, ReproductionOutcome.ACTION_EXECUTION_FAILED)
+            evaluated = [o for o in (outcome_1, outcome_2) if o not in not_reached]
+            if len(evaluated) == 2:
+                lead.status = "REJECTED"
                 lead.reproduction_outcome = ReproductionOutcome.NOT_REPRODUCED
-                lead.reproduction_failure_reason = f"Defect not reproduced in 2 attempts: {reason_1 or reason_2}"
+                lead.reproduction_failure_reason = f"Defect not reproduced in 2 evaluated attempts: {reason_1 or reason_2}"
+            elif not evaluated:
+                # Never reached the state needed to evaluate it: unresolved, not disproven.
+                lead.status = "SETUP_BLOCKED"
+                setup_failed = ReproductionOutcome.REPRODUCTION_SETUP_FAILED in (outcome_1, outcome_2)
+                lead.reproduction_outcome = (ReproductionOutcome.REPRODUCTION_SETUP_FAILED if setup_failed
+                                             else ReproductionOutcome.ACTION_EXECUTION_FAILED)
+                lead.reproduction_failure_reason = (f"Verification could not complete; the suspected defect remains unresolved. "
+                                                    f"{'Setup' if setup_failed else 'Replay action'} failed: {reason_1 or reason_2}")
+            else:
+                lead.status = "UNSTABLE"
+                lead.reproduction_outcome = ReproductionOutcome.INCONCLUSIVE
+                lead.reproduction_failure_reason = (f"One replay could not reach the oracle and the other did not reproduce: "
+                                                    f"{reason_1} | {reason_2}")
 
             logger.info("[BugReproducer] Lead '%s' REJECTED (outcome=%s, reason=%s)",
                         lead.title, lead.reproduction_outcome, lead.reproduction_failure_reason)

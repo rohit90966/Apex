@@ -542,10 +542,12 @@ class StatefulBrowserSession:
                 let selectOptions = [];
                 let selectOptionLabels = [];
                 if (el.tagName.toLowerCase() === 'select' && el.options) {
+                    // option.value already falls back to the text when no value attribute exists; an
+                    // explicitly empty value is a placeholder/reset ("All", "Choose..."), not a selectable value.
                     const opts = Array.from(el.options)
-                        .filter(o => (o.value || o.text || '').trim())
+                        .filter(o => (o.value || '').trim())
                         .slice(0, 10);
-                    selectOptions = opts.map(o => (o.value || o.text || '').trim());
+                    selectOptions = opts.map(o => o.value.trim());
                     selectOptionLabels = opts.map(o => (o.text || o.value || '').trim());
                 }
                 const rawInnerText = (el.innerText || '').trim();

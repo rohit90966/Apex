@@ -1,0 +1,301 @@
+﻿[benchmark] harbor_events buggy repeat 1 ...
+.\venv\Scripts\python.exe : [Groq Request #7] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate 
+limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier 
+`on_demand` on tokens per day (TPD): Limit 200000, Used 198201, Requested 1945. Please try again in 1m3.071999999s. 
+Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 
+'rate_limit_exceeded'}}
+At line:1 char:399
++ ... -oss-120b'; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([Groq Request #...mit_exceeded'}}:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[Groq Request #2] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199412, Requested 1932. Please try again in 9m40.608s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199410, Requested 1932. Please try again in 9m39.744s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199405, Requested 1932. Please try again in 9m37.584s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[Groq Request #3] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199377, Requested 1913. Please try again in 9m17.28s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199374, Requested 1913. Please try again in 9m15.983999999s. Need more tokens? Upgrade to 
+Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 199370, Requested 1913. Please try again in 9m14.256s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8201/events/2' does not 
+match required state URL 'http://127.0.0.1:8201/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8201/events/2' does not 
+match required state URL 'http://127.0.0.1:8201/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8201/events/2' does not 
+match required state URL 'http://127.0.0.1:8201/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8201/events/2' does not 
+match required state URL 'http://127.0.0.1:8201/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8201/events/2' does not 
+match required state URL 'http://127.0.0.1:8201/events/1'
+[benchmark]   COMPLETED tests=35 PASS=27 FAIL=8 ERROR=0 findings=11
+[benchmark] harbor_events baseline repeat 1 ...
+[Groq Request #1] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198948, Requested 1783. Please try again in 5m15.792s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #1] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198945, Requested 1350. Please try again in 2m7.44s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #1] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198941, Requested 1783. Please try again in 5m12.768s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.12s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #2] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198936, Requested 2030. Please try again in 6m57.312s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198933, Requested 1911. Please try again in 6m4.608s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198929, Requested 1911. Please try again in 6m2.88s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.50s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #3] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198923, Requested 1899. Please try again in 5m55.104s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198921, Requested 1466. Please try again in 2m47.184s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198916, Requested 1899. Please try again in 5m52.08s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.52s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #4] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198898, Requested 2026. Please try again in 6m39.168s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #4] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198895, Requested 1907. Please try again in 5m46.464s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #4] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198890, Requested 2026. Please try again in 6m35.712s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.63s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #5] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198885, Requested 1670. Please try again in 3m59.76s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #5] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198883, Requested 1670. Please try again in 3m58.896s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #5] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198878, Requested 1670. Please try again in 3m56.736s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.62s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #6] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198868, Requested 1821. Please try again in 4m57.648s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #6] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198866, Requested 1940. Please try again in 5m48.191999999s. Need more tokens? Upgrade to 
+Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #6] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198861, Requested 1821. Please try again in 4m54.623999999s. Need more tokens? Upgrade to 
+Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.62s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[Groq Request #1] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198858, Requested 1901. Please try again in 5m27.888s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #1] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198856, Requested 1782. Please try again in 4m35.616s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #1] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198851, Requested 1901. Please try again in 5m24.864s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #7] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198845, Requested 1945. Please try again in 5m41.28s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #7] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198843, Requested 1945. Please try again in 5m40.416s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #7] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198838, Requested 1826. Please try again in 4m46.848s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[PageUnderstanding] LLM understanding call failed (3.63s): Groq rate limit exceeded: Error code: 429 - {'error': 
+{'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan`. 
+Falling back to rule-based.
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[Groq Request #2] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198812, Requested 1900. Please try again in 5m7.584s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198809, Requested 1900. Please try again in 5m6.288s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #2] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198805, Requested 1900. Please try again in 5m4.56s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+Task exception was never retrieved
+future: <Task finished name='Task-3868' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-3869' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[Groq Request #3] Rate limit on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198776, Requested 1881. Please try again in 4m43.824s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198774, Requested 1567. Please try again in 2m27.311999999s. Need more tokens? Upgrade to 
+Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[Groq Request #3] Rate limit on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model 
+`openai/gpt-oss-120b` in organization `org_01m5qj0j0xexjawn3nv8gyjsan` service tier `on_demand` on tokens per day 
+(TPD): Limit 200000, Used 198769, Requested 2000. Please try again in 5m32.208s. Need more tokens? Upgrade to Dev Tier 
+today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[benchmark]   COMPLETED tests=35 PASS=32 FAIL=3 ERROR=0 findings=3
+[benchmark] wrote reports\audit\post_change_benchmark.json / .md and multi_website_findings.csv

@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "CONFIRMED_DEFECT": 4,
+    "LIKELY_DEFECT": 3
+  },
+  "findings": [
+    {
+      "finding_id": "F-6abc718495d3",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-FIELD-07",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-FIELD-07",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password must be at least 6 characters)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but only unrelated feedback was shown: message: Invalid credentials. Please try again.",
+          "screenshots": [
+            "exec_TC-FIELD-07_1792875159.png",
+            "exec_TC-FIELD-07_1792875159.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-FIELD-07",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[LOGIN] Password: minlength-1 (5) is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/login",
+      "subject": "#password",
+      "rule": "MIN_LENGTH:TOO_SHORT"
+    },
+    {
+      "finding_id": "F-9056683e1bf0",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-FIELD-01",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-FIELD-01",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-FIELD-01_1792875111.png",
+            "exec_TC-FIELD-01_1792875111.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-FIELD-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[GENERAL] Search items: empty is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/search",
+      "subject": "#q",
+      "rule": "REQUIRED:EMPTY"
+    },
+    {
+      "finding_id": "F-c65745b27ce0",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-FIELD-14",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-FIELD-14",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Accepting the Terms of Service is required)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-FIELD-14_1792875173.png",
+            "exec_TC-FIELD-14_1792875173.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-FIELD-14",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[GENERAL] I accept the Terms of Service: left unchecked is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/registration",
+      "subject": "#terms",
+      "rule": "REQUIRED:UNCHECKED"
+    },
+    {
+      "finding_id": "F-f46a679ba5e4",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-FIELD-02",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-FIELD-02",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "REQUIREMENT",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Search query is required)",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-FIELD-02_1792875126.png",
+            "exec_TC-FIELD-02_1792875126.png"
+          ],
+          "knowledge_ids": [
+            "TS-EP-BVA",
+            "DC-VAL-REQUIRED",
+            "DC-VAL-LENGTH",
+            "DC-VAL-RANGE",
+            "DC-VAL-FORMAT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-FIELD-02",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-EP-BVA",
+        "DC-VAL-REQUIRED",
+        "DC-VAL-LENGTH",
+        "DC-VAL-RANGE",
+        "DC-VAL-FORMAT"
+      ],
+      "title": "[GENERAL] Search items: whitespace only is rejected: VERIFIED_PRODUCT_DEFECT",
+      "route": "/search",
+      "subject": "#q",
+      "rule": "REQUIRED:WHITESPACE"
+    },
+    {
+      "finding_id": "F-074c1393dee7",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-XF-01",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-XF-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Mismatch rejected with feedback about the confirmation",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-XF-01_1792875115.png",
+            "exec_TC-XF-01_1792875115.png"
+          ],
+          "knowledge_ids": [
+            "TS-CROSS-FIELD",
+            "DC-VAL-CROSS-FIELD"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-XF-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-CROSS-FIELD",
+        "DC-VAL-CROSS-FIELD"
+      ],
+      "title": "[LIKELY] Confirm Password must match Password: LIKELY_DEFECT",
+      "route": "/registration",
+      "subject": "#confirm-password",
+      "rule": "CROSS_FIELD_EQUALITY:MISMATCH"
+    },
+    {
+      "finding_id": "F-15ef176eca83",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_c01d2b92",
+          "classification": "LIKELY_DEFECT",
+          "oracle": "CONVENTION",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Submission should be rejected: Reject submission when passwords do not match",
+          "observed": "Form submission accepted (status ACCEPTED) despite violating constraint: Confirmation field 'confirm_password' must match 'password'",
+          "evidence_ids": [
+            "probe_probe_454c392a",
+            "st_register_account_create_view"
+          ],
+          "screenshots": [
+            "investigate_probe_before_8bf3b0af.png",
+            "investigate_probe_after_e6347190.png"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-REG-01",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-REG-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "INVESTIGATION_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission should be rejected: Reject submission when passwords do not match",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-REG-01_1792875117.png",
+            "exec_TC-REG-01_1792875117.png"
+          ],
+          "knowledge_ids": [
+            "TS-REGRESSION-LEAD",
+            "OR-ATTRIBUTABLE-FEEDBACK"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "lead:lead_c01d2b92",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [
+        "TC-REG-01"
+      ],
+      "knowledge_ids": [
+        "TS-REGRESSION-LEAD",
+        "OR-ATTRIBUTABLE-FEEDBACK"
+      ],
+      "title": "Bypass: Confirmation field 'confirm_password' must match 'password'",
+      "route": "/registration",
+      "subject": "#confirm-password",
+      "rule": "forms:Submission should be rejected: Reject submission when passwords do not match"
+    },
+    {
+      "finding_id": "F-7e79fec9542b",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f648cc40ae4f:TC-SRV-04",
+          "execution_id": "exec-f648cc40ae4f",
+          "test_id": "TC-SRV-04",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "HTML_DECLARED",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to the declared rule",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-SRV-04_1792875148.png",
+            "exec_TC-SRV-04_1792875148.png"
+          ],
+          "knowledge_ids": [
+            "TS-SERVER-ENFORCEMENT",
+            "DC-VAL-CLIENT-SERVER",
+            "DC-VAL-CHOICE",
+            "OR-LAYER-DISTINCTION"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f648cc40ae4f:TC-SRV-04",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-SERVER-ENFORCEMENT",
+        "DC-VAL-CLIENT-SERVER",
+        "DC-VAL-CHOICE",
+        "OR-LAYER-DISTINCTION"
+      ],
+      "title": "[LIKELY] Confirm Password: empty is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "route": "/registration",
+      "subject": "#confirm-password",
+      "rule": "REQUIRED:EMPTY:SERVER"
+    }
+  ],
+  "sources": {
+    "investigation": 1,
+    "execution": 7
+  }
+}

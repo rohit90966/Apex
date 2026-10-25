@@ -113,8 +113,8 @@
   "workflow_completion_rate": 0.66,
   "unique_states_per_action": 0.889,
   "unsuccessful_action_rate": 0.0,
-  "wall_clock_time": 16.59,
-  "llm_calls_count": 0,
+  "wall_clock_time": 83.2,
+  "llm_calls_count": 7,
   "stopping_reason": "Configured probe ceiling reached (10/10)",
   "unresolved_frontier_summary": {
     "BUDGET_CEILING_REACHED": 28,

@@ -1,0 +1,295 @@
+﻿[benchmark] harbor_events buggy repeat 1 ...
+.\venv\Scripts\python.exe : [InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+At line:1 char:465
++ ... -oss-120b'; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([InvestigationA.../2?breakdown=1':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationAgenda] Journey 'Entity Creation & Management Workflow' POSTCONDITION FAILED at step 1: Action executed 
+with no observable state effect
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/4?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/4?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/4?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8201/events/4?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8201/events/2?breakdown=1'
+[benchmark]   COMPLETED tests=35 PASS=27 FAIL=8 ERROR=0 findings=12
+[benchmark] harbor_events baseline repeat 1 ...
+[PageUnderstanding] LLM understanding call failed (1.98s): 2 validation errors for PageUnderstanding
+expected_user_journeys.5
+  Input should be a valid string [type=string_type, input_value=['Improper handling of pe...cks via error messages'], 
+input_type=list]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type
+expected_user_journeys.8
+  Input should be a valid string [type=string_type, input_value=['All form fields are mar... present in the banner'], 
+input_type=list]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type. Falling back to rule-based.
+Task exception was never retrieved
+future: <Task finished name='Task-3833' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-3834' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[benchmark]   COMPLETED tests=35 PASS=35 FAIL=0 ERROR=0 findings=0
+[benchmark] apex_portal buggy repeat 1 ...
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8101/search' does not 
+match required state URL 'http://127.0.0.1:8101/login'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8101/search' does not 
+match required state URL 'http://127.0.0.1:8101/registration'
+[ProbeRunner] Step blocked by safety governor: SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[benchmark]   COMPLETED tests=31 PASS=24 FAIL=7 ERROR=0 findings=8
+[benchmark] apex_portal baseline repeat 1 ...
+Task exception was never retrieved
+future: <Task finished name='Task-8022' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-8023' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-8024' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Task exception was never retrieved
+future: <Task finished name='Task-8025' coro=<AsyncClient.aclose() done, defined at 
+D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py:1978> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_client.py", line 1985, in aclose
+    await self._transport.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpx\_transports\default.py", line 406, in aclose
+    await self._pool.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 353, in aclose
+    await self._close_connections(closing_connections)
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 345, in _close_connections
+    await connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\connection.py", line 173, in aclose
+    await self._connection.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_async\http11.py", line 258, in aclose
+    await self._network_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\httpcore\_backends\anyio.py", line 53, in aclose
+    await self._stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\streams\tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "D:\Apex\Apex\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1467, in aclose
+    self._transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 109, 
+in close
+    self._loop.call_soon(self._call_connection_lost, None)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 833, in 
+call_soon
+    self._check_closed()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Vaishnavi Pardeshi\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 556, in 
+_check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not 
+match required state URL 'http://127.0.0.1:8111/login'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not 
+match required state URL 'http://127.0.0.1:8111/registration'
+[ProbeRunner] Step blocked by safety governor: SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[Investigator:safety_gate] Step blocked (FILL on #fullname): SAFETY_BLOCKED: Mutation budget exhausted (50/50)
+[benchmark]   COMPLETED tests=30 PASS=29 FAIL=1 ERROR=0 findings=1
+[benchmark] taskdash buggy repeat 1 ...

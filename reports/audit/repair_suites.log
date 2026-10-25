@@ -1,0 +1,32 @@
+﻿........................................................................ [ 31%]
+........................................................................ [ 63%]
+.............F.......................................................... [ 94%]
+............                                                             [100%]
+================================== FAILURES ===================================
+_________________ test_high_impact_action_blocked_by_default __________________
+
+    def test_high_impact_action_blocked_by_default():
+        gov = SafetyGovernor(trusted_hosts=["saucedemo.com"])
+        high_impact_targets = [
+            "place order",
+            "complete purchase",
+            "confirm payment",
+            "delete account",
+            "wipe data",
+            "checkout",
+            "finish",
+        ]
+        for text in high_impact_targets:
+            allowed, reason = gov.can_execute(
+                action_type="CLICK_CONTROL",
+                target=f"button[name='{text}'] {text}",
+                current_url="https://saucedemo.com/checkout.html",
+            )
+>           assert allowed is False, f"Expected '{text}' to be blocked, but got allowed=True"
+E           AssertionError: Expected 'finish' to be blocked, but got allowed=True
+E           assert True is False
+
+tests\test_pre_run_repair.py:102: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pre_run_repair.py::test_high_impact_action_blocked_by_default
+1 failed, 227 passed in 60.58s (0:01:00)

@@ -1,0 +1,5739 @@
+{
+ "benchmark_id": "mwb-20261024T205802Z-8655c2",
+ "timestamp": "2026-10-24T20:58:02.025078+00:00",
+ "code_commit": "c58eb5ddcde0c1c92e96f1d8da6a2281852d5980",
+ "working_tree_dirty": true,
+ "config": {
+  "targets": [
+   "harbor_events"
+  ],
+  "modes": [
+   "buggy",
+   "baseline"
+  ],
+  "repeats": 1,
+  "max_actions": 30,
+  "max_seconds": 150.0,
+  "llm_provider": "groq",
+  "groq_configured": true,
+  "groq_model": "openai/gpt-oss-120b",
+  "llm_test_proposals": false
+ },
+ "config_identity": "60824317684b12e1",
+ "suite_version": "multi-website-benchmark/1.1",
+ "targets": [
+  {
+   "key": "harbor_events",
+   "name": "Harbor Events (demo site)",
+   "target_class": "REPOSITORY_FIXTURE",
+   "availability": "AVAILABLE",
+   "modes": [
+    "buggy",
+    "baseline"
+   ]
+  }
+ ],
+ "runs": [
+  {
+   "run_id": "bench-harbor_events-buggy-r1-c70eb0",
+   "target": "harbor_events",
+   "target_name": "Harbor Events (demo site)",
+   "target_class": "REPOSITORY_FIXTURE",
+   "mode": "buggy",
+   "repeat": 1,
+   "target_url": "http://127.0.0.1:8201/",
+   "target_origin": "http://127.0.0.1:8201",
+   "started_at": "2026-10-24T20:58:04.748712+00:00",
+   "persisted_run_id": "inv-7b840e16b3b8",
+   "persisted_findings_counts": {
+    "CONFIRMED_DEFECT": 3,
+    "UNVERIFIED_ANOMALY": 2
+   },
+   "missing_artifacts": [],
+   "defect_stages": [
+    {
+     "defect_id": "HE-01",
+     "title": "Email format not validated by the server on registration",
+     "route": "/register",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-SRV-05"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": "reproduced"
+    },
+    {
+     "defect_id": "HE-02",
+     "title": "Password confirmation mismatch accepted",
+     "route": "/register",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-XF-01",
+      "TC-SRV-08",
+      "TC-SRV-09"
+     ],
+     "executed_statuses": [
+      "FAILED",
+      "PASSED"
+     ],
+     "missed_at": "reproduced"
+    },
+    {
+     "defect_id": "HE-03",
+     "title": "Price sort orders formatted text instead of amounts",
+     "route": "/events",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-SORT-02",
+      "TC-SORT-03"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": "reproduced"
+    },
+    {
+     "defect_id": "HE-04",
+     "title": "Featured events ignore the category filter",
+     "route": "/events",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-FILTER-01",
+      "TC-FILTER-02"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": "reproduced"
+    },
+    {
+     "defect_id": "HE-05",
+     "title": "Ticket quantity range not enforced by the server",
+     "route": "/events/1",
+     "discovered": true,
+     "test_generated": false,
+     "test_executed": false,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": false,
+     "matched_tests": [],
+     "executed_statuses": [],
+     "missed_at": "test_generated"
+    },
+    {
+     "defect_id": "HE-06",
+     "title": "Cancelling a booking does not change its status",
+     "route": "/bookings",
+     "discovered": true,
+     "test_generated": false,
+     "test_executed": false,
+     "reproduced": false,
+     "reproduced_by": [],
+     "classification": [],
+     "persisted": false,
+     "regression_test": false,
+     "matched_tests": [],
+     "executed_statuses": [],
+     "missed_at": "test_generated"
+    },
+    {
+     "defect_id": "HE-07",
+     "title": "Price breakdown renders NaN service fee",
+     "route": "/events/1",
+     "discovered": true,
+     "test_generated": false,
+     "test_executed": false,
+     "reproduced": true,
+     "reproduced_by": [
+      "investigation"
+     ],
+     "classification": [
+      "CONFIRMED_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": false,
+     "matched_tests": [],
+     "executed_statuses": [],
+     "missed_at": null
+    }
+   ],
+   "knowledge_selected": [
+    "TS-EP-BVA",
+    "TS-SERVER-ENFORCEMENT",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-CROSS-FIELD",
+    "TS-REGRESSION-LEAD",
+    "TS-A11Y-NAMES",
+    "TS-INVARIANT-SORT",
+    "TS-METAMORPHIC-FILTER",
+    "TS-STATE-TRANSITION",
+    "TS-ROUTE-REGRESSION"
+   ],
+   "strategies_applied": [
+    "ACCESSIBLE_NAMES",
+    "CROSS_FIELD_CONFIRMATION",
+    "FIELD_BOUNDARIES",
+    "FILTER_RESULTS",
+    "LEAD_REGRESSION",
+    "OBSERVED_TRANSITIONS",
+    "RENDER_ANOMALY_INVARIANT",
+    "ROUTE_REACHABILITY",
+    "SERVER_SIDE_ENFORCEMENT",
+    "SORT_ORDER",
+    "TEMPLATE_PATTERNS"
+   ],
+   "requirement_alignment": {
+    "matched": 4,
+    "weak": 3,
+    "unmatched": 0,
+    "warning": null
+   },
+   "status": "COMPLETED",
+   "investigation": {
+    "status": "budget_exhausted",
+    "target_identity_correct": true,
+    "routes_discovered": 8,
+    "navigable_routes": 5,
+    "states_discovered": 11,
+    "interactive_controls": 72,
+    "forms": 7,
+    "fields": 16,
+    "transitions": 15,
+    "actions_attempted": 23,
+    "evidence_records": 25,
+    "duration_seconds": 88.62,
+    "duplicate_state_rate": 0.0,
+    "llm_calls": 9,
+    "llm_fallbacks": 0,
+    "llm_latency_seconds": 19.254,
+    "retries": 0,
+    "stopping_reason": "Max mutating action budget reached (15/15)"
+   },
+   "generation": {
+    "candidates": 45,
+    "valid": 43,
+    "selected": 35,
+    "invalid_or_rejected": 2,
+    "duplicates_rejected": 2,
+    "with_meaningful_assertion": 35,
+    "selectors_total": 199,
+    "selectors_grounded": 199,
+    "with_evidence_refs": 32,
+    "with_preconditions_and_expected_outcome": 32,
+    "inapplicable_templates": 3,
+    "ineligible_patterns": 10,
+    "irrelevant_patterns_accepted": 0,
+    "unknown_constraints": 1,
+    "exploratory_hypotheses": 1,
+    "capabilities_evidenced": [
+     "FORM_VALIDATION",
+     "ITEM_SEARCH_FILTER",
+     "PAGINATION_SORTING",
+     "USER_AUTHENTICATION"
+    ],
+    "capability_coverage": 0.75,
+    "requirements_total": 7,
+    "requirements_covered": 2,
+    "constrained_fields_total": 7,
+    "constrained_fields_covered": 6,
+    "by_strategy": {
+     "field": 20,
+     "server": 9,
+     "pattern": 0,
+     "crossfield": 1,
+     "regression": 0,
+     "a11y": 3,
+     "sort": 3,
+     "filter": 2,
+     "transition": 2,
+     "route": 5
+    },
+    "planning_seconds": 0.041,
+    "archetype": "AUTHENTICATION",
+    "llm_used_for_planning": false,
+    "llm_cases_proposed": 0,
+    "llm_cases_accepted": 0,
+    "llm_planning_error": null,
+    "llm_planning_latency_seconds": null,
+    "llm_rejection_reasons": [],
+    "secondary_archetypes": [
+     "BOOKING_RESERVATIONS",
+     "ECOMMERCE"
+    ]
+   },
+   "execution": {
+    "executed": 35,
+    "PASS": 29,
+    "FAIL": 6,
+    "ERROR": 0,
+    "BLOCKED": 0,
+    "INVALID": 0,
+    "INCOMPLETE": 0,
+    "SKIPPED": 0,
+    "locator_failures": 0,
+    "infrastructure_failures": 0,
+    "assertions_evaluated": 82,
+    "meaningful_assertions_evaluated": 82,
+    "meaningful_assertions_planned": 82,
+    "assertion_evaluation_rate": 1.0,
+    "execution_seconds": 67.77,
+    "verification_seconds": 32.05
+   },
+   "export": {
+    "script": "reports\\benchmark_exports\\bench-harbor_events-buggy-r1-c70eb0.py",
+    "structural_parity": true,
+    "verdict_agreement": 32,
+    "verdict_total": 35,
+    "disagreements": [
+     {
+      "test_id": "TC-XF-01",
+      "internal": "FAILED",
+      "exported": "passed"
+     },
+     {
+      "test_id": "TC-SRV-02",
+      "internal": "PASSED",
+      "exported": "failed"
+     },
+     {
+      "test_id": "TC-SRV-05",
+      "internal": "FAILED",
+      "exported": "passed"
+     }
+    ],
+    "exported_outcomes": {
+     "passed": 30,
+     "failed": 5
+    },
+    "export_run_seconds": 37.91
+   },
+   "findings": [
+    {
+     "source": "execution",
+     "test_id": "TC-XF-01",
+     "name": "Confirm password must match Password",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "derived_values": {
+      "field_selector": "#confirm-password",
+      "paired_with": "#password",
+      "input_value": "QaPassw0rd!Z",
+      "input_class": "MISMATCH",
+      "constraint_kind": "CROSS_FIELD_EQUALITY",
+      "constraint_source": "SEMANTIC_CONVENTION",
+      "expected": "REJECT"
+     },
+     "classification": "INCONCLUSIVE",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "1/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/register",
+      "FILL #full-name",
+      "FILL #email",
+      "FILL #password",
+      "CLICK #terms",
+      "FILL #confirm-password",
+      "EVAL_JS (() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+      "CLICK #register-button"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'All categories' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "derived_values": {
+      "control": "#category",
+      "option": "All categories",
+      "option_label": "All categories",
+      "rule_source": "filter semantics (derived inference)"
+     },
+     "classification": "UNVERIFIED_ANOMALY",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "DERIVED_INFERENCE",
+     "failure_reason": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "actual_behavior": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #category",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-FILTER-02",
+     "name": "Filter '#category' = 'Music' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "derived_values": {
+      "control": "#category",
+      "option": "Music",
+      "option_label": "Music",
+      "rule_source": "filter semantics (derived inference)"
+     },
+     "classification": "UNVERIFIED_ANOMALY",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "DERIVED_INFERENCE",
+     "failure_reason": "Expected every listed record to contain 'Music'; non-matching: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "actual_behavior": "Expected every listed record to contain 'Music'; non-matching: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #category",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "derived_values": {
+      "control": "#sort",
+      "option": "price_asc",
+      "option_label": "Price: Low to High",
+      "key": "number",
+      "direction": "asc",
+      "rule_source": "option label semantics (derived inference)"
+     },
+     "classification": "UNVERIFIED_ANOMALY",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "DERIVED_INFERENCE",
+     "failure_reason": "Records are not ordered by number asc: 120, 18, 250, 45, 75, 9.5",
+     "actual_behavior": "Records are not ordered by number asc: 120, 18, 250, 45, 75, 9.5",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #sort",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "derived_values": {
+      "control": "#sort",
+      "option": "price_desc",
+      "option_label": "Price: High to Low",
+      "key": "number",
+      "direction": "desc",
+      "rule_source": "option label semantics (derived inference)"
+     },
+     "classification": "UNVERIFIED_ANOMALY",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "DERIVED_INFERENCE",
+     "failure_reason": "Records are not ordered by number desc: 9.5, 75, 45, 250, 18, 120",
+     "actual_behavior": "Records are not ordered by number desc: 9.5, 75, 45, 250, 18, 120",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #sort",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SRV-05",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Email",
+      "input_value": "qa.tester.example.com",
+      "input_class": "FORMAT_INVALID",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "type=\"email\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+     },
+     "classification": "INCONCLUSIVE",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "1/3 runs failed",
+     "expected_source": "HTML_DECLARED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8201/register",
+      "FILL #full-name",
+      "FILL #password",
+      "FILL #confirm-password",
+      "CLICK #terms",
+      "FILL #email",
+      "EVAL_JS (() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+      "CLICK #register-button"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_20277683",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/1?breakdown=1",
+      "lead_target": "/events/1?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/1?breakdown=1"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_e3c8b1ba",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/2?breakdown=1",
+      "lead_target": "/events/2?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/2?breakdown=1"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_59061f5c",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/3?breakdown=1",
+      "lead_target": "/events/3?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/3?breakdown=1"
+     ]
+    }
+   ],
+   "plan_signatures": [
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/bookings|CLICK:a.brand[href=\"/\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/bookings|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/bookings|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#category:All categories|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#category:Music|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:name_asc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:price_asc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:price_desc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.tester.example.com",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:qa.tester.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/login|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#full-name:   |EVAL_JS:None:(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#full-name:|EVAL_JS:None:(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:QaPassw0rd!Z|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:qa.tester.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/register|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/|CLICK:a[href=\"/events/1\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8201/|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None"
+   ],
+   "plan_selectors": [
+    "#apply-filters",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-password",
+    "#password",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events/1\"]"
+   ],
+   "inventory_selectors": [
+    "#apply-filters",
+    "#attendee-name",
+    "#book-button",
+    "#browse-events",
+    "#cancel-booking-1",
+    "#cancel-booking-2",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-form [name=\"next\"]",
+    "#login-password",
+    "#nav-bookings",
+    "#nav-events",
+    "#nav-login",
+    "#nav-logout",
+    "#nav-register",
+    "#password",
+    "#price-breakdown-link",
+    "#quantity",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events\"]",
+    "a[href=\"/events/1\"]",
+    "a[href=\"/events/2\"]",
+    "a[href=\"/events/3\"]",
+    "a[href=\"/events/4\"]",
+    "a[href=\"/events/5\"]",
+    "a[href=\"/events/6\"]",
+    "a[href=\"/register\"]"
+   ],
+   "examples": [
+    {
+     "test_id": "TC-FIELD-01",
+     "name": "Email: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-email, valueMissing)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"blank\", \"email\", \"empty\", \"enter\", \"login\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-XF-01",
+     "name": "Confirm password must match Password",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!Z",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"confirm\", \"identical\", \"match\", \"password\", \"same\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'All categories' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "All categories",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, All categories)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "name": "Sort by 'Name: A to Z' orders records (text, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "name_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"direction\": \"asc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "name": "Accessible names on /",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-01",
+     "name": "Transition: 'Harbor Events' on /bookings",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a.brand[href=\"/\"]",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "name": "Route reachable with stable landmarks: /",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Welcome to Harbor Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "name": "Email: missing @ is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.example.com",
+       "assertion": "FIELD_VALIDITY(#login-email, typeMismatch)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"email\", \"login\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "name": "Filter '#category' = 'Music' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "Music",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, Music)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"asc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "name": "Accessible names on /bookings",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-02",
+     "name": "Transition: 'Harbor Jazz Night' on /",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a[href=\"/events/1\"]",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Harbor Jazz Night)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "name": "Route reachable with stable landmarks: /bookings",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, My Bookings)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "name": "Password: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-password, valueMissing)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-03",
+     "name": "Password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-password, [\"blank\", \"empty\", \"enter\", \"login\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_desc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"desc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "name": "Accessible names on /events",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "name": "Route reachable with stable landmarks: /events",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "name": "Password: minlength-1 (7) is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-password, [\"8\", \"character\", \"characters\", \"least\", \"length\", \"login\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "name": "Route reachable with stable landmarks: /login",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Log in)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "name": "Full name: maxlength-1 (59) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==59)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"email\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "name": "Route reachable with stable landmarks: /register",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Create an account)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "name": "Full name: maxlength (60) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-06",
+     "name": "Password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-07",
+     "name": "Full name: maxlength+1 (61) is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-07",
+     "name": "Password: too short is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"8\", \"character\", \"characters\", \"least\", \"length\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-08",
+     "name": "Full name: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#full-name, [\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-08",
+     "name": "Confirm password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"blank\", \"confirm\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-09",
+     "name": "Full name: whitespace only is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "   ",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#full-name, [\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-09",
+     "name": "Confirm password: too short is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"8\", \"character\", \"characters\", \"confirm\", \"least\", \"length\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-12",
+     "name": "Email: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#email, valueMissing)"
+      }
+     ]
+    }
+   ],
+   "results": [
+    {
+     "test_id": "TC-FIELD-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.89
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.725
+    },
+    {
+     "test_id": "TC-XF-01",
+     "status": "FAILED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "meaningful_assertions": 2,
+     "duration": 2.038
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "status": "FAILED",
+     "failure_reason": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "meaningful_assertions": 2,
+     "duration": 2.058
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.914
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.541
+    },
+    {
+     "test_id": "TC-TR-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 3,
+     "duration": 1.977
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.606
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.892
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.209
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "status": "FAILED",
+     "failure_reason": "Expected every listed record to contain 'Music'; non-matching: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "meaningful_assertions": 2,
+     "duration": 2.036
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "status": "FAILED",
+     "failure_reason": "Records are not ordered by number asc: 120, 18, 250, 45, 75, 9.5",
+     "meaningful_assertions": 2,
+     "duration": 1.961
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.555
+    },
+    {
+     "test_id": "TC-TR-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 3,
+     "duration": 2.01
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.731
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.787
+    },
+    {
+     "test_id": "TC-SRV-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.201
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "status": "FAILED",
+     "failure_reason": "Records are not ordered by number desc: 9.5, 75, 45, 250, 18, 120",
+     "meaningful_assertions": 2,
+     "duration": 2.033
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.728
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.957
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.913
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.092
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 2.219
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.643
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "status": "FAILED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "meaningful_assertions": 2,
+     "duration": 1.855
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.632
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.744
+    },
+    {
+     "test_id": "TC-SRV-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.025
+    },
+    {
+     "test_id": "TC-FIELD-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.663
+    },
+    {
+     "test_id": "TC-SRV-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.867
+    },
+    {
+     "test_id": "TC-FIELD-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.1
+    },
+    {
+     "test_id": "TC-SRV-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.438
+    },
+    {
+     "test_id": "TC-FIELD-09",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.883
+    },
+    {
+     "test_id": "TC-SRV-09",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.846
+    },
+    {
+     "test_id": "TC-FIELD-12",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.993
+    }
+   ],
+   "unknown_constraints": [
+    {
+     "field_selector": "#login-password",
+     "route": "/login",
+     "reason": "acceptance of 'minlength (8)' on a login form cannot be judged without matching credentials",
+     "evidence_needed": "authorized credentials satisfying the boundary"
+    }
+   ],
+   "inapplicable_templates": [
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-01",
+     "template_id": "ST-AUTH-VALID-LOGIN",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-02",
+     "template_id": "ST-AUTH-EMPTY-USERNAME",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-03",
+     "template_id": "ST-AUTH-EMPTY-PASSWORD",
+     "reason": "no observed control for 'username_input'"
+    }
+   ],
+   "timings": {
+    "investigation": 88.62,
+    "planning": 0.041,
+    "execution": 67.77,
+    "verification": 32.05,
+    "export_run": 37.91
+   },
+   "score": {
+    "ground_truth": true,
+    "mode": "buggy",
+    "defects_planted": 7,
+    "detected_by_execution": [],
+    "detected_by_investigation": [
+     "HE-07"
+    ],
+    "detected_by_both": [],
+    "false_positives_by_source": {
+     "execution": [],
+     "investigation": []
+    },
+    "detected_confirmed_only": [
+     "HE-07"
+    ],
+    "false_positives_confirmed_only": [],
+    "tp": 1,
+    "fp": 0,
+    "fn": 6,
+    "precision": 1.0,
+    "recall": 0.143,
+    "f1": 0.25,
+    "detected_defect_ids": [
+     "HE-07"
+    ],
+    "missed_defect_ids": [
+     "HE-01",
+     "HE-02",
+     "HE-03",
+     "HE-04",
+     "HE-05",
+     "HE-06"
+    ],
+    "detected_as_anomaly_only": [
+     "HE-03",
+     "HE-04"
+    ],
+    "false_positive_test_ids": [],
+    "false_alarms_on_defect_free_build": null,
+    "anomalies_reported": 4,
+    "matches": {
+     "HE-07": [
+      "LEAD:lead_20277683",
+      "LEAD:lead_e3c8b1ba",
+      "LEAD:lead_59061f5c"
+     ]
+    }
+   },
+   "cross_target_selector_leaks": [],
+   "ungrounded_selectors": []
+  },
+  {
+   "run_id": "bench-harbor_events-baseline-r1-ae06f5",
+   "target": "harbor_events",
+   "target_name": "Harbor Events (demo site)",
+   "target_class": "REPOSITORY_FIXTURE",
+   "mode": "baseline",
+   "repeat": 1,
+   "target_url": "http://127.0.0.1:8211/",
+   "target_origin": "http://127.0.0.1:8211",
+   "started_at": "2026-10-24T21:01:51.148483+00:00",
+   "persisted_run_id": "inv-c549a289d070",
+   "persisted_findings_counts": {
+    "UNVERIFIED_ANOMALY": 1
+   },
+   "missing_artifacts": [],
+   "defect_stages": [],
+   "knowledge_selected": [
+    "TS-EP-BVA",
+    "TS-SERVER-ENFORCEMENT",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-CROSS-FIELD",
+    "TS-A11Y-NAMES",
+    "TS-INVARIANT-SORT",
+    "TS-METAMORPHIC-FILTER",
+    "TS-STATE-TRANSITION",
+    "TS-ROUTE-REGRESSION"
+   ],
+   "strategies_applied": [
+    "ACCESSIBLE_NAMES",
+    "CROSS_FIELD_CONFIRMATION",
+    "FIELD_BOUNDARIES",
+    "FILTER_RESULTS",
+    "OBSERVED_TRANSITIONS",
+    "RENDER_ANOMALY_INVARIANT",
+    "ROUTE_REACHABILITY",
+    "SERVER_SIDE_ENFORCEMENT",
+    "SORT_ORDER",
+    "TEMPLATE_PATTERNS"
+   ],
+   "requirement_alignment": {
+    "matched": 4,
+    "weak": 3,
+    "unmatched": 0,
+    "warning": null
+   },
+   "status": "COMPLETED",
+   "investigation": {
+    "status": "budget_exhausted",
+    "target_identity_correct": true,
+    "routes_discovered": 8,
+    "navigable_routes": 5,
+    "states_discovered": 11,
+    "interactive_controls": 72,
+    "forms": 7,
+    "fields": 16,
+    "transitions": 15,
+    "actions_attempted": 23,
+    "evidence_records": 25,
+    "duration_seconds": 58.43,
+    "duplicate_state_rate": 0.0,
+    "llm_calls": 9,
+    "llm_fallbacks": 0,
+    "llm_latency_seconds": 17.326,
+    "retries": 0,
+    "stopping_reason": "Max mutating action budget reached (15/15)"
+   },
+   "generation": {
+    "candidates": 45,
+    "valid": 43,
+    "selected": 35,
+    "invalid_or_rejected": 2,
+    "duplicates_rejected": 2,
+    "with_meaningful_assertion": 35,
+    "selectors_total": 199,
+    "selectors_grounded": 199,
+    "with_evidence_refs": 32,
+    "with_preconditions_and_expected_outcome": 32,
+    "inapplicable_templates": 3,
+    "ineligible_patterns": 10,
+    "irrelevant_patterns_accepted": 0,
+    "unknown_constraints": 1,
+    "exploratory_hypotheses": 1,
+    "capabilities_evidenced": [
+     "FORM_VALIDATION",
+     "ITEM_SEARCH_FILTER",
+     "PAGINATION_SORTING",
+     "USER_AUTHENTICATION"
+    ],
+    "capability_coverage": 0.75,
+    "requirements_total": 7,
+    "requirements_covered": 2,
+    "constrained_fields_total": 7,
+    "constrained_fields_covered": 6,
+    "by_strategy": {
+     "field": 20,
+     "server": 9,
+     "pattern": 0,
+     "crossfield": 1,
+     "a11y": 3,
+     "sort": 3,
+     "filter": 2,
+     "transition": 2,
+     "route": 5
+    },
+    "planning_seconds": 0.018,
+    "archetype": "AUTHENTICATION",
+    "llm_used_for_planning": false,
+    "llm_cases_proposed": 0,
+    "llm_cases_accepted": 0,
+    "llm_planning_error": null,
+    "llm_planning_latency_seconds": null,
+    "llm_rejection_reasons": [],
+    "secondary_archetypes": [
+     "BOOKING_RESERVATIONS",
+     "ECOMMERCE"
+    ]
+   },
+   "execution": {
+    "executed": 35,
+    "PASS": 34,
+    "FAIL": 1,
+    "ERROR": 0,
+    "BLOCKED": 0,
+    "INVALID": 0,
+    "INCOMPLETE": 0,
+    "SKIPPED": 0,
+    "locator_failures": 0,
+    "infrastructure_failures": 0,
+    "assertions_evaluated": 82,
+    "meaningful_assertions_evaluated": 82,
+    "meaningful_assertions_planned": 82,
+    "assertion_evaluation_rate": 1.0,
+    "execution_seconds": 69.27,
+    "verification_seconds": 4.39
+   },
+   "export": {
+    "script": "reports\\benchmark_exports\\bench-harbor_events-baseline-r1-ae06f5.py",
+    "structural_parity": true,
+    "verdict_agreement": 35,
+    "verdict_total": 35,
+    "disagreements": [],
+    "exported_outcomes": {
+     "passed": 34,
+     "failed": 1
+    },
+    "export_run_seconds": 33.27
+   },
+   "findings": [
+    {
+     "source": "execution",
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'All categories' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "derived_values": {
+      "control": "#category",
+      "option": "All categories",
+      "option_label": "All categories",
+      "rule_source": "filter semantics (derived inference)"
+     },
+     "classification": "UNVERIFIED_ANOMALY",
+     "verification_status": "POTENTIAL_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "DERIVED_INFERENCE",
+     "failure_reason": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "actual_behavior": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8211/login",
+      "FILL #login-email",
+      "FILL #login-password",
+      "CLICK #login-button",
+      "NAVIGATE http://127.0.0.1:8211/events",
+      "SELECT #category",
+      "CLICK #apply-filters"
+     ]
+    }
+   ],
+   "plan_signatures": [
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/bookings|CLICK:a.brand[href=\"/\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/bookings|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/bookings|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|SELECT:#category:All categories|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|SELECT:#category:Music|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|SELECT:#sort:name_asc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|SELECT:#sort:price_asc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/events|SELECT:#sort:price_desc|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:qa.tester.example.com",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:qa.tester@example.com|FILL:#login-password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:qa.tester.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/login|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#full-name:   |EVAL_JS:None:(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#full-name:|EVAL_JS:None:(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:QaBound|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:QaPassw0rd!Z|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#email:qa.tester@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:qa.tester.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/register|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/|CLICK:a[href=\"/events/1\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8211/login|FILL:#login-email:${CREDENTIAL_USERNAME}|FILL:#login-password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None|NAVIGATE:None:http://127.0.0.1:8211/|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None"
+   ],
+   "plan_selectors": [
+    "#apply-filters",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-password",
+    "#password",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events/1\"]"
+   ],
+   "inventory_selectors": [
+    "#apply-filters",
+    "#attendee-name",
+    "#book-button",
+    "#browse-events",
+    "#cancel-booking-1",
+    "#cancel-booking-2",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-form [name=\"next\"]",
+    "#login-password",
+    "#nav-bookings",
+    "#nav-events",
+    "#nav-login",
+    "#nav-logout",
+    "#nav-register",
+    "#password",
+    "#price-breakdown-link",
+    "#quantity",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events\"]",
+    "a[href=\"/events/1\"]",
+    "a[href=\"/events/2\"]",
+    "a[href=\"/events/3\"]",
+    "a[href=\"/events/4\"]",
+    "a[href=\"/events/5\"]",
+    "a[href=\"/events/6\"]",
+    "a[href=\"/register\"]"
+   ],
+   "examples": [
+    {
+     "test_id": "TC-FIELD-01",
+     "name": "Email: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-email, valueMissing)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"blank\", \"email\", \"empty\", \"enter\", \"login\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-XF-01",
+     "name": "Confirm password must match Password",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!Z",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"confirm\", \"identical\", \"match\", \"password\", \"same\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'All categories' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "All categories",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, All categories)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "name": "Sort by 'Name: A to Z' orders records (text, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "name_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"direction\": \"asc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "name": "Accessible names on /",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-01",
+     "name": "Transition: 'Harbor Events' on /bookings",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/bookings",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a.brand[href=\"/\"]",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "name": "Route reachable with stable landmarks: /",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Welcome to Harbor Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "name": "Email: missing @ is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.example.com",
+       "assertion": "FIELD_VALIDITY(#login-email, typeMismatch)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"email\", \"login\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "name": "Filter '#category' = 'Music' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "Music",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, Music)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"asc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "name": "Accessible names on /bookings",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/bookings",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-02",
+     "name": "Transition: 'Harbor Jazz Night' on /",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a[href=\"/events/1\"]",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Harbor Jazz Night)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "name": "Route reachable with stable landmarks: /bookings",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/bookings",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, My Bookings)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "name": "Password: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-password, valueMissing)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-03",
+     "name": "Password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-password, [\"blank\", \"empty\", \"enter\", \"login\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_desc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"desc\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "name": "Accessible names on /events",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "name": "Route reachable with stable landmarks: /events",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/events",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "name": "Password: minlength-1 (7) is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-password, [\"8\", \"character\", \"characters\", \"least\", \"length\", \"login\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "name": "Route reachable with stable landmarks: /login",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Log in)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "name": "Full name: maxlength-1 (59) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==59)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"email\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "name": "Route reachable with stable landmarks: /register",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Create an account)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "name": "Full name: maxlength (60) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-06",
+     "name": "Password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-07",
+     "name": "Full name: maxlength+1 (61) is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQ",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-07",
+     "name": "Password: too short is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"8\", \"character\", \"characters\", \"least\", \"length\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-08",
+     "name": "Full name: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#full-name, [\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-08",
+     "name": "Confirm password: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"blank\", \"confirm\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-09",
+     "name": "Full name: whitespace only is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "   ",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#full-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#full-name, [\"blank\", \"empty\", \"enter\", \"full\", \"missing\", \"name\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-09",
+     "name": "Confirm password: too short is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaBound",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"8\", \"character\", \"characters\", \"confirm\", \"least\", \"length\", \"password\", \"short\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-12",
+     "name": "Email: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8211/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#email, valueMissing)"
+      }
+     ]
+    }
+   ],
+   "results": [
+    {
+     "test_id": "TC-FIELD-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.753
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.753
+    },
+    {
+     "test_id": "TC-XF-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.939
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "status": "FAILED",
+     "failure_reason": "Expected every listed record to contain 'All categories'; non-matching: ['Harbor Jazz Night Music 2026-11-14 $45.00', 'Intro to Pottery Workshop 2026-11-20 $120.00', 'City Marathon 10K Sports 2026-12-05 $18.00']",
+     "meaningful_assertions": 2,
+     "duration": 2.214
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.872
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.556
+    },
+    {
+     "test_id": "TC-TR-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 3,
+     "duration": 1.689
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 2.354
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.791
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.878
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.283
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.97
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.505
+    },
+    {
+     "test_id": "TC-TR-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 3,
+     "duration": 1.883
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.814
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.792
+    },
+    {
+     "test_id": "TC-SRV-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.842
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.283
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.655
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 2.142
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.695
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.115
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 2.041
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.877
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.104
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 4,
+     "duration": 1.914
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.449
+    },
+    {
+     "test_id": "TC-SRV-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.791
+    },
+    {
+     "test_id": "TC-FIELD-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.642
+    },
+    {
+     "test_id": "TC-SRV-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.159
+    },
+    {
+     "test_id": "TC-FIELD-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.807
+    },
+    {
+     "test_id": "TC-SRV-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.946
+    },
+    {
+     "test_id": "TC-FIELD-09",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.807
+    },
+    {
+     "test_id": "TC-SRV-09",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.857
+    },
+    {
+     "test_id": "TC-FIELD-12",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.092
+    }
+   ],
+   "unknown_constraints": [
+    {
+     "field_selector": "#login-password",
+     "route": "/login",
+     "reason": "acceptance of 'minlength (8)' on a login form cannot be judged without matching credentials",
+     "evidence_needed": "authorized credentials satisfying the boundary"
+    }
+   ],
+   "inapplicable_templates": [
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-01",
+     "template_id": "ST-AUTH-VALID-LOGIN",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-02",
+     "template_id": "ST-AUTH-EMPTY-USERNAME",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-03",
+     "template_id": "ST-AUTH-EMPTY-PASSWORD",
+     "reason": "no observed control for 'username_input'"
+    }
+   ],
+   "timings": {
+    "investigation": 58.43,
+    "planning": 0.018,
+    "execution": 69.27,
+    "verification": 4.39,
+    "export_run": 33.27
+   },
+   "score": {
+    "ground_truth": true,
+    "mode": "baseline",
+    "defects_planted": 0,
+    "detected_by_execution": [],
+    "detected_by_investigation": [],
+    "detected_by_both": [],
+    "false_positives_by_source": {
+     "execution": [],
+     "investigation": []
+    },
+    "detected_confirmed_only": [],
+    "false_positives_confirmed_only": [],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "detected_defect_ids": [],
+    "missed_defect_ids": [],
+    "detected_as_anomaly_only": [],
+    "false_positive_test_ids": [],
+    "false_alarms_on_defect_free_build": 0,
+    "anomalies_reported": 1,
+    "matches": {}
+   },
+   "cross_target_selector_leaks": [],
+   "ungrounded_selectors": []
+  }
+ ],
+ "aggregate": {
+  "tp": 1,
+  "fp": 0,
+  "fn": 6,
+  "precision": 1.0,
+  "recall": 0.143,
+  "f1": 0.25,
+  "baseline_false_alarms": 0,
+  "baseline_false_alarms_confirmed_only": 0,
+  "detected_confirmed_only": 1,
+  "cross_target_selector_leaks": 0,
+  "irrelevant_patterns_accepted": 0,
+  "export_agreement": 67,
+  "export_total": 70
+ },
+ "reproducibility": {},
+ "limitations": [
+  "Token usage and cost are not measured: the LLM providers expose no token telemetry to this harness.",
+  "Investigations run with the deterministic planner when no LLM key is configured (see config.groq_configured).",
+  "Fixture state (e.g. tasks created by tests) persists across repeats within one server process.",
+  "TN/specificity are not reported: the fixtures define no universe of negative cases."
+ ]
+}

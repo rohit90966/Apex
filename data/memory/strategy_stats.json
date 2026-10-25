@@ -1,0 +1,101 @@
+{
+ "TS-EP-BVA": {
+  "tests": 27,
+  "executed": 17,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 0,
+  "blocked": 10
+ },
+ "TS-SERVER-ENFORCEMENT": {
+  "tests": 25,
+  "executed": 16,
+  "reproduced_findings": 3,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 0,
+  "blocked": 9
+ },
+ "TS-CROSS-FIELD": {
+  "tests": 3,
+  "executed": 2,
+  "reproduced_findings": 2,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 0,
+  "blocked": 1
+ },
+ "TS-METAMORPHIC-FILTER": {
+  "tests": 6,
+  "executed": 4,
+  "reproduced_findings": 4,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 0,
+  "blocked": 2
+ },
+ "TS-INVARIANT-SORT": {
+  "tests": 29,
+  "executed": 16,
+  "reproduced_findings": 4,
+  "anomalies": 0,
+  "inconclusive": 5,
+  "infrastructure_errors": 2,
+  "blocked": 13
+ },
+ "TS-A11Y-NAMES": {
+  "tests": 24,
+  "executed": 16,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 1,
+  "blocked": 8
+ },
+ "TS-STATE-TRANSITION": {
+  "tests": 53,
+  "executed": 34,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 16,
+  "blocked": 19
+ },
+ "TS-INVARIANT": {
+  "tests": 75,
+  "executed": 55,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 18,
+  "blocked": 20
+ },
+ "TS-ROUTE-REGRESSION": {
+  "tests": 37,
+  "executed": 28,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 7,
+  "blocked": 9
+ },
+ "TS-REGRESSION-LEAD": {
+  "tests": 1,
+  "executed": 1,
+  "reproduced_findings": 1,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 0,
+  "blocked": 0
+ },
+ "TS-DOMAIN-TEMPLATES": {
+  "tests": 40,
+  "executed": 34,
+  "reproduced_findings": 0,
+  "anomalies": 0,
+  "inconclusive": 0,
+  "infrastructure_errors": 14,
+  "blocked": 6
+ }
+}

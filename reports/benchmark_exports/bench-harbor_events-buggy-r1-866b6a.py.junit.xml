@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="9" skipped="1" tests="35" time="45.138" timestamp="2026-10-25T04:39:36.418399+05:30" hostname="LAPTOP-R9FDVQQN"><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_01_email_empty_is_rejected_1" time="2.258" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_01_email_empty_is_rejected_by_the_application_client_validation_disabled_2" time="0.955" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_xf_01_confirm_password_must_match_password_3" time="1.415"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8201/register'&gt;
+
+    def test_tc_xf_01_confirm_password_must_match_password_3(page: Page):
+        """
+        Test ID: TC-XF-01
+        Objective: 'Confirm password' is semantically the confirmation of 'Password'; a differing value must be rejected. The pairing is inferred from field names/labels (no explicit requirement).
+        Expected: Mismatch rejected with feedback about the confirmation
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /register
+        page.goto('http://127.0.0.1:8201/register', wait_until='domcontentloaded')
+        # Step 6: Enter valid 'Full name'
+        page.locator('#full-name').first.fill('QA Sample')
+        # Step 7: Enter valid 'Email'
+        page.locator('#email').first.fill(unique('qa.${RUN_UNIQUE}@example.com', run_token))
+        # Step 8: Enter valid 'Password'
+        page.locator('#password').first.fill('QaPassw0rd!x')
+        # Step 9: Tick required 'I accept the Terms of Service'
+        page.locator('#terms').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        # Step 10: Enter a value in 'Confirm password' that differs from 'Password'
+        page.locator('#confirm-password').first.fill('QaPassw0rd!Z')
+        # Step 11: Disable client-side validation so the submission reaches the application (controlled probe)
+        page.evaluate('(() =&gt; { const el = document.querySelector("#confirm-password"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 12: Submit the form
+        page.locator('#register-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#confirm-password', '["confirm", "identical", "match", "password", "same"]')
+
+bench-harbor_events-buggy-r1-866b6a.py:391: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8201/register'&gt;
+selector = '#confirm-password'
+expected = '["confirm", "identical", "match", "password", "same"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-harbor_events-buggy-r1-866b6a.py:151: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_reg_01_regression_text_anomaly_nan_4" time="5.813"><failure message="AssertionError: Locator expected not to be visible&#10;Actual value: visible &#10;Call log:&#10;  - Expect &quot;not_to_be_visible&quot; locator(&quot;body&quot;).get_by_text(&quot;NaN&quot;).first with timeout 5000ms&#10;  - waiting for locator(&quot;body&quot;).get_by_text(&quot;NaN&quot;).first&#10;    14 × locator resolved to &lt;span id=&quot;bd-fee&quot;&gt;$NaN&lt;/span&gt;&#10;       - unexpected value &quot;visible&quot;&#10;&#10;Aria snapshot:&#10;- text: $NaN">page = &lt;Page url='http://127.0.0.1:8201/events/1?breakdown=1'&gt;
+
+    def test_tc_reg_01_regression_text_anomaly_nan_4(page: Page):
+        """
+        Test ID: TC-REG-01
+        Objective: Replay the reproduction of confirmed lead lead_54fea663 and verify the anomaly is absent.
+        Expected:
+        Expected-behaviour source: OBSERVED_INVARIANT
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events/1
+        page.goto('http://127.0.0.1:8201/events/1', wait_until='domcontentloaded')
+        # Step 6: Activate #price-breakdown-link
+        page.locator('#price-breakdown-link').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('TEXT_NOT_VISIBLE', page, None, 'NaN')
+
+bench-harbor_events-buggy-r1-866b6a.py:418: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'TEXT_NOT_VISIBLE'
+page = &lt;Page url='http://127.0.0.1:8201/events/1?breakdown=1'&gt;, selector = None
+expected = 'NaN'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+&gt;           expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+E           AssertionError: Locator expected not to be visible
+E           Actual value: visible 
+E           Call log:
+E             - Expect "not_to_be_visible" locator("body").get_by_text("NaN").first with timeout 5000ms
+E             - waiting for locator("body").get_by_text("NaN").first
+E               14 × locator resolved to &lt;span id="bd-fee"&gt;$NaN&lt;/span&gt;
+E                  - unexpected value "visible"
+E           
+E           Aria snapshot:
+E           - text: $NaN
+
+bench-harbor_events-buggy-r1-866b6a.py:107: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_rec_01_cancel_on_a_record_of_bookings_changes_that_record_5" time="0.625"><failure message="AssertionError: Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'&#10;assert 1 &lt; 1">page = &lt;Page url='http://127.0.0.1:8201/bookings?flash=cancelled'&gt;
+
+    def test_tc_rec_01_cancel_on_a_record_of_bookings_changes_that_record_5(page: Page):
+        """
+        Test ID: TC-REC-01
+        Objective: Issue the per-record command 'Cancel' (POST /bookings/1/cancel) and verify the record it was issued on is removed or changed; a confirmation message alone is not evidence.
+        Expected: The record is removed or its content changes after the command
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /bookings
+        page.goto('http://127.0.0.1:8201/bookings', wait_until='domcontentloaded')
+        # Step 6: Activate 'Cancel' on one record
+        snapshot = page.evaluate(RECORD_SNAPSHOT_SCRIPT, '#cancel-booking-1')
+        page.locator('#cancel-booking-1').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       record_changed(page, snapshot)
+
+bench-harbor_events-buggy-r1-866b6a.py:446: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:8201/bookings?flash=cancelled'&gt;
+snapshot = {'id': 'booking-1', 'tag': 'TR', 'text': 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel', 'count': 1}
+
+    def record_changed(page, snapshot):
+        """The record a command acted on must be removed or changed (same semantics as the executor)."""
+        if not snapshot:
+            incomplete("the control is not inside a repeated record (row, item or card)")
+        page.wait_for_load_state("domcontentloaded")
+        count = page.evaluate(RECORD_COUNT_SCRIPT, snapshot)
+&gt;       assert count &lt; (1 if snapshot.get("id") else snapshot.get("count", 1)),         f"Record unchanged after the action: {snapshot['text'][:120]!r}"
+E       AssertionError: Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'
+E       assert 1 &lt; 1
+
+bench-harbor_events-buggy-r1-866b6a.py:73: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_filter_01_filter_category_music_shows_only_matching_records_6" time="1.000"><failure message="AssertionError: Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']&#10;assert 'fail' == 'pass'&#10;  &#10;  - pass&#10;  + fail">page = &lt;Page url='http://127.0.0.1:8201/events?category=Music&amp;sort=date_asc'&gt;
+
+    def test_tc_filter_01_filter_category_music_shows_only_matching_records_6(page: Page):
+        """
+        Test ID: TC-FILTER-01
+        Objective: Apply filter option 'Music' and verify every listed record carries that value.
+        Expected: Every listed record's category value is 'Music'
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events
+        page.goto('http://127.0.0.1:8201/events', wait_until='domcontentloaded')
+        # Step 6: Choose filter option 'Music'
+        page.locator('#category').first.select_option('Music')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 7: Apply filter
+        page.locator('#apply-filters').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('LIST_ALL_CONTAIN', page, None, '{"value": "Music", "domain": ["Music", "Workshop", "Sports", "Conference"]}')
+
+bench-harbor_events-buggy-r1-866b6a.py:477: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_ALL_CONTAIN'
+page = &lt;Page url='http://127.0.0.1:8201/events?category=Music&amp;sort=date_asc'&gt;
+selector = None
+expected = '{"value": "Music", "domain": ["Music", "Workshop", "Sports", "Conference"]}'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            structured = kind == "LIST_SORTED" or expected.lstrip().startswith("{")
+            spec = json.loads(expected) if structured else {}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec.get("key", "text"), "needle": ""})
+            if structured:
+                if kind == "LIST_SORTED":
+                    verdict, _actual, message = evaluate_sorted(data, spec)
+                else:
+                    verdict, _actual, message = evaluate_filter(data, spec.get("value", ""), spec.get("domain") or [])
+                if verdict == "not_evaluable":
+                    incomplete(message)
+&gt;               assert verdict == "pass", message
+E               AssertionError: Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']
+E               assert 'fail' == 'pass'
+E                 
+E                 - pass
+E                 + fail
+
+bench-harbor_events-buggy-r1-866b6a.py:168: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_sort_01_sort_by_name_a_to_z_orders_records_text_asc_7" time="0.978"><skipped type="pytest.skip" message="INCOMPLETE: the sort key could not be located unambiguously in the records (no matching column header; not exactly one amount per record)">D:\Apex\Apex\reports\benchmark_exports\bench-harbor_events-buggy-r1-866b6a.py:93: INCOMPLETE: the sort key could not be located unambiguously in the records (no matching column header; not exactly one amount per record)</skipped></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_a11y_01_accessible_names_on_8" time="0.618" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_01_transition_harbor_events_on_bookings_9" time="0.925" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_route_01_route_reachable_with_stable_landmarks_10" time="1.023" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_05_full_name_maxlength_1_59_is_accepted_11" time="2.031" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_04_email_empty_is_rejected_by_the_application_client_validation_disabled_12" time="0.931" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_filter_02_filter_category_workshop_shows_only_matching_records_13" time="1.514"><failure message="AssertionError: Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']&#10;assert 'fail' == 'pass'&#10;  &#10;  - pass&#10;  + fail">page = &lt;Page url='http://127.0.0.1:8201/events?category=Workshop&amp;sort=date_asc'&gt;
+
+    def test_tc_filter_02_filter_category_workshop_shows_only_matching_records_13(page: Page):
+        """
+        Test ID: TC-FILTER-02
+        Objective: Apply filter option 'Workshop' and verify every listed record carries that value.
+        Expected: Every listed record's category value is 'Workshop'
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events
+        page.goto('http://127.0.0.1:8201/events', wait_until='domcontentloaded')
+        # Step 6: Choose filter option 'Workshop'
+        page.locator('#category').first.select_option('Workshop')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 7: Apply filter
+        page.locator('#apply-filters').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('LIST_ALL_CONTAIN', page, None, '{"value": "Workshop", "domain": ["Music", "Workshop", "Sports", "Conference"]}')
+
+bench-harbor_events-buggy-r1-866b6a.py:690: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_ALL_CONTAIN'
+page = &lt;Page url='http://127.0.0.1:8201/events?category=Workshop&amp;sort=date_asc'&gt;
+selector = None
+expected = '{"value": "Workshop", "domain": ["Music", "Workshop", "Sports", "Conference"]}'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            structured = kind == "LIST_SORTED" or expected.lstrip().startswith("{")
+            spec = json.loads(expected) if structured else {}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec.get("key", "text"), "needle": ""})
+            if structured:
+                if kind == "LIST_SORTED":
+                    verdict, _actual, message = evaluate_sorted(data, spec)
+                else:
+                    verdict, _actual, message = evaluate_filter(data, spec.get("value", ""), spec.get("domain") or [])
+                if verdict == "not_evaluable":
+                    incomplete(message)
+&gt;               assert verdict == "pass", message
+E               AssertionError: Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']
+E               assert 'fail' == 'pass'
+E                 
+E                 - pass
+E                 + fail
+
+bench-harbor_events-buggy-r1-866b6a.py:168: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_sort_02_sort_by_price_low_to_high_orders_records_number_asc_14" time="1.267"><failure message="AssertionError: Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5&#10;assert 'fail' == 'pass'&#10;  &#10;  - pass&#10;  + fail">page = &lt;Page url='http://127.0.0.1:8201/events?category=&amp;sort=price_asc'&gt;
+
+    def test_tc_sort_02_sort_by_price_low_to_high_orders_records_number_asc_14(page: Page):
+        """
+        Test ID: TC-SORT-02
+        Objective: Select 'Price: Low to High' on #sort and verify the listed records follow that order.
+        Expected: Records ordered by number asc as option 'Price: Low to High' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events
+        page.goto('http://127.0.0.1:8201/events', wait_until='domcontentloaded')
+        # Step 6: Choose sort option 'Price: Low to High'
+        page.locator('#sort').first.select_option('price_asc')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 7: Apply sort
+        page.locator('#apply-filters').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        # Step 8: Check the order is monotonic
+&gt;       check('LIST_SORTED', page, None, '{"key": "number", "any_direction": true, "column_hint": "price"}')
+
+bench-harbor_events-buggy-r1-866b6a.py:722: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_SORTED'
+page = &lt;Page url='http://127.0.0.1:8201/events?category=&amp;sort=price_asc'&gt;
+selector = None
+expected = '{"key": "number", "any_direction": true, "column_hint": "price"}'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            structured = kind == "LIST_SORTED" or expected.lstrip().startswith("{")
+            spec = json.loads(expected) if structured else {}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec.get("key", "text"), "needle": ""})
+            if structured:
+                if kind == "LIST_SORTED":
+                    verdict, _actual, message = evaluate_sorted(data, spec)
+                else:
+                    verdict, _actual, message = evaluate_filter(data, spec.get("value", ""), spec.get("domain") or [])
+                if verdict == "not_evaluable":
+                    incomplete(message)
+&gt;               assert verdict == "pass", message
+E               AssertionError: Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5
+E               assert 'fail' == 'pass'
+E                 
+E                 - pass
+E                 + fail
+
+bench-harbor_events-buggy-r1-866b6a.py:168: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_a11y_02_accessible_names_on_bookings_15" time="1.609" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_02_transition_harbor_jazz_night_on_16" time="0.976" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_route_02_route_reachable_with_stable_landmarks_bookings_17" time="0.983" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_21_attendee_name_maxlength_1_59_is_accepted_18" time="1.077" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_10_tickets_empty_is_rejected_by_the_application_client_validation_disable_19" time="1.301" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_sort_03_sort_by_price_high_to_low_orders_records_number_desc_20" time="1.594"><failure message="AssertionError: Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0&#10;assert 'fail' == 'pass'&#10;  &#10;  - pass&#10;  + fail">page = &lt;Page url='http://127.0.0.1:8201/events?category=&amp;sort=price_desc'&gt;
+
+    def test_tc_sort_03_sort_by_price_high_to_low_orders_records_number_desc_20(page: Page):
+        """
+        Test ID: TC-SORT-03
+        Objective: Select 'Price: High to Low' on #sort and verify the listed records follow that order.
+        Expected: Records ordered by number desc as option 'Price: High to Low' states
+        Expected-behaviour source: INFERRED
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events
+        page.goto('http://127.0.0.1:8201/events', wait_until='domcontentloaded')
+        # Step 6: Choose sort option 'Price: High to Low'
+        page.locator('#sort').first.select_option('price_desc')
+        page.wait_for_timeout(300)
+        page.wait_for_load_state('domcontentloaded')
+        # Step 7: Apply sort
+        page.locator('#apply-filters').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        # Step 8: Check the order is monotonic
+&gt;       check('LIST_SORTED', page, None, '{"key": "number", "any_direction": true, "column_hint": "price"}')
+
+bench-harbor_events-buggy-r1-866b6a.py:897: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'LIST_SORTED'
+page = &lt;Page url='http://127.0.0.1:8201/events?category=&amp;sort=price_desc'&gt;
+selector = None
+expected = '{"key": "number", "any_direction": true, "column_hint": "price"}'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+                assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+            else:
+                assert not attributable, f"Expected the submission to be accepted, but rule feedback was shown: {attributable}"
+        elif kind == "SELECTED_VALUE":
+            assert page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? el.value : null; }", selector) == expected
+        elif kind in ("LIST_SORTED", "LIST_ALL_CONTAIN"):
+            page.wait_for_load_state("domcontentloaded")
+            structured = kind == "LIST_SORTED" or expected.lstrip().startswith("{")
+            spec = json.loads(expected) if structured else {}
+            data = page.evaluate(COLLECTION_SCRIPT, {"key": spec.get("key", "text"), "needle": ""})
+            if structured:
+                if kind == "LIST_SORTED":
+                    verdict, _actual, message = evaluate_sorted(data, spec)
+                else:
+                    verdict, _actual, message = evaluate_filter(data, spec.get("value", ""), spec.get("domain") or [])
+                if verdict == "not_evaluable":
+                    incomplete(message)
+&gt;               assert verdict == "pass", message
+E               AssertionError: Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0
+E               assert 'fail' == 'pass'
+E                 
+E                 - pass
+E                 + fail
+
+bench-harbor_events-buggy-r1-866b6a.py:168: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_a11y_03_accessible_names_on_events_21" time="0.888" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_03_transition_show_price_breakdown_on_events_1_22" time="1.318" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_route_03_route_reachable_with_stable_landmarks_events_23" time="0.991" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_02_email_missing_is_rejected_24" time="1.005" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_02_email_format_invalid_is_rejected_by_the_application_client_validation__25" time="1.427" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_04_transition_intro_to_pottery_on_26" time="0.880" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_route_04_route_reachable_with_stable_landmarks_login_27" time="0.841" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_06_full_name_maxlength_60_is_accepted_28" time="0.800" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_05_email_format_invalid_is_rejected_by_the_application_client_validation__29" time="0.908"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8201/register'&gt;
+
+    def test_tc_srv_05_email_format_invalid_is_rejected_by_the_application_client_validation__29(page: Page):
+        """
+        Test ID: TC-SRV-05
+        Objective: The page declares type="email" on 'Email'. With browser validation disabled, the application itself must reject the violating submission.
+        Expected: Submission rejected with feedback attributable to the declared rule
+        Expected-behaviour source: CONTRACT
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /register
+        page.goto('http://127.0.0.1:8201/register', wait_until='domcontentloaded')
+        # Step 6: Enter valid 'Full name'
+        page.locator('#full-name').first.fill('QA Sample')
+        # Step 7: Enter valid 'Password'
+        page.locator('#password').first.fill('QaPassw0rd!x')
+        # Step 8: Enter valid 'Confirm password'
+        page.locator('#confirm-password').first.fill('QaPassw0rd!x')
+        # Step 9: Tick required 'I accept the Terms of Service'
+        page.locator('#terms').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        # Step 10: Enter format_invalid value for 'Email'
+        page.locator('#email').first.fill(unique('qa.tester.${RUN_UNIQUE}.example.com', run_token))
+        # Step 11: Disable client-side validation so the submission reaches the application (controlled probe)
+        page.evaluate('(() =&gt; { const el = document.querySelector("#email"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 12: Submit the form to the application
+        page.locator('#register-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#email', '["email"]')
+
+bench-harbor_events-buggy-r1-866b6a.py:1131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8201/register'&gt;, selector = '#email'
+expected = '["email"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-harbor_events-buggy-r1-866b6a.py:151: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_05_transition_harbor_events_on_events_1_30" time="0.940" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_route_05_route_reachable_with_stable_landmarks_register_31" time="1.029" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_22_attendee_name_maxlength_60_is_accepted_32" time="0.773" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_srv_11_tickets_below_min_is_rejected_by_the_application_client_validation_dis_33" time="0.887"><failure message="AssertionError: Expected feedback attributable to this rule; shown: none&#10;assert []">page = &lt;Page url='http://127.0.0.1:8201/bookings?flash=booked'&gt;
+
+    def test_tc_srv_11_tickets_below_min_is_rejected_by_the_application_client_validation_dis_33(page: Page):
+        """
+        Test ID: TC-SRV-11
+        Objective: The page declares min="1" on 'Tickets'. With browser validation disabled, the application itself must reject the violating submission.
+        Expected: Submission rejected with feedback attributable to the declared rule
+        Expected-behaviour source: CONTRACT
+        Investigation: bench-harbor_events-buggy-r1-866b6a
+        """
+        page.goto('http://127.0.0.1:8201/', wait_until='domcontentloaded')
+        run_token = secrets.token_hex(13)[:13]
+        # Step 1: Open observed login route /login
+        page.goto('http://127.0.0.1:8201/login', wait_until='domcontentloaded')
+        # Step 2: Enter authorized username (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-email', credential("username"))
+        # Step 3: Enter authorized password (resolved at run time from origin-scoped credentials)
+        setup_fill(page, '#login-password', credential("password"))
+        # Step 4: Submit observed login form
+        page.locator('#login-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+        setup_check('URL_CONTAINS', page, None, '/events')
+        # Step 5: Navigate to observed route /events/1
+        page.goto('http://127.0.0.1:8201/events/1', wait_until='domcontentloaded')
+        # Step 6: Enter valid 'Attendee name'
+        page.locator('#attendee-name').first.fill('QA Sample')
+        # Step 7: Enter below_min value for 'Tickets'
+        page.locator('#quantity').first.fill('0')
+        # Step 8: Disable client-side validation so the submission reaches the application (controlled probe)
+        page.evaluate('(() =&gt; { const el = document.querySelector("#quantity"); if (el &amp;&amp; el.form) el.form.noValidate = true; })()')
+        # Step 9: Submit the form to the application
+        page.locator('#book-button').first.click()
+        page.wait_for_load_state('domcontentloaded')
+&gt;       check('VALIDATION_FEEDBACK_SHOWN', page, '#quantity', '["1", "between", "greater", "least", "minimum", "quantity", "range", "tickets"]')
+
+bench-harbor_events-buggy-r1-866b6a.py:1245: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+kind = 'VALIDATION_FEEDBACK_SHOWN'
+page = &lt;Page url='http://127.0.0.1:8201/bookings?flash=booked'&gt;
+selector = '#quantity'
+expected = '["1", "between", "greater", "least", "minimum", "quantity", "range", "tickets"]'
+
+    def check(kind, page, selector, expected):
+        """Evaluates one oracle with the same semantics as the VerityQA BrowserExecutor."""
+        if kind == "URL_CONTAINS":
+            assert expected.lower() in page.url.lower(), f"Expected URL to contain {expected!r}, got {page.url!r}"
+        elif kind == "URL_EQUALS":
+            assert page.url == expected, f"Expected URL {expected!r}, got {page.url!r}"
+        elif kind == "TEXT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).to_be_visible()
+        elif kind == "TEXT_NOT_VISIBLE":
+            scope = page.locator(selector) if selector else page.locator("body")
+            expect(scope.get_by_text(expected, exact=False).first).not_to_be_visible()
+        elif kind == "ELEMENT_VISIBLE":
+            expect(page.locator(selector).first).to_be_visible()
+        elif kind == "ELEMENT_NOT_VISIBLE":
+            expect(page.locator(selector).first).not_to_be_visible()
+        elif kind == "ELEMENT_DISABLED":
+            expect(page.locator(selector).first).to_be_disabled()
+        elif kind == "ELEMENT_ENABLED":
+            expect(page.locator(selector).first).to_be_enabled()
+        elif kind == "STATUS_CODE":
+            status = STATUS["last"]
+            if status is None:
+                incomplete("no document response status was captured")
+            m = re.match(r"^\s*(&lt;=|&gt;=|&lt;|&gt;|==)?\s*(\d{3})\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            ok = {"&lt;": status &lt; num, "&lt;=": status &lt;= num, "&gt;": status &gt; num, "&gt;=": status &gt;= num, "==": status == num}[op]
+            assert ok, f"Expected HTTP status {op}{num}, got {status}"
+        elif kind == "FIELD_VALIDITY":
+            res = page.evaluate("""(sel) =&gt; { const el = document.querySelector(sel); if (!el || !el.validity) return null;
+                const v = el.validity; return {valid: v.valid, flags: ['valueMissing','typeMismatch','patternMismatch','tooLong',
+                'tooShort','rangeUnderflow','rangeOverflow','stepMismatch','badInput'].filter(k =&gt; v[k])}; }""", selector)
+            assert res is not None, f"Field {selector!r} is not present (the form may have been submitted)"
+            if expected == "valid":
+                assert res["valid"], f"Expected {selector!r} to be valid, flags={res['flags']}"
+            elif expected == "invalid":
+                assert not res["valid"], f"Expected {selector!r} to be invalid"
+            else:
+                assert expected in res["flags"], f"Expected validity {expected!r} on {selector!r}, flags={res['flags']}"
+        elif kind == "ELEMENT_VALUE_LENGTH":
+            length = page.evaluate("(sel) =&gt; { const el = document.querySelector(sel); return el ? (el.value || '').length : null; }", selector)
+            assert length is not None, f"Field {selector!r} is not present"
+            m = re.match(r"^\s*(&lt;=|&gt;=|==)?\s*(\d+)\s*$", expected)
+            op, num = (m.group(1) or "=="), int(m.group(2))
+            assert {"&lt;=": length &lt;= num, "&gt;=": length &gt;= num, "==": length == num}[op], f"Expected length {op}{num}, got {length}"
+        elif kind in ("VALIDATION_FEEDBACK_SHOWN", "NO_VALIDATION_FEEDBACK"):
+            page.wait_for_load_state("domcontentloaded")
+            feedback = page.evaluate("""(sel) =&gt; { const out = []; const visible = el =&gt; !!(el &amp;&amp; el.offsetParent !== null &amp;&amp; (el.innerText || '').trim());
+                const f = sel ? document.querySelector(sel) : null;
+                if (f &amp;&amp; f.validity &amp;&amp; !f.validity.valid) out.push('field invalid'); if (f &amp;&amp; f.getAttribute('aria-invalid') === 'true') out.push('aria-invalid');
+                for (const m of document.querySelectorAll('[role="alert"], .error, .errors, .error-message, .invalid-feedback, .alert-danger, .field-error, .validation-error, [class*="error-message"], [data-test="error"], [aria-live="assertive"]'))
+                  if (visible(m)) out.push('message: ' + m.innerText.trim().slice(0, 120)); return out; }""", selector or "")
+            keywords = [k.lower() for k in json.loads(expected)] if expected.strip().startswith("[") else []
+            attributable = [f for f in feedback if not f.startswith("message: ") or not keywords or any(k in f.lower() for k in keywords)]
+            if kind == "VALIDATION_FEEDBACK_SHOWN":
+&gt;               assert attributable, f"Expected feedback attributable to this rule; shown: {feedback or 'none'}"
+E               AssertionError: Expected feedback attributable to this rule; shown: none
+E               assert []
+
+bench-harbor_events-buggy-r1-866b6a.py:151: AssertionError</failure></testcase><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_tr_06_transition_browse_all_events_on_34" time="0.843" /><testcase classname="bench-harbor_events-buggy-r1-866b6a" name="test_tc_field_03_password_empty_is_rejected_35" time="0.783" /></testsuite></testsuites>

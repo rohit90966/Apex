@@ -1,0 +1,34 @@
+﻿[benchmark] harbor_events baseline repeat 1 ...
+.\venv\Scripts\python.exe : [InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+At line:1 char:554
++ ... -oss-120b'; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([InvestigationA.../2?breakdown=1':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 
+'http://127.0.0.1:8211/events/3?breakdown=1' does not match required state URL 
+'http://127.0.0.1:8211/events/2?breakdown=1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[InvestigationActionExecutor] Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8211/events/2' does not 
+match required state URL 'http://127.0.0.1:8211/events/1'
+[benchmark]   COMPLETED tests=35 PASS=35 FAIL=0 ERROR=0 findings=0
+[benchmark] wrote reports\audit\login_diag_benchmark.json / .md and multi_website_findings.csv

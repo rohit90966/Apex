@@ -1,0 +1,101 @@
+﻿...............F..........................F............................. [ 28%]
+........................................F........F...................... [ 57%]
+..................................F..................................... [ 86%]
+.................................                                        [100%]
+================================== FAILURES ===================================
+________ test_rejected_login_is_not_verified_even_with_page_landmarks _________
+
+ledger = <function ledger.<locals>.start at 0x000001D17CA3B420>
+
+    def test_rejected_login_is_not_verified_even_with_page_landmarks(ledger):
+        from app.investigation_agent.authenticator import AuthenticationManager
+        from app.investigation_agent.browser_session import StatefulBrowserSession
+        base = ledger(variant="custom")
+        session = StatefulBrowserSession(headless=True)
+        session.start()
+        try:
+            session.navigate(base + "/signin")                              # page has <main>: not evidence of login
+            ok, why, _ = AuthenticationManager.attempt_authentication(session, {"username": "auditor", "password": "nope"})
+            assert not ok and "login error" in why.lower()
+            session.navigate(base + "/signin")
+            ok, why, _ = AuthenticationManager.attempt_authentication(session, GOOD)
+>           assert ok and "route changed" in why
+E           AssertionError: assert (True and 'route changed' in 'login form dismissed; logout control present')
+
+tests\test_state_reproduction_budget.py:320: AssertionError
+______ test_planner_marks_login_prelude_and_click_prerequisites_as_setup ______
+
+    def test_planner_marks_login_prelude_and_click_prerequisites_as_setup():
+        from test_multi_website_generalization import shop_report
+        cases, _ = plan(shop_report())
+        # Cases that log in as a precondition (the prelude); login-journey cases test the login itself.
+        authed = [c for c in cases if any("authorized username" in s.description for s in c.steps)]
+>       assert authed
+E       assert []
+
+tests\test_architecture_root_causes.py:410: AssertionError
+___________ test_saucedemo_capabilities_retained_with_own_evidence ____________
+
+    def test_saucedemo_capabilities_retained_with_own_evidence():
+        with_creds = shop_report()
+        cases, diag, model = plan(with_creds)
+        assert ApplicationCapability.USER_AUTHENTICATION in model.capabilities
+        assert ApplicationCapability.PAGINATION_SORTING in model.capabilities
+        sort_cases = [tc for tc in cases if tc.oracle_class == "LIST_ORDERING"]
+        assert {tc.derived_values["option"] for tc in sort_cases} == {"az", "za", "lohi", "hilo"}
+        for tc in sort_cases:
+            assert tc.requires_test_account
+            login = [s for s in tc.steps if s.selector in ("#user-name", "#password")]
+>           assert {s.value for s in login} == {"${CREDENTIAL_USERNAME}", "${CREDENTIAL_PASSWORD}"}
+E           AssertionError: assert set() == {'${CREDENTIA...AL_USERNAME}'}
+E             
+E             Extra items in the right set:
+E             '${CREDENTIAL_USERNAME}'
+E             '${CREDENTIAL_PASSWORD}'
+E             Use -v to get more diff
+
+tests\test_multi_website_generalization.py:207: AssertionError
+___ test_scenario_10_auth_needed_without_credentials_is_blocked_not_guessed ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D17D06A190>
+
+    @pytest.mark.asyncio
+    async def test_scenario_10_auth_needed_without_credentials_is_blocked_not_guessed(monkeypatch):
+        for k in ("VERITYQA_TEST_USERNAME", "VERITYQA_TEST_PASSWORD", "TARGET_USERNAME", "TARGET_PASSWORD", "VERITYQA_TEST_CREDENTIALS_ORIGIN"):
+            monkeypatch.delenv(k, raising=False)
+        cases, diag, _ = plan(shop_report(with_creds=False))
+>       assert not [tc for tc in cases if tc.oracle_class == "LIST_ORDERING"]
+E       assert not [TestCase(test_id='TC-SORT-01', name="Sort by 'Name (A to Z)' orders records (text, asc)", objective="Select 'Name (A ...www.saucedemo.com', test_kind='SORTING', spec_version='2.0', knowledge_ids=['TS-INVARIANT-SORT', 'DC-FN-FILTER-SORT'])]
+
+tests\test_multi_website_generalization.py:292: AssertionError
+_________________ test_high_impact_action_blocked_by_default __________________
+
+    def test_high_impact_action_blocked_by_default():
+        gov = SafetyGovernor(trusted_hosts=["saucedemo.com"])
+        high_impact_targets = [
+            "place order",
+            "complete purchase",
+            "confirm payment",
+            "delete account",
+            "wipe data",
+            "checkout",
+            "finish",
+        ]
+        for text in high_impact_targets:
+            allowed, reason = gov.can_execute(
+                action_type="CLICK_CONTROL",
+                target=f"button[name='{text}'] {text}",
+                current_url="https://saucedemo.com/checkout.html",
+            )
+>           assert allowed is False, f"Expected '{text}' to be blocked, but got allowed=True"
+E           AssertionError: Expected 'finish' to be blocked, but got allowed=True
+E           assert True is False
+
+tests\test_pre_run_repair.py:102: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_state_reproduction_budget.py::test_rejected_login_is_not_verified_even_with_page_landmarks
+FAILED tests/test_architecture_root_causes.py::test_planner_marks_login_prelude_and_click_prerequisites_as_setup
+FAILED tests/test_multi_website_generalization.py::test_saucedemo_capabilities_retained_with_own_evidence
+FAILED tests/test_multi_website_generalization.py::test_scenario_10_auth_needed_without_credentials_is_blocked_not_guessed
+FAILED tests/test_pre_run_repair.py::test_high_impact_action_blocked_by_default
+5 failed, 244 passed in 128.49s (0:02:08)

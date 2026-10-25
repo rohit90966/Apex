@@ -2025,3 +2025,106 @@ html, body {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+/* ==========================================================================
+   MINIMAL LIGHT THEME (overrides the dark design above; remove this block to restore it)
+   ========================================================================== */
+:root {
+  --bg-canvas: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-topbar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #f8fafc;
+  --bg-card-hover: #f8fafc;
+  --bg-input: #ffffff;
+  --border-subtle: #eef0f3;
+  --border-default: #e2e5ea;
+  --border-hover: #cbd2da;
+  --border-focus: #2563eb;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-dim: #9ca3af;
+  --text-inverse: #ffffff;
+  --accent-indigo: #2563eb;
+  --accent-indigo-hover: #1d4ed8;
+  --accent-indigo-subtle: #eff6ff;
+  --accent-indigo-border: #bfdbfe;
+  --accent-cyan: #0e7490;
+  --accent-cyan-hover: #155e75;
+  --accent-cyan-subtle: #ecfeff;
+  --accent-emerald: #15803d;
+  --accent-emerald-subtle: #f0fdf4;
+  --accent-emerald-border: #bbf7d0;
+  --accent-amber: #b45309;
+  --accent-amber-subtle: #fffbeb;
+  --accent-rose: #b91c1c;
+  --accent-rose-subtle: #fef2f2;
+  --accent-rose-border: #fecaca;
+  --accent-purple: #6d28d9;
+  --accent-purple-subtle: #f5f3ff;
+  --shadow-sm: none;
+  --shadow-card: none;
+  --shadow-elevated: 0 8px 24px rgba(17, 24, 39, 0.08);
+  --shadow-glow: none;
+}
+
+html, body, .app-container { background: #ffffff; color: #111827; }
+body { font-size: 14px; }
+
+/* Calm surfaces: flat white cards with hairline borders */
+.panel, .card, .metric-card, .stat-card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; border-radius: 8px; }
+.app-header { background: #ffffff !important; border-bottom: 1px solid #e5e7eb; box-shadow: none; }
+.tab-nav { background: #ffffff !important; border-bottom: 1px solid #e5e7eb; }
+.tab-btn { color: #4b5563 !important; background: transparent !important; border-radius: 0; }
+.tab-btn.active { color: #111827 !important; border-bottom: 2px solid #2563eb !important; }
+.tab-btn > span:first-child { display: none; }                  /* tab emoji */
+.tab-btn:last-child { display: none; }                          /* Reports & Benchmarks (legacy, not used by the flow) */
+.brand-logo > span:first-child { display: none; }               /* header emoji */
+.app-header .badge, .app-header .brand-logo div > div + div { display: none; }   /* tagline + badge */
+#verified-findings { display: none; }                           /* duplicated by the Findings table */
+
+.data-table th { background: #f9fafb !important; color: #374151 !important; }
+.data-table td { border-color: #f1f3f5 !important; }
+.data-table tr:hover td { background: #f9fafb !important; }
+input, select, textarea { background: #ffffff !important; color: #111827 !important; border: 1px solid #d1d5db !important; }
+input:focus, select:focus, textarea:focus { border-color: #2563eb !important; outline: none; }
+.btn-primary { box-shadow: none !important; }
+
+/* Rules above that hard-code dark colours */
+.nav-item.active, .preset-chip.active, .cat-chip.active { color: #1d4ed8; }
+.sidebar-loader-box { background-color: #f9fafb; }
+.active-run-banner { background: #eff6ff; border-bottom: 1px solid #bfdbfe; animation: none; }
+.run-banner-meta { color: #1d4ed8; }
+.timer-pill { background-color: #ffffff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.spinner-sm, .spinner { border-color: #e5e7eb; border-top-color: #2563eb; }
+.badge-indigo, .badge-primary { color: #1d4ed8; }
+.badge-neutral { background: #f3f4f6; color: #4b5563; }
+.svg-graph-container { background-color: #ffffff; }
+.bug-card { background-color: #fff7f7; }
+.bug-title { color: #b91c1c; }
+.bug-repro-box { background-color: #f9fafb; }
+.code-editor-box { background-color: #f9fafb; }
+.code-block { color: #111827; background: #f9fafb; }
+.stream-card { background: #ffffff; }
+.stream-card.event-LEAD_DETECTED { background-color: #fff7f7; }
+.modal-backdrop { background-color: rgba(17, 24, 39, 0.35); }
+.status-pulse-dot, .brand-logo { box-shadow: none; }
+
+/* Inline dark-theme colours set by components */
+[style*="rgb(252, 165, 165)"] { color: #b91c1c !important; }
+[style*="rgba(255, 255, 255, 0.03)"], [style*="rgba(0, 0, 0, 0.2)"] { background: #f9fafb !important; }
+
+/* Minimal: logo as text, no preset chips (they pointed at sample sites), no stream toggle */
+.brand-logo { width: auto !important; height: auto !important; background: none !important; border: none !important; box-shadow: none !important; }
+.preset-label, .preset-chips { display: none !important; }
+/* Minimal overview: key numbers only (shortcut cards and the architecture explainer are hidden) */
+.quick-actions-bar { display: none !important; }
+.dashboard-grid-2 > .card:has(.pipeline-list) { display: none !important; }
+.dashboard-grid-2:has(.pipeline-list) { grid-template-columns: 1fr !important; }
+.metric-card [class*="icon"], .qa-icon { display: none !important; }
+/* Keep wide content (generated code, long selectors) inside its panel */
+.panel, .card { min-width: 0; max-width: 100%; }
+pre, .code-block, .code-editor-box { white-space: pre-wrap !important; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto; }
+.tab-content > div > div[style*="grid"] > * { min-width: 0; }

@@ -1,0 +1,3575 @@
+{
+  "overview": {
+    "target_url": "http://127.0.0.1:8111/",
+    "final_url": "http://127.0.0.1:8111/registration",
+    "http_status": 200,
+    "user_description": "Portal with sign-in, account registration and catalogue search.",
+    "investigation_id": "bench-apex_portal-baseline-r1-cd0067",
+    "start_time": "2026-10-25 01:58:06",
+    "end_time": "2026-10-25 01:59:41",
+    "duration_seconds": 94.49,
+    "browser_execution_time": 30.55,
+    "status": "partial",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 9,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 16.406,
+    "retries_count": 0,
+    "pages_discovered": 6,
+    "meaningful_states_discovered": 7,
+    "candidates_discovered": 51,
+    "actions_evaluated": 24,
+    "actions_attempted": 17,
+    "actions_successful": 14,
+    "actions_verified_effects": 11,
+    "actions_failed": 3,
+    "actions_safety_blocked": 3,
+    "transitions_observed": 11,
+    "route_transitions_observed": 9,
+    "same_route_state_transitions": 2,
+    "in_page_mutations_observed": 2,
+    "pending_frontier_count": 27,
+    "evidence_ledger_count": 25,
+    "deduplicated_candidates_count": 66,
+    "total_headings_discovered": 10,
+    "total_forms_discovered": 3,
+    "total_inputs_discovered": 9,
+    "total_buttons_discovered": 3,
+    "total_links_discovered": 18,
+    "stopping_reason": "Safety block threshold reached (3/3)"
+  },
+  "application_understanding": "The application at http://127.0.0.1:8111/ presents an interactive web service. Operated within public/unauthenticated surface. Observed key functional landmarks include: Sign In to Apex, Registration Error, Apex Demo Target System, Popular Categories, Password Reset. Extracted 7 distinct UI states across 11 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'Portal with sign-in, account registration and catalogue search.'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "Provide an entry point for users to discover the demo system and navigate to authentication or product search functionality.",
+    "application_domain": "portal",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "Apex Demo Target System",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Welcome to the Apex Target Application",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "System Modules",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Catalog Search",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Popular Categories",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "No results found for \"Abc123Xy\"",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Sign In to Apex",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Password Reset",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Create an Apex Account",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Registration Error",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "a[href=\"/\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Home",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "a[href=\"/login\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Login",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "a[href=\"/registration\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Register",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "a[href=\"/search\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Search Products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_0",
+        "selector": "#q",
+        "semantic_role": "input",
+        "inferred_purpose": "Search items",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#searchBtn",
+        "semantic_role": "button",
+        "inferred_purpose": "Search",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "input[name=\"q\"]",
+        "semantic_role": "input",
+        "inferred_purpose": "Abc123Xy",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_0",
+        "selector": "#username",
+        "semantic_role": "input",
+        "inferred_purpose": "user@example.com",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#password",
+        "semantic_role": "input",
+        "inferred_purpose": "Enter secure password",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#loginBtn",
+        "semantic_role": "button",
+        "inferred_purpose": "Log In",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "a[href=\"/forgot\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Forgot password?",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_0",
+        "selector": "#fullname",
+        "semantic_role": "input",
+        "inferred_purpose": "Jane Doe",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#email",
+        "semantic_role": "input",
+        "inferred_purpose": "jane@example.com",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#reg-password",
+        "semantic_role": "input",
+        "inferred_purpose": "password",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#confirm-password",
+        "semantic_role": "input",
+        "inferred_purpose": "confirm_password",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#terms",
+        "semantic_role": "input",
+        "inferred_purpose": "on",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#registerBtn",
+        "semantic_role": "button",
+        "inferred_purpose": "Create Account",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "form_1",
+        "target_action": "/search",
+        "required_fields": [
+          "q"
+        ],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_root_apex_demo_targ_view",
+      "st_search_catalog_search_view",
+      "st_search_catalog_search_view_q_Abc123Xy",
+      "st_login_sign_in_to_ape_view",
+      "st_forgot_password_reset_view",
+      "st_registration_create_an_apex_view",
+      "st_register_registration_e_view"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_root_apex_demo_targ_view' on http://127.0.0.1:8111/ with 4 controls and 0 forms.",
+      "Observed state 'st_search_catalog_search_view' on http://127.0.0.1:8111/search with 2 controls and 1 forms.",
+      "Observed state 'st_search_catalog_search_view_q_Abc123Xy' on http://127.0.0.1:8111/search?q=Abc123Xy with 6 controls and 1 forms.",
+      "Observed state 'st_login_sign_in_to_ape_view' on http://127.0.0.1:8111/login with 5 controls and 1 forms.",
+      "Observed state 'st_forgot_password_reset_view' on http://127.0.0.1:8111/forgot with 4 controls and 0 forms.",
+      "Observed state 'st_registration_create_an_apex_view' on http://127.0.0.1:8111/registration with 6 controls and 1 forms.",
+      "Observed state 'st_register_registration_e_view' on http://127.0.0.1:8111/register with 5 controls and 0 forms."
+    ],
+    "inferred_hypotheses": [
+      "Consistent navigation links (Home, Login, Register, Search Products) across pages",
+      "Heading hierarchy always starts with an h1 \"Apex Demo Target System\" followed by an h2 welcome message",
+      "No active modals, alerts, or aria\u2011invalid fields on the home page",
+      "Heading hierarchy is fixed (h2 \"Catalog Search\" followed by h3 \"Popular Categories\")",
+      "Search field is required and uses GET method consistently",
+      "No active modal, alerts, or aria-invalid fields are present on load",
+      "Navigation links (Home, Login, Register, Search) are consistently present across the site.",
+      "The search form always uses method GET with a single \"q\" parameter and a search\u2011type input.",
+      "Heading hierarchy remains stable: a level\u20112 \"Catalog Search\" followed by a level\u20113 \"No results found\u2026\" message when applicable.",
+      "No modal dialogs or alerts are active on this page state.",
+      "Form uses POST method with required username and password fields",
+      "Both registration and password\u2011reset links are always present",
+      "No active modal or alerts are shown on initial load",
+      "Placeholders provide example email and password hints",
+      "Consistent top\u2011level navigation links (Home, Login, Register, Search) appear on all auth\u2011related pages.",
+      "Heading \"Password Reset\" is always level\u202f2 and followed by instructional paragraph.",
+      "No active modals, alerts, or aria\u2011invalid fields are present on this page.",
+      "All fields (full name, email, password, confirm password, terms) are marked required",
+      "Password and confirm password must match before successful submission",
+      "Form uses POST method to /register endpoint",
+      "Terms of Service checkbox must be checked to enable account creation",
+      "Navigation links (Home, Login, Register, Search) are always present",
+      "Heading mirrors the error state (\"Registration Error\")",
+      "The \"Try again\" link consistently points to the registration route"
+    ],
+    "unknowns": [
+      "Unauthenticated access to protected modules via direct URL",
+      "Potential lack of CSRF protection on login/registration forms (not visible in snapshot)",
+      "Open registration may allow spam or abuse",
+      "Missing input validation could lead to XSS in dynamic content",
+      "Improper sanitization of the 'q' query parameter leading to XSS or injection attacks",
+      "Insufficient accessibility labeling for the search input and button",
+      "Potential information disclosure if search results expose internal or sensitive documentation",
+      "Reflected query string may be vulnerable to XSS if not properly escaped when displayed in headings or messages.",
+      "Lack of ARIA live region or proper role announcements may leave screen\u2011reader users unaware of the \"no results\" state.",
+      "Empty results pages can be indexed by search engines, potentially harming SEO if not handled with appropriate meta tags or robots directives.",
+      "Search form uses GET without input validation, which could be abused for injection attacks.",
+      "Credential exposure if transmitted over insecure channel",
+      "Potential CSRF if anti\u2011CSRF token is missing",
+      "Brute\u2011force attacks on username/password fields",
+      "Lack of rate limiting or account lockout mechanisms",
+      "Potential email enumeration if the system reveals whether an address exists.",
+      "Improper handling of reset tokens (e.g., predictable tokens, lack of expiration).",
+      "Missing CSRF protection on the (unseen) form submission.",
+      "Weak or exposed password handling (e.g., lack of client\u2011side strength validation, transmission over non\u2011HTTPS)",
+      "Potential CSRF if anti\u2011forgery token is missing on the POST endpoint",
+      "Improper validation of email format or duplicate email accounts",
+      "Terms of Service checkbox could be bypassed if not enforced server\u2011side",
+      "User frustration due to lack of inline validation before submission",
+      "Potential security risk if error messages disclose validation logic",
+      "No indication of password requirements may lead to repeated errors",
+      "Absence of CSRF or rate\u2011limiting hints could be exploited in automated attacks"
+    ],
+    "investigation_uncertainty": 0.569,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": false,
+    "login_url": null,
+    "credentials_available": false,
+    "credentials_source": null,
+    "authentication_attempted": false,
+    "authentication_verified": false,
+    "verification_signals": [],
+    "protected_functionality_accessible": [],
+    "unresolved_or_blocked_areas": [
+      "/",
+      "/registration",
+      "#registerBtn"
+    ]
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_root_apex_demo_targ_view",
+      "route_or_url": "http://127.0.0.1:8111/",
+      "apparent_purpose": "Apex Demo Target System (Entry View)",
+      "relevant_controls_summary": [
+        "a: Home",
+        "a: Login",
+        "a: Register",
+        "a: Search Products"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_root_apex_demo_targ_view",
+        "ev-3617e468",
+        "ev-0d21b71e"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_search_catalog_search_view",
+      "route_or_url": "http://127.0.0.1:8111/search",
+      "apparent_purpose": "Catalog Search (Search View)",
+      "relevant_controls_summary": [
+        "input: Search items",
+        "button: Search"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-3617e468",
+        "ev-224386ea",
+        "ev-f3513e9a"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_search_catalog_search_view_q_Abc123Xy",
+      "route_or_url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+      "apparent_purpose": "Catalog Search (Search View)",
+      "relevant_controls_summary": [
+        "a: Home",
+        "a: Login",
+        "a: Register",
+        "a: Search",
+        "input: Abc123Xy"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-224386ea",
+        "ev-f3513e9a"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_login_sign_in_to_ape_view",
+      "route_or_url": "http://127.0.0.1:8111/login",
+      "apparent_purpose": "Sign In to Apex (Login View)",
+      "relevant_controls_summary": [
+        "input: user@example.com",
+        "input: Enter secure password",
+        "button: Log In",
+        "a: Create a new account",
+        "a: Forgot password?"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-76ce7bcd",
+        "ev-66b43fb3"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_forgot_password_reset_view",
+      "route_or_url": "http://127.0.0.1:8111/forgot",
+      "apparent_purpose": "Password Reset (Forgot View)",
+      "relevant_controls_summary": [
+        "a: Home",
+        "a: Login",
+        "a: Register",
+        "a: Search"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-66b43fb3",
+        "ev-0fc5b4e5"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_registration_create_an_apex_view",
+      "route_or_url": "http://127.0.0.1:8111/registration",
+      "apparent_purpose": "Create an Apex Account (Registration View)",
+      "relevant_controls_summary": [
+        "input: Jane Doe",
+        "input: jane@example.com",
+        "input: password",
+        "input: confirm_password",
+        "input: on"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-b59569a2",
+        "ev-55d641ee",
+        "ev-18028a9a"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_register_registration_e_view",
+      "route_or_url": "http://127.0.0.1:8111/register",
+      "apparent_purpose": "Registration Error (Register View)",
+      "relevant_controls_summary": [
+        "a: Home",
+        "a: Login",
+        "a: Register",
+        "a: Search",
+        "a: Try again"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-55d641ee",
+        "ev-885b1a22"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_apex_demo_targ_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_81509 on /search",
+      "target_element": "/search",
+      "to_state": "st_search_catalog_search_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-3617e468",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_search_catalog_search_view",
+      "action_taken": "[Primary Workflow] FILL:form_happy_form_1 on form_happy_form_1",
+      "target_element": "form_happy_form_1",
+      "to_state": "st_search_catalog_search_view_q_Abc123Xy",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "evidence_id": "ev-224386ea",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_search_catalog_search_view_q_Abc123Xy",
+      "action_taken": "[Exploratory / Return Branch] NAVIGATE_LINK:nav_link_81509 on /search",
+      "target_element": "/search",
+      "to_state": "st_search_catalog_search_view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "evidence_id": "ev-f3513e9a",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_search_catalog_search_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_97232 on /login",
+      "target_element": "/login",
+      "to_state": "st_login_sign_in_to_ape_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-76ce7bcd",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_login_sign_in_to_ape_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_c67f0385ca_a_href___forgot__ on a[href=\"/forgot\"]",
+      "target_element": "a[href=\"/forgot\"]",
+      "to_state": "st_forgot_password_reset_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-66b43fb3",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_forgot_password_reset_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_8420da7eac_a_href___search__ on a[href=\"/search\"]",
+      "target_element": "a[href=\"/search\"]",
+      "to_state": "st_search_catalog_search_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-0fc5b4e5",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_search_catalog_search_view",
+      "action_taken": "[Primary Workflow] NAVIGATE_LINK:nav_link_62908 on /registration",
+      "target_element": "/registration",
+      "to_state": "st_registration_create_an_apex_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-b59569a2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_registration_create_an_apex_view",
+      "action_taken": "[Validation / Constraint Branch] FILL:mismatch_form_1_password_confirm_password on confirm_password",
+      "target_element": "confirm_password",
+      "to_state": "st_register_registration_e_view",
+      "observed_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "evidence_id": "ev-55d641ee",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 9,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_register_registration_e_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_0d54862de0_a_href___search__ on a[href=\"/search\"]",
+      "target_element": "a[href=\"/search\"]",
+      "to_state": "st_search_catalog_search_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-885b1a22",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 10,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_search_catalog_search_view",
+      "action_taken": "[Exploratory / Return Branch] NAVIGATE_LINK:nav_link_29610 on /",
+      "target_element": "/",
+      "to_state": "st_root_apex_demo_targ_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-0d21b71e",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 11,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_root_apex_demo_targ_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_2590fb7e48_a_href___registration__ on a[href=\"/registration\"]",
+      "target_element": "a[href=\"/registration\"]",
+      "to_state": "st_registration_create_an_apex_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-18028a9a",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-c79743da: Verify route transition reachability to /search resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-c5e97be4: Verify form submission behavior for happy on form_happy_form_1 resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+    "Transition trans-45501267: Verify route transition reachability to /search resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+    "Transition trans-0f9cfef3: Verify route transition reachability to /login resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-86f8eaf9: Investigate interactive control response: a 'Forgot password?' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-b6f8cc85: Investigate interactive control response: a 'Search' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-d5824cab: Verify route transition reachability to /registration resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-2b616c4c: Verify form submission behavior for mismatch on mismatch_form_1_password_confirm_password resulted in Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+    "Transition trans-aa856fa9: Investigate interactive control response: a 'Search' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-51e42d31: Verify route transition reachability to / resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-d4e8a742: Investigate interactive control response: a 'Register' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Recorded Observation [SAFETY_DECISION]: SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)",
+    "Recorded Observation [SAFETY_DECISION]: SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)",
+    "Recorded Observation [SAFETY_DECISION]: SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)"
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "unexecuted_probes_count": 10,
+    "unexecuted_probes_by_reason": {
+      "TARGET_NOT_ON_CURRENT_PAGE": 6,
+      "MUTATION_BUDGET_EXHAUSTED": 4
+    },
+    "unexecuted_probes": [
+      {
+        "question_id": "q_ctrl_control_cls_2590fb7e48_a_href___search__",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "a[href=\"/search\"]",
+        "detail": "Precondition unsatisfied: Target 'a[href=\"/search\"]' is for 'http://127.0.0.1:8111/', but current active journey state is 'http://127.0.0.1:8111/search'"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_c67f0385ca_a_href___registration__",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "a[href=\"/registration\"]",
+        "detail": "Precondition unsatisfied: Target 'a[href=\"/registration\"]' is for 'http://127.0.0.1:8111/login', but current active journey state is 'http://127.0.0.1:8111/search'"
+      },
+      {
+        "question_id": "q_form_cls_c67f0385ca_boundary_password_length_form_1_password",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "password",
+        "detail": "Step failed (SET_NOVALIDATE on form): Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not match required state URL 'http://127.0.0.1:8111/login'"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_2590fb7e48_a_href___login__",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "a[href=\"/login\"]",
+        "detail": "Precondition unsatisfied: Target 'a[href=\"/login\"]' is for 'http://127.0.0.1:8111/', but current active journey state is 'http://127.0.0.1:8111/search'"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_a2913c2e3a_a_href_____",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "a[href=\"/\"]",
+        "detail": "Precondition unsatisfied: Target 'a[href=\"/\"]' is for 'http://127.0.0.1:8111/search?q=Abc123Xy', but current active journey state is 'http://127.0.0.1:8111/search'"
+      },
+      {
+        "question_id": "q_form_cls_1fdfb40fa1_constraint_bypass_checkbox_form_1_terms",
+        "reason": "TARGET_NOT_ON_CURRENT_PAGE",
+        "target": "terms",
+        "detail": "Step failed (SET_NOVALIDATE on form): Unsatisfied precondition: Current browser URL 'http://127.0.0.1:8111/search' does not match required state URL 'http://127.0.0.1:8111/registration'"
+      },
+      {
+        "question_id": "q_form_cls_1fdfb40fa1_boundary_password_length_form_1_password",
+        "reason": "MUTATION_BUDGET_EXHAUSTED",
+        "target": "password",
+        "detail": "SAFETY_BLOCKED: Mutation budget exhausted (50/50)"
+      },
+      {
+        "question_id": "q_form_cls_1fdfb40fa1_boundary_password_length_form_1_confirm_password",
+        "reason": "MUTATION_BUDGET_EXHAUSTED",
+        "target": "#fullname",
+        "detail": "SAFETY_BLOCKED: Mutation budget exhausted (50/50)"
+      },
+      {
+        "question_id": "q_form_cls_1fdfb40fa1_form_happy_form_1",
+        "reason": "MUTATION_BUDGET_EXHAUSTED",
+        "target": "#fullname",
+        "detail": "SAFETY_BLOCKED: Mutation budget exhausted (50/50)"
+      },
+      {
+        "question_id": "q_form_cls_1fdfb40fa1_required_blank_all_form_1",
+        "reason": "MUTATION_BUDGET_EXHAUSTED",
+        "target": "#fullname",
+        "detail": "SAFETY_BLOCKED: Mutation budget exhausted (50/50)"
+      }
+    ],
+    "explored_states_count": 7,
+    "unexplored_items_count": 27,
+    "blocked_items_count": 3,
+    "unexplored_candidates": [
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_2590fb7e48",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "a[href=\"/login\"]",
+        "rationale": "Investigate interactive control response: a 'Login'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "a[href=\"/registration\"]",
+        "rationale": "Investigate interactive control response: a 'Register'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/login",
+        "rationale": "Verify route transition reachability to /login",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/registration",
+        "rationale": "Verify route transition reachability to /registration",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "form_happy_form_1",
+        "rationale": "Verify form submission behavior for happy on form_happy_form_1",
+        "category": "discovery",
+        "priority": 0.457,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "required_blank_all_form_1",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+        "category": "discovery",
+        "priority": 0.457,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/registration",
+        "rationale": "Verify route transition reachability to /registration",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/forgot",
+        "rationale": "Verify route transition reachability to /forgot",
+        "category": "discovery",
+        "priority": 0.507,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_c67f0385ca",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "a[href=\"/\"]",
+        "rationale": "Investigate interactive control response: a 'Home'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "a[href=\"/login\"]",
+        "rationale": "Investigate interactive control response: a 'Login'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "a[href=\"/registration\"]",
+        "rationale": "Investigate interactive control response: a 'Register'",
+        "category": "discovery",
+        "priority": 0.486,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      },
+      {
+        "target": "/",
+        "rationale": "Verify route transition reachability to /",
+        "category": "discovery",
+        "priority": 0.403,
+        "reason_unexplored": "Frontier item pending in lower priority tier"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Verify page state and layout persist predictably across browser reloads",
+      "Investigate interactive control response: a 'Login'",
+      "Investigate interactive control response: a 'Register'"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_root_apex_demo_targ_view",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of http://127.0.0.1:8111/ with 4 interactive controls and 0 forms",
+      "state_ref": "st_root_apex_demo_targ_view",
+      "screenshot": "investigate_step_0_dd5e3331.png"
+    },
+    {
+      "evidence_id": "ev-3617e468",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_2590fb7e48_nav_link_81509]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_apex_demo_targ_view",
+      "screenshot": "investigate_probe_after_bf7f6346.png"
+    },
+    {
+      "evidence_id": "ev-224386ea",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_0a6f8af18d_form_happy_form_1]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_01aa0c3b.png"
+    },
+    {
+      "evidence_id": "ev-f3513e9a",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_a2913c2e3a_nav_link_81509]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched.",
+      "state_ref": "st_search_catalog_search_view_q_Abc123Xy",
+      "screenshot": "investigate_probe_after_c396b7bc.png"
+    },
+    {
+      "evidence_id": "ev-c1a989ed",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_0a6f8af18d_required_blank_all_form_1]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_ad444e20.png"
+    },
+    {
+      "evidence_id": "ev-aa4f8a1f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_inv_invariant_reload_persistence_cls_0a6f8af18d]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_94b4dd32.png"
+    },
+    {
+      "evidence_id": "ev-a6987f59",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_2590fb7e48_a_href___search__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_precond_skip_before_a09a00e5.png"
+    },
+    {
+      "evidence_id": "ev-76ce7bcd",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_2590fb7e48_nav_link_97232]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_44781c12.png"
+    },
+    {
+      "evidence_id": "ev-66b43fb3",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c67f0385ca_a_href___forgot__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_login_sign_in_to_ape_view",
+      "screenshot": "investigate_probe_after_9a0b29df.png"
+    },
+    {
+      "evidence_id": "ev-0fc5b4e5",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_8420da7eac_a_href___search__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_forgot_password_reset_view",
+      "screenshot": "investigate_probe_after_aa0adfb6.png"
+    },
+    {
+      "evidence_id": "ev-8c1c8f63",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_c67f0385ca_a_href___registration__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_precond_skip_before_5eb588c6.png"
+    },
+    {
+      "evidence_id": "ev-b59569a2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_2590fb7e48_nav_link_62908]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_09a42259.png"
+    },
+    {
+      "evidence_id": "ev-55d641ee",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_1fdfb40fa1_mismatch_form_1_password_confirm_password]: verdict=CONTRADICTED. Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": "investigate_probe_after_93d142a8.png"
+    },
+    {
+      "evidence_id": "ev-885b1a22",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_0d54862de0_a_href___search__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_register_registration_e_view",
+      "screenshot": "investigate_probe_after_71830272.png"
+    },
+    {
+      "evidence_id": "ev-5c8298f5",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_c67f0385ca_boundary_password_length_form_1_password]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_ec063279.png"
+    },
+    {
+      "evidence_id": "ev-cdc686df",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_2590fb7e48_a_href___login__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_precond_skip_before_3adadd92.png"
+    },
+    {
+      "evidence_id": "ev-b978a237",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a2913c2e3a_a_href_____]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_precond_skip_before_5b00f095.png"
+    },
+    {
+      "evidence_id": "ev-11b99ccb",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_1fdfb40fa1_constraint_bypass_checkbox_form_1_terms]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_940fc203.png"
+    },
+    {
+      "evidence_id": "ev-0d21b71e",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_nav_cls_2590fb7e48_nav_link_29610]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_search_catalog_search_view",
+      "screenshot": "investigate_probe_after_a505e803.png"
+    },
+    {
+      "evidence_id": "ev-18028a9a",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_2590fb7e48_a_href___registration__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_root_apex_demo_targ_view",
+      "screenshot": "investigate_probe_after_e276f4b5.png"
+    },
+    {
+      "evidence_id": "ev-e59574a2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_1fdfb40fa1_boundary_password_length_form_1_password]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": "investigate_probe_after_dfebdef0.png"
+    },
+    {
+      "evidence_id": "ev_blocked_q_form_cls_1fdfb40fa1_boundary_password_length_form_1_confirm_password_1792873736227",
+      "type": "SAFETY_DECISION",
+      "summary": "SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": null
+    },
+    {
+      "evidence_id": "ev-e425edfa",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_inv_invariant_reload_persistence_cls_1fdfb40fa1]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": "investigate_probe_after_f4096769.png"
+    },
+    {
+      "evidence_id": "ev_blocked_q_form_cls_1fdfb40fa1_form_happy_form_1_1792873738356",
+      "type": "SAFETY_DECISION",
+      "summary": "SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": null
+    },
+    {
+      "evidence_id": "ev_blocked_q_form_cls_1fdfb40fa1_required_blank_all_form_1_1792873738358",
+      "type": "SAFETY_DECISION",
+      "summary": "SAFETY_DECISION: Step (FILL on #fullname) blocked: SAFETY_BLOCKED: Mutation budget exhausted (50/50)",
+      "state_ref": "st_registration_create_an_apex_view",
+      "screenshot": null
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried.",
+    "Safety Policy Constrained: 3 probe action(s) were blocked by the Safety Governor to enforce domain or action boundaries.",
+    "Mutation budget exhausted: 4 planned probe(s) did not run; the forms they target are not covered by this investigation.",
+    "6 probe(s) were skipped because their target control was not on the current page; they are not counted as tested."
+  ],
+  "confirmed_bug_leads": [
+    {
+      "id": "lead_e48bd71e",
+      "title": "Bypass: Confirmation field 'confirm_password' must match 'password'",
+      "oracle_type": "CONVENTION",
+      "strength": "MEDIUM",
+      "probe_family": "forms",
+      "question_id": "q_form_cls_1fdfb40fa1_mismatch_form_1_password_confirm_password",
+      "state_class": "cls_1fdfb40fa1",
+      "source_state_id": "st_registration_create_an_apex_view",
+      "source_url": "http://127.0.0.1:8111/registration",
+      "target_desc": "confirm_password",
+      "steps": [
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "fullname",
+            "label": "Full Name",
+            "css": "#fullname",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "Abc123Xy",
+          "key_to_press": null
+        },
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "email",
+            "label": "Work Email",
+            "css": "#email",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "qa+run_9@example.test",
+          "key_to_press": null
+        },
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "password",
+            "label": "Password",
+            "css": "#reg-password",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "Vqa!run_99x",
+          "key_to_press": null
+        },
+        {
+          "action_type": "FILL",
+          "target": {
+            "role": null,
+            "name": "confirm_password",
+            "label": "Confirm Password",
+            "css": "#confirm-password",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": "Vqa!run_99x_diff9x",
+          "key_to_press": null
+        },
+        {
+          "action_type": "CHECK",
+          "target": {
+            "role": null,
+            "name": "terms",
+            "label": "I accept the Terms of Service",
+            "css": "#terms",
+            "resolved_strategy": "css"
+          },
+          "raw_target": null,
+          "resolved_value": null,
+          "key_to_press": null
+        },
+        {
+          "action_type": "SUBMIT",
+          "target": null,
+          "raw_target": "form",
+          "resolved_value": null,
+          "key_to_press": null
+        }
+      ],
+      "setup_steps": [],
+      "expected": {
+        "text": "Submission should be rejected: Reject submission when passwords do not match",
+        "provenance": "form_validation_rule"
+      },
+      "actual": {
+        "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Confirmation field 'confirm_password' must match 'password'",
+        "source_url": "http://127.0.0.1:8111/registration"
+      },
+      "evidence_ids": [
+        "probe_probe_65ce5e96",
+        "st_register_registration_e_view"
+      ],
+      "before_screenshot_id": "investigate_probe_before_935cfe43.png",
+      "after_screenshot_id": "investigate_probe_after_ac049bd4.png",
+      "network_excerpt": {
+        "request_count": 1,
+        "status_4xx_count": 0,
+        "status_5xx_count": 0,
+        "endpoints": [
+          "http://127.0.0.1:8111/register"
+        ]
+      },
+      "console_excerpt": null,
+      "severity_guess": "MEDIUM",
+      "status": "CONFIRMED",
+      "confirmation": {
+        "runs": 2,
+        "passed": 2
+      },
+      "reproduction_outcome": "CONFIRMED_DEFECT",
+      "reproduction_runs": [
+        {
+          "run": 1,
+          "reproduced": true,
+          "outcome": "CONFIRMED_DEFECT",
+          "reason": "Form bypass reproduced: form submission accepted"
+        },
+        {
+          "run": 2,
+          "reproduced": true,
+          "outcome": "CONFIRMED_DEFECT",
+          "reason": "Form bypass reproduced: form submission accepted"
+        }
+      ],
+      "reproduction_failure_reason": null
+    }
+  ],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/",
+          "description": "Navigate to entry view: http://127.0.0.1:8111/"
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/search",
+          "description": "Navigate to http://127.0.0.1:8111/search",
+          "expected_transition": "st_search_catalog_search_view",
+          "expected_url_fragment": "/search",
+          "expected_heading": "Catalog Search",
+          "expected_selector": "#q",
+          "evidence_refs": [
+            "ev-3617e468"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/login",
+          "description": "Navigate to http://127.0.0.1:8111/login",
+          "expected_transition": "st_login_sign_in_to_ape_view",
+          "expected_url_fragment": "/login",
+          "expected_heading": "Sign In to Apex",
+          "expected_selector": "#username",
+          "evidence_refs": [
+            "ev-76ce7bcd"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/forgot\"]",
+          "description": "Trigger a[href=\"/forgot\"]",
+          "expected_transition": "st_forgot_password_reset_view",
+          "expected_url_fragment": "/forgot",
+          "expected_heading": "Password Reset",
+          "expected_selector": "a[href=\"/\"]",
+          "evidence_refs": [
+            "ev-66b43fb3"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/registration",
+          "description": "Navigate to http://127.0.0.1:8111/registration",
+          "expected_transition": "st_registration_create_an_apex_view",
+          "expected_url_fragment": "/registration",
+          "expected_heading": "Create an Apex Account",
+          "expected_selector": "#fullname",
+          "evidence_refs": [
+            "ev-b59569a2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "confirm_password",
+          "description": "Verify form submission behavior for mismatch on mismatch_form_1_password_confirm_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+          "expected_transition": "st_register_registration_e_view",
+          "evidence_refs": [
+            "ev-55d641ee"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/search",
+          "description": "Navigate to http://127.0.0.1:8111/search",
+          "expected_transition": "st_search_catalog_search_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Catalog Search",
+          "expected_selector": "#q",
+          "evidence_refs": [
+            "ev-f3513e9a"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/search\"]",
+          "description": "Trigger a[href=\"/search\"]",
+          "expected_transition": "st_search_catalog_search_view",
+          "expected_url_fragment": "/search",
+          "expected_heading": "Catalog Search",
+          "expected_selector": "#q",
+          "evidence_refs": [
+            "ev-0fc5b4e5"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/search\"]",
+          "description": "Trigger a[href=\"/search\"]",
+          "expected_transition": "st_search_catalog_search_view",
+          "expected_url_fragment": "/search",
+          "expected_heading": "Catalog Search",
+          "expected_selector": "#q",
+          "evidence_refs": [
+            "ev-885b1a22"
+          ]
+        },
+        {
+          "action": "NAVIGATE",
+          "target": "http://127.0.0.1:8111/",
+          "description": "Navigate to http://127.0.0.1:8111/",
+          "expected_transition": "st_root_apex_demo_targ_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Apex Demo Target System",
+          "expected_selector": "a[href=\"/\"]",
+          "evidence_refs": [
+            "ev-0d21b71e"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "a[href=\"/registration\"]",
+          "description": "Trigger a[href=\"/registration\"]",
+          "expected_transition": "st_registration_create_an_apex_view",
+          "expected_url_fragment": "/registration",
+          "expected_heading": "Create an Apex Account",
+          "expected_selector": "#fullname",
+          "evidence_refs": [
+            "ev-18028a9a"
+          ]
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "journey_purchase",
+      "name": "E-Commerce Purchase Funnel",
+      "description": "Catalogue item selection -> Cart accumulation -> Cart modification -> Checkout navigation -> Order confirmation",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Add Product 1 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "cart_badge_increment",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Navigate to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "shopping-cart|cart-link|view cart|/cart|\\bcart\\b",
+          "expected_role": "link",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_cart",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Modify Cart Quantity",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "cart-qty-inc|qty-plus|qty-inc|increase|add-qty|cart-qty|qty-minus|decrement|remove|delete|(?<![a-zA-Z0-9_])[+-](?![a-zA-Z0-9_])",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": false,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "quantity_modified",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 3,
+          "name": "Proceed to Checkout",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "checkout|proceed",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_checkout",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 4,
+          "name": "Fill and Submit Checkout Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "checkout|shipping|place-order|place order|order|submit|form",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "checkout_form_submitted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 5,
+          "name": "Confirm Order",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "confirm|confirmation|finish|place-order|complete",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "order_confirmed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    },
+    {
+      "journey_id": "journey_search_filter",
+      "name": "Search & Filter Discovery Workflow",
+      "description": "Query input -> Filter application -> Results exploration and interaction",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Input Search Query",
+          "action_type": "FILL",
+          "target_pattern": "search|query|find|filter|keyword",
+          "expected_role": "textbox",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": "q_nav_cls_2590fb7e48_nav_link_81509",
+          "executed_target": "/search",
+          "expected_postcondition": "query_entered",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Action verified via observable DOM/URL mutation",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_search_filter_0",
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Apply Search or Filter",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "search|filter|apply|submit|btn-filter|go",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "results_updated",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Inspect Filtered Result",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "item|card|result|title|link|view|project",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "detail_viewed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 1,
+      "status": "IN_PROGRESS",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": [
+        "ev_journey_journey_search_filter_0"
+      ]
+    },
+    {
+      "journey_id": "journey_creation",
+      "name": "Entity Creation & Management Workflow",
+      "description": "Trigger creation action -> Input entity attributes -> Submit form -> Verify entity state",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Trigger Entity Creation",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "create|new|add|compose|plus|btn-create",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "creation_form_opened",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Submit Entity Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "form|create|save|submit|project",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "entity_persisted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    }
+  ],
+  "active_journey_id": "journey_search_filter",
+  "behavior_model": {
+    "state_classes": {
+      "st_root_apex_demo_targ_view": {
+        "id": "st_root_apex_demo_targ_view",
+        "class_id": "st_root_apex_demo_targ_view",
+        "primary_purpose": "Apex Demo Target System (Entry View)",
+        "representative_route": "http://127.0.0.1:8111/",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view",
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      "st_search_catalog_search_view": {
+        "id": "st_search_catalog_search_view",
+        "class_id": "st_search_catalog_search_view",
+        "primary_purpose": "Catalog Search (Search View)",
+        "representative_route": "http://127.0.0.1:8111/search",
+        "key_controls": [
+          "#q",
+          "#searchBtn"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view_q_Abc123Xy",
+          "st_login_sign_in_to_ape_view",
+          "st_registration_create_an_apex_view",
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      "st_search_catalog_search_view_q_Abc123Xy": {
+        "id": "st_search_catalog_search_view_q_Abc123Xy",
+        "class_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "primary_purpose": "Catalog Search (Search View)",
+        "representative_route": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]",
+          "input[name=\"q\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      "st_login_sign_in_to_ape_view": {
+        "id": "st_login_sign_in_to_ape_view",
+        "class_id": "st_login_sign_in_to_ape_view",
+        "primary_purpose": "Sign In to Apex (Login View)",
+        "representative_route": "http://127.0.0.1:8111/login",
+        "key_controls": [
+          "#username",
+          "#password",
+          "#loginBtn",
+          "a[href=\"/registration\"]",
+          "a[href=\"/forgot\"]"
+        ],
+        "outbound_transitions": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      "st_forgot_password_reset_view": {
+        "id": "st_forgot_password_reset_view",
+        "class_id": "st_forgot_password_reset_view",
+        "primary_purpose": "Password Reset (Forgot View)",
+        "representative_route": "http://127.0.0.1:8111/forgot",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      "st_registration_create_an_apex_view": {
+        "id": "st_registration_create_an_apex_view",
+        "class_id": "st_registration_create_an_apex_view",
+        "primary_purpose": "Create an Apex Account (Registration View)",
+        "representative_route": "http://127.0.0.1:8111/registration",
+        "key_controls": [
+          "#fullname",
+          "#email",
+          "#reg-password",
+          "#confirm-password",
+          "#terms"
+        ],
+        "outbound_transitions": [
+          "st_register_registration_e_view"
+        ]
+      },
+      "st_register_registration_e_view": {
+        "id": "st_register_registration_e_view",
+        "class_id": "st_register_registration_e_view",
+        "primary_purpose": "Registration Error (Register View)",
+        "representative_route": "http://127.0.0.1:8111/register",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]",
+          "a[href=\"/registration\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_root_apex_demo_targ_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_81509",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_search_catalog_search_view_q_Abc123Xy",
+        "trigger_action": "FILL:form_happy_form_1",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view_q_Abc123Xy",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_81509",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_login_sign_in_to_ape_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_97232",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_ape_view",
+        "target_class": "st_forgot_password_reset_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c67f0385ca_a_href___forgot__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_forgot_password_reset_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_8420da7eac_a_href___search__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_registration_create_an_apex_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_62908",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_registration_create_an_apex_view",
+        "target_class": "st_register_registration_e_view",
+        "trigger_action": "FILL:mismatch_form_1_password_confirm_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      },
+      {
+        "source_class": "st_register_registration_e_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_0d54862de0_a_href___search__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_root_apex_demo_targ_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_29610",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_root_apex_demo_targ_view",
+        "target_class": "st_registration_create_an_apex_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_2590fb7e48_a_href___registration__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/",
+            "description": "Navigate to entry view: http://127.0.0.1:8111/"
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/search",
+            "description": "Navigate to http://127.0.0.1:8111/search",
+            "expected_transition": "st_search_catalog_search_view",
+            "expected_url_fragment": "/search",
+            "expected_heading": "Catalog Search",
+            "expected_selector": "#q",
+            "evidence_refs": [
+              "ev-3617e468"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/login",
+            "description": "Navigate to http://127.0.0.1:8111/login",
+            "expected_transition": "st_login_sign_in_to_ape_view",
+            "expected_url_fragment": "/login",
+            "expected_heading": "Sign In to Apex",
+            "expected_selector": "#username",
+            "evidence_refs": [
+              "ev-76ce7bcd"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/forgot\"]",
+            "description": "Trigger a[href=\"/forgot\"]",
+            "expected_transition": "st_forgot_password_reset_view",
+            "expected_url_fragment": "/forgot",
+            "expected_heading": "Password Reset",
+            "expected_selector": "a[href=\"/\"]",
+            "evidence_refs": [
+              "ev-66b43fb3"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/registration",
+            "description": "Navigate to http://127.0.0.1:8111/registration",
+            "expected_transition": "st_registration_create_an_apex_view",
+            "expected_url_fragment": "/registration",
+            "expected_heading": "Create an Apex Account",
+            "expected_selector": "#fullname",
+            "evidence_refs": [
+              "ev-b59569a2"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Validation & Constraint Verification",
+        "steps": [
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "confirm_password",
+            "description": "Verify form submission behavior for mismatch on mismatch_form_1_password_confirm_password -> Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched.",
+            "expected_transition": "st_register_registration_e_view",
+            "evidence_refs": [
+              "ev-55d641ee"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/search",
+            "description": "Navigate to http://127.0.0.1:8111/search",
+            "expected_transition": "st_search_catalog_search_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Catalog Search",
+            "expected_selector": "#q",
+            "evidence_refs": [
+              "ev-f3513e9a"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/search\"]",
+            "description": "Trigger a[href=\"/search\"]",
+            "expected_transition": "st_search_catalog_search_view",
+            "expected_url_fragment": "/search",
+            "expected_heading": "Catalog Search",
+            "expected_selector": "#q",
+            "evidence_refs": [
+              "ev-0fc5b4e5"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/search\"]",
+            "description": "Trigger a[href=\"/search\"]",
+            "expected_transition": "st_search_catalog_search_view",
+            "expected_url_fragment": "/search",
+            "expected_heading": "Catalog Search",
+            "expected_selector": "#q",
+            "evidence_refs": [
+              "ev-885b1a22"
+            ]
+          },
+          {
+            "action": "NAVIGATE",
+            "target": "http://127.0.0.1:8111/",
+            "description": "Navigate to http://127.0.0.1:8111/",
+            "expected_transition": "st_root_apex_demo_targ_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Apex Demo Target System",
+            "expected_selector": "a[href=\"/\"]",
+            "evidence_refs": [
+              "ev-0d21b71e"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "a[href=\"/registration\"]",
+            "description": "Trigger a[href=\"/registration\"]",
+            "expected_transition": "st_registration_create_an_apex_view",
+            "expected_url_fragment": "/registration",
+            "expected_heading": "Create an Apex Account",
+            "expected_selector": "#fullname",
+            "evidence_refs": [
+              "ev-18028a9a"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [
+      {
+        "id": "lead_e48bd71e",
+        "title": "Bypass: Confirmation field 'confirm_password' must match 'password'",
+        "oracle_type": "CONVENTION",
+        "strength": "MEDIUM",
+        "probe_family": "forms",
+        "question_id": "q_form_cls_1fdfb40fa1_mismatch_form_1_password_confirm_password",
+        "state_class": "cls_1fdfb40fa1",
+        "source_state_id": "st_registration_create_an_apex_view",
+        "source_url": "http://127.0.0.1:8111/registration",
+        "target_desc": "confirm_password",
+        "steps": [
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "fullname",
+              "label": "Full Name",
+              "css": "#fullname",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "Abc123Xy",
+            "key_to_press": null
+          },
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "email",
+              "label": "Work Email",
+              "css": "#email",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "qa+run_9@example.test",
+            "key_to_press": null
+          },
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "password",
+              "label": "Password",
+              "css": "#reg-password",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "Vqa!run_99x",
+            "key_to_press": null
+          },
+          {
+            "action_type": "FILL",
+            "target": {
+              "role": null,
+              "name": "confirm_password",
+              "label": "Confirm Password",
+              "css": "#confirm-password",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": "Vqa!run_99x_diff9x",
+            "key_to_press": null
+          },
+          {
+            "action_type": "CHECK",
+            "target": {
+              "role": null,
+              "name": "terms",
+              "label": "I accept the Terms of Service",
+              "css": "#terms",
+              "resolved_strategy": "css"
+            },
+            "raw_target": null,
+            "resolved_value": null,
+            "key_to_press": null
+          },
+          {
+            "action_type": "SUBMIT",
+            "target": null,
+            "raw_target": "form",
+            "resolved_value": null,
+            "key_to_press": null
+          }
+        ],
+        "setup_steps": [],
+        "expected": {
+          "text": "Submission should be rejected: Reject submission when passwords do not match",
+          "provenance": "form_validation_rule"
+        },
+        "actual": {
+          "text": "Form submission accepted (status ACCEPTED) despite violating constraint: Confirmation field 'confirm_password' must match 'password'",
+          "source_url": "http://127.0.0.1:8111/registration"
+        },
+        "evidence_ids": [
+          "probe_probe_65ce5e96",
+          "st_register_registration_e_view"
+        ],
+        "before_screenshot_id": "investigate_probe_before_935cfe43.png",
+        "after_screenshot_id": "investigate_probe_after_ac049bd4.png",
+        "network_excerpt": {
+          "request_count": 1,
+          "status_4xx_count": 0,
+          "status_5xx_count": 0,
+          "endpoints": [
+            "http://127.0.0.1:8111/register"
+          ]
+        },
+        "console_excerpt": null,
+        "severity_guess": "MEDIUM",
+        "status": "CONFIRMED",
+        "confirmation": {
+          "runs": 2,
+          "passed": 2
+        },
+        "reproduction_outcome": "CONFIRMED_DEFECT",
+        "reproduction_runs": [
+          {
+            "run": 1,
+            "reproduced": true,
+            "outcome": "CONFIRMED_DEFECT",
+            "reason": "Form bypass reproduced: form submission accepted"
+          },
+          {
+            "run": 2,
+            "reproduced": true,
+            "outcome": "CONFIRMED_DEFECT",
+            "reason": "Form bypass reproduced: form submission accepted"
+          }
+        ],
+        "reproduction_failure_reason": null
+      }
+    ],
+    "transitions": [
+      {
+        "source_class": "st_root_apex_demo_targ_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_81509",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_search_catalog_search_view_q_Abc123Xy",
+        "trigger_action": "FILL:form_happy_form_1",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view_q_Abc123Xy",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_81509",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_login_sign_in_to_ape_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_97232",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_login_sign_in_to_ape_view",
+        "target_class": "st_forgot_password_reset_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_c67f0385ca_a_href___forgot__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_forgot_password_reset_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_8420da7eac_a_href___search__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_registration_create_an_apex_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_62908",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_registration_create_an_apex_view",
+        "target_class": "st_register_registration_e_view",
+        "trigger_action": "FILL:mismatch_form_1_password_confirm_password",
+        "expected_outcome": "Verdict CONTRADICTED (ROUTE_TRANSITION): 0/2 signals matched."
+      },
+      {
+        "source_class": "st_register_registration_e_view",
+        "target_class": "st_search_catalog_search_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_0d54862de0_a_href___search__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_search_catalog_search_view",
+        "target_class": "st_root_apex_demo_targ_view",
+        "trigger_action": "NAVIGATE_LINK:nav_link_29610",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_root_apex_demo_targ_view",
+        "target_class": "st_registration_create_an_apex_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_2590fb7e48_a_href___registration__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_root_apex_demo_targ_view",
+        "class_id": "st_root_apex_demo_targ_view",
+        "primary_purpose": "Apex Demo Target System (Entry View)",
+        "representative_route": "http://127.0.0.1:8111/",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view",
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "id": "st_search_catalog_search_view",
+        "class_id": "st_search_catalog_search_view",
+        "primary_purpose": "Catalog Search (Search View)",
+        "representative_route": "http://127.0.0.1:8111/search",
+        "key_controls": [
+          "#q",
+          "#searchBtn"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view_q_Abc123Xy",
+          "st_login_sign_in_to_ape_view",
+          "st_registration_create_an_apex_view",
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      {
+        "id": "st_search_catalog_search_view_q_Abc123Xy",
+        "class_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "primary_purpose": "Catalog Search (Search View)",
+        "representative_route": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]",
+          "input[name=\"q\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      {
+        "id": "st_login_sign_in_to_ape_view",
+        "class_id": "st_login_sign_in_to_ape_view",
+        "primary_purpose": "Sign In to Apex (Login View)",
+        "representative_route": "http://127.0.0.1:8111/login",
+        "key_controls": [
+          "#username",
+          "#password",
+          "#loginBtn",
+          "a[href=\"/registration\"]",
+          "a[href=\"/forgot\"]"
+        ],
+        "outbound_transitions": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      {
+        "id": "st_forgot_password_reset_view",
+        "class_id": "st_forgot_password_reset_view",
+        "primary_purpose": "Password Reset (Forgot View)",
+        "representative_route": "http://127.0.0.1:8111/forgot",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      {
+        "id": "st_registration_create_an_apex_view",
+        "class_id": "st_registration_create_an_apex_view",
+        "primary_purpose": "Create an Apex Account (Registration View)",
+        "representative_route": "http://127.0.0.1:8111/registration",
+        "key_controls": [
+          "#fullname",
+          "#email",
+          "#reg-password",
+          "#confirm-password",
+          "#terms"
+        ],
+        "outbound_transitions": [
+          "st_register_registration_e_view"
+        ]
+      },
+      {
+        "id": "st_register_registration_e_view",
+        "class_id": "st_register_registration_e_view",
+        "primary_purpose": "Registration Error (Register View)",
+        "representative_route": "http://127.0.0.1:8111/register",
+        "key_controls": [
+          "a[href=\"/\"]",
+          "a[href=\"/login\"]",
+          "a[href=\"/registration\"]",
+          "a[href=\"/search\"]",
+          "a[href=\"/registration\"]"
+        ],
+        "outbound_transitions": [
+          "st_search_catalog_search_view"
+        ]
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: http://127.0.0.1:8111/\n        page.goto('http://127.0.0.1:8111/', wait_until='domcontentloaded')\n        # Step 2: Navigate to http://127.0.0.1:8111/search [Evidence: ev-3617e468]\n        page.goto('http://127.0.0.1:8111/search', wait_until='domcontentloaded')\n        assert '/search' in page.url, f'Expected /search in URL, got {page.url}'\n        assert 'Catalog Search' in page.locator('body').inner_text(), f'Expected heading/landmark Catalog Search'\n        assert page.locator('#q').count() > 0\n        # Step 3: Navigate to http://127.0.0.1:8111/login [Evidence: ev-76ce7bcd]\n        page.goto('http://127.0.0.1:8111/login', wait_until='domcontentloaded')\n        assert '/login' in page.url, f'Expected /login in URL, got {page.url}'\n        assert 'Sign In to Apex' in page.locator('body').inner_text(), f'Expected heading/landmark Sign In to Apex'\n        assert page.locator('#username').count() > 0\n        # Step 4: Trigger a[href=\"/forgot\"] [Evidence: ev-66b43fb3]\n        page.locator('a[href=\"/forgot\"]').click()\n        page.wait_for_timeout(400)\n        assert '/forgot' in page.url, f'Expected /forgot in URL, got {page.url}'\n        assert 'Password Reset' in page.locator('body').inner_text(), f'Expected heading/landmark Password Reset'\n        assert page.locator('a[href=\"/\"]').count() > 0\n        # Step 5: Navigate to http://127.0.0.1:8111/registration [Evidence: ev-b59569a2]\n        page.goto('http://127.0.0.1:8111/registration', wait_until='domcontentloaded')\n        assert '/registration' in page.url, f'Expected /registration in URL, got {page.url}'\n        assert 'Create an Apex Account' in page.locator('body').inner_text(), f'Expected heading/landmark Create an Apex Account'\n        assert page.locator('#fullname').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792873692.9520123,
+      "from_state_id": "st_root_apex_demo_targ_view",
+      "from_url": "http://127.0.0.1:8111/",
+      "question_id": "q_nav_cls_2590fb7e48_nav_link_81509",
+      "selected_action": "/search",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /search",
+      "priority_score": 0.794,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": true
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792873696.79181,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_form_cls_0a6f8af18d_form_happy_form_1",
+      "selected_action": "form_happy_form_1",
+      "probe_family": "forms",
+      "category": "discovery",
+      "hypothesis": "Verify form submission behavior for happy on form_happy_form_1",
+      "priority_score": 1.049,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view_q_Abc123Xy",
+      "to_url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792873698.572138,
+      "from_state_id": "st_search_catalog_search_view_q_Abc123Xy",
+      "from_url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+      "question_id": "q_nav_cls_a2913c2e3a_nav_link_81509",
+      "selected_action": "/search",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /search",
+      "priority_score": 0.52,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792873700.4803503,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_form_cls_0a6f8af18d_required_blank_all_form_1",
+      "selected_action": "required_blank_all_form_1",
+      "probe_family": "forms",
+      "category": "discovery",
+      "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+      "priority_score": 1.049,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792873702.6041574,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_inv_invariant_reload_persistence_cls_0a6f8af18d",
+      "selected_action": "probe",
+      "probe_family": "invariants",
+      "category": "invariant",
+      "hypothesis": "Verify page state and layout persist predictably across browser reloads",
+      "priority_score": 0.8925,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792873703.0266228,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_ctrl_control_cls_2590fb7e48_a_href___search__",
+      "selected_action": "a[href=\"/search\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Search Products'",
+      "priority_score": 0.7175,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792873706.9836698,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_nav_cls_2590fb7e48_nav_link_97232",
+      "selected_action": "/login",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /login",
+      "priority_score": 0.6765,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_login_sign_in_to_ape_view",
+      "to_url": "http://127.0.0.1:8111/login",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792873710.3381226,
+      "from_state_id": "st_login_sign_in_to_ape_view",
+      "from_url": "http://127.0.0.1:8111/login",
+      "question_id": "q_ctrl_control_cls_c67f0385ca_a_href___forgot__",
+      "selected_action": "a[href=\"/forgot\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Forgot password?'",
+      "priority_score": 0.7105,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_forgot_password_reset_view",
+      "to_url": "http://127.0.0.1:8111/forgot",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792873713.8007374,
+      "from_state_id": "st_forgot_password_reset_view",
+      "from_url": "http://127.0.0.1:8111/forgot",
+      "question_id": "q_ctrl_control_cls_8420da7eac_a_href___search__",
+      "selected_action": "a[href=\"/search\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Search'",
+      "priority_score": 0.7465,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": true
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792873714.2320569,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_ctrl_control_cls_c67f0385ca_a_href___registration__",
+      "selected_action": "a[href=\"/registration\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Create a new account'",
+      "priority_score": 0.7175,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792873718.0474405,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_nav_cls_2590fb7e48_nav_link_62908",
+      "selected_action": "/registration",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /registration",
+      "priority_score": 0.6765,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_registration_create_an_apex_view",
+      "to_url": "http://127.0.0.1:8111/registration",
+      "is_productive": true
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792873723.3395414,
+      "from_state_id": "st_registration_create_an_apex_view",
+      "from_url": "http://127.0.0.1:8111/registration",
+      "question_id": "q_form_cls_1fdfb40fa1_mismatch_form_1_password_confirm_password",
+      "selected_action": "confirm_password",
+      "probe_family": "forms",
+      "category": "constraint",
+      "hypothesis": "Verify form submission behavior for mismatch on mismatch_form_1_password_confirm_password",
+      "priority_score": 1.1025,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "CONTRADICTED",
+      "to_state_id": "st_register_registration_e_view",
+      "to_url": "http://127.0.0.1:8111/register",
+      "is_productive": true
+    },
+    {
+      "step_number": 13,
+      "timestamp": 1792873724.8768072,
+      "from_state_id": "st_register_registration_e_view",
+      "from_url": "http://127.0.0.1:8111/register",
+      "question_id": "q_ctrl_control_cls_0d54862de0_a_href___search__",
+      "selected_action": "a[href=\"/search\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Search'",
+      "priority_score": 0.7465,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": true
+    },
+    {
+      "step_number": 14,
+      "timestamp": 1792873726.0595977,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_form_cls_c67f0385ca_boundary_password_length_form_1_password",
+      "selected_action": "password",
+      "probe_family": "forms",
+      "category": "edge",
+      "hypothesis": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_1_password",
+      "priority_score": 0.63,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 15,
+      "timestamp": 1792873726.486578,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_ctrl_control_cls_2590fb7e48_a_href___login__",
+      "selected_action": "a[href=\"/login\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Login'",
+      "priority_score": 0.5915,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 16,
+      "timestamp": 1792873726.9214277,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_ctrl_control_cls_a2913c2e3a_a_href_____",
+      "selected_action": "a[href=\"/\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Home'",
+      "priority_score": 0.5915,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 17,
+      "timestamp": 1792873729.9550924,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_form_cls_1fdfb40fa1_constraint_bypass_checkbox_form_1_terms",
+      "selected_action": "terms",
+      "probe_family": "forms",
+      "category": "constraint",
+      "hypothesis": "Verify form submission behavior for constraint_bypass_checkbox on constraint_bypass_checkbox_form_1_terms",
+      "priority_score": 0.57,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_search_catalog_search_view",
+      "to_url": "http://127.0.0.1:8111/search",
+      "is_productive": false
+    },
+    {
+      "step_number": 18,
+      "timestamp": 1792873731.654473,
+      "from_state_id": "st_search_catalog_search_view",
+      "from_url": "http://127.0.0.1:8111/search",
+      "question_id": "q_nav_cls_2590fb7e48_nav_link_29610",
+      "selected_action": "/",
+      "probe_family": "nav",
+      "category": "discovery",
+      "hypothesis": "Verify route transition reachability to /",
+      "priority_score": 0.5075,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_root_apex_demo_targ_view",
+      "to_url": "http://127.0.0.1:8111/",
+      "is_productive": true
+    },
+    {
+      "step_number": 19,
+      "timestamp": 1792873733.2190294,
+      "from_state_id": "st_root_apex_demo_targ_view",
+      "from_url": "http://127.0.0.1:8111/",
+      "question_id": "q_ctrl_control_cls_2590fb7e48_a_href___registration__",
+      "selected_action": "a[href=\"/registration\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: a 'Register'",
+      "priority_score": 0.9555,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_registration_create_an_apex_view",
+      "to_url": "http://127.0.0.1:8111/registration",
+      "is_productive": true
+    },
+    {
+      "step_number": 20,
+      "timestamp": 1792873736.2158365,
+      "from_state_id": "st_registration_create_an_apex_view",
+      "from_url": "http://127.0.0.1:8111/registration",
+      "question_id": "q_form_cls_1fdfb40fa1_boundary_password_length_form_1_password",
+      "selected_action": "password",
+      "probe_family": "forms",
+      "category": "edge",
+      "hypothesis": "Verify form submission behavior for boundary_password_length on boundary_password_length_form_1_password",
+      "priority_score": 0.9774999999999999,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_registration_create_an_apex_view",
+      "to_url": "http://127.0.0.1:8111/registration",
+      "is_productive": false
+    },
+    {
+      "step_number": 21,
+      "timestamp": 1792873738.3445456,
+      "from_state_id": "st_registration_create_an_apex_view",
+      "from_url": "http://127.0.0.1:8111/registration",
+      "question_id": "q_inv_invariant_reload_persistence_cls_1fdfb40fa1",
+      "selected_action": "probe",
+      "probe_family": "invariants",
+      "category": "invariant",
+      "hypothesis": "Verify page state and layout persist predictably across browser reloads",
+      "priority_score": 0.8925,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_registration_create_an_apex_view",
+      "to_url": "http://127.0.0.1:8111/registration",
+      "is_productive": false
+    }
+  ],
+  "report_schema_version": "2.0",
+  "target_context": {
+    "schema_version": "2.0",
+    "run_id": "bench-apex_portal-baseline-r1-cd0067",
+    "origin": "http://127.0.0.1:8111",
+    "start_url": "http://127.0.0.1:8111/",
+    "final_url": "http://127.0.0.1:8111/registration",
+    "investigated_at": "2026-10-25T01:59:41+0530",
+    "description": "Portal with sign-in, account registration and catalogue search.",
+    "requirements": [
+      "Username is required to sign in",
+      "Password is required to sign in",
+      "Password must be at least 6 characters",
+      "Full name is required for registration",
+      "Accepting the Terms of Service is required",
+      "Search query is required"
+    ],
+    "credentials_available": false,
+    "credential_source": null
+  },
+  "observed_inventory": {
+    "schema_version": "2.0",
+    "run_id": "bench-apex_portal-baseline-r1-cd0067",
+    "origin": "http://127.0.0.1:8111",
+    "provenance": "LIVE_INVESTIGATION",
+    "states": [
+      {
+        "state_id": "st_root_apex_demo_targ_view",
+        "url": "http://127.0.0.1:8111/",
+        "route": "/",
+        "title": "Apex Demo Portal - Home",
+        "headings": [
+          "Apex Demo Target System",
+          "Welcome to the Apex Target Application",
+          "System Modules"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Apex Demo Target System Home Login Register Search Products Welcome to the Apex Target Application This local service provides representative test targets for VerityQA autonomous AI QA engineering inspection. System Modules Authentication and Session Access New User Registration & Verification Catalog and Inventory Search",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "ENTRY"
+      },
+      {
+        "state_id": "st_search_catalog_search_view",
+        "url": "http://127.0.0.1:8111/search",
+        "route": "/search",
+        "title": "Apex Portal - Product Search",
+        "headings": [
+          "Catalog Search",
+          "Popular Categories"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Catalog Search Find components, modules, and documentation across the Apex ecosystem. Search Popular Categories Microservices Architecture Security Scanners Continuous Integration Agents",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "title": "Search: Abc123Xy",
+        "headings": [
+          "Catalog Search",
+          "No results found for \"Abc123Xy\""
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "HomeLogin RegisterSearch Catalog Search Search No results found for \"Abc123Xy\" Try different keywords or browse the categories below.",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "FORM_SUBMISSION"
+      },
+      {
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "title": "Apex Portal - User Login",
+        "headings": [
+          "Sign In to Apex"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Sign In to Apex Username or Email Password Log In Create a new account | Forgot password?",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_forgot_password_reset_view",
+        "url": "http://127.0.0.1:8111/forgot",
+        "route": "/forgot",
+        "title": "Forgot Password",
+        "headings": [
+          "Password Reset"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "HomeLogin RegisterSearch Password Reset Enter your email to receive a reset link.",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "title": "Apex Portal - Account Registration",
+        "headings": [
+          "Create an Apex Account"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Create an Apex Account Full Name Work Email Password Confirm Password I accept the Terms of Service Create Account",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_register_registration_e_view",
+        "url": "http://127.0.0.1:8111/register",
+        "route": "/register",
+        "title": "Registration Error",
+        "headings": [
+          "Registration Error"
+        ],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "HomeLogin RegisterSearch Registration Error Passwords do not match. Try again",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "FORM_SUBMISSION"
+      }
+    ],
+    "controls": [
+      {
+        "selector": "a[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Home",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_apex_demo_targ_view",
+        "url": "http://127.0.0.1:8111/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/login\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Login",
+        "href": "/login",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_apex_demo_targ_view",
+        "url": "http://127.0.0.1:8111/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/registration\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Register",
+        "href": "/registration",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_apex_demo_targ_view",
+        "url": "http://127.0.0.1:8111/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/search\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Search Products",
+        "href": "/search",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_apex_demo_targ_view",
+        "url": "http://127.0.0.1:8111/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_apex_demo_targ_view"
+        ]
+      },
+      {
+        "selector": "#q",
+        "tag": "input",
+        "control_type": "search",
+        "role": "input",
+        "name": "Search items",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view",
+        "url": "http://127.0.0.1:8111/search",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      {
+        "selector": "#searchBtn",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Search",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view",
+        "url": "http://127.0.0.1:8111/search",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view",
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "a[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Home",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "a[href=\"/login\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Login",
+        "href": "/login",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "a[href=\"/registration\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Register",
+        "href": "/registration",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "a[href=\"/search\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Search",
+        "href": "/search",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "input[name=\"q\"]",
+        "tag": "input",
+        "control_type": "search",
+        "role": "input",
+        "name": "Abc123Xy",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "selector": "#username",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "user@example.com",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "selector": "#password",
+        "tag": "input",
+        "control_type": "password",
+        "role": "input",
+        "name": "Enter secure password",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "selector": "#loginBtn",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Log In",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/registration\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Create a new account",
+        "href": "/registration",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/forgot\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Forgot password?",
+        "href": "/forgot",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Home",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_forgot_password_reset_view",
+        "url": "http://127.0.0.1:8111/forgot",
+        "route": "/forgot",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/login\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Login",
+        "href": "/login",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_forgot_password_reset_view",
+        "url": "http://127.0.0.1:8111/forgot",
+        "route": "/forgot",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/registration\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Register",
+        "href": "/registration",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_forgot_password_reset_view",
+        "url": "http://127.0.0.1:8111/forgot",
+        "route": "/forgot",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/search\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Search",
+        "href": "/search",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_forgot_password_reset_view",
+        "url": "http://127.0.0.1:8111/forgot",
+        "route": "/forgot",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_forgot_password_reset_view"
+        ]
+      },
+      {
+        "selector": "#fullname",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Jane Doe",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "#email",
+        "tag": "input",
+        "control_type": "email",
+        "role": "input",
+        "name": "jane@example.com",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "#reg-password",
+        "tag": "input",
+        "control_type": "password",
+        "role": "input",
+        "name": "password",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "#confirm-password",
+        "tag": "input",
+        "control_type": "password",
+        "role": "input",
+        "name": "confirm_password",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "#terms",
+        "tag": "input",
+        "control_type": "checkbox",
+        "role": "input",
+        "name": "on",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "#registerBtn",
+        "tag": "button",
+        "control_type": "submit",
+        "role": "button",
+        "name": "Create Account",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Home",
+        "href": "/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_register_registration_e_view",
+        "url": "http://127.0.0.1:8111/register",
+        "route": "/register",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_register_registration_e_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/login\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Login",
+        "href": "/login",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_register_registration_e_view",
+        "url": "http://127.0.0.1:8111/register",
+        "route": "/register",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_register_registration_e_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/registration\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Register",
+        "href": "/registration",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_register_registration_e_view",
+        "url": "http://127.0.0.1:8111/register",
+        "route": "/register",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_register_registration_e_view"
+        ]
+      },
+      {
+        "selector": "a[href=\"/search\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Search",
+        "href": "/search",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_register_registration_e_view",
+        "url": "http://127.0.0.1:8111/register",
+        "route": "/register",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_register_registration_e_view"
+        ]
+      }
+    ],
+    "forms": [
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/search",
+        "method": "GET",
+        "novalidate": false,
+        "submit_selector": "#searchBtn",
+        "state_id": "st_search_catalog_search_view",
+        "url": "http://127.0.0.1:8111/search",
+        "route": "/search",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#q",
+            "name": "q",
+            "field_id": "q",
+            "label": "Search items",
+            "field_type": "search",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_search_catalog_search_view"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/search",
+        "method": "GET",
+        "novalidate": false,
+        "submit_selector": "#searchBtn",
+        "state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "url": "http://127.0.0.1:8111/search?q=Abc123Xy",
+        "route": "/search",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "[name=\"q\"]",
+            "name": "q",
+            "field_id": "",
+            "label": "Search...",
+            "field_type": "search",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_search_catalog_search_view_q_Abc123Xy"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/login",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#loginBtn",
+        "state_id": "st_login_sign_in_to_ape_view",
+        "url": "http://127.0.0.1:8111/login",
+        "route": "/login",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#username",
+            "name": "username",
+            "field_id": "username",
+            "label": "Username or Email",
+            "field_type": "text",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#password",
+            "name": "password",
+            "field_id": "password",
+            "label": "Password",
+            "field_type": "password",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_login_sign_in_to_ape_view"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "/register",
+        "method": "POST",
+        "novalidate": false,
+        "submit_selector": "#registerBtn",
+        "state_id": "st_registration_create_an_apex_view",
+        "url": "http://127.0.0.1:8111/registration",
+        "route": "/registration",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#fullname",
+            "name": "fullname",
+            "field_id": "fullname",
+            "label": "Full Name",
+            "field_type": "text",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#email",
+            "name": "email",
+            "field_id": "email",
+            "label": "Work Email",
+            "field_type": "email",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#reg-password",
+            "name": "password",
+            "field_id": "reg-password",
+            "label": "Password",
+            "field_type": "password",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#confirm-password",
+            "name": "confirm_password",
+            "field_id": "confirm-password",
+            "label": "Confirm Password",
+            "field_type": "password",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#terms",
+            "name": "terms",
+            "field_id": "terms",
+            "label": "I accept the Terms of Service",
+            "field_type": "checkbox",
+            "required": true,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": false
+          }
+        ],
+        "seen_in_states": [
+          "st_registration_create_an_apex_view"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "trans-c79743da",
+        "source_state_id": "st_root_apex_demo_targ_view",
+        "destination_state_id": "st_search_catalog_search_view",
+        "action_type": "NAVIGATE_LINK:nav_link_81509",
+        "target": "/search",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-3617e468"
+        ]
+      },
+      {
+        "transition_id": "trans-c5e97be4",
+        "source_state_id": "st_search_catalog_search_view",
+        "destination_state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "action_type": "FILL:form_happy_form_1",
+        "target": "form_happy_form_1",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-224386ea"
+        ]
+      },
+      {
+        "transition_id": "trans-45501267",
+        "source_state_id": "st_search_catalog_search_view_q_Abc123Xy",
+        "destination_state_id": "st_search_catalog_search_view",
+        "action_type": "NAVIGATE_LINK:nav_link_81509",
+        "target": "/search",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-f3513e9a"
+        ]
+      },
+      {
+        "transition_id": "trans-0f9cfef3",
+        "source_state_id": "st_search_catalog_search_view",
+        "destination_state_id": "st_login_sign_in_to_ape_view",
+        "action_type": "NAVIGATE_LINK:nav_link_97232",
+        "target": "/login",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-76ce7bcd"
+        ]
+      },
+      {
+        "transition_id": "trans-86f8eaf9",
+        "source_state_id": "st_login_sign_in_to_ape_view",
+        "destination_state_id": "st_forgot_password_reset_view",
+        "action_type": "CLICK_CONTROL:control_cls_c67f0385ca_a_href___forgot__",
+        "target": "a[href=\"/forgot\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-66b43fb3"
+        ]
+      },
+      {
+        "transition_id": "trans-b6f8cc85",
+        "source_state_id": "st_forgot_password_reset_view",
+        "destination_state_id": "st_search_catalog_search_view",
+        "action_type": "CLICK_CONTROL:control_cls_8420da7eac_a_href___search__",
+        "target": "a[href=\"/search\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-0fc5b4e5"
+        ]
+      },
+      {
+        "transition_id": "trans-d5824cab",
+        "source_state_id": "st_search_catalog_search_view",
+        "destination_state_id": "st_registration_create_an_apex_view",
+        "action_type": "NAVIGATE_LINK:nav_link_62908",
+        "target": "/registration",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-b59569a2"
+        ]
+      },
+      {
+        "transition_id": "trans-2b616c4c",
+        "source_state_id": "st_registration_create_an_apex_view",
+        "destination_state_id": "st_register_registration_e_view",
+        "action_type": "FILL:mismatch_form_1_password_confirm_password",
+        "target": "confirm_password",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-55d641ee"
+        ]
+      },
+      {
+        "transition_id": "trans-aa856fa9",
+        "source_state_id": "st_register_registration_e_view",
+        "destination_state_id": "st_search_catalog_search_view",
+        "action_type": "CLICK_CONTROL:control_cls_0d54862de0_a_href___search__",
+        "target": "a[href=\"/search\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-885b1a22"
+        ]
+      },
+      {
+        "transition_id": "trans-51e42d31",
+        "source_state_id": "st_search_catalog_search_view",
+        "destination_state_id": "st_root_apex_demo_targ_view",
+        "action_type": "NAVIGATE_LINK:nav_link_29610",
+        "target": "/",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-0d21b71e"
+        ]
+      },
+      {
+        "transition_id": "trans-d4e8a742",
+        "source_state_id": "st_root_apex_demo_targ_view",
+        "destination_state_id": "st_registration_create_an_apex_view",
+        "action_type": "CLICK_CONTROL:control_cls_2590fb7e48_a_href___registration__",
+        "target": "a[href=\"/registration\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-18028a9a"
+        ]
+      }
+    ],
+    "auth": {
+      "boundary_observed": true,
+      "login_route": "/login",
+      "credentials_available": false,
+      "credential_source": null,
+      "verified": false
+    },
+    "requirements": [
+      "Username is required to sign in",
+      "Password is required to sign in",
+      "Password must be at least 6 characters",
+      "Full name is required for registration",
+      "Accepting the Terms of Service is required",
+      "Search query is required"
+    ]
+  }
+}

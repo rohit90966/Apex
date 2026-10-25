@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
-  "source_investigation_id": "inv-530a4fc3",
+  "source_investigation_id": "inv-be83fae9",
   "source_contract_version": "1.0.0",
   "target_url": "http://127.0.0.1:8995/login",
-  "generated_at": 1792858590.1593983,
+  "generated_at": 1792887665.702413,
   "generation_strategy": "DETERMINISTIC_GROUNDED",
   "test_cases": [
     {
@@ -31,7 +31,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view",
           "evidence_refs": [
-            "ev-9d102ff7"
+            "ev-f52097ef"
           ]
         },
         {
@@ -49,7 +49,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_products_products_catal_view",
           "evidence_refs": [
-            "ev-9d102ff7"
+            "ev-f52097ef"
           ]
         },
         {
@@ -67,7 +67,7 @@
           "source_state_id": "st_products_products_catal_view",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-ed8eb1f8"
+            "ev-59c56331"
           ]
         },
         {
@@ -85,7 +85,7 @@
           "source_state_id": "st_cart_shopping_cart_view",
           "target_state_id": "st_checkout_checkout_shipp_view",
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -97,7 +97,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-9d102ff7"
+            "ev-f52097ef"
           ]
         },
         {
@@ -107,7 +107,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-ed8eb1f8"
+            "ev-59c56331"
           ]
         },
         {
@@ -117,7 +117,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -134,15 +134,15 @@
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-f44bf1e4",
-        "trans-4628f488",
-        "trans-b220470e"
+        "trans-7ce5bdc8",
+        "trans-1262e0fe",
+        "trans-a342d8d2"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-9d102ff7",
-        "ev-ed8eb1f8",
-        "ev-161387a0"
+        "ev-f52097ef",
+        "ev-59c56331",
+        "ev-ae0351d1"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -186,7 +186,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -198,7 +198,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -211,11 +211,11 @@
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-6a43487c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -258,7 +258,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_products_products_catal_view",
           "evidence_refs": [
-            "ev-9d102ff7"
+            "ev-f52097ef"
           ]
         }
       ],
@@ -270,7 +270,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-9d102ff7"
+            "ev-f52097ef"
           ]
         }
       ],
@@ -283,11 +283,11 @@
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-f44bf1e4"
+        "trans-7ce5bdc8"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-9d102ff7"
+        "ev-f52097ef"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -331,7 +331,7 @@
           "source_state_id": "st_products_products_catal_view",
           "target_state_id": "st_cart_shopping_cart_c1",
           "evidence_refs": [
-            "ev-7a54292c"
+            "ev-1f3e6c60"
           ]
         }
       ],
@@ -343,7 +343,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-7a54292c"
+            "ev-1f3e6c60"
           ]
         }
       ],
@@ -356,11 +356,11 @@
         "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-c0f27c35"
+        "trans-0706218c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-7a54292c"
+        "ev-1f3e6c60"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -407,7 +407,7 @@
           "source_state_id": "st_cart_shopping_cart_c1",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-2085772e"
+            "ev-e3d55937"
           ]
         }
       ],
@@ -419,7 +419,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-2085772e"
+            "ev-e3d55937"
           ]
         }
       ],
@@ -432,11 +432,11 @@
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-88dc1c31"
+        "trans-0a8e350b"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-2085772e"
+        "ev-e3d55937"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -480,7 +480,7 @@
           "source_state_id": "st_cart_shopping_cart_view",
           "target_state_id": "st_checkout_checkout_shipp_view",
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -492,7 +492,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -505,11 +505,11 @@
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-b220470e"
+        "trans-a342d8d2"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-161387a0"
+        "ev-ae0351d1"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -553,7 +553,7 @@
           "source_state_id": "st_checkout_checkout_shipp_view",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-8abee5c6"
+            "ev-59151499"
           ]
         }
       ],
@@ -565,7 +565,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-8abee5c6"
+            "ev-59151499"
           ]
         }
       ],
@@ -578,11 +578,11 @@
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-20dd5cf4"
+        "trans-2395d044"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-8abee5c6"
+        "ev-59151499"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -626,7 +626,7 @@
           "source_state_id": "st_cart_shopping_cart_view",
           "target_state_id": "st_products_products_catal_view",
           "evidence_refs": [
-            "ev-d4334086"
+            "ev-a1aff30b"
           ]
         }
       ],
@@ -638,7 +638,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-d4334086"
+            "ev-a1aff30b"
           ]
         }
       ],
@@ -651,11 +651,11 @@
         "st_products_products_catal_view"
       ],
       "source_transition_ids": [
-        "trans-271e29ff"
+        "trans-9dc9c8df"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-d4334086"
+        "ev-a1aff30b"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -699,7 +699,7 @@
           "source_state_id": "st_products_products_catal_view",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-ed8eb1f8"
+            "ev-59c56331"
           ]
         }
       ],
@@ -711,7 +711,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-ed8eb1f8"
+            "ev-59c56331"
           ]
         }
       ],
@@ -724,11 +724,11 @@
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-4628f488"
+        "trans-1262e0fe"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-ed8eb1f8"
+        "ev-59c56331"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -771,7 +771,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -783,7 +783,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -796,11 +796,11 @@
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-6a43487c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -845,7 +845,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -857,7 +857,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -872,11 +872,11 @@
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-6a43487c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -919,7 +919,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -931,7 +931,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -946,11 +946,11 @@
         "st_login_system_access__view"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-6a43487c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -995,7 +995,7 @@
           "source_state_id": "st_products_products_catal_view",
           "target_state_id": "st_cart_shopping_cart_c1",
           "evidence_refs": [
-            "ev-7a54292c"
+            "ev-1f3e6c60"
           ]
         }
       ],
@@ -1007,7 +1007,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-7a54292c"
+            "ev-1f3e6c60"
           ]
         }
       ],
@@ -1022,11 +1022,11 @@
         "st_cart_shopping_cart_c1"
       ],
       "source_transition_ids": [
-        "trans-c0f27c35"
+        "trans-0706218c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-7a54292c"
+        "ev-1f3e6c60"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -1071,7 +1071,7 @@
           "source_state_id": "st_cart_shopping_cart_c1",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-2085772e"
+            "ev-e3d55937"
           ]
         }
       ],
@@ -1083,7 +1083,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-2085772e"
+            "ev-e3d55937"
           ]
         }
       ],
@@ -1098,11 +1098,11 @@
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-88dc1c31"
+        "trans-0a8e350b"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-2085772e"
+        "ev-e3d55937"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -1147,7 +1147,7 @@
           "source_state_id": "st_cart_shopping_cart_view",
           "target_state_id": "st_checkout_checkout_shipp_view",
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -1159,7 +1159,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-161387a0"
+            "ev-ae0351d1"
           ]
         }
       ],
@@ -1174,11 +1174,11 @@
         "st_checkout_checkout_shipp_view"
       ],
       "source_transition_ids": [
-        "trans-b220470e"
+        "trans-a342d8d2"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-161387a0"
+        "ev-ae0351d1"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -1223,7 +1223,7 @@
           "source_state_id": "st_checkout_checkout_shipp_view",
           "target_state_id": "st_cart_shopping_cart_view",
           "evidence_refs": [
-            "ev-8abee5c6"
+            "ev-59151499"
           ]
         }
       ],
@@ -1235,7 +1235,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-8abee5c6"
+            "ev-59151499"
           ]
         }
       ],
@@ -1250,11 +1250,11 @@
         "st_cart_shopping_cart_view"
       ],
       "source_transition_ids": [
-        "trans-20dd5cf4"
+        "trans-2395d044"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-8abee5c6"
+        "ev-59151499"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -1297,7 +1297,7 @@
           "source_state_id": "st_login_system_access__view",
           "target_state_id": "st_login_system_access__view_error_Username_is_re_with_error",
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -1309,7 +1309,7 @@
           "is_verified_by_evidence": true,
           "is_hypothesis_requiring_confirmation": false,
           "evidence_refs": [
-            "ev-88502797"
+            "ev-f91bf9fa"
           ]
         }
       ],
@@ -1322,11 +1322,11 @@
         "st_login_system_access__view_error_Username_is_re_with_error"
       ],
       "source_transition_ids": [
-        "trans-fcaef27a"
+        "trans-6a43487c"
       ],
       "source_finding_ids": [],
       "evidence_ids": [
-        "ev-88502797"
+        "ev-f91bf9fa"
       ],
       "confidence": 1.0,
       "unresolved_assumptions": [],
@@ -1543,39 +1543,39 @@
       ]
     },
     "transitions_covered": {
-      "trans-f44bf1e4": [
+      "trans-7ce5bdc8": [
         "TC-WF-01",
         "TC-TR-02"
       ],
-      "trans-4628f488": [
+      "trans-1262e0fe": [
         "TC-WF-01",
         "TC-TR-08"
       ],
-      "trans-b220470e": [
+      "trans-a342d8d2": [
         "TC-WF-01",
         "TC-TR-05",
         "TC-SD-05"
       ],
-      "trans-fcaef27a": [
+      "trans-6a43487c": [
         "TC-TR-01",
         "TC-VAL-01",
         "TC-SD-01",
         "TC-SD-02",
         "TC-REG-01"
       ],
-      "trans-c0f27c35": [
+      "trans-0706218c": [
         "TC-TR-03",
         "TC-SD-03"
       ],
-      "trans-88dc1c31": [
+      "trans-0a8e350b": [
         "TC-TR-04",
         "TC-SD-04"
       ],
-      "trans-20dd5cf4": [
+      "trans-2395d044": [
         "TC-TR-06",
         "TC-SD-06"
       ],
-      "trans-271e29ff": [
+      "trans-9dc9c8df": [
         "TC-TR-07"
       ]
     },

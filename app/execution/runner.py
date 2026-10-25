@@ -14,6 +14,7 @@ from app.schemas import (
     ExpectedBehaviorSource,
     TestCaseStatus,
 )
+from app import test_data
 from app.execution.executor import BrowserExecutor
 from app.execution.locator import LocatorResolver, LocatorConfidence
 from app.intelligence.target_context import canonical_origin
@@ -605,12 +606,24 @@ class QAPlanRunner:
                 failure_reason=(f"Test requires authorized credentials for {canonical_origin(target_url)}, "
                                 "but none are configured for that origin."),
             )
-        return await self.executor.execute_steps(
+        # Fresh identity data for every attempt, so a repeated execution re-tests the same conditions
+        # instead of colliding with records an earlier attempt created.
+        token = test_data.new_token()
+        uses_unique_data = any(test_data.UNIQUE_TOKEN in (s.value or "") for s in steps)
+        steps = [s.model_copy(update={
+            "value": test_data.resolve(s.value, token),
+            "assertion": s.assertion.model_copy(update={"expected_value": test_data.resolve(s.assertion.expected_value, token)})
+            if s.assertion else None,
+        }) for s in steps]
+        result = await self.executor.execute_steps(
             test_id=test_case.test_id,
             test_name=test_case.name,
             steps=steps,
             initial_url=target_url,
         )
+        if uses_unique_data:
+            result.evidence_retained["test_data_namespace"] = token
+        return result
 
     @staticmethod
     def _resolve_credential_placeholders(steps: List[ActionStep], target_url: str):
@@ -636,6 +649,8 @@ class QAPlanRunner:
         self, test_cases: List[TestCase], target_url: str, max_concurrent: int = 1
     ) -> List[ExecutionResult]:
         """Executes a list of test cases sequentially or with bounded concurrency."""
+        # Sessions are reused within one run only; each run starts unauthenticated.
+        self.executor.session_cache.clear()
         results: List[ExecutionResult] = []
         for tc in test_cases:
             try:
