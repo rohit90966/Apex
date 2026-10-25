@@ -1,0 +1,4559 @@
+{
+  "overview": {
+    "target_url": "https://www.saucedemo.com/",
+    "final_url": "https://www.saucedemo.com/inventory.html",
+    "http_status": 404,
+    "user_description": "E-commerce demo shop with login, inventory, sorting, cart and checkout.",
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "start_time": "2026-10-25 07:21:46",
+    "end_time": "2026-10-25 07:22:48",
+    "duration_seconds": 61.71,
+    "browser_execution_time": 42.1,
+    "status": "partial",
+    "planning_strategy": "DETERMINISTIC",
+    "llm_calls_count": 7,
+    "llm_fallbacks_count": 0,
+    "llm_latency_seconds": 12.643,
+    "retries_count": 0,
+    "pages_discovered": 5,
+    "meaningful_states_discovered": 11,
+    "candidates_discovered": 51,
+    "actions_evaluated": 22,
+    "actions_attempted": 15,
+    "actions_successful": 15,
+    "actions_verified_effects": 14,
+    "actions_failed": 0,
+    "actions_safety_blocked": 0,
+    "transitions_observed": 14,
+    "route_transitions_observed": 8,
+    "same_route_state_transitions": 6,
+    "in_page_mutations_observed": 6,
+    "pending_frontier_count": 13,
+    "evidence_ledger_count": 24,
+    "deduplicated_candidates_count": 102,
+    "total_headings_discovered": 3,
+    "total_forms_discovered": 2,
+    "total_inputs_discovered": 5,
+    "total_buttons_discovered": 36,
+    "total_links_discovered": 13,
+    "stopping_reason": "Investigation converged: Information saturation reached (6 consecutive probes with no new state discovery or observable UI effects)"
+  },
+  "application_understanding": "The application at https://www.saucedemo.com/ presents an interactive web service. Authentication was verified, unlocking the internal authenticated application experience. Observed key functional landmarks include: Checkout: Your Information, Products, Your Cart. Extracted 11 distinct UI states across 14 observed transitions.",
+  "user_provided_context_distinction": "User provided description: 'E-commerce demo shop with login, inventory, sorting, cart and checkout.'. All findings in this report are independently verified by DOM observations and Playwright interactions.",
+  "application_model": {
+    "page_purpose": "Authenticate a user so they can access the demo shop.",
+    "application_domain": "e-commerce",
+    "observed_landmarks": [
+      {
+        "role": "heading",
+        "label": "Products",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Your Cart",
+        "selector": null
+      },
+      {
+        "role": "heading",
+        "label": "Checkout: Your Information",
+        "selector": null
+      }
+    ],
+    "semantic_controls": [
+      {
+        "element_id": "ctrl_0",
+        "selector": "#user-name",
+        "semantic_role": "input",
+        "inferred_purpose": "Username",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#password",
+        "semantic_role": "input",
+        "inferred_purpose": "Password",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#login-button",
+        "semantic_role": "input",
+        "inferred_purpose": "Login",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "[data-test=\"error-button\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Dismiss error",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_0",
+        "selector": "#react-burger-menu-btn",
+        "semantic_role": "button",
+        "inferred_purpose": "Open Menu",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "semantic_role": "button",
+        "inferred_purpose": "Cart, empty",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "semantic_role": "select",
+        "inferred_purpose": "Sort products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#item_4_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Backpack",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#item_4_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Backpack",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#item_0_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Bike Light",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "#item_0_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Bike Light",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "#add-to-cart-sauce-labs-bike-light",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_9",
+        "selector": "#item_1_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Bolt T-Shirt",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_10",
+        "selector": "#item_1_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Bolt T-Shirt",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_11",
+        "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_12",
+        "selector": "#item_5_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Fleece Jacket",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_13",
+        "selector": "#item_5_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Fleece Jacket",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_14",
+        "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_15",
+        "selector": "#item_2_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Onesie",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_16",
+        "selector": "#item_2_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Sauce Labs Onesie",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_17",
+        "selector": "#add-to-cart-sauce-labs-onesie",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_18",
+        "selector": "#item_3_img_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Test.allTheThings() T-Shirt (Red)",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_19",
+        "selector": "#item_3_title_link",
+        "semantic_role": "button",
+        "inferred_purpose": "View details for Test.allTheThings() T-Shirt (Red)",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#remove-sauce-labs-backpack",
+        "semantic_role": "button",
+        "inferred_purpose": "Remove",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#continue-shopping",
+        "semantic_role": "button",
+        "inferred_purpose": "Continue Shopping",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#checkout",
+        "semantic_role": "button",
+        "inferred_purpose": "Checkout",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "[data-test=\"social-x\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "X",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_7",
+        "selector": "[data-test=\"social-facebook\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "Facebook",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_8",
+        "selector": "[data-test=\"social-linkedin\"]",
+        "semantic_role": "a",
+        "inferred_purpose": "LinkedIn",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#first-name",
+        "semantic_role": "input",
+        "inferred_purpose": "First Name",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#last-name",
+        "semantic_role": "input",
+        "inferred_purpose": "Last Name",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#postal-code",
+        "semantic_role": "input",
+        "inferred_purpose": "Zip/Postal Code",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#cancel",
+        "semantic_role": "button",
+        "inferred_purpose": "Cancel",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#continue",
+        "semantic_role": "input",
+        "inferred_purpose": "Continue",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#back-to-products",
+        "semantic_role": "button",
+        "inferred_purpose": "Back to products",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#remove",
+        "semantic_role": "button",
+        "inferred_purpose": "Remove",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_1",
+        "selector": "#inventory_sidebar_link",
+        "semantic_role": "button",
+        "inferred_purpose": "All Items",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_2",
+        "selector": "#dynamic_catalog_sidebar_link",
+        "semantic_role": "button",
+        "inferred_purpose": "Dynamic Catalog",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#about_sidebar_link",
+        "semantic_role": "a",
+        "inferred_purpose": "About",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_4",
+        "selector": "#logout_sidebar_link",
+        "semantic_role": "button",
+        "inferred_purpose": "Logout",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_5",
+        "selector": "#reset_sidebar_link",
+        "semantic_role": "button",
+        "inferred_purpose": "Reset App State",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_6",
+        "selector": "#react-burger-cross-btn",
+        "semantic_role": "button",
+        "inferred_purpose": "Close Menu",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      },
+      {
+        "element_id": "ctrl_3",
+        "selector": "#add-to-cart",
+        "semantic_role": "button",
+        "inferred_purpose": "Add to cart",
+        "prerequisites": [],
+        "safety_risk": "LOW"
+      }
+    ],
+    "form_understandings": [
+      {
+        "form_id": "form_1",
+        "target_action": "",
+        "required_fields": [],
+        "observed_constraints": [],
+        "evidence_ids": []
+      }
+    ],
+    "navigation_topology": [],
+    "verified_states": [
+      "st_root_view_view",
+      "st_root_view_view_with_error",
+      "st_inventoryhtml_products_view",
+      "st_inventoryhtml_products_c1",
+      "st_inventoryhtml_products_c1_opt_za",
+      "st_carthtml_your_cart_c1",
+      "st_checkout-step-on_checkout_your__c1",
+      "st_inventory-itemht_view_c1_id__n",
+      "st_carthtml_your_cart_view",
+      "st_carthtml_your_cart_view_menu_open",
+      "st_inventory-itemht_view_view_id__n"
+    ],
+    "confirmed_transitions": [],
+    "inferred_user_journeys": [],
+    "unexplored_opportunities": [],
+    "observed_facts": [
+      "Observed state 'st_root_view_view' on https://www.saucedemo.com/ with 3 controls and 1 forms.",
+      "Observed state 'st_root_view_view_with_error' on https://www.saucedemo.com/ with 4 controls and 1 forms.",
+      "Form validation constraint enforced on https://www.saucedemo.com/: 'Epic sadface: Username is required' (.error-message-container)",
+      "Observed state 'st_inventoryhtml_products_view' on https://www.saucedemo.com/inventory.html with 24 controls and 0 forms.",
+      "Observed state 'st_inventoryhtml_products_c1' on https://www.saucedemo.com/inventory.html with 24 controls and 0 forms.",
+      "Observed state 'st_inventoryhtml_products_c1_opt_za' on https://www.saucedemo.com/inventory.html with 24 controls and 0 forms.",
+      "Observed state 'st_carthtml_your_cart_c1' on https://www.saucedemo.com/cart.html with 9 controls and 0 forms.",
+      "Observed state 'st_checkout-step-on_checkout_your__c1' on https://www.saucedemo.com/checkout-step-one.html with 10 controls and 1 forms.",
+      "Observed state 'st_inventory-itemht_view_c1_id__n' on https://www.saucedemo.com/inventory-item.html?id=4 with 7 controls and 0 forms.",
+      "Observed state 'st_carthtml_your_cart_view' on https://www.saucedemo.com/cart.html with 7 controls and 0 forms.",
+      "Observed state 'st_carthtml_your_cart_view_menu_open' on https://www.saucedemo.com/cart.html with 13 controls and 0 forms.",
+      "Navigation drawer opened on https://www.saucedemo.com/cart.html: sliding menu items visible in active DOM",
+      "Observed state 'st_inventory-itemht_view_view_id__n' on https://www.saucedemo.com/inventory-item.html?id=3 with 7 controls and 0 forms.",
+      "Observed state 'st_inventory-itemht_view_c1_id__n' on https://www.saucedemo.com/inventory-item.html?id=3 with 7 controls and 0 forms."
+    ],
+    "inferred_hypotheses": [
+      "Static headings listing accepted usernames and password are always present",
+      "Form action is empty and method is GET on every load",
+      "Page title and route remain constant",
+      "The \"Open Menu\" button and \"Cart\" link are always present in the banner",
+      "A sort <select> element with four static options is always rendered",
+      "Each product entry consistently includes a \"View details\" link and an \"Add to cart\" button",
+      "No modal dialogs are active on initial load (has_active_modal:false)",
+      "Cart item count displayed in the header matches the actual number of listed items",
+      "Checkout button is only enabled when cart count > 0",
+      "Menu open state persists across page navigations",
+      "Social links remain constant regardless of cart contents",
+      "Heading \"Checkout: Your Information\" is always present.",
+      "Exactly three text input fields (First Name, Last Name, Zip/Postal Code) are rendered each time.",
+      "Cancel and Continue buttons are always displayed in the form footer.",
+      "Cart counter displays the current number of items (initially \"1\") and menu is closed on page load.",
+      "Cart counter value (\"1\") matches the presence of a single item in the UI",
+      "Remove button only appears when an item is in the cart",
+      "Menu state remains closed (menu_open:false) unless user interacts",
+      "Social link elements (Facebook, LinkedIn) are always present in the footer"
+    ],
+    "unknowns": [
+      "Credentials are submitted via GET, exposing password in URL",
+      "No required attribute on fields may allow empty submissions",
+      "Absence of CSRF protection",
+      "Potential lack of input sanitisation leading to injection attacks",
+      "Cross\u2011site scripting (XSS) via product names or descriptions",
+      "Cross\u2011site request forgery (CSRF) on add\u2011to\u2011cart actions",
+      "Improper session handling or missing authentication checks for cart operations",
+      "Accessibility gaps (e.g., missing ARIA labels on dynamic controls)",
+      "Accidental removal of items without confirmation",
+      "Sensitive data handling during Checkout (payment info)",
+      "Potential XSS via product description or dynamic content",
+      "Accessibility gaps (e.g., missing ARIA labels on dynamic counters)",
+      "Form uses GET method, exposing personal data in the URL query string.",
+      "No client\u2011side required validation or ARIA\u2011invalid feedback may allow incomplete or malformed submissions.",
+      "Potential CSRF or XSS vectors via unchecked input fields and external social links.",
+      "Absence of explicit HTTPS enforcement in the data (relying on external configuration).",
+      "Missing semantic headings may affect screen\u2011reader navigation",
+      "Cart manipulation via the Remove button could be vulnerable if not protected against CSRF",
+      "Dynamic cart counter is heuristic \u2013 may become out\u2011of\u2011sync leading to UI inconsistency",
+      "Social media links open external sites without rel=\"noopener\" may pose security risk"
+    ],
+    "investigation_uncertainty": 0.371,
+    "missing_evidence": []
+  },
+  "authentication_access": {
+    "boundary_observed": true,
+    "login_url": "https://www.saucedemo.com/",
+    "credentials_available": true,
+    "credentials_source": "[REDACTED_SECRET]",
+    "authentication_attempted": true,
+    "authentication_verified": true,
+    "verification_signals": [
+      "Observed single password field typical of authentication form",
+      "Authentication state: AUTHENTICATED",
+      "Authentication verified: login form dismissed; logout control present"
+    ],
+    "protected_functionality_accessible": [
+      "Unlocked view at https://www.saucedemo.com/inventory.html"
+    ],
+    "unresolved_or_blocked_areas": [
+      "https://x.com/saucelabs",
+      "https://www.facebook.com/saucelabs",
+      "https://www.linkedin.com/company/sauce-labs/",
+      "https://saucelabs.com/"
+    ]
+  },
+  "discovered_application_map": [
+    {
+      "area_id": "st_root_view_view",
+      "route_or_url": "https://www.saucedemo.com/",
+      "apparent_purpose": "Swag Labs \u2014 Authentication Gate (Entry)",
+      "relevant_controls_summary": [
+        "input: Username",
+        "input: Password",
+        "input: Login"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_init_st_root_view_view",
+        "ev-063fdc4b",
+        "ev_auth_st_inventoryhtml_products_view"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_root_view_view_with_error",
+      "route_or_url": "https://www.saucedemo.com/",
+      "apparent_purpose": "Swag Labs \u2014 Authentication Gate (Entry) [Validation Alert: Epic sadface: Username is required]",
+      "relevant_controls_summary": [
+        "input: Username",
+        "input: Password",
+        "button: Dismiss error",
+        "input: Login"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-063fdc4b"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_inventoryhtml_products_view",
+      "route_or_url": "https://www.saucedemo.com/inventory.html",
+      "apparent_purpose": "Products (Inventory View)",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, empty",
+        "select: Sort products",
+        "button: View details for Sauce Labs Backpack",
+        "button: View details for Sauce Labs Backpack"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev_auth_st_inventoryhtml_products_view",
+        "ev-a64428c0",
+        "ev-24b880f2"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_inventoryhtml_products_c1",
+      "route_or_url": "https://www.saucedemo.com/inventory.html",
+      "apparent_purpose": "Products (Inventory View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, 1 items",
+        "select: Sort products",
+        "button: View details for Sauce Labs Backpack",
+        "button: View details for Sauce Labs Backpack"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-24b880f2",
+        "ev-30d58c4d",
+        "ev-8106522f"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_inventoryhtml_products_c1_opt_za",
+      "route_or_url": "https://www.saucedemo.com/inventory.html",
+      "apparent_purpose": "Products (Inventory View) [Badge Counter: 1 | Selected Option: za]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, 1 items",
+        "select: Sort products",
+        "button: View details for Test.allTheThings() T-Shirt (Red)",
+        "button: View details for Test.allTheThings() T-Shirt (Red)"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-30d58c4d",
+        "ev-1f62699f"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_carthtml_your_cart_c1",
+      "route_or_url": "https://www.saucedemo.com/cart.html",
+      "apparent_purpose": "Your Cart (Cart View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, 1 items",
+        "button: View details for Sauce Labs Backpack",
+        "button: Remove",
+        "button: Continue Shopping"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-1f62699f",
+        "ev-fad302df",
+        "ev-a48dc7be"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_checkout-step-on_checkout_your__c1",
+      "route_or_url": "https://www.saucedemo.com/checkout-step-one.html",
+      "apparent_purpose": "Checkout: Your Information (Checkout Step One View) [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, 1 items",
+        "input: First Name",
+        "input: Last Name",
+        "input: Zip/Postal Code"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-fad302df",
+        "ev-a48dc7be"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_inventory-itemht_view_c1_id__n",
+      "route_or_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "apparent_purpose": "Swag Labs \u2014 Inventory Item View [Badge Counter: 1]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, 1 items",
+        "button: Back to products",
+        "button: Remove",
+        "a: X"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-56044ff4",
+        "ev-846684f2",
+        "ev-ddea08ff"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_carthtml_your_cart_view",
+      "route_or_url": "https://www.saucedemo.com/cart.html",
+      "apparent_purpose": "Your Cart (Cart View)",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, empty",
+        "button: Continue Shopping",
+        "button: Checkout",
+        "a: X"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-ffc0824a",
+        "ev-e2b96a15",
+        "ev-d1c83b54"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_carthtml_your_cart_view_menu_open",
+      "route_or_url": "https://www.saucedemo.com/cart.html",
+      "apparent_purpose": "Your Cart (Cart View) [Navigation Drawer Open]",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: All Items",
+        "button: Dynamic Catalog",
+        "a: About",
+        "button: Logout"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-d1c83b54",
+        "ev-747097dd"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    },
+    {
+      "area_id": "st_inventory-itemht_view_view_id__n",
+      "route_or_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "apparent_purpose": "Swag Labs \u2014 Inventory Item View",
+      "relevant_controls_summary": [
+        "button: Open Menu",
+        "button: Cart, empty",
+        "button: Back to products",
+        "button: Add to cart",
+        "a: X"
+      ],
+      "status": "investigated",
+      "evidence_ids": [
+        "ev-d2d2001f",
+        "ev-ddea08ff"
+      ],
+      "limitations": "Exploration bounded by safety policy and configured action budget"
+    }
+  ],
+  "user_workflows": [
+    {
+      "step_number": 1,
+      "workflow_branch": "Validation / Constraint Branch",
+      "from_state": "st_root_view_view",
+      "action_taken": "[Validation / Constraint Branch] FILL:required_blank_all_form_1 on required_blank_all_form_1",
+      "target_element": "required_blank_all_form_1",
+      "to_state": "st_root_view_view_with_error",
+      "observed_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+      "evidence_id": "ev-063fdc4b",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 2,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_root_view_view",
+      "action_taken": "[Primary Workflow] AUTHENTICATE on login_form",
+      "target_element": "login_form",
+      "to_state": "st_inventoryhtml_products_view",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "evidence_id": "ev-a64428c0",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 3,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_inventoryhtml_products_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_02740c356b__add_to_cart_sauce_labs_backpack on #add-to-cart-sauce-labs-backpack",
+      "target_element": "#add-to-cart-sauce-labs-backpack",
+      "to_state": "st_inventoryhtml_products_c1",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-24b880f2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 4,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_inventoryhtml_products_c1",
+      "action_taken": "[Primary Workflow] SELECT_OPTION:select_cls_02740c356b__data_test__product_sort_containe on [data-test=\"product-sort-container\"]",
+      "target_element": "[data-test=\"product-sort-container\"]",
+      "to_state": "st_inventoryhtml_products_c1_opt_za",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-30d58c4d",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 5,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_inventoryhtml_products_c1_opt_za",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_02740c356b__data_test__shopping_cart_link__ on [data-test=\"shopping-cart-link\"]",
+      "target_element": "[data-test=\"shopping-cart-link\"]",
+      "to_state": "st_carthtml_your_cart_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-1f62699f",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 6,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_carthtml_your_cart_c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_a1e6826929__checkout on #checkout",
+      "target_element": "#checkout",
+      "to_state": "st_checkout-step-on_checkout_your__c1",
+      "observed_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+      "evidence_id": "ev-fad302df",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 7,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_checkout-step-on_checkout_your__c1",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_88cb416f5c__data_test__shopping_cart_link__ on [data-test=\"shopping-cart-link\"]",
+      "target_element": "[data-test=\"shopping-cart-link\"]",
+      "to_state": "st_carthtml_your_cart_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-a48dc7be",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 8,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_carthtml_your_cart_c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_a1e6826929__item_4_title_link on #item_4_title_link",
+      "target_element": "#item_4_title_link",
+      "to_state": "st_inventory-itemht_view_c1_id__n",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-56044ff4",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 9,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_inventory-itemht_view_c1_id__n",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_e9d5a1472a__data_test__shopping_cart_link__ on [data-test=\"shopping-cart-link\"]",
+      "target_element": "[data-test=\"shopping-cart-link\"]",
+      "to_state": "st_carthtml_your_cart_c1",
+      "observed_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "evidence_id": "ev-846684f2",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 10,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_carthtml_your_cart_c1",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_a1e6826929__remove_sauce_labs_backpack on #remove-sauce-labs-backpack",
+      "target_element": "#remove-sauce-labs-backpack",
+      "to_state": "st_carthtml_your_cart_view",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-ffc0824a",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 11,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_carthtml_your_cart_view",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_a1e6826929__react_burger_menu_btn on #react-burger-menu-btn",
+      "target_element": "#react-burger-menu-btn",
+      "to_state": "st_carthtml_your_cart_view_menu_open",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-d1c83b54",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 12,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_carthtml_your_cart_view_menu_open",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_a1e6826929__continue_shopping on #continue-shopping",
+      "target_element": "#continue-shopping",
+      "to_state": "st_inventoryhtml_products_view",
+      "observed_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "evidence_id": "ev-747097dd",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 13,
+      "workflow_branch": "Primary Workflow",
+      "from_state": "st_inventoryhtml_products_view",
+      "action_taken": "[Primary Workflow] CLICK_CONTROL:control_cls_02740c356b__item_3_title_link on #item_3_title_link",
+      "target_element": "#item_3_title_link",
+      "to_state": "st_inventory-itemht_view_view_id__n",
+      "observed_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "evidence_id": "ev-d2d2001f",
+      "is_successful": true,
+      "failure_reason": null
+    },
+    {
+      "step_number": 14,
+      "workflow_branch": "Exploratory / Return Branch",
+      "from_state": "st_inventory-itemht_view_view_id__n",
+      "action_taken": "[Exploratory / Return Branch] CLICK_CONTROL:control_cls_e9d5a1472a__add_to_cart on #add-to-cart",
+      "target_element": "#add-to-cart",
+      "to_state": "st_inventory-itemht_view_c1_id__n",
+      "observed_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "evidence_id": "ev-ddea08ff",
+      "is_successful": true,
+      "failure_reason": null
+    }
+  ],
+  "observed_behaviors": [
+    "Transition trans-b290895e: Verify form submission behavior for required_blank on required_blank_all_form_1 resulted in Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+    "Transition trans-4633f26f: Verify valid authentication transitions past login boundary at https://www.saucedemo.com/ resulted in Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+    "Transition trans-ce475bdd: Investigate interactive control response: button 'Add to cart' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-fe58754b: Investigate interactive control response: select 'Sort products' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-be5adef8: Investigate interactive control response: button 'Cart, empty' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-0ff72ae4: Investigate interactive control response: button 'Checkout' resulted in Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+    "Transition trans-a3ef582e: Investigate interactive control response: button 'Cart, 1 items' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-489707d0: Investigate interactive control response: button 'View details for Sauce Labs Backpack' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-6dd65abc: Investigate interactive control response: button 'Cart, 1 items' resulted in Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+    "Transition trans-be822a0a: Investigate interactive control response: button 'Remove' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-fd8b7940: Investigate interactive control response: button 'Open Menu' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+    "Transition trans-a86ad858: Investigate interactive control response: button 'Continue Shopping' resulted in Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+    "Transition trans-c93c7c91: Investigate interactive control response: button 'View details for Test.allTheThings() T-Shirt (Red)' resulted in Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+    "Transition trans-e8d56293: Investigate interactive control response: button 'Add to cart' resulted in Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+  ],
+  "business_rules_and_hypotheses": [
+    {
+      "rule_id": "RULE-AUTH-001",
+      "description": "Authentication permits transition from login boundary into the protected application workspace.",
+      "category": "observed_behavior",
+      "source": "Browser Authentication Interaction",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated using configured test credentials.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "RULE-VAL-001",
+      "description": "Form validation constraint enforced: 'Epic sadface: Username is required' displayed on invalid or incomplete submission.",
+      "category": "observed_behavior",
+      "source": "Live DOM Element: .error-message-container",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated without required form fields populated.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "RULE-NAV-002",
+      "description": "Expandable navigation drawer: Menu toggle triggers visible navigation controls without route change.",
+      "category": "observed_behavior",
+      "source": "Live DOM Navigation Drawer",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 1.0,
+      "limitations": "Evaluated within active browser viewport.",
+      "outstanding_questions": []
+    },
+    {
+      "rule_id": "HYPO-NAV-001",
+      "description": "Interactive controls trigger in-page state updates or route changes.",
+      "category": "inferred_hypothesis",
+      "source": "DOM Inspection and Frontier Analysis",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "confidence": 0.85,
+      "limitations": "Server-side persistence across browser sessions requires separate verification.",
+      "outstanding_questions": []
+    }
+  ],
+  "investigation_coverage_frontier": {
+    "unexecuted_probes_count": 7,
+    "unexecuted_probes_by_reason": {
+      "TARGET_NOT_PRESENT": 1,
+      "JOURNEY_STATE": 5,
+      "NAVIGATION_FAILURE": 1
+    },
+    "unexecuted_probes": [
+      {
+        "question_id": "q_inv_invariant_reload_persistence_cls_a1e6826929",
+        "reason": "TARGET_NOT_PRESENT",
+        "target": "page",
+        "detail": "'page' is not on https://www.saucedemo.com/cart.html"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_e9d5a1472a__remove",
+        "reason": "JOURNEY_STATE",
+        "target": "#remove",
+        "detail": "probe requires https://www.saucedemo.com/inventory-item.html?id=4; an active journey is on https://www.saucedemo.com/inventory-item.html?id=3"
+      },
+      {
+        "question_id": "q_inv_invariant_reload_persistence_cls_e9d5a1472a",
+        "reason": "JOURNEY_STATE",
+        "target": "page",
+        "detail": "probe requires https://www.saucedemo.com/inventory-item.html?id=4; an active journey is on https://www.saucedemo.com/inventory-item.html?id=3"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_e9d5a1472a__back_to_products",
+        "reason": "JOURNEY_STATE",
+        "target": "#back-to-products",
+        "detail": "probe requires https://www.saucedemo.com/inventory-item.html?id=4; an active journey is on https://www.saucedemo.com/inventory-item.html?id=3"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_e9d5a1472a__react_burger_menu_btn",
+        "reason": "JOURNEY_STATE",
+        "target": "#react-burger-menu-btn",
+        "detail": "probe requires https://www.saucedemo.com/inventory-item.html?id=4; an active journey is on https://www.saucedemo.com/inventory-item.html?id=3"
+      },
+      {
+        "question_id": "q_form_cls_88cb416f5c_form_happy_form_1",
+        "reason": "JOURNEY_STATE",
+        "target": "#first-name",
+        "detail": "probe requires https://www.saucedemo.com/checkout-step-one.html; an active journey is on https://www.saucedemo.com/inventory-item.html?id=3"
+      },
+      {
+        "question_id": "q_ctrl_control_cls_02740c356b__item_4_title_link",
+        "reason": "NAVIGATION_FAILURE",
+        "target": "#item_4_title_link",
+        "detail": "navigation to https://www.saucedemo.com/inventory.html failed (status=404)"
+      }
+    ],
+    "explored_states_count": 11,
+    "unexplored_items_count": 13,
+    "blocked_items_count": 4,
+    "unexplored_candidates": [
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_293159fad6",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "[data-test=\"error-button\"]",
+        "rationale": "Investigate interactive control response: button 'Dismiss error'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#react-burger-menu-btn",
+        "rationale": "Investigate interactive control response: button 'Open Menu'",
+        "category": "discovery",
+        "priority": 0.2,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_02740c356b",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#remove-sauce-labs-backpack",
+        "rationale": "Investigate interactive control response: button 'Remove'",
+        "category": "discovery",
+        "priority": 0.453,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "required_blank_all_form_1",
+        "rationale": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+        "category": "discovery",
+        "priority": 0.436,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#react-burger-menu-btn",
+        "rationale": "Investigate interactive control response: button 'Open Menu'",
+        "category": "discovery",
+        "priority": 0.2,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#cancel",
+        "rationale": "Investigate interactive control response: button 'Cancel'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "q_inv_invariant_reload_persistence_cls_88cb416f5c",
+        "rationale": "Verify page state and layout persist predictably across browser reloads",
+        "category": "invariant",
+        "priority": 0.38,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#inventory_sidebar_link",
+        "rationale": "Investigate interactive control response: button 'All Items'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#dynamic_catalog_sidebar_link",
+        "rationale": "Investigate interactive control response: button 'Dynamic Catalog'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#about_sidebar_link",
+        "rationale": "Investigate interactive control response: a 'About'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      },
+      {
+        "target": "#react-burger-cross-btn",
+        "rationale": "Investigate interactive control response: button 'Close Menu'",
+        "category": "discovery",
+        "priority": 0.305,
+        "reason_unexplored": "Deprioritized after investigation reached information saturation on primary paths"
+      }
+    ],
+    "recommended_next_priorities": [
+      "Verify page state and layout persist predictably across browser reloads",
+      "Investigate interactive control response: button 'Dismiss error'",
+      "Investigate interactive control response: button 'Open Menu'"
+    ]
+  },
+  "evidence_and_traceability": [
+    {
+      "evidence_id": "ev_init_st_root_view_view",
+      "type": "DOM_OBSERVATION",
+      "summary": "Captured baseline DOM observation of https://www.saucedemo.com/ with 3 interactive controls and 1 forms",
+      "state_ref": "st_root_view_view",
+      "screenshot": "investigate_step_0_dbfe20fd.png"
+    },
+    {
+      "evidence_id": "ev-063fdc4b",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_293159fad6_required_blank_all_form_1]: verdict=UNEXPECTED. Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+      "state_ref": "st_root_view_view",
+      "screenshot": "investigate_probe_after_f288698c.png"
+    },
+    {
+      "evidence_id": "ev_auth_st_inventoryhtml_products_view",
+      "type": "AUTH_VERIFICATION",
+      "summary": "Authentication verified: login form dismissed; logout control present -> navigated to https://www.saucedemo.com/inventory.html",
+      "state_ref": "st_root_view_view",
+      "screenshot": "investigate_auth_after_5338fc7b.png"
+    },
+    {
+      "evidence_id": "ev-a64428c0",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_auth_cls_293159fad6]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched.",
+      "state_ref": "st_root_view_view",
+      "screenshot": "investigate_auth_after_5338fc7b.png"
+    },
+    {
+      "evidence_id": "ev-24b880f2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_02740c356b__add_to_cart_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventoryhtml_products_view",
+      "screenshot": "investigate_probe_after_db2c40f8.png"
+    },
+    {
+      "evidence_id": "ev-30d58c4d",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_select_cls_02740c356b__data_test__product_sort_containe]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventoryhtml_products_c1",
+      "screenshot": "investigate_probe_after_ed4fa8e1.png"
+    },
+    {
+      "evidence_id": "ev-1f62699f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_02740c356b__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_inventoryhtml_products_c1_opt_za",
+      "screenshot": "investigate_probe_after_3eb624fb.png"
+    },
+    {
+      "evidence_id": "ev-fad302df",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__checkout]: verdict=UNEXPECTED. Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+      "state_ref": "st_carthtml_your_cart_c1",
+      "screenshot": "investigate_probe_after_efdaa450.png"
+    },
+    {
+      "evidence_id": "ev-a48dc7be",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_88cb416f5c__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_checkout-step-on_checkout_your__c1",
+      "screenshot": "investigate_probe_after_7ef49128.png"
+    },
+    {
+      "evidence_id": "ev-56044ff4",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_carthtml_your_cart_c1",
+      "screenshot": "investigate_probe_after_ac5027e5.png"
+    },
+    {
+      "evidence_id": "ev-846684f2",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_e9d5a1472a__data_test__shopping_cart_link__]: verdict=MATCHED. Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_probe_after_d6ee41a6.png"
+    },
+    {
+      "evidence_id": "ev-2f245374",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__data_test__shopping_cart_link__]: verdict=NO_EFFECT. Action had no observable effect on DOM or application state.",
+      "state_ref": "st_carthtml_your_cart_c1",
+      "screenshot": "investigate_probe_after_3fd3d2eb.png"
+    },
+    {
+      "evidence_id": "ev-ffc0824a",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__remove_sauce_labs_backpack]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_carthtml_your_cart_c1",
+      "screenshot": "investigate_probe_after_13666808.png"
+    },
+    {
+      "evidence_id": "ev-e2b96a15",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_inv_invariant_reload_persistence_cls_a1e6826929]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_carthtml_your_cart_view",
+      "screenshot": "investigate_precond_blocked_49632048.png"
+    },
+    {
+      "evidence_id": "ev-d1c83b54",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__react_burger_menu_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_carthtml_your_cart_view",
+      "screenshot": "investigate_probe_after_5bed32a6.png"
+    },
+    {
+      "evidence_id": "ev-747097dd",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_a1e6826929__continue_shopping]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "state_ref": "st_carthtml_your_cart_view_menu_open",
+      "screenshot": "investigate_probe_after_34eaa0d9.png"
+    },
+    {
+      "evidence_id": "ev-d2d2001f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_02740c356b__item_3_title_link]: verdict=UNEXPECTED. Encountered unexpected error during probe: 1 console errors, 0 5xx errors.",
+      "state_ref": "st_inventoryhtml_products_view",
+      "screenshot": "investigate_probe_after_dcacac39.png"
+    },
+    {
+      "evidence_id": "ev-ddea08ff",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_e9d5a1472a__add_to_cart]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_view_id__n",
+      "screenshot": "investigate_probe_after_b7017a42.png"
+    },
+    {
+      "evidence_id": "ev-012c61ba",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_e9d5a1472a__remove]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_precond_blocked_c7fa4031.png"
+    },
+    {
+      "evidence_id": "ev-39371a93",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_inv_invariant_reload_persistence_cls_e9d5a1472a]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_precond_blocked_a7781ba1.png"
+    },
+    {
+      "evidence_id": "ev-075402f3",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_e9d5a1472a__back_to_products]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_precond_blocked_5671ae84.png"
+    },
+    {
+      "evidence_id": "ev-9f2334b6",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_e9d5a1472a__react_burger_menu_btn]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_precond_blocked_dc17917e.png"
+    },
+    {
+      "evidence_id": "ev-77aab035",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_form_cls_88cb416f5c_form_happy_form_1]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventory-itemht_view_c1_id__n",
+      "screenshot": "investigate_precond_blocked_a13dc808.png"
+    },
+    {
+      "evidence_id": "ev-8106522f",
+      "type": "PROBE_RESULT",
+      "summary": "Probe [q_ctrl_control_cls_02740c356b__item_4_title_link]: verdict=MATCHED. Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched.",
+      "state_ref": "st_inventoryhtml_products_c1",
+      "screenshot": "investigate_precond_blocked_6d0a1b05.png"
+    }
+  ],
+  "investigation_limitations": [
+    "Bounded investigation: Actions were capped by the configured safety limits (actions budget).",
+    "Destructive actions (e.g. purchasing, deleting user accounts) were deliberately not performed.",
+    "Client-side DOM constraints were observed; backend server-side database validation rules were not directly queried."
+  ],
+  "confirmed_bug_leads": [],
+  "unstable_or_rejected_leads": [],
+  "inferred_journeys": [
+    {
+      "name": "Primary Discovered Progression",
+      "steps": [
+        {
+          "action": "NAVIGATE",
+          "target": "https://www.saucedemo.com/",
+          "description": "Navigate to entry view: https://www.saucedemo.com/"
+        },
+        {
+          "action": "FILL",
+          "target": "#user-name",
+          "value": "standard_user",
+          "description": "Populate authorized username"
+        },
+        {
+          "action": "FILL",
+          "target": "#password",
+          "value": "${CREDENTIAL_PASSWORD}",
+          "description": "Populate authorized password"
+        },
+        {
+          "action": "CLICK",
+          "target": "#login-button",
+          "description": "Submit login authentication"
+        },
+        {
+          "action": "CLICK",
+          "target": "#add-to-cart-sauce-labs-backpack",
+          "description": "Trigger #add-to-cart-sauce-labs-backpack",
+          "expected_transition": "st_inventoryhtml_products_c1",
+          "expected_url_fragment": "",
+          "expected_heading": "Products",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-24b880f2"
+          ]
+        },
+        {
+          "action": "SELECT_OPTION",
+          "target": "[data-test=\"product-sort-container\"]",
+          "value": "za",
+          "description": "Select option 'za' on [data-test=\"product-sort-container\"]",
+          "expected_transition": "st_inventoryhtml_products_c1_opt_za",
+          "expected_url_fragment": "",
+          "expected_heading": "Products",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-30d58c4d"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"shopping-cart-link\"]",
+          "description": "Trigger [data-test=\"shopping-cart-link\"]",
+          "expected_transition": "st_carthtml_your_cart_c1",
+          "expected_url_fragment": "/cart.html",
+          "expected_heading": "Your Cart",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-1f62699f"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#checkout",
+          "description": "Trigger #checkout",
+          "expected_transition": "st_checkout-step-on_checkout_your__c1",
+          "expected_url_fragment": "/checkout-step-one.html",
+          "expected_heading": "Checkout: Your Information",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-fad302df"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#item_4_title_link",
+          "description": "Trigger #item_4_title_link",
+          "expected_transition": "st_inventory-itemht_view_c1_id__n",
+          "expected_url_fragment": "/inventory-item.html",
+          "expected_heading": "",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-56044ff4"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#remove-sauce-labs-backpack",
+          "description": "Trigger #remove-sauce-labs-backpack",
+          "expected_transition": "st_carthtml_your_cart_view",
+          "expected_url_fragment": "",
+          "expected_heading": "Your Cart",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-ffc0824a"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#item_3_title_link",
+          "description": "Trigger #item_3_title_link",
+          "expected_transition": "st_inventory-itemht_view_view_id__n",
+          "expected_url_fragment": "/inventory-item.html",
+          "expected_heading": "",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-d2d2001f"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation & Constraint Verification",
+      "steps": [
+        {
+          "action": "VERIFY_CONSTRAINT",
+          "target": "required_blank_all_form_1",
+          "description": "Verify form submission behavior for required_blank on required_blank_all_form_1 -> Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+          "expected_transition": "st_root_view_view_with_error",
+          "evidence_refs": [
+            "ev-063fdc4b"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploratory & Utility Branches",
+      "steps": [
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"shopping-cart-link\"]",
+          "description": "Trigger [data-test=\"shopping-cart-link\"]",
+          "expected_transition": "st_carthtml_your_cart_c1",
+          "expected_url_fragment": "/cart.html",
+          "expected_heading": "Your Cart",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-a48dc7be"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "[data-test=\"shopping-cart-link\"]",
+          "description": "Trigger [data-test=\"shopping-cart-link\"]",
+          "expected_transition": "st_carthtml_your_cart_c1",
+          "expected_url_fragment": "/cart.html",
+          "expected_heading": "Your Cart",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-846684f2"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#react-burger-menu-btn",
+          "description": "Trigger #react-burger-menu-btn",
+          "expected_transition": "st_carthtml_your_cart_view_menu_open",
+          "expected_url_fragment": "",
+          "expected_heading": "Your Cart",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-d1c83b54"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#continue-shopping",
+          "description": "Trigger #continue-shopping",
+          "expected_transition": "st_inventoryhtml_products_view",
+          "expected_url_fragment": "/inventory.html",
+          "expected_heading": "Products",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-747097dd"
+          ]
+        },
+        {
+          "action": "CLICK",
+          "target": "#add-to-cart",
+          "description": "Trigger #add-to-cart",
+          "expected_transition": "st_inventory-itemht_view_c1_id__n",
+          "expected_url_fragment": "",
+          "expected_heading": "",
+          "expected_selector": "#react-burger-menu-btn",
+          "evidence_refs": [
+            "ev-ddea08ff"
+          ]
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "journey_purchase",
+      "name": "E-Commerce Purchase Funnel",
+      "description": "Catalogue item selection -> Cart accumulation -> Cart modification -> Checkout navigation -> Order confirmation",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Add Product 1 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "FAILED",
+          "completed": false,
+          "executed_question_id": "q_ctrl_control_cls_02740c356b__add_to_cart_sauce_labs_backpack",
+          "executed_target": "#add-to-cart-sauce-labs-backpack",
+          "expected_postcondition": "cart_badge_increment",
+          "before_value": "0",
+          "after_value": "1",
+          "verification_details": "Action executed, but cart badge did not increment (0 -> 1)",
+          "failure_reason": "Action executed, but cart badge did not increment (0 -> 1)",
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Add Product 2 to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "add-to-cart|add to cart|cart-add|buy",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "cart_badge_increment",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Navigate to Cart",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "shopping-cart|cart-link|view cart|/cart|\\bcart\\b",
+          "expected_role": "link",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_cart",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 3,
+          "name": "Modify Cart Quantity",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "cart-qty-inc|qty-plus|qty-inc|increase|add-qty|cart-qty|qty-minus|decrement|remove|delete|(?<![a-zA-Z0-9_])[+-](?![a-zA-Z0-9_])",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": false,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "quantity_modified",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 4,
+          "name": "Proceed to Checkout",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "checkout|proceed",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "route_is_checkout",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 5,
+          "name": "Fill and Submit Checkout Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "checkout|shipping|place-order|place order|order|submit|form",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "checkout_form_submitted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 6,
+          "name": "Confirm Order",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "confirm|confirmation|finish|place-order|complete",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "order_confirmed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "BLOCKED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": "Action executed, but cart badge did not increment (0 -> 1)",
+      "evidence_refs": []
+    },
+    {
+      "journey_id": "journey_search_filter",
+      "name": "Search & Filter Discovery Workflow",
+      "description": "Query input -> Filter application -> Results exploration and interaction",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Input Search Query",
+          "action_type": "FILL",
+          "target_pattern": "search|query|find|filter|keyword",
+          "expected_role": "textbox",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "query_entered",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Apply Search or Filter",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "search|filter|apply|submit|btn-filter|go",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "results_updated",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 2,
+          "name": "Inspect Filtered Result",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "item|card|result|title|link|view|project",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "PLANNED",
+          "completed": false,
+          "executed_question_id": null,
+          "executed_target": null,
+          "expected_postcondition": "detail_viewed",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": null,
+          "failure_reason": null,
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 0,
+      "status": "NOT_STARTED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": null,
+      "evidence_refs": []
+    },
+    {
+      "journey_id": "journey_creation",
+      "name": "Entity Creation & Management Workflow",
+      "description": "Trigger creation action -> Input entity attributes -> Submit form -> Verify entity state",
+      "steps": [
+        {
+          "step_index": 0,
+          "name": "Trigger Entity Creation",
+          "action_type": "CLICK_CONTROL",
+          "target_pattern": "create|new|add|compose|plus|btn-create",
+          "expected_role": "button",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "VERIFIED",
+          "completed": true,
+          "executed_question_id": "q_ctrl_control_cls_e9d5a1472a__add_to_cart",
+          "executed_target": "#add-to-cart",
+          "expected_postcondition": "creation_form_opened",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Action verified via observable DOM/URL mutation",
+          "failure_reason": null,
+          "evidence_id": "ev_journey_journey_creation_0",
+          "adjudication_reason": null
+        },
+        {
+          "step_index": 1,
+          "name": "Submit Entity Form",
+          "action_type": "SUBMIT",
+          "target_pattern": "form|create|save|submit|project",
+          "expected_role": "form",
+          "required_state_class": null,
+          "is_hypothesis": false,
+          "is_required": true,
+          "status": "FAILED",
+          "completed": false,
+          "executed_question_id": "q_form_cls_88cb416f5c_form_happy_form_1",
+          "executed_target": "form_happy_form_1",
+          "expected_postcondition": "entity_persisted",
+          "before_value": null,
+          "after_value": null,
+          "verification_details": "Action executed with no observable state effect",
+          "failure_reason": "Action executed with no observable state effect",
+          "evidence_id": null,
+          "adjudication_reason": null
+        }
+      ],
+      "current_step_index": 1,
+      "status": "BLOCKED",
+      "prerequisites_satisfied": true,
+      "interruption_reason": "Action executed with no observable state effect",
+      "evidence_refs": [
+        "ev_journey_journey_creation_0"
+      ]
+    }
+  ],
+  "active_journey_id": null,
+  "behavior_model": {
+    "state_classes": {
+      "st_root_view_view": {
+        "id": "st_root_view_view",
+        "class_id": "st_root_view_view",
+        "primary_purpose": "Swag Labs \u2014 Authentication Gate (Entry)",
+        "representative_route": "https://www.saucedemo.com/",
+        "key_controls": [
+          "#user-name",
+          "#password",
+          "#login-button"
+        ],
+        "outbound_transitions": [
+          "st_root_view_view_with_error",
+          "st_inventoryhtml_products_view"
+        ]
+      },
+      "st_root_view_view_with_error": {
+        "id": "st_root_view_view_with_error",
+        "class_id": "st_root_view_view_with_error",
+        "primary_purpose": "Swag Labs \u2014 Authentication Gate (Entry) [Validation Alert: Epic sadface: Username is required]",
+        "representative_route": "https://www.saucedemo.com/",
+        "key_controls": [
+          "#user-name",
+          "#password",
+          "[data-test=\"error-button\"]",
+          "#login-button"
+        ],
+        "outbound_transitions": []
+      },
+      "st_inventoryhtml_products_view": {
+        "id": "st_inventoryhtml_products_view",
+        "class_id": "st_inventoryhtml_products_view",
+        "primary_purpose": "Products (Inventory View)",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_4_img_link",
+          "#item_4_title_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_c1",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      "st_inventoryhtml_products_c1": {
+        "id": "st_inventoryhtml_products_c1",
+        "class_id": "st_inventoryhtml_products_c1",
+        "primary_purpose": "Products (Inventory View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_4_img_link",
+          "#item_4_title_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      "st_inventoryhtml_products_c1_opt_za": {
+        "id": "st_inventoryhtml_products_c1_opt_za",
+        "class_id": "st_inventoryhtml_products_c1_opt_za",
+        "primary_purpose": "Products (Inventory View) [Badge Counter: 1 | Selected Option: za]",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_3_img_link",
+          "#item_3_title_link"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      "st_carthtml_your_cart_c1": {
+        "id": "st_carthtml_your_cart_c1",
+        "class_id": "st_carthtml_your_cart_c1",
+        "primary_purpose": "Your Cart (Cart View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#item_4_title_link",
+          "#remove-sauce-labs-backpack",
+          "#continue-shopping"
+        ],
+        "outbound_transitions": [
+          "st_checkout-step-on_checkout_your__c1",
+          "st_inventory-itemht_view_c1_id__n",
+          "st_carthtml_your_cart_view"
+        ]
+      },
+      "st_checkout-step-on_checkout_your__c1": {
+        "id": "st_checkout-step-on_checkout_your__c1",
+        "class_id": "st_checkout-step-on_checkout_your__c1",
+        "primary_purpose": "Checkout: Your Information (Checkout Step One View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/checkout-step-one.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#first-name",
+          "#last-name",
+          "#postal-code"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      "st_inventory-itemht_view_c1_id__n": {
+        "id": "st_inventory-itemht_view_c1_id__n",
+        "class_id": "st_inventory-itemht_view_c1_id__n",
+        "primary_purpose": "Swag Labs \u2014 Inventory Item View [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#back-to-products",
+          "#remove",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      "st_carthtml_your_cart_view": {
+        "id": "st_carthtml_your_cart_view",
+        "class_id": "st_carthtml_your_cart_view",
+        "primary_purpose": "Your Cart (Cart View)",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#continue-shopping",
+          "#checkout",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      "st_carthtml_your_cart_view_menu_open": {
+        "id": "st_carthtml_your_cart_view_menu_open",
+        "class_id": "st_carthtml_your_cart_view_menu_open",
+        "primary_purpose": "Your Cart (Cart View) [Navigation Drawer Open]",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "#inventory_sidebar_link",
+          "#dynamic_catalog_sidebar_link",
+          "#about_sidebar_link",
+          "#logout_sidebar_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_view"
+        ]
+      },
+      "st_inventory-itemht_view_view_id__n": {
+        "id": "st_inventory-itemht_view_view_id__n",
+        "class_id": "st_inventory-itemht_view_view_id__n",
+        "primary_purpose": "Swag Labs \u2014 Inventory Item View",
+        "representative_route": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#back-to-products",
+          "#add-to-cart",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_inventory-itemht_view_c1_id__n"
+        ]
+      }
+    },
+    "verified_transitions": [
+      {
+        "source_class": "st_root_view_view",
+        "target_class": "st_root_view_view_with_error",
+        "trigger_action": "FILL:required_blank_all_form_1",
+        "expected_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_root_view_view",
+        "target_class": "st_inventoryhtml_products_view",
+        "trigger_action": "AUTHENTICATE",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_view",
+        "target_class": "st_inventoryhtml_products_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__add_to_cart_sauce_labs_backpack",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_c1",
+        "target_class": "st_inventoryhtml_products_c1_opt_za",
+        "trigger_action": "SELECT_OPTION:select_cls_02740c356b__data_test__product_sort_containe",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_c1_opt_za",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_checkout-step-on_checkout_your__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__checkout",
+        "expected_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_checkout-step-on_checkout_your__c1",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_88cb416f5c__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_inventory-itemht_view_c1_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__item_4_title_link",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventory-itemht_view_c1_id__n",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_e9d5a1472a__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_carthtml_your_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__remove_sauce_labs_backpack",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_view",
+        "target_class": "st_carthtml_your_cart_view_menu_open",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__react_burger_menu_btn",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_view_menu_open",
+        "target_class": "st_inventoryhtml_products_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__continue_shopping",
+        "expected_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_view",
+        "target_class": "st_inventory-itemht_view_view_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__item_3_title_link",
+        "expected_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_inventory-itemht_view_view_id__n",
+        "target_class": "st_inventory-itemht_view_c1_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_e9d5a1472a__add_to_cart",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      }
+    ],
+    "discovered_invariants": [
+      {
+        "description": "Authentication permits transition from login boundary into the protected application workspace.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-AUTH-001"
+        ]
+      },
+      {
+        "description": "Form validation constraint enforced: 'Epic sadface: Username is required' displayed on invalid or incomplete submission.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-VAL-001"
+        ]
+      },
+      {
+        "description": "Expandable navigation drawer: Menu toggle triggers visible navigation controls without route change.",
+        "confidence": 1.0,
+        "evidence_refs": [
+          "RULE-NAV-002"
+        ]
+      },
+      {
+        "description": "Interactive controls trigger in-page state updates or route changes.",
+        "confidence": 0.85,
+        "evidence_refs": [
+          "HYPO-NAV-001"
+        ]
+      }
+    ],
+    "discovered_journeys": [
+      {
+        "name": "Primary Discovered Progression",
+        "steps": [
+          {
+            "action": "NAVIGATE",
+            "target": "https://www.saucedemo.com/",
+            "description": "Navigate to entry view: https://www.saucedemo.com/"
+          },
+          {
+            "action": "FILL",
+            "target": "#user-name",
+            "value": "standard_user",
+            "description": "Populate authorized username"
+          },
+          {
+            "action": "FILL",
+            "target": "#password",
+            "value": "${CREDENTIAL_PASSWORD}",
+            "description": "Populate authorized password"
+          },
+          {
+            "action": "CLICK",
+            "target": "#login-button",
+            "description": "Submit login authentication"
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-to-cart-sauce-labs-backpack",
+            "description": "Trigger #add-to-cart-sauce-labs-backpack",
+            "expected_transition": "st_inventoryhtml_products_c1",
+            "expected_url_fragment": "",
+            "expected_heading": "Products",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-24b880f2"
+            ]
+          },
+          {
+            "action": "SELECT_OPTION",
+            "target": "[data-test=\"product-sort-container\"]",
+            "value": "za",
+            "description": "Select option 'za' on [data-test=\"product-sort-container\"]",
+            "expected_transition": "st_inventoryhtml_products_c1_opt_za",
+            "expected_url_fragment": "",
+            "expected_heading": "Products",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-30d58c4d"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"shopping-cart-link\"]",
+            "description": "Trigger [data-test=\"shopping-cart-link\"]",
+            "expected_transition": "st_carthtml_your_cart_c1",
+            "expected_url_fragment": "/cart.html",
+            "expected_heading": "Your Cart",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-1f62699f"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#checkout",
+            "description": "Trigger #checkout",
+            "expected_transition": "st_checkout-step-on_checkout_your__c1",
+            "expected_url_fragment": "/checkout-step-one.html",
+            "expected_heading": "Checkout: Your Information",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-fad302df"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#item_4_title_link",
+            "description": "Trigger #item_4_title_link",
+            "expected_transition": "st_inventory-itemht_view_c1_id__n",
+            "expected_url_fragment": "/inventory-item.html",
+            "expected_heading": "",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-56044ff4"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#remove-sauce-labs-backpack",
+            "description": "Trigger #remove-sauce-labs-backpack",
+            "expected_transition": "st_carthtml_your_cart_view",
+            "expected_url_fragment": "",
+            "expected_heading": "Your Cart",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-ffc0824a"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#item_3_title_link",
+            "description": "Trigger #item_3_title_link",
+            "expected_transition": "st_inventory-itemht_view_view_id__n",
+            "expected_url_fragment": "/inventory-item.html",
+            "expected_heading": "",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-d2d2001f"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Validation & Constraint Verification",
+        "steps": [
+          {
+            "action": "VERIFY_CONSTRAINT",
+            "target": "required_blank_all_form_1",
+            "description": "Verify form submission behavior for required_blank on required_blank_all_form_1 -> Encountered unexpected error during probe: 2 console errors, 0 5xx errors.",
+            "expected_transition": "st_root_view_view_with_error",
+            "evidence_refs": [
+              "ev-063fdc4b"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exploratory & Utility Branches",
+        "steps": [
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"shopping-cart-link\"]",
+            "description": "Trigger [data-test=\"shopping-cart-link\"]",
+            "expected_transition": "st_carthtml_your_cart_c1",
+            "expected_url_fragment": "/cart.html",
+            "expected_heading": "Your Cart",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-a48dc7be"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "[data-test=\"shopping-cart-link\"]",
+            "description": "Trigger [data-test=\"shopping-cart-link\"]",
+            "expected_transition": "st_carthtml_your_cart_c1",
+            "expected_url_fragment": "/cart.html",
+            "expected_heading": "Your Cart",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-846684f2"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#react-burger-menu-btn",
+            "description": "Trigger #react-burger-menu-btn",
+            "expected_transition": "st_carthtml_your_cart_view_menu_open",
+            "expected_url_fragment": "",
+            "expected_heading": "Your Cart",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-d1c83b54"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#continue-shopping",
+            "description": "Trigger #continue-shopping",
+            "expected_transition": "st_inventoryhtml_products_view",
+            "expected_url_fragment": "/inventory.html",
+            "expected_heading": "Products",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-747097dd"
+            ]
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-to-cart",
+            "description": "Trigger #add-to-cart",
+            "expected_transition": "st_inventory-itemht_view_c1_id__n",
+            "expected_url_fragment": "",
+            "expected_heading": "",
+            "expected_selector": "#react-burger-menu-btn",
+            "evidence_refs": [
+              "ev-ddea08ff"
+            ]
+          }
+        ]
+      }
+    ],
+    "confirmed_bug_leads": [],
+    "transitions": [
+      {
+        "source_class": "st_root_view_view",
+        "target_class": "st_root_view_view_with_error",
+        "trigger_action": "FILL:required_blank_all_form_1",
+        "expected_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_root_view_view",
+        "target_class": "st_inventoryhtml_products_view",
+        "trigger_action": "AUTHENTICATE",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 2/2 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_view",
+        "target_class": "st_inventoryhtml_products_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__add_to_cart_sauce_labs_backpack",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_c1",
+        "target_class": "st_inventoryhtml_products_c1_opt_za",
+        "trigger_action": "SELECT_OPTION:select_cls_02740c356b__data_test__product_sort_containe",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_c1_opt_za",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_checkout-step-on_checkout_your__c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__checkout",
+        "expected_outcome": "Encountered unexpected error during probe: 2 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_checkout-step-on_checkout_your__c1",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_88cb416f5c__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_inventory-itemht_view_c1_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__item_4_title_link",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_inventory-itemht_view_c1_id__n",
+        "target_class": "st_carthtml_your_cart_c1",
+        "trigger_action": "CLICK_CONTROL:control_cls_e9d5a1472a__data_test__shopping_cart_link__",
+        "expected_outcome": "Verdict MATCHED (ROUTE_TRANSITION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_c1",
+        "target_class": "st_carthtml_your_cart_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__remove_sauce_labs_backpack",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_view",
+        "target_class": "st_carthtml_your_cart_view_menu_open",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__react_burger_menu_btn",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      },
+      {
+        "source_class": "st_carthtml_your_cart_view_menu_open",
+        "target_class": "st_inventoryhtml_products_view",
+        "trigger_action": "CLICK_CONTROL:control_cls_a1e6826929__continue_shopping",
+        "expected_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_inventoryhtml_products_view",
+        "target_class": "st_inventory-itemht_view_view_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_02740c356b__item_3_title_link",
+        "expected_outcome": "Encountered unexpected error during probe: 1 console errors, 0 5xx errors."
+      },
+      {
+        "source_class": "st_inventory-itemht_view_view_id__n",
+        "target_class": "st_inventory-itemht_view_c1_id__n",
+        "trigger_action": "CLICK_CONTROL:control_cls_e9d5a1472a__add_to_cart",
+        "expected_outcome": "Verdict MATCHED (IN_PAGE_STATE_MUTATION): 1/1 signals matched."
+      }
+    ],
+    "state_classes_list": [
+      {
+        "id": "st_root_view_view",
+        "class_id": "st_root_view_view",
+        "primary_purpose": "Swag Labs \u2014 Authentication Gate (Entry)",
+        "representative_route": "https://www.saucedemo.com/",
+        "key_controls": [
+          "#user-name",
+          "#password",
+          "#login-button"
+        ],
+        "outbound_transitions": [
+          "st_root_view_view_with_error",
+          "st_inventoryhtml_products_view"
+        ]
+      },
+      {
+        "id": "st_root_view_view_with_error",
+        "class_id": "st_root_view_view_with_error",
+        "primary_purpose": "Swag Labs \u2014 Authentication Gate (Entry) [Validation Alert: Epic sadface: Username is required]",
+        "representative_route": "https://www.saucedemo.com/",
+        "key_controls": [
+          "#user-name",
+          "#password",
+          "[data-test=\"error-button\"]",
+          "#login-button"
+        ],
+        "outbound_transitions": []
+      },
+      {
+        "id": "st_inventoryhtml_products_view",
+        "class_id": "st_inventoryhtml_products_view",
+        "primary_purpose": "Products (Inventory View)",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_4_img_link",
+          "#item_4_title_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_c1",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "id": "st_inventoryhtml_products_c1",
+        "class_id": "st_inventoryhtml_products_c1",
+        "primary_purpose": "Products (Inventory View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_4_img_link",
+          "#item_4_title_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "id": "st_inventoryhtml_products_c1_opt_za",
+        "class_id": "st_inventoryhtml_products_c1_opt_za",
+        "primary_purpose": "Products (Inventory View) [Badge Counter: 1 | Selected Option: za]",
+        "representative_route": "https://www.saucedemo.com/inventory.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "[data-test=\"product-sort-container\"]",
+          "#item_3_img_link",
+          "#item_3_title_link"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      {
+        "id": "st_carthtml_your_cart_c1",
+        "class_id": "st_carthtml_your_cart_c1",
+        "primary_purpose": "Your Cart (Cart View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#item_4_title_link",
+          "#remove-sauce-labs-backpack",
+          "#continue-shopping"
+        ],
+        "outbound_transitions": [
+          "st_checkout-step-on_checkout_your__c1",
+          "st_inventory-itemht_view_c1_id__n",
+          "st_carthtml_your_cart_view"
+        ]
+      },
+      {
+        "id": "st_checkout-step-on_checkout_your__c1",
+        "class_id": "st_checkout-step-on_checkout_your__c1",
+        "primary_purpose": "Checkout: Your Information (Checkout Step One View) [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/checkout-step-one.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#first-name",
+          "#last-name",
+          "#postal-code"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      {
+        "id": "st_inventory-itemht_view_c1_id__n",
+        "class_id": "st_inventory-itemht_view_c1_id__n",
+        "primary_purpose": "Swag Labs \u2014 Inventory Item View [Badge Counter: 1]",
+        "representative_route": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#back-to-products",
+          "#remove",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      {
+        "id": "st_carthtml_your_cart_view",
+        "class_id": "st_carthtml_your_cart_view",
+        "primary_purpose": "Your Cart (Cart View)",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#continue-shopping",
+          "#checkout",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "id": "st_carthtml_your_cart_view_menu_open",
+        "class_id": "st_carthtml_your_cart_view_menu_open",
+        "primary_purpose": "Your Cart (Cart View) [Navigation Drawer Open]",
+        "representative_route": "https://www.saucedemo.com/cart.html",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "#inventory_sidebar_link",
+          "#dynamic_catalog_sidebar_link",
+          "#about_sidebar_link",
+          "#logout_sidebar_link"
+        ],
+        "outbound_transitions": [
+          "st_inventoryhtml_products_view"
+        ]
+      },
+      {
+        "id": "st_inventory-itemht_view_view_id__n",
+        "class_id": "st_inventory-itemht_view_view_id__n",
+        "primary_purpose": "Swag Labs \u2014 Inventory Item View",
+        "representative_route": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "key_controls": [
+          "#react-burger-menu-btn",
+          "[data-test=\"shopping-cart-link\"]",
+          "#back-to-products",
+          "#add-to-cart",
+          "[data-test=\"social-x\"]"
+        ],
+        "outbound_transitions": [
+          "st_inventory-itemht_view_c1_id__n"
+        ]
+      }
+    ]
+  },
+  "playwright_test_script": "# Auto-generated by VerityQA Autonomous Investigation Agent\n# Replayable Application Journey Test\nimport pytest\nfrom playwright.sync_api import sync_playwright, expect\n\ndef test_primary_discovered_progression():\n    \"\"\"\n    Test Objective: Replay and verify the discovered application journey \"Primary Discovered Progression\".\n    Preconditions: Application server is online and reachable.\n    Evidence Grounding: Derived directly from empirical DOM observations and state transitions.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        context = browser.new_context()\n        page = context.new_page()\n\n        # Step 1: Navigate to entry view: https://www.saucedemo.com/\n        page.goto('https://www.saucedemo.com/', wait_until='domcontentloaded')\n        # Step 2: Populate authorized username\n        page.locator('#user-name').fill('standard_user')\n        # Step 3: Populate authorized password\n        page.locator('#password').fill(__import__('os').environ['VERITYQA_TEST_PASSWORD'])\n        # Step 4: Submit login authentication\n        page.locator('#login-button').click()\n        page.wait_for_timeout(400)\n        # Step 5: Trigger #add-to-cart-sauce-labs-backpack [Evidence: ev-24b880f2]\n        page.locator('#add-to-cart-sauce-labs-backpack').click()\n        page.wait_for_timeout(400)\n        assert 'Products' in page.locator('body').inner_text(), f'Expected heading/landmark Products'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 6: Select option 'za' on [data-test=\"product-sort-container\"] [Evidence: ev-30d58c4d]\n        page.locator('[data-test=\"product-sort-container\"]').select_option('za')\n        assert 'Products' in page.locator('body').inner_text(), f'Expected heading/landmark Products'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 7: Trigger [data-test=\"shopping-cart-link\"] [Evidence: ev-1f62699f]\n        page.locator('[data-test=\"shopping-cart-link\"]').click()\n        page.wait_for_timeout(400)\n        assert '/cart.html' in page.url, f'Expected /cart.html in URL, got {page.url}'\n        assert 'Your Cart' in page.locator('body').inner_text(), f'Expected heading/landmark Your Cart'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 8: Trigger #checkout [Evidence: ev-fad302df]\n        page.locator('#checkout').click()\n        page.wait_for_timeout(400)\n        assert '/checkout-step-one.html' in page.url, f'Expected /checkout-step-one.html in URL, got {page.url}'\n        assert 'Checkout: Your Information' in page.locator('body').inner_text(), f'Expected heading/landmark Checkout: Your Information'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 9: Trigger #item_4_title_link [Evidence: ev-56044ff4]\n        page.locator('#item_4_title_link').click()\n        page.wait_for_timeout(400)\n        assert '/inventory-item.html' in page.url, f'Expected /inventory-item.html in URL, got {page.url}'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 10: Trigger #remove-sauce-labs-backpack [Evidence: ev-ffc0824a]\n        page.locator('#remove-sauce-labs-backpack').click()\n        page.wait_for_timeout(400)\n        assert 'Your Cart' in page.locator('body').inner_text(), f'Expected heading/landmark Your Cart'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n        # Step 11: Trigger #item_3_title_link [Evidence: ev-d2d2001f]\n        page.locator('#item_3_title_link').click()\n        page.wait_for_timeout(400)\n        assert '/inventory-item.html' in page.url, f'Expected /inventory-item.html in URL, got {page.url}'\n        assert page.locator('#react-burger-menu-btn').count() > 0\n\n        # Verify final application state and DOM integrity\n        assert page.url is not None and page.url.startswith('http')\n        assert len(page.locator('body').inner_text().strip()) > 0\n        browser.close()\n\nif __name__ == '__main__':\n    test_primary_discovered_progression()\n    print('Journey replay completed successfully.')",
+  "decision_snapshots": [
+    {
+      "step_number": 1,
+      "timestamp": 1792893115.2466455,
+      "from_state_id": "st_root_view_view",
+      "from_url": "https://www.saucedemo.com/",
+      "question_id": "q_form_cls_293159fad6_required_blank_all_form_1",
+      "selected_action": "required_blank_all_form_1",
+      "probe_family": "forms",
+      "category": "discovery",
+      "hypothesis": "Verify form submission behavior for required_blank on required_blank_all_form_1",
+      "priority_score": 1.31,
+      "observed_effect": "VALIDATION_FEEDBACK",
+      "prediction_verdict": "UNEXPECTED",
+      "to_state_id": "st_root_view_view_with_error",
+      "to_url": "https://www.saucedemo.com/",
+      "is_productive": true
+    },
+    {
+      "step_number": 2,
+      "timestamp": 1792893118.9481118,
+      "from_state_id": "st_root_view_view",
+      "from_url": "https://www.saucedemo.com/",
+      "question_id": "q_auth_cls_293159fad6",
+      "selected_action": "login_form",
+      "probe_family": "auth",
+      "category": "discovery",
+      "hypothesis": "Verify valid authentication transitions past login boundary at https://www.saucedemo.com/",
+      "priority_score": 1.27,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventoryhtml_products_view",
+      "to_url": "https://www.saucedemo.com/inventory.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 3,
+      "timestamp": 1792893120.433788,
+      "from_state_id": "st_inventoryhtml_products_view",
+      "from_url": "https://www.saucedemo.com/inventory.html",
+      "question_id": "q_ctrl_control_cls_02740c356b__add_to_cart_sauce_labs_backpack",
+      "selected_action": "#add-to-cart-sauce-labs-backpack",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add to cart'",
+      "priority_score": 0.8515,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventoryhtml_products_c1",
+      "to_url": "https://www.saucedemo.com/inventory.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 4,
+      "timestamp": 1792893121.9613883,
+      "from_state_id": "st_inventoryhtml_products_c1",
+      "from_url": "https://www.saucedemo.com/inventory.html",
+      "question_id": "q_ctrl_select_cls_02740c356b__data_test__product_sort_containe",
+      "selected_action": "[data-test=\"product-sort-container\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: select 'Sort products'",
+      "priority_score": 1.2015,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "to_url": "https://www.saucedemo.com/inventory.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 5,
+      "timestamp": 1792893130.4755433,
+      "from_state_id": "st_inventoryhtml_products_c1_opt_za",
+      "from_url": "https://www.saucedemo.com/inventory.html",
+      "question_id": "q_ctrl_control_cls_02740c356b__data_test__shopping_cart_link__",
+      "selected_action": "[data-test=\"shopping-cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Cart, empty'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_c1",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 6,
+      "timestamp": 1792893135.4142516,
+      "from_state_id": "st_carthtml_your_cart_c1",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__checkout",
+      "selected_action": "#checkout",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Checkout'",
+      "priority_score": 1.1415,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "UNEXPECTED",
+      "to_state_id": "st_checkout-step-on_checkout_your__c1",
+      "to_url": "https://www.saucedemo.com/checkout-step-one.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 7,
+      "timestamp": 1792893137.2107913,
+      "from_state_id": "st_checkout-step-on_checkout_your__c1",
+      "from_url": "https://www.saucedemo.com/checkout-step-one.html",
+      "question_id": "q_ctrl_control_cls_88cb416f5c__data_test__shopping_cart_link__",
+      "selected_action": "[data-test=\"shopping-cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Cart, 1 items'",
+      "priority_score": 1.0365,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_c1",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 8,
+      "timestamp": 1792893140.787667,
+      "from_state_id": "st_carthtml_your_cart_c1",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__item_4_title_link",
+      "selected_action": "#item_4_title_link",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'View details for Sauce Labs Backpack'",
+      "priority_score": 1.0605,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=4",
+      "is_productive": true
+    },
+    {
+      "step_number": 9,
+      "timestamp": 1792893143.5394592,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=4",
+      "question_id": "q_ctrl_control_cls_e9d5a1472a__data_test__shopping_cart_link__",
+      "selected_action": "[data-test=\"shopping-cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Cart, 1 items'",
+      "priority_score": 1.0365,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_c1",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 10,
+      "timestamp": 1792893144.9920328,
+      "from_state_id": "st_carthtml_your_cart_c1",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__data_test__shopping_cart_link__",
+      "selected_action": "[data-test=\"shopping-cart-link\"]",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Cart, 1 items'",
+      "priority_score": 1.0365,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "NO_EFFECT",
+      "to_state_id": "st_carthtml_your_cart_c1",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": false
+    },
+    {
+      "step_number": 11,
+      "timestamp": 1792893146.4504535,
+      "from_state_id": "st_carthtml_your_cart_c1",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__remove_sauce_labs_backpack",
+      "selected_action": "#remove-sauce-labs-backpack",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Remove'",
+      "priority_score": 1.025,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_view",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 12,
+      "timestamp": 1792893146.8486905,
+      "from_state_id": "st_carthtml_your_cart_view",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_inv_invariant_reload_persistence_cls_a1e6826929",
+      "selected_action": "probe",
+      "probe_family": "invariants",
+      "category": "invariant",
+      "hypothesis": "Verify page state and layout persist predictably across browser reloads",
+      "priority_score": 0.8925,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_view",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": false
+    },
+    {
+      "step_number": 13,
+      "timestamp": 1792893148.2893476,
+      "from_state_id": "st_carthtml_your_cart_view",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__react_burger_menu_btn",
+      "selected_action": "#react-burger-menu-btn",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Open Menu'",
+      "priority_score": 0.75,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_carthtml_your_cart_view_menu_open",
+      "to_url": "https://www.saucedemo.com/cart.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 14,
+      "timestamp": 1792893159.8893747,
+      "from_state_id": "st_carthtml_your_cart_view_menu_open",
+      "from_url": "https://www.saucedemo.com/cart.html",
+      "question_id": "q_ctrl_control_cls_a1e6826929__continue_shopping",
+      "selected_action": "#continue-shopping",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Continue Shopping'",
+      "priority_score": 0.75,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "UNEXPECTED",
+      "to_state_id": "st_inventoryhtml_products_view",
+      "to_url": "https://www.saucedemo.com/inventory.html",
+      "is_productive": true
+    },
+    {
+      "step_number": 15,
+      "timestamp": 1792893161.8088746,
+      "from_state_id": "st_inventoryhtml_products_view",
+      "from_url": "https://www.saucedemo.com/inventory.html",
+      "question_id": "q_ctrl_control_cls_02740c356b__item_3_title_link",
+      "selected_action": "#item_3_title_link",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'View details for Test.allTheThings() T-Shirt (Red)'",
+      "priority_score": 1.0605,
+      "observed_effect": "ROUTE_TRANSITION",
+      "prediction_verdict": "UNEXPECTED",
+      "to_state_id": "st_inventory-itemht_view_view_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": true
+    },
+    {
+      "step_number": 16,
+      "timestamp": 1792893163.2721007,
+      "from_state_id": "st_inventory-itemht_view_view_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_ctrl_control_cls_e9d5a1472a__add_to_cart",
+      "selected_action": "#add-to-cart",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Add to cart'",
+      "priority_score": 0.8515,
+      "observed_effect": "IN_PAGE_STATE_MUTATION",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": true
+    },
+    {
+      "step_number": 17,
+      "timestamp": 1792893165.6461256,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_ctrl_control_cls_e9d5a1472a__remove",
+      "selected_action": "#remove",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Remove'",
+      "priority_score": 1.025,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": false
+    },
+    {
+      "step_number": 18,
+      "timestamp": 1792893166.0502179,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_inv_invariant_reload_persistence_cls_e9d5a1472a",
+      "selected_action": "probe",
+      "probe_family": "invariants",
+      "category": "invariant",
+      "hypothesis": "Verify page state and layout persist predictably across browser reloads",
+      "priority_score": 0.8925,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": false
+    },
+    {
+      "step_number": 19,
+      "timestamp": 1792893166.453307,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_ctrl_control_cls_e9d5a1472a__back_to_products",
+      "selected_action": "#back-to-products",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Back to products'",
+      "priority_score": 0.75,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": false
+    },
+    {
+      "step_number": 20,
+      "timestamp": 1792893166.8675928,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_ctrl_control_cls_e9d5a1472a__react_burger_menu_btn",
+      "selected_action": "#react-burger-menu-btn",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'Open Menu'",
+      "priority_score": 0.645,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": false
+    },
+    {
+      "step_number": 21,
+      "timestamp": 1792893167.286216,
+      "from_state_id": "st_inventory-itemht_view_c1_id__n",
+      "from_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "question_id": "q_form_cls_88cb416f5c_form_happy_form_1",
+      "selected_action": "form_happy_form_1",
+      "probe_family": "forms",
+      "category": "discovery",
+      "hypothesis": "Verify form submission behavior for happy on form_happy_form_1",
+      "priority_score": 0.5415,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventory-itemht_view_c1_id__n",
+      "to_url": "https://www.saucedemo.com/inventory-item.html?id=3",
+      "is_productive": false
+    },
+    {
+      "step_number": 22,
+      "timestamp": 1792893168.6668556,
+      "from_state_id": "st_inventoryhtml_products_c1",
+      "from_url": "https://www.saucedemo.com/inventory.html",
+      "question_id": "q_ctrl_control_cls_02740c356b__item_4_title_link",
+      "selected_action": "#item_4_title_link",
+      "probe_family": "controls",
+      "category": "discovery",
+      "hypothesis": "Investigate interactive control response: button 'View details for Sauce Labs Backpack'",
+      "priority_score": 0.4865,
+      "observed_effect": "NO_OBSERVABLE_CHANGE",
+      "prediction_verdict": "MATCHED",
+      "to_state_id": "st_inventoryhtml_products_c1",
+      "to_url": "https://www.saucedemo.com/inventory.html",
+      "is_productive": false
+    }
+  ],
+  "report_schema_version": "2.0",
+  "target_context": {
+    "schema_version": "2.0",
+    "run_id": "bench-saucedemo-public-r1-5d7bea",
+    "origin": "https://www.saucedemo.com",
+    "start_url": "https://www.saucedemo.com/",
+    "final_url": "https://www.saucedemo.com/inventory.html",
+    "investigated_at": "2026-10-25T07:22:48+0530",
+    "description": "E-commerce demo shop with login, inventory, sorting, cart and checkout.",
+    "requirements": [
+      "Username is required",
+      "Password is required"
+    ],
+    "credentials_available": true,
+    "credential_source": "[REDACTED_SECRET]"
+  },
+  "observed_inventory": {
+    "schema_version": "2.0",
+    "run_id": "bench-saucedemo-public-r1-5d7bea",
+    "origin": "https://www.saucedemo.com",
+    "provenance": "LIVE_INVESTIGATION",
+    "states": [
+      {
+        "state_id": "st_root_view_view",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "title": "Swag Labs",
+        "headings": [],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Swag Labs Accepted usernames are: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user Password for all users: secret_sauce",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "ENTRY"
+      },
+      {
+        "state_id": "st_root_view_view_with_error",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "title": "Swag Labs",
+        "headings": [],
+        "http_status": 200,
+        "authenticated": false,
+        "text_snippet": "Swag Labs Epic sadface: Username is required Accepted usernames are: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user Password for all users: secret_sauce",
+        "validation_message": "Epic sadface: Username is required",
+        "validation_locator": ".error-message-container",
+        "reached_by": "FORM_SUBMISSION"
+      },
+      {
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Products"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs Products Name (A to Z) Name (A to Z) Name (Z to A) Price (low to high) Price (high to low) Sauce Labs Backpack carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection. $29.99 Add to cart Sauce Labs Bike Light A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included. $9.99 Add to cart Sauce Labs Bolt T-Shirt Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt. $15.99 Add to cart Sauce Labs Fleece Jacket It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office. $49.99 Add to cart Sauce Labs Onesie Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel. $7.99 Add to cart Test.allTheThings() T-Shirt (Red) This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to ",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "AUTHENTICATION"
+      },
+      {
+        "state_id": "st_inventoryhtml_products_c1",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Products"
+        ],
+        "http_status": 404,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs 1 Products Name (A to Z) Name (A to Z) Name (Z to A) Price (low to high) Price (high to low) Sauce Labs Backpack carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection. $29.99 Add to cart Sauce Labs Bike Light A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included. $9.99 Add to cart Sauce Labs Bolt T-Shirt Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt. $15.99 Add to cart Sauce Labs Fleece Jacket It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office. $49.99 Add to cart Sauce Labs Onesie Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel. $7.99 Add to cart Test.allTheThings() T-Shirt (Red) This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard t",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_inventoryhtml_products_c1_opt_za",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Products"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs 1 Products Name (Z to A) Name (A to Z) Name (Z to A) Price (low to high) Price (high to low) Test.allTheThings() T-Shirt (Red) This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton. $15.99 Add to cart Sauce Labs Onesie Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel. $7.99 Add to cart Sauce Labs Fleece Jacket It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office. $49.99 Add to cart Sauce Labs Bolt T-Shirt Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt. $15.99 Add to cart Sauce Labs Bike Light A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included. $9.99 Add to cart Sauce Labs Backpack carry.allTheThings() with the sleek, streamlined Sly Pack that mel",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Your Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs 1 Your Cart QTYDescription 1 Sauce Labs Backpack carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection. $29.99 Remove Continue Shopping Checkout X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Checkout: Your Information"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs 1 Checkout: Your Information Cancel X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "title": "Swag Labs",
+        "headings": [],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs 1 Back to products Test.allTheThings() T-Shirt (Red) This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton. $15.99 Remove X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      },
+      {
+        "state_id": "st_carthtml_your_cart_view",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Your Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs Your Cart QTYDescription Continue Shopping Checkout X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "title": "Swag Labs",
+        "headings": [
+          "Your Cart"
+        ],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu All Items Dynamic Catalog About Logout Reset App State Close Menu Swag Labs Your Cart QTYDescription Continue Shopping Checkout X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "INTERACTION"
+      },
+      {
+        "state_id": "st_inventory-itemht_view_view_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "title": "Swag Labs",
+        "headings": [],
+        "http_status": 200,
+        "authenticated": true,
+        "text_snippet": "Open Menu Swag Labs Back to products Test.allTheThings() T-Shirt (Red) This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton. $15.99 Add to cart X Facebook LinkedIn \u00a9 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+        "validation_message": null,
+        "validation_locator": null,
+        "reached_by": "NAVIGATION"
+      }
+    ],
+    "controls": [
+      {
+        "selector": "#user-name",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Username",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_view_view",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_view_view",
+          "st_root_view_view_with_error"
+        ]
+      },
+      {
+        "selector": "#password",
+        "tag": "input",
+        "control_type": "password",
+        "role": "input",
+        "name": "Password",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_view_view",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_view_view",
+          "st_root_view_view_with_error"
+        ]
+      },
+      {
+        "selector": "#login-button",
+        "tag": "input",
+        "control_type": "submit",
+        "role": "input",
+        "name": "Login",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_view_view",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_view_view",
+          "st_root_view_view_with_error"
+        ]
+      },
+      {
+        "selector": "[data-test=\"error-button\"]",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Dismiss error",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_root_view_view_with_error",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "authenticated": false,
+        "seen_in_states": [
+          "st_root_view_view_with_error"
+        ]
+      },
+      {
+        "selector": "#react-burger-menu-btn",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Open Menu",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Cart, empty",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "[data-test=\"product-sort-container\"]",
+        "tag": "select",
+        "control_type": "select",
+        "role": "select",
+        "name": "Sort products",
+        "href": "",
+        "options": [
+          "az",
+          "za",
+          "lohi",
+          "hilo"
+        ],
+        "option_labels": [
+          "Name (A to Z)",
+          "Name (Z to A)",
+          "Price (low to high)",
+          "Price (high to low)"
+        ],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_4_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Backpack",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_4_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Backpack",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1"
+        ]
+      },
+      {
+        "selector": "#item_0_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Bike Light",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_0_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Bike Light",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-sauce-labs-bike-light",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_1_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Bolt T-Shirt",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_1_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Bolt T-Shirt",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-sauce-labs-bolt-t-shirt",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_5_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Fleece Jacket",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_5_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Fleece Jacket",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-sauce-labs-fleece-jacket",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_2_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Onesie",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_2_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Onesie",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-sauce-labs-onesie",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_3_img_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Test.allTheThings() T-Shirt (Red)",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#item_3_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Test.allTheThings() T-Shirt (Red)",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-x\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "X",
+        "href": "https://x.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-facebook\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Facebook",
+        "href": "https://www.facebook.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-linkedin\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "LinkedIn",
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_view",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_view",
+          "st_inventoryhtml_products_c1",
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#remove-test.allthethings()-t-shirt-(red)",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Remove",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_c1",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_c1"
+        ]
+      },
+      {
+        "selector": "#remove-sauce-labs-backpack",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Remove",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventoryhtml_products_c1_opt_za",
+        "url": "https://www.saucedemo.com/inventory.html",
+        "route": "/inventory.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventoryhtml_products_c1_opt_za"
+        ]
+      },
+      {
+        "selector": "#react-burger-menu-btn",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Open Menu",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Cart, 1 items",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#item_4_title_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "View details for Sauce Labs Backpack",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      {
+        "selector": "#remove-sauce-labs-backpack",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Remove",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1"
+        ]
+      },
+      {
+        "selector": "#continue-shopping",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Continue Shopping",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#checkout",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Checkout",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-x\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "X",
+        "href": "https://x.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-facebook\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Facebook",
+        "href": "https://www.facebook.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-linkedin\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "LinkedIn",
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_c1",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_c1",
+          "st_carthtml_your_cart_view",
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#react-burger-menu-btn",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Open Menu",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Cart, 1 items",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#first-name",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "First Name",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#last-name",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Last Name",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#postal-code",
+        "tag": "input",
+        "control_type": "text",
+        "role": "input",
+        "name": "Zip/Postal Code",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#cancel",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Cancel",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#continue",
+        "tag": "input",
+        "control_type": "submit",
+        "role": "input",
+        "name": "Continue",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-x\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "X",
+        "href": "https://x.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-facebook\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Facebook",
+        "href": "https://www.facebook.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-linkedin\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "LinkedIn",
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      },
+      {
+        "selector": "#react-burger-menu-btn",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Open Menu",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Cart, 1 items",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "#back-to-products",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Back to products",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "#remove",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Remove",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-x\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "X",
+        "href": "https://x.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-facebook\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "Facebook",
+        "href": "https://www.facebook.com/saucelabs",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "[data-test=\"social-linkedin\"]",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "LinkedIn",
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_c1_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_c1_id__n",
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      },
+      {
+        "selector": "#inventory_sidebar_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "All Items",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#dynamic_catalog_sidebar_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Dynamic Catalog",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#about_sidebar_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "a",
+        "name": "About",
+        "href": "https://saucelabs.com/",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#logout_sidebar_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Logout",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#reset_sidebar_link",
+        "tag": "a",
+        "control_type": "a",
+        "role": "button",
+        "name": "Reset App State",
+        "href": "#",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#react-burger-cross-btn",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Close Menu",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_carthtml_your_cart_view_menu_open",
+        "url": "https://www.saucedemo.com/cart.html",
+        "route": "/cart.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_carthtml_your_cart_view_menu_open"
+        ]
+      },
+      {
+        "selector": "#add-to-cart",
+        "tag": "button",
+        "control_type": "button",
+        "role": "button",
+        "name": "Add to cart",
+        "href": "",
+        "options": [],
+        "option_labels": [],
+        "state_id": "st_inventory-itemht_view_view_id__n",
+        "url": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "route": "/inventory-item.html",
+        "authenticated": true,
+        "seen_in_states": [
+          "st_inventory-itemht_view_view_id__n"
+        ]
+      }
+    ],
+    "forms": [
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "",
+        "method": "GET",
+        "novalidate": false,
+        "submit_selector": "#login-button",
+        "state_id": "st_root_view_view",
+        "url": "https://www.saucedemo.com/",
+        "route": "/",
+        "authenticated": false,
+        "fields": [
+          {
+            "selector": "#user-name",
+            "name": "user-name",
+            "field_id": "user-name",
+            "label": "Username",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#password",
+            "name": "password",
+            "field_id": "password",
+            "label": "Password",
+            "field_type": "password",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_root_view_view",
+          "st_root_view_view_with_error"
+        ]
+      },
+      {
+        "form_id": "form_1",
+        "form_selector": "form",
+        "action": "",
+        "method": "GET",
+        "novalidate": false,
+        "submit_selector": "#continue",
+        "state_id": "st_checkout-step-on_checkout_your__c1",
+        "url": "https://www.saucedemo.com/checkout-step-one.html",
+        "route": "/checkout-step-one.html",
+        "authenticated": true,
+        "fields": [
+          {
+            "selector": "#first-name",
+            "name": "firstName",
+            "field_id": "first-name",
+            "label": "First Name",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#last-name",
+            "name": "lastName",
+            "field_id": "last-name",
+            "label": "Last Name",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          },
+          {
+            "selector": "#postal-code",
+            "name": "postalCode",
+            "field_id": "postal-code",
+            "label": "Zip/Postal Code",
+            "field_type": "text",
+            "required": false,
+            "minlength": null,
+            "maxlength": null,
+            "min": null,
+            "max": null,
+            "pattern": null,
+            "step": null,
+            "options": [],
+            "checked": null
+          }
+        ],
+        "seen_in_states": [
+          "st_checkout-step-on_checkout_your__c1"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "trans-b290895e",
+        "source_state_id": "st_root_view_view",
+        "destination_state_id": "st_root_view_view_with_error",
+        "action_type": "FILL:required_blank_all_form_1",
+        "target": "required_blank_all_form_1",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "VALIDATION_FEEDBACK",
+        "evidence_ids": [
+          "ev-063fdc4b"
+        ]
+      },
+      {
+        "transition_id": "trans-4633f26f",
+        "source_state_id": "st_root_view_view",
+        "destination_state_id": "st_inventoryhtml_products_view",
+        "action_type": "AUTHENTICATE",
+        "target": "login_form",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-a64428c0"
+        ]
+      },
+      {
+        "transition_id": "trans-ce475bdd",
+        "source_state_id": "st_inventoryhtml_products_view",
+        "destination_state_id": "st_inventoryhtml_products_c1",
+        "action_type": "CLICK_CONTROL:control_cls_02740c356b__add_to_cart_sauce_labs_backpack",
+        "target": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-24b880f2"
+        ]
+      },
+      {
+        "transition_id": "trans-fe58754b",
+        "source_state_id": "st_inventoryhtml_products_c1",
+        "destination_state_id": "st_inventoryhtml_products_c1_opt_za",
+        "action_type": "SELECT_OPTION:select_cls_02740c356b__data_test__product_sort_containe",
+        "target": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-30d58c4d"
+        ]
+      },
+      {
+        "transition_id": "trans-be5adef8",
+        "source_state_id": "st_inventoryhtml_products_c1_opt_za",
+        "destination_state_id": "st_carthtml_your_cart_c1",
+        "action_type": "CLICK_CONTROL:control_cls_02740c356b__data_test__shopping_cart_link__",
+        "target": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-1f62699f"
+        ]
+      },
+      {
+        "transition_id": "trans-0ff72ae4",
+        "source_state_id": "st_carthtml_your_cart_c1",
+        "destination_state_id": "st_checkout-step-on_checkout_your__c1",
+        "action_type": "CLICK_CONTROL:control_cls_a1e6826929__checkout",
+        "target": "#checkout",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-fad302df"
+        ]
+      },
+      {
+        "transition_id": "trans-a3ef582e",
+        "source_state_id": "st_checkout-step-on_checkout_your__c1",
+        "destination_state_id": "st_carthtml_your_cart_c1",
+        "action_type": "CLICK_CONTROL:control_cls_88cb416f5c__data_test__shopping_cart_link__",
+        "target": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-a48dc7be"
+        ]
+      },
+      {
+        "transition_id": "trans-489707d0",
+        "source_state_id": "st_carthtml_your_cart_c1",
+        "destination_state_id": "st_inventory-itemht_view_c1_id__n",
+        "action_type": "CLICK_CONTROL:control_cls_a1e6826929__item_4_title_link",
+        "target": "#item_4_title_link",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-56044ff4"
+        ]
+      },
+      {
+        "transition_id": "trans-6dd65abc",
+        "source_state_id": "st_inventory-itemht_view_c1_id__n",
+        "destination_state_id": "st_carthtml_your_cart_c1",
+        "action_type": "CLICK_CONTROL:control_cls_e9d5a1472a__data_test__shopping_cart_link__",
+        "target": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-846684f2"
+        ]
+      },
+      {
+        "transition_id": "trans-be822a0a",
+        "source_state_id": "st_carthtml_your_cart_c1",
+        "destination_state_id": "st_carthtml_your_cart_view",
+        "action_type": "CLICK_CONTROL:control_cls_a1e6826929__remove_sauce_labs_backpack",
+        "target": "#remove-sauce-labs-backpack",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-ffc0824a"
+        ]
+      },
+      {
+        "transition_id": "trans-fd8b7940",
+        "source_state_id": "st_carthtml_your_cart_view",
+        "destination_state_id": "st_carthtml_your_cart_view_menu_open",
+        "action_type": "CLICK_CONTROL:control_cls_a1e6826929__react_burger_menu_btn",
+        "target": "#react-burger-menu-btn",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-d1c83b54"
+        ]
+      },
+      {
+        "transition_id": "trans-a86ad858",
+        "source_state_id": "st_carthtml_your_cart_view_menu_open",
+        "destination_state_id": "st_inventoryhtml_products_view",
+        "action_type": "CLICK_CONTROL:control_cls_a1e6826929__continue_shopping",
+        "target": "#continue-shopping",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-747097dd"
+        ]
+      },
+      {
+        "transition_id": "trans-c93c7c91",
+        "source_state_id": "st_inventoryhtml_products_view",
+        "destination_state_id": "st_inventory-itemht_view_view_id__n",
+        "action_type": "CLICK_CONTROL:control_cls_02740c356b__item_3_title_link",
+        "target": "#item_3_title_link",
+        "value": null,
+        "route_change": true,
+        "observed_effect": "ROUTE_TRANSITION",
+        "evidence_ids": [
+          "ev-d2d2001f"
+        ]
+      },
+      {
+        "transition_id": "trans-e8d56293",
+        "source_state_id": "st_inventory-itemht_view_view_id__n",
+        "destination_state_id": "st_inventory-itemht_view_c1_id__n",
+        "action_type": "CLICK_CONTROL:control_cls_e9d5a1472a__add_to_cart",
+        "target": "#add-to-cart",
+        "value": null,
+        "route_change": false,
+        "observed_effect": "IN_PAGE_STATE_MUTATION",
+        "evidence_ids": [
+          "ev-ddea08ff"
+        ]
+      }
+    ],
+    "auth": {
+      "boundary_observed": true,
+      "login_route": "/",
+      "credentials_available": true,
+      "credential_source": "[REDACTED_SECRET]",
+      "verified": true
+    },
+    "requirements": [
+      "Username is required",
+      "Password is required"
+    ]
+  }
+}

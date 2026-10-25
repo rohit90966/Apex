@@ -1,0 +1,1458 @@
+{
+ "benchmark_id": "mwb-20261025T014138Z-72bbe6",
+ "timestamp": "2026-10-25T01:41:38.885559+00:00",
+ "code_commit": "5de38db371587bd9390ed4944313edfba429186f",
+ "working_tree_dirty": true,
+ "config": {
+  "targets": [
+   "saucedemo"
+  ],
+  "modes": [
+   "public"
+  ],
+  "repeats": 1,
+  "max_actions": 30,
+  "max_seconds": 150.0,
+  "llm_provider": "groq",
+  "groq_configured": true,
+  "groq_model": "openai/gpt-oss-120b",
+  "llm_test_proposals": false
+ },
+ "config_identity": "81d9f46d81f720bb",
+ "suite_version": "multi-website-benchmark/1.1",
+ "targets": [
+  {
+   "key": "saucedemo",
+   "name": "SauceDemo (public demo)",
+   "target_class": "PUBLIC_INDEPENDENT",
+   "availability": "AVAILABLE",
+   "modes": [
+    "public"
+   ],
+   "note": "Public target; no ground truth, single mode"
+  }
+ ],
+ "runs": [
+  {
+   "run_id": "bench-saucedemo-public-r1-aad9a5",
+   "target": "saucedemo",
+   "target_name": "SauceDemo (public demo)",
+   "target_class": "PUBLIC_INDEPENDENT",
+   "mode": "public",
+   "repeat": 1,
+   "target_url": "https://www.saucedemo.com/",
+   "target_origin": "https://www.saucedemo.com",
+   "started_at": "2026-10-25T01:41:39.279308+00:00",
+   "persisted_run_id": "inv-9fa6369a5f1f",
+   "persisted_findings_counts": {},
+   "missing_artifacts": [],
+   "defect_stages": [],
+   "knowledge_selected": [
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-EP-BVA",
+    "TS-A11Y-NAMES",
+    "TS-INVARIANT-SORT",
+    "TS-OBSERVED-VALIDATION",
+    "TS-STATE-TRANSITION",
+    "TS-ROUTE-REGRESSION",
+    "TS-WORKFLOW-SEQUENCE"
+   ],
+   "strategies_applied": [
+    "ACCESSIBLE_NAMES",
+    "FIELD_BOUNDARIES",
+    "OBSERVED_TRANSITIONS",
+    "OBSERVED_VALIDATION",
+    "RENDER_ANOMALY_INVARIANT",
+    "ROUTE_REACHABILITY",
+    "SORT_ORDER",
+    "SUBMISSION_REFLECTION",
+    "TEMPLATE_PATTERNS"
+   ],
+   "requirement_alignment": {
+    "matched": 2,
+    "weak": 0,
+    "unmatched": 0,
+    "warning": null
+   },
+   "status": "COMPLETED",
+   "investigation": {
+    "status": "partial",
+    "target_identity_correct": true,
+    "routes_discovered": 5,
+    "navigable_routes": 5,
+    "states_discovered": 11,
+    "interactive_controls": 63,
+    "forms": 2,
+    "fields": 5,
+    "transitions": 14,
+    "actions_attempted": 15,
+    "evidence_records": 24,
+    "duration_seconds": 67.79,
+    "duplicate_state_rate": 0.545,
+    "llm_calls": 7,
+    "llm_fallbacks": 0,
+    "llm_latency_seconds": 12.725,
+    "retries": 0,
+    "stopping_reason": "Investigation converged: Information saturation reached (6 consecutive probes with no new state discovery or observable UI effects)"
+   },
+   "generation": {
+    "candidates": 33,
+    "valid": 31,
+    "selected": 31,
+    "invalid_or_rejected": 2,
+    "duplicates_rejected": 0,
+    "with_meaningful_assertion": 31,
+    "selectors_total": 46,
+    "selectors_grounded": 46,
+    "with_evidence_refs": 20,
+    "with_preconditions_and_expected_outcome": 20,
+    "inapplicable_templates": 4,
+    "ineligible_patterns": 2,
+    "irrelevant_patterns_accepted": 0,
+    "unknown_constraints": 3,
+    "exploratory_hypotheses": 3,
+    "capabilities_evidenced": [
+     "CART_MANAGEMENT",
+     "CATALOG_BROWSING",
+     "CHECKOUT_FLOW",
+     "DRAWER_NAVIGATION",
+     "FORM_VALIDATION",
+     "MULTI_STEP_WIZARD",
+     "PAGINATION_SORTING",
+     "USER_AUTHENTICATION"
+    ],
+    "capability_coverage": 0.75,
+    "requirements_total": 2,
+    "requirements_covered": 2,
+    "constrained_fields_total": 0,
+    "constrained_fields_covered": 0,
+    "by_strategy": {
+     "pattern": 8,
+     "field": 5,
+     "a11y": 3,
+     "sort": 4,
+     "transition": 8,
+     "route": 5,
+     "crud": 0
+    },
+    "planning_seconds": 0.022,
+    "archetype": "ECOMMERCE",
+    "llm_used_for_planning": false,
+    "llm_cases_proposed": 0,
+    "llm_cases_accepted": 0,
+    "llm_planning_error": null,
+    "llm_planning_latency_seconds": null,
+    "llm_rejection_reasons": [],
+    "secondary_archetypes": [
+     "AUTHENTICATION"
+    ]
+   },
+   "execution": {
+    "executed": 31,
+    "PASS": 30,
+    "FAIL": 0,
+    "ERROR": 1,
+    "BLOCKED": 0,
+    "INVALID": 0,
+    "INCOMPLETE": 0,
+    "SKIPPED": 0,
+    "locator_failures": 1,
+    "infrastructure_failures": 0,
+    "assertions_evaluated": 42,
+    "meaningful_assertions_evaluated": 42,
+    "meaningful_assertions_planned": 48,
+    "assertion_evaluation_rate": 0.875,
+    "execution_seconds": 111.96,
+    "verification_seconds": 0.17
+   },
+   "export": {
+    "script": "reports\\benchmark_exports\\bench-saucedemo-public-r1-aad9a5.py",
+    "structural_parity": true,
+    "verdict_agreement": 31,
+    "verdict_total": 31,
+    "disagreements": [],
+    "exported_outcomes": {
+     "passed": 7,
+     "skipped": 24
+    },
+    "export_run_seconds": 31.95
+   },
+   "findings": [],
+   "plan_signatures": [
+    "NAVIGATE:None:https://www.saucedemo.com/cart.html|CLICK:#remove-sauce-labs-backpack:None",
+    "NAVIGATE:None:https://www.saucedemo.com/cart.html|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/cart.html|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/checkout-step-one.html|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/checkout-step-one.html|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory-item.html?id=3|CLICK:#add-to-cart:None|CLICK:[data-test=\"shopping-cart-link\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory-item.html|CLICK:#add-to-cart:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory-item.html|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#add-to-cart-sauce-labs-backpack:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#add-to-cart-sauce-labs-backpack:None|NAVIGATE:None:https://www.saucedemo.com/cart.html",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#add-to-cart-sauce-labs-backpack:None|SELECT:[data-test=\"product-sort-container\"]:za|CLICK:[data-test=\"shopping-cart-link\"]:None|CLICK:#checkout:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#add-to-cart-sauce-labs-backpack:None|SELECT:[data-test=\"product-sort-container\"]:za|CLICK:[data-test=\"shopping-cart-link\"]:None|CLICK:#item_4_title_link:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#add-to-cart-sauce-labs-backpack:None|SELECT:[data-test=\"product-sort-container\"]:za|CLICK:[data-test=\"shopping-cart-link\"]:None|CLICK:#remove-sauce-labs-backpack:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#item_3_title_link:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#react-burger-menu-btn:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|CLICK:#react-burger-menu-btn:None|CLICK:#logout_sidebar_link:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:az|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:hilo|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:lohi",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:lohi|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:za",
+    "NAVIGATE:None:https://www.saucedemo.com/inventory.html|SELECT:[data-test=\"product-sort-container\"]:za|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#password:QaPassw0rd!x|FILL:#user-name:   |EVAL_JS:None:(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#password:QaPassw0rd!x|FILL:#user-name:|EVAL_JS:None:(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#user-name:${CREDENTIAL_USERNAME}|FILL:#password:${CREDENTIAL_PASSWORD}|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#user-name:qa${RUN_UNIQUE}|FILL:#password:   |EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#user-name:qa${RUN_UNIQUE}|FILL:#password:|EVAL_JS:None:(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|FILL:#user-name:|FILL:#password:QaPassw0rd!x|CLICK:#login-button:None",
+    "NAVIGATE:None:https://www.saucedemo.com/|OBSERVE_STATE:None:None"
+   ],
+   "plan_selectors": [
+    "#add-to-cart",
+    "#add-to-cart-sauce-labs-backpack",
+    "#checkout",
+    "#item_3_title_link",
+    "#item_4_title_link",
+    "#login-button",
+    "#logout_sidebar_link",
+    "#password",
+    "#react-burger-menu-btn",
+    "#remove-sauce-labs-backpack",
+    "#user-name",
+    "[data-test=\"product-sort-container\"]",
+    "[data-test=\"shopping-cart-link\"]"
+   ],
+   "inventory_selectors": [
+    "#about_sidebar_link",
+    "#add-to-cart",
+    "#add-to-cart-sauce-labs-backpack",
+    "#add-to-cart-sauce-labs-bike-light",
+    "#add-to-cart-sauce-labs-bolt-t-shirt",
+    "#add-to-cart-sauce-labs-fleece-jacket",
+    "#add-to-cart-sauce-labs-onesie",
+    "#add-to-cart-test.allthethings()-t-shirt-(red)",
+    "#back-to-products",
+    "#cancel",
+    "#checkout",
+    "#continue",
+    "#continue-shopping",
+    "#dynamic_catalog_sidebar_link",
+    "#first-name",
+    "#inventory_sidebar_link",
+    "#item_0_img_link",
+    "#item_0_title_link",
+    "#item_1_img_link",
+    "#item_1_title_link",
+    "#item_2_img_link",
+    "#item_2_title_link",
+    "#item_3_img_link",
+    "#item_3_title_link",
+    "#item_4_img_link",
+    "#item_4_title_link",
+    "#item_5_img_link",
+    "#item_5_title_link",
+    "#last-name",
+    "#login-button",
+    "#logout_sidebar_link",
+    "#password",
+    "#postal-code",
+    "#react-burger-cross-btn",
+    "#react-burger-menu-btn",
+    "#remove",
+    "#remove-sauce-labs-backpack",
+    "#remove-test.allthethings()-t-shirt-(red)",
+    "#reset_sidebar_link",
+    "#user-name",
+    "[data-test=\"error-button\"]",
+    "[data-test=\"product-sort-container\"]",
+    "[data-test=\"shopping-cart-link\"]",
+    "[data-test=\"social-facebook\"]",
+    "[data-test=\"social-linkedin\"]",
+    "[data-test=\"social-x\"]"
+   ],
+   "examples": [
+    {
+     "test_id": "TC-FIELD-01",
+     "name": "Username: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "REQUIREMENT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#user-name, [\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "name": "Sort by 'Name (A to Z)' orders records (text, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "az",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"direction\": \"asc\", \"column_hint\": \"name\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-01",
+     "name": "Authenticate With Valid Test Credentials",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "${CREDENTIAL_USERNAME}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "${CREDENTIAL_PASSWORD}",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /inventory)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "name": "Accessible names on /",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-01",
+     "name": "Transition: 'Add to cart' on /inventory.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "GENERIC_INVARIANT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart-sauce-labs-backpack",
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "name": "Route reachable with stable landmarks: /",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Name (Z to A)' orders records (text, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "za",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"direction\": \"desc\", \"column_hint\": \"name\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-02",
+     "name": "Login With Empty Username Boundary",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Username is required)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "name": "Accessible names on /cart.html",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/cart.html",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "name": "Route reachable with stable landmarks: /cart.html",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/cart.html",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Your Cart)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "name": "Username: whitespace only is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "REQUIREMENT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "   ",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#user-name, [\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price (low to high)' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "lohi",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"asc\", \"column_hint\": \"price\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-03",
+     "name": "Logout User Session Via Drawer",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#react-burger-menu-btn",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#logout_sidebar_link",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Login)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "name": "Accessible names on /checkout-step-one.html",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/checkout-step-one.html",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-03",
+     "name": "Transition: 'Checkout' on /cart.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart-sauce-labs-backpack",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "za",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "[data-test=\"shopping-cart-link\"]",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#checkout",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /checkout-step-one.html)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "name": "Route reachable with stable landmarks: /checkout-step-one.html",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/checkout-step-one.html",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Checkout: Your Information)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "name": "Password: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "REQUIREMENT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "qa${RUN_UNIQUE}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-04",
+     "name": "Sort by 'Price (high to low)' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "hilo",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"desc\", \"column_hint\": \"price\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-04",
+     "name": "Add Product Item to Cart and Verify Badge Count",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart-sauce-labs-backpack",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Remove)"
+      },
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/cart.html",
+       "assertion": "URL_CONTAINS(, /cart)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-04",
+     "name": "Transition: 'View details for Sauce Labs Backpack' on /cart.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart-sauce-labs-backpack",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "za",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "[data-test=\"shopping-cart-link\"]",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#item_4_title_link",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /inventory-item.html)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "name": "Route reachable with stable landmarks: /inventory-item.html",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory-item.html",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "name": "Password: whitespace only is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "REQUIREMENT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#user-name",
+       "value": "qa${RUN_UNIQUE}",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "   ",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#password, [\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-05",
+     "name": "Remove Item From Shopping Cart",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/cart.html",
+       "assertion": "URL_CONTAINS(, /cart)"
+      },
+      {
+       "action": "CLICK",
+       "selector": "#remove-sauce-labs-backpack",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Continue Shopping)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-05",
+     "name": "Transition: 'Cart, 1 items' on /inventory-item.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory-item.html?id=3",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "[data-test=\"shopping-cart-link\"]",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /cart.html)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "name": "Route reachable with stable landmarks: /inventory.html",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Products)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-06",
+     "name": "Catalog Sorting Name (Z to A)",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "za",
+       "assertion": "TEXT_VISIBLE(, Products)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-06",
+     "name": "Transition: 'Remove' on /cart.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "GENERIC_INVARIANT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart-sauce-labs-backpack",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "za",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "[data-test=\"shopping-cart-link\"]",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#remove-sauce-labs-backpack",
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-07",
+     "name": "Catalog Sorting Price (Low to High)",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "[data-test=\"product-sort-container\"]",
+       "value": "lohi",
+       "assertion": "TEXT_VISIBLE(, Products)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-07",
+     "name": "Transition: 'View details for Test.allTheThings() T-S' on /inventory.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#item_3_title_link",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /inventory-item.html)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-PAT-08",
+     "name": "Open Navigation Drawer and Verify Sidebar Items",
+     "oracle_class": "DOMAIN_PATTERN",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#react-burger-menu-btn",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, All Items)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-08",
+     "name": "Transition: 'Add to cart' on /inventory-item.html",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "GENERIC_INVARIANT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "https://www.saucedemo.com/inventory-item.html",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#add-to-cart",
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    }
+   ],
+   "results": [
+    {
+     "test_id": "TC-FIELD-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.152
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.388
+    },
+    {
+     "test_id": "TC-PAT-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 1.923
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.222
+    },
+    {
+     "test_id": "TC-TR-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.575
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.247
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.83
+    },
+    {
+     "test_id": "TC-PAT-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 1.502
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.372
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.876
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.594
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.964
+    },
+    {
+     "test_id": "TC-PAT-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.26
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 3.468
+    },
+    {
+     "test_id": "TC-TR-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.767
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.857
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.15
+    },
+    {
+     "test_id": "TC-SORT-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.864
+    },
+    {
+     "test_id": "TC-PAT-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.85
+    },
+    {
+     "test_id": "TC-TR-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 4.719
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 3.541
+    },
+    {
+     "test_id": "TC-FIELD-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.026
+    },
+    {
+     "test_id": "TC-PAT-05",
+     "status": "LOCATOR_ERROR",
+     "failure_reason": "Playwright error: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"#remove-sauce-labs-backpack\") to be visible\n",
+     "meaningful_assertions": 0,
+     "duration": 11.206
+    },
+    {
+     "test_id": "TC-TR-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.671
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 3.662
+    },
+    {
+     "test_id": "TC-PAT-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.179
+    },
+    {
+     "test_id": "TC-TR-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.294
+    },
+    {
+     "test_id": "TC-PAT-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 4.044
+    },
+    {
+     "test_id": "TC-TR-07",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 4.536
+    },
+    {
+     "test_id": "TC-PAT-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 3.405
+    },
+    {
+     "test_id": "TC-TR-08",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 3.443
+    }
+   ],
+   "unknown_constraints": [
+    {
+     "field_selector": "#first-name",
+     "field_label": "First Name",
+     "route": "/checkout-step-one.html",
+     "reason": "field declares no length or format constraint; its validation rule is unknown",
+     "evidence_needed": "An explicit requirement, a pattern/min/max/maxlength attribute, or an observed validation message."
+    },
+    {
+     "field_selector": "#last-name",
+     "field_label": "Last Name",
+     "route": "/checkout-step-one.html",
+     "reason": "field declares no length or format constraint; its validation rule is unknown",
+     "evidence_needed": "An explicit requirement, a pattern/min/max/maxlength attribute, or an observed validation message."
+    },
+    {
+     "field_selector": "#postal-code",
+     "field_label": "Zip/Postal Code",
+     "route": "/checkout-step-one.html",
+     "reason": "field declares no length or format constraint; its validation rule is unknown",
+     "evidence_needed": "An explicit requirement, a pattern/min/max/maxlength attribute, or an observed validation message."
+    }
+   ],
+   "inapplicable_templates": [
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-03",
+     "template_id": "ST-AUTH-EMPTY-PASSWORD",
+     "reason": "no expectation of the template is grounded on this target"
+    },
+    {
+     "pattern_id": "PAT-ECOM-CHECKOUT-01",
+     "template_id": "ST-ECOM-CHECKOUT-STEP1-VALID",
+     "reason": "no expectation of the template is grounded on this target"
+    },
+    {
+     "pattern_id": "PAT-ECOM-CHECKOUT-02",
+     "template_id": "ST-ECOM-CHECKOUT-TAX-INVARIANT",
+     "reason": "navigation to '/checkout-step-two.html' not observed"
+    },
+    {
+     "pattern_id": "PAT-BOOK-DATE-01",
+     "template_id": "ST-BOOK-VALID-DATES",
+     "reason": "no observed control for 'checkin_input'"
+    }
+   ],
+   "timings": {
+    "investigation": 67.79,
+    "planning": 0.022,
+    "execution": 111.96,
+    "verification": 0.17,
+    "export_run": 31.95
+   },
+   "score": {
+    "ground_truth": false,
+    "note": "No ground truth for this target; detection metrics undefined."
+   },
+   "cross_target_selector_leaks": [],
+   "ungrounded_selectors": []
+  }
+ ],
+ "aggregate": {
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "precision": null,
+  "recall": null,
+  "f1": null,
+  "baseline_false_alarms": 0,
+  "baseline_false_alarms_confirmed_only": 0,
+  "detected_confirmed_only": 0,
+  "cross_target_selector_leaks": 0,
+  "irrelevant_patterns_accepted": 0,
+  "export_agreement": 31,
+  "export_total": 31
+ },
+ "reproducibility": {},
+ "limitations": [
+  "Token usage and cost are not measured: the LLM providers expose no token telemetry to this harness.",
+  "Investigations run with the deterministic planner when no LLM key is configured (see config.groq_configured).",
+  "Fixture state (e.g. tasks created by tests) persists across repeats within one server process.",
+  "TN/specificity are not reported: the fixtures define no universe of negative cases."
+ ]
+}

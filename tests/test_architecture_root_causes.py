@@ -468,7 +468,9 @@ def test_convention_level_sort_check_requires_an_unambiguous_key():
     two_amounts = {"texts": ["Bolt $5.00 was $7.00", "Nut $2.00"], "values": [5.0, 2.0], "fields": [[], []]}
     assert list_oracles.evaluate_sorted(two_amounts, spec)[0] == "not_evaluable"
     text_key = {"texts": ["b", "a"], "values": ["b", "a"], "fields": [[], []]}
-    assert list_oracles.evaluate_sorted(text_key, {"key": "text", "any_direction": True})[0] == "not_evaluable"
+    assert list_oracles.evaluate_sorted(text_key, {"key": "text", "any_direction": True})[0] == "pass"   # distinct titles
+    dup = {"texts": ["a x", "a y", "b"], "values": ["a", "a", "b"], "fields": [[], [], []]}
+    assert list_oracles.evaluate_sorted(dup, {"key": "text", "any_direction": True})[0] == "not_evaluable"
     # The inference-level direction check keeps its record-text fallback
     assert list_oracles.evaluate_sorted(text_key, {"key": "text", "direction": "asc"})[0] == "fail"
 

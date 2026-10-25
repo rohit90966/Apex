@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "counts": {
+    "CONFIRMED_DEFECT": 3,
+    "LIKELY_DEFECT": 6
+  },
+  "findings": [
+    {
+      "finding_id": "F-aa4ee11292e8",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_4f1de446",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_5b804336"
+          ],
+          "screenshots": [
+            "investigate_probe_before_52a517d3.png",
+            "investigate_probe_after_c8a5dada.png"
+          ],
+          "occurrence": {
+            "lead_id": "lead_4f1de446",
+            "status": "CONFIRMED",
+            "url": "http://127.0.0.1:8201/events/1",
+            "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+            "evidence_ids": [
+              "probe_probe_5b804336"
+            ],
+            "screenshots": [
+              "investigate_probe_before_52a517d3.png",
+              "investigate_probe_after_c8a5dada.png"
+            ],
+            "reproduction": {
+              "runs": 2,
+              "passed": 2
+            },
+            "reproduction_failure_reason": null
+          }
+        },
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_2c01347a",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_46f034b2"
+          ],
+          "screenshots": [
+            "investigate_probe_before_064b39b0.png",
+            "investigate_probe_after_93ecdfda.png"
+          ],
+          "occurrence": {
+            "lead_id": "lead_2c01347a",
+            "status": "CONFIRMED",
+            "url": "http://127.0.0.1:8201/events/2",
+            "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+            "evidence_ids": [
+              "probe_probe_46f034b2"
+            ],
+            "screenshots": [
+              "investigate_probe_before_064b39b0.png",
+              "investigate_probe_after_93ecdfda.png"
+            ],
+            "reproduction": {
+              "runs": 2,
+              "passed": 2
+            },
+            "reproduction_failure_reason": null
+          }
+        },
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_13152f72",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_bc598a36"
+          ],
+          "screenshots": [
+            "investigate_probe_before_d640fb3e.png",
+            "investigate_probe_after_df8f6e2d.png"
+          ],
+          "occurrence": {
+            "lead_id": "lead_13152f72",
+            "status": "CONFIRMED",
+            "url": "http://127.0.0.1:8201/events/3",
+            "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+            "evidence_ids": [
+              "probe_probe_bc598a36"
+            ],
+            "screenshots": [
+              "investigate_probe_before_d640fb3e.png",
+              "investigate_probe_after_df8f6e2d.png"
+            ],
+            "reproduction": {
+              "runs": 2,
+              "passed": 2
+            },
+            "reproduction_failure_reason": null
+          }
+        },
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_46aa63d6",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_74cfb3ef"
+          ],
+          "screenshots": [
+            "investigate_probe_before_761b8da1.png",
+            "investigate_probe_after_1d13e1c5.png"
+          ],
+          "occurrence": {
+            "lead_id": "lead_46aa63d6",
+            "status": "CONFIRMED",
+            "url": "http://127.0.0.1:8201/events/4",
+            "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+            "evidence_ids": [
+              "probe_probe_74cfb3ef"
+            ],
+            "screenshots": [
+              "investigate_probe_before_761b8da1.png",
+              "investigate_probe_after_1d13e1c5.png"
+            ],
+            "reproduction": {
+              "runs": 2,
+              "passed": 2
+            },
+            "reproduction_failure_reason": null
+          }
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_4f1de446",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/{id}",
+      "subject": "/events/{id}?breakdown=1",
+      "rule": "nav:Clean interaction without technical or specification errors",
+      "occurrences": [
+        {
+          "lead_id": "lead_4f1de446",
+          "status": "CONFIRMED",
+          "url": "http://127.0.0.1:8201/events/1",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_5b804336"
+          ],
+          "screenshots": [
+            "investigate_probe_before_52a517d3.png",
+            "investigate_probe_after_c8a5dada.png"
+          ],
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "reproduction_failure_reason": null
+        },
+        {
+          "lead_id": "lead_2c01347a",
+          "status": "CONFIRMED",
+          "url": "http://127.0.0.1:8201/events/2",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_46f034b2"
+          ],
+          "screenshots": [
+            "investigate_probe_before_064b39b0.png",
+            "investigate_probe_after_93ecdfda.png"
+          ],
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "reproduction_failure_reason": null
+        },
+        {
+          "lead_id": "lead_13152f72",
+          "status": "CONFIRMED",
+          "url": "http://127.0.0.1:8201/events/3",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_bc598a36"
+          ],
+          "screenshots": [
+            "investigate_probe_before_d640fb3e.png",
+            "investigate_probe_after_df8f6e2d.png"
+          ],
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "reproduction_failure_reason": null
+        },
+        {
+          "lead_id": "lead_46aa63d6",
+          "status": "CONFIRMED",
+          "url": "http://127.0.0.1:8201/events/4",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_74cfb3ef"
+          ],
+          "screenshots": [
+            "investigate_probe_before_761b8da1.png",
+            "investigate_probe_after_1d13e1c5.png"
+          ],
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "reproduction_failure_reason": null
+        }
+      ]
+    },
+    {
+      "finding_id": "F-b46a1f5e922d",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "investigation",
+          "ref": "lead:lead_75505ccb",
+          "classification": "CONFIRMED_DEFECT",
+          "oracle": "TECHNICAL",
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "expected": "Clean interaction without technical or specification errors",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_ce6d03f4"
+          ],
+          "screenshots": [
+            "investigate_probe_before_4d3d7cbc.png",
+            "investigate_probe_after_f0fdd077.png"
+          ],
+          "occurrence": {
+            "lead_id": "lead_75505ccb",
+            "status": "CONFIRMED",
+            "url": "http://127.0.0.1:8201/events/1",
+            "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+            "evidence_ids": [
+              "probe_probe_ce6d03f4"
+            ],
+            "screenshots": [
+              "investigate_probe_before_4d3d7cbc.png",
+              "investigate_probe_after_f0fdd077.png"
+            ],
+            "reproduction": {
+              "runs": 2,
+              "passed": 2
+            },
+            "reproduction_failure_reason": null
+          }
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "lead:lead_75505ccb",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [],
+      "title": "Text Anomaly: 'NaN'",
+      "route": "/events/{id}",
+      "subject": "#price-breakdown-link",
+      "rule": "controls:Clean interaction without technical or specification errors",
+      "occurrences": [
+        {
+          "lead_id": "lead_75505ccb",
+          "status": "CONFIRMED",
+          "url": "http://127.0.0.1:8201/events/1",
+          "observed": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+          "evidence_ids": [
+            "probe_probe_ce6d03f4"
+          ],
+          "screenshots": [
+            "investigate_probe_before_4d3d7cbc.png",
+            "investigate_probe_after_f0fdd077.png"
+          ],
+          "reproduction": {
+            "runs": 2,
+            "passed": 2
+          },
+          "reproduction_failure_reason": null
+        }
+      ]
+    },
+    {
+      "finding_id": "F-fc32d275208f",
+      "classification": "CONFIRMED_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-REG-01",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-REG-01",
+          "status": "FAILED",
+          "classification": "CONFIRMED_DEFECT",
+          "expected_source": "OBSERVED",
+          "reproduction": "3/3 runs failed",
+          "expected": "",
+          "observed": "Expected text 'NaN' to NOT be visible",
+          "screenshots": [
+            "exec_TC-REG-01_1792891087.png",
+            "exec_TC-REG-01_1792891087.png"
+          ],
+          "knowledge_ids": [
+            "TS-REGRESSION-LEAD",
+            "OR-ATTRIBUTABLE-FEEDBACK"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "CONFIRMED_DEFECT",
+          "because": "exec-f1064d4bd844:TC-REG-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [
+        "TC-REG-01"
+      ],
+      "knowledge_ids": [
+        "TS-REGRESSION-LEAD",
+        "OR-ATTRIBUTABLE-FEEDBACK"
+      ],
+      "title": "[GENERAL] Regression: Text Anomaly: 'NaN': VERIFIED_PRODUCT_DEFECT",
+      "route": "/events/1",
+      "subject": "TC-REG-01",
+      "rule": "DEFECT_REGRESSION",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-038cc28c91c5",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-REC-01",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-REC-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "The record is removed or its content changes after the command",
+          "observed": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "screenshots": [
+            "exec_TC-REC-01_1792891088.png",
+            "exec_TC-REC-01_1792891088.png"
+          ],
+          "knowledge_ids": [
+            "TS-RECORD-COMMAND",
+            "DC-STATE-PERSISTENCE",
+            "DC-FN-CRUD"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-REC-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-RECORD-COMMAND",
+        "DC-STATE-PERSISTENCE",
+        "DC-FN-CRUD"
+      ],
+      "title": "[LIKELY] 'Cancel' on a record of /bookings changes that record: LIKELY_DEFECT",
+      "route": "/bookings",
+      "subject": "#cancel-booking-1",
+      "rule": "RECORD_EFFECT",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-2174314efcfc",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-XF-01",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-XF-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Mismatch rejected with feedback about the confirmation",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-XF-01_1792891085.png",
+            "exec_TC-XF-01_1792891085.png"
+          ],
+          "knowledge_ids": [
+            "TS-CROSS-FIELD",
+            "DC-VAL-CROSS-FIELD"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-XF-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-CROSS-FIELD",
+        "DC-VAL-CROSS-FIELD"
+      ],
+      "title": "[LIKELY] Confirm password must match Password: LIKELY_DEFECT",
+      "route": "/register",
+      "subject": "#confirm-password",
+      "rule": "CROSS_FIELD_EQUALITY:MISMATCH",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-2211488dce38",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-SORT-02",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-SORT-02",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number asc as option 'Price: Low to High' states",
+          "observed": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "screenshots": [
+            "exec_TC-SORT-02_1792891110.png",
+            "exec_TC-SORT-02_1792891110.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-SORT-03",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-SORT-03",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Records ordered by number desc as option 'Price: High to Low' states",
+          "observed": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "screenshots": [
+            "exec_TC-SORT-03_1792891124.png",
+            "exec_TC-SORT-03_1792891124.png"
+          ],
+          "knowledge_ids": [
+            "TS-INVARIANT-SORT",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-SORT-02",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-INVARIANT-SORT",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[LIKELY] Sort by 'Price: Low to High' orders records (number, asc): LIKELY_DEFECT",
+      "route": "/events",
+      "subject": "#sort",
+      "rule": "LIST_ORDERING",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-3fff40975f1b",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-SRV-05",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-SRV-05",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "HTML_DECLARED",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to the declared rule",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-SRV-05_1792891147.png",
+            "exec_TC-SRV-05_1792891147.png"
+          ],
+          "knowledge_ids": [
+            "TS-SERVER-ENFORCEMENT",
+            "DC-VAL-CLIENT-SERVER",
+            "DC-VAL-CHOICE",
+            "OR-LAYER-DISTINCTION"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-SRV-05",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-SERVER-ENFORCEMENT",
+        "DC-VAL-CLIENT-SERVER",
+        "DC-VAL-CHOICE",
+        "OR-LAYER-DISTINCTION"
+      ],
+      "title": "[LIKELY] Email: format invalid is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "route": "/register",
+      "subject": "#email",
+      "rule": "TYPE_EMAIL:FORMAT_INVALID:SERVER",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-d45d19aa29b6",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-SRV-11",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-SRV-11",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "HTML_DECLARED",
+          "reproduction": "3/3 runs failed",
+          "expected": "Submission rejected with feedback attributable to the declared rule",
+          "observed": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "screenshots": [
+            "exec_TC-SRV-11_1792891157.png",
+            "exec_TC-SRV-11_1792891157.png"
+          ],
+          "knowledge_ids": [
+            "TS-SERVER-ENFORCEMENT",
+            "DC-VAL-CLIENT-SERVER",
+            "DC-VAL-CHOICE",
+            "OR-LAYER-DISTINCTION"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-SRV-11",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-SERVER-ENFORCEMENT",
+        "DC-VAL-CLIENT-SERVER",
+        "DC-VAL-CHOICE",
+        "OR-LAYER-DISTINCTION"
+      ],
+      "title": "[LIKELY] Tickets: below min is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "route": "/events/1",
+      "subject": "#quantity",
+      "rule": "MIN_VALUE:BELOW_MIN:SERVER",
+      "occurrences": []
+    },
+    {
+      "finding_id": "F-de1ef5589328",
+      "classification": "LIKELY_DEFECT",
+      "sources": [
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-FILTER-01",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-FILTER-01",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record's category value is 'Music'",
+          "observed": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "screenshots": [
+            "exec_TC-FILTER-01_1792891090.png",
+            "exec_TC-FILTER-01_1792891090.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        },
+        {
+          "kind": "execution",
+          "ref": "exec-f1064d4bd844:TC-FILTER-02",
+          "execution_id": "exec-f1064d4bd844",
+          "test_id": "TC-FILTER-02",
+          "status": "FAILED",
+          "classification": "LIKELY_DEFECT",
+          "expected_source": "SEMANTIC_CONVENTION",
+          "reproduction": "3/3 runs failed",
+          "expected": "Every listed record's category value is 'Workshop'",
+          "observed": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "screenshots": [
+            "exec_TC-FILTER-02_1792891108.png",
+            "exec_TC-FILTER-02_1792891108.png"
+          ],
+          "knowledge_ids": [
+            "TS-METAMORPHIC-FILTER",
+            "DC-FN-FILTER-SORT"
+          ]
+        }
+      ],
+      "observations": [],
+      "history": [
+        {
+          "classification": "LIKELY_DEFECT",
+          "because": "exec-f1064d4bd844:TC-FILTER-01",
+          "at": null
+        }
+      ],
+      "regression_test_ids": [],
+      "knowledge_ids": [
+        "TS-METAMORPHIC-FILTER",
+        "DC-FN-FILTER-SORT"
+      ],
+      "title": "[LIKELY] Filter '#category' = 'Music' shows only matching records: LIKELY_DEFECT",
+      "route": "/events",
+      "subject": "#category",
+      "rule": "FILTER_CONSISTENCY",
+      "occurrences": []
+    }
+  ],
+  "unresolved": [],
+  "disproven": [],
+  "sources": {
+    "investigation": 2,
+    "execution": 7
+  }
+}

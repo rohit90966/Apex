@@ -480,6 +480,7 @@ def build_inventory_from_state(state: Dict[str, Any]) -> ObservedInventory:
             destination_state_id=getattr(tr, "destination_state_id", None),
             action_type=str(getattr(tr, "action_type", "") or ""),
             target=getattr(tr, "target_element_desc", "") or "",
+            value=getattr(tr, "value", None),
             route_change=bool(getattr(tr, "is_route_change", False)),
             observed_effect=getattr(tr, "observed_effect", "") or "",
             evidence_ids=list(getattr(tr, "evidence_ids", None) or [])[:5],

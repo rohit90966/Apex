@@ -418,6 +418,48 @@ class KnowledgeGuidedTestPlanner:
         return cases
 
     # ── Strategy: observed state transitions ─────────────────────────────
+    def _reach_control(self, ctx: Dict[str, Any], selector: str,
+                       prefer_route: Optional[str] = None) -> Optional[Tuple[List[ActionStep], bool]]:
+        """
+        Steps that reach a state in which `selector` was observed. ([], False) when its page can simply be opened
+        (the caller keeps its own entry); (steps, needs_auth) when recorded interactions must be replayed first;
+        None when every observation needs a history that cannot be replayed faithfully.
+        """
+        inv: ObservedInventory = ctx["inventory"]
+        state_ids = [sid for c in inv.controls if c.selector == selector for sid in (c.seen_in_states or [c.state_id])]
+        state_ids += [f.state_id for f in inv.forms for x in f.fields if x.selector == selector]
+        if not state_ids:
+            return [], False
+        best, best_route = None, None
+        # States on the page the caller means come first (e.g. the cart, not another page with the same control).
+        ordered = sorted(dict.fromkeys(state_ids), key=lambda sid: (getattr(inv.state(sid), "route", None) != prefer_route))
+        for sid in ordered:
+            st = inv.state(sid)
+            path = self._replayable_path(inv, st) if st is not None else None
+            if path == [] and (prefer_route is None or st.route == prefer_route):
+                return [], False
+            if path and (best is None or (st.route == prefer_route, -len(path)) > (best_route == prefer_route, -len(best))):
+                best, best_route = path, st.route
+        if best is None and any(self._replayable_path(inv, inv.state(sid)) == [] for sid in ordered if inv.state(sid)):
+            return [], False
+        if best is None:
+            return None
+        root = inv.state(best[0].source_state_id)
+        entry = self._entry_steps(ctx, root.route)
+        if entry is None:
+            return None
+        steps, needs_auth = entry
+        if "?" in (root.url or "") and canonical_origin(root.url) == ctx["origin"]:
+            steps[-1] = steps[-1].model_copy(update={"value": root.url})
+        for pre in best:
+            if "SELECT" in (pre.action_type or "").upper():
+                steps.append(ActionStep(step_number=0, action=ActionType.SELECT, selector=pre.target, value=pre.value,
+                                        setup=True, description=f"Prerequisite: choose '{pre.value}' on '{pre.target}'"))
+            else:
+                steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=pre.target, setup=True,
+                                        description=f"Prerequisite: activate '{pre.target}' (observed path)"))
+        return steps, needs_auth
+
     @staticmethod
     def _replayable_path(inv: ObservedInventory, target: Any, max_depth: int = 3) -> Optional[List[Any]]:
         """
@@ -425,11 +467,46 @@ class KnowledgeGuidedTestPlanner:
         [] when the target itself is reached by navigation; None when no replayable path was observed.
         Only plain clicks are replayed (no form input), so the prerequisite cannot change test data.
         """
+        incoming: Dict[str, List[Any]] = {}
+        for tr in inv.transitions:
+            if tr.destination_state_id:
+                incoming.setdefault(tr.destination_state_id, []).append(tr)
+        memo: Dict[str, bool] = {}
+
+        def url_reproducible(state: Any, depth: int = 0) -> bool:
+            """Reached by entry/login, or by navigation from a state that is itself URL-reproducible. A page reached by
+            a link after an interaction (e.g. the cart after "Add to cart") carries that interaction's effects."""
+            if state.state_id in memo:
+                return memo[state.state_id]
+            memo[state.state_id] = False  # cycle guard
+            if state.reached_by in ("ENTRY", "AUTHENTICATION"):
+                ok = True
+            elif state.reached_by in ("NAVIGATION", "INTERACTION") and depth < 6:
+                # Judge by the recorded transitions, not the state's single reached_by label: only a page change
+                # (navigation) from a URL-reproducible state keeps it reproducible; a same-page click is an
+                # interaction whose effects (an item added, a toggle) the URL does not carry.
+                arrivals = []
+                for t in incoming.get(state.state_id, []):
+                    parent = inv.state(t.source_state_id)
+                    act = (t.action_type or "").upper()
+                    if parent is None or any(k in act for k in ("FORM", "FILL", "SUBMIT", "AUTH", "SELECT")):
+                        continue
+                    arrivals.append((parent, parent.route != state.route))
+                ok = (not arrivals and state.reached_by == "NAVIGATION") or any(
+                    is_nav and url_reproducible(parent, depth + 1) for parent, is_nav in arrivals)
+            else:
+                ok = False
+            memo[state.state_id] = ok
+            return ok
+
         def reachable(state: Any) -> bool:
-            return state.reached_by in ("ENTRY", "NAVIGATION", "AUTHENTICATION") and state.route in inv.form_routes()
+            return url_reproducible(state) and state.route in inv.form_routes()
 
         if reachable(target):
             return []
+        # A replayed path must be a sequence the investigation actually performed, in recorded order: states that
+        # merge similar views (e.g. "cart with one item") must not splice steps from different visits together.
+        order = {id(tr): i for i, tr in enumerate(inv.transitions)}
         frontier: List[Tuple[Any, List[Any]]] = [(target, [])]
         visited = {target.state_id}
         for _ in range(max_depth):
@@ -437,9 +514,12 @@ class KnowledgeGuidedTestPlanner:
             for state, path in frontier:
                 for tr in inv.transitions:
                     act = tr.action_type.upper()
-                    if tr.destination_state_id != state.state_id or "CLICK" not in act or any(
+                    replayable = "CLICK" in act or ("SELECT" in act and tr.value)   # clicks, and choices with a recorded value
+                    if tr.destination_state_id != state.state_id or not replayable or any(
                             k in act for k in ("FORM", "FILL", "SUBMIT", "AUTH")):
                         continue
+                    if path and order[id(tr)] >= order[id(path[0])]:
+                        continue  # would run a later recorded step before an earlier one
                     prev = inv.state(tr.source_state_id)
                     if prev is None or prev.state_id in visited or tr.target not in inv.selectors():
                         continue
@@ -492,9 +572,16 @@ class KnowledgeGuidedTestPlanner:
             if entry is None:
                 continue
             steps, needs_auth = entry
-            for pre in prerequisite:  # recorded clicks that produced the source state (e.g. add an item first)
-                steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=pre.target, setup=True,
-                                        description=f"Prerequisite: activate '{pre.target}' (observed path to the source state)"))
+            # Start the replayed path at the exact page recorded (its query can select the record, e.g. ?id=4).
+            if prerequisite and "?" in (root.url or "") and canonical_origin(root.url) == ctx["origin"]:
+                steps[-1] = steps[-1].model_copy(update={"value": root.url})
+            for pre in prerequisite:  # recorded interactions that produced the source state (e.g. add an item first)
+                if "SELECT" in (pre.action_type or "").upper():
+                    steps.append(ActionStep(step_number=0, action=ActionType.SELECT, selector=pre.target, value=pre.value,
+                                            setup=True, description=f"Prerequisite: choose '{pre.value}' on '{pre.target}'"))
+                else:
+                    steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=pre.target, setup=True,
+                                            description=f"Prerequisite: activate '{pre.target}' (observed path to the source state)"))
             ctrl = next(c for c in inv.controls if c.selector == tr.target and c.route == src.route)
             steps.append(ActionStep(step_number=0, action=ActionType.CLICK, selector=tr.target,
                                     description=f"Activate '{ctrl.name or tr.target}'", assertion=assertion))
@@ -936,6 +1023,22 @@ class KnowledgeGuidedTestPlanner:
                 if entry is None:
                     continue
                 entry_steps, needs_auth = entry
+            if not fills_password:
+                # The template's first control may exist only after earlier interactions (e.g. "Remove" needs an item in
+                # the cart): reach a state where it was actually observed, replaying the recorded path if needed.
+                first = next((x for x in steps if x.selector and x.action != ActionType.NAVIGATE), None)
+                if first is not None:
+                    reach = self._reach_control(ctx, first.selector,
+                                                prefer_route=route_of(steps[0].value) if steps and steps[0].action == ActionType.NAVIGATE else None)
+                    if reach is None:
+                        ctx["diag"]["inapplicable_templates"].append({"pattern_id": pat.pattern_id, "template_id": st.template_id,
+                                                                      "reason": f"'{first.selector}' was only observed after interactions "
+                                                                                "that cannot be replayed faithfully"})
+                        continue
+                    if reach[0]:
+                        entry_steps, needs_auth = reach
+                        if steps and steps[0].action == ActionType.NAVIGATE:
+                            steps = steps[1:]   # the replayed path already ends on the control's page
             if steps and steps[0].action == ActionType.NAVIGATE and entry_steps and entry_steps[-1].action == ActionType.NAVIGATE \
                     and entry_steps[-1].value == steps[0].value:
                 if steps[0].assertion and not entry_steps[-1].assertion:

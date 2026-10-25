@@ -83,6 +83,13 @@ def vault_app(form="standard", password=PASSWORD) -> FastAPI:
             return RedirectResponse("/signin?next=/vault", status_code=303)
         return page("<h1>Your vault</h1><p id='balance'>Balance: 42</p>", request)
 
+    @app.get("/members", response_class=HTMLResponse)
+    def members(request: Request):
+        # Protected content that renders the login form in place (no redirect) when there is no session
+        if not authed(request):
+            return page(f"<h1>Members</h1>{FORMS[form]}", request)
+        return page("<h1>Members area</h1>", request)
+
     @app.get("/logout")
     def logout(request: Request):
         app.state.sessions.discard(request.cookies.get("vault"))
@@ -336,3 +343,29 @@ def test_planner_entry_navigation_is_auth_aware():
     assert entries and all("${CREDENTIAL" not in (s.value or "") for c in cases for s in c.steps if s.setup)
     protected = [e for e in entries if e.requires_login]
     assert protected and all(e.login_url for e in protected)
+
+
+def test_in_place_login_gate_on_a_protected_page_is_handled(vault, monkeypatch):
+    base, app = vault()
+    configure(monkeypatch, "VAULT", base)
+    res = run(BrowserExecutor(), open_and_check(base, "/members", "Members area", requires_login=True))
+    assert res.status == ExecutionStatus.PASSED, res.failure_reason
+    assert auth_of(res)["login_performed"] and len(app.state.login_posts) == 1
+
+
+def test_public_page_that_contains_a_login_form_is_not_forced_through_login(vault, monkeypatch):
+    base, app = vault()
+    configure(monkeypatch, "VAULT", base)
+    steps = open_and_check(base, "/signin", "Sign in")
+    steps[0] = steps[0].model_copy(update={"login_url": None})       # no observed login page hint
+    res = run(BrowserExecutor(), steps)
+    assert res.status == ExecutionStatus.PASSED and app.state.login_posts == []
+    assert auth_of(res)["state"] == "AUTH_NOT_REQUIRED"
+
+
+def test_reused_session_is_reported_as_authenticated(vault, monkeypatch):
+    base, _ = vault()
+    configure(monkeypatch, "VAULT", base)
+    ex = BrowserExecutor()
+    run(ex, open_and_check(base), "T1")
+    assert auth_of(run(ex, open_and_check(base), "T2"))["state"] == "AUTHENTICATED"

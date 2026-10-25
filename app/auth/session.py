@@ -84,12 +84,20 @@ async def ensure_page(page: Any, context: Any, url: str, *, requires_login: bool
     await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
     seen = await _discover(page)
     # Check if a login gate is present (either by redirect or rendered in-place on a protected URL)
-    is_gate = looks_like_login_gate(seen) and (login_url is None or not _same_page(url, login_url))
-    redirected_to_gate = not _same_page(page.url, url) and is_gate
+    form_here = looks_like_login_gate(seen) and (login_url is None or not _same_page(url, login_url))
+    redirected_to_gate = not _same_page(page.url, url) and form_here
+    # A login form rendered in place counts as a gate only when the page is known to need a session; otherwise it is
+    # a public page that happens to contain a login form (a home page or sidebar login), not a reason to log in.
+    is_gate = redirected_to_gate or (form_here and requires_login)
 
     # A reused session is trusted until the site sends us to its login gate (then it has expired).
-    if not is_gate and not redirected_to_gate and (not requires_login or seen.get("logout_visible") or session_reused):
-        state = AuthState.AUTHENTICATED if (session_reused or seen.get("logout_visible")) and requires_login else AuthState.AUTH_NOT_REQUIRED
+    if not is_gate and (not requires_login or seen.get("logout_visible") or session_reused):
+        # Authenticated only if we carry a session, or the page needed one and shows session evidence; a logout link on
+        # a page that needs no login is not evidence of anything.
+        if session_reused or (requires_login and seen.get("logout_visible")):
+            state = AuthState.AUTHENTICATED
+        else:
+            state = AuthState.AUTH_NOT_REQUIRED
         return PageAccess(True, state, "page reached", pname, session_reused=session_reused, evidence={"url": page.url})
 
     # Authentication is needed (redirected to a login gate, or the page's content needs a session).

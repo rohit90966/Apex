@@ -417,6 +417,9 @@ class StateTransitionRecord(BaseModel):
     source_observation_id: Optional[str] = None
     action_type: str
     target_element_desc: str
+    # The non-secret value the action used when it selects among options (e.g. a sort option), so the transition
+    # can be replayed as a prerequisite. Never set for free-text or credential input.
+    value: Optional[str] = None
     action_purpose: str = ""
     preconditions: List[str] = Field(default_factory=list)
     actual_outcome: str

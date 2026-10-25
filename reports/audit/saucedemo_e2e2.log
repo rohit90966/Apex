@@ -1,0 +1,13 @@
+﻿[benchmark] saucedemo public repeat 1 ...
+.\venv\Scripts\python.exe : [InvestigationAgenda] Journey 'E-Commerce Purchase Funnel' POSTCONDITION FAILED at step 0: 
+Action executed, but cart badge did not increment (0 -> 1)
+At line:1 char:399
++ ... -oss-120b'; .\venv\Scripts\python.exe scripts\run_multi_website_bench ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([InvestigationA...rement (0 -> 1):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[InvestigationAgenda] Journey 'Entity Creation & Management Workflow' POSTCONDITION FAILED at step 1: Action executed 
+with no observable state effect
+[benchmark]   COMPLETED tests=31 PASS=31 FAIL=0 ERROR=0 findings=0
+[benchmark] wrote reports\audit\saucedemo_e2e2.json / .md and multi_website_findings.csv

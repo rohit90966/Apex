@@ -1,0 +1,2275 @@
+{
+  "execution_id": "exec-14878f3556df",
+  "target_url": "https://www.saucedemo.com/",
+  "results": [
+    {
+      "test_id": "TC-FIELD-01",
+      "test_name": "Username: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.46,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.041,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Username' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.064,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"]",
+          "assertion_actual": "message: Epic sadface: Username is required; message: Epic sadface: Username is required"
+        }
+      ],
+      "duration_seconds": 2.152,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-01_1792892568.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <style type=\"text/css\">:root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-light: normal 300 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Sharp Duotone\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:12:49",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Epic sadface: Username is required; message: Epic sadface: Username is required",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTH_NOT_REQUIRED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": false,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-01",
+      "test_name": "Sort by 'Name (A to Z)' orders records (text, asc)",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 1.4,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Name (A to Z)'",
+          "status": "PASSED",
+          "duration_seconds": 0.339,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"}",
+          "assertion_actual": "6 records monotonic by text (each record's title): Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)"
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order direction",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"direction\": \"asc\", \"column_hint\": \"name\"}",
+          "assertion_actual": "6 records ordered text asc (record text): Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)"
+        }
+      ],
+      "duration_seconds": 3.388,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-01_1792892572.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:12:52",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_3_LIST_SORTED": "6 records monotonic by text (each record's title): Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)",
+        "step_4_LIST_SORTED": "6 records ordered text asc (record text): Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": true,
+            "session_reused": false,
+            "reason": "login form dismissed"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-01",
+      "test_name": "Authenticate With Valid Test Credentials",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Fill test username",
+          "status": "PASSED",
+          "duration_seconds": 0.076,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Fill test password",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Click login button",
+          "status": "PASSED",
+          "duration_seconds": 0.083,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/inventory",
+          "assertion_actual": "https://www.saucedemo.com/inventory.html"
+        }
+      ],
+      "duration_seconds": 1.923,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-01_1792892574.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:12:54",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_URL_CONTAINS": "https://www.saucedemo.com/inventory.html"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-01",
+      "test_name": "Accessible names on /",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.47,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 3 interactive controls verified with computed accessible names (user-name='Username', password='Password', login-button='Login')"
+        }
+      ],
+      "duration_seconds": 2.222,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-01_1792892576.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div class=\"login_container\"><div class=\"login_logo\">Swag Labs</div><div class=\"login_wrapper\" data-test=\"login-container\" role=\"main\"><div class=\"login_wrapper-inner\"><div id=\"log",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:12:57",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 3 interactive controls verified with computed accessible names (user-name='Username', password='Password', login-button='Login')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "test_name": "Transition: 'Add to cart' on /inventory.html",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.645,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Add to cart'",
+          "status": "PASSED",
+          "duration_seconds": 0.083,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.575,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-01_1792892579.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:12:59",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-01",
+      "test_name": "Route reachable with stable landmarks: /",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.474,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.247,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-01_1792892581.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div class=\"login_container\"><div class=\"login_logo\">Swag Labs</div><div class=\"login_wrapper\" data-test=\"login-container\" role=\"main\"><div class=\"login_wrapper-inner\"><div id=\"log",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:13:01",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-02",
+      "test_name": "Sort by 'Name (Z to A)' orders records (text, desc)",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.628,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Name (Z to A)'",
+          "status": "PASSED",
+          "duration_seconds": 0.358,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"}",
+          "assertion_actual": "6 records monotonic by text (each record's title): Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack"
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order direction",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"text\", \"direction\": \"desc\", \"column_hint\": \"name\"}",
+          "assertion_actual": "6 records ordered text desc (record text): Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack"
+        }
+      ],
+      "duration_seconds": 2.83,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-02_1792892584.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:04",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_3_LIST_SORTED": "6 records monotonic by text (each record's title): Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack",
+        "step_4_LIST_SORTED": "6 records ordered text desc (record text): Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-02",
+      "test_name": "Login With Empty Username Boundary",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Navigate to observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Leave username blank",
+          "status": "PASSED",
+          "duration_seconds": 0.064,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Fill dummy password",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Click login button",
+          "status": "PASSED",
+          "duration_seconds": 0.074,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Username is required",
+          "assertion_actual": "Found text 'Username is required'"
+        }
+      ],
+      "duration_seconds": 1.502,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-02_1792892585.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <style type=\"text/css\">:root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-light: normal 300 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Sharp Duotone\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:13:06",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_TEXT_VISIBLE": "Found text 'Username is required'"
+      }
+    },
+    {
+      "test_id": "TC-A11Y-02",
+      "test_name": "Accessible names on /cart.html",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /cart.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.637,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 13 interactive controls verified with computed accessible names (react-burger-menu-btn='Open Menu', inventory_sidebar_link='All Items', dynamic_catalog_sidebar_link='Dynamic Catalog', about_sidebar_link='About', logout_sidebar_link='Logout')"
+        }
+      ],
+      "duration_seconds": 2.372,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-02_1792892588.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:08",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 13 interactive controls verified with computed accessible names (react-burger-menu-btn='Open Menu', inventory_sidebar_link='All Items', dynamic_catalog_sidebar_link='Dynamic Catalog', about_sidebar_link='About', logout_sidebar_link='Logout')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-02",
+      "test_name": "Route reachable with stable landmarks: /cart.html",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /cart.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.614,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Your Cart",
+          "assertion_actual": "Found text 'Your Cart'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.876,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-02_1792892590.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:11",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Your Cart'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-02",
+      "test_name": "Username: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.605,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Username' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.015,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.073,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"]",
+          "assertion_actual": "message: Epic sadface: Username and password do not match any user in this service; message: Epic sadface: Username and password do not match any user in this service"
+        }
+      ],
+      "duration_seconds": 2.594,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-02_1792892593.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <style type=\"text/css\">:root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-light: normal 300 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Sharp Duotone\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:13:14",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Epic sadface: Username and password do not match any user in this service; message: Epic sadface: Username and password do not match any user in this service",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-03",
+      "test_name": "Sort by 'Price (low to high)' orders records (number, asc)",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.805,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price (low to high)'",
+          "status": "PASSED",
+          "duration_seconds": 0.416,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "assertion_actual": "6 records monotonic by number (the single amount in each record): 7.99, 9.99, 15.99, 15.99, 29.99, 49.99"
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order direction",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"direction\": \"asc\", \"column_hint\": \"price\"}",
+          "assertion_actual": "6 records ordered number asc (record text): 7.99, 9.99, 15.99, 15.99, 29.99, 49.99"
+        }
+      ],
+      "duration_seconds": 3.964,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-03_1792892597.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:18",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_3_LIST_SORTED": "6 records monotonic by number (the single amount in each record): 7.99, 9.99, 15.99, 15.99, 29.99, 49.99",
+        "step_4_LIST_SORTED": "6 records ordered number asc (record text): 7.99, 9.99, 15.99, 15.99, 29.99, 49.99",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-03",
+      "test_name": "Logout User Session Via Drawer",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.805,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Open drawer menu",
+          "status": "PASSED",
+          "duration_seconds": 0.11,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Click logout link",
+          "status": "PASSED",
+          "duration_seconds": 1.001,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Login",
+          "assertion_actual": "Found text 'Login'"
+        }
+      ],
+      "duration_seconds": 4.26,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-03_1792892601.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div class=\"login_container\"><div class=\"login_logo\">Swag Labs</div><div class=\"login_wrapper\" data-test=\"login-container\" role=\"main\"><div class=\"login_wrapper-inner\"><div id=\"log",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:22",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_TEXT_VISIBLE": "Found text 'Login'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-A11Y-03",
+      "test_name": "Accessible names on /checkout-step-one.html",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /checkout-step-one.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.833,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 16 interactive controls verified with computed accessible names (react-burger-menu-btn='Open Menu', inventory_sidebar_link='All Items', dynamic_catalog_sidebar_link='Dynamic Catalog', about_sidebar_link='About', logout_sidebar_link='Logout')"
+        }
+      ],
+      "duration_seconds": 3.468,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-03_1792892604.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:25",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 16 interactive controls verified with computed accessible names (react-burger-menu-btn='Open Menu', inventory_sidebar_link='All Items', dynamic_catalog_sidebar_link='Dynamic Catalog', about_sidebar_link='About', logout_sidebar_link='Logout')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "test_name": "Transition: 'Checkout' on /cart.html",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.903,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.085,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+          "status": "PASSED",
+          "duration_seconds": 0.327,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.04,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Activate 'Checkout'",
+          "status": "PASSED",
+          "duration_seconds": 0.045,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/checkout-step-one.html",
+          "assertion_actual": "https://www.saucedemo.com/checkout-step-one.html"
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 3.767,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-03_1792892609.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:29",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_5_URL_CONTAINS": "https://www.saucedemo.com/checkout-step-one.html",
+        "step_6_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-03",
+      "test_name": "Route reachable with stable landmarks: /checkout-step-one.html",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /checkout-step-one.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.884,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.033,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Checkout: Your Information",
+          "assertion_actual": "Found text 'Checkout: Your Information'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 3.857,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-03_1792892612.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:33",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Checkout: Your Information'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-03",
+      "test_name": "Password: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.757,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Username'",
+          "status": "PASSED",
+          "duration_seconds": 0.072,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Password' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.022,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.09,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Epic sadface: Password is required; message: Epic sadface: Password is required"
+        }
+      ],
+      "duration_seconds": 4.15,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-03_1792892616.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <style type=\"text/css\">:root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-light: normal 300 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Sharp Duotone\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:13:37",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Epic sadface: Password is required; message: Epic sadface: Password is required",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "77db890677428"
+      }
+    },
+    {
+      "test_id": "TC-SORT-04",
+      "test_name": "Sort by 'Price (high to low)' orders records (number, desc)",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.804,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price (high to low)'",
+          "status": "PASSED",
+          "duration_seconds": 0.435,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "assertion_actual": "6 records monotonic by number (the single amount in each record): 49.99, 29.99, 15.99, 15.99, 9.99, 7.99"
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order direction",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "{\"key\": \"number\", \"direction\": \"desc\", \"column_hint\": \"price\"}",
+          "assertion_actual": "6 records ordered number desc (record text): 49.99, 29.99, 15.99, 15.99, 9.99, 7.99"
+        }
+      ],
+      "duration_seconds": 3.864,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SORT-04_1792892620.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:41",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_3_LIST_SORTED": "6 records monotonic by number (the single amount in each record): 49.99, 29.99, 15.99, 15.99, 9.99, 7.99",
+        "step_4_LIST_SORTED": "6 records ordered number desc (record text): 49.99, 29.99, 15.99, 15.99, 9.99, 7.99",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-04",
+      "test_name": "Add Product Item to Cart and Verify Badge Count",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.91,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Click add-to-cart on primary product item",
+          "status": "PASSED",
+          "duration_seconds": 0.079,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Remove",
+          "assertion_actual": "Found text 'Remove'"
+        },
+        {
+          "step_number": 3,
+          "action": "NAVIGATE",
+          "description": "Navigate to shopping cart page",
+          "status": "PASSED",
+          "duration_seconds": 0.141,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/cart",
+          "assertion_actual": "https://www.saucedemo.com/cart.html"
+        }
+      ],
+      "duration_seconds": 3.85,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-04_1792892624.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:45",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Remove'",
+        "step_3_URL_CONTAINS": "https://www.saucedemo.com/cart.html",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-04",
+      "test_name": "Transition: 'View details for Sauce Labs Backpack' on /cart.html",
+      "status": "PASSED",
+      "total_steps": 6,
+      "steps_completed": 6,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.895,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.112,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+          "status": "PASSED",
+          "duration_seconds": 0.361,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.086,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Activate 'View details for Sauce Labs Backpack'",
+          "status": "PASSED",
+          "duration_seconds": 0.067,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/inventory-item.html",
+          "assertion_actual": "https://www.saucedemo.com/inventory-item.html?id=4"
+        },
+        {
+          "step_number": 6,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 4.719,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-04_1792892628.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container inventory_details\" data-test=\"header-container\"><div class=\"primary_header\" ",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:50",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_5_URL_CONTAINS": "https://www.saucedemo.com/inventory-item.html?id=4",
+        "step_6_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-04",
+      "test_name": "Route reachable with stable landmarks: /inventory-item.html",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory-item.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.873,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 3.541,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-04_1792892632.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container inventory_details\" data-test=\"header-container\"><div class=\"primary_header\" ",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:13:53",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-04",
+      "test_name": "Password: whitespace only is rejected",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /",
+          "status": "PASSED",
+          "duration_seconds": 0.625,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Username'",
+          "status": "PASSED",
+          "duration_seconds": 0.066,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter whitespace value for 'Password' (whitespace only)",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.093,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "assertion_actual": "message: Epic sadface: Username and password do not match any user in this service; message: Epic sadface: Username and password do not match any user in this service"
+        }
+      ],
+      "duration_seconds": 4.026,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-04_1792892636.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <style type=\"text/css\">:root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Free\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Pro\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-light: normal 300 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-duotone-solid: normal 900 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-regular: normal 400 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-light: normal 300 1em/1 \"Font Awesome 6 Sharp Duotone\";\n  --fa-font-sharp-duotone-thin: normal 100 1em/1 \"Font Awesome 6 Sharp Duotone\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 07:13:57",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "message: Epic sadface: Username and password do not match any user in this service; message: Epic sadface: Username and password do not match any user in this service",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "1d86a2d838131"
+      }
+    },
+    {
+      "test_id": "TC-PAT-05",
+      "test_name": "Remove Item From Shopping Cart",
+      "status": "LOCATOR_ERROR",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /cart.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.798,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/cart",
+          "assertion_actual": "https://www.saucedemo.com/cart.html"
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Click remove item button",
+          "status": "LOCATOR_ERROR",
+          "duration_seconds": 8.013,
+          "screenshot_path": "step_TC-PAT-05_2_1792892648.png",
+          "error_message": "Playwright error: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"#remove-sauce-labs-backpack\") to be visible\n",
+          "assertion_expected": null,
+          "assertion_actual": null
+        }
+      ],
+      "duration_seconds": 11.206,
+      "failure_reason": "Playwright error: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"#remove-sauce-labs-backpack\") to be visible\n",
+      "failure_step": 2,
+      "final_screenshot": "exec_TC-PAT-05_1792892648.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:08",
+      "assertions_evaluated": 0,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 0,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "https://www.saucedemo.com/cart.html"
+          }
+        ],
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-05",
+      "test_name": "Transition: 'Cart, 1 items' on /inventory-item.html",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory-item.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.607,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '#add-to-cart' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.102,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Activate 'Cart, 1 items'",
+          "status": "PASSED",
+          "duration_seconds": 0.041,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/cart.html",
+          "assertion_actual": "https://www.saucedemo.com/cart.html"
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.671,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-05_1792892650.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:11",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_3_URL_CONTAINS": "https://www.saucedemo.com/cart.html",
+        "step_4_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-05",
+      "test_name": "Route reachable with stable landmarks: /inventory.html",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.823,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.087,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products",
+          "assertion_actual": "Found text 'Products'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 3.662,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-05_1792892654.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:15",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Products'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-06",
+      "test_name": "Catalog Sorting Name (Z to A)",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.896,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Select Z to A sorting option",
+          "status": "PASSED",
+          "duration_seconds": 0.391,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products",
+          "assertion_actual": "Found text 'Products'"
+        }
+      ],
+      "duration_seconds": 4.179,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-06_1792892658.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:19",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Products'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-06",
+      "test_name": "Transition: 'Remove' on /cart.html",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.832,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.149,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "SELECT",
+          "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+          "status": "PASSED",
+          "duration_seconds": 0.35,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+          "status": "PASSED",
+          "duration_seconds": 0.074,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Activate 'Remove'",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 4.294,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-06_1792892662.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:23",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-07",
+      "test_name": "Catalog Sorting Price (Low to High)",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.868,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Select Low to High price sorting",
+          "status": "PASSED",
+          "duration_seconds": 0.382,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Products",
+          "assertion_actual": "Found text 'Products'"
+        }
+      ],
+      "duration_seconds": 4.044,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-07_1792892666.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:27",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Products'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-07",
+      "test_name": "Transition: 'View details for Test.allTheThings() T-S' on /inventory.html",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.802,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'View details for Test.allTheThings() T-Shirt (Red)'",
+          "status": "PASSED",
+          "duration_seconds": 0.177,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/inventory-item.html",
+          "assertion_actual": "https://www.saucedemo.com/inventory-item.html?id=3"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 4.536,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-07_1792892670.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container inventory_details\" data-test=\"header-container\"><div class=\"primary_header\" ",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:32",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-PAT-08",
+      "test_name": "Open Navigation Drawer and Verify Sidebar Items",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.869,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Click hamburger menu button",
+          "status": "PASSED",
+          "duration_seconds": 0.101,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "All Items",
+          "assertion_actual": "Found text 'All Items'"
+        }
+      ],
+      "duration_seconds": 3.405,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-PAT-08_1792892674.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\" class=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container\" data-test=\"header-container\"><div class=\"primary_heade",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:35",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'All Items'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-08",
+      "test_name": "Transition: 'Add to cart' on /inventory-item.html",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /inventory-item.html (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.838,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Add to cart'",
+          "status": "PASSED",
+          "duration_seconds": 0.068,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 3.443,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-08_1792892678.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head>\n  <meta charset=\"utf-8\">\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"theme-color\" content=\"#ffffff\">\n  <meta name=\"description\" content=\"Sauce Labs Swag Labs app\">\n  <link rel=\"apple-touch-icon\" href=\"/icon-192x192.png\">\n  <link rel=\"manifest\" href=\"/manifest.json\">\n\n  <!-- Single Page Apps for GitHub Pages -->\n  <script type=\"text/javascript\">\n    // https://github.com/rafgraph/spa-github-pages\n    (function(l) {\n      if (l.search[1] === '/' ) {\n        var decoded = l.search.slice(1).split('&').map(function(s) {\n          return s.replace(/~and~/g, '&')\n        }).join('?');\n        window.history.replaceState(null, null,\n                l.pathname.slice(0, -1) + decoded + l.hash\n        );\n      }\n    }(window.location))\n  </script>\n\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500\">\n  <title>Swag Labs</title>\n  <script type=\"module\" crossorigin=\"\" src=\"/assets/index-DnLqFcJI.js\"></script>\n  <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-aSZoiKGF.css\">\n</head>\n<body>\n  <noscript>You need to enable JavaScript to run this app.</noscript>\n  <div id=\"root\"><div id=\"page_wrapper\"><div id=\"contents_wrapper\"><header id=\"header_container\" class=\"header_container inventory_details\" data-test=\"header-container\"><div class=\"primary_header\" ",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "timestamp": "2026-10-25 07:14:39",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "DEMO",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    }
+  ],
+  "bug_reports": []
+}

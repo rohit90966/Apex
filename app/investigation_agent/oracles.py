@@ -17,12 +17,24 @@ from app.investigation_agent.models import (
 )
 
 
+def _same_origin(url: str, page_url: str) -> bool:
+    from urllib.parse import urlsplit
+    a, b = urlsplit(url or ""), urlsplit(page_url or "")
+    if not a.netloc or not b.netloc:
+        return True  # relative or unknown: treat as the application's own
+    return (a.scheme, a.netloc.lower()) == (b.scheme, b.netloc.lower())
+
+
 def evaluate_always_on_oracles(result: ProbeResult) -> List[OracleFinding]:
     """
     Evaluates always-on oracles on a completed probe execution result.
     Returns a list of structured OracleFinding instances.
     """
     findings: List[OracleFinding] = []
+    # Network oracles judge the target application only: requests to other origins (telemetry, analytics, ads,
+    # CDNs) can fail for reasons unrelated to the site under test and are never product evidence.
+    page_url = (result.before_obs.url if result.before_obs else "") or (result.after_obs.url if result.after_obs else "")
+    first_party = lambda net: _same_origin(getattr(net, "url", ""), page_url)
 
     # 1. Console or Page Errors
     pre_existing_msgs = set()
@@ -55,7 +67,7 @@ def evaluate_always_on_oracles(result: ProbeResult) -> List[OracleFinding]:
 
     # 2. HTTP 5xx Server Errors
     for net in result.network_events:
-        if net.status and 500 <= net.status < 600:
+        if net.status and 500 <= net.status < 600 and first_party(net):
             snippet = f" Body: {net.response_snippet}" if net.response_snippet else ""
             findings.append(
                 OracleFinding(
@@ -75,7 +87,7 @@ def evaluate_always_on_oracles(result: ProbeResult) -> List[OracleFinding]:
 
     # 3. Failed Network Requests (exclude deliberate aborts)
     for net in result.network_events:
-        if not net.ok and net.failure:
+        if not net.ok and net.failure and first_party(net):
             fail_msg = str(net.failure).lower()
             if "abort" in fail_msg or "cancel" in fail_msg:
                 continue
@@ -111,12 +123,13 @@ def evaluate_always_on_oracles(result: ProbeResult) -> List[OracleFinding]:
 
     # 5. Broken Internal Resources (4xx responses)
     for net in result.network_events:
-        if net.status and 400 <= net.status < 500:
+        # 401/403 are access control answering an unauthorised request: expected behaviour, not a defect.
+        if net.status and 400 <= net.status < 500 and net.status not in (401, 403) and first_party(net):
             findings.append(
                 OracleFinding(
                     oracle_type=OracleType.TECHNICAL,
                     strength=OracleStrength.LOW if net.status == 404 else OracleStrength.MEDIUM,
-                    title=f"Resource Not Found ({net.status})",
+                    title=f"Resource Not Found ({net.status})" if net.status == 404 else f"Client Error Response ({net.status})",
                     description=f"{net.method} {net.url} returned HTTP {net.status}.",
                     evidence_refs=[f"net_seq_{net.seq}"],
                     details={"url": net.url, "status": net.status, "method": net.method},

@@ -1109,6 +1109,8 @@ class InvestigationOrchestrator:
                     source_observation_id=res.before_obs.screenshot_artifact_id if res.before_obs else None,
                     action_type=act_label,
                     target_element_desc=(q.target_element or "probe") if q else "probe",
+                    value=(q.script.steps[0].resolved_value
+                           if q and q.script and q.script.steps and q.script.steps[0].action_type == "SELECT_OPTION" else None),
                     action_purpose=q.hypothesis if q else "Probe execution",
                     actual_outcome=summary,
                     destination_state_id=res.after_obs.state_id,

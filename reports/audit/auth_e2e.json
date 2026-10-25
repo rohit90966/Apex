@@ -1,0 +1,2225 @@
+{
+ "benchmark_id": "mwb-20261025T011555Z-652b82",
+ "timestamp": "2026-10-25T01:15:55.403737+00:00",
+ "code_commit": "5de38db371587bd9390ed4944313edfba429186f",
+ "working_tree_dirty": true,
+ "config": {
+  "targets": [
+   "harbor_events"
+  ],
+  "modes": [
+   "buggy"
+  ],
+  "repeats": 1,
+  "max_actions": 30,
+  "max_seconds": 150.0,
+  "llm_provider": "groq",
+  "groq_configured": true,
+  "groq_model": "openai/gpt-oss-120b",
+  "llm_test_proposals": false
+ },
+ "config_identity": "d27b87a92665e280",
+ "suite_version": "multi-website-benchmark/1.1",
+ "targets": [
+  {
+   "key": "harbor_events",
+   "name": "Harbor Events (demo site)",
+   "target_class": "REPOSITORY_FIXTURE",
+   "availability": "AVAILABLE",
+   "modes": [
+    "buggy"
+   ]
+  }
+ ],
+ "runs": [
+  {
+   "run_id": "bench-harbor_events-buggy-r1-b19300",
+   "target": "harbor_events",
+   "target_name": "Harbor Events (demo site)",
+   "target_class": "REPOSITORY_FIXTURE",
+   "mode": "buggy",
+   "repeat": 1,
+   "target_url": "http://127.0.0.1:8201/",
+   "target_origin": "http://127.0.0.1:8201",
+   "started_at": "2026-10-25T01:15:56.807468+00:00",
+   "persisted_run_id": "inv-4a02744eaccc",
+   "persisted_findings_counts": {
+    "CONFIRMED_DEFECT": 3,
+    "LIKELY_DEFECT": 6
+   },
+   "missing_artifacts": [],
+   "defect_stages": [
+    {
+     "defect_id": "HE-01",
+     "title": "Email format not validated by the server on registration",
+     "route": "/register",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-SRV-05"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-02",
+     "title": "Password confirmation mismatch accepted",
+     "route": "/register",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-XF-01"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-03",
+     "title": "Price sort orders formatted text instead of amounts",
+     "route": "/events",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-SORT-02",
+      "TC-SORT-03"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-04",
+     "title": "Featured events ignore the category filter",
+     "route": "/events",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-FILTER-01",
+      "TC-FILTER-02"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-05",
+     "title": "Ticket quantity range not enforced by the server",
+     "route": "/events/1",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-SRV-11"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-06",
+     "title": "Cancelling a booking does not change its status",
+     "route": "/bookings",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution"
+     ],
+     "classification": [
+      "LIKELY_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-REC-01"
+     ],
+     "executed_statuses": [
+      "FAILED"
+     ],
+     "missed_at": null
+    },
+    {
+     "defect_id": "HE-07",
+     "title": "Price breakdown renders NaN service fee",
+     "route": "/events/1",
+     "discovered": true,
+     "test_generated": true,
+     "test_executed": true,
+     "reproduced": true,
+     "reproduced_by": [
+      "execution",
+      "investigation"
+     ],
+     "classification": [
+      "CONFIRMED_DEFECT"
+     ],
+     "persisted": true,
+     "regression_test": true,
+     "matched_tests": [
+      "TC-REG-01",
+      "TC-TR-03"
+     ],
+     "executed_statuses": [
+      "FAILED",
+      "PASSED"
+     ],
+     "missed_at": null
+    }
+   ],
+   "knowledge_selected": [
+    "TS-EP-BVA",
+    "TS-SERVER-ENFORCEMENT",
+    "TS-DOMAIN-TEMPLATES",
+    "TS-INVARIANT",
+    "TS-CROSS-FIELD",
+    "TS-RECORD-COMMAND",
+    "TS-REGRESSION-LEAD",
+    "TS-A11Y-NAMES",
+    "TS-INVARIANT-SORT",
+    "TS-METAMORPHIC-FILTER",
+    "TS-STATE-TRANSITION",
+    "TS-ROUTE-REGRESSION"
+   ],
+   "strategies_applied": [
+    "ACCESSIBLE_NAMES",
+    "CROSS_FIELD_CONFIRMATION",
+    "FIELD_BOUNDARIES",
+    "FILTER_RESULTS",
+    "LEAD_REGRESSION",
+    "OBSERVED_TRANSITIONS",
+    "RECORD_COMMAND_EFFECT",
+    "RENDER_ANOMALY_INVARIANT",
+    "ROUTE_REACHABILITY",
+    "SERVER_SIDE_ENFORCEMENT",
+    "SORT_ORDER",
+    "TEMPLATE_PATTERNS"
+   ],
+   "requirement_alignment": {
+    "matched": 4,
+    "weak": 3,
+    "unmatched": 0,
+    "warning": null
+   },
+   "status": "COMPLETED",
+   "investigation": {
+    "status": "budget_exhausted",
+    "target_identity_correct": true,
+    "routes_discovered": 10,
+    "navigable_routes": 5,
+    "states_discovered": 14,
+    "interactive_controls": 90,
+    "forms": 9,
+    "fields": 20,
+    "transitions": 25,
+    "actions_attempted": 28,
+    "evidence_records": 32,
+    "duration_seconds": 124.47,
+    "duplicate_state_rate": 0.0,
+    "llm_calls": 10,
+    "llm_fallbacks": 9,
+    "llm_latency_seconds": 23.649,
+    "retries": 0,
+    "stopping_reason": "Configured probe ceiling reached (30/30)"
+   },
+   "generation": {
+    "candidates": 66,
+    "valid": 62,
+    "selected": 35,
+    "invalid_or_rejected": 4,
+    "duplicates_rejected": 4,
+    "with_meaningful_assertion": 35,
+    "selectors_total": 59,
+    "selectors_grounded": 59,
+    "with_evidence_refs": 32,
+    "with_preconditions_and_expected_outcome": 31,
+    "inapplicable_templates": 3,
+    "ineligible_patterns": 10,
+    "irrelevant_patterns_accepted": 0,
+    "unknown_constraints": 1,
+    "exploratory_hypotheses": 1,
+    "capabilities_evidenced": [
+     "FORM_VALIDATION",
+     "ITEM_SEARCH_FILTER",
+     "PAGINATION_SORTING",
+     "USER_AUTHENTICATION"
+    ],
+    "capability_coverage": 0.75,
+    "requirements_total": 7,
+    "requirements_covered": 0,
+    "constrained_fields_total": 7,
+    "constrained_fields_covered": 5,
+    "by_strategy": {
+     "field": 32,
+     "server": 12,
+     "pattern": 0,
+     "crossfield": 1,
+     "record": 1,
+     "regression": 1,
+     "a11y": 3,
+     "sort": 3,
+     "filter": 2,
+     "transition": 6,
+     "route": 5
+    },
+    "planning_seconds": 0.029,
+    "archetype": "AUTHENTICATION",
+    "llm_used_for_planning": false,
+    "llm_cases_proposed": 0,
+    "llm_cases_accepted": 0,
+    "llm_planning_error": null,
+    "llm_planning_latency_seconds": null,
+    "llm_rejection_reasons": [],
+    "secondary_archetypes": [
+     "BOOKING_RESERVATIONS",
+     "ECOMMERCE"
+    ]
+   },
+   "execution": {
+    "executed": 35,
+    "PASS": 25,
+    "FAIL": 9,
+    "ERROR": 0,
+    "BLOCKED": 0,
+    "INVALID": 0,
+    "INCOMPLETE": 1,
+    "SKIPPED": 0,
+    "locator_failures": 0,
+    "infrastructure_failures": 0,
+    "assertions_evaluated": 43,
+    "meaningful_assertions_evaluated": 43,
+    "meaningful_assertions_planned": 52,
+    "assertion_evaluation_rate": 0.827,
+    "execution_seconds": 82.11,
+    "verification_seconds": 43.22
+   },
+   "export": {
+    "script": "reports\\benchmark_exports\\bench-harbor_events-buggy-r1-b19300.py",
+    "structural_parity": true,
+    "verdict_agreement": 35,
+    "verdict_total": 35,
+    "disagreements": [],
+    "exported_outcomes": {
+     "passed": 25,
+     "failed": 9,
+     "skipped": 1
+    },
+    "export_run_seconds": 38.22
+   },
+   "findings": [
+    {
+     "source": "execution",
+     "test_id": "TC-XF-01",
+     "name": "Confirm password must match Password",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "derived_values": {
+      "field_selector": "#confirm-password",
+      "paired_with": "#password",
+      "input_value": "QaPassw0rd!Z",
+      "input_class": "MISMATCH",
+      "constraint_kind": "CROSS_FIELD_EQUALITY",
+      "constraint_source": "SEMANTIC_CONVENTION",
+      "expected": "REJECT"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/register",
+      "FILL #full-name",
+      "FILL #email",
+      "FILL #password",
+      "CLICK #terms",
+      "FILL #confirm-password",
+      "EVAL_JS (() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+      "CLICK #register-button"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-REG-01",
+     "name": "Regression: Text Anomaly: 'NaN'",
+     "oracle_class": "DEFECT_REGRESSION",
+     "derived_values": {},
+     "classification": "CONFIRMED_DEFECT",
+     "verification_status": "CONFIRMED_REPRODUCIBLE",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "OBSERVED",
+     "failure_reason": "Expected text 'NaN' to NOT be visible",
+     "actual_behavior": "Expected text 'NaN' to NOT be visible",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events/1",
+      "CLICK #price-breakdown-link"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-REC-01",
+     "name": "'Cancel' on a record of /bookings changes that record",
+     "oracle_class": "RECORD_EFFECT",
+     "derived_values": {
+      "control": "#cancel-booking-1",
+      "command": "Cancel",
+      "action": "/bookings/1/cancel",
+      "rule_source": "a per-record command must take effect on its record (convention)"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+     "actual_behavior": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/bookings",
+      "CLICK #cancel-booking-1"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'Music' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "derived_values": {
+      "control": "#category",
+      "option": "Music",
+      "option_label": "Music",
+      "domain": [
+       "Music",
+       "Workshop",
+       "Sports",
+       "Conference"
+      ],
+      "rule_source": "record field drawn from the filter's options must equal the selection (convention)"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "actual_behavior": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #category",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-FILTER-02",
+     "name": "Filter '#category' = 'Workshop' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "derived_values": {
+      "control": "#category",
+      "option": "Workshop",
+      "option_label": "Workshop",
+      "domain": [
+       "Music",
+       "Workshop",
+       "Sports",
+       "Conference"
+      ],
+      "rule_source": "record field drawn from the filter's options must equal the selection (convention)"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "actual_behavior": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #category",
+      "CLICK #apply-filters"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "derived_values": {
+      "control": "#sort",
+      "option": "price_asc",
+      "option_label": "Price: Low to High",
+      "key": "number",
+      "direction": "asc",
+      "column_hint": "price",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+     "actual_behavior": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #sort",
+      "CLICK #apply-filters",
+      "OBSERVE_STATE",
+      "OBSERVE_STATE"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "derived_values": {
+      "control": "#sort",
+      "option": "price_desc",
+      "option_label": "Price: High to Low",
+      "key": "number",
+      "direction": "desc",
+      "column_hint": "price",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+     "actual_behavior": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events",
+      "SELECT #sort",
+      "CLICK #apply-filters",
+      "OBSERVE_STATE",
+      "OBSERVE_STATE"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SRV-05",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "derived_values": {
+      "field_selector": "#email",
+      "field_label": "Email",
+      "input_value": "qa.tester.${RUN_UNIQUE}.example.com",
+      "input_class": "FORMAT_INVALID",
+      "constraint_kind": "TYPE_EMAIL",
+      "constraint_value": null,
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "type=\"email\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "HTML_DECLARED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/register",
+      "FILL #full-name",
+      "FILL #password",
+      "FILL #confirm-password",
+      "CLICK #terms",
+      "FILL #email",
+      "EVAL_JS (() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+      "CLICK #register-button"
+     ]
+    },
+    {
+     "source": "execution",
+     "test_id": "TC-SRV-11",
+     "name": "Tickets: below min is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "derived_values": {
+      "field_selector": "#quantity",
+      "field_label": "Tickets",
+      "input_value": "0",
+      "input_class": "BELOW_MIN",
+      "constraint_kind": "MIN_VALUE",
+      "constraint_value": "1",
+      "constraint_source": "HTML_DECLARED",
+      "constraint_detail": "min=\"1\"",
+      "layer": "SERVER",
+      "expected": "REJECT"
+     },
+     "classification": "LIKELY_DEFECT",
+     "verification_status": "LIKELY_DEFECT",
+     "reproduction_rate": "3/3 runs failed",
+     "expected_source": "HTML_DECLARED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "steps": [
+      "NAVIGATE http://127.0.0.1:8201/events/1",
+      "FILL #attendee-name",
+      "FILL #quantity",
+      "EVAL_JS (() => { const el = document.querySelector(\"#quantity\"); if (el && el.form) el.form.noValidate = true; })()",
+      "CLICK #book-button"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_4f1de446",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/1?breakdown=1",
+      "lead_target": "/events/1?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/1?breakdown=1"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_2c01347a",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/2?breakdown=1",
+      "lead_target": "/events/2?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/2?breakdown=1"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_13152f72",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/3?breakdown=1",
+      "lead_target": "/events/3?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/3?breakdown=1"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_75505ccb",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "#price-breakdown-link",
+      "lead_target": "#price-breakdown-link"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "CLICK_CONTROL #price-breakdown-link"
+     ]
+    },
+    {
+     "test_id": "LEAD:lead_46aa63d6",
+     "source": "investigation",
+     "name": "Text Anomaly: 'NaN'",
+     "oracle_class": "INVESTIGATION_LEAD",
+     "derived_values": {
+      "field_selector": "/events/4?breakdown=1",
+      "lead_target": "/events/4?breakdown=1"
+     },
+     "classification": "CONFIRMED_DEFECT",
+     "oracle_type": "TECHNICAL",
+     "failure_reason": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "actual_behavior": "Detected anomaly 'NaN' rendered in visible text after interaction (rendered: 'NaN'). Expected property: displayed values are well-formed; 'NaN' was absent before the interaction and appeared in a value position.",
+     "reproduction": {
+      "runs": 2,
+      "passed": 2
+     },
+     "steps": [
+      "NAVIGATE_LINK /events/4?breakdown=1"
+     ]
+    }
+   ],
+   "plan_signatures": [
+    "NAVIGATE:None:http://127.0.0.1:8201/bookings|CLICK:#cancel-booking-1:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/bookings|CLICK:a.brand[href=\"/\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/bookings|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/bookings|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|CLICK:#price-breakdown-link:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|CLICK:a.brand[href=\"/\"]:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|FILL:#attendee-name:QA Sample|FILL:#quantity:0|EVAL_JS:None:(() => { const el = document.querySelector(\"#quantity\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#book-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|FILL:#attendee-name:QA Sample|FILL:#quantity:|EVAL_JS:None:(() => { const el = document.querySelector(\"#quantity\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#book-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|FILL:#attendee-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+    "NAVIGATE:None:http://127.0.0.1:8201/events/1|FILL:#attendee-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#category:Music|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#category:Workshop|CLICK:#apply-filters:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:name_asc|CLICK:#apply-filters:None|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:price_asc|CLICK:#apply-filters:None|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/events|SELECT:#sort:price_desc|CLICK:#apply-filters:None|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.${RUN_UNIQUE}@example.com|FILL:#login-password:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-email:qa.tester.${RUN_UNIQUE}.example.com",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:qa.tester.${RUN_UNIQUE}.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|FILL:#login-password:QaPassw0rd!x|FILL:#login-email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#login-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/login|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#email:qa.${RUN_UNIQUE}@example.com|FILL:#password:QaPassw0rd!x|CLICK:#terms:None|FILL:#confirm-password:QaPassw0rd!Z|EVAL_JS:None:(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:qa.tester.${RUN_UNIQUE}.example.com|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QA Sample|FILL:#password:QaPassw0rd!x|FILL:#confirm-password:QaPassw0rd!x|CLICK:#terms:None|FILL:#email:|EVAL_JS:None:(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()|CLICK:#register-button:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|FILL:#full-name:QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+    "NAVIGATE:None:http://127.0.0.1:8201/register|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/|CLICK:#browse-events:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/|CLICK:a[href=\"/events/1\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/|CLICK:a[href=\"/events/2\"]:None|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/|OBSERVE_STATE:None:None",
+    "NAVIGATE:None:http://127.0.0.1:8201/|OBSERVE_STATE:None:None|OBSERVE_STATE:None:None"
+   ],
+   "plan_selectors": [
+    "#apply-filters",
+    "#attendee-name",
+    "#book-button",
+    "#browse-events",
+    "#cancel-booking-1",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-password",
+    "#password",
+    "#price-breakdown-link",
+    "#quantity",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events/1\"]",
+    "a[href=\"/events/2\"]"
+   ],
+   "inventory_selectors": [
+    "#apply-filters",
+    "#attendee-name",
+    "#book-button",
+    "#browse-events",
+    "#cancel-booking-1",
+    "#cancel-booking-2",
+    "#category",
+    "#confirm-password",
+    "#email",
+    "#full-name",
+    "#login-button",
+    "#login-email",
+    "#login-form [name=\"next\"]",
+    "#login-password",
+    "#nav-bookings",
+    "#nav-events",
+    "#nav-login",
+    "#nav-logout",
+    "#nav-register",
+    "#password",
+    "#price-breakdown-link",
+    "#quantity",
+    "#register-button",
+    "#sort",
+    "#terms",
+    "a.brand[href=\"/\"]",
+    "a[href=\"/events\"]",
+    "a[href=\"/events/1\"]",
+    "a[href=\"/events/2\"]",
+    "a[href=\"/events/3\"]",
+    "a[href=\"/events/4\"]",
+    "a[href=\"/events/5\"]",
+    "a[href=\"/events/6\"]",
+    "a[href=\"/register\"]"
+   ],
+   "examples": [
+    {
+     "test_id": "TC-FIELD-01",
+     "name": "Email: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-email, valueMissing)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"blank\", \"email\", \"empty\", \"enter\", \"login\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-XF-01",
+     "name": "Confirm password must match Password",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.${RUN_UNIQUE}@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!Z",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#confirm-password\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#confirm-password, [\"confirm\", \"identical\", \"match\", \"password\", \"same\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-REG-01",
+     "name": "Regression: Text Anomaly: 'NaN'",
+     "oracle_class": "DEFECT_REGRESSION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#price-breakdown-link",
+       "value": null,
+       "assertion": "TEXT_NOT_VISIBLE(, NaN)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-REC-01",
+     "name": "'Cancel' on a record of /bookings changes that record",
+     "oracle_class": "RECORD_EFFECT",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#cancel-booking-1",
+       "value": null,
+       "assertion": "RECORD_CHANGED(#cancel-booking-1, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "name": "Filter '#category' = 'Music' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "Music",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, {\"value\": \"Music\", \"domain\": [\"Music\", \"Workshop\", \"Sports\", \"Conference\"]})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "name": "Sort by 'Name: A to Z' orders records (text, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "name_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"text\", \"direction\": \"asc\", \"column_hint\": \"name\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "name": "Accessible names on /",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-01",
+     "name": "Transition: 'Harbor Events' on /bookings",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a.brand[href=\"/\"]",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "name": "Route reachable with stable landmarks: /",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Welcome to Harbor Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "name": "Full name: maxlength-1 (59) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==59)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "name": "Email: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "name": "Filter '#category' = 'Workshop' shows only matching records",
+     "oracle_class": "FILTER_CONSISTENCY",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#category",
+       "value": "Workshop",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": "LIST_ALL_CONTAIN(, {\"value\": \"Workshop\", \"domain\": [\"Music\", \"Workshop\", \"Sports\", \"Conference\"]})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "name": "Sort by 'Price: Low to High' orders records (number, asc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_asc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"asc\", \"column_hint\": \"price\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "name": "Accessible names on /bookings",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-02",
+     "name": "Transition: 'Harbor Jazz Night' on /",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a[href=\"/events/1\"]",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Harbor Jazz Night)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "name": "Route reachable with stable landmarks: /bookings",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/bookings",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, My Bookings)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-21",
+     "name": "Attendee name: maxlength-1 (59) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#attendee-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundar",
+       "assertion": "ELEMENT_VALUE_LENGTH(#attendee-name, ==59)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-10",
+     "name": "Tickets: empty is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#attendee-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#quantity",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#quantity\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#book-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#quantity, [\"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"quantity\", \"required\", \"tickets\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "name": "Sort by 'Price: High to Low' orders records (number, desc)",
+     "oracle_class": "LIST_ORDERING",
+     "expected_source": "SEMANTIC_CONVENTION",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "SELECT",
+       "selector": "#sort",
+       "value": "price_desc",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#apply-filters",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"})"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "LIST_SORTED(, {\"key\": \"number\", \"direction\": \"desc\", \"column_hint\": \"price\"})"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "name": "Accessible names on /events",
+     "oracle_class": "ACCESSIBILITY",
+     "expected_source": "ACCESSIBILITY_HEURISTIC",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": null
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "ACCESSIBILITY_VALID(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-03",
+     "name": "Transition: 'Show price breakdown' on /events/1",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#price-breakdown-link",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Price breakdown)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "name": "Route reachable with stable landmarks: /events",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "name": "Email: missing @ is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.${RUN_UNIQUE}.example.com",
+       "assertion": "FIELD_VALIDITY(#login-email, typeMismatch)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.tester.${RUN_UNIQUE}.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#login-email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#login-email, [\"email\", \"login\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-04",
+     "name": "Transition: 'Intro to Pottery' on /",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a[href=\"/events/2\"]",
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Intro to Pottery)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "name": "Route reachable with stable landmarks: /login",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Log in)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "name": "Full name: maxlength (60) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+       "assertion": "ELEMENT_VALUE_LENGTH(#full-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "name": "Email: format invalid is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#full-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#confirm-password",
+       "value": "QaPassw0rd!x",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#terms",
+       "value": null,
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#email",
+       "value": "qa.tester.${RUN_UNIQUE}.example.com",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#email\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#register-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#email, [\"email\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-05",
+     "name": "Transition: 'Harbor Events' on /events/1",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "a.brand[href=\"/\"]",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "name": "Route reachable with stable landmarks: /register",
+     "oracle_class": "OBSERVED_STATE",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/register",
+       "assertion": "STATUS_CODE(, <400)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "TEXT_VISIBLE(, Create an account)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-22",
+     "name": "Attendee name: maxlength (60) is accepted",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#attendee-name",
+       "value": "QaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundaryQaBoundary",
+       "assertion": "ELEMENT_VALUE_LENGTH(#attendee-name, ==60)"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-SRV-11",
+     "name": "Tickets: below min is rejected by the application (client validation disabled)",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_DECLARED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/events/1",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#attendee-name",
+       "value": "QA Sample",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#quantity",
+       "value": "0",
+       "assertion": null
+      },
+      {
+       "action": "EVAL_JS",
+       "selector": null,
+       "value": "(() => { const el = document.querySelector(\"#quantity\"); if (el && el.form) el.form.noValidate = true; })()",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#book-button",
+       "value": null,
+       "assertion": "VALIDATION_FEEDBACK_SHOWN(#quantity, [\"1\", \"between\", \"greater\", \"least\", \"minimum\", \"quantity\", \"range\", \"tickets\"])"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-TR-06",
+     "name": "Transition: 'Browse all events' on /",
+     "oracle_class": "STATE_TRANSITION",
+     "expected_source": "OBSERVED",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#browse-events",
+       "value": null,
+       "assertion": "URL_CONTAINS(, /events)"
+      },
+      {
+       "action": "OBSERVE_STATE",
+       "selector": null,
+       "value": null,
+       "assertion": "NO_TEXT_ANOMALY(, )"
+      }
+     ]
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "name": "Password: empty is rejected",
+     "oracle_class": "FIELD_CONSTRAINT",
+     "expected_source": "HTML_CONSTRAINT",
+     "steps": [
+      {
+       "action": "NAVIGATE",
+       "selector": null,
+       "value": "http://127.0.0.1:8201/login",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-email",
+       "value": "qa.${RUN_UNIQUE}@example.com",
+       "assertion": null
+      },
+      {
+       "action": "FILL",
+       "selector": "#login-password",
+       "value": "",
+       "assertion": null
+      },
+      {
+       "action": "CLICK",
+       "selector": "#login-button",
+       "value": null,
+       "assertion": "FIELD_VALIDITY(#login-password, valueMissing)"
+      }
+     ]
+    }
+   ],
+   "results": [
+    {
+     "test_id": "TC-FIELD-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 1.457
+    },
+    {
+     "test_id": "TC-SRV-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 1.312
+    },
+    {
+     "test_id": "TC-XF-01",
+     "status": "FAILED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "meaningful_assertions": 1,
+     "duration": 2.012
+    },
+    {
+     "test_id": "TC-REG-01",
+     "status": "FAILED",
+     "failure_reason": "Expected text 'NaN' to NOT be visible",
+     "meaningful_assertions": 1,
+     "duration": 1.406
+    },
+    {
+     "test_id": "TC-REC-01",
+     "status": "FAILED",
+     "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+     "meaningful_assertions": 1,
+     "duration": 1.703
+    },
+    {
+     "test_id": "TC-FILTER-01",
+     "status": "FAILED",
+     "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "meaningful_assertions": 1,
+     "duration": 2.816
+    },
+    {
+     "test_id": "TC-SORT-01",
+     "status": "INCONCLUSIVE",
+     "failure_reason": "NOT_EVALUABLE: the sort key could not be located unambiguously in the records (no matching column header; not exactly one amount per record)",
+     "meaningful_assertions": 0,
+     "duration": 2.425
+    },
+    {
+     "test_id": "TC-A11Y-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.386
+    },
+    {
+     "test_id": "TC-TR-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.368
+    },
+    {
+     "test_id": "TC-ROUTE-01",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.003
+    },
+    {
+     "test_id": "TC-FIELD-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.771
+    },
+    {
+     "test_id": "TC-SRV-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.619
+    },
+    {
+     "test_id": "TC-FILTER-02",
+     "status": "FAILED",
+     "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+     "meaningful_assertions": 1,
+     "duration": 2.729
+    },
+    {
+     "test_id": "TC-SORT-02",
+     "status": "FAILED",
+     "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+     "meaningful_assertions": 1,
+     "duration": 2.272
+    },
+    {
+     "test_id": "TC-A11Y-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.422
+    },
+    {
+     "test_id": "TC-TR-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.162
+    },
+    {
+     "test_id": "TC-ROUTE-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.406
+    },
+    {
+     "test_id": "TC-FIELD-21",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.312
+    },
+    {
+     "test_id": "TC-SRV-10",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.427
+    },
+    {
+     "test_id": "TC-SORT-03",
+     "status": "FAILED",
+     "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+     "meaningful_assertions": 1,
+     "duration": 2.688
+    },
+    {
+     "test_id": "TC-A11Y-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.455
+    },
+    {
+     "test_id": "TC-TR-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.84
+    },
+    {
+     "test_id": "TC-ROUTE-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.322
+    },
+    {
+     "test_id": "TC-FIELD-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.809
+    },
+    {
+     "test_id": "TC-SRV-02",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.295
+    },
+    {
+     "test_id": "TC-TR-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.207
+    },
+    {
+     "test_id": "TC-ROUTE-04",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.732
+    },
+    {
+     "test_id": "TC-FIELD-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.5
+    },
+    {
+     "test_id": "TC-SRV-05",
+     "status": "FAILED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "meaningful_assertions": 1,
+     "duration": 2.654
+    },
+    {
+     "test_id": "TC-TR-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 3.171
+    },
+    {
+     "test_id": "TC-ROUTE-05",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 1.979
+    },
+    {
+     "test_id": "TC-FIELD-22",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.643
+    },
+    {
+     "test_id": "TC-SRV-11",
+     "status": "FAILED",
+     "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+     "meaningful_assertions": 1,
+     "duration": 2.24
+    },
+    {
+     "test_id": "TC-TR-06",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 2,
+     "duration": 2.303
+    },
+    {
+     "test_id": "TC-FIELD-03",
+     "status": "PASSED",
+     "failure_reason": "",
+     "meaningful_assertions": 1,
+     "duration": 2.258
+    }
+   ],
+   "unknown_constraints": [
+    {
+     "field_selector": "#login-password",
+     "route": "/login",
+     "reason": "acceptance of 'minlength (8)' on a login form cannot be judged without matching credentials",
+     "evidence_needed": "authorized credentials satisfying the boundary"
+    }
+   ],
+   "inapplicable_templates": [
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-01",
+     "template_id": "ST-AUTH-VALID-LOGIN",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-02",
+     "template_id": "ST-AUTH-EMPTY-USERNAME",
+     "reason": "no observed control for 'username_input'"
+    },
+    {
+     "pattern_id": "PAT-AUTH-LOGIN-03",
+     "template_id": "ST-AUTH-EMPTY-PASSWORD",
+     "reason": "no observed control for 'username_input'"
+    }
+   ],
+   "timings": {
+    "investigation": 124.47,
+    "planning": 0.029,
+    "execution": 82.11,
+    "verification": 43.22,
+    "export_run": 38.22
+   },
+   "score": {
+    "ground_truth": true,
+    "mode": "buggy",
+    "defects_planted": 7,
+    "detected_by_execution": [
+     "HE-01",
+     "HE-02",
+     "HE-03",
+     "HE-04",
+     "HE-05",
+     "HE-06",
+     "HE-07"
+    ],
+    "detected_by_investigation": [
+     "HE-07"
+    ],
+    "detected_by_both": [
+     "HE-07"
+    ],
+    "false_positives_by_source": {
+     "execution": [],
+     "investigation": []
+    },
+    "detected_confirmed_only": [
+     "HE-07"
+    ],
+    "false_positives_confirmed_only": [],
+    "tp": 7,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "detected_defect_ids": [
+     "HE-01",
+     "HE-02",
+     "HE-03",
+     "HE-04",
+     "HE-05",
+     "HE-06",
+     "HE-07"
+    ],
+    "missed_defect_ids": [],
+    "detected_as_anomaly_only": [],
+    "false_positive_test_ids": [],
+    "false_alarms_on_defect_free_build": null,
+    "anomalies_reported": 0,
+    "matches": {
+     "HE-01": [
+      "TC-SRV-05"
+     ],
+     "HE-02": [
+      "TC-XF-01"
+     ],
+     "HE-03": [
+      "TC-SORT-02",
+      "TC-SORT-03"
+     ],
+     "HE-04": [
+      "TC-FILTER-01",
+      "TC-FILTER-02"
+     ],
+     "HE-05": [
+      "TC-SRV-11"
+     ],
+     "HE-06": [
+      "TC-REC-01"
+     ],
+     "HE-07": [
+      "TC-REG-01",
+      "LEAD:lead_4f1de446",
+      "LEAD:lead_2c01347a",
+      "LEAD:lead_13152f72",
+      "LEAD:lead_75505ccb",
+      "LEAD:lead_46aa63d6"
+     ]
+    }
+   },
+   "cross_target_selector_leaks": [],
+   "ungrounded_selectors": []
+  }
+ ],
+ "aggregate": {
+  "tp": 7,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "baseline_false_alarms": 0,
+  "baseline_false_alarms_confirmed_only": 0,
+  "detected_confirmed_only": 1,
+  "cross_target_selector_leaks": 0,
+  "irrelevant_patterns_accepted": 0,
+  "export_agreement": 35,
+  "export_total": 35
+ },
+ "reproducibility": {},
+ "limitations": [
+  "Token usage and cost are not measured: the LLM providers expose no token telemetry to this harness.",
+  "Investigations run with the deterministic planner when no LLM key is configured (see config.groq_configured).",
+  "Fixture state (e.g. tasks created by tests) persists across repeats within one server process.",
+  "TN/specificity are not reported: the fixtures define no universe of negative cases."
+ ]
+}

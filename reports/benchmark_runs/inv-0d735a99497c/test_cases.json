@@ -1,0 +1,2941 @@
+[
+  {
+    "test_id": "TC-FIELD-01",
+    "name": "Username: empty is rejected",
+    "objective": "Boundary test of 'Username' on /: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#password",
+      "#user-name",
+      "#login-button"
+    ],
+    "action_description": "Open observed route /; Enter valid 'Password'; Enter empty value for 'Username' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_root_view_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#user-name",
+      "field_label": "Username",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Username is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "",
+        "description": "Enter empty value for 'Username' (empty)",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#user-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "FIELD_VALIDATION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-01",
+    "name": "Sort by 'Name (A to Z)' orders records (text, asc)",
+    "objective": "Select 'Name (A to Z)' on [data-test=\"product-sort-container\"] and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Choose sort option 'Name (A to Z)'; Check the order is monotonic; Check the order direction",
+    "expected_outcome": "Records ordered by text asc as option 'Name (A to Z)' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_inventoryhtml_products_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "[data-test=\"product-sort-container\"]",
+      "option": "az",
+      "option_label": "Name (A to Z)",
+      "key": "text",
+      "direction": "asc",
+      "column_hint": "name",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "az",
+        "description": "Choose sort option 'Name (A to Z)'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order is monotonic",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"}",
+          "description": "Records are ordered by name (monotonic in either direction)",
+          "expected_source": "SEMANTIC_CONVENTION"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order direction",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"direction\": \"asc\", \"column_hint\": \"name\"}",
+          "description": "Records ordered by text asc as option 'Name (A to Z)' states",
+          "expected_source": "DERIVED_INFERENCE"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "SORTING",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-01",
+    "name": "Authenticate With Valid Test Credentials",
+    "objective": "Verify user enters valid credentials and transitions into the application.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#user-name",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Navigate to observed route /; Fill test username; Fill test password; Click login button",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-AUTH-LOGIN-01 resolved against controls observed on this target (Capabilities evidenced: ['USER_AUTHENTICATION']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-AUTH-LOGIN-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-AUTH-LOGIN-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Navigate to observed route /",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "${CREDENTIAL_USERNAME}",
+        "description": "Fill test username",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "${CREDENTIAL_PASSWORD}",
+        "description": "Fill test password",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Click login button",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/inventory",
+          "description": "URL contains /inventory (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-01",
+    "name": "Accessible names on /",
+    "objective": "Interactive controls on / expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /; Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ACCESSIBILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-01",
+    "name": "Transition: 'Add to cart' on /inventory.html",
+    "objective": "Verify activating 'Add to cart' on /inventory.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Activate 'Add to cart'",
+    "expected_outcome": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-24b880f2"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Activate 'Add to cart'",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-01",
+    "name": "Route reachable with stable landmarks: /",
+    "objective": "Verify / remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /",
+    "expected_outcome": "HTTP status < 400",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_root_view_view"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ROUTE_REACHABILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-02",
+    "name": "Sort by 'Name (Z to A)' orders records (text, desc)",
+    "objective": "Select 'Name (Z to A)' on [data-test=\"product-sort-container\"] and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Choose sort option 'Name (Z to A)'; Check the order is monotonic; Check the order direction",
+    "expected_outcome": "Records ordered by text desc as option 'Name (Z to A)' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_inventoryhtml_products_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "[data-test=\"product-sort-container\"]",
+      "option": "za",
+      "option_label": "Name (Z to A)",
+      "key": "text",
+      "direction": "desc",
+      "column_hint": "name",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Choose sort option 'Name (Z to A)'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order is monotonic",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"}",
+          "description": "Records are ordered by name (monotonic in either direction)",
+          "expected_source": "SEMANTIC_CONVENTION"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order direction",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"text\", \"direction\": \"desc\", \"column_hint\": \"name\"}",
+          "description": "Records ordered by text desc as option 'Name (Z to A)' states",
+          "expected_source": "DERIVED_INFERENCE"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "SORTING",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-02",
+    "name": "Login With Empty Username Boundary",
+    "objective": "Verify attempting login with blank username displays validation error message.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#user-name",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Navigate to observed route /; Leave username blank; Fill dummy password; Click login button",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-AUTH-LOGIN-02 resolved against controls observed on this target (Capabilities evidenced: ['FORM_VALIDATION', 'USER_AUTHENTICATION']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-AUTH-LOGIN-02"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-AUTH-LOGIN-02"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Navigate to observed route /",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "",
+        "description": "Leave username blank",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Fill dummy password",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Click login button",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Username is required",
+          "description": "'Username is required' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-02",
+    "name": "Accessible names on /cart.html",
+    "objective": "Interactive controls on /cart.html expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /cart.html (authenticated); Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/cart.html",
+        "description": "Open observed route /cart.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ACCESSIBILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-02",
+    "name": "Route reachable with stable landmarks: /cart.html",
+    "objective": "Verify /cart.html remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /cart.html (authenticated); Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Your Cart'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_carthtml_your_cart_c1",
+      "st_carthtml_your_cart_view",
+      "st_carthtml_your_cart_view_menu_open"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/cart.html",
+        "description": "Open observed route /cart.html (authenticated)",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Your Cart",
+          "description": "Stable heading 'Your Cart' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ROUTE_REACHABILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-02",
+    "name": "Username: whitespace only is rejected",
+    "objective": "Boundary test of 'Username' on /: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#password",
+      "#user-name",
+      "#login-button"
+    ],
+    "action_description": "Open observed route /; Enter valid 'Password'; Enter whitespace value for 'Username' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_root_view_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#user-name",
+      "field_label": "Username",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Username is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "QaPassw0rd!x",
+        "description": "Enter valid 'Password'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Username' (whitespace only)",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#user-name\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#user-name",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"name\", \"provide\", \"required\", \"user\", \"username\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Username is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "FIELD_VALIDATION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-03",
+    "name": "Sort by 'Price (low to high)' orders records (number, asc)",
+    "objective": "Select 'Price (low to high)' on [data-test=\"product-sort-container\"] and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Choose sort option 'Price (low to high)'; Check the order is monotonic; Check the order direction",
+    "expected_outcome": "Records ordered by number asc as option 'Price (low to high)' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_inventoryhtml_products_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "[data-test=\"product-sort-container\"]",
+      "option": "lohi",
+      "option_label": "Price (low to high)",
+      "key": "number",
+      "direction": "asc",
+      "column_hint": "price",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "lohi",
+        "description": "Choose sort option 'Price (low to high)'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order is monotonic",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "description": "Records are ordered by price (monotonic in either direction)",
+          "expected_source": "SEMANTIC_CONVENTION"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order direction",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"asc\", \"column_hint\": \"price\"}",
+          "description": "Records ordered by number asc as option 'Price (low to high)' states",
+          "expected_source": "DERIVED_INFERENCE"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "SORTING",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-03",
+    "name": "Logout User Session Via Drawer",
+    "objective": "Verify clicking logout clears active session and navigates back to login view.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#react-burger-menu-btn",
+      "#logout_sidebar_link"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Open drawer menu; Click logout link",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-AUTH-LOGOUT-01 resolved against controls observed on this target (Capabilities evidenced: ['DRAWER_NAVIGATION', 'USER_AUTHENTICATION']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-AUTH-LOGOUT-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-AUTH-LOGOUT-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#react-burger-menu-btn",
+        "value": null,
+        "description": "Open drawer menu",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "CLICK",
+        "selector": "#logout_sidebar_link",
+        "value": null,
+        "description": "Click logout link",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Login",
+          "description": "'Login' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-A11Y-03",
+    "name": "Accessible names on /checkout-step-one.html",
+    "objective": "Interactive controls on /checkout-step-one.html expose accessible names (heuristic computation).",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /checkout-step-one.html (authenticated); Audit accessible names",
+    "expected_outcome": "",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "TS-A11Y-NAMES"
+    ],
+    "oracle_class": "ACCESSIBILITY",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/checkout-step-one.html",
+        "description": "Open observed route /checkout-step-one.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Audit accessible names",
+        "assertion": {
+          "assertion_type": "ACCESSIBILITY_VALID",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "At least 80% of interactive controls expose an accessible name",
+          "expected_source": "ACCESSIBILITY_HEURISTIC"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ACCESSIBILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-A11Y-NAMES",
+      "DC-A11Y-NAMES"
+    ]
+  },
+  {
+    "test_id": "TC-TR-03",
+    "name": "Transition: 'Checkout' on /cart.html",
+    "objective": "Verify activating 'Checkout' on /cart.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack",
+      "[data-test=\"product-sort-container\"]",
+      "[data-test=\"shopping-cart-link\"]",
+      "#checkout"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state); Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'; Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state); Activate 'Checkout'",
+    "expected_outcome": "Transition reaches /checkout-step-one.html (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-fad302df"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#checkout",
+        "value": null,
+        "description": "Activate 'Checkout'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/checkout-step-one.html",
+          "description": "Transition reaches /checkout-step-one.html (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-03",
+    "name": "Route reachable with stable landmarks: /checkout-step-one.html",
+    "objective": "Verify /checkout-step-one.html remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /checkout-step-one.html (authenticated); Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Checkout: Your Information'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_checkout-step-on_checkout_your__c1"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/checkout-step-one.html",
+        "description": "Open observed route /checkout-step-one.html (authenticated)",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Checkout: Your Information",
+          "description": "Stable heading 'Checkout: Your Information' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ROUTE_REACHABILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-03",
+    "name": "Password: empty is rejected",
+    "objective": "Boundary test of 'Password' on /: EMPTY input (empty) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#user-name",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed route /; Enter valid 'Username'; Enter empty value for 'Password' (empty); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_root_view_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "",
+      "input_class": "EMPTY",
+      "boundary": "empty",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "qa${RUN_UNIQUE}",
+        "description": "Enter valid 'Username'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "",
+        "description": "Enter empty value for 'Password' (empty)",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "FIELD_VALIDATION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-SORT-04",
+    "name": "Sort by 'Price (high to low)' orders records (number, desc)",
+    "objective": "Select 'Price (high to low)' on [data-test=\"product-sort-container\"] and verify the listed records follow that order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Choose sort option 'Price (high to low)'; Check the order is monotonic; Check the order direction",
+    "expected_outcome": "Records ordered by number desc as option 'Price (high to low)' states",
+    "expected_behavior_source": "INFERRED",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "evidence_ids": [
+      "st_inventoryhtml_products_view"
+    ],
+    "rule_ids": [
+      "TS-INVARIANT-SORT"
+    ],
+    "oracle_class": "LIST_ORDERING",
+    "derived_values": {
+      "control": "[data-test=\"product-sort-container\"]",
+      "option": "hilo",
+      "option_label": "Price (high to low)",
+      "key": "number",
+      "direction": "desc",
+      "column_hint": "price",
+      "rule_source": "monotonic order in the named key (convention); direction from label (inference)"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "hilo",
+        "description": "Choose sort option 'Price (high to low)'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order is monotonic",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "description": "Records are ordered by price (monotonic in either direction)",
+          "expected_source": "SEMANTIC_CONVENTION"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check the order direction",
+        "assertion": {
+          "assertion_type": "LIST_SORTED",
+          "target_selector": null,
+          "expected_value": "{\"key\": \"number\", \"direction\": \"desc\", \"column_hint\": \"price\"}",
+          "description": "Records ordered by number desc as option 'Price (high to low)' states",
+          "expected_source": "DERIVED_INFERENCE"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "SORTING",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-INVARIANT-SORT",
+      "DC-FN-FILTER-SORT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-04",
+    "name": "Add Product Item to Cart and Verify Badge Count",
+    "objective": "Verify clicking add-to-cart on an item increments the shopping cart badge count to 1.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Click add-to-cart on primary product item; Navigate to shopping cart page",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CART-01 resolved against controls observed on this target (Capabilities evidenced: ['CART_MANAGEMENT', 'CATALOG_BROWSING']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CART-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CART-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Click add-to-cart on primary product item",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Remove",
+          "description": "'Remove' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/cart.html",
+        "description": "Navigate to shopping cart page",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/cart",
+          "description": "URL contains /cart (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-TR-04",
+    "name": "Transition: 'View details for Sauce Labs Backpack' on /cart.html",
+    "objective": "Verify activating 'View details for Sauce Labs Backpack' on /cart.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack",
+      "[data-test=\"product-sort-container\"]",
+      "[data-test=\"shopping-cart-link\"]",
+      "#item_4_title_link"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state); Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'; Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state); Activate 'View details for Sauce Labs Backpack'",
+    "expected_outcome": "Transition reaches /inventory-item.html (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-56044ff4"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#item_4_title_link",
+        "value": null,
+        "description": "Activate 'View details for Sauce Labs Backpack'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/inventory-item.html",
+          "description": "Transition reaches /inventory-item.html (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 6,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-04",
+    "name": "Route reachable with stable landmarks: /inventory-item.html",
+    "objective": "Verify /inventory-item.html remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /inventory-item.html (authenticated)",
+    "expected_outcome": "HTTP status < 400",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_inventory-itemht_view_c1_id__n",
+      "st_inventory-itemht_view_view_id__n"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory-item.html",
+        "description": "Open observed route /inventory-item.html (authenticated)",
+        "assertion": {
+          "assertion_type": "STATUS_CODE",
+          "target_selector": null,
+          "expected_value": "<400",
+          "description": "Route responds without HTTP error (observed 200)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ROUTE_REACHABILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-FIELD-04",
+    "name": "Password: whitespace only is rejected",
+    "objective": "Boundary test of 'Password' on /: WHITESPACE input (whitespace only) must be rejected per REQUIREMENT.",
+    "page_category": "LOGIN",
+    "relevant_elements": [
+      "#user-name",
+      "#password",
+      "#login-button"
+    ],
+    "action_description": "Open observed route /; Enter valid 'Username'; Enter whitespace value for 'Password' (whitespace only); Disable client-side validation to exercise the server-side rule stated by the requirement; Submit the form",
+    "expected_outcome": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required)",
+    "expected_behavior_source": "REQUIREMENT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [],
+    "requires_test_account": false,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-EP-BVA"
+    ],
+    "evidence_ids": [
+      "st_root_view_view"
+    ],
+    "rule_ids": [
+      "TS-EP-BVA"
+    ],
+    "oracle_class": "FIELD_CONSTRAINT",
+    "derived_values": {
+      "field_selector": "#password",
+      "field_label": "Password",
+      "input_value": "   ",
+      "input_class": "WHITESPACE",
+      "boundary": "whitespace only",
+      "constraint_kind": "REQUIRED",
+      "constraint_value": null,
+      "constraint_source": "REQUIREMENT",
+      "constraint_detail": "Password is required",
+      "expected": "REJECT",
+      "oracle": "SUBMISSION_FEEDBACK",
+      "oracle_expected": "rejected",
+      "confirmed_rule": true
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/",
+        "description": "Open observed route /",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "FILL",
+        "selector": "#user-name",
+        "value": "qa${RUN_UNIQUE}",
+        "description": "Enter valid 'Username'",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "FILL",
+        "selector": "#password",
+        "value": "   ",
+        "description": "Enter whitespace value for 'Password' (whitespace only)",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "EVAL_JS",
+        "selector": null,
+        "value": "(() => { const el = document.querySelector(\"#password\"); if (el && el.form) el.form.noValidate = true; })()",
+        "description": "Disable client-side validation to exercise the server-side rule stated by the requirement",
+        "assertion": null,
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#login-button",
+        "value": null,
+        "description": "Submit the form",
+        "assertion": {
+          "assertion_type": "VALIDATION_FEEDBACK_SHOWN",
+          "target_selector": "#password",
+          "expected_value": "[\"blank\", \"empty\", \"enter\", \"missing\", \"password\", \"provide\", \"required\"]",
+          "description": "Submission rejected with feedback attributable to this rule (REQUIREMENT: Password is required)",
+          "expected_source": "REQUIREMENT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "FIELD_VALIDATION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-EP-BVA",
+      "DC-VAL-REQUIRED",
+      "DC-VAL-LENGTH",
+      "DC-VAL-RANGE",
+      "DC-VAL-FORMAT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-05",
+    "name": "Remove Item From Shopping Cart",
+    "objective": "Verify clicking remove inside cart drops item from list and clears badge.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack",
+      "[data-test=\"product-sort-container\"]",
+      "[data-test=\"shopping-cart-link\"]",
+      "#remove-sauce-labs-backpack"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path); Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'; Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path); Click remove item button",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CART-02 resolved against controls observed on this target (Capabilities evidenced: ['CART_MANAGEMENT']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CART-02"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CART-02"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#remove-sauce-labs-backpack",
+        "value": null,
+        "description": "Click remove item button",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Continue Shopping",
+          "description": "'Continue Shopping' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-TR-05",
+    "name": "Transition: 'Cart, 1 items' on /inventory-item.html",
+    "objective": "Verify activating 'Cart, 1 items' on /inventory-item.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart",
+      "[data-test=\"shopping-cart-link\"]"
+    ],
+    "action_description": "Open observed route /inventory-item.html (authenticated); Prerequisite: activate '#add-to-cart' (observed path to the source state); Activate 'Cart, 1 items'",
+    "expected_outcome": "Transition reaches /cart.html (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-846684f2"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory-item.html?id=3",
+        "description": "Open observed route /inventory-item.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart",
+        "value": null,
+        "description": "Prerequisite: activate '#add-to-cart' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "CLICK",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "description": "Activate 'Cart, 1 items'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/cart.html",
+          "description": "Transition reaches /cart.html (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-ROUTE-05",
+    "name": "Route reachable with stable landmarks: /inventory.html",
+    "objective": "Verify /inventory.html remains reachable and renders the landmarks observed during investigation.",
+    "page_category": "GENERAL",
+    "relevant_elements": [],
+    "action_description": "Open observed route /inventory.html (authenticated); Observe rendered landmarks",
+    "expected_outcome": "HTTP status < 400 and heading 'Products'",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "LOW",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "evidence_ids": [
+      "st_inventoryhtml_products_view",
+      "st_inventoryhtml_products_c1",
+      "st_inventoryhtml_products_c1_opt_za"
+    ],
+    "rule_ids": [
+      "TS-ROUTE-REGRESSION"
+    ],
+    "oracle_class": "OBSERVED_STATE",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Observe rendered landmarks",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products",
+          "description": "Stable heading 'Products' observed on every visit",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "ROUTE_REACHABILITY",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-ROUTE-REGRESSION",
+      "DC-FN-NAVIGATION",
+      "DC-API-ERRORS",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-06",
+    "name": "Catalog Sorting Name (Z to A)",
+    "objective": "Verify selecting 'za' reorders the catalog items in reverse alphabetical order.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Select Z to A sorting option",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CATALOG-01 resolved against controls observed on this target (Capabilities evidenced: ['CATALOG_BROWSING', 'PAGINATION_SORTING']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Select Z to A sorting option",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products",
+          "description": "'Products' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-TR-06",
+    "name": "Transition: 'Remove' on /cart.html",
+    "objective": "Verify activating 'Remove' on /cart.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart-sauce-labs-backpack",
+      "[data-test=\"product-sort-container\"]",
+      "[data-test=\"shopping-cart-link\"]",
+      "#remove-sauce-labs-backpack"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state); Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'; Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state); Activate 'Remove'",
+    "expected_outcome": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-ffc0824a"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart-sauce-labs-backpack",
+        "value": null,
+        "description": "Prerequisite: activate '#add-to-cart-sauce-labs-backpack' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "za",
+        "description": "Prerequisite: choose 'za' on '[data-test=\"product-sort-container\"]'",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 4,
+        "action": "CLICK",
+        "selector": "[data-test=\"shopping-cart-link\"]",
+        "value": null,
+        "description": "Prerequisite: activate '[data-test=\"shopping-cart-link\"]' (observed path to the source state)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 5,
+        "action": "CLICK",
+        "selector": "#remove-sauce-labs-backpack",
+        "value": null,
+        "description": "Activate 'Remove'",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-07",
+    "name": "Catalog Sorting Price (Low to High)",
+    "objective": "Verify selecting 'lohi' reorders catalog items from lowest price to highest.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "[data-test=\"product-sort-container\"]"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Select Low to High price sorting",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-CATALOG-01 resolved against controls observed on this target (Capabilities evidenced: ['CATALOG_BROWSING', 'PAGINATION_SORTING']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-CATALOG-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "SELECT",
+        "selector": "[data-test=\"product-sort-container\"]",
+        "value": "lohi",
+        "description": "Select Low to High price sorting",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "Products",
+          "description": "'Products' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-TR-07",
+    "name": "Transition: 'View details for Test.allTheThings() T-S' on /inventory.html",
+    "objective": "Verify activating 'View details for Test.allTheThings() T-Shirt (Red)' on /inventory.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#item_3_title_link"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Activate 'View details for Test.allTheThings() T-Shirt (Red)'",
+    "expected_outcome": "Transition reaches /inventory-item.html (observed)",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-d2d2001f"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#item_3_title_link",
+        "value": null,
+        "description": "Activate 'View details for Test.allTheThings() T-Shirt (Red)'",
+        "assertion": {
+          "assertion_type": "URL_CONTAINS",
+          "target_selector": null,
+          "expected_value": "/inventory-item.html",
+          "description": "Transition reaches /inventory-item.html (observed)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      },
+      {
+        "step_number": 3,
+        "action": "OBSERVE_STATE",
+        "selector": null,
+        "value": null,
+        "description": "Check rendered text for anomalies",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT",
+      "TS-INVARIANT",
+      "DC-STATE-DERIVED"
+    ]
+  },
+  {
+    "test_id": "TC-PAT-08",
+    "name": "Open Navigation Drawer and Verify Sidebar Items",
+    "objective": "Verify clicking #react-burger-menu-btn opens the menu drawer.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#react-burger-menu-btn"
+    ],
+    "action_description": "Open observed route /inventory.html (authenticated); Click hamburger menu button",
+    "expected_outcome": "",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Knowledge pattern PAT-ECOM-DRAWER-01 resolved against controls observed on this target (Capabilities evidenced: ['DRAWER_NAVIGATION']; Primary archetype ECOMMERCE match).",
+    "confidence": 0.95,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [
+      "PAT-ECOM-DRAWER-01"
+    ],
+    "evidence_ids": [],
+    "rule_ids": [
+      "PAT-ECOM-DRAWER-01"
+    ],
+    "oracle_class": "DOMAIN_PATTERN",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory.html",
+        "description": "Open observed route /inventory.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#react-burger-menu-btn",
+        "value": null,
+        "description": "Click hamburger menu button",
+        "assertion": {
+          "assertion_type": "TEXT_VISIBLE",
+          "target_selector": null,
+          "expected_value": "All Items",
+          "description": "'All Items' is shown (observed on this target)",
+          "expected_source": "OBSERVED"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "DOMAIN_TEMPLATE",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-DOMAIN-TEMPLATES",
+      "DC-FN-MULTISTEP"
+    ]
+  },
+  {
+    "test_id": "TC-TR-08",
+    "name": "Transition: 'Add to cart' on /inventory-item.html",
+    "objective": "Verify activating 'Add to cart' on /inventory-item.html produces the observed state change.",
+    "page_category": "GENERAL",
+    "relevant_elements": [
+      "#add-to-cart"
+    ],
+    "action_description": "Open observed route /inventory-item.html (authenticated); Activate 'Add to cart'",
+    "expected_outcome": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+    "expected_behavior_source": "OBSERVED_INVARIANT",
+    "evidence_to_collect": [],
+    "priority": "MEDIUM",
+    "preconditions": [
+      "Authorized credentials for this origin"
+    ],
+    "requires_test_account": true,
+    "safe_for_future_automation": true,
+    "selection_reason": "Derived from evidence observed in investigation bench-saucedemo-public-r1-5d7bea",
+    "confidence": 0.9,
+    "status": "PROPOSED",
+    "applied_pattern_ids": [],
+    "evidence_ids": [
+      "ev-ddea08ff"
+    ],
+    "rule_ids": [],
+    "oracle_class": "STATE_TRANSITION",
+    "derived_values": null,
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "NAVIGATE",
+        "selector": null,
+        "value": "https://www.saucedemo.com/inventory-item.html",
+        "description": "Open observed route /inventory-item.html (authenticated)",
+        "assertion": null,
+        "setup": true,
+        "requires_login": true,
+        "login_url": "https://www.saucedemo.com/"
+      },
+      {
+        "step_number": 2,
+        "action": "CLICK",
+        "selector": "#add-to-cart",
+        "value": null,
+        "description": "Activate 'Add to cart'",
+        "assertion": {
+          "assertion_type": "NO_TEXT_ANOMALY",
+          "target_selector": null,
+          "expected_value": null,
+          "description": "No NaN/undefined/[object Object]/tracebacks rendered after the action",
+          "expected_source": "GENERIC_INVARIANT"
+        },
+        "setup": false,
+        "requires_login": false,
+        "login_url": null
+      }
+    ],
+    "spec": null,
+    "invalid_reason": null,
+    "investigation_id": "bench-saucedemo-public-r1-5d7bea",
+    "target_origin": "https://www.saucedemo.com",
+    "test_kind": "STATE_TRANSITION",
+    "spec_version": "2.0",
+    "knowledge_ids": [
+      "TS-STATE-TRANSITION",
+      "DC-FN-CONTROL-EFFECT"
+    ]
+  }
+]

@@ -63,8 +63,12 @@ def evaluate_sorted(data, spec):
     source = f"column '{spec.get('column_hint')}'" if values is not None else "record text"
     if values is None and spec.get("any_direction"):
         # The convention-level check needs an unambiguous key: a named column, or exactly one amount per record.
-        values = _single_amounts(data) if key == "number" else None
-        source = "the single amount in each record"
+        if key == "number":
+            values, source = _single_amounts(data), "the single amount in each record"
+        else:
+            titles = [str(v).strip() for v in (data or {}).get("values") or []]
+            ok = len(titles) >= 2 and all(titles) and len(set(t.casefold() for t in titles)) == len(titles)
+            values, source = (titles if ok else None), "each record's title"
         if values is None:
             return "not_evaluable", None, ("the sort key could not be located unambiguously in the records "
                                            "(no matching column header; not exactly one amount per record)")

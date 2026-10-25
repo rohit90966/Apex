@@ -1,0 +1,3173 @@
+{
+  "execution_id": "exec-f1064d4bd844",
+  "target_url": "http://127.0.0.1:8201/",
+  "results": [
+    {
+      "test_id": "TC-FIELD-01",
+      "test_name": "Email: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.037,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Email' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.011,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.086,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "valueMissing",
+          "assertion_actual": "validity=valueMissing; message='Please fill out this field.'"
+        }
+      ],
+      "duration_seconds": 1.457,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-01_1792891082.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:02",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_FIELD_VALIDITY": "validity=valueMissing; message='Please fill out this field.'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTH_NOT_REQUIRED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": false,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SRV-01",
+      "test_name": "Email: empty is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.036,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.013,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.162,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"email\", \"empty\", \"enter\", \"login\", \"missing\", \"provide\", \"required\"]",
+          "assertion_actual": "field invalid: Please fill out this field.; message: Email and password are required."
+        }
+      ],
+      "duration_seconds": 1.312,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-01_1792891083.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:04",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "field invalid: Please fill out this field.; message: Email and password are required.",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTH_NOT_REQUIRED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": false,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-XF-01",
+      "test_name": "Confirm password must match Password",
+      "status": "FAILED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.801,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full name'",
+          "status": "PASSED",
+          "duration_seconds": 0.028,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.01,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.036,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter a value in 'Confirm password' that differs from 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.001,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "FAILED",
+          "duration_seconds": 0.079,
+          "screenshot_path": "step_TC-XF-01_8_1792891085.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"confirm\", \"identical\", \"match\", \"password\", \"same\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.012,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 8,
+      "final_screenshot": "exec_TC-XF-01_1792891085.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Account created \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a hre",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:06",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": true,
+            "session_reused": false,
+            "reason": "login form dismissed; logout control present"
+          }
+        ],
+        "test_data_namespace": "3ff0e1c6ec442"
+      }
+    },
+    {
+      "test_id": "TC-REG-01",
+      "test_name": "Regression: Text Anomaly: 'NaN'",
+      "status": "FAILED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate #price-breakdown-link",
+          "status": "FAILED",
+          "duration_seconds": 0.149,
+          "screenshot_path": "step_TC-REG-01_2_1792891086.png",
+          "error_message": "Expected text 'NaN' to NOT be visible",
+          "assertion_expected": "NaN",
+          "assertion_actual": "Text 'NaN' is visible"
+        }
+      ],
+      "duration_seconds": 1.406,
+      "failure_reason": "Expected text 'NaN' to NOT be visible",
+      "failure_step": 2,
+      "final_screenshot": "exec_TC-REG-01_1792891087.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:07",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_TEXT_NOT_VISIBLE_failed": {
+          "error": "Expected text 'NaN' to NOT be visible",
+          "actual": "Text 'NaN' is visible"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-REC-01",
+      "test_name": "'Cancel' on a record of /bookings changes that record",
+      "status": "FAILED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /bookings (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.032,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Cancel' on one record",
+          "status": "FAILED",
+          "duration_seconds": 0.158,
+          "screenshot_path": "step_TC-REC-01_2_1792891088.png",
+          "error_message": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "assertion_expected": null,
+          "assertion_actual": "Harbor Jazz Night Dana Demo 2 Confirmed Cancel"
+        }
+      ],
+      "duration_seconds": 1.703,
+      "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+      "failure_step": 2,
+      "final_screenshot": "exec_TC-REC-01_1792891088.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:09",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_RECORD_CHANGED_failed": {
+          "error": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "actual": "Harbor Jazz Night Dana Demo 2 Confirmed Cancel"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FILTER-01",
+      "test_name": "Filter '#category' = 'Music' shows only matching records",
+      "status": "FAILED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'Music'",
+          "status": "PASSED",
+          "duration_seconds": 0.371,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "FAILED",
+          "duration_seconds": 0.136,
+          "screenshot_path": "step_TC-FILTER-01_3_1792891090.png",
+          "error_message": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "assertion_expected": "{\"value\": \"Music\", \"domain\": [\"Music\", \"Workshop\", \"Sports\", \"Conference\"]}",
+          "assertion_actual": "2/4 records have a different value"
+        }
+      ],
+      "duration_seconds": 2.816,
+      "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "failure_step": 3,
+      "final_screenshot": "exec_TC-FILTER-01_1792891090.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:12",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN_failed": {
+          "error": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "actual": "2/4 records have a different value"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-01",
+      "test_name": "Sort by 'Name: A to Z' orders records (text, asc)",
+      "status": "INCONCLUSIVE",
+      "total_steps": 5,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.096,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Name: A to Z'",
+          "status": "PASSED",
+          "duration_seconds": 0.365,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply sort",
+          "status": "PASSED",
+          "duration_seconds": 0.099,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "INCONCLUSIVE",
+          "duration_seconds": 0.011,
+          "screenshot_path": "step_TC-SORT-01_4_1792891093.png",
+          "error_message": "NOT_EVALUABLE: the sort key could not be located unambiguously in the records (no matching column header; not exactly one amount per record)",
+          "assertion_expected": "{\"key\": \"text\", \"any_direction\": true, \"column_hint\": \"name\"}",
+          "assertion_actual": null
+        }
+      ],
+      "duration_seconds": 2.425,
+      "failure_reason": "NOT_EVALUABLE: the sort key could not be located unambiguously in the records (no matching column header; not exactly one amount per record)",
+      "failure_step": 4,
+      "final_screenshot": "exec_TC-SORT-01_1792891093.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:14",
+      "assertions_evaluated": 0,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 0,
+      "evidence_retained": {
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-A11Y-01",
+      "test_name": "Accessible names on /",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route / (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.043,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 8 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', a='Harbor Jazz Night')"
+        }
+      ],
+      "duration_seconds": 2.386,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-01_1792891095.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Home \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/events\"",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:16",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 8 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', a='Harbor Jazz Night')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-01",
+      "test_name": "Transition: 'Harbor Events' on /bookings",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /bookings (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.093,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Harbor Events'",
+          "status": "PASSED",
+          "duration_seconds": 0.206,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/",
+          "assertion_actual": "http://127.0.0.1:8201/"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.012,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.368,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-01_1792891098.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Home \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/events\"",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:19",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8201/",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-01",
+      "test_name": "Route reachable with stable landmarks: /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route / (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.042,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Welcome to Harbor Events",
+          "assertion_actual": "Found text 'Welcome to Harbor Events'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.003,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-01_1792891100.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Home \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/events\"",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:21",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Welcome to Harbor Events'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-05",
+      "test_name": "Full name: maxlength-1 (59) is accepted",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.098,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid value for 'Full name' (maxlength-1 (59))",
+          "status": "PASSED",
+          "duration_seconds": 0.054,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "==59",
+          "assertion_actual": "length=59"
+        }
+      ],
+      "duration_seconds": 2.771,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-05_1792891102.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Register \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/eve",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:23",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ELEMENT_VALUE_LENGTH": "length=59",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SRV-04",
+      "test_name": "Email: empty is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.105,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full name'",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.014,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm password'",
+          "status": "PASSED",
+          "duration_seconds": 0.025,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.205,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter empty value for 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.024,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.116,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"email\", \"empty\", \"enter\", \"missing\", \"provide\", \"required\"]",
+          "assertion_actual": "field invalid: Please fill out this field.; message: Email is required."
+        }
+      ],
+      "duration_seconds": 2.619,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-04_1792891105.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Register \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/eve",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:26",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN": "field invalid: Please fill out this field.; message: Email is required.",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FILTER-02",
+      "test_name": "Filter '#category' = 'Workshop' shows only matching records",
+      "status": "FAILED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.055,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose filter option 'Workshop'",
+          "status": "PASSED",
+          "duration_seconds": 0.365,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply filter",
+          "status": "FAILED",
+          "duration_seconds": 0.163,
+          "screenshot_path": "step_TC-FILTER-02_3_1792891107.png",
+          "error_message": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "assertion_expected": "{\"value\": \"Workshop\", \"domain\": [\"Music\", \"Workshop\", \"Sports\", \"Conference\"]}",
+          "assertion_actual": "2/4 records have a different value"
+        }
+      ],
+      "duration_seconds": 2.729,
+      "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "failure_step": 3,
+      "final_screenshot": "exec_TC-FILTER-02_1792891108.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:29",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_3_LIST_ALL_CONTAIN_failed": {
+          "error": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "actual": "2/4 records have a different value"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-02",
+      "test_name": "Sort by 'Price: Low to High' orders records (number, asc)",
+      "status": "FAILED",
+      "total_steps": 5,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.047,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price: Low to High'",
+          "status": "PASSED",
+          "duration_seconds": 0.361,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply sort",
+          "status": "PASSED",
+          "duration_seconds": 0.156,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "FAILED",
+          "duration_seconds": 0.015,
+          "screenshot_path": "step_TC-SORT-02_4_1792891110.png",
+          "error_message": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "assertion_expected": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "assertion_actual": "120.0, 18.0, 250.0, 45.0, 75.0, 9.5"
+        }
+      ],
+      "duration_seconds": 2.272,
+      "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+      "failure_step": 4,
+      "final_screenshot": "exec_TC-SORT-02_1792891110.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:31",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_LIST_SORTED_failed": {
+          "error": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "actual": "120.0, 18.0, 250.0, 45.0, 75.0, 9.5"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-A11Y-02",
+      "test_name": "Accessible names on /bookings",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /bookings (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.068,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.004,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 6 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', cancel-booking-1='Cancel')"
+        }
+      ],
+      "duration_seconds": 2.422,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-02_1792891112.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:34",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 6 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', cancel-booking-1='Cancel')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-02",
+      "test_name": "Transition: 'Harbor Jazz Night' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route / (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.041,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Harbor Jazz Night'",
+          "status": "PASSED",
+          "duration_seconds": 0.252,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Harbor Jazz Night",
+          "assertion_actual": "Found text 'Harbor Jazz Night'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.162,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-02_1792891115.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:36",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Harbor Jazz Night'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-02",
+      "test_name": "Route reachable with stable landmarks: /bookings",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /bookings (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.05,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.031,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "My Bookings",
+          "assertion_actual": "Found text 'My Bookings'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.406,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-02_1792891117.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:38",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'My Bookings'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-21",
+      "test_name": "Attendee name: maxlength-1 (59) is accepted",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid value for 'Attendee name' (maxlength-1 (59))",
+          "status": "PASSED",
+          "duration_seconds": 0.06,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "==59",
+          "assertion_actual": "length=59"
+        }
+      ],
+      "duration_seconds": 2.312,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-21_1792891119.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:40",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ELEMENT_VALUE_LENGTH": "length=59",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SRV-10",
+      "test_name": "Tickets: empty is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.047,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Attendee name'",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Tickets'",
+          "status": "PASSED",
+          "duration_seconds": 0.099,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.353,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"blank\", \"empty\", \"enter\", \"missing\", \"provide\", \"quantity\", \"required\", \"tickets\"]",
+          "assertion_actual": "field invalid: Please fill out this field.; message: Enter the number of tickets."
+        }
+      ],
+      "duration_seconds": 2.427,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-10_1792891122.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:43",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "field invalid: Please fill out this field.; message: Enter the number of tickets.",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SORT-03",
+      "test_name": "Sort by 'Price: High to Low' orders records (number, desc)",
+      "status": "FAILED",
+      "total_steps": 5,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.056,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "SELECT",
+          "description": "Choose sort option 'Price: High to Low'",
+          "status": "PASSED",
+          "duration_seconds": 0.369,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "CLICK",
+          "description": "Apply sort",
+          "status": "PASSED",
+          "duration_seconds": 0.135,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "OBSERVE_STATE",
+          "description": "Check the order is monotonic",
+          "status": "FAILED",
+          "duration_seconds": 0.008,
+          "screenshot_path": "step_TC-SORT-03_4_1792891124.png",
+          "error_message": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "assertion_expected": "{\"key\": \"number\", \"any_direction\": true, \"column_hint\": \"price\"}",
+          "assertion_actual": "9.5, 75.0, 45.0, 250.0, 18.0, 120.0"
+        }
+      ],
+      "duration_seconds": 2.688,
+      "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+      "failure_step": 4,
+      "final_screenshot": "exec_TC-SORT-03_1792891124.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:45",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_LIST_SORTED_failed": {
+          "error": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "actual": "9.5, 75.0, 45.0, 250.0, 18.0, 120.0"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-A11Y-03",
+      "test_name": "Accessible names on /events",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.039,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Audit accessible names",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "All 13 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', category='Category')"
+        }
+      ],
+      "duration_seconds": 2.455,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-A11Y-03_1792891127.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:48",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ACCESSIBILITY_VALID": "All 13 interactive controls verified with computed accessible names (a='Harbor Events', nav-events='Events', nav-bookings='My Bookings', nav-logout='Log out', category='Category')",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-03",
+      "test_name": "Transition: 'Show price breakdown' on /events/1",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Show price breakdown'",
+          "status": "PASSED",
+          "duration_seconds": 0.282,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Price breakdown",
+          "assertion_actual": "Found text 'Price breakdown'"
+        }
+      ],
+      "duration_seconds": 2.84,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-03_1792891129.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:48:51",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Price breakdown'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-03",
+      "test_name": "Route reachable with stable landmarks: /events",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.052,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Events",
+          "assertion_actual": "Found text 'Events'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.322,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-03_1792891132.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:48:53",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Events'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-02",
+      "test_name": "Email: missing @ is rejected",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.044,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter format_invalid value for 'Email' (missing @)",
+          "status": "PASSED",
+          "duration_seconds": 0.064,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "typeMismatch",
+          "assertion_actual": "validity=typeMismatch; message='Please include an '@' in the email address. 'qa.tester.b39be6aee07f9.example.com'"
+        }
+      ],
+      "duration_seconds": 2.809,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-02_1792891134.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:56",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_FIELD_VALIDITY": "validity=typeMismatch; message='Please include an '@' in the email address. 'qa.tester.b39be6aee07f9.example.com'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "b39be6aee07f9"
+      }
+    },
+    {
+      "test_id": "TC-SRV-02",
+      "test_name": "Email: format invalid is rejected by the application (client validation disabled)",
+      "status": "PASSED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.056,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter format_invalid value for 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.02,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "PASSED",
+          "duration_seconds": 0.38,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "[\"email\", \"login\"]",
+          "assertion_actual": "field invalid: Please include an '@' in the email address. 'qa.tester.0d1aafd81b233.example.com' is missing an '@'.; message: Invalid email or password."
+        }
+      ],
+      "duration_seconds": 2.295,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-SRV-02_1792891137.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:48:58",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN": "field invalid: Please include an '@' in the email address. 'qa.tester.0d1aafd81b233.example.com' is missing an '@'.; message: Invalid email or password.",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "0d1aafd81b233"
+      }
+    },
+    {
+      "test_id": "TC-TR-04",
+      "test_name": "Transition: 'Intro to Pottery' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route / (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.04,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Intro to Pottery'",
+          "status": "PASSED",
+          "duration_seconds": 0.284,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Intro to Pottery",
+          "assertion_actual": "Found text 'Intro to Pottery'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.008,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.207,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-04_1792891139.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Intro to Pottery \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a hr",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:49:00",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_TEXT_VISIBLE": "Found text 'Intro to Pottery'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-04",
+      "test_name": "Route reachable with stable landmarks: /login",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.045,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.034,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Log in",
+          "assertion_actual": "Found text 'Log in'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.732,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-04_1792891142.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:49:03",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Log in'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-06",
+      "test_name": "Full name: maxlength (60) is accepted",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid value for 'Full name' (maxlength (60))",
+          "status": "PASSED",
+          "duration_seconds": 0.058,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "==60",
+          "assertion_actual": "length=60"
+        }
+      ],
+      "duration_seconds": 2.5,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-06_1792891144.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Register \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/eve",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:49:06",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ELEMENT_VALUE_LENGTH": "length=60",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SRV-05",
+      "test_name": "Email: format invalid is rejected by the application (client validation disabled)",
+      "status": "FAILED",
+      "total_steps": 8,
+      "steps_completed": 8,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.069,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Full name'",
+          "status": "PASSED",
+          "duration_seconds": 0.063,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter valid 'Password'",
+          "status": "PASSED",
+          "duration_seconds": 0.017,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "FILL",
+          "description": "Enter valid 'Confirm password'",
+          "status": "PASSED",
+          "duration_seconds": 0.029,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Tick required 'I accept the Terms of Service'",
+          "status": "PASSED",
+          "duration_seconds": 0.057,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 6,
+          "action": "FILL",
+          "description": "Enter format_invalid value for 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.021,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 7,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 8,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "FAILED",
+          "duration_seconds": 0.174,
+          "screenshot_path": "step_TC-SRV-05_8_1792891147.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"email\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.654,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 8,
+      "final_screenshot": "exec_TC-SRV-05_1792891147.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Account created \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a hre",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:49:08",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_8_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "dd631283587a1"
+      }
+    },
+    {
+      "test_id": "TC-TR-05",
+      "test_name": "Transition: 'Harbor Events' on /events/1",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.051,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Harbor Events'",
+          "status": "PASSED",
+          "duration_seconds": 0.144,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/",
+          "assertion_actual": "http://127.0.0.1:8201/"
+        }
+      ],
+      "duration_seconds": 3.171,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-05_1792891150.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Home \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/events\"",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:49:11",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8201/",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-ROUTE-05",
+      "test_name": "Route reachable with stable landmarks: /register",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /register (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.048,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "<400",
+          "assertion_actual": "200"
+        },
+        {
+          "step_number": 2,
+          "action": "OBSERVE_STATE",
+          "description": "Observe rendered landmarks",
+          "status": "PASSED",
+          "duration_seconds": 0.03,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "Create an account",
+          "assertion_actual": "Found text 'Create an account'"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.002,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 1.979,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-ROUTE-05_1792891152.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Register \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/eve",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:49:13",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "setup_checks": [
+          {
+            "step": 1,
+            "passed": true,
+            "actual": "200"
+          }
+        ],
+        "step_2_TEXT_VISIBLE": "Found text 'Create an account'",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-22",
+      "test_name": "Attendee name: maxlength (60) is accepted",
+      "status": "PASSED",
+      "total_steps": 2,
+      "steps_completed": 2,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.053,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid value for 'Attendee name' (maxlength (60))",
+          "status": "PASSED",
+          "duration_seconds": 0.059,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "==60",
+          "assertion_actual": "length=60"
+        }
+      ],
+      "duration_seconds": 2.643,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-22_1792891154.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_logs": [],
+      "timestamp": "2026-10-25 06:49:16",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_2_ELEMENT_VALUE_LENGTH": "length=60",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-SRV-11",
+      "test_name": "Tickets: below min is rejected by the application (client validation disabled)",
+      "status": "FAILED",
+      "total_steps": 5,
+      "steps_completed": 5,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /events/1 (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.044,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Attendee name'",
+          "status": "PASSED",
+          "duration_seconds": 0.06,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter below_min value for 'Tickets'",
+          "status": "PASSED",
+          "duration_seconds": 0.018,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "EVAL_JS",
+          "description": "Disable client-side validation so the submission reaches the application (controlled probe)",
+          "status": "PASSED",
+          "duration_seconds": 0.003,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 5,
+          "action": "CLICK",
+          "description": "Submit the form to the application",
+          "status": "FAILED",
+          "duration_seconds": 0.171,
+          "screenshot_path": "step_TC-SRV-11_5_1792891157.png",
+          "error_message": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "assertion_expected": "[\"1\", \"between\", \"greater\", \"least\", \"minimum\", \"quantity\", \"range\", \"tickets\"]",
+          "assertion_actual": "no validation feedback visible"
+        }
+      ],
+      "duration_seconds": 2.24,
+      "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "failure_step": 5,
+      "final_screenshot": "exec_TC-SRV-11_1792891157.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:49:18",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 0,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_5_VALIDATION_FEEDBACK_SHOWN_failed": {
+          "error": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "actual": "no validation feedback visible"
+        },
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-TR-06",
+      "test_name": "Transition: 'Browse all events' on /",
+      "status": "PASSED",
+      "total_steps": 3,
+      "steps_completed": 3,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route / (authenticated)",
+          "status": "PASSED",
+          "duration_seconds": 0.039,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "CLICK",
+          "description": "Activate 'Browse all events'",
+          "status": "PASSED",
+          "duration_seconds": 0.202,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "/events",
+          "assertion_actual": "http://127.0.0.1:8201/events"
+        },
+        {
+          "step_number": 3,
+          "action": "OBSERVE_STATE",
+          "description": "Check rendered text for anomalies",
+          "status": "PASSED",
+          "duration_seconds": 0.005,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": "no rendering anomalies"
+        }
+      ],
+      "duration_seconds": 2.303,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-TR-06_1792891159.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "timestamp": "2026-10-25 06:49:21",
+      "assertions_evaluated": 2,
+      "assertions_satisfied": 2,
+      "meaningful_assertions_evaluated": 2,
+      "evidence_retained": {
+        "step_2_URL_CONTAINS": "http://127.0.0.1:8201/events",
+        "step_3_NO_TEXT_ANOMALY": "no rendering anomalies",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "TC-FIELD-03",
+      "test_name": "Password: empty is rejected",
+      "status": "PASSED",
+      "total_steps": 4,
+      "steps_completed": 4,
+      "step_results": [
+        {
+          "step_number": 1,
+          "action": "NAVIGATE",
+          "description": "Open observed route /login",
+          "status": "PASSED",
+          "duration_seconds": 0.044,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 2,
+          "action": "FILL",
+          "description": "Enter valid 'Email'",
+          "status": "PASSED",
+          "duration_seconds": 0.058,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 3,
+          "action": "FILL",
+          "description": "Enter empty value for 'Password' (empty)",
+          "status": "PASSED",
+          "duration_seconds": 0.017,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": null,
+          "assertion_actual": null
+        },
+        {
+          "step_number": 4,
+          "action": "CLICK",
+          "description": "Submit the form",
+          "status": "PASSED",
+          "duration_seconds": 0.399,
+          "screenshot_path": null,
+          "error_message": null,
+          "assertion_expected": "valueMissing",
+          "assertion_actual": "validity=valueMissing; message='Please fill out this field.'"
+        }
+      ],
+      "duration_seconds": 2.258,
+      "failure_reason": null,
+      "failure_step": null,
+      "final_screenshot": "exec_TC-FIELD-03_1792891162.png",
+      "dom_snapshot_snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Log in \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_logs": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "timestamp": "2026-10-25 06:49:23",
+      "assertions_evaluated": 1,
+      "assertions_satisfied": 1,
+      "meaningful_assertions_evaluated": 1,
+      "evidence_retained": {
+        "step_4_FIELD_VALIDITY": "validity=valueMissing; message='Please fill out this field.'",
+        "auth": [
+          {
+            "step": 1,
+            "state": "AUTHENTICATED",
+            "profile": "TEST",
+            "login_performed": false,
+            "session_reused": true,
+            "reason": "page reached"
+          }
+        ],
+        "test_data_namespace": "08b21a9d7946f"
+      }
+    }
+  ],
+  "bug_reports": [
+    {
+      "bug_id": "BUG--XF-01",
+      "title": "[LIKELY] Confirm password must match Password: LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-XF-01",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Confirm password must match Password' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /register (authenticated)",
+        "3. Enter valid 'Full name'",
+        "4. Enter valid 'Email'",
+        "5. Enter valid 'Password'",
+        "6. Tick required 'I accept the Terms of Service'",
+        "7. Enter a value in 'Confirm password' that differs from 'Password'",
+        "8. Disable client-side validation so the submission reaches the application (controlled probe)",
+        "9. Submit the form"
+      ],
+      "expected_behavior": "Mismatch rejected with feedback about the confirmation",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-XF-01_1792891085.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Account created \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a hre",
+      "console_errors": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "3ff0e1c6ec442",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:06"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "7bd2e2274389c",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:25",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "bd4326de6f530",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:28",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-REG-01",
+      "title": "[GENERAL] Regression: Text Anomaly: 'NaN': VERIFIED_PRODUCT_DEFECT",
+      "severity": "LOW",
+      "verification_status": "CONFIRMED_REPRODUCIBLE",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-REG-01",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Verified product defect in 'Regression: Text Anomaly: 'NaN'' (step 2). Actual behavior deviated from expected specification: Expected text 'NaN' to NOT be visible",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events/1 (authenticated)",
+        "3. Activate #price-breakdown-link"
+      ],
+      "expected_behavior": "",
+      "actual_behavior": "Expected text 'NaN' to NOT be visible",
+      "evidence_screenshot": "exec_TC-REG-01_1792891087.png",
+      "reproduction_trace": "Initial: Expected text 'NaN' to NOT be visible; Classification: VERIFIED_PRODUCT_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Harbor Jazz Night \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a h",
+      "console_errors": [],
+      "suspected_cause": "Password confirmation mismatch: Server accepted mismatched passwords.",
+      "suggested_fix": "Add password equality check in backend registration handler.",
+      "classification": "CONFIRMED_DEFECT",
+      "expected_source": "OBSERVED",
+      "verdict_rationale": "Reproduced consistently: 3/3 runs failed against a OBSERVED expectation",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Expected text 'NaN' to NOT be visible",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:07"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Expected text 'NaN' to NOT be visible",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:30",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Expected text 'NaN' to NOT be visible",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:33",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-REC-01",
+      "title": "[LIKELY] 'Cancel' on a record of /bookings changes that record: LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-REC-01",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test ''Cancel' on a record of /bookings changes that record' failed: Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /bookings (authenticated)",
+        "3. Activate 'Cancel' on one record"
+      ],
+      "expected_behavior": "The record is removed or its content changes after the command",
+      "actual_behavior": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+      "evidence_screenshot": "exec_TC-REC-01_1792891088.png",
+      "reproduction_trace": "Initial: Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_errors": [],
+      "suspected_cause": "Reproducible failure against a strong expectation: Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:09"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:35",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 2,
+          "failure_reason": "Record unchanged after the action: 'Harbor Jazz Night Dana Demo 2 Confirmed Cancel'",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:37",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-TER-01",
+      "title": "[LIKELY] Filter '#category' = 'Music' shows only matching records: LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FILTER-01",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Filter '#category' = 'Music' shows only matching records' failed: Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events (authenticated)",
+        "3. Choose filter option 'Music'",
+        "4. Apply filter"
+      ],
+      "expected_behavior": "Every listed record's category value is 'Music'",
+      "actual_behavior": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "evidence_screenshot": "exec_TC-FILTER-01_1792891090.png",
+      "reproduction_trace": "Initial: Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_errors": [],
+      "suspected_cause": "Reproducible failure against a strong expectation: Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:12"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:39",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Music' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:42",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-TER-02",
+      "title": "[LIKELY] Filter '#category' = 'Workshop' shows only matching records: LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-FILTER-02",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Filter '#category' = 'Workshop' shows only matching records' failed: Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events (authenticated)",
+        "3. Choose filter option 'Workshop'",
+        "4. Apply filter"
+      ],
+      "expected_behavior": "Every listed record's category value is 'Workshop'",
+      "actual_behavior": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "evidence_screenshot": "exec_TC-FILTER-02_1792891108.png",
+      "reproduction_trace": "Initial: Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_errors": [],
+      "suspected_cause": "Reproducible failure against a strong expectation: Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:29"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:45",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 3,
+          "failure_reason": "Filter 'Workshop' shows records whose value differs: ['City Marathon 10K Sports 2026-12-05 $18.00', 'Product Design Summit Conference 2027-01-09 $250.00']",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:47",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-ORT-02",
+      "title": "[LIKELY] Sort by 'Price: Low to High' orders records (number, asc): LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-SORT-02",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Sort by 'Price: Low to High' orders records (number, asc)' failed: Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events (authenticated)",
+        "3. Choose sort option 'Price: Low to High'",
+        "4. Apply sort",
+        "5. Check the order is monotonic"
+      ],
+      "expected_behavior": "Records ordered by number asc as option 'Price: Low to High' states",
+      "actual_behavior": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+      "evidence_screenshot": "exec_TC-SORT-02_1792891110.png",
+      "reproduction_trace": "Initial: Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_errors": [],
+      "suspected_cause": "Reproducible failure against a strong expectation: Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:31"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:49",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 120.0, 18.0, 250.0, 45.0, 75.0, 9.5",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:52",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-ORT-03",
+      "title": "[LIKELY] Sort by 'Price: High to Low' orders records (number, desc): LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-SORT-03",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Sort by 'Price: High to Low' orders records (number, desc)' failed: Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events (authenticated)",
+        "3. Choose sort option 'Price: High to Low'",
+        "4. Apply sort",
+        "5. Check the order is monotonic"
+      ],
+      "expected_behavior": "Records ordered by number desc as option 'Price: High to Low' states",
+      "actual_behavior": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+      "evidence_screenshot": "exec_TC-SORT-03_1792891124.png",
+      "reproduction_trace": "Initial: Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Events \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/event",
+      "console_errors": [],
+      "suspected_cause": "Reproducible failure against a strong expectation: Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "SEMANTIC_CONVENTION",
+      "verdict_rationale": "Reproduced 3/3 runs against a SEMANTIC_CONVENTION expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:48:45"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:54",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 4,
+          "failure_reason": "Records are not ordered by number in either direction (column 'price'): 9.5, 75.0, 45.0, 250.0, 18.0, 120.0",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:57",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-SRV-05",
+      "title": "[LIKELY] Email: format invalid is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-SRV-05",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Email: format invalid is rejected by the application (client validation disabled)' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a HTML_DECLARED expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /register (authenticated)",
+        "3. Enter valid 'Full name'",
+        "4. Enter valid 'Password'",
+        "5. Enter valid 'Confirm password'",
+        "6. Tick required 'I accept the Terms of Service'",
+        "7. Enter format_invalid value for 'Email'",
+        "8. Disable client-side validation so the submission reaches the application (controlled probe)",
+        "9. Submit the form to the application"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to the declared rule",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-SRV-05_1792891147.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Account created \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a hre",
+      "console_errors": [
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[verbose] [DOM] Input elements should have autocomplete attributes (suggested: \"new-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "HTML_DECLARED",
+      "verdict_rationale": "Reproduced 3/3 runs against a HTML_DECLARED expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "dd631283587a1",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:08"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "2fe0768160854",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:59",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 8,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": "fbf0c87bf3c45",
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:50:01",
+          "reproduces_initial": true
+        }
+      ]
+    },
+    {
+      "bug_id": "BUG-SRV-11",
+      "title": "[LIKELY] Tickets: below min is rejected by the application (client validation disabled): LIKELY_DEFECT",
+      "severity": "LOW",
+      "verification_status": "LIKELY_DEFECT",
+      "reproduction_rate": "3/3 runs failed",
+      "test_id": "TC-SRV-11",
+      "target_url": "http://127.0.0.1:8201/",
+      "summary": "Test 'Tickets: below min is rejected by the application (client validation disabled)' failed: Expected the submission to be rejected with feedback attributable to this rule, but none was shown. Classification: LIKELY_DEFECT. Reproduced 3/3 runs against a HTML_DECLARED expectation (strong but not an explicit requirement); likely defect",
+      "steps_to_reproduce": [
+        "1. Open target application at http://127.0.0.1:8201/",
+        "2. Open observed route /events/1 (authenticated)",
+        "3. Enter valid 'Attendee name'",
+        "4. Enter below_min value for 'Tickets'",
+        "5. Disable client-side validation so the submission reaches the application (controlled probe)",
+        "6. Submit the form to the application"
+      ],
+      "expected_behavior": "Submission rejected with feedback attributable to the declared rule",
+      "actual_behavior": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "evidence_screenshot": "exec_TC-SRV-11_1792891157.png",
+      "reproduction_trace": "Initial: Expected the submission to be rejected with feedback attributable to this rule, but none was shown; Classification: LIKELY_DEFECT",
+      "dom_context": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>My Bookings \u00b7 Harbor Events</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7fb; color: #1d2433; }\n header { background: #12355b; color: #fff; padding: 12px 24px; display: flex; gap: 18px; align-items: center; }\n header a { color: #fff; text-decoration: none; } header .brand { font-weight: 700; margin-right: auto; }\n header .who { opacity: .8; }\n main { max-width: 880px; margin: 24px auto; background: #fff; padding: 24px 32px; border-radius: 8px; }\n label { display: block; margin-top: 12px; font-weight: 600; }\n input[type=text], input[type=email], input[type=password], input[type=number], select { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }\n button { margin-top: 16px; padding: 8px 18px; background: #12355b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }\n table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e3e6ee; }\n .alert { background: #fdecea; color: #a12622; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .notice { background: #e7f6ec; color: #1d6b38; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }\n .inline { display: inline; } .inline button { margin: 0; padding: 4px 10px; }\n</style></head>\n<body><header><a class=\"brand\" href=\"/\">Harbor Events</a><a href=\"/",
+      "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "suspected_cause": "Reproducible failure against a strong expectation: Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+      "suggested_fix": "Confirm the rule against the product requirements; if it holds, fix the application.",
+      "classification": "LIKELY_DEFECT",
+      "expected_source": "HTML_DECLARED",
+      "verdict_rationale": "Reproduced 3/3 runs against a HTML_DECLARED expectation (strong but not an explicit requirement); likely defect",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAILED",
+          "failure_step": 5,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:49:18"
+        },
+        {
+          "attempt": 2,
+          "status": "FAILED",
+          "failure_step": 5,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:50:04",
+          "reproduces_initial": true
+        },
+        {
+          "attempt": 3,
+          "status": "FAILED",
+          "failure_step": 5,
+          "failure_reason": "Expected the submission to be rejected with feedback attributable to this rule, but none was shown",
+          "counted": true,
+          "test_data_namespace": null,
+          "setup_failure": null,
+          "timestamp": "2026-10-25 06:50:06",
+          "reproduces_initial": true
+        }
+      ]
+    }
+  ]
+}

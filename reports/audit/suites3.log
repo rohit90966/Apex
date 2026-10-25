@@ -1,0 +1,25 @@
+﻿........................................................................ [ 25%]
+.F...................................................................... [ 51%]
+........................................................................ [ 77%]
+...............................................................          [100%]
+================================== FAILURES ===================================
+________ test_convention_level_sort_check_requires_an_unambiguous_key _________
+
+    def test_convention_level_sort_check_requires_an_unambiguous_key():
+        no_headers = {"texts": ["Bolt 3 pack $5.00", "Nut 10 pack $2.00"], "values": [3.0, 10.0], "fields": [[], []]}
+        spec = {"key": "number", "any_direction": True, "column_hint": "price"}
+        # One amount per record: evaluable without headers
+        assert list_oracles.evaluate_sorted(no_headers, spec)[0] == "pass"
+        two_amounts = {"texts": ["Bolt $5.00 was $7.00", "Nut $2.00"], "values": [5.0, 2.0], "fields": [[], []]}
+        assert list_oracles.evaluate_sorted(two_amounts, spec)[0] == "not_evaluable"
+        text_key = {"texts": ["b", "a"], "values": ["b", "a"], "fields": [[], []]}
+>       assert list_oracles.evaluate_sorted(text_key, {"key": "text", "any_direction": True})[0] == "not_evaluable"
+E       AssertionError: assert 'pass' == 'not_evaluable'
+E         
+E         - not_evaluable
+E         + pass
+
+tests\test_architecture_root_causes.py:471: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_architecture_root_causes.py::test_convention_level_sort_check_requires_an_unambiguous_key
+1 failed, 278 passed in 293.17s (0:04:53)

@@ -14,7 +14,7 @@
       {
         "test": "protected again /bookings",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": true,
         "reason": ""
@@ -22,7 +22,7 @@
       {
         "test": "public /events",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": true,
         "reason": ""
@@ -39,7 +39,7 @@
       {
         "test": "protected /products",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": false,
         "reason": ""
@@ -47,7 +47,7 @@
       {
         "test": "protected again /products",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": false,
         "reason": ""
@@ -55,7 +55,7 @@
       {
         "test": "public /login",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": false,
         "reason": ""
@@ -114,7 +114,7 @@
       {
         "test": "protected again /inventory.html",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": true,
         "reason": ""
@@ -122,7 +122,7 @@
       {
         "test": "public /",
         "status": "PASSED",
-        "auth_state": "AUTH_NOT_REQUIRED",
+        "auth_state": "AUTHENTICATED",
         "login_performed": false,
         "session_reused": true,
         "reason": ""

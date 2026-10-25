@@ -23843,8 +23843,12 @@ var VerityQAApp = (() => {
   function InvestigationResults({
     investigationReport,
     onOpenLightbox,
-    onNavigate
+    onNavigate,
+    onViewScreenshot,
+    onSelectTab
   }) {
+    onOpenLightbox = onOpenLightbox || ((src) => onViewScreenshot && onViewScreenshot(src));
+    onNavigate = onNavigate || ((tab) => onSelectTab && onSelectTab(tab));
     const [activeSubtab, setActiveSubtab] = (0, import_react3.useState)("summary");
     const [evidenceFilter, setEvidenceFilter] = (0, import_react3.useState)("");
     if (!investigationReport) {
@@ -23933,81 +23937,102 @@ var VerityQAApp = (() => {
     }) : /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: "6", className: "text-center text-muted" }, "No empirical evidence records match filter."))))))), activeSubtab === "coverage" && /* @__PURE__ */ import_react3.default.createElement("div", { className: "results-tab-content active" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "dashboard-grid-2" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card-header" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "card-title" }, "Exploration Coverage Summary")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "info-table" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "info-row" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-label" }, "Discovered Routes:"), /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-val" }, displayValue(pickCount(ov.pages_discovered, map.length)))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "info-row" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-label" }, "Probed States:"), /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-val" }, displayValue(pickCount(stateClasses.length, ov.meaningful_states_discovered)))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "info-row" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-label" }, "Pending Frontier Items:"), /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-val" }, displayValue(ov.pending_frontier_count))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "info-row" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-label" }, "Authentication Coverage:"), /* @__PURE__ */ import_react3.default.createElement("span", { className: "info-val" }, authCoverage)))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card-header" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "card-title" }, "Documented Limitations & Boundaries")), /* @__PURE__ */ import_react3.default.createElement("ul", { className: "limitations-list" }, limits.length > 0 ? limits.map((l, idx) => /* @__PURE__ */ import_react3.default.createElement("li", { key: idx }, l)) : /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("li", null, "Zero destructive or unauthorized external operations executed."), /* @__PURE__ */ import_react3.default.createElement("li", null, "Payment processing tokenization simulated without external gateway calls."), /* @__PURE__ */ import_react3.default.createElement("li", null, "Exploration halted at configured step and depth budgets.")))))));
   }
   function renderStateGraph(stateClasses, transitions, map) {
+    const h = import_react3.default.createElement;
     if (stateClasses.length === 0) {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "text-center text-muted p-20" }, "Single state observed.");
+      return h('div', { className: 'text-center text-muted p-20' }, 'Single state observed.');
     }
-    const cols = Math.min(3, Math.max(2, Math.ceil(stateClasses.length / 2)));
+    // Layout: fixed-size cards on a grid; the SVG is sized to fit every state (the container scrolls).
+    const cols = Math.min(3, Math.max(1, Math.ceil(Math.sqrt(stateClasses.length))));
     const rows = Math.ceil(stateClasses.length / cols);
-    const nodeW = 230;
-    const nodeH = 58;
-    const gapX = 90;
-    const gapY = 85;
-    const startX = 35;
-    const startY = 35;
-    const svgW = startX * 2 + cols * nodeW + (cols - 1) * gapX;
-    const svgH = startY * 2 + rows * nodeH + (rows - 1) * gapY + 20;
-    const nodeCoords = stateClasses.map((sc, i) => ({
-      x: startX + i % cols * (nodeW + gapX),
-      y: startY + Math.floor(i / cols) * (nodeH + gapY),
-      col: i % cols,
-      row: Math.floor(i / cols)
-    }));
-    function getTitle(sc, idx) {
-      if (sc.page_title && !sc.page_title.includes("st_")) return sc.page_title;
-      const route = (sc.representative_route || sc.normalized_route || sc.url || "").toLowerCase();
-      if (route.includes("login")) return "Login Gateway";
-      if (route.includes("cart")) return "Shopping Cart View";
-      if (route.includes("item") || route.includes("product")) return "Product Details";
-      if (route.includes("inventory")) return "Product Catalog";
-      if (route.includes("checkout")) return "Checkout Information";
-      return `State ${idx + 1}`;
-    }
-    return /* @__PURE__ */ import_react3.default.createElement("svg", { width: svgW, height: svgH, viewBox: `0 0 ${svgW} ${svgH}`, style: { fontFamily: "Inter, sans-serif" } }, /* @__PURE__ */ import_react3.default.createElement("defs", null, /* @__PURE__ */ import_react3.default.createElement("marker", { id: "arrow-route", viewBox: "0 0 10 10", refX: "6", refY: "5", markerWidth: "6", markerHeight: "6", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react3.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#6366f1" })), /* @__PURE__ */ import_react3.default.createElement("marker", { id: "arrow-inpage", viewBox: "0 0 10 10", refX: "6", refY: "5", markerWidth: "6", markerHeight: "6", orient: "auto-start-reverse" }, /* @__PURE__ */ import_react3.default.createElement("path", { d: "M 0 0 L 10 5 L 0 10 z", fill: "#06b6d4" }))), (transitions || []).slice(0, 15).map((t, i) => {
-      const sIdx = stateClasses.findIndex((c) => (c.class_id || c.state_id || c.id) === (t.source_class || t.source_state_id));
-      const tIdx = stateClasses.findIndex((c) => (c.class_id || c.state_id || c.id) === (t.target_class || t.target_state_id));
-      if (sIdx === -1 || tIdx === -1) return null;
-      const sPos = nodeCoords[sIdx];
-      const tPos = nodeCoords[tIdx];
-      const isRoute = sIdx !== tIdx;
-      const color = isRoute ? "#6366f1" : "#06b6d4";
-      const marker = isRoute ? "url(#arrow-route)" : "url(#arrow-inpage)";
-      let d = "";
-      let midX = (sPos.x + tPos.x + nodeW) / 2;
-      let midY = (sPos.y + tPos.y) / 2;
-      if (sIdx === tIdx) {
-        const loopX = sPos.x + nodeW / 2;
-        d = `M ${loopX - 20} ${sPos.y} C ${loopX - 35} ${sPos.y - 30}, ${loopX + 35} ${sPos.y - 30}, ${loopX + 20} ${sPos.y}`;
-        midX = loopX;
-        midY = sPos.y - 24;
-      } else if (sPos.row === tPos.row && tPos.col === sPos.col + 1) {
-        d = `M ${sPos.x + nodeW} ${sPos.y + nodeH / 2} L ${tPos.x} ${tPos.y + nodeH / 2}`;
-        midX = (sPos.x + nodeW + tPos.x) / 2;
-        midY = sPos.y + nodeH / 2;
-      } else {
-        d = `M ${sPos.x + nodeW / 2} ${sPos.y + nodeH} Q ${midX} ${midY} ${tPos.x} ${tPos.y + nodeH / 2}`;
+    const nodeW = 240, nodeH = 62, gapX = 110, gapY = 70, pad = 30;
+    const svgW = pad * 2 + cols * nodeW + (cols - 1) * gapX;
+    const svgH = pad * 2 + rows * nodeH + (rows - 1) * gapY;
+    const pos = stateClasses.map((sc, i) => ({ x: pad + (i % cols) * (nodeW + gapX), y: pad + Math.floor(i / cols) * (nodeH + gapY) }));
+    const idOf = (c) => c.class_id || c.state_id || c.id;
+    const indexOf = {};
+    stateClasses.forEach((c, i) => { indexOf[idOf(c)] = i; });
+
+    const clip = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
+    // Titles come from what the investigation recorded about each state, never from guesses about the site.
+    const titleOf = (sc, i) => {
+      const t = (sc.primary_purpose || sc.page_title || '').replace(/\s*\((Entry|View)\)\s*$/i, '').trim();
+      return t && !t.startsWith('st_') ? t : 'State ' + (i + 1);
+    };
+    const pathOf = (sc) => {
+      const raw = (sc.representative_route || sc.normalized_route || sc.url || '/').replace(/^https?:\/\/[^/]+/i, '') || '/';
+      return raw;
+    };
+    // Readable action: "CLICK_CONTROL:control_cls_02740c_add_to_cart" -> "Click: add to cart"
+    const actionOf = (t) => {
+      const raw = String(t.trigger_action || 'Action');
+      const [kind, rest = ''] = raw.split(/:(.*)/s);
+      const verb = { CLICK_CONTROL: 'Click', NAVIGATE_LINK: 'Open link', FILL: 'Fill', SELECT_OPTION: 'Select',
+        AUTHENTICATE: 'Log in', SUBMIT: 'Submit' }[kind] || kind.replace(/_/g, ' ').toLowerCase();
+      const what = rest.replace(/^(control|select|nav)_(cls_)?[0-9a-f]{6,}_*/i, '').replace(/^nav_link_\d+$/i, '')
+        .replace(/_+/g, ' ').trim();
+      return what ? verb + ': ' + what : verb;
+    };
+
+    const edges = [];
+    const seen = {};
+    (transitions || []).forEach((t) => {
+      const s = indexOf[t.source_class || t.source_state_id];
+      const d = indexOf[t.target_class || t.target_state_id];
+      if (s === undefined || d === undefined) return;
+      const key = s + '>' + d;
+      if (seen[key]) { seen[key].labels.push(actionOf(t)); return; }
+      seen[key] = { s, d, labels: [actionOf(t)] };
+      edges.push(seen[key]);
+    });
+
+    const edge = (e, i) => {
+      const a = pos[e.s], b = pos[e.d];
+      const tip = e.labels.join('\n');
+      if (e.s === e.d) {
+        const x = a.x + nodeW - 40, y = a.y;
+        return h('g', { key: 'e' + i }, h('title', null, tip),
+          h('path', { d: `M ${x} ${y} C ${x + 10} ${y - 34}, ${x + 50} ${y - 20}, ${x + 30} ${y + 4}`, fill: 'none',
+            stroke: '#0e7490', strokeWidth: 1.5, strokeDasharray: '4,3', markerEnd: 'url(#vq-arrow-inpage)' }));
       }
-      const label = (t.trigger_action || "Action").replace(/^CLICK_CONTROL:? ?/i, "Click ").replace(/^NAVIGATE_LINK:? ?/i, "Navigate ").slice(0, 18);
-      return /* @__PURE__ */ import_react3.default.createElement("g", { key: i }, /* @__PURE__ */ import_react3.default.createElement("path", { d, fill: "none", stroke: color, strokeWidth: "1.8", strokeDasharray: isRoute ? "none" : "4,3", markerEnd: marker }), /* @__PURE__ */ import_react3.default.createElement("rect", { x: midX - 35, y: midY - 8, width: "70", height: "16", rx: "3", fill: "#0f172a", stroke: color, strokeWidth: "0.8", opacity: "0.95" }), /* @__PURE__ */ import_react3.default.createElement("text", { x: midX, y: midY + 3.5, textAnchor: "middle", fontSize: "9", fontWeight: "600", fill: color }, label));
-    }), stateClasses.map((sc, i) => {
-      const pos = nodeCoords[i];
-      const isEntry = i === 0;
-      const title = getTitle(sc, i);
-      let route = (sc.representative_route || sc.normalized_route || sc.url || "/").replace(/^https?:\/\/[^/]+/i, "") || "/";
-      if (route.length > 26) route = "\u2026" + route.slice(-24);
-      return /* @__PURE__ */ import_react3.default.createElement("g", { key: i }, /* @__PURE__ */ import_react3.default.createElement(
-        "rect",
-        {
-          x: pos.x,
-          y: pos.y,
-          width: nodeW,
-          height: nodeH,
-          rx: "8",
-          fill: "#0f172a",
-          stroke: isEntry ? "#10b981" : "#334155",
-          strokeWidth: isEntry ? "2" : "1.5"
-        }
-      ), isEntry && /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("rect", { x: pos.x + nodeW - 54, y: pos.y - 8, width: "46", height: "16", rx: "4", fill: "#10b981" }), /* @__PURE__ */ import_react3.default.createElement("text", { x: pos.x + nodeW - 31, y: pos.y + 4, textAnchor: "middle", fontSize: "8.5", fontWeight: "700", fill: "#080c14" }, "ENTRY")), /* @__PURE__ */ import_react3.default.createElement("text", { x: pos.x + 12, y: pos.y + 23, fontSize: "12", fontWeight: "600", fill: "#f8fafc" }, title), /* @__PURE__ */ import_react3.default.createElement("text", { x: pos.x + 12, y: pos.y + 42, fontSize: "10.5", fontFamily: "monospace", fill: "#94a3b8" }, route));
-    }));
+      const ax = a.x + nodeW / 2, ay = a.y + nodeH / 2, bx = b.x + nodeW / 2, by = b.y + nodeH / 2;
+      // Leave from / arrive at the card border facing the other card.
+      const side = (x, y, tx, ty) => {
+        const dx = tx - x, dy = ty - y;
+        if (Math.abs(dx) * nodeH > Math.abs(dy) * nodeW) return [x + Math.sign(dx) * nodeW / 2, y];
+        return [x, y + Math.sign(dy) * nodeH / 2];
+      };
+      const [sx, sy] = side(ax, ay, bx, by);
+      const [tx, ty] = side(bx, by, ax, ay);
+      const bend = (i % 2 ? 1 : -1) * 18;
+      const mx = (sx + tx) / 2 + (sy === ty ? 0 : bend), my = (sy + ty) / 2 + (sx === tx ? 0 : bend);
+      const route = pathOf(stateClasses[e.s]).split('?')[0] !== pathOf(stateClasses[e.d]).split('?')[0];
+      return h('g', { key: 'e' + i, className: 'vq-edge' }, h('title', null, tip),
+        h('path', { d: `M ${sx} ${sy} Q ${mx} ${my} ${tx} ${ty}`, fill: 'none', stroke: route ? '#2563eb' : '#0e7490',
+          strokeWidth: 1.5, strokeDasharray: route ? 'none' : '4,3', markerEnd: route ? 'url(#vq-arrow-route)' : 'url(#vq-arrow-inpage)',
+          opacity: 0.75 }),
+        // wide invisible stroke so the tooltip is easy to hover
+        h('path', { d: `M ${sx} ${sy} Q ${mx} ${my} ${tx} ${ty}`, fill: 'none', stroke: 'transparent', strokeWidth: 12 }));
+    };
+
+    const node = (sc, i) => {
+      const p = pos[i];
+      const entry = i === 0;
+      return h('g', { key: 'n' + i }, h('title', null, titleOf(sc, i) + '\n' + pathOf(sc)),
+        h('rect', { x: p.x, y: p.y, width: nodeW, height: nodeH, rx: 8, fill: '#ffffff', stroke: entry ? '#15803d' : '#d1d5db',
+          strokeWidth: entry ? 2 : 1 }),
+        entry && h('text', { x: p.x + nodeW - 12, y: p.y + 18, textAnchor: 'end', fontSize: 9, fontWeight: 700, fill: '#15803d' }, 'ENTRY'),
+        h('text', { x: p.x + 12, y: p.y + 25, fontSize: 12.5, fontWeight: 600, fill: '#111827' }, clip(titleOf(sc, i), entry ? 27 : 32)),
+        h('text', { x: p.x + 12, y: p.y + 45, fontSize: 10.5, fontFamily: 'monospace', fill: '#6b7280' }, clip(pathOf(sc), 34)));
+    };
+
+    return h('svg', { width: svgW, height: svgH, viewBox: `0 0 ${svgW} ${svgH}`, style: { fontFamily: 'Inter, sans-serif', display: 'block' } },
+      h('defs', null,
+        h('marker', { id: 'vq-arrow-route', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' },
+          h('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#2563eb' })),
+        h('marker', { id: 'vq-arrow-inpage', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' },
+          h('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#0e7490' }))),
+      edges.map(edge),
+      stateClasses.map(node));
   }
 
   // app/static/src/components/GeneratedTests.jsx
